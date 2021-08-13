@@ -1,0 +1,34 @@
+= 
+
+
+. Windows Host Utility Kit 7.1 をインストールして、 FC と NVMe の両方に共通のドライバパラメータを設定します。
+. MPIO のプロパティを開きます。
+. [* マルチパスの検出 * ] タブで、 NVMe 用にリストされたデバイス ID を追加します。
++
+MPIO は NVMe デバイスを認識し、 NVMe デバイスはディスク管理の下に表示されます。
+
+. 「 * ディスクの管理」を開き、「 * ディスクのプロパティ * 」に移動します。
+. [*MPIO*] タブで、 [*Details*] をクリックします。
+. 次の MSDSM 設定を設定します。
++
+** PathVerififiedPeriod ： * 10 *
+** PathVerifyEnabled ： * Enable *
+** RetryCount ： * 6 *
+** 再試行間隔： * 1 *
+** PDORemovedPeriod ： * 130*
+
+
+. MPIO ポリシー * サブセット付きラウンドロビン * を選択します。
+. レジストリ値を変更します。
++
+[listing]
+----
+HKLM\SYSTEM\CurrentControlSet\Services\mpio\Parameters\PathRecoveryInterval DWORD -> 30
+
+HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryInterval  DWORD-> 1
+----
+. ホストをリブートします。
++
+これで、 Windows ホストで NVMe の設定が完了しました。
+
+

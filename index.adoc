@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+keywords: ontap, san, host, rhel, red, hat, linux, sles, suse, 
+summary: SAN ホストのドキュメント 
+---
+= ONTAP SAN ホスト構成
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+このコンテンツでは、 NVMe 、 iSCSI 、 FC の各プロトコル向けに ONTAP SAN ホストを設定する方法について、配信固有のガイダンスを提供します。
+
+最適なパフォーマンスを実現し、フェイルオーバーを正常に実行するには、 ONTAP ストレージを使用して SAN ホストを正しく設定することが重要です。これらのドキュメントでは、ベストプラクティス構成を簡単にセットアップする方法を紹介しています。
+
+iSCSI および FC の場合、従来の Linux Unified Host Utilities のガイドはこのマニュアルに代わるものです。各ドキュメントは 1 つのディストリビューションと Linux バージョンに固有なので、正確なバージョンの情報のみが表示されます。お使いのディストリビューションと Linux のバージョンがまだ記載されていない場合は、すぐにご確認ください。
+
+
+
+== 詳細情報
+
+SAN 構成の追加情報については、次のドキュメントを参照してください。
+
+link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-asa-config/home.html["『 All SAN Array Software Configuration Guide 』を参照してください"]
+
+

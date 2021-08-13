@@ -1,0 +1,44 @@
+= 
+
+
+multipath .conf ファイルはマルチパスデーモンを開始するために存在している必要がありますが、このファイルを初めて作成するときに、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトのファイルを作成できます。マルチパスサービスを有効にして開始する必要がある場合があります。
+
+[listing]
+----
+# chkconfig multipathd on
+# /etc/init.d/multipathd start
+----
+multipath で管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 multipath.conf に直接何も追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。
+
+
+NOTE: <DevId> を除外するデバイスの WWID の文字列に置き換えます。次のコマンドを使用して WWID を特定します。
+
+....
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+....
+この例では、 sda はブラックリストに登録する必要があるローカル SCSI ディスクです。
+
+. 次のコマンドを実行して WWID を特定します。
++
+....
+# /lib/udev/scsi_id -gud /dev/sda
+360030057024d0730239134810c0cb833
+....
+. /etc/multipath.conf 内のブラックリストスタンザに、次の WWID を追加します。
++
+....
+blacklist {
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+....
+
+
+デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。

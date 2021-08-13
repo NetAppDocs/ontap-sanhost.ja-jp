@@ -1,0 +1,213 @@
+---
+sidebar: sidebar 
+permalink: hu_aix_71.html 
+keywords: host utilities, aix, 7.1 netapp, ontap 
+summary: ONTAP で IBM AIX 7.1 を使用する方法について説明します 
+---
+= NetApp ONTAP での IBM AIX 7.1 の使用
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== AIX Host Utilities のインストール
+
+AIX MPIO と NetApp ONTAP ストレージを使用する場合、 AIX Host Utilities Kit をインストールする必要があります。
+
+Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルを展開して、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得する必要があります。
+
+.手順
+. ホストにログインします。
++
+** AIX ホストでは、 * root * としてログインします。
+
+
+. Host Utilities が含まれている圧縮ファイルを、ネットアップサポートサイトからホスト上のディレクトリにダウンロードします。
+. ダウンロードを格納しているディレクトリに移動します。
+. ファイルを解凍して、 SAN Toolkit ソフトウェアパッケージを展開します。
++
+zcat ntap_aix_host_utilities_6.0.tar.z|tar-xvf – `
+
++
+ファイルを解凍すると 'ntap_aix_host_utilities_6.0' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります
+
+. AIX MPIO をインストールします。
++
+'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.0/MPIO NetApp.mpio_Host_Utilities_Kit
+
+. SAN ツールキットをインストールします :'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.0/SAN_Tool_Kit NetApp.SAN_toolkit
+. ホストをリブートします。
+
+
+
+
+== SAN ツールキット
+
+このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+
+次の例では 'lun lun lun show コマンドは LUN 情報を返します
+
+[listing]
+----
+#sanlun lun show
+
+controller(7mode)/                  device      host       lun
+vserver(Cmode)    lun-pathname     filename    adapter   protocol   size   mode
+--------------------------------------------------------------------------------
+data_vserver      /vol/vol1/lun1    hdisk0      fcs0       FCP       60g    C
+data_vserver      /vol/vol2/lun2    hdisk0      fcs0       FCP       20g    C
+data_vserver      /vol/vol3/lun3    hdisk11     fcs0       FCP       20g    C
+data_vserver      /vol/vol4/lun4    hdisk14     fcs0       FCP       20g    C
+
+----
+
+
+== SAN ブート中です
+
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+
+SAN ブートとは、 AIX ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。SAN ブート LUN は、 FC プロトコルまたは FCoE プロトコルで AIX Host Utilities を実行する AIX MPIO 環境で動作するようにセットアップできます。SAN ブート LUN を作成し、その LUN に新しい OS イメージをインストールする方法は、使用するプロトコルによって異なります。
+
+
+
+== マルチパス
+
+マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Host Utilities の AIX 環境では、 AIX 標準マルチパス解決策、 MPIO を使用します。
+
+AIX の場合、 Path Control Module （ PCM ；パス制御モジュール）が複数のパスを制御します。PCM は、パス管理を処理するストレージベンダーが提供するコードです。これは、 Host Utilities のインストール時にインストールして有効にします。
+
+
+
+=== Non-ASA の設定
+
+ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。
+
+次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
+
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------- ---------- ------ ------- ---------- ----------
+host    vserver    AIX                        AIX MPIO
+path    path       MPIO   host    vserver         path
+state   type       path   adapter LIF         priority
+------- ---------- ------ ------- ---------- ----------
+up      secondary  path0  fcs0    fc_aix_1        1
+up      primary    path1  fcs0    fc_aix_2        1
+up      primary    path2  fcs1    fc_aix_3        1
+up      secondary  path3  fcs1    fc_aix_4        1
+
+----
+
+
+=== オール SAN アレイ構成
+
+All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。
+
+次の例は、 ONTAP LUN の正しい出力を表示します。
+
+
+NOTE: ONTAP 9.8 for AIX Hosts 以降では、すべての SAN アレイ（ ASA ）構成がサポートされています。
+
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------ ------- ------ ------- --------- ----------
+host   vserver  AIX                      AIX MPIO
+path   path     MPIO   host    vserver     path
+state  type     path   adapter LIF       priority
+------ ------- ------ ------- --------- ----------
+up     primary  path0  fcs0    fc_aix_1     1
+up     primary  path1  fcs0    fc_aix_2     1
+up     primary  path2  fcs1    fc_aix_3     1
+up     primary  path3  fcs1    fc_aix_4     1
+----
+
+
+== 推奨設定
+
+NetApp ONTAP LUN の推奨されるパラメータ設定は次のとおりです。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
+
+[cols="4*"]
+|===
+| パラメータ | 環境 | AIX の値 | 注 
+
+
+| アルゴリズム | MPIO | Round_Robin （ラウンドロビン | Host Utilities で設定します 
+
+
+| hcheck_cmd | MPIO | お問い合わせ | Host Utilities で設定します 
+
+
+| hcheck_interval | MPIO | 30 | Host Utilities で設定します 
+
+
+| hcheck_mode | MPIO | 非アクティブ | Host Utilities で設定します 
+
+
+| lun_reset_spt | MPIO または非 MPIO | はい。 | Host Utilities で設定します 
+
+
+| max_transfer を実行します | MPIO または非 MPIO | FC LUN ： 0x100000 バイト | Host Utilities で設定します 
+
+
+| QFULL _ Dly | MPIO または非 MPIO | 2 秒の遅延 | Host Utilities で設定します 
+
+
+| queue_depth | MPIO または非 MPIO | 64 | Host Utilities で設定します 
+
+
+| RESERVE_policy | MPIO または非 MPIO | 予約なし | Host Utilities で設定します 
+
+
+| re_timeout （ディスク） | MPIO または非 MPIO | 30 秒 | OS のデフォルト値を使用します 
+
+
+| dyntrk | MPIO または非 MPIO | はい。 | OS のデフォルト値を使用します 
+
+
+| FC_err_recov | MPIO または非 MPIO | fast_fail | OS のデフォルト値を使用します 
+
+
+| q_type | MPIO または非 MPIO | シンプル | OS のデフォルト値を使用します 
+
+
+| num_cmd_elems | MPIO または非 MPIO | AIX の場合は 1024 | FC EN1B 、 FC EN1C 
+
+
+| num_cmd_elems | MPIO または非 MPIO | AIX の場合は 500 （スタンドアロン / 物理）、 VIOC の場合は 200 | FC EN0G 
+|===
+
+
+== MetroCluster の推奨設定
+
+デフォルトでは、 LUN へのパスがない場合、 AIX オペレーティングシステムは I/O タイムアウトを短縮します。この状況は、シングルスイッチの SAN ファブリック構成や MetroCluster 構成など、計画外のフェイルオーバーが発生する構成で発生することがあります。追加情報および推奨されるデフォルト設定の変更については、を参照してください link:https://kb.netapp.com/app/answers/answer_view/a_id/1001318["NetApp KB1001318"]
+
+
+
+== 既知の問題および制限
+
+既知の問題や制限はありません。

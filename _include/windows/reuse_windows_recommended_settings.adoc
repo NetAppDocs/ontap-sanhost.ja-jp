@@ -1,0 +1,31 @@
+= 
+
+
+FC を使用するシステムでは、 MPIO が選択されている場合、 Emulex および QLogic FC HBA について次のタイムアウト値が必要です。
+
+Emulex ファイバチャネル HBA の場合：
+
+[cols="2*"]
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkTimeOut | 1. 
+
+
+| ノードタイムアウト | 10. 
+|===
+QLogic ファイバチャネル HBA の場合：
+
+[cols="2*"]
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkDownTimeOut の 2 つのリンクがあり | 1. 
+
+
+| PortDownRetryCount のように指定します | 10. 
+|===
+
+NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください link:https://library.netapp.com/ecmdocs/ECMLP2789202/html/index.html["『 Windows 7.1 Host Utilities Installation Guide 』"^]。

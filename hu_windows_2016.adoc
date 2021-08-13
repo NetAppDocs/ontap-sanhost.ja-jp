@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: hu_windows_2016.html 
+keywords: windows, enterprise 
+summary: ONTAP で Windows Server 2016 を使用する 
+---
+= ONTAP で Windows Server 2016 を使用する
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== OS のブート中です
+
+オペレーティングシステムを起動するには、ローカルブートまたは SAN ブートのいずれかを使用するという 2 つのオプションがあります。ローカルブートの場合は、ローカルハードディスク（ SSD 、 SATA 、 RAID など）に OS をインストールします。SAN ブートについては、次の手順を参照してください。
+
+
+
+=== SAN ブート中です
+
+SAN ブートを使用する場合は、構成でサポートされている必要があります。NetApp Interoperability Matrix Tool を使用して、お使いの OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされているかどうかを確認できます。
+
+. SAN ブート LUN をホストにマッピングします。
+. 複数のパスが使用可能であることを確認する。複数のパスを使用できるのは、ホスト OS が稼働していて、パス上でのみです。
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+. ホストをリブートして、ブートが正常に完了したことを確認します。
+
+
+
+
+== Windows ホットフィックスのインストール
+
+サーバにインストールする最新の累積更新プログラム * を使用することをお勧めします。
+
+
+NOTE: にアクセスします link:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2016["Microsoft Update Catalog 2016 』を参照してください"^] Web サイトで、使用している Windows のバージョンに必要な Windows 修正プログラムを入手してインストールします。
+
+. Microsoft サポートサイトからホットフィックスをダウンロードします。
+
+
+
+NOTE: 一部のホットフィックスは、直接ダウンロードできません。このような場合は、 Microsoft のサポート担当者に修正プログラムをリクエストする必要があります。
+
+. Microsoft の指示に従って、修正プログラムをインストールします。
+
+
+
+TIP: 多くの修正プログラムでは Windows ホストのリブートが必要ですが、 Host Utilities のインストールまたはアップグレードの実行後、ホストのリブートを待機することもできます。
+
+
+
+== Windows Unified Host Utilities のインストール
+
+Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhu の構成情報と手順については、を参照してください link:https://mysupport.netapp.com/documentation/docweb/index.html?productID=62322&platformID=30462&language=en-US["WUHU 7.1 のドキュメント"^]。
+
+
+
+== マルチパス
+
+Windows ホストにストレージシステムへのパスが複数ある場合は、 MPIO ソフトウェアをインストールし、マルチパスをセットアップする必要があります。MPIO ソフトウェアがないと、各パスが別々のディスクとしてオペレーティングシステムに認識され、データの破損を招くことがあります。MPIO ソフトウェアは、すべてのパスに対して単一のディスクをオペレーティングシステムに提供し、デバイス固有モジュール（ DSM ）はパスのフェイルオーバーを管理します。
+
+Windows システムでは、 MPIO 解決策の 2 つの主要コンポーネントは DSM と Windows MPIO です。MPIO は、 Hyper-V 仮想マシンで実行されている Windows XP または Windows Vista ではサポートされていません。
+
+
+NOTE: MPIO サポートを選択すると、 Windows Unified Host Utilities によって、 Windows Server 2016 に含まれている MPIO 機能が有効になります。
+
+
+
+== SAN の設定
+
+
+
+=== Non-ASA の設定
+
+ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。
+
+優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。
+
+優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。
+
+
+NOTE: 最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。
+
+次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
+
+image::nonasa.png[笠ではありません]
+
+
+
+=== すべての SAN アレイ構成
+
+オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ / 最適化されており、コントローラによって処理され、すべてのアクティブパスで I/O が送信されます。
+
+image::asa.png[ASA]
+
+
+NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
+
+
+
+== 推奨設定
+
+FC を使用するシステムでは、 MPIO が選択されている場合、 Emulex および QLogic FC HBA について次のタイムアウト値が必要です。
+
+Emulex ファイバチャネル HBA の場合：
+
+[cols="2*"]
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkTimeOut | 1. 
+
+
+| ノードタイムアウト | 10. 
+|===
+QLogic ファイバチャネル HBA の場合：
+
+[cols="2*"]
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkDownTimeOut の 2 つのリンクがあり | 1. 
+
+
+| PortDownRetryCount のように指定します | 10. 
+|===
+
+NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください link:https://library.netapp.com/ecmdocs/ECMLP2789202/html/index.html["『 Windows 7.1 Host Utilities Installation Guide 』"^]。
+
+
+
+== 既知の制限
+
+Windows Server 2016 には既知の問題はありません。

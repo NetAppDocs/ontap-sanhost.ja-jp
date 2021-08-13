@@ -1,0 +1,296 @@
+---
+sidebar: sidebar 
+permalink: hu_rhel_80.html 
+keywords: host utilities, red hat, rhel, linux, 8.0, netapp, ontap 
+summary: ONTAP で Red Hat Enterprise Linux 8.0 を使用する方法について説明します 
+---
+= NetApp ONTAP で Red Hat Enterprise Linux 8.0 を使用する
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== Linux Unified Host Utilities のインストール
+
+NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
+
+Linux Unified Host Utilities をインストールすることを強く推奨しますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+
+現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。
+
+.手順
+. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] ホストに接続します。
+. 次のコマンドを使用して、ソフトウェアパッケージをインストールします。
++
+「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
+
+
+
+
+
+== SAN ツールキット
+
+このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+
+次の例では 'lun lun show コマンドは 'LUN 情報を返します
+
+[listing]
+----
+# sanlun lun show all
+controller(7mode/E-Series)/            device     host               lun
+vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
+-------------------------------------------------------------------------
+data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+----
+
+
+== SAN ブート中です
+
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+
+.手順
+. SAN ブート LUN をホストにマッピングします。
+. 複数のパスが使用可能であることを確認する。
++
+複数のパスを使用できるのは、ホスト OS が稼働していて、パス上でのみです。
+
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. ホストをリブートして、ブートが正常に完了したことを確認します。
+
+
+
+
+== マルチパス
+
+Red Hat Enterprise Linux （ RHEL ） 8.0 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.0 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。
+
+「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
+
+
+
+=== オール SAN アレイ構成
+
+All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。
+
+次の例は、 ONTAP LUN の正しい出力を表示します。
+
+[listing]
+----
+# multipath -ll
+3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:7:1    sdfi   130:64   active ready running
+  |- 11:0:9:1    sdiy  8:288     active ready running
+  |- 11:0:10:1  sdml 69:464   active ready running
+  |- 11:0:11:1  sdpt  131:304  active ready running
+----
+
+NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。ストレージ障害時に 8 個を超えるパスで原因パスの問題が発生する可能性があります。
+
+
+
+=== Non-ASA の設定
+
+ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。
+
+次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
+
+[listing]
+----
+# multipath -ll
+3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:7:1    sdfi   130:64   active ready running
+  |- 11:0:9:1    sdiy  8:288     active ready running
+  |- 11:0:10:1  sdml 69:464   active ready running
+  |- 11:0:11:1  sdpt  131:304  active ready running
+----
+
+NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。ストレージ障害時に 8 個を超えるパスで原因パスの問題が発生する可能性があります。
+
+
+
+== 推奨設定
+
+RHEL 8.0 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。
+
+マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます
+
+このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。
+
+[listing]
+----
+# systemctl enable multipathd
+# systemctl start multipathd
+----
+マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、「 multipath.conf 」ファイルに直接何も追加する必要はありません。
+
+不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。
+
+「 <DevId> 」を除外するデバイスの WWID の文字列に置き換えます。次のコマンドを使用して WWID を特定します。
+
+....
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+....
+この例では '`d`s はブラックリストに登録する必要があるローカル SCSI ディスクです
+
+.手順
+. 次のコマンドを実行して WWID を特定します。
++
+....
+# /lib/udev/scsi_id -gud /dev/sda
+360030057024d0730239134810c0cb833
+....
+. /etc/multipath.conf 内のブラックリストスタンザに、次の WWID を追加します。
++
+....
+blacklist {
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+....
+
+
+デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。
+
+[cols="2*"]
+|===
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | " 無限 " 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | "2 pg_init_retries 50" 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| パスの再試行なし | キュー 
+
+
+| path_checker です | " tur " 
+
+
+| path_grouping_policy | 「 group_by_prio 」 
+
+
+| path_selector | "service-time 0" 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN. * 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | " 均一 " 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
+|===
+次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合 ' マルチパス .conf ファイルは 'path_checker' および ONTAP LUN と互換性のない 'no-path_retry' の値を定義しますホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。
+
+[listing]
+----
+defaults {
+   path_checker      readsector0
+   no_path_retry      fail
+}
+
+devices {
+   device {
+      vendor         "NETAPP  "
+      product         "LUN.*"
+      no_path_retry     queue
+      path_checker      tur
+   }
+}
+----
+
+
+=== KVM 設定
+
+Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用できます。LUN がハイパーバイザーにマッピングされるため、 KVM の設定を変更する必要はありません。
+
+
+
+== 既知の問題および制限
+
+[cols="4*"]
+|===
+| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1238719["1238719"^] | ストレージフェイルオーバー処理中に、 QLogic QLE2672 16Gb FC を搭載した RHEL8 でカーネルが停止する | QLogic QLE2672 ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux （ RHEL ） 8 カーネルでストレージフェイルオーバー処理を実行すると、カーネルが停止することがあります。カーネルが停止すると、オペレーティングシステムがリブートします。kdump が設定されている場合は、リブートによってアプリケーションが停止し、 /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を特定します。この場合、「 kmem_cache_alloc+160 」モジュールで中断が発生します。vmcore ファイルには、「 [ 例外 RIP ： kmem_cache_alloc+160 」という文字列で記録されます。ホスト OS をリブートしてオペレーティングシステムをリカバリし、アプリケーションを再起動します。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1710009["1710009."^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1226783["1226783"^] | すべてのファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）に 204 を超える SCSI デバイスがマッピングされている場合、 RHEL8 の OS が「緊急モード」でブートする | オペレーティングシステムのリブートプロセスで 204 を超える SCSI デバイスがホストにマッピングされている場合、 RHEL8 OS が「通常モード」でブートできず、「緊急モード」になります。その結果、ほとんどのホストサービスが使用できなくなります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1690356["1690356"^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1230882["1230882"^] | RHEL8 のインストール中に、 iSCSI マルチパスデバイスにパーティションを作成することはできません。 | RHEL 8 のインストール中、 iSCSI SAN LUN マルチパスデバイスはディスクの選択に表示されません。そのため、 SAN ブートデバイスでマルチパスサービスが有効になっていません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1709995["1709995"^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1235998["1235998"^] | 「 rescan-scsi-bus.sh a 」コマンドでは、 328 を超えるデバイスをスキャンできません | 328 個を超える SCSI デバイスを持つ Red Hat Enterprise Linux 8 ホストマップの場合、ホスト OS コマンド「 rescan-scsi-bus.sh - A 」は 328 個のデバイスのみをスキャンします。ホストは残りのマッピングされたデバイスを検出しません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1709995["1709995"^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231087["1231087"^] | ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC を搭載した RHEL8 で、リモートポートがブロック状態になっています | ストレージフェイルオーバー処理中、リモートポートは Emulex LPe16002 16Gb ファイバチャネル（ FC ）を搭載した RHEL8 でブロック状態に移行しています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります | link:https://bugzilla.redhat.com/show_bug.cgi?id=1702005["1702005"^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GB FC を搭載した RHEL8 のリモートポートがブロック状態に移行しています | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GBFibre Channel （ FC ）を搭載した RHEL8 で、リモートポートがブロック状態になっています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1705573["1705573"^] 
+|===
+
+
+== リリースノート
+
+
+
+=== ASM ミラーリング
+
+ASM ミラーリングでは、 ASM が問題を認識して代替の障害グループに切り替えるために、 Linux マルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください link:https://www.netapp.com/us/media/tr-3633.pdf["ONTAP を基盤にした Oracle データベース"^] を参照してください。

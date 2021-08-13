@@ -1,0 +1,230 @@
+---
+sidebar: sidebar 
+permalink: hu_citrix_8x.html 
+keywords: host utilities, citrix, hypervisor, 8.0, 8.1, 8.2, netapp, ontap 
+summary: ONTAP で Citrix Hypervisor 8.x を使用する方法について説明します 
+---
+= Citrix ハイパーバイザーと NetApp ONTAP の使用
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== はじめに
+
+このドキュメントでは、 FC 、 FCoE 、および iSCSI の各プロトコルを使用した ONTAP ハイパーバイザー 8 シリーズ OS リリースの SAN ホストの設定について説明します。
+
+
+
+== SAN ブート中です
+
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+
+.手順
+. SAN ブート LUN をホストにマッピングします。
+. 複数のパスが使用可能であることを確認する。
++
+複数のパスを使用できるのは、ホスト OS が稼働していて、パス上でのみです。
+
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. ホストをリブートして、ブートが正常に完了したことを確認します。
+
+
+
+
+== マルチパス
+
+Citrix ハイパーバイザーでのマルチパスのサポートは、 Device Mapper multipathd コンポーネントに基づいています。デバイスマッパーノードは、ハイパーバイザーに提供されるすべての LUN に対して自動的に作成されるわけではなく、 Storage Management Layer （ API ；ストレージ管理レイヤ）で LUN がアクティブに使用されている場合にのみプロビジョニングされます。Citrix Hypervisor Storage Manager API プラグインは、マルチパスノードのアクティブ化と非アクティブ化を自動的に処理します。
+
+Integrated Multipath Management のアーキテクチャとの互換性がないため、 Citrix XenCenter アプリケーションを使用してストレージ構成を管理することを推奨します。Device Mapper テーブルのステータスを手動で照会したり、システム上のアクティブな Device Mapper マルチパスノードのリストを表示したりする必要がある場合は、 /usr/sbin/mpathutil status コマンドを使用して ONTAP LUN の設定を確認できます。詳細については、 Citrix ハイパーバイザーの標準的なベンダーのドキュメントを参照してください。
+
+
+
+=== Non-ASA の設定
+
+ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。
+
+次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
+
+[listing]
+----
+# mpathutil status
+show topology
+3600a098038303458772450714535317a dm-0 NETAPP  , LUN C-Mode
+size=80G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 2:0:2:0   sdc   8:32    active ready running
+| |- 12:0:5:0  sdn   8:208   active ready running
+| |- 2:0:6:0   sdg   8:96    active ready running
+| `- 12:0:0:0  sdi   8:128   active ready running
+`-+-`policy='service-time 0' prio=10 status=enabled
+  |- 2:0:0:0   sda   8:0     active ready running
+  |- 2:0:1:0   sdb   8:16    active ready running
+  |- 12:0:3:0  sd1   8:176   active ready running
+  `-12:0:6:0   sdo   8:224   active ready running
+[root@sanhost ~]#
+----
+
+NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。ストレージ障害時に 8 個を超えるパスで原因パスの問題が発生する可能性があります。
+
+
+
+=== 推奨設定
+
+Citrix Hypervisor 8.x OS は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定でコンパイルされます。Citrix Hypervisor 8.x の場合、空の zerobyte /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。
+
+XenCenter Management Portal からホストマルチパスサービスを有効にし、マルチパスサービスが有効で実行されていることを確認します。
+
+[listing]
+----
+# systemct1 status multipathd
+multipathd.service - Device-Mapper Multipath Device Controller
+  Loaded:  load (/usr/lib/systemd/system/multipathd.service; enabled; vendor preset: enabled)
+ Drop-In:  /etc/systemd/system/multipathd.service.d
+             slice.config
+  Active:  active (running) since Fri YYYY-MM-DD 00:00:26 IST; 1 month 9 days ago
+Main PID:  3789 (multipathd)
+  CGroup:  /control.slice/multipathd.service
+            3789  /sbin/multipathd
+----
+マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 /etc/multipath.conf ファイルにコンテンツを追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。
+
+[listing]
+----
+# cat /etc/multipath.conf
+blacklist {
+     wwid    <DevId>
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+----
+
+NOTE: 「 * <devd>* 」を除外するデバイスの WWID の文字列に置き換えます。
+
+この Citrix Hypervisor 8.x の例では、「 da 」はブラックリストに登録する必要のあるローカル SCSI ディスクです。
+
+. 次のコマンドを実行して WWID を特定します。
++
+[listing]
+----
+# lib/udev/scsi_id -gud /dev/sda
+3600a098038303458772450714535317a
+----
+. /etc/multipath.conf 内のブラックリストスタンザに、次の WWID を追加します。
++
+[listing]
+----
+#cat /etc/multipath.conf
+blacklist {
+  wwid    3600a098038303458772450714535317a
+  devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9*]"
+  devnode "^hd[a-z]"
+  devnode "^cciss.*"
+}
+----
+
+
+「 $multipathd show config 」コマンドを使用して、マルチパスパラメータの実行時間の設定を参照します。デフォルト設定よりも優先される可能性がある古い設定については、必ず実行コンフィギュレーションを確認してください。特に、 defaults セクションで確認します。
+
+次の表に、 ONTAP LUN の multipathd * パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが無視された場合は、 ONTAP LUN に特に適用される * multipath.conf * の後の行 AS によって修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。以下のデフォルト設定は、影響を完全に把握したうえで、ネットアップや OS のベンダーに相談して無視してください。
+
+[cols="2*"]
+|===
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | " 無限 " 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| path_checker です | " tur " 
+
+
+| path_grouping_policy | 「 group_by_prio 」 
+
+
+| path_selector | "service-time 0" 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN. * 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | " 均一 " 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
+|===
+次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合、 * multipath.conf * ファイルは、 ONTAP LUN と互換性のない * path_checker * および * detect_prio * の値を定義します。ホストに接続された他の SAN アレイが原因でパラメータを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。
+
+[listing]
+----
+# cat /etc/multipath.conf
+defaults {
+  path_checker readsector0
+  detect_prio no
+}
+devices{
+        device{
+                vendor "NETAPP "
+                product "LUN.*"
+                path_checker tur
+                detect_prio yes
+        }
+}
+----
+
+NOTE: Citrix ハイパーバイザーでは、 Linux および Windows ベースのすべてのゲスト VM に対して Citrix VM ツールを使用することを推奨しています。
+
+
+
+== 既知の問題および制限
+
+[cols="4*"]
+|===
+| NetApp バグ ID | タイトル | 説明 | Citrix Tracker ID 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1242343["1242343"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC を搭載した Citrix ハイパーバイザー 8.0 でカーネルが停止する | QLogic QLE2742 32GB HBA を搭載した Citrix ハイパーバイザー 8.0 カーネル（ 4.19.0.0 +1 ）でストレージフェイルオーバー処理を実行すると、カーネルが停止する可能性があります。この問題では、オペレーティングシステムのリブートを求められ、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を把握できます。カーネルの停止後、ホストオペレーティングシステムをリブートし、アプリケーションを再起動することで、オペレーティングシステムをリカバリできます。 | link:https://tracker.citrix.com/browse/NETAPP-98["ネットアップ 98"] 
+|===

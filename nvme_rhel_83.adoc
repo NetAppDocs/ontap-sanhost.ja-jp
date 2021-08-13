@@ -1,0 +1,413 @@
+---
+sidebar: sidebar 
+permalink: nvme_rhel_83.html 
+keywords: nvme, linux, rhel, red hat, enterprise 
+summary: ONTAP を使用して RHEL 8.3 用に NVMe/FC ホストを設定する方法 
+---
+= ONTAP を使用した RHEL 8.3 用 NVMe/FC ホスト構成
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== サポート性
+
+ONTAP 9.6 以降では、 RHEL 8.3 で NVMe/FC がサポートされます。RHEL 8.3 ホストは、 NVMe トラフィックと SCSI トラフィックの両方を同じ Fibre Channel （ FC ）イニシエータアダプタポートで実行します。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされている構成およびバージョンの最新のリストについては、を参照してください 。
+
+
+
+== 既知の制限
+
+RHEL 8.3 では、カーネル内の NVMe マルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。この手順については、次のセクション「 Enabling NVMe/FC on RHEL 8.3 」を参照してください。
+
+
+
+== RHEL 8.3 での NVMe/FC の有効化
+
+. Red Hat Enterprise Linux 8.3 GA をサーバにインストールします。
++
+yum update/upgrade を使用して RHEL 8.2 から RHEL 8.3 にアップグレードすると、 /etc/nvme/host * ファイルが失われることがあります。ファイルの損失を防ぐには、次の手順を実行します。
+
++
+.. /etc/nvme/host *' ファイルをバックアップします
+.. 手動で「 udev 」ルールを編集した場合は、削除します。
++
+[listing]
+----
+/lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules
+----
+.. アップグレードを実行する。
+.. アップグレードが完了したら、次のコマンドを実行します。
++
+[listing]
+----
+yum remove nvme-cli
+----
+.. ホスト・ファイルを /etc/nvme/' にリストアします
++
+[listing]
+----
+yum install nvmecli
+----
+.. オリジナルの /etc/nvme/host * の内容をバックアップから /etc/nvme/' にある実際のホスト・ファイルにコピーします
+
+
+. インストールが完了したら、指定した Red Hat Enterprise Linux カーネルを実行していることを確認します。
++
+[listing]
+----
+# uname -r
+4.18.0-240.el8.x86_64
+----
++
+を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"] サポートされるバージョンの最新のリストについては、を参照してください。
+
+. nvme-CLI パッケージをインストールします。
++
+[listing]
+----
+# rpm -qa|grep nvme-cli
+nvme-cli-1.12-2.el8.x86_64
+----
+. カーネル内の NVMe マルチパスを有効にします。
++
+[listing]
+----
+# grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-240.el8.x86_64
+----
+. RHEL 8.3 ホストでは、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。
++
+[listing]
+----
+# cat /etc/nvme/hostnqn
+nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-97b3-1b5d986345d1
+
+::> vserver nvme subsystem host show -vserver vs_fcnvme_141
+
+::> vserver nvme subsystem host show -vserver vs_fcnvme_141
+Vserver         Subsystem        Host           NQN
+-----------     --------------- ----------- ---------------
+vs_fcnvme_141    nvme_141_1                 nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-97b3-1b5d986345d1
+----
++
+
+TIP: ホストの NQN 文字列が一致しない場合は、「 vserver modify 」コマンドを使用して、対応する ONTAP アレイサブシステム上のホストの NQN 文字列を、ホストの /etc/nvme/hostnqn にある NQM 文字列と一致するように更新します。
+
+. ホストをリブートします。
+. 'enable_foreign' Setting_( オプション )_ を更新します
++
+
+NOTE: 同一の RHEL 8.3 共有ホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。
+
++
+[listing]
+----
+# cat /etc/multipath.conf
+defaults {
+   enable_foreign NONE
+}
+----
+. multipathd デーモンを再起動するには、 'ystemctl restart multipathd を実行します。
+
+
+
+
+== NVMe/FC を検証しています
+
+. 以下の NVMe/FC 設定を確認してください。
++
+[listing]
+----
+# cat /sys/module/nvme_core/parameters/multipath
+Y
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/model
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+round-robin
+round-robin
+----
+. ネームスペースが作成され、ホストで適切に検出されていることを確認します。
++
+[listing]
+----
+/dev/nvme0n1     814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller                1                  85.90 GB / 85.90 GB     4 KiB + 0 B   FFFFFFFF
+/dev/nvme0n2     814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller                2                  85.90 GB / 85.90 GB     4 KiB + 0 B   FFFFFFFF
+/dev/nvme0n3     814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller                3                  85.90 GB / 85.90 GB     4 KiB + 0 B   FFFFFFFF
+----
+. ANA パスのステータスを確認します。
++
+[listing]
+----
+# nvme list-subsys /dev/nvme0n1
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:subsystem.nvme_141_1
+\
++- nvme0 fc traddr=nn-0x203700a098dfdd91:pn-0x203800a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live inaccessible
++- nvme1 fc traddr=nn-0x203700a098dfdd91:pn-0x203900a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live inaccessible
++- nvme2 fc traddr=nn-0x203700a098dfdd91:pn-0x203a00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
++- nvme3 fc traddr=nn-0x203700a098dfdd91:pn-0x203d00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
+----
+. ONTAP デバイス用ネットアッププラグインを確認します。
++
+[listing]
+----
+# nvme netapp ontapdevices -o column
+Device               Vserver            Namespace Path                           NSID                      UUID                     Size
+--------------- --------------- ---------------------------------------------  -------- --------------------------------------  ---------
+/dev/nvme0n1      vs_fcnvme_141     /vol/fcnvme_141_vol_1_1_0/fcnvme_141_ns        1      72b887b1-5fb6-47b8-be0b-33326e2542e2    85.90GB
+/dev/nvme0n2      vs_fcnvme_141     /vol/fcnvme_141_vol_1_0_0/fcnvme_141_ns        2      04bf9f6e-9031-40ea-99c7-a1a61b2d7d08    85.90GB
+/dev/nvme0n3      vs_fcnvme_141     /vol/fcnvme_141_vol_1_1_1/fcnvme_141_ns        3      264823b1-8e03-4155-80dd-e904237014a4    85.90GB
+----
++
+[listing]
+----
+# nvme netapp ontapdevices -o json
+{
+"ONTAPdevices" : [
+    {
+        "Device" : "/dev/nvme0n1",
+        "Vserver" : "vs_fcnvme_141",
+        "Namespace_Path" : "/vol/fcnvme_141_vol_1_1_0/fcnvme_141_ns",
+        "NSID" : 1,
+        "UUID" : "72b887b1-5fb6-47b8-be0b-33326e2542e2",
+        "Size" : "85.90GB",
+        "LBA_Data_Size" : 4096,
+        "Namespace_Size" : 20971520
+    },
+    {
+        "Device" : "/dev/nvme0n2",
+        "Vserver" : "vs_fcnvme_141",
+        "Namespace_Path" : "/vol/fcnvme_141_vol_1_0_0/fcnvme_141_ns",
+        "NSID" : 2,
+        "UUID" : "04bf9f6e-9031-40ea-99c7-a1a61b2d7d08",
+        "Size" : "85.90GB",
+        "LBA_Data_Size" : 4096,
+        "Namespace_Size" : 20971520
+      },
+      {
+         "Device" : "/dev/nvme0n3",
+         "Vserver" : "vs_fcnvme_141",
+         "Namespace_Path" : "/vol/fcnvme_141_vol_1_1_1/fcnvme_141_ns",
+         "NSID" : 3,
+         "UUID" : "264823b1-8e03-4155-80dd-e904237014a4",
+         "Size" : "85.90GB",
+         "LBA_Data_Size" : 4096,
+         "Namespace_Size" : 20971520
+       },
+  ]
+----
+
+
+
+
+== Broadcom FC アダプタを NVMe/FC 用に設定します
+
+サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+
+. サポートされているアダプタを使用していることを確認します。
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modelname
+LPe32002-M2
+LPe32002-M2
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modeldesc
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+----
+. lpfc_enable_fc4_type' が *3* に設定されていることを確認します
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
+. イニシエータポートが動作しており、ターゲット LIF を認識できることを確認してください。
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x100000109b1c1204
+0x100000109b1c1205
+----
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109b1c1204 WWNN x200000109b1c1204 DID x011d00 ONLINE
+NVME RPORT WWPN x203800a098dfdd91 WWNN x203700a098dfdd91 DID x010c07 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203900a098dfdd91 WWNN x203700a098dfdd91 DID x011507 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000f78 Cmpl 0000000f78 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002fe29bba Issue 000000002fe29bc4 OutIO 000000000000000a
+abort 00001bc7 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001e15 Err 0000d906
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109b1c1205 WWNN x200000109b1c1205 DID x011900 ONLINE
+NVME RPORT WWPN x203d00a098dfdd91 WWNN x203700a098dfdd91 DID x010007 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203a00a098dfdd91 WWNN x203700a098dfdd91 DID x012a07 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000fa8 Cmpl 0000000fa8 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002e14f170 Issue 000000002e14f17a OutIO 000000000000000a
+abort 000016bb noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001f50 Err 0000d9f8
+----
+. 1MB の I/O サイズを有効にします（オプション） _ 。
++
+lpfc ドライバから問題 I/O 要求へのサイズが最大 1 MB になるように 'lpfc_sg_seg_cnt' パラメータを 256 に設定する必要があります
+
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. 「 racut-f 」コマンドを実行してからホストを再起動します。
+. ホストの起動後 'lpfc_sg_sg_cnt が 256 に設定されていることを確認します
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+. 推奨される Broadcom lpfc ファームウェアと受信トレイドライバを使用していることを確認します。
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/fwrev
+12.8.340.8, sli-4:2:c
+12.8.340.8, sli-4:2:c
+----
++
+[listing]
+----
+# cat /sys/module/lpfc/version
+0:12.8.0.1
+----
+. lpfc_enable_fc4_type' が *3* に設定されていることを確認します
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
+. イニシエータポートが動作しており、ターゲット LIF を認識できることを確認してください。
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x100000109b1c1204
+0x100000109b1c1205
+----
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109b1c1204 WWNN x200000109b1c1204 DID x011d00 ONLINE
+NVME RPORT WWPN x203800a098dfdd91 WWNN x203700a098dfdd91 DID x010c07 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203900a098dfdd91 WWNN x203700a098dfdd91 DID x011507 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000f78 Cmpl 0000000f78 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002fe29bba Issue 000000002fe29bc4 OutIO 000000000000000a
+abort 00001bc7 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001e15 Err 0000d906
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109b1c1205 WWNN x200000109b1c1205 DID x011900 ONLINE
+NVME RPORT WWPN x203d00a098dfdd91 WWNN x203700a098dfdd91 DID x010007 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203a00a098dfdd91 WWNN x203700a098dfdd91 DID x012a07 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000fa8 Cmpl 0000000fa8 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002e14f170 Issue 000000002e14f17a OutIO 000000000000000a
+abort 000016bb noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001f50 Err 0000d9f8
+----
+. 1MB の I/O サイズを有効にします（オプション） _ 。
++
+lpfc ドライバから問題 I/O 要求へのサイズが最大 1 MB になるように 'lpfc_sg_seg_cnt' パラメータを 256 に設定する必要があります
+
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. 「 racut-f 」コマンドを実行してからホストを再起動します。
+. ホストの起動後 'lpfc_sg_sg_cnt が 256 に設定されていることを確認します
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+
+== lpfc 詳細ログ
+
+. lpfc_log_verbose ドライバの設定を次のいずれかの値に設定して 'NVMe/FC イベントをログに記録できます
++
+[listing]
+----
+#define LOG_NVME 0x00100000 /* NVME general events. */
+#define LOG_NVME_DISC 0x00200000 /* NVME Discovery/Connect events. */
+#define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
+#define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
+----
+. これらの値のいずれかを設定したら、「 racut-f 」を実行してホストを再起動します。
+. リブート後、設定を確認します。
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_log_verbose=0xf00083
+
+# cat /sys/module/lpfc/parameters/lpfc_log_verbose
+15728771
+----
+

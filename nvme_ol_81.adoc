@@ -1,0 +1,252 @@
+---
+sidebar: sidebar 
+permalink: nvme_ol_81.html 
+keywords: nvme, linux, oracle, 8.1 
+summary: 例を使用して、 ONTAP を使用した Oracle Linux 8.1 用の VME/FC ホスト構成をセットアップする 
+---
+= ONTAP を使用した Oracle Linux 8.1 向け NVMe / FC ホスト構成
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== サポート性
+
+NVMe/FC は、 ONTAP Linux 8.1 向けの 9.6 以降でサポートされます。Oracle Linux 8.1 ホストでは、 NVMe と SCSI の両方のトラフィックを同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください 。
+
+
+
+== 既知の制限
+
+* NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージでは使用できません。HBA ベンダーが提供する外部自動接続スクリプトを使用します。
+* デフォルトでは、 NVMe マルチパスでラウンドロビンロードバランシングは有効になっていません。この機能を有効にするには、 udev ルールを記述する必要があります。手順については、 Oracle Linux 8.1 での NVMe/FC の有効化に関するセクションを参照してください。
+* sanlun をサポートしていないため、 Oracle Linux 8.1 での NVMe / FC のサポートについては Linux Unified Host Utilities （ Luhu ）はサポートされていません。ネイティブの nvme-CLI に含まれているネットアッププラグインに含まれている ONTAP コマンド出力を使用します。
+
+
+
+
+== NVMe/FC の有効化
+
+. サーバに Oracle Linux 8.1 をインストールします。
+. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
++
+[listing]
+----
+# uname -r
+5.4.17-2011.0.7.el8uek.x86_64
+----
+. nvme-CLI パッケージをアップグレードします。
++
+[listing]
+----
+# rpm -qa | grep nvmefc
+nvmefc-connect-12.6.61.0-1.noarch
+----
+. 以下の文字列を /lib/udev/rules.d/ 71-nvme-iopolicy-netapp-ONTAP.rules で別の udev ルールとして追加します。これにより、 NVMe マルチパスでラウンドロビンによるロードバランシングが有効になります。
++
+[listing]
+----
+# cat /lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules
+# Enable round-robin for NetApp ONTAP
+ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="round-robin"
+----
+. Oracle Linux 8.1 ホストで、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。
++
+[listing]
+----
+# cat /etc/nvme/hostnqn
+nqn.2014-08.org.nvmexpress:uuid:75953f3b-77fe-4e03-bf3c-09d5a156fbcd
+----
++
+[listing]
+----
+*> vserver nvme subsystem host show -vserver vs_nvme_10
+Vserver Subsystem Host NQN
+------- --------- ----------------------------------------------------------
+Oracle Linux_141_nvme_ss_10_0
+nqn.2014-08.org.nvmexpress:uuid:75953f3b-77fe-4e03-bf3c-09d5a156fbcd
+----
++
++ hostnqn+ 文字列が一致しない場合は、 vserver modify コマンドを使用して、対応する ONTAP アレイサブシステムのホスト NQN 文字列を、ホストの /etc/nvme/hostnqn のホスト NQN 文字列に一致するように更新します。
+
+. ホストをリブートします。
+
+
+
+
+== Broadcom FC アダプタを NVMe/FC 用に設定します
+
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modelname
+LPe32002-M2
+LPe32002-M2
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modeldesc
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+----
+. lpfc での NVMe のサポートはすでにデフォルトで有効になっています：
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
++
+新しい lpfc ドライバ（インボックスとアウトボックスの両方）では 'lpfc_enable_fc4_type がデフォルトで 3 に設定されていますしたがって、 /etc/modprobe.d/plpfc.conf で明示的に設定する必要はありません
+
+. 次に、推奨される lpfc 自動接続スクリプトをインストールします。
++
+[listing]
+----
+# rpm -ivh nvmefc-connect-12.6.61.0-1.noarch.rpm
+----
+. 自動接続スクリプトがインストールされていることを確認します。
++
+[listing]
+----
+# rpm -qa | grep nvmefc
+nvmefc-connect-12.6.61.0-1.noarch
+----
+. イニシエータポートが動作していることを確認します。
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x10000090fae0ec61
+0x10000090fae0ec62
+
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+----
+. NVMe/FC イニシエータポートが有効になっていてターゲットポートを認識できること、およびすべてが動作していることを確認してください。
++
+次の出力例に示すように、有効になっているイニシエータポートは 1 つだけで、 2 つのターゲット LIF に接続されています。
+
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/nvme_info
+
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 NVME 2947 SCSI 2947 ELS 250
+NVME LPORT lpfc0 WWPN x10000090fae0ec61 WWNN x20000090fae0ec61 DID x012000 ONLINE
+NVME RPORT WWPN x202d00a098c80f09 WWNN x202c00a098c80f09 DID x010201 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203100a098c80f09 WWNN x202c00a098c80f09 DID x010601 TARGET DISCSRVC ONLINE
+----
+
+
+
+
+== NVMe/FC を検証しています
+
+. 以下の NVMe/FC 設定を確認してください。
++
+[listing]
+----
+# cat /sys/module/nvme_core/parameters/multipath
+Y
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/model
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+round-robin
+round-robin
+----
++
+上記の例では、 2 つのネームスペースが Oracle Linux 8.1 ANA ホストにマッピングされています。これらの LIF は、ローカルノード LIF 2 つとパートナー / リモートノード LIF 2 つの 4 つのターゲット LIF を通して認識されます。このセットアップでは、ホスト上の各ネームスペースについて、 2 つの ANA 最適化パスと 2 つの ANA アクセス不能パスが表示されます。
+
+. ネームスペースが作成されたことを確認します。
++
+[listing]
+----
+# nvme list
+Node                SN                                           Model                                       Namespace Usage                              Format          FW Rev
+-------------------- --------------------------------------  ---------------------------------------- ----------------  -------------------------------  ----------------  -------------
+/dev/nvme0n1  814vWBNRwfBCAAAAAAAB NetApp ONTAP Controller        2                  107.37 GB / 107.37 GB  4 KiB + 0 B   FFFFFFFF
+/dev/nvme0n2  814vWBNRwfBCAAAAAAAB NetApp ONTAP Controller        3                  107.37 GB / 107.37 GB  4 KiB + 0 B   FFFFFFFF
+----
+. ANA パスのステータスを確認します。
++
+[listing]
+----
+# nvme list-subsys /dev/nvme0n1
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5a32407351c711eaaa4800a098df41bd:subsystem.test
+\
++- nvme0 fc traddr=nn-0x207300a098dfdd91:pn-0x207400a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live optimized
++- nvme1 fc traddr=nn-0x207300a098dfdd91:pn-0x207600a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live inaccessible
++- nvme2 fc traddr=nn-0x207300a098dfdd91:pn-0x207500a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
++- nvme3 fc traddr=nn-0x207300a098dfdd91:pn-0x207700a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live inaccessible
+----
+. ONTAP デバイス用ネットアッププラグインを確認します。
++
+[listing]
+----
+# nvme netapp ontapdevices -o column
+Device   Vserver  Namespace Path             NSID   UUID   Size
+-------  -------- -------------------------  ------ ----- -----
+/dev/nvme0n1   vs_nvme_10       /vol/rhel_141_vol_10_0/ol_157_ns_10_0    1        55baf453-f629-4a18-9364-b6aee3f50dad   53.69GB
+
+# nvme netapp ontapdevices -o json
+{
+   "ONTAPdevices" : [
+   {
+        Device" : "/dev/nvme0n1",
+        "Vserver" : "vs_nvme_10",
+        "Namespace_Path" : "/vol/rhel_141_vol_10_0/ol_157_ns_10_0",
+         "NSID" : 1,
+         "UUID" : "55baf453-f629-4a18-9364-b6aee3f50dad",
+         "Size" : "53.69GB",
+         "LBA_Data_Size" : 4096,
+         "Namespace_Size" : 13107200
+    }
+]
+----
+
+
+
+
+== Broadcom NVMe/FC で 1MB の I/O サイズを有効にします
+
+ホストで問題 1MB サイズの I/O を使用するには、 lpfc_sg_seg_cnt パラメータを 256 に設定する必要があります
+
+. lpfc_sg_seg_cnt パラメータを 256 に設定します
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. 「 racut-f 」コマンドを実行し、ホストを再起動します。
+. lpfc_sg_seg_cnt' が 256 であることを確認します
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+

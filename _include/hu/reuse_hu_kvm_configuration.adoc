@@ -1,0 +1,8 @@
+= KVM 設定
+
+
+
+
+=== KVM 設定
+
+Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用できます。LUN がハイパーバイザーにマッピングされるため、 KVM の設定を変更する必要はありません。

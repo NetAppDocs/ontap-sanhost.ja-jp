@@ -1,0 +1,15 @@
+= 
+
+
+ALUA ハンドラを有効にするには、次の手順を実行します。
+
+. initrd-image のバックアップを作成します。
+. ALUA および非 ALUA が機能するようにカーネルに次のパラメータ値を追加します。 `rdloaddriver=scsi_dh_alua`
++
+....
+kernel /vmlinuz-3.8.13-68.1.2.el6uek.x86_64 ro root=/dev/mapper/vg_ibmx3550m421096-lv_root rd_NO_LUKSrd_LVM_LV=vg_ibmx3550m421096/lv_root LANG=en_US.UTF-8 rd_NO_MDSYSFONT=latarcyrheb-sun16 crashkernel=256M KEYBOARDTYPE=pc KEYTABLE=us rd_LVM_LV=vg_ibmx3550m421096/lv_swap rd_NO_DM rhgb quiet rdloaddriver=scsi_dh_alua
+....
+. initrd-image を再作成するには、「 m kinitrd` 」コマンドを使用します。Oracle 6x 以降のバージョンでは、次のいずれかを使用します。「 m kinitrd -f /boot/initrd - "uname -r 」 .img uname -r 」またはコマンド「 `d racut -f 」
+. ホストをリブートします。
+. 設定が完了したことを確認するために 'cat /proc/cmdline コマンドの出力を確認します
+
