@@ -112,9 +112,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 
 . 次に、推奨される lpfc 自動接続スクリプトをインストールします。
 +
-....
-# rpm -ivh nvmefc-connect-12.4.65.0-1.noarch.rpm
-....
+ # rpm -ivh nvmefc-connect-12.4.65.0-1.noarch.rpm
 . 自動接続スクリプトがインストールされていることを確認します。
 +
 [listing]

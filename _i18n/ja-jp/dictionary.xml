@@ -2010,4 +2010,36 @@
   <block id="27467eebfd85deae554fa659c40d5f50" category="sidebar">Veritas の略</block>
   <block id="47d254fd002b7f1a6c06e1aa7c25a4ef" category="sidebar">Infoscale 7.</block>
   <block id="66b0812a8cbedc46db133ed5327291bd" category="sidebar">Storage Foundation 6.</block>
+  <block id="eea65c7c864efb688d55381c5b21a910" category="summary">ONTAP で VERITAS Infosscale 6.5 および 6.7 for Linux を使用する方法について説明します</block>
+  <block id="05d7c7c2b6d6ca4fb59e67f4f34b7e2b" category="doc">NetApp ONTAP で VMware vSphere 6.5 および 6.7 を使用する</block>
+  <block id="cf46645d175a0f99f53e120079789f83" category="paragraph">本ドキュメントでは、 FC 、 FCoE 、 iSCSI の各プロトコルを使用した vSphere 6.5.x および 6.7.x リリースの ONTAP SAN ホストの設定についてガイダンスを示します。</block>
+  <block id="d285d6f90c81abd47d57e4425faf9ed5" category="paragraph">NetApp ONTAP ストレージの場合、デフォルトでは VMW_SATP_ALUA プラグインが使用され、パス選択ポリシー（ PSP ）として「 VMW_PSP_RR 」が使用されます。確認するには、次のコマンドを使用します。</block>
+  <block id="97702a0c8ad7bf7deb907e6a931a9c14" category="paragraph">上記の例では、 LUN がネットアップストレージから 4 つのパス（アクティブ / 最適化済み 4 つ）でマッピングされています。</block>
+  <block id="285dc13017989020e1a1eb0ca9eb9125" category="paragraph">上記の例では、 LUN がネットアップストレージから 4 つのパス（ 2 つのアクティブ最適化パスと 2 つのアクティブ非最適化パス）でマッピングされています。</block>
+  <block id="8129d146f9c623e58fa6a0b7e0394db9" category="paragraph">Virtual Volumes （ VVOL ）は、仮想マシン（ VM ）ディスクとその Snapshot および高速クローンに対応する VMware のオブジェクトタイプです。</block>
+  <block id="1ee4cf305a0d55b8d4c903b6b9c43ea5" category="paragraph">vCenter のユーザインターフェイスを使用して VVOL データストアを作成する場合は、 FlexVol をデータストアのバックアップストレージとして作成するように指示されます。VVOL データストア内の VVOL には、 ESXi ホストからプロトコルエンドポイント（ PE ）を使用してアクセスします。SAN 環境では、 PE として使用するために、データストア内の各 FlexVol に 4MB の LUN が 1 つ作成されます。SAN PE は管理論理ユニット（ ALU ）で、 VVOL は SLU （関連論理ユニット）です。</block>
+  <block id="b9328f95dbad5a0758caa9d672f33531" category="list-text">あらゆる単一点障害を排除します。複数の仮想スイッチを使用する場合、または複数の物理スイッチに接続された複数の物理 NIC を使用して HA を実現し、スループットを向上させる場合は、 NIC チーミングを使用する複数のネットワークサブネットで複数の VMkernel ネットワークインターフェイスを使用します。</block>
+  <block id="2cc894dadbda2222156fcf16565d8776" category="admonition">VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツールを導入する必要があります。VASA Provider ではすべての igroup 設定が管理されるため、 VVOL 環境の igroup を作成したり管理したりする必要はありません。</block>
+  <block id="305f59462ece50f24122d41e4561fcfa" category="paragraph">現時点で VVOL の設定をデフォルトから変更することは推奨されません。</block>
+  <block id="bc84423f783fae0183076ce886ba6bf5" category="paragraph">VAAI 対応のストレージやアップグレードされた VMFS5 には ATS ロックが必須 * であり、 ONTAP LUN との適切な相互運用性と最適な VMFS 共有ストレージ I/O パフォーマンスを実現するために必要です。ATS ロックの有効化の詳細については、 VMware のドキュメントを参照してください。</block>
+  <block id="5efa0da94bf6845724aa837362401b61" category="inline-link">ONTAP のドキュメント</block>
+  <block id="42c1045702b3c57f4b0e62fae2255829" category="admonition">UNMAP が機能するために、 VMware vSphere にマッピングされているすべての LUN で space-allocation 設定を有効にします。詳細については、を参照してください<block ref="1b5bf6d1f916294fa8ea9a493a557114" category="inline-link-rx"></block>。</block>
+  <block id="702847a1dee0319e79e5728553de2882" category="paragraph">以下のコマンドを使用して、「 HardwareAcceleratedLocking 」の設定を確認します。</block>
+  <block id="77ecd0ddc58e5ddd5a2b264f1971a10d" category="paragraph">次のコマンドを使用して、 IOPS 設定を確認します。</block>
+  <block id="59ed189d97df48789ab17ac76d264c5a" category="paragraph">次のコマンドを使用して、 QFullSampleSize を確認します</block>
+  <block id="f8f1fe9c4091a85366c30872061ba488" category="cell">* OS バージョン *</block>
+  <block id="514b7f9aff72a944d71f0ea4b1e85fd5" category="cell">* NetApp バグ ID *</block>
+  <block id="792d8c28a4e6d13e4c682cf0c56c2367" category="cell">* タイトル *</block>
+  <block id="f14c276c07197ebef1394a5a219087a1" category="cell">* 概要 *</block>
+  <block id="7642fd0da8b0e6d3619ef4744dbacdb0" category="cell">ESXi 6.5 および ESXi 6.7.x</block>
+  <block id="240d60e74026bbd4e1b4c3e7b937d151" category="cell">1413424</block>
+  <block id="1fc23a2ee8c185b430ef6deb755c5123" category="cell">テスト中に WFC RDM LUN に障害が発生した</block>
+  <block id="9eb06037f2a0b55f05089c90a18c4deb" category="cell">すべての 7-Mode 、 clustered Data ONTAP クラスタコントローラでのストレージフェイルオーバーテストで、 VMware ESXi ホスト上の Windows Server 2019 、 Windows 2016 、および Windows Server 2012 などの Windows 仮想マシン間の Windows フェイルオーバークラスタリングの raw デバイスマッピングに失敗しました。</block>
+  <block id="4332d8f4566f029f69029c23562122fc" category="cell">ESXi 6.5.x と ESXi 6.7.x</block>
+  <block id="280cb64ee585254458755a354d77aefc" category="cell">1256473</block>
+  <block id="b9204431a0ed79e40e8c590858bc11e4" category="cell">Emulex アダプタでのテスト中に PLOGI 問題が表示される</block>
+  <block id="67b58a320d747fcd4cbacaf620e097ed" category="inline-link-macro">お客様のケース -00088028</block>
+  <block id="812daa291d1c26c02bbf300bc7c1bc8d" category="inline-link-macro">お客様のケース -00088029</block>
+  <block id="fd3470c9903d74a47900e4edf1fccfde" category="list-text">TR-4597 -VMware vSphere with ONTAP にアクセスするには、を参照してください <block ref="dd56d07272778fbf2351a1a6bf2d68f6" category="inline-link-macro-rx"></block> および <block ref="afafc6544ae1d28d7c258b8a10250602" category="inline-link-macro-rx"></block></block>
+  <block id="11b4279628bd5bd99185024194584bba" category="sidebar">VMware vSphere 6.5 および 6.7</block>
 </blocks>
