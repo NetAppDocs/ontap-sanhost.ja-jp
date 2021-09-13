@@ -4,7 +4,7 @@ permalink: nvme_esxi_7.html
 keywords: nvme, esxi, ontap 
 summary: ONTAP を使用して ESXi 7.0 用に NVMe/FC を設定する方法について説明します 
 ---
-= ONTAP を使用した ESXi 7.0 向け NVMe / FC ホスト構成
+= ONTAP を使用した ESXi 7.0 用 NVMe-oF ホスト構成
 :toc: macro
 :hardbreaks:
 :toclevels: 1
