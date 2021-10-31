@@ -185,11 +185,7 @@
   <block id="f22bfff17408247273e66b8771e95a3d" category="list-text">AIX ホストでは、 * root * としてログインします。</block>
   <block id="716d37b2c6f554f878cb0230e2c5b8b7" category="list-text">Host Utilities が含まれている圧縮ファイルを、ネットアップサポートサイトからホスト上のディレクトリにダウンロードします。</block>
   <block id="f1893c3e5e775c895395a0a1524f20a9" category="list-text">ファイルを解凍して、 SAN Toolkit ソフトウェアパッケージを展開します。</block>
-  <block id="23766c7db300cf6aecb5af6eca642419" category="paragraph">zcat ntap_aix_host_utilities_6.0.tar.z|tar-xvf – `</block>
-  <block id="46f2ce3b0344f6ca445a26c97d95ceb1" category="paragraph">ファイルを解凍すると 'ntap_aix_host_utilities_6.0' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります</block>
   <block id="7479ee4eaf5b0a177d10a5a42ff8dc26" category="list-text">AIX MPIO をインストールします。</block>
-  <block id="5d0f61aaa123776a92083a353525a75f" category="paragraph">'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.0/MPIO NetApp.mpio_Host_Utilities_Kit</block>
-  <block id="5815997bac3abc6267f24cb411eab24f" category="list-text">SAN ツールキットをインストールします :'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.0/SAN_Tool_Kit NetApp.SAN_toolkit</block>
   <block id="bb592bc57b2d28b13d87379c7d6269df" category="paragraph">SAN ブートとは、 AIX ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。SAN ブート LUN は、 FC プロトコルまたは FCoE プロトコルで AIX Host Utilities を実行する AIX MPIO 環境で動作するようにセットアップできます。SAN ブート LUN を作成し、その LUN に新しい OS イメージをインストールする方法は、使用するプロトコルによって異なります。</block>
   <block id="3687a533941379b59a8738b1c2ed0311" category="paragraph">マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Host Utilities の AIX 環境では、 AIX 標準マルチパス解決策、 MPIO を使用します。</block>
   <block id="7924ef77d0345ab3b49395dc2db2cfd8" category="paragraph">AIX の場合、 Path Control Module （ PCM ；パス制御モジュール）が複数のパスを制御します。PCM は、パス管理を処理するストレージベンダーが提供するコードです。これは、 Host Utilities のインストール時にインストールして有効にします。</block>
@@ -649,18 +645,14 @@
   <block id="1669e5f0b1148e1054b39b7a819b7fdb" category="summary">ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法について説明します</block>
   <block id="5526e4fbaeff80cd5d23977ccd71e110" category="doc">NetApp ONTAP で IBM AIX 7.2 または PowerVM （ VIOS 3.1 ）を使用している場合</block>
   <block id="326165d98b3f356087f845a446619afc" category="section-title">AIX/VIOS Host Utilities のインストール</block>
-  <block id="b025d711526768372aaf38867bbd8f2d" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルを作成したら、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得するために、ファイルの圧縮を解除する必要があります。</block>
   <block id="be02c5fbd2d78a32d06d7da8385cae85" category="list-text">PowerVM ホストで '*padmin* としてログインし 'root になるように 'oem_setup_env' コマンドを入力します</block>
   <block id="a40ecef4a09b118c1f7f8b069486d849" category="list-text">ファイルを解凍して、 SAN Toolkit ソフトウェアパッケージを展開します。</block>
-  <block id="2546f3812a0778947f66705c178d79ac" category="paragraph">ファイルを解凍すると、次のディレクトリが作成されます。 ntap_aix_host_utilities_6.0このディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります</block>
   <block id="f79c6b17105bfd3884500ded694cb1f2" category="paragraph">SAN ブートとは、 AIX / PowerVM ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスのことです。SAN ブート LUN は、 FC プロトコルまたは FCoE プロトコルで AIX Host Utilities を実行する AIX MPIO 環境で動作するようにセットアップできます。SAN ブート LUN を作成し、その LUN に新しい OS イメージをインストールする方法は、使用するプロトコルによって異なります。</block>
   <block id="4b1288921d45a28c64d922c51edfb95d" category="paragraph">マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Host Utilities の AIX および PowerVM 環境では、 AIX のネイティブマルチパス解決策（ MPIO ）を使用します。</block>
   <block id="1697f4d36614d1ab7c528058860fd4fd" category="paragraph">以下は、 NetApp ONTAP LUN の推奨パラメータ設定です。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。</block>
   <block id="0e413d300c65d6eeae3946b5cd377d21" category="cell">VIOS 用 AIX 3072 では 1024</block>
   <block id="c4dd079617b8872443b613d8a94e3cbc" category="cell">パートナー ID</block>
   <block id="de6158aaf59eefd0e967674f80bf69a0" category="cell">1307653</block>
-  <block id="ee9e6d2cd6c78765faaf8b61ae313cf5" category="cell">SFO の障害とストレート IO の間に VIOS 3.1.1.10 で I/O の問題を確認します</block>
-  <block id="44328c8e30fdc8ce0783a6e134a47faf" category="cell">VIOS 3.1.1 IO エラーは、 16 / 32GB FC アダプタでバックアップされた NPIV クライアントディスクに表示されることがあります。また、 vfchost ドライバが、クライアントからの I/O 要求の処理を停止する状態になることもあります。IBM APAR IJ22290 IBM APAR IJ23222 を適用すると、問題が修正されます</block>
   <block id="d41d8cd98f00b204e9800998ecf8427e" category="cell"></block>
   <block id="efe683deb739d72b3d44d53878cbd348" category="summary">ONTAP で SUSE Linux Enterprise Server 12 を使用する方法について説明します</block>
   <block id="2c814ca0b63de52ca6cd66cde0e904f8" category="doc">SUSE Linux Enterprise Server 12 と NetApp ONTAP を使用する</block>
@@ -1982,7 +1974,6 @@
   <block id="ded681fc154529ebbc7562fb0c73ba47" category="sidebar">6.4</block>
   <block id="44259680bd01002134994d85d023710c" category="sidebar">Citrix</block>
   <block id="99a5228874b5bc9d6b24fbf9b23fe772" category="sidebar">ハイパーバイザー 8.</block>
-  <block id="4e0eb4b81eca8467784f96a5eecfb8d8" category="sidebar">XenServer 7</block>
   <block id="b0781c18fd091c4f9e79ff11eb4b9fc5" category="sidebar">VMware vSphere 7</block>
   <block id="b1fd823d262032e04291313f72be9452" category="sidebar">HP-UX</block>
   <block id="d5b12213e8526feaa7c520b3b736f9b8" category="sidebar">11i v3</block>
@@ -2152,4 +2143,51 @@
   <block id="38a517c65e7a4cfa6d1b781c6a6e35f4" category="cell">必ず正しい構文を使用してください。</block>
   <block id="51062446fb213f15851b5dffb8352c2b" category="doc">ONTAP を使用した ESXi 7.0 用 NVMe-oF ホスト構成</block>
   <block id="c93b085fcb8e1f8bc98e8da71741e760" category="sidebar">NVMe-oF ホスト構成</block>
+  <block id="be3d2421a8f8e1a506cd8ec6140627fb" category="paragraph">tar -xvf ntap_aix_host_utilities_6.1.tar.tgz</block>
+  <block id="6a60f15d3addedaaeee9fbd5c320d06d" category="paragraph">ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります</block>
+  <block id="4a74fae0987c7a6283e4b1f5c07e2bf2" category="paragraph">'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.mpio_Host_Utilities_Kit</block>
+  <block id="40cb79ed451a05fc3cb913a91c474fdc" category="list-text">SAN ツールキットをインストールします :'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit</block>
+  <block id="a711863513c11f3a6d86294acc7be0ba" category="list-title">必要なもの</block>
+  <block id="8bd93b2eff143ccd3ead742068cf4430" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルを展開したら、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。</block>
+  <block id="1306166f349020a2e91d6b8afe8455fb" category="paragraph">NetApp AIX Host Utilities 6.1 は最新リリースです。このリリースでは、以前のリリースで報告されたメモリリーク問題について説明しています。追加情報のリリースノートのセクションを参照してください。</block>
+  <block id="94761002a24bd6eeff8ffd9c476b4f1b" category="paragraph">tar -xvf ntap_aix_host_utilities_6.1.tar.gz</block>
+  <block id="354315ccea353183f3cbbd3c90fe0c38" category="cell">1416221</block>
+  <block id="6db33a0501378d225ab739c6288d3808" category="cell">ストレージフェイルオーバー中に AIX 7200-05-01 で、仮想 iSCSI ディスク（ VIOS 3.1.x ）で I/O の中断が発生しました</block>
+  <block id="9895e9eac7838927cc2752337f1e16ab" category="cell">VIOS 3.1.1 を介してマッピングされた仮想 iSCSI ディスク上の AIX 7.2 TL5 ホストでのストレージフェイルオーバー操作中に、 I/O の中断が発生することがありますデフォルトでは 'VIOC 上の仮想 iSCSI ディスク（ hdisk ）の Rw_timeout' 値は 45 秒になりますストレージフェイルオーバー時に 45 秒を超える I/O 遅延が発生すると、 I/O 障害が発生する可能性があります。この状況を回避するには、 BURT に記載されている回避策を参照してください。IBM と同様に 'APAR-IJ34739 （今後のリリース）を適用した後 'chdev' コマンドを使用して Rw_timeout 値を動的に変更できます</block>
+  <block id="bb16e1a4a3226d438978c98e70faf664" category="cell">1414700</block>
+  <block id="8f84cc2094be4df68793798acab1c394" category="cell">ストレージフェイルオーバー中に、 AIX 7.2 TL04 で仮想 iSCSI ディスク（ VIOS 3.1.x ）で I/O の停止が発生しました</block>
+  <block id="7187b48095d030e01ab6d9d7338221f3" category="cell">VIOS 3.1.x を介してマッピングされた仮想 iSCSI ディスク上の AIX 7.2 TL4 ホストで、ストレージフェイルオーバー処理中に I/O が中断することがありますデフォルトでは、 VIOC 上の vSCSI アダプタの「 rw_timeout 」値は 45 秒です。ストレージのフェイルオーバー時に 45 秒以上の I/O 遅延が発生すると、 I/O 障害が発生する可能性があります。この状況を回避するには、 BURT に記載されている回避策を参照してください。</block>
+  <block id="4229df34b7c87f8ff6267a879dfeabd5" category="cell">SFO の障害およびストレート I/O 中に VIOS 3.1.1.10 で I/O の問題を確認する</block>
+  <block id="6e2bd974030ad99179fd5896ca5f2b92" category="cell">VIOS 3.1.1 IO エラーは、 16 / 32GB FC アダプタでバックアップされた NPIV クライアントディスクに表示されることがあります。また 'vfchost' ドライバが ' クライアントからの I/O 要求の処理を停止する状態になることもありますIBM APAR IJ22290 IBM APAR IJ23222 を適用すると、問題が修正されます</block>
+  <block id="1af1d134f1d2df0e60d3d26a745e9a9c" category="summary">ONTAP で Oracle Linux 8.4 を使用する方法について説明します</block>
+  <block id="7bc6016873cc966321b4e882f304f708" category="doc">NetApp ONTAP で Oracle Linux 8.4 を使用する</block>
+  <block id="3f3097c34940e47c43cc1e2aaf144513" category="paragraph">Oracle Linux （ OL ） 8.4 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 8.4 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
+  <block id="2194f935f1bad1f819b4713a9f2e19a5" category="paragraph">Oracle Linux 8.4 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます</block>
+  <block id="938f1047c15f00fdd0cbfc8e4cfa15e1" category="paragraph">* 例 *</block>
+  <block id="306a27cab6be29f525fedb01d2a9a56e" category="admonition">Oracle Linux 8.4 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用してください <block ref="2a5bf462d4974235d181075f07ec40ac" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.4 の場合：</block>
+  <block id="62769ac5811a4b0727cd77616bb3d368" category="paragraph">Oracle Linux 8.4 には既知の問題はありません。</block>
+  <block id="4447162ab1e53ae3a7c371586690d068" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="1cf241ba8c9adec487a38ecfba1ee9ce" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
+  <block id="07bbb49e67f00330a23f48abec1ddfeb" category="doc">AIX Host Utilities 6.1</block>
+  <block id="7523cbe6bf00a77f54b30eb25ef39eae" category="paragraph">を使用できます<block ref="e19686e34cf1063cebe94895ceb29ebc" category="inline-link-rx"></block> 構成を確認します。</block>
+  <block id="baadc517f232b835410bb5a5975c2d71" category="paragraph">AIX Host Utilities は、 IBM AIX ホスト上にコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
+  <block id="fcd0175f66a20efc7cd1c6567f9a5578" category="paragraph">次の例では 'lun lun lun show コマンドは LUN 情報を返します</block>
+  <block id="df806afef9dae5d43f20297c99fb14ca" category="admonition">このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。</block>
+  <block id="d87eaccfcc7f1ce59c39e647ad0ee108" category="admonition">SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョンでサポートされています。</block>
+  <block id="1677bade87b8d78a9e17903200fc98b0" category="section-title">AIX Host Utilities をインストールしています</block>
+  <block id="2874804481e21069fd56b2ba6d9a48ee" category="paragraph">NetApp AIX Host Utilities ソフトウェアパッケージは、にあります<block ref="1e0e3ba3a1388f793e3365711e83f625" category="inline-link-rx"></block> 圧縮された tar.gz ファイル。</block>
+  <block id="9e4f19eef336dfad151cb4dba23dc1eb" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルをダウンロードしたら、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。</block>
+  <block id="4839d2f25cc35b249d5db15efa1afd75" category="paragraph">* 手順 *</block>
+  <block id="03bb76916332762e5c74abd3925ef3a5" category="list-text">PowerVM ホストで、 *padmin* としてログインし、 oem_setup_env コマンドを入力して root になります。</block>
+  <block id="ee3c9604966f68c69c5d81299e5c5913" category="paragraph">ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります</block>
+  <block id="221c50744b3c4471b399c8dfa3509684" category="list-text">SAN Toolkit をインストールします。</block>
+  <block id="8eeb8a6e3eaad8d96cb67c508c74079e" category="paragraph">'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit</block>
+  <block id="cea2e5f9065bd07d72cb5caab3c1db47" category="summary">ONTAP で Oracle Linux 8.3 を使用する方法について説明します</block>
+  <block id="254bb3d9a7cf5cab4c0853ebfdd5582c" category="doc">NetApp ONTAP で Oracle Linux 8.3 を使用する</block>
+  <block id="3512af03a0184fdf02e1a9a23f8da83c" category="paragraph">Oracle Linux （ OL ） 8.3 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 8.3 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
+  <block id="3bd3dac5f92157e9ddb2491b51213ac2" category="paragraph">Oracle Linux 8.3 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます</block>
+  <block id="dfa4360b9ef5c59ee3bab4c95d016689" category="admonition">Oracle Linux 8.3 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用してください <block ref="4e79a9939610f9dc89e0e26786a809f0" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.3 の場合：</block>
+  <block id="dbe552aa6706cdda69944fc1f527ec35" category="paragraph">Oracle Linux 8.3 に関する既知の問題はありません。</block>
+  <block id="273955f9a81b6001ec0fed11c89c61c3" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="3c7f0100e93cbb394731ee7d8982c161" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
+  <block id="069c43556e66148f1f1eeabd7e9e7872" category="sidebar">AIX Host Utilities の略語</block>
+  <block id="095f17ad6c7f706c5fa881fa28d2b0e2" category="sidebar">XenServer 7</block>
 </blocks>

@@ -35,16 +35,16 @@ Host Utilities ソフトウェアパッケージが格納された圧縮ファ�
 . ダウンロードを格納しているディレクトリに移動します。
 . ファイルを解凍して、 SAN Toolkit ソフトウェアパッケージを展開します。
 +
-zcat ntap_aix_host_utilities_6.0.tar.z|tar-xvf – `
+tar -xvf ntap_aix_host_utilities_6.1.tar.tgz
 
 +
-ファイルを解凍すると 'ntap_aix_host_utilities_6.0' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります
+ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります
 
 . AIX MPIO をインストールします。
 +
-'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.0/MPIO NetApp.mpio_Host_Utilities_Kit
+'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.mpio_Host_Utilities_Kit
 
-. SAN ツールキットをインストールします :'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.0/SAN_Tool_Kit NetApp.SAN_toolkit
+. SAN ツールキットをインストールします :'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit
 . ホストをリブートします。
 
 
