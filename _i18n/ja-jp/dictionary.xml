@@ -528,7 +528,6 @@
   <block id="8d1d1e53a5b8a67ed06ee929fcb68093" category="summary">ONTAP で Linux Unified Host Utilities 7.1 を使用する方法について説明します</block>
   <block id="87adc74f7e5083adf88fa77a4e7aaa7b" category="doc">Linux Unified Host Utilities 7.1</block>
   <block id="e11da9afe91d381489a365c86cc614ab" category="section-title">前提条件</block>
-  <block id="135b308ed83c53f1516b7c754566d1c4" category="list-title">作業を開始する前に</block>
   <block id="43483b029ef264a410a7bccd99e5f66a" category="list-text">安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。</block>
   <block id="22faa027e7ce368aea785de25ef0414c" category="paragraph">を使用できます<block ref="77ab0bbf377853176c70e55d32dcb81a" category="inline-link-rx"></block> 構成を確認します。</block>
   <block id="67d2c540b82f607f8c9d3201f2309ec6" category="list-text">ベンダー提供の HBA 管理パッケージを Web サイトにインストールする必要があります。</block>
@@ -1815,19 +1814,13 @@
   <block id="c95ed533eb41fc4a85cca0787c52530e" category="paragraph">host_config コマンドの形式は次のとおりです。</block>
   <block id="70b7cc349994a5289908b02781aee538" category="paragraph">/opt/NTAP-SANToolkit/bin/host_config &lt;-setup &gt;&lt;-protocol fcp|iscsi|mixed&gt;&lt;-multipath MPxIO | DMP | non&gt;[-noalua] [-MCC 60|90|120]</block>
   <block id="d9fcab23624dae4606baf44f146b1fdc" category="paragraph">host_config コマンドでは、次の処理が実行されます。</block>
-  <block id="db1d7d40d726e062de7f501260a78043" category="paragraph">マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Solaris 11.4 では、 Oracle Solaris I/O マルチパス（ MPxIO ）がデフォルトで有効になっています。/kernel/drv/fp.conf のデフォルト設定が MPxIO -disable="no" に変更されます</block>
   <block id="ecfc86e5d43962233e80fa4638ea4b1e" category="paragraph">以下に、 NetApp ONTAP LUN を使用する Solaris 11.4 SPARC および x86_64 で推奨されるパラメータ設定の一部を示します。これらのパラメータの値は Host Utilities で設定します。Solaris 11.4 システムのその他の設定については、 Oracle DOC ID: 2595926.1 を参照してください</block>
   <block id="933bb8225ec3c23e4014532b9dab5382" category="paragraph">デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これは 'FCP_OFFLINE_DELAY パラメータによって制御されますデフォルト値の「 fcp_offline_delay 」は、標準の ONTAP クラスタに適しています。ただし、 MetroCluster 構成では、計画外フェイルオーバーを含む処理中に I/O が早期にタイムアウトしないように、「 FCP_OFFLINE_DELAY 」の値を *120S * に増やす必要があります。追加情報およびデフォルト設定に対する推奨される変更については、ネットアップを参照してください <block ref="8cbb31454ac1fbea4971870d4da70405" category="inline-link-macro-rx"></block>。</block>
-  <block id="35779932e61e2d1ecb66c5b8cc8c4585" category="list-text">ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます <block ref="79f8815267d9bceac74cfdb7e00f3ca4" category="inline-link-macro-rx"></block> サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。</block>
-  <block id="875b1b759278084b613cb92a77389ff2" category="list-text">vdsk などの仮想ストレージリソースのみを使用するパーティションや仮想マシンについては、 NetApp LUN に直接アクセスできないため、特定の認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります <block ref="79f8815267d9bceac74cfdb7e00f3ca4" category="inline-link-macro-rx"></block>。</block>
-  <block id="01d73ca791b1edc69b570d78ee32244b" category="paragraph">LDOM 内で LUN が仮想ディスクデバイスとして使用されている場合、 LUN のソースは仮想化によってマスクされ、 LDOM はブロックサイズを適切に検出しません。この問題を防ぐには、 Oracle バグ 15824910 の LDOM オペレーティングシステムにパッチを適用し、仮想ディスクのブロックサイズを 4096 に設定する vdc.conf ファイルを作成する必要があります。詳細については、 Oracle Doc 2157669.1 を参照してください。</block>
   <block id="90fbed0fe328b6c16dbe12568b1cb193" category="paragraph">パッチを確認するには、次の手順を実行します。</block>
   <block id="dd1e6355fcc2ca3c16ece42015663e00" category="cell">1362435</block>
   <block id="393cfee0a3b5d3e706f8a0cdeefa3ed8" category="cell">HUK 6.2 および Solaris_11.4 FC ドライババインディングの変更</block>
-  <block id="b7ec53c92871bfba1e76f591f3a9eac4" category="cell">Solaris 11.4 および HUK の推奨事項FC ドライバのバインドが SSD （ 4D ）から SD （ 4D ）に変更されました。ssm.conf にある設定を sd.conf に移動します詳細については、 Oracle （ドキュメント ID 2595926.1 ）を参照してください。この動作は、新規にインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます</block>
   <block id="8e831c271747ab1b149f40a1bfc61175" category="cell">（ドキュメント ID 2595926.1 ）</block>
   <block id="09fbe9d1ed2fdf31b8ac5fe56aa3ffbb" category="cell">x86_64 プラットフォームに Emulex ファームウェアバージョン 12.6.x 以上がインストールされています</block>
-  <block id="7ecc0a64c68fce4a47657d742f0357a1" category="cell">Emulex エンドツーエンド構成で「 cfgadm -c configure 」を実行すると、 I/O エラーが発生します。これは 9.5P17 、 9.6P14 、 9.7P13 、 9.8P2 で修正されています</block>
   <block id="78d3960bdb072ec713e8a4ab4adcd520" category="cell">1345622</block>
   <block id="e782dc99ec8290da5a63ec5e81465380" category="cell">OS ネイティブコマンドを使用した ASA/pports を持つ Solaris ホストでの異常パスレポート</block>
   <block id="87b607e68d04a531a2558265117f94cb" category="cell">ASA を使用した Solaris 11.4 で、パスが断続的に報告される問題</block>
@@ -2190,4 +2183,20 @@
   <block id="273955f9a81b6001ec0fed11c89c61c3" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="3c7f0100e93cbb394731ee7d8982c161" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
   <block id="069c43556e66148f1f1eeabd7e9e7872" category="sidebar">AIX Host Utilities の略語</block>
   <block id="095f17ad6c7f706c5fa881fa28d2b0e2" category="sidebar">XenServer 7</block>
+  <block id="7818dfcab7a1c05d51aa00ac15f3beac" category="paragraph">マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Solaris 11.4 では、 Oracle Solaris I/O マルチパス（ MPxIO ）がデフォルトで有効になっています。デフォルト設定は '/kernel/drv/fp.conf で MPxIO disable="no" に変更されます</block>
+  <block id="8802d931d27e076bee343aab852197ac" category="list-text">ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます <block ref="5fba20747e2f398f3da76ea0bd825023" category="inline-link-macro-rx"></block> サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。</block>
+  <block id="ff93671647385f59b8f76dc681e2b6bb" category="list-text">vdsk などの仮想ストレージリソースのみを使用するパーティションや仮想マシンについては、 NetApp LUN に直接アクセスできないため、特定の認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります <block ref="5fba20747e2f398f3da76ea0bd825023" category="inline-link-macro-rx"></block>。</block>
+  <block id="1014a6a04423d551549d409e08fbcc51" category="paragraph">LDOM 内で LUN が仮想ディスクデバイスとして使用されている場合、 LUN のソースは仮想化によってマスクされ、 LDOM はブロックサイズを適切に検出しません。この問題を防止するには、 Oracle バグ 15824910 の LDOM オペレーティング・システムにパッチを適用し、仮想ディスクのブロック・サイズを 4096 に設定する「 vdc.conf 」ファイルを作成する必要があります。詳細については、 Oracle Doc 2157669.1 を参照してください。</block>
+  <block id="26aa8c05766be362fe2c469284c66a45" category="paragraph">値 *ashift * が 12 でない場合は、正しいパッチがインストールされていることを確認し、「 vdc.conf 」の内容を再確認します。</block>
+  <block id="83b783cc8aa7959a24d34b681bbc1fd2" category="section-title">SnapMirror によるビジネス継続性の推奨設定</block>
+  <block id="0f82632d4a7c23010dbe44e368821348" category="paragraph">SnapMirror Business Continuity （ SM-BC ）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときに Solaris クライアントアプリケーションが中断されないようにするには、 Solaris 11.4 ホストで次の設定を行う必要があります。この設定は、矛盾を検出するコードパスが実行されないように、フェールオーバーモジュール「 f_tpgs 」をオーバーライドします。</block>
+  <block id="025006946b1c53786cbb29eef3d30229" category="paragraph">指示に従って、オーバーライドパラメータを設定します。</block>
+  <block id="04b92c9c817cdf34e3eacbf5cd765484" category="list-text">ホストに接続されている NetApp ストレージ・タイプについて ' 次のようなエントリを持つ構成ファイル /etc/driver/drv/scsi_vhci.conf を作成します</block>
+  <block id="b6fdbb065aa5e5c1bf0f5af8ad73ca53" category="list-text">オーバーライドが正常に適用されたことを確認するには、「 devprop` 」および「 `db 」コマンドを使用します。</block>
+  <block id="570f5761e2e0bfb396196b06d19e21b0" category="paragraph">`root@host-a:~# devprop-v-n /scsi_vhci -failover-override scsi-vhci -failover-override= NetApp LUN + f_tpgs root@host -a :~# echo "* scsi_vhci_dibling :print-x struct dev_info deive_vdive_vacuct | vdc_info vibl_sig_ info vstruct</block>
+  <block id="5492ce934067a932652b5c7aa5dd991b" category="inline-link">Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます</block>
+  <block id="5f6238b0613143f4b4f548b5f60bc85c" category="admonition">「 csi-vhci-failover-override 」が適用されている場合、「 conf 」が「 vl_fs_name 」に追加されます。追加情報およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください<block ref="5f8ebca4127b56f5ebdfcb3e105e60fb" category="inline-link-rx"></block>。</block>
+  <block id="d121177f120e7b50a6ec37a43d7ae4e6" category="cell">Solaris 11.4 および HUK の推奨事項FC ドライバのバインドが SSD （ 4D ）から SD （ 4D ）に変更されました。「 sd.conf 」にある構成を「 sd.conf 」に移動します。詳細については、 Oracle ( ドキュメント ID 2595926.1) を参照してください。この動作は、新規にインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます</block>
+  <block id="7fed5db563dfce62e3512e9c6fe716c1" category="cell">Solaris 11.xcfgadm -c configure を実行すると ' エンド・ツー・エンドの Emulex 構成で I/O エラーが発生する</block>
+  <block id="8b30a2a046838a554ec8551f6130f395" category="cell">Emulex エンドツーエンド構成で cfgadm -c configure を実行すると ' I/O エラーが発生しますこれは 9.5P17 、 9.6P14 、 9.7P13 、 9.8P2 で修正されています</block>
 </blocks>
