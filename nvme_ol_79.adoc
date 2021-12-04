@@ -21,7 +21,7 @@ summary: 例を使用した、 Oracle Linux 7.9 用の VME/FC ホスト構成の
 
 == サポート性
 
-ONTAP 9.6 以降では、 Oracle Linux 7.9 に対して NVMe/FC がサポートされます。Oracle Linux 7.9 ホストでは、 NVMe トラフィックと SCSI トラフィックの両方を、同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください 。
+ONTAP 9.6 以降では、 Oracle Linux 7.9 に対して NVMe/FC がサポートされます。Oracle Linux 7.9 ホストでは、 NVMe トラフィックと SCSI トラフィックの両方を、同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください 。
 
 
 
@@ -37,7 +37,7 @@ ONTAP 9.6 以降では、 Oracle Linux 7.9 に対して NVMe/FC がサポート�
 == NVMe/FC の有効化
 
 . サーバに Oracle Linux 7.9 をインストールします。
-. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 +
 [listing]
 ----
@@ -85,7 +85,7 @@ nqn.2014-08.org.nvmexpress:uuid:497ad959-e6d0-4987-8dc2-a89267400874
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 +
 [listing]
 ----

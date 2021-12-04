@@ -42,19 +42,19 @@ NVMe over Fabrics または NVMe-oF （ NVMe/FC およびその他の転送を�
 
 == 構成要件
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"] サポートされている構成に関する正確な情報については、を参照
+を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
 
 
 
 == カーネル内 NVMe マルチパスを有効化しています
 
-SLES15 SP3 などの SLES ホストでは、カーネル内 NVMe マルチパスはデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"] サポートされている構成に関する正確な情報については、を参照
+SLES15 SP3 などの SLES ホストでは、カーネル内 NVMe マルチパスはデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
 
 
 
 == NVMe-oF イニシエータパッケージ
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"] サポートされている構成に関する正確な情報については、を参照
+を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
 
 . 必要なカーネルおよび nvme-cli MU パッケージが SLES15 SP3 MU ホストにインストールされていることを確認します。
 +

@@ -21,9 +21,9 @@ summary: SUSE Linux Enterprise Server 15 SP2 （ ONTAP ）用に NVMe/FC を設�
 
 == サポート性
 
-SLES15 SP2 では、 ONTAP 9.6 以降で NVMe/FC がサポートされます。SLES15 SP2 ホストでは、同じファイバチャネルイニシエータアダプタポートを介して NVMe/FC および FCP の両方のトラフィックを実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
+SLES15 SP2 では、 ONTAP 9.6 以降で NVMe/FC がサポートされます。SLES15 SP2 ホストでは、同じファイバチャネルイニシエータアダプタポートを介して NVMe/FC および FCP の両方のトラフィックを実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
 
-サポートされている構成およびバージョンの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+サポートされている構成およびバージョンの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
 
 
@@ -79,7 +79,7 @@ nqn.2014-08.org.nvmexpress:uuid:c7b07b16-a22e-41a6-a1fd-cf8262c8713f
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 +
 [listing]
 ----

@@ -27,7 +27,7 @@ ONTAP 9.7 以降では、 NVMe over Fibre Channel （ NVMe/FC ）がサポート
 
 == の機能
 
-* ESXi イニシエータホストは、 NVMe/FC と FCP の両方のトラフィックを同じアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。を参照してください  サポートされる構成およびバージョンの最新のリストについては、を参照してください。
+* ESXi イニシエータホストは、 NVMe/FC と FCP の両方のトラフィックを同じアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。を参照してください  サポートされる構成およびバージョンの最新のリストについては、を参照してください。
 * ONTAP 9.9.1 P3 以降では、 ESXi 7.0 Update 3 で NVMe/FC 機能がサポートされます。
 * ESXi 7.0 以降のリリースでは、ハイパフォーマンスプラグイン（ HPP ）が NVMe デバイスのデフォルトプラグインです。
 
@@ -64,7 +64,7 @@ Host NQN: nqn.2014-08.com.vmware:nvme:nvme-esx
 
 === Broadcom / Emulex を設定しています
 
-. を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 . lpfc ドライバ・パラメータ lpfc_enable_fc4_type=3 を設定して 'lpfc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します
 
 
@@ -93,7 +93,7 @@ vmhba65   lpfc     link-up     fc.200000109b954570:100000109b954570             
 
 === Marvell / QLogic を設定しています
 
-. を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 . qlnativefc ドライバ・パラメータ ql2xnvmetupport =1 を設定して 'qlnativefc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します
 +
 「 #esxcfg-module -s 」 ql2xnvmetupport = 1'qlnativefc
@@ -162,7 +162,7 @@ NOTE: ONTAP 9.7 では、 NVMe/FC ネームスペースのデフォルトのブ�
 vserver nvme namespace create -vserver vs_1 -path /vol/namespace1-size 100g -ostype vmware-block-size 512B
 
 +
-を参照してください link:https://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-cmpr%2FGUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["ONTAP 9 コマンドのマニュアルページ"] を参照してください。
+を参照してください link:https://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-cmpr%2FGUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["ONTAP 9 コマンドのマニュアルページ"^] を参照してください。
 
 . それぞれの NVMe/FC ネームスペースデバイスの個々の ANA パスのステータスを確認します。
 +
@@ -210,6 +210,6 @@ fc.200034800d6d7268:210034800d6d7268-fc.201700a098dfe3d1:201900a098dfe3d1-uuid.5
 
 == 関連リンク
 
-link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"]
+link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^]
 
 

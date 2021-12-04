@@ -21,7 +21,7 @@ summary: 例を使用して、 Oracle Linux 7.8 用 VME/FC ホスト構成を ON
 
 == サポート性
 
-NVMe/FC は、 ONTAP Linux 7.8 に対して、 9.6 以降でサポートされています。Oracle Linux 7.8 ホストは、 NVMe と SCSI の両方のトラフィックを、同じ Fibre Channel （ FC ）イニシエータアダプタポート経由で実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください 。
+NVMe/FC は、 ONTAP Linux 7.8 に対して、 9.6 以降でサポートされています。Oracle Linux 7.8 ホストは、 NVMe と SCSI の両方のトラフィックを、同じ Fibre Channel （ FC ）イニシエータアダプタポート経由で実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください 。
 
 
 
@@ -37,7 +37,7 @@ NVMe/FC は、 ONTAP Linux 7.8 に対して、 9.6 以降でサポートされ�
 == NVMe/FC の有効化
 
 . Oracle Linux 7.8 をサーバーにインストールします。
-. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 +
 [listing]
 ----
@@ -85,7 +85,7 @@ nqn.2014-08.org.nvmexpress:uuid:75953f3b-77fe-4e03-bf3c-09d5a156fbcd
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 +
 [listing]
 ----

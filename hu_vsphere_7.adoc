@@ -212,7 +212,7 @@ NOTE: VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツ�
 
 を参照してください https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 特定のバージョンの ONTAP ツール、または使用している vSphere と ONTAP の特定のバージョンの VASA Provider
 
-VVOL のプロビジョニングと管理の詳細については、 VMware vSphere 用の ONTAP ツールのドキュメントも参照してください link:https://docs.netapp.com/us-en/netapp-solutions/hybrid-cloud/vsphere_ontap_ontap_for_vsphere.html["TR-4597"] および 
+VVOL のプロビジョニングと管理の詳細については、 VMware vSphere 用の ONTAP ツールのドキュメントも参照してください link:https://docs.netapp.com/us-en/netapp-solutions/hybrid-cloud/vsphere_ontap_ontap_for_vsphere.html["TR-4597"^] および 
 
 
 
@@ -333,7 +333,7 @@ naa.600a098038304731783f506670553355
 
 == 関連リンク
 
-* link:https://www.netapp.com/media/13550-tr4597.pdf["TR-4597 ：『 VMware vSphere with ONTAP 』"]
-* link:https://kb.vmware.com/s/article/2031038["NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）"]
-* link:https://kb.vmware.com/s/article/83370["NetApp ONTAP と NetApp SnapMirror によるビジネス継続性（ SM-BC ）と VMware vSphere Metro Storage Cluster （ vMSC ）"]
+* link:https://www.netapp.com/media/13550-tr4597.pdf["TR-4597 ：『 VMware vSphere with ONTAP 』"^]
+* link:https://kb.vmware.com/s/article/2031038["NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）"^]
+* link:https://kb.vmware.com/s/article/83370["NetApp ONTAP と NetApp SnapMirror によるビジネス継続性（ SM-BC ）と VMware vSphere Metro Storage Cluster （ vMSC ）"^]
 

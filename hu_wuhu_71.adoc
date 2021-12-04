@@ -353,7 +353,7 @@ Windows Unified Host Utilities インストーラは、インストール時に�
 
 | HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval | 1. | サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 のみの場合 
 |===
-を参照してください https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users["Microsoft のドキュメント"] を参照してください。
+を参照してください https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users["Microsoft のドキュメント"^] を参照してください。
 
 
 
@@ -406,7 +406,7 @@ QLogic ファイバチャネル HBA の場合、 MPIO が選択されていな�
 
 NOTE: パラメータの名前は、プログラムによって多少異なる場合があります。たとえば 'QLogic QConvergeConsole プログラムでは ' パラメータは Link Down Timeout と表示されますHost Utilities の「 fcconfig.ini` 」ファイルには、 MPIO が指定されているかどうかに応じて、このパラメータが「 LinkDownTimeOut 」または「 M pioLinkDownTimeOut 」のいずれかで表示されます。ただし、これらの名前はすべて同じ HBA パラメータを表します。
 
-を参照してください https://www.broadcom.com/support/download-search["Emulex 社"] または タイムアウトパラメータの詳細については、サイトを参照してください。
+を参照してください https://www.broadcom.com/support/download-search["Emulex 社"^] または タイムアウトパラメータの詳細については、サイトを参照してください。
 
 
 
@@ -421,9 +421,9 @@ NOTE: パラメータの名前は、プログラムによって多少異なる�
 * リブート後に iSCSI LUN を使用できない場合は、 Microsoft iSCSI イニシエータ GUI の Persistent Targets タブに、ターゲットが永続的なものとして表示されることを確認する必要があります。
 * LUN を使用するアプリケーションの起動時にエラーが表示される場合は、そのアプリケーションが iSCSI サービスに依存するように設定されていることを確認する必要があります。
 * ONTAP を実行するストレージコントローラへのファイバチャネルパスでは、ノードの物理ポートの WWPN ではなく、ターゲット LIF の WWPN を使用して FC スイッチがゾーニングされていることを確認する必要があります。
-* を確認しておく必要があります https://library-clnt.dmz.netapp.com/documentation/docweb/index.html?productID=62322&platformID=30462&language=en-US&access=a["『 Release Notes for Windows Host Utilities 』"] をクリックして、既知の問題を確認します。リリースノートには、既知の問題と制限事項の一覧が記載されています。
-* のトラブルシューティング情報を確認する必要があります https://docs.netapp.com/ontap-9/index.jsp["『 SAN アドミニストレーションガイド』"] ONTAP のバージョンに応じて更新します。
-* 検索する必要があります https://mysupport.netapp.com/site/bugs-online/["Bugs Online"] 最近検出された問題の場合。
+* を確認しておく必要があります https://library-clnt.dmz.netapp.com/documentation/docweb/index.html?productID=62322&platformID=30462&language=en-US&access=a["『 Release Notes for Windows Host Utilities 』"^] をクリックして、既知の問題を確認します。リリースノートには、既知の問題と制限事項の一覧が記載されています。
+* のトラブルシューティング情報を確認する必要があります https://docs.netapp.com/ontap-9/index.jsp["『 SAN アドミニストレーションガイド』"^] ONTAP のバージョンに応じて更新します。
+* 検索する必要があります https://mysupport.netapp.com/site/bugs-online/["Bugs Online"^] 最近検出された問題の場合。
 * [ 詳細検索 ] の下の [ バグの種類 ] フィールドで、 [iSCSI-Window] を選択し、 [ 移動 ] をクリックします。Bug Type fcp - windows をもう一度検索してください。
 * システムに関する情報を収集する必要があります。
 * ホストまたはストレージシステムのコンソールに表示されるエラーメッセージをすべて記録します。
@@ -432,7 +432,7 @@ NOTE: パラメータの名前は、プログラムによって多少異なる�
 * 問題を解決できない場合は、ネットアップテクニカルサポートにお問い合わせください。
 
 
-http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 
 
 

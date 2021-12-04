@@ -25,10 +25,10 @@ ONTAP 9.6 以降では、次のバージョンの Oracle Linux で NVMe/FC が�
 
 * OL 7.7
 +
-OL 7.7 ホストは、同じファイバチャネルイニシエータアダプタポートを介して NVMe と SCSI の両方のトラフィックを実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
+OL 7.7 ホストは、同じファイバチャネルイニシエータアダプタポートを介して NVMe と SCSI の両方のトラフィックを実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
 
 +
-サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
 
 
@@ -94,7 +94,7 @@ NOTE: ホストの NQN 文字列が一致しない場合は、 vserver modify �
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 +
 [listing]
 ----
@@ -116,7 +116,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 # rpm -ivh nvmefc-connect-12.4.65.0-1.noarch.rpm
 ----
 . ホストをリブートします。
-. 推奨される Broadcom lpfc ファームウェア、ネイティブインボックスドライバ、および outbox 自動接続パッケージバージョンを使用していることを確認します。サポートされているバージョンの一覧については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
+. 推奨される Broadcom lpfc ファームウェア、ネイティブインボックスドライバ、および outbox 自動接続パッケージバージョンを使用していることを確認します。サポートされているバージョンの一覧については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 +
 [listing]
 ----

@@ -226,5 +226,5 @@ NOTE: Citrix ハイパーバイザーでは、 Linux および Windows ベース
 | NetApp バグ ID | タイトル | 説明 | Citrix Tracker ID 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1242343["1242343"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC を搭載した Citrix ハイパーバイザー 8.0 でカーネルが停止する | QLogic QLE2742 32GB HBA を搭載した Citrix ハイパーバイザー 8.0 カーネル（ 4.19.0.0 +1 ）でストレージフェイルオーバー処理を実行すると、カーネルが停止する可能性があります。この問題では、オペレーティングシステムのリブートを求められ、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を把握できます。カーネルの停止後、ホストオペレーティングシステムをリブートし、アプリケーションを再起動することで、オペレーティングシステムをリカバリできます。 | link:https://tracker.citrix.com/browse/NETAPP-98["ネットアップ 98"] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1242343["1242343"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC を搭載した Citrix ハイパーバイザー 8.0 でカーネルが停止する | QLogic QLE2742 32GB HBA を搭載した Citrix ハイパーバイザー 8.0 カーネル（ 4.19.0.0 +1 ）でストレージフェイルオーバー処理を実行すると、カーネルが停止する可能性があります。この問題では、オペレーティングシステムのリブートを求められ、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を把握できます。カーネルの停止後、ホストオペレーティングシステムをリブートし、アプリケーションを再起動することで、オペレーティングシステムをリカバリできます。 | link:https://tracker.citrix.com/browse/NETAPP-98["ネットアップ 98"^] 
 |===

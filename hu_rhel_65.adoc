@@ -291,7 +291,7 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=786571["786571"^] | ストレージフェイルオーバー処理による I/O で、 RHEL 6.5 で QLogic FCoE ホストが停止し、パス障害が発生する | ストレージフェイルオーバー処理を使用した I/O の実行中に、 RHEL 6.5 で QLogic FCoE （ QLE8242 ）ホストのハング / パス障害が発生することが確認されました。この場合、「 Mailbox cmd timeout occurred 、 cmd=0x54 、 MB[0]=0x54 」というメッセージが表示されます。「 Scheduling ISP abort 」メッセージがホストのハングアップ / パス障害につながる。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1068619["1068619"^] 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=801580["801580"^] | ストレージフェイルオーバー処理による I/O で、 RHEL 6.5 で QLogic 16G FC ホストがハングしたりパス障害が発生したりする | ストレージフェイルオーバー処理中に、 QLogic 16G FC ホスト（ QLE2672 ）で 600 秒を超える I/O 遅延が発生することが確認されました。この場合、「 Failed mbx[0]=54 、 MB[1]=0 、 MB[2]=76b9 、 MB[3] =5200 、 cmd=54 」というメッセージが表示されます。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1068622["1068622"] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=801580["801580"^] | ストレージフェイルオーバー処理による I/O で、 RHEL 6.5 で QLogic 16G FC ホストがハングしたりパス障害が発生したりする | ストレージフェイルオーバー処理中に、 QLogic 16G FC ホスト（ QLE2672 ）で 600 秒を超える I/O 遅延が発生することが確認されました。この場合、「 Failed mbx[0]=54 、 MB[1]=0 、 MB[2]=76b9 、 MB[3] =5200 、 cmd=54 」というメッセージが表示されます。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1068622["1068622"^] 
 |===
 
 
