@@ -39,7 +39,7 @@ RHEL 8.1 ホストは、同じ Fibre Channel イニシエータアダプタポ�
 
 
 
-== RHEL 8.1 での NVMe/FC の有効化
+== RHEL 8.1 で NVMe/FC を有効にします
 
 . サーバに Red Hat Enterprise Linux 8.1 をインストールします。
 . インストールが完了したら、指定した Red Hat Enterprise Linux カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
@@ -183,7 +183,7 @@ NVME Statistics
 
 
 
-== NVMe/FC を検証しています
+== NVMe/FC を検証
 
 . 以下の NVMe/FC 設定を確認してください。
 +
@@ -256,7 +256,7 @@ Device   Vserver  Namespace Path             NSID   UUID   Size
 
 
 
-== Broadcom NVMe/FC で 1MB の I/O サイズを有効にします
+== Broadcom NVMe/FC の 1MB I/O サイズを有効にします
 
 ホストで問題 1MB サイズの I/O を使用するには、 lpfc_sg_seg_cnt パラメータを 256 に設定する必要があります
 

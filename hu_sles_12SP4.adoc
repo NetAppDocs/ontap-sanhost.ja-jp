@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_suse_12SP5.html 
-keywords: host utilities, suse linux enterprise server 12 SP5, suse, linux, 12 SP5, netapp, ontap 
-summary: SUSE Linux Enterprise Server 12 SP5 と ONTAP の使用方法について説明します 
+permalink: hu_sles_12SP4.html 
+keywords: host utilities, suse linux enterprise server 12 SP4, suse, linux, 12 SP4, netapp, ontap 
+summary: ONTAP で SUSE Linux Enterprise Server 12 SP4 を使用する方法について説明します 
 ---
-= SUSE Linux Enterprise Server 12 SP5 と NetApp ONTAP を使用する
+= NetApp ONTAP で SUSE Linux Enterprise Server 12 SP4 を使用する方法
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -57,7 +57,7 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91704;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=86528;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -76,7 +76,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-SUSE Linux Enterprise Server 12 SP5 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP5 は、 ONTAP LUN を認識して適切に管理するために必要なすべての設定でコンパイルされます。
+SUSE Linux Enterprise Server 12 SP4 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP4 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。
 
 「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
 
@@ -130,7 +130,7 @@ NOTE: 1 つの LUN へのパスを余分に使用しないでください。必�
 
 == 推奨設定
 
-SUSE Linux Enterprise Server 12 SP5 OS は、 ONTAP LUN を認識し、すべての設定パラメータを正しく自動的に設定するようにコンパイルされています。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます
+SUSE Linux Enterprise Server 12 SP4 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされました。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます
 
 このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。
 
@@ -255,13 +255,8 @@ devices {
 
 == 既知の問題および制限
 
-[cols="4*"]
-|===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+SUSE Linux Enterprise Server 12 SP4 では、既知の問題はありません。
 
-
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1284293["1284293"^] | ストレージフェイルオーバー処理中に、 QLogic QLE2562 8GB FC HBA を搭載した SLES12 SP5 でカーネルの停止が発生します | QLogic QLE2562 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した SLES12 SP5 カーネルで、ストレージフェイルオーバー処理中にカーネルが停止します。カーネルが中断すると SLES12 SP5 が再起動し、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、停止の原因を特定します。QLogic QLE2562 HBA イベントを使用したストレージフェイルオーバーは、「 thread_Info ： 8affffedf723c2c0 」モジュールに影響します。次の文字列を検索して、 vmcore ファイルでこのイベントを探します。 "[thread _Info: ffff8aedf723c2c0]"カーネルが停止したら、ホスト OS をリブートしてリカバリできるようにします。次に、アプリケーションを再起動します。 | link:http://bugzilla.suse.com/show_bug.cgi?id=1157966["1157966"^] 
-|===
 
 
 == リリースノート

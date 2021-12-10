@@ -31,7 +31,7 @@ RHEL 8.3 では、カーネル内の NVMe マルチパスはデフォルトで�
 
 
 
-== RHEL 8.3 での NVMe/FC の有効化
+== RHEL 8.3 で NVMe/FC を有効にします
 
 . Red Hat Enterprise Linux 8.3 GA をサーバにインストールします。
 +
@@ -121,7 +121,7 @@ defaults {
 
 
 
-== NVMe/FC を検証しています
+== NVMe/FC を検証
 
 . 以下の NVMe/FC 設定を確認してください。
 +

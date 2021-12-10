@@ -59,7 +59,7 @@ NOTE: SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョン
 
 
 
-== AIX Host Utilities をインストールしています
+== AIX Host Utilities をインストールする
 
 NetApp AIX Host Utilities ソフトウェアパッケージは、にあります https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host%2BUtilities%2B-%2BSAN&platform=Linux["ネットアップサポートサイト"^] 圧縮された tar.gz ファイル。
 

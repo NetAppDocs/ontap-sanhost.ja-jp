@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_suse_12SP4.html 
-keywords: host utilities, suse linux enterprise server 12 SP4, suse, linux, 12 SP4, netapp, ontap 
-summary: ONTAP で SUSE Linux Enterprise Server 12 SP4 を使用する方法について説明します 
+permalink: hu_sles_12SP3.html 
+keywords: host utilities, suse linux enterprise server 12 SP3, suse, linux, 12 SP3, netapp, ontap 
+summary: ONTAP で SUSE Linux Enterprise Server 12 SP3 を使用する方法について説明します 
 ---
-= NetApp ONTAP で SUSE Linux Enterprise Server 12 SP4 を使用する方法
+= NetApp ONTAP での SUSE Linux Enterprise Server 12 SP3 の使用
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -57,7 +57,7 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=86528;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=80043;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -76,7 +76,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-SUSE Linux Enterprise Server 12 SP4 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP4 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。
+SUSE Linux Enterprise Server 12 SP3 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP3 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。
 
 「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
 
@@ -113,9 +113,9 @@ ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパス�
 
 [listing]
 ----
-#multipath -ll
+# multipath -ll
 3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
-size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+size=80G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handler' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
 | |- 11:0:1:0 sdj 8:144 active ready running
 | |- 11:0:2:0 sdr 65:16 active ready running
@@ -130,7 +130,7 @@ NOTE: 1 つの LUN へのパスを余分に使用しないでください。必�
 
 == 推奨設定
 
-SUSE Linux Enterprise Server 12 SP4 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされました。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます
+SUSE Linux Enterprise Server 12 SP3 OS は、 ONTAP LUN を認識し、すべての構成パラメータを正しく自動的に設定するようにコンパイルされています。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます
 
 このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。
 
@@ -255,8 +255,25 @@ devices {
 
 == 既知の問題および制限
 
-SUSE Linux Enterprise Server 12 SP4 では、既知の問題はありません。
+[cols="4*"]
+|===
+| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
+
+| link:https://https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1089555["1089555"^] | ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC 搭載の SLES12 SP3 でカーネル停止が発生しました | Emulex LPe16002 HBA 搭載の SLES12 SP3 では、ストレージフェイルオーバー処理中にカーネルが停止することがあります。カーネルの中断により、オペレーティングシステムのリブートが求められ、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルで障害の原因を調査できます。例：観察された場合、カーネルの中断はモジュール「 lpfc_sLI_ringtxcmpl_put+51 」で確認され、 vmcore ファイルに記録されます。例外 RIP ： lpfc_sLI_ringtxcmpl_put+51 。ホストオペレーティングシステムをリブートし、アプリケーションを再起動して、カーネルの停止後にオペレーティングシステムをリカバリします。 | link:http://bugzilla.suse.com/show_bug.cgi?id=1042847["1042847"^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1089561["1089561"^] | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32Gb FC 搭載の SLES12 SP3 でカーネル停止が発生します | Emulex LPe32002 HBA 搭載の SLES12 SP3 では、ストレージフェイルオーバー処理中にカーネルが停止することがあります。カーネルの中断により、オペレーティングシステムのリブートが求められ、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルで障害の原因を調査できます。例：観察されたケースでは、カーネルの中断が「 lpfc_sLI_free_hbq+76 」モジュールで確認され、 vmcore ファイルに記録されています。例外 RIP ： lpfc_sLI_free_hbq+76 。ホストオペレーティングシステムをリブートし、アプリケーションを再起動して、カーネルの停止後にオペレーティングシステムをリカバリします。 | link:http://bugzilla.suse.com/show_bug.cgi?id=1042807["1042807"^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1117248["1117248"^] | ストレージフェイルオーバー処理中に、 QLogic QLE2562 8GB FC を搭載した SLES12SP3 でカーネルの中断が発生しました | QLogic QLE2562 HBA を使用した Sles12sp3 カーネル（ kernel-default-4.4.82-6.4.1 ）でのストレージフェイルオーバー処理中に、カーネルパニックが発生してカーネルが停止したことが確認されました。カーネルがパニックすると、オペレーティングシステムがリブートし、アプリケーションが停止します。kdump が設定されている場合、カーネルパニックにより /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。カーネルがパニックした場合、 vmcore ファイルを使用して原因の障害を把握できます。例：この場合、「 blk_finish_request+289 」モジュールでパニックが発生しました。カーネル停止後、 vmcore ファイルに「 exception RIP ： blk_finish_request + 289 」という文字列で記録されます。ホスト OS を再起動して、オペレーティングシステムをリカバリできます。必要に応じて、アプリケーションを再起動できます。 | link:http://bugzilla.suse.com/show_bug.cgi?id=1062496["1062496"^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1117261["1117261"^] | ストレージフェイルオーバー処理中に、 Qlogic QLE2662 16Gb FC を使用する SLES12SP3 でカーネル停止が発生することが確認されました | Qlogic QLE2662 HBA を使用して Sles12sp3 カーネル（ kernel-default-4.4.82-6.3.1 ）でストレージフェイルオーバーを実行する際に、カーネルが停止することがあります。これにより、オペレーティングシステムのリブートが要求され、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を把握できます。例：この場合、カーネルの停止はモジュール「不明または無効なアドレス」で確認され、文字列例外 RIP ：不明または無効なアドレスを使用して vmcore ファイルに記録されます。カーネルの停止後、オペレーティングシステムをリカバリするには、ホストオペレーティングシステムをリブートし、必要に応じてアプリケーションを再起動します。 | link:http://bugzilla.suse.com/show_bug.cgi?id=1062508["1062508."^] 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1117274["1117274"^] | ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC を使用する SLES12SP3 でカーネル停止が発生します | Emulex LPe16002 HBA を搭載した Sles12sp3 カーネル（ kernel-default-4.4.87-3.1 ）でストレージフェイルオーバー処理を実行すると、カーネルの停止が発生することがあります。これにより、オペレーティングシステムのリブートが要求され、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を把握できます。例：この例では、モジュール「 raw_spin_lock_irqsave +30 」でカーネルの中断が確認され、次の文字列を使用して vmcore ファイルに記録されています。– exception RIP:_raw_spin_lock_irqsave +30カーネルの停止後、オペレーティングシステムをリカバリするには、ホストオペレーティングシステムをリブートし、必要に応じてアプリケーションを再起動します。 | link:http://bugzilla.suse.com/show_bug.cgi?id=1062514["1062514"^] 
+|===
 
 
 == リリースノート

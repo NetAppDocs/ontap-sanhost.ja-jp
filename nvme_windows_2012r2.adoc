@@ -38,7 +38,7 @@ NOTE: Broadcom for Windows NVMe/FC によって出荷された外部ドライバ
 
 
 
-== Windows イニシエータホストでの NVMe/FC の有効化
+== Windows イニシエータホストで NVMe/FC を有効にします
 
 Windows イニシエータホストで FC / NVMe を有効にするには、次の手順を実行します。
 
@@ -55,7 +55,7 @@ Windows イニシエータホストで FC / NVMe を有効にするには、次�
 
 
 
-== Windows での NVMe / FC 用の Broadcom FC アダプタの設定
+== Windows で NVMe/FC 用に Broadcom FC アダプタを設定します
 
 Windows 環境の FC/NVMe 用 Broadcom アダプタでは '+hostnqn+' が各 HBA ポートに関連付けられます「 + hostnqn+' 」は次のようにフォーマットされます。
 
@@ -65,7 +65,7 @@ nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9766
 ....
 
 
-=== Windows ホストで NVMe デバイスの MPIO を有効にする
+=== Windows ホストで NVMe デバイスの MPIO を有効にします
 
 . Windows Host Utility Kit 7.1 をインストールして、 FC と NVMe の両方に共通のドライバパラメータを設定します。
 . MPIO のプロパティを開きます。
@@ -101,7 +101,7 @@ HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryIn
 
 
 
-== NVMe/FC を検証しています
+== NVMe/FC を検証
 
 . ポートタイプが FC + NVMe であることを確認します。
 +

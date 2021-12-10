@@ -38,7 +38,9 @@ NVMe over Fabrics または NVMe-oF （ NVMe/FC やその他の転送を含む�
 
 == 既知の制限
 
-RHEL 8.4 では、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。
+* RHEL 8.4 では、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。
+* RHEL 8.4 の NVMe/FC は、未解決の問題が原因で引き続きテクノロジプレビュー機能です。を参照してください https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.4_release_notes/index#technology-preview_file-systems-and-storage["RHEL 8.4 リリースノート"^] を参照してください。
+
 
 
 
@@ -48,7 +50,7 @@ RHEL 8.4 では、カーネル内の NVMe マルチパスはデフォルトで�
 
 
 
-== カーネル内 NVMe マルチパスを有効化しています
+== カーネル内の NVMe マルチパスを有効にします
 
 . サーバに RHEL 8.4 GA をインストールします。インストールが完了したら、指定した RHEL 8.4 GA カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
 . インストールが完了したら、指定した RHEL 8.4 カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
@@ -113,7 +115,7 @@ defaults {
 
 
 
-== NVMe/FC を設定しています
+== NVMe/FC を設定
 
 
 
@@ -185,7 +187,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 
 
 
-==== 1MB I/O サイズのイネーブル化（任意）
+==== 1MB の I/O サイズを有効にする（オプション）
 
 ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイズ） 8 を報告します。つまり、最大 I/O 要求サイズは最大 1 MB でなければなりません。ただし 'Broadcom NVMe/FC ホストのサイズが 1 MB の問題 I/O 要求の場合 'lpfc パラメータ 'lpfc_sg_seg_cnt' もデフォルト値の 64 から 256 までバンピングする必要があります次の手順を使用して実行します。
 
@@ -215,7 +217,7 @@ options lpfc lpfc_sg_seg_cnt=256
 
 RHEL 8.4 GA カーネルに含まれているネイティブインボックスの qla2xxx ドライバには、 ONTAP のサポートに不可欠な最新のアップストリーム修正が含まれています。
 
-* 次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。
+. 次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。
 +
 [listing]
 ----
@@ -223,7 +225,7 @@ RHEL 8.4 GA カーネルに含まれているネイティブインボックス�
 QLE2742 FW:v9.06.02 DVR:v10.02.00.104-k
 QLE2742 FW:v9.06.02 DVR:v10.02.00.104-k
 ----
-* 次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。
+. 次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。
 +
 [listing]
 ----
@@ -234,92 +236,215 @@ QLE2742 FW:v9.06.02 DVR:v10.02.00.104-k
 
 
 
-== NVMe-oF を検証しています
+== NVMe/FC を設定
 
-* カーネル内の NVMe マルチパスが有効になっていることを確認します。
+NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これにより、 Linux NVMe/FC ホストには次の 2 つの大きな制限があります。
+
+* * パスが復活した後の自動再接続は行われない * NVMe/TCP は、パスダウン後 10 分間のデフォルトの「 Ctrl-loss -TTMO 」タイマーを超えて復活したパスに自動的に再接続することはできません。
+* * ホストの起動時に自動接続が行われない * ホストの起動時に NVMe/FC が自動的に接続されることもありません。
+
+
+ONTAP フェイルオーバーイベント (SFO など ) を快適に利用するには 'Ctrl_LONS_TMO' タイマーを調整して '30 分間などの長い再試行期間を設定することをお勧めします詳細は次のとおりです。
+
+. サポートされている NVMe/FC LIF の検出ログページデータをイニシエータポートが読み込めたかどうかを確認します。
++
+[listing]
+----
+# nvme discover -t tcp -w 192.168.1.8 -a 192.168.1.51
+Discovery Log Number of Records 10, Generation counter 119
+=====Discovery Log Entry 0======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 0
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.56e362e9bb4f11ebbaded039ea165abc:subsystem.nvme_118_tcp_1
+traddr: 192.168.2.56
+sectype: none
+=====Discovery Log Entry 1======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 1
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.56e362e9bb4f11ebbaded039ea165abc:subsystem.nvme_118_tcp_1
+traddr: 192.168.1.51
+sectype: none
+=====Discovery Log Entry 2======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 0
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.56e362e9bb4f11ebbaded039ea165abc:subsystem.nvme_118_tcp_2
+traddr: 192.168.2.56
+sectype: none
+...
+----
+. 他の NVMe/FC イニシエータターゲット LIF のコンボファイルが検出ログページデータを正常に取得できることを確認します。例：
++
+[listing]
+----
+# nvme discover -t tcp -w 192.168.1.8 -a 192.168.1.52
+# nvme discover -t tcp -w 192.168.2.9 -a 192.168.2.56
+# nvme discover -t tcp -w 192.168.2.9 -a 192.168.2.57
+----
+. ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。接続中に 'ctrl_loss _tmo' 期間を延長して（たとえば '-l 1800' で設定できる 30 分） ' パスが失われた場合に再試行するようにしてください例：
++
+[listing]
+----
+# nvme connect-all -t tcp -w 192.168.1.8 -a 192.168.1.51 -l 1800
+# nvme connect-all -t tcp -w 192.168.1.8 -a 192.168.1.52 -l 1800
+# nvme connect-all -t tcp -w 192.168.2.9 -a 192.168.2.56 -l 1800
+# nvme connect-all -t tcp -w 192.168.2.9 -a 192.168.2.57 -l 1800
+----
+
+
+
+
+== NVMe-oF を検証します
+
+. 次のチェックボックスをオンにして、カーネル内の NVMe マルチパスが実際に有効になっていることを確認
 +
 [listing]
 ----
 # cat /sys/module/nvme_core/parameters/multipath
 Y
 ----
-* 適切な NVMe-oF 設定である「 NetApp ONTAP Controller 」に設定された「 m odel 」と「 load balancing iopolicy 」が「 round-robin 」に設定されていることを確認し、それぞれの ONTAP ネームスペースがホストに正しく反映されるようにします。
+. 各 ONTAP ネームスペースの適切な NVMe-oF 設定（「 NetApp ONTAP Controller 」に設定された「 model 」や「 loadbalancing iopolicy 」が「ラウンドロビン」に設定されているなど）がホストに正しく反映されていることを確認します。
 +
 [listing]
 ----
 # cat /sys/class/nvme-subsystem/nvme-subsys*/model
 NetApp ONTAP Controller
 NetApp ONTAP Controller
+
 # cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
 round-robin
 round-robin
 ----
-
-
-
-
-== NVMe/FC
-
-. NVMe/FC ONTAP ネームスペースがホストに正しく反映されていることを確認します。
+. ONTAP ネームスペースがホストに正しく反映されていることを確認します。例：
 +
-例
+[listing]
+----
+# nvme list
+Node           SN                    Model                   Namespace
+------------   --------------------- ---------------------------------
+/dev/nvme0n1   81CZ5BQuUNfGAAAAAAAB  NetApp ONTAP Controller   1
+
+Usage                Format         FW Rev
+-------------------  -----------    --------
+85.90 GB / 85.90 GB  4 KiB + 0 B    FFFFFFFF
+----
++
+別の例：
 
 +
 [listing]
 ----
 # nvme list
-Node         SN                    Model                  Namespace Usage
--------      -----------------     -------------          --------- ------------
-/dev/nvme0n1 814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller   1      85.90 GB / 85.90 GB
+Node           SN                    Model                   Namespace
+------------   --------------------- ---------------------------------
+/dev/nvme0n1   81CYrBQuTHQFAAAAAAAC  NetApp ONTAP Controller   1
 
-Format       FW Rev
-------       -------
-4 KiB + 0 B  FFFFFFFF
+Usage                Format         FW Rev
+-------------------  -----------    --------
+85.90 GB / 85.90 GB  4 KiB + 0 B    FFFFFFFF
 ----
-. 各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。
+. 各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。例：
 +
-例
+[listing, subs="+quotes"]
+----
+# nvme list-subsys /dev/nvme1n1
+nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.04ba0732530911ea8e8300a098dfdd91:subsystem.nvme_145_1
+\
++- nvme2 fc traddr=nn-0x208100a098dfdd91:pn-0x208200a098dfdd91 host_traddr=nn-0x200000109b579d5f:pn-0x100000109b579d5f live *non-optimized*
++- nvme3 fc traddr=nn-0x208100a098dfdd91:pn-0x208500a098dfdd91 host_traddr=nn-0x200000109b579d5e:pn-0x100000109b579d5e live *non-optimized*
++- nvme4 fc traddr=nn-0x208100a098dfdd91:pn-0x208400a098dfdd91 host_traddr=nn-0x200000109b579d5e:pn-0x100000109b579d5e live *optimized*
++- nvme6 fc traddr=nn-0x208100a098dfdd91:pn-0x208300a098dfdd91 host_traddr=nn-0x200000109b579d5f:pn-0x100000109b579d5f live *optimized*
+----
++
+別の例：
 
 +
 [listing, subs="+quotes"]
 ----
-# nvme list-subsys /dev/nvme0n1
-nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:subsystem.nvme_141_1
+#nvme list-subsys /dev/nvme0n1
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.37ba7d9cbfba11eba35dd039ea165514:subsystem.nvme_114_tcp_1
 \
-+- nvme0 fc traddr=nn-0x203700a098dfdd91:pn-0x203800a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live *inaccessible*
-+- nvme1 fc traddr=nn-0x203700a098dfdd91:pn-0x203900a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live *inaccessible*
-+- nvme2 fc traddr=nn-0x203700a098dfdd91:pn-0x203a00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live *optimized*
-+- nvme3 fc traddr=nn-0x203700a098dfdd91:pn-0x203d00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live *optimized*
++- nvme0 tcp traddr=192.168.2.36 trsvcid=4420 host_traddr=192.168.1.4 live *optimized*
++- nvme1 tcp traddr=192.168.1.31 trsvcid=4420 host_traddr=192.168.1.4 live *optimized*
++- nvme10 tcp traddr=192.168.2.37 trsvcid=4420 host_traddr=192.168.1.4 live *non-optimized*
++- nvme11 tcp traddr=192.168.1.32 trsvcid=4420 host_traddr=192.168.1.4 live *non-optimized*
++- nvme20 tcp traddr=192.168.2.36 trsvcid=4420 host_traddr=192.168.2.5 live *optimized*
++- nvme21 tcp traddr=192.168.1.31 trsvcid=4420 host_traddr=192.168.2.5 live *optimized*
++- nvme30 tcp traddr=192.168.2.37 trsvcid=4420 host_traddr=192.168.2.5 live *non-optimized*
++- nvme31 tcp traddr=192.168.1.32 trsvcid=4420 host_traddr=192.168.2.5 live *non-optimized*
 ----
-. ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。
+. ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例：
 +
-例
+[listing]
+----
+# nvme netapp ontapdevices -o column
+Device       Vserver          Namespace Path
+---------    -------          --------------------------------------------------
+/dev/nvme1n1 vserver_fcnvme_145 /vol/fcnvme_145_vol_1_0_0/fcnvme_145_ns
+
+NSID  UUID                                   Size
+----  ------------------------------         ------
+1      23766b68-e261-444e-b378-2e84dbe0e5e1  85.90GB
+
+
+# nvme netapp ontapdevices -o json
+{
+"ONTAPdevices" : [
+     {
+       "Device" : "/dev/nvme1n1",
+       "Vserver" : "vserver_fcnvme_145",
+       "Namespace_Path" : "/vol/fcnvme_145_vol_1_0_0/fcnvme_145_ns",
+       "NSID" : 1,
+       "UUID" : "23766b68-e261-444e-b378-2e84dbe0e5e1",
+       "Size" : "85.90GB",
+       "LBA_Data_Size" : 4096,
+       "Namespace_Size" : 20971520
+     }
+  ]
+}
+----
++
+別の例：
 
 +
 [listing]
 ----
 # nvme netapp ontapdevices -o column
-Device        Vserver         Namespace Path                            NSID
---------     -----------      ---------------------------               -------
-/dev/nvme0n1  vs_fcnvme_141   /vol/fcnvme_141_vol_1_1_0/fcnvme_141_ns    1
-UUID                                   Size
------                                  --------
-72b887b1-5fb6-47b8-be0b-33326e2542e2   85.90GB
+Device       Vserver          Namespace Path
+---------    -------          --------------------------------------------------
+/dev/nvme0n1 vs_tcp_114       /vol/tcpnvme_114_1_0_1/tcpnvme_114_ns
+
+NSID  UUID                                   Size
+----  ------------------------------         ------
+1      a6aee036-e12f-4b07-8e79-4d38a9165686  85.90GB
+
 
 # nvme netapp ontapdevices -o json
 {
-"ONTAPdevices" : [
-    {
-        "Device" : "/dev/nvme0n1",
-        "Vserver" : "vs_fcnvme_141",
-        "Namespace_Path" : "/vol/fcnvme_141_vol_1_1_0/fcnvme_141_ns",
-        "NSID" : 1,
-        "UUID" : "72b887b1-5fb6-47b8-be0b-33326e2542e2",
-        "Size" : "85.90GB",
-        "LBA_Data_Size" : 4096,
-        "Namespace_Size" : 20971520
-    }
+     "ONTAPdevices" : [
+     {
+          "Device" : "/dev/nvme0n1",
+           "Vserver" : "vs_tcp_114",
+          "Namespace_Path" : "/vol/tcpnvme_114_1_0_1/tcpnvme_114_ns",
+          "NSID" : 1,
+          "UUID" : "a6aee036-e12f-4b07-8e79-4d38a9165686",
+          "Size" : "85.90GB",
+          "LBA_Data_Size" : 4096,
+          "Namespace_Size" : 20971520
+       }
   ]
+
 }
 ----
 

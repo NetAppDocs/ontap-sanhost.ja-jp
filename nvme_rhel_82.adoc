@@ -31,7 +31,7 @@ RHEL 8.2 の場合、カーネル内の NVMe マルチパスはデフォルト�
 
 
 
-== RHEL 8.2 での NVMe/FC の有効化
+== RHEL 8.2 で NVMe/FC を有効にする
 
 . Red Hat Enterprise Linux 8.2 GA をサーバにインストールします。
 +
@@ -291,7 +291,7 @@ options lpfc lpfc_sg_seg_cnt=256
 
 
 
-== NVMe/FC を検証しています
+== NVMe/FC を検証
 
 . 以下の NVMe/FC 設定を確認してください。
 +

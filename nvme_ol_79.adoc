@@ -34,7 +34,7 @@ ONTAP 9.6 以降では、 Oracle Linux 7.9 に対して NVMe/FC がサポート�
 
 
 
-== NVMe/FC の有効化
+== NVMe/FC を有効にします
 
 . サーバに Oracle Linux 7.9 をインストールします。
 . インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
@@ -151,7 +151,7 @@ NVME RPORT WWPN x203100a098c80f09 WWNN x202c00a098c80f09 DID x010601 TARGET DISC
 
 
 
-== NVMe/FC を検証しています
+== NVMe/FC を検証
 
 . 以下の NVMe/FC 設定を確認してください。
 +
@@ -226,7 +226,7 @@ Device   Vserver  Namespace Path             NSID   UUID   Size
 
 
 
-== Broadcom NVMe/FC で 1MB の I/O サイズを有効にします
+== Broadcom NVMe/FC の 1MB I/O サイズを有効にします
 
 ホストで問題 1MB サイズの I/O を使用するには、 lpfc_sg_seg_cnt パラメータを 256 に設定する必要があります
 

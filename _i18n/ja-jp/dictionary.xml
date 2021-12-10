@@ -260,7 +260,6 @@
   <block id="911e585c5684ba9f5c2b87af879f4a13" category="summary">ONTAP を使用して RHEL 8.2 用に NVMe/FC ホストを設定する方法</block>
   <block id="1e2ea077f54493b4670fb3cb63e05215" category="doc">ONTAP を使用した RHEL 8.2 の NVMe/FC ホスト構成</block>
   <block id="c6669fd579995b65e30bee38f5da1a94" category="paragraph">RHEL 8.2 の場合、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。この手順については、次のセクション「 Enabling NVMe/FC on RHEL 8.2 」を参照してください。</block>
-  <block id="91c7ddf8268b6d667c9f0d48db1d52a2" category="section-title">RHEL 8.2 での NVMe/FC の有効化</block>
   <block id="797aea72ebbc1431192817ec206cafb4" category="list-text">Red Hat Enterprise Linux 8.2 GA をサーバにインストールします。</block>
   <block id="219a0c52523adf3bd5e0b81ca98a88a1" category="paragraph">yum update/upgrade を使用して RHEL 8.1 から RHEL 8.2 にアップグレードすると、 /etc/nvme/host * ファイルが失われることがあります。ファイルの損失を防ぐには、次の手順を実行します。</block>
   <block id="6af8ec9e9e6b66a700434d4b32213979" category="list-text">/etc/nvme/host *' ファイルをバックアップします</block>
@@ -277,7 +276,6 @@
   <block id="b041c12317a88da69581757a98db42d2" category="list-text">'enable_foreign' Setting_( オプション )_ を更新します</block>
   <block id="62304a27ab79f1e94b19449dd83b7fcc" category="paragraph">同じ RHEL 8.2 で同じホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要があります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。</block>
   <block id="4e9e6a353c31b00bcbf2e522fd8093c3" category="list-text">multipathd デーモンを再起動するには、 'ystemctl restart multipathd を実行します。</block>
-  <block id="08bfb2deaedf251a6a8ffe53e4d4bd4d" category="section-title">Broadcom FC アダプタを NVMe/FC 用に設定します</block>
   <block id="f89e24c920e9c7f547e3742a47871d9c" category="list-text">サポートされているアダプタを使用していることを確認します。</block>
   <block id="8cd46a779e9b68135d1a640170cd6b2e" category="list-text">lpfc_enable_fc4_type' が *3* に設定されていることを確認します</block>
   <block id="41ec6565fe85097ed5372fdce96af64d" category="list-text">イニシエータポートが動作しており、ターゲット LIF を認識できることを確認してください。</block>
@@ -526,7 +524,6 @@
   <block id="ffdedbe1187a1ddb0d5c60a0ac382630" category="paragraph">Linux Unified Host Utilities は、 Linux ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。</block>
   <block id="00c00a19ea488ceb63e99f408a6b6118" category="admonition">このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。</block>
   <block id="7f239a97a66cea4e3bb767698099b430" category="admonition">SAN ツールキットは、 Citrix XenServer 、 Oracle VM 、および Red Hat Enterprise Virtualization Hypervisor ではサポートされていません。</block>
-  <block id="a5f62b5d93ce24d7bc8e70566fdf99f9" category="section-title">Linux Unified Host Utilities をインストールしています</block>
   <block id="afd7ebe87c934a3e70afff3d554de044" category="paragraph">NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります <block ref="6669d666f8f453569510bbfca28c3a1e" category="inline-link-macro-rx"></block> 32 ビットまたは 64 ビットの .rpm ファイル。</block>
   <block id="c361420559f71f223ab1528978c7f7d3" category="list-text">現在インストールされている Linux Unified Host Utilities のバージョンがある場合、次のコマンドを使用してそのバージョンを削除します。</block>
   <block id="e373b253d3dda0488582e96b90463674" category="paragraph">`rpm -e NetApp_linux_unified-connect host_utilities-7-1'</block>
@@ -798,7 +795,6 @@
   <block id="23573be9c7dbe4494659f6a90bc05b8a" category="list-text">NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージでは使用できません。HBA ベンダー提供の外部自動接続スクリプトを使用できます。</block>
   <block id="1293e1b1ae6bd1e6a01f05541df9ce9f" category="list-text">デフォルトでは、 NVMe マルチパスは無効になっています。手動で有効にする必要があります。手順については、 RHEL 8.1 での NVMe/FC の有効化に関するセクションを参照してください。</block>
   <block id="0d683aa46dbb260c50031bd00c3f5e6f" category="list-text">デフォルトでは、ラウンドロビンによるロードバランシングは有効になっていません。この機能を有効にするには、 udev ルールを記述する必要があります。手順については、 RHEL 8.1 での NVMe/FC の有効化に関するセクションを参照してください。</block>
-  <block id="ae656c348a91ed19fd61ce8a9dbdde83" category="section-title">RHEL 8.1 での NVMe/FC の有効化</block>
   <block id="1f66f3a5a69d2cce3c5a6e2c4cee2b1a" category="list-text">サーバに Red Hat Enterprise Linux 8.1 をインストールします。</block>
   <block id="6f72b48df47d9c45155f84a6cbab74f6" category="list-text">nvme-cli-1.8.1-3.el8 パッケージをインストールします。</block>
   <block id="e8b45cd7975466cea80842914943b27f" category="list-text">RHEL 8.1 ホストでは、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。</block>
@@ -869,16 +865,13 @@
   <block id="959ca5b147c021ab1f2cf1f45d4db6bb" category="paragraph">Broadcom イニシエータは、 NVMe/FC と FCP の両方のトラフィックを同じ 32G FC アダプタポートで処理できます。FCP および FC/NVMe の場合は、 Microsoft Multipath I/O （ MPIO ；マルチパス I/O ）オプションとして MSDSM を使用してください。</block>
   <block id="e069702f93877aa76c32a99b6780156b" category="paragraph">ONTAP NVMe/FC では、 ONTAP は現在 NVMe/FC での永続的予約をサポートしていないため、 Windows Failover Cluster （ WFC ； Windows フェイルオーバークラスタ）はサポートされません。</block>
   <block id="f834e9106683e94a02939e2811ebbee2" category="admonition">Broadcom for Windows NVMe/FC によって出荷された外部ドライバは、真の NVMe/FC ドライバではなく、トランスレーショナル SCSI の一時的な NVMe ドライバです。このトランスレーショナルのオーバーヘッドは必ずしもパフォーマンスに影響するわけではありませんが、 NVMe/FC のパフォーマンス上の利点には影響しません。したがって、 Windows サーバでは、 NVMe/FC と FCP のパフォーマンスは同じです。 Linux などの他のオペレーティングシステムでは、 FCP よりも NVMe/FC のパフォーマンスが大幅に向上します。</block>
-  <block id="39b7faff23431f32a2b72b5ec0a759cc" category="section-title">Windows イニシエータホストでの NVMe/FC の有効化</block>
   <block id="e2e5374e9a78d7eca1de41fc5244e80e" category="paragraph">Windows イニシエータホストで FC / NVMe を有効にするには、次の手順を実行します。</block>
   <block id="410517e1f795e6fa809a7ff5630e2bdd" category="list-text">Windows ホストに OneCommand Manager ユーティリティをインストールします。</block>
   <block id="7d182740e5fe1d15ec7f97f69178b4a8" category="list-text">各 HBA イニシエータポートで、次の HBA ドライバパラメータを設定します。</block>
   <block id="1d71ea83cceb2b7470e1c54838adb506" category="list-text">EnableNVMe = 1</block>
   <block id="814e9f528f5fa391cd6774e57a5c651c" category="list-text">NVMEMode = 0</block>
   <block id="12975cfd6b02fcd31121a100cbbb128c" category="list-text">転送サイズ = 1</block>
-  <block id="15073977329d14efdfd11145dffe8b6e" category="section-title">Windows での NVMe / FC 用の Broadcom FC アダプタの設定</block>
   <block id="95feeb984f6b07e38a54290d155380fb" category="paragraph">Windows 環境の FC/NVMe 用 Broadcom アダプタでは '+hostnqn+' が各 HBA ポートに関連付けられます「 + hostnqn+' 」は次のようにフォーマットされます。</block>
-  <block id="59e36e11002bf35ba2eff660df2a7fa5" category="section-title">Windows ホストで NVMe デバイスの MPIO を有効にする</block>
   <block id="410fc92241ee85585a89a22f4f38a389" category="list-text">Windows Host Utility Kit 7.1 をインストールして、 FC と NVMe の両方に共通のドライバパラメータを設定します。</block>
   <block id="cc6f38a02ffcad6a7b76b5c9c2a8a868" category="list-text">MPIO のプロパティを開きます。</block>
   <block id="8eff5eebf9f16bb0e2893ae3c5998da1" category="list-text">[* マルチパスの検出 * ] タブで、 NVMe 用にリストされたデバイス ID を追加します。</block>
@@ -1095,7 +1088,6 @@
   <block id="583e457484849f189a3e543adfcbfa01" category="paragraph">ONTAP 9.6 以降では、次のバージョンの SLES で NVMe/FC がサポートされます。</block>
   <block id="f2803bf30a3eaf1cf725f98652c23d14" category="list-text">SLES15 SP1</block>
   <block id="b8bcc67e9c36e9d4f18d613df77d7151" category="paragraph">なしNVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SLES15 SP1 では、ネイティブの inbox lpfc ドライバを使用できます。</block>
-  <block id="dc9ea227b088df839bbad386005bd492" category="section-title">SLES15 SP1 での NVMe/FC の有効化</block>
   <block id="2faf433f2b14b03d43c24261953419bc" category="list-text">推奨される SLES15 SP2 MU カーネルにアップグレードします</block>
   <block id="c7f1791a3f59c536386990c900c326c1" category="list-text">推奨される nvme-CLI MU バージョンにアップグレードします。</block>
   <block id="bc22120b8e6d0a4466dfd9ad5afc5302" category="paragraph">この nvme-cli パッケージには、ネイティブの NVMe/FC 自動接続スクリプトが含まれているため、 SLES15 SP1 ホストに Broadcom から提供された外部 NVMe/FC 自動接続スクリプトをインストールする必要はありません。このパッケージには、 ONTAP の udev ルールも含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP デバイス用ネットアッププラグインが有効になります。</block>
@@ -1145,7 +1137,6 @@
   <block id="5116d27ab3c67a2413a9afe024b82a38" category="summary">ONTAP を使用して RHEL 8.3 用に NVMe/FC ホストを設定する方法</block>
   <block id="af59960049c1f2bff52a1746f8d7c912" category="doc">ONTAP を使用した RHEL 8.3 用 NVMe/FC ホスト構成</block>
   <block id="c7bc96121734b19b104696509562ddf4" category="paragraph">RHEL 8.3 では、カーネル内の NVMe マルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。この手順については、次のセクション「 Enabling NVMe/FC on RHEL 8.3 」を参照してください。</block>
-  <block id="fddddf6122e8647dce249a89db031406" category="section-title">RHEL 8.3 での NVMe/FC の有効化</block>
   <block id="23cd3fb20334805933445d4e9e38f375" category="list-text">Red Hat Enterprise Linux 8.3 GA をサーバにインストールします。</block>
   <block id="a5846cf11c0c17a2d80c96a138e56624" category="paragraph">yum update/upgrade を使用して RHEL 8.2 から RHEL 8.3 にアップグレードすると、 /etc/nvme/host * ファイルが失われることがあります。ファイルの損失を防ぐには、次の手順を実行します。</block>
   <block id="d72d2f5661cb55b44d10f141c8b04ac2" category="list-text">インストールが完了したら、指定した Red Hat Enterprise Linux カーネルを実行していることを確認します。</block>
@@ -1234,7 +1225,6 @@
   <block id="ab595e8644eb54589f5d769321b11cc4" category="cell">Host Utilities HBA と Fibre Channel HBA のバージョンが表示されます。</block>
   <block id="86d6299bc9dab5266c5f61d0a0769264" category="section-title">Host Utilities でサポートされる設定</block>
   <block id="298aa3c26f019d0f6b504317238a932c" category="paragraph">Host Utilities は、さまざまな Windows ホスト構成、プロトコル、およびマルチパスオプションをサポートしています。詳細については、を参照してください<block ref="b7322bec4509d45107de6de43ca1f517" category="inline-link-rx"></block>。</block>
-  <block id="5b3a9fa20478b26e7ea15ea46644a084" category="section-title">ホストおよびストレージ・システムの構成の確認</block>
   <block id="700f2514d3d4cc2ed02cb06d8b922b2d" category="paragraph">Host Utilities をインストールする前に、 Host Utilities のバージョンがホストおよびストレージシステムの構成に対応していることを確認し、ソフトウェアが正しくインストールされるようにする必要があります。</block>
   <block id="84d4097a38ff264dfaf97e1cec24b529" category="list-text">でサポートされている構成を確認します<block ref="49d81d143d5c8b402603532056154481" category="inline-link-rx"></block>。</block>
   <block id="bd723d0221300797678f431604539bd8" category="list-text">「 San Host Documentation 」で、該当するホストに必要な修正プログラムを確認します。</block>
@@ -1243,7 +1233,6 @@
   <block id="dafd8a261adaf4e33c8e8c74baa71755" category="list-text">ケーブル接続を確認します</block>
   <block id="15ced0ef88b79c27417b95cc4a6474e1" category="inline-link">『 E-Series Hardware Cabling Guide 』を参照してください</block>
   <block id="cafd168860d065bea642129c676fb74b" category="paragraph">を参照してください<block ref="2744dab6503b7f979c6d72cc92b97ead" category="inline-link-rx"></block> ONTAP のバージョンに応じて、またはを使用してください<block ref="7643eb4b4270eeecb6e78fb73c2b55ef" category="inline-link-rx"></block> ケーブル接続と構成の詳細については、を参照してください。</block>
-  <block id="3e67359a79ec497225784501ca8bc5cd" category="section-title">FC HBA およびスイッチの設定</block>
   <block id="2e008f03754d21e3e30e89cf876e8ee9" category="paragraph">ストレージシステムへのファイバチャネル接続用に、サポートされている 1 つ以上の Fibre Channel Host Bus Adapter （ HBA ；ホストバスアダプタ）をインストールして設定します。</block>
   <block id="e587941559542f4bb52a631692177820" category="paragraph">Windows Host Utilities のインストーラによって、必要なファイバチャネル HBA の設定が行われます。</block>
   <block id="c3d598ac12a38035761ac67dd2d3b26c" category="admonition">HBA 設定を手動で変更しないでください。</block>
@@ -1252,7 +1241,6 @@
   <block id="3e91c57c67e020fa2082b3156c291656" category="list-text">HBA をファイバ・チャネル・スイッチに接続するか ' ストレージ・システムに直接接続します</block>
   <block id="da5fa056b637a7c594dc5b4948883a78" category="list-text">ファイバチャネルスイッチのマニュアルに従って、ファイバチャネルスイッチ上にゾーンを作成します。</block>
   <block id="8ba8e9600aa5fe1856a6c832a6ffbf24" category="list-text">ONTAP の場合は、スイッチを WWPN でゾーニングします。ストレージコントローラの物理ポートではなく、 LIF の WWPN を使用してください。詳細については、を参照してください<block ref="2744dab6503b7f979c6d72cc92b97ead" category="inline-link-rx"></block>。</block>
-  <block id="1a2f65348002638352627c360e327e79" category="section-title">Host Utilities のインストール</block>
   <block id="cba7a46b47ee782d37f614612d6714bf" category="paragraph">インストールプログラムを実行すると、 Host Utilities パッケージがインストールされ、 Windows のレジストリと HBA が設定されます。</block>
   <block id="e7d199a440305344018a3dcee24603f3" category="paragraph">Windows Unified Host Utilities ソフトウェアパッケージのインストール時に、マルチパスのサポートを含めるかどうかを指定する必要があります。インストーラにより、次のいずれかを選択するように求められます。Windows のコマンドプロンプトからサイレントインストール（無人インストール）を実行することもできます。</block>
   <block id="76969a36155d2f41fc6cc3bd3faff244" category="list-title">マルチパスのサポート</block>
@@ -1260,13 +1248,11 @@
   <block id="fbd31ea3fdae76c6a359637b72bf307f" category="list-text">ストレージシステムへのパスが 1 つしかない場合にのみ、 MPIO を使用しないようにします。</block>
   <block id="10ec3af27fbabd40ad7f78d2ae382eab" category="list-text">MPIO の選択は、 Windows XP および Windows Vista システムでは使用できません。マルチパス I/O は、これらのゲスト OS ではサポートされていません。</block>
   <block id="2bda8bdf9c148a3475b6419dbef7b61e" category="list-text">Hyper-V ゲストでマルチパスのサポートを選択した場合、 raw （パススルー）ディスクはゲスト OS に表示されません。raw ディスクを使用することも、 MPIO を使用することもできますが、ゲスト OS で両方を使用することはできません。</block>
-  <block id="90404c8efc2347f6685b503a55ed25f9" category="section-title">Host Utilities の対話型インストール</block>
   <block id="7adf526813192a4918ba930c993f4b28" category="paragraph">Host Utilities ソフトウェアパッケージを対話的にインストールするには、 Host Utilities のインストールプログラムを実行し、プロンプトに従ってインストールする必要があります。</block>
   <block id="c59a9f651efe466b52d6d9b22a24e7e3" category="list-text">から実行ファイルをダウンロードします<block ref="3725c06f412bedb14ffd610de312875d" category="inline-link-rx"></block>。</block>
   <block id="df776515e4da3918278817418cdc66da" category="list-text">実行ファイルをダウンロードしたディレクトリに移動します。</block>
   <block id="b7257ab94652805de6957d07e5e43772" category="list-text">「 NetApp_windows_host_utilities_7.1_x64 」ファイルを実行し、画面の指示に従います。</block>
   <block id="257dcf2363da5a069ec4e8bae654f70b" category="list-text">プロンプトが表示されたら、 Windows ホストをリブートします。</block>
-  <block id="352927b5b221062218301869e264630e" category="section-title">コマンドラインからの Host Utilities のインストール</block>
   <block id="a2436a786307cd54318e85b5df862902" category="list-text">Host Utilities のサイレント（無人）インストールを実行するには、 Windows コマンドプロンプトで適切なコマンドを入力します。</block>
   <block id="75c7a353b83869ae4b4cb9f9fb69e5e6" category="list-text">Host Utilities のインストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。</block>
   <block id="2239414c285fcd71ad8b61a344213951" category="list-text">Host Utilities の対話型インストール手順に従って、インストールパッケージを取得します。</block>
@@ -1277,26 +1263,20 @@
   <block id="5f14b300c5e18c32b0b38aa5bf839405" category="list-text">マルチパスでは、 MPIO サポートがインストールされているかどうかが指定使用できる値は、 no の場合は 0 、 yes の場合は 1 です</block>
   <block id="d2be6501ceb690ba78b41107c58d6583" category="list-text">「 inst_path 」は、 Host Utilities ファイルがインストールされているパスです。デフォルトパスは「 C ： \Program Files\NetApp\Virtual Host Utilities\` 」です。</block>
   <block id="890a07d387ffd294a936bcac066a8ae6" category="admonition">ログやその他の関数の標準的な Microsoft インストーラ (MSI) オプションを表示するには、 Windows コマンドプロンプトで「 m siexec/help 」と入力します。例：「 m siexec/i install.msi/quiet /l * v &lt;install.log&gt; LOGVERBSE = 1</block>
-  <block id="f0d8a8c18d776a5aae124141ae30f6b3" category="section-title">Host Utilities をアップグレードする</block>
   <block id="7bb379db3ee977ec330c6d5473d7840e" category="paragraph">新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilities の対話型インストール手順に従って、インストールパッケージを取得します。</block>
-  <block id="399280d2d7805893e83f28e267fb9e2b" category="section-title">Host Utilities の対話型アップグレード</block>
   <block id="1190124555424f6326b153d14c7adeb6" category="list-text">実行ファイルを実行し、画面の指示に従います。</block>
   <block id="2504be0abfa0e38f5e8ec8a80a553f1c" category="list-text">再起動後にホストユーティリティのバージョンを確認します。</block>
   <block id="66781c83be9419c35d019947ae0068ec" category="list-text">コントロールパネル * を開きます。</block>
   <block id="cebe6c0d66495ac766f2ce01667acc64" category="list-text">「 * Program and features* 」に移動して、ホストユーティリティのバージョンを確認します。</block>
-  <block id="1939c386cbadc8196904cbddd1e6b178" category="section-title">コマンドラインから Host Utilities をアップグレードする</block>
   <block id="c80764d9771483d83514d497263d6330" category="paragraph">Windows コマンドプロンプトで適切なコマンドを入力することにより、新しい Host Utilities のサイレント（無人）インストールを実行できます。新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilities の対話型インストール手順に従って、インストールパッケージを取得します。</block>
   <block id="bcc399c91db54844c3b376842a4f3c86" category="list-text">ここで 'installer' は 'CPU アーキテクチャの .msi ファイルの名前です</block>
-  <block id="7d670a61e60e6eeeffca3898d437e639" category="section-title">Windows Host Utilities を修復して削除する</block>
   <block id="c178dcdfca17ddc357e6800e5e2c4673" category="paragraph">Host Utilities のインストールプログラムの Repair オプションを使用して、 HBA と Windows のレジストリ設定を更新できます。Host Utilities は、対話的に、または Windows のコマンドラインから完全に削除できます。</block>
-  <block id="3d0d4b7fd9a1f2718fd860822b0d8403" category="section-title">Windows Host Utilities を対話型モードで修復または削除する</block>
   <block id="7c92b3f845b88c515561fb27069fe2b1" category="paragraph">修復オプションを選択すると、 Windows レジストリとファイバチャネル HBA が必要な設定で更新されます。Host Utilities は完全に削除することもできます。</block>
   <block id="711138f720855df955713474378ff64f" category="list-text">Windows * のプログラムと機能 * （ Windows Server 2012 R2 、 Windows Server 2016 、 Windows Server 2019 ）を開きます。</block>
   <block id="48f1bd432df23e2412cf8104e6fde4be" category="list-text">NetApp Windows Unified Host Utilities * を選択します。</block>
   <block id="e825f597d53c4a593117f3470853a08a" category="list-text">[ 変更（ Change ） ] をクリックします。</block>
   <block id="f0b103058dcb98efdefadbb3e8f5dac1" category="list-text">必要に応じて、「 * 修理」または「 * 削除」をクリックします。</block>
   <block id="dfeda2d1e42f7611b114b2bfaff373fc" category="list-text">画面の指示に従います。</block>
-  <block id="b645aaef58e0784e282b83d3496ac962" category="section-title">コマンドラインから Windows Host Utilities を修復または削除する</block>
   <block id="b3feb76448a84d7100b57e2a2f35a0ee" category="paragraph">修復オプションを選択すると、 Windows レジストリとファイバチャネル HBA が必要な設定で更新されます。Windows のコマンドラインから Host Utilities を完全に削除することもできます。</block>
   <block id="15ad01350a70108c16a55f92e8c91669" category="list-text">Windows コマンドラインで次のコマンドを入力して、 Windows Host Utilities を修復します。</block>
   <block id="f2826ecf8f19cfb5deadf4b1e5ad291b" category="paragraph">「 m siexec {/uninstall|/f] installer.msi [/quiet] 」」</block>
@@ -1389,7 +1369,6 @@
   <block id="bd68ec6c51cae2556d9fd0a47c25a261" category="list-text">問題を解決できない場合は、ネットアップテクニカルサポートにお問い合わせください。</block>
   <block id="6f4e4d9fbe846fd8bf7decf7dcffbd63" category="inline-link">NetApp のドキュメント</block>
   <block id="69893000f4da30e1e42922cbcf8dac0e" category="inline-link">NetApp Bugs Online では</block>
-  <block id="ecb499de8f5e24bad886b86ed7d44f3e" category="section-title">Host Utilities の概要から FC HBA ドライバの設定への変更</block>
   <block id="39aea57d05192500d96bea0e7cf2f41c" category="paragraph">FC システムへの必要な Emulex または QLogic HBA ドライバのインストール中に、いくつかのパラメータがチェックされ、場合によっては変更されます。</block>
   <block id="b65e3a71c2c6298818d74981c3e3d216" category="paragraph">MS DSM for Windows MPIO が検出された場合、 Host Utilities は次のパラメータに値を設定します。</block>
   <block id="3986e9b1c8119799165486b5ff61b51e" category="list-text">LinkTimeOut –物理リンクがダウンした後、ホストポートが I/O を再開するまでの待機時間を秒単位で定義します。</block>
@@ -1398,7 +1377,6 @@
   <block id="7b89c0aff4542bf5f5ea1fc402d480ec" category="list-text">HBA ベンダー</block>
   <block id="ae16ed955084b1c877e3a933f4fbfdc3" category="list-text">マルチパスソフトウェア（ MPIO ）の使用状況</block>
   <block id="75dc39fa847b274e3577c0b41c12ca55" category="paragraph">HBA 設定を修正するには、 Windows Host Utilities インストーラの Repair オプションを実行します。</block>
-  <block id="95358b8fdfe79e8838bdc331c1e06a61" category="section-title">FC システムでの Emulex HBA ドライバの設定の確認</block>
   <block id="4a85dbbf9a9bc0625df7f37ec97b9783" category="paragraph">ファイバチャネルシステムを使用している場合は、 Emulex HBA ドライバの設定を確認する必要があります。これらの設定は HBA のポートごとに行う必要があります。</block>
   <block id="c6e28ac86a9fffeb9329e96a567e805d" category="list-text">OnCommand Manager を開きます。</block>
   <block id="97c9736a45363b1ba4f09672230268a7" category="list-text">リストから適切な HBA を選択し、 [* Driver Parameters * （ドライバパラメータ * ） ] タブをクリックします。</block>
@@ -1409,7 +1387,6 @@
   <block id="ccced21e51a721c50f51f6c3f3036790" category="list-text">MPIO ソフトウェアを使用していない場合は、次のドライバ設定を使用していることを確認してください。</block>
   <block id="730d30c215230d17c52d7e401e2064f9" category="list-text">LinkTimeOut-30</block>
   <block id="22548d7cd420698e76efb8e7d13153d9" category="list-text">NodeTimeout-120</block>
-  <block id="6f95af3276dfe5a6368d3e08d44a3fb5" category="section-title">FC システムでの QLogic HBA ドライバの設定の確認</block>
   <block id="3767a34ee23bead3aa4d693d624cb2f4" category="paragraph">FC システムでは、 QLogic HBA ドライバの設定を確認する必要があります。これらの設定は HBA のポートごとに行う必要があります。</block>
   <block id="447ad67efb25e2f13e7339e054e28117" category="list-text">QConvergeConsole を開き、ツールバーの * Connect * をクリックします。</block>
   <block id="f28b4049315bc495c21ad547c3409030" category="paragraph">[ ホストに接続 ] ダイアログボックスが表示されます。</block>
@@ -1804,7 +1781,6 @@
   <block id="6e1a60a2cc9775d5b4dfd69be66dfce4" category="paragraph">Windows Server 2016 には既知の問題はありません。</block>
   <block id="9f48bd68eb80a61379f6dd65620bec8c" category="summary">SUSE Linux Enterprise Server 15 SP2 （ ONTAP ）用に NVMe/FC を設定する方法について説明します</block>
   <block id="b7c80370e68c20a6d2b05ca2d022abbe" category="doc">ONTAP を搭載した SUSE Linux Enterprise Server 15 SP2 用 NVMe/FC ホスト構成</block>
-  <block id="9da90f594305db99019fb1bba6ef50a4" category="section-title">SLES15 SP2 での NVMe/FC の有効化</block>
   <block id="c131de8824918e42917022e80562a0e1" category="list-text">推奨される SLES15 SP2 MU カーネルバージョンにアップグレードします。</block>
   <block id="47a1a789b24d958d3c073bab6e64e3b4" category="list-text">ネイティブの nvme-CLI パッケージをアップグレードします。</block>
   <block id="3c4bf282fc2deeb24018cd11152fa91c" category="paragraph">このネイティブの nvme-CLI パッケージには、 NVMe/FC 自動接続スクリプト、 ONTAP udev ルールが含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP ネームスペース用のネットアッププラグインが有効になります。</block>
@@ -1871,7 +1847,6 @@
   <block id="971455e5b307f416baac0cb24b710792" category="sidebar">7.7</block>
   <block id="8b6f93f33bce541c7f50f8aff637e2e1" category="sidebar">RHEL</block>
   <block id="5e20d6ed7744f334ad7deb3cea4d5905" category="sidebar">8.3</block>
-  <block id="2c0526d5d94fbc2342ad73325ce3fb9f" category="sidebar">SUSE</block>
   <block id="1b1e6d45b618db5397c656f0df1d4b85" category="sidebar">15 SP2</block>
   <block id="7ceb3cac51dbf44c807f7e83fabc5016" category="sidebar">15 SP1</block>
   <block id="ea6b2efbdd4255a9f1b3bbc6399b58f4" category="sidebar">2019 年</block>
@@ -1912,10 +1887,8 @@
   <block id="bf3e0fdab36bb430e7fb32be5ece1f81" category="sidebar">RHEL 6</block>
   <block id="3c9435015579e19dc2fb6312a2258ab5" category="sidebar">11.4</block>
   <block id="b831e71b782a1e06e4e5f24e84680fb6" category="sidebar">11.3</block>
-  <block id="48444920f5d3dc5ca10603e4ef420490" category="sidebar">SUSE 15</block>
   <block id="69c19d98f4f48c8896fd184009821de0" category="sidebar">15 SP3</block>
   <block id="9bf31c7ff062936a96d3c8bd1f8f2ff3" category="sidebar">15</block>
-  <block id="c3c8b7ab3c89b34c98020dd228855901" category="sidebar">SUSE 12.</block>
   <block id="4c90e16f7f2b83a83d6dd672d659e083" category="sidebar">12 SP 5</block>
   <block id="a47c430c317a092f7d88d084b56bc66f" category="sidebar">12 SP 4</block>
   <block id="0f2332b87469d1228e7997195bf8c1cd" category="sidebar">12 SP 3</block>
@@ -1965,7 +1938,6 @@
   <block id="bd89f3a395591c17f8cb7f0aaea6cc0b" category="list-text">RHEL 8.2 以降、ネイティブの「 nvme-cli 」パッケージに含まれるネットアッププラグインでは、 ONTAP ネームスペースと同様に ONTAP の詳細を表示できます。</block>
   <block id="509e52d19112a7c7188376d101160b4c" category="paragraph">RHEL 8.4 では、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。</block>
   <block id="c8fe594dab6cb1395df34d73b005c900" category="section-title">設定要件</block>
-  <block id="4ded790bbb27d5eadbd8717a3e61cb12" category="section-title">カーネル内 NVMe マルチパスを有効化しています</block>
   <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph">例</block>
   <block id="6ba6a18088999d632ca174b9873a3b12" category="list-text">「 nvme-cli 」パッケージをインストールします。</block>
   <block id="e71d1275a2744aceb8d59932f2e5fe56" category="list-text">カーネル内の NVMe マルチパスを有効にします。</block>
@@ -1973,11 +1945,9 @@
   <block id="f3852411c8956408a5a170c1d4d53651" category="admonition">ホストの NQN 文字列が一致しない場合は、「 vserver modify 」コマンドを使用して、ホストのホスト NQN 文字列「 /etc/nvme/hostnqn 」に一致するように、対応する ONTAP サブシステムでホストの NQN 文字列を更新する必要があります。</block>
   <block id="de19b5a5ee04a9d75ed01f3017e72811" category="paragraph">NVMe と SCSI の両方のトラフィックを同じホストで同時に実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには 'enable_foreign 設定を /etc/multipath.conf ファイルに追加します</block>
   <block id="2c4ca691e5adaf801e0bf8d274c9b482" category="list-text">multipathd デーモンを再起動します。新しい設定が有効になるように、「 ystemctl restart multipathd 」コマンドを実行します。</block>
-  <block id="5d1b3cf5c2e1ac5de48898e0fc69d53b" category="section-title">NVMe/FC を設定しています</block>
   <block id="3ea394f2d9cebf2dfc911ba5e025db7a" category="section-title">Broadcom / Emulex</block>
   <block id="46e2b7cc014d11d7552d6921801d0753" category="list-text">lpfc_enable_fc4_type が 3 に設定されていることを確認します</block>
   <block id="2defc9958244f438872605820e3ca11a" category="list-text">イニシエータポートが起動して実行中であること、およびターゲット LIF が表示されていることを確認してください。</block>
-  <block id="cf0ca1d2e48dec2abfc57cc3d3ad9bdd" category="section-title">1MB I/O サイズのイネーブル化（任意）</block>
   <block id="ebca1c9e44630148af4439559839580e" category="paragraph">ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイズ） 8 を報告します。つまり、最大 I/O 要求サイズは最大 1 MB でなければなりません。ただし 'Broadcom NVMe/FC ホストのサイズが 1 MB の問題 I/O 要求の場合 'lpfc パラメータ 'lpfc_sg_seg_cnt' もデフォルト値の 64 から 256 までバンピングする必要があります次の手順を使用して実行します。</block>
   <block id="fec3fcd81ccab102d0ff0e385ca80b74" category="list-text">それぞれの「 m odprobe lpfc.conf 」ファイルに「 256 」という値を追加します。</block>
   <block id="e6dee1b64bbb79ed1de507cfbbc7c671" category="list-text">リブート後、対応する「 sysfs 」の値を確認して、上記の設定が適用されていることを確認します。</block>
@@ -1986,13 +1956,6 @@
   <block id="1af9cb3d6c724363f724486734a76f7f" category="paragraph">RHEL 8.4 GA カーネルに含まれているネイティブインボックスの qla2xxx ドライバには、 ONTAP のサポートに不可欠な最新のアップストリーム修正が含まれています。</block>
   <block id="01e99a43df9a9e103daa49144d80325a" category="list-text">次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。</block>
   <block id="996bc8c555f8b2265c43a9a361d7bcd2" category="list-text">次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。</block>
-  <block id="089e48d3aaad855e742b80bcc5bb6d06" category="section-title">NVMe-oF を検証しています</block>
-  <block id="3aad3225f60de4118eb7263a1c0fbb28" category="list-text">カーネル内の NVMe マルチパスが有効になっていることを確認します。</block>
-  <block id="6a5f52acb9909dabaef5e01e83fd30f8" category="list-text">適切な NVMe-oF 設定である「 NetApp ONTAP Controller 」に設定された「 m odel 」と「 load balancing iopolicy 」が「 round-robin 」に設定されていることを確認し、それぞれの ONTAP ネームスペースがホストに正しく反映されるようにします。</block>
-  <block id="26bcb9f1cb6f391f4b2c18e676bb458d" category="section-title">NVMe/FC</block>
-  <block id="5d65d3cf86dda19fb97a2b015461e1cf" category="list-text">NVMe/FC ONTAP ネームスペースがホストに正しく反映されていることを確認します。</block>
-  <block id="b2708b2bdf938da4bfba68e2a7b010b3" category="list-text">各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。</block>
-  <block id="051ff3071e673676a5e48635fa7f872b" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。</block>
   <block id="7b7cf2f51a50fd1958747b87b9de79d0" category="paragraph">NVMe/FC 障害のトラブルシューティングを開始する前に、 IMT の仕様に準拠した設定を実行していることを確認し、次の手順に進んでホスト側の問題をデバッグします。</block>
   <block id="b74dd8eaf171dc7bdadb4b02805e11ef" category="list-text">lpfc_log_sverbose' ドライバ設定を次のいずれかの値に設定して 'NVMe/FC イベントをログに記録できます</block>
   <block id="72eeec6a3c176f0aa6e7a2c82b9104d4" category="list-text">これらの値のいずれかを設定した後、「 dracut-f 」コマンドを実行して「 initramfs 」を再作成し、ホストを再起動します。</block>
@@ -2044,7 +2007,6 @@
   <block id="bee4144b4cdc5aa41bc58db16ad45be9" category="list-text">既存のネイティブインボックス lpfc ドライバは、 NVMe / FC に対応した最新のバージョンです。そのため、 lpfc OOB ドライバをインストールする必要はありません。</block>
   <block id="a4abd6014bb6c1f8fcd778d382d06818" category="list-text">イニシエータポートが動作していることを確認します。</block>
   <block id="a9628073767b50f0ec03840bfa8b42ee" category="list-text">NVMe/FC イニシエータポートが有効になっていることと、ターゲットポートが認識され、すべて稼働していることを確認してください。次の例では、の出力からわかるように、有効になっているイニシエータポートが 1 つだけあり、 2 つのターゲット LIF で接続されています。</block>
-  <block id="8a63a773bcb6e38a1c50c4d46cff082a" category="section-title">1MB I/O サイズのイネーブル化（オプション）</block>
   <block id="71c5f19320dfcd010a3a516b22ea8c97" category="list-text">それぞれの「 m odprobe lpfc.conf 」ファイルに値 256 を追加します。</block>
   <block id="55ad78f06d2638e9a96da0a59fba4662" category="list-text">再起動後、対応する sysfs 値を確認して、上記の設定が適用されていることを確認します。</block>
   <block id="ef54403ad5ac94142bf694671621e4ae" category="paragraph">これで、 Broadcom NVMe/FC ホストは ONTAP ネームスペースデバイスに 1MB の I/O 要求を送信できるようになります。</block>
@@ -2053,10 +2015,6 @@
   <block id="79ba4cec11a87f2af036439169eabd6c" category="list-text">Marvell アダプタが NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。</block>
   <block id="c59affec436f2685c9cf2603d66c8362" category="paragraph">`# cat /sys/module/qla2xxx /parameters/ql2xnvmeenable 1`</block>
   <block id="a0eb26e72e628156638ad8b9cea45ac5" category="list-text">次のチェックボックスをオンにして、カーネル内の NVMe マルチパスが実際に有効になっていることを確認</block>
-  <block id="fb7b76993754f8ed5199f3ab54980e07" category="list-text">該当する ONTAP ネームスペースの適切な NVMe-oF 設定（「 NetApp ONTAP Controller 」に設定されたモデル、ロードバランシング iopolicy が「ラウンドロビン」に設定されているなど）がホストに正しく反映されていることを確認します。</block>
-  <block id="c1102b7fecd5a1872e32e1bbdb99b583" category="list-text">ネームスペースが作成されたことを確認します。例：</block>
-  <block id="e4fc85b6ee79319b803b708e82a77e22" category="list-text">ANA パスのステータスを確認します。例：</block>
-  <block id="921fe189e88bd0fc8bf474a52f0138f7" category="list-text">ONTAP ネームスペース用のネットアッププラグインを確認します。例：</block>
   <block id="80748b874d55c5038d34ce16a870e640" category="section-title">qla2xxx 詳細ログ</block>
   <block id="38a517c65e7a4cfa6d1b781c6a6e35f4" category="cell">必ず正しい構文を使用してください。</block>
   <block id="c93b085fcb8e1f8bc98e8da71741e760" category="sidebar">NVMe-oF ホスト構成</block>
@@ -2089,7 +2047,6 @@
   <block id="fcd0175f66a20efc7cd1c6567f9a5578" category="paragraph">次の例では 'lun lun lun show コマンドは LUN 情報を返します</block>
   <block id="df806afef9dae5d43f20297c99fb14ca" category="admonition">このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。</block>
   <block id="d87eaccfcc7f1ce59c39e647ad0ee108" category="admonition">SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョンでサポートされています。</block>
-  <block id="1677bade87b8d78a9e17903200fc98b0" category="section-title">AIX Host Utilities をインストールしています</block>
   <block id="9e4f19eef336dfad151cb4dba23dc1eb" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルをダウンロードしたら、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。</block>
   <block id="4839d2f25cc35b249d5db15efa1afd75" category="paragraph">* 手順 *</block>
   <block id="03bb76916332762e5c74abd3925ef3a5" category="list-text">PowerVM ホストで、 *padmin* としてログインし、 oem_setup_env コマンドを入力して root になります。</block>
@@ -2115,7 +2072,6 @@
   <block id="b6fdbb065aa5e5c1bf0f5af8ad73ca53" category="list-text">オーバーライドが正常に適用されたことを確認するには、「 devprop` 」および「 `db 」コマンドを使用します。</block>
   <block id="570f5761e2e0bfb396196b06d19e21b0" category="paragraph">`root@host-a:~# devprop-v-n /scsi_vhci -failover-override scsi-vhci -failover-override= NetApp LUN + f_tpgs root@host -a :~# echo "* scsi_vhci_dibling :print-x struct dev_info deive_vdive_vacuct | vdc_info vibl_sig_ info vstruct</block>
   <block id="5492ce934067a932652b5c7aa5dd991b" category="inline-link">Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます</block>
-  <block id="d121177f120e7b50a6ec37a43d7ae4e6" category="cell">Solaris 11.4 および HUK の推奨事項FC ドライバのバインドが SSD （ 4D ）から SD （ 4D ）に変更されました。「 sd.conf 」にある構成を「 sd.conf 」に移動します。詳細については、 Oracle ( ドキュメント ID 2595926.1) を参照してください。この動作は、新規にインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます</block>
   <block id="7fed5db563dfce62e3512e9c6fe716c1" category="cell">Solaris 11.xcfgadm -c configure を実行すると ' エンド・ツー・エンドの Emulex 構成で I/O エラーが発生する</block>
   <block id="8b30a2a046838a554ec8551f6130f395" category="cell">Emulex エンドツーエンド構成で cfgadm -c configure を実行すると ' I/O エラーが発生しますこれは 9.5P17 、 9.6P14 、 9.7P13 、 9.8P2 で修正されています</block>
   <block id="1da730d18c28f088385f1eaca3cb2f71" category="summary">ONTAP で ESXi 7.x の NVMe-oF を設定する方法について説明します</block>
@@ -2141,7 +2097,6 @@
   <block id="7c6b30ab95aa6f3eeb2a6b9cbaf31f6c" category="list-text">ONTAP 9.9.1 P3 以降では、 ESXi 7.0 U3 （およびそれ以降） NVMe/FC がサポートされます。これは、 ONTAP 9.9.1 P3 以降でのみ使用可能なキー NVMe の中止（ ESXi 7.0 U3 以降で発行）に関する修正が原因です。にある BURT パブリックレポートを参照してください<block ref="e74f384cf37401802acc612082793163" category="inline-link-rx"></block> を参照してください。</block>
   <block id="471e82326ed5017bfdb518b5d33377cc" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
   <block id="0a7c052037789d22811592a15b7a2e17" category="inline-link-macro">NetApp ® SnapMirror ® ビジネス継続性（ SM-BC ）による VMware vSphere 6.x および 7.x のサポート</block>
-  <block id="cd5f3c0e3d7017e6f7861dd8cdb0590c" category="sidebar">NVMe-oF ESXi</block>
   <block id="ff09581cb2c13d8ad132e71c1320dc7e" category="cell"><block ref="108e2d22c5beb633cb3cfe03baa4f66f" category="inline-link-macro-rx"></block></block>
   <block id="8286a7d77eb7d53445229f3c12d8c18f" category="cell"><block ref="8286a7d77eb7d53445229f3c12d8c18f" category="inline-link-macro-rx"></block></block>
   <block id="109d2ee1c560df7a2148394570cdbc69" category="cell"><block ref="109d2ee1c560df7a2148394570cdbc69" category="inline-link-macro-rx"></block></block>
@@ -2173,7 +2128,6 @@
   <block id="2d3e43ea7c8c91fc0a78b6056554ec91" category="paragraph">ONTAP 9.6 以降では、 Oracle Linux 7.9 に対して NVMe/FC がサポートされます。Oracle Linux 7.9 ホストでは、 NVMe トラフィックと SCSI トラフィックの両方を、同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="d77815b1cf8addecd8d2fb23c9878c4a" category="paragraph">を参照してください<block ref="cc2304a59b5feaeebd0c5646fd22caf0" category="inline-link-rx"></block> を参照してください。</block>
   <block id="489cce922da01c521eefedb275b4f00b" category="paragraph">を参照してください<block ref="6d63c8366c015331075fa86de38975e8" category="inline-link-rx"></block> または<block ref="4399df604c07a452cc084d95811dafae" category="inline-link-rx"></block> タイムアウトパラメータの詳細については、サイトを参照してください。</block>
-  <block id="0fed378af4cbd540fdc5e90359bce3a1" category="list-text">を確認しておく必要があります<block ref="215c50dc894cd826b5531420c000ab39" category="inline-link-rx"></block> をクリックして、既知の問題を確認します。リリースノートには、既知の問題と制限事項の一覧が記載されています。</block>
   <block id="0b10f822d26382a922afd1635db5de2d" category="list-text">のトラブルシューティング情報を確認する必要があります<block ref="766939a89871d4c04af2f6ac1ab2650b" category="inline-link-rx"></block> ONTAP のバージョンに応じて更新します。</block>
   <block id="9083840fa5bcf62c5684d884151ab69b" category="list-text">検索する必要があります<block ref="9f91bb070a65615e92f64b6a068e1d9d" category="inline-link-rx"></block> 最近検出された問題の場合。</block>
   <block id="3809aec0d76653aef580fe5a05c2ceea" category="paragraph"><block ref="b1540a3ec25c7d8277b499a1cc1d920b" category="inline-link-rx"></block>
@@ -2211,4 +2165,62 @@
   <block id="2f7555fd65fd6100208812dc33a35c6e" category="list-text"><block ref="2f7555fd65fd6100208812dc33a35c6e" category="inline-link-macro-rx"></block></block>
   <block id="53e0316343afe978271ccd43b743d05a" category="paragraph">SLES15 SP2 では、 ONTAP 9.6 以降で NVMe/FC がサポートされます。SLES15 SP2 ホストでは、同じファイバチャネルイニシエータアダプタポートを介して NVMe/FC および FCP の両方のトラフィックを実行できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。</block>
   <block id="443e8164d670e55b2388725ef1a0bda5" category="paragraph">SLES15 SP3 などの SLES ホストでは、カーネル内 NVMe マルチパスはデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
+  <block id="6332394e52d860951e446b20a9580794" category="section-title">Linux Unified Host Utilities をインストールする</block>
+  <block id="2bde94f95676c1c2bd32242e8415c1f8" category="admonition">ONTAP 9.9..1 以降では、 SM-BC 設定は Solaris 11.4 ホストでサポートされます。</block>
+  <block id="b2868986ab4f89d873eb88548fa648bb" category="cell">Solaris 11.4 および HUK の推奨事項FC ドライバのバインドが SSD （ 4D ）から SD （ 4D ）に変更されました。「 sd.conf 」にある構成を「 sd.conf 」に移動します。詳細については、 Oracle ( ドキュメント ID 2595926.1) を参照してください。この動作は、新しくインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます。</block>
+  <block id="dd31b82b57542d64583398514e1838f4" category="section-title">NVMe/FC を有効にします</block>
+  <block id="6d2964de8c046289cdcfaebf91369e08" category="section-title">Broadcom FC アダプタを NVMe/FC 用に設定します</block>
+  <block id="30184b2ffcd5459f75061dc63a6b8c62" category="section-title">NVMe/FC を検証</block>
+  <block id="bb145463d4b33f8a2c6719372c1e8d1d" category="section-title">Broadcom NVMe/FC の 1MB I/O サイズを有効にします</block>
+  <block id="025c962221700c78eb1d525adb016ea6" category="section-title">Windows イニシエータホストで NVMe/FC を有効にします</block>
+  <block id="073bde40ca4f1c0bc9a2024c00df60ac" category="section-title">Windows で NVMe/FC 用に Broadcom FC アダプタを設定します</block>
+  <block id="6d50f9a166e2b5b5cadd884e2bfaf99a" category="section-title">Windows ホストで NVMe デバイスの MPIO を有効にします</block>
+  <block id="3377da1c4bfbeb041c695fd90b5b51f8" category="section-title">AIX Host Utilities をインストールする</block>
+  <block id="20ef4219f8282a156b90a588df2efcd7" category="section-title">RHEL 8.3 で NVMe/FC を有効にします</block>
+  <block id="bf2fd4f30d4d99e83aea737d5c100ea0" category="section-title">Broadcom FC アダプタを NVMe/FC 用に設定します</block>
+  <block id="c0a6e0dc55b98c30081b044a2713737b" category="section-title">ホストとストレージシステムの構成を確認します</block>
+  <block id="93d35d1948374a90e0c2dc20afe8976a" category="section-title">FC HBA およびスイッチの設定</block>
+  <block id="b60c7a8315c7b9d353b5fda462709b16" category="section-title">Host Utilities をインストールする</block>
+  <block id="96d192942ad7d0399b1d3c052048858e" category="section-title">Host Utilities を対話型モードでインストールします</block>
+  <block id="b9f1aba85711fc915cd6550e3ca2e6e7" category="section-title">コマンドラインから Host Utilities をインストールします</block>
+  <block id="07ee9e83df0d4150e93a9ee4baf057dc" category="section-title">Host Utilities をアップグレードします</block>
+  <block id="30274a5c03a68dfb0e3da27a1cd33fa4" category="section-title">Host Utilities を対話型モードでアップグレードします</block>
+  <block id="dd50cfcc5c296046208fa46e968e0119" category="section-title">コマンドラインから Host Utilities をアップグレードします</block>
+  <block id="71a1238a2a3eb2842a1147f88470407a" category="section-title">Windows Host Utilities を修復して削除します</block>
+  <block id="7ec91814b4b8031452953e60444fdac1" category="section-title">Windows Host Utilities を対話的に修復または削除します</block>
+  <block id="e4ab25c62c74b247f110cc0ddf4a7128" category="section-title">コマンドラインから Windows Host Utilities を修復または削除します</block>
+  <block id="9781d69195e9bb9dad9ea221e352929d" category="list-text">を確認しておく必要があります<block ref="c98f6369245de310035299ae832b1997" category="inline-link-rx"></block> をクリックして、既知の問題を確認します。リリースノートには、既知の問題と制限事項の一覧が記載されています。</block>
+  <block id="46795771824c20823fe2d0312b584a17" category="section-title">Host Utilities の変更内容を FC HBA ドライバの設定に把握します</block>
+  <block id="afe3961340d8bd7d749848a97e031049" category="section-title">FC システムで Emulex HBA ドライバの設定を確認します</block>
+  <block id="884960c052ad072d600fae7dc861c0c6" category="section-title">FC システムで QLogic HBA ドライバの設定を確認します</block>
+  <block id="fa9e69db74b196178518c663016c3abe" category="section-title">RHEL 8.2 で NVMe/FC を有効にする</block>
+  <block id="dec4201e999d968c719dedcc36a07302" category="inline-link">RHEL 8.4 リリースノート</block>
+  <block id="260a3557d08efe46355d18910743ceaa" category="list-text">RHEL 8.4 の NVMe/FC は、未解決の問題が原因で引き続きテクノロジプレビュー機能です。を参照してください<block ref="bb64a8145ae27872979820bfd89ab97b" category="inline-link-rx"></block> を参照してください。</block>
+  <block id="da5c98f4248ec7387bdaa6db8341fdef" category="section-title">カーネル内の NVMe マルチパスを有効にします</block>
+  <block id="c98fed57553daff5a2cf2fa022d54254" category="section-title">NVMe/FC を設定</block>
+  <block id="c0aa648bd7e5700f1ad07528684facf8" category="section-title">1MB の I/O サイズを有効にする（オプション）</block>
+  <block id="f4091bd53ceacc19d9ac766c9cdb9866" category="section-title">NVMe/FC を設定</block>
+  <block id="02ec5a6431274b50044361aad326cbdc" category="paragraph">NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これにより、 Linux NVMe/FC ホストには次の 2 つの大きな制限があります。</block>
+  <block id="524fa08703d908aeca5cccda70508020" category="list-text">* パスが復活した後の自動再接続は行われない * NVMe/TCP は、パスダウン後 10 分間のデフォルトの「 Ctrl-loss -TTMO 」タイマーを超えて復活したパスに自動的に再接続することはできません。</block>
+  <block id="5ac8d4417219a758cb216b44e499a52a" category="list-text">* ホストの起動時に自動接続が行われない * ホストの起動時に NVMe/FC が自動的に接続されることもありません。</block>
+  <block id="237af845a336c688dd92384a771f5c92" category="paragraph">ONTAP フェイルオーバーイベント (SFO など ) を快適に利用するには 'Ctrl_LONS_TMO' タイマーを調整して '30 分間などの長い再試行期間を設定することをお勧めします詳細は次のとおりです。</block>
+  <block id="9f291dc2ffc26a15b15d66dfbe7c03c7" category="list-text">サポートされている NVMe/FC LIF の検出ログページデータをイニシエータポートが読み込めたかどうかを確認します。</block>
+  <block id="cdad7a1e7e4e6d6a5603c6ee5b84a18b" category="list-text">他の NVMe/FC イニシエータターゲット LIF のコンボファイルが検出ログページデータを正常に取得できることを確認します。例：</block>
+  <block id="c3f202b40a54d75b57fbe1fedd71b1e7" category="list-text">ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。接続中に 'ctrl_loss _tmo' 期間を延長して（たとえば '-l 1800' で設定できる 30 分） ' パスが失われた場合に再試行するようにしてください例：</block>
+  <block id="55ab77cd94d55aaa364453f7cf104285" category="section-title">NVMe-oF を検証します</block>
+  <block id="d59a70bb68888f817286630067489719" category="list-text">各 ONTAP ネームスペースの適切な NVMe-oF 設定（「 NetApp ONTAP Controller 」に設定された「 model 」や「 loadbalancing iopolicy 」が「ラウンドロビン」に設定されているなど）がホストに正しく反映されていることを確認します。</block>
+  <block id="6d678a1cb8ddbf76f2e82d8950f207e7" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例：</block>
+  <block id="cb7e37c4b617b6aeee210c14100c98d5" category="paragraph">別の例：</block>
+  <block id="726d293820a3b92756d72e370482b755" category="list-text">各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。例：</block>
+  <block id="a4301741972a8d72156639b6c35de92e" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例：</block>
+  <block id="a0e093a126a5a6ecc36e81f130400025" category="section-title">RHEL 8.1 で NVMe/FC を有効にします</block>
+  <block id="130b6ac09e01287394faa2f305ddde82" category="section-title">SLES15 SP1 で NVMe/FC を有効にします</block>
+  <block id="7f281a8c95a2d1ea3fef7e5b156beee5" category="section-title">SLES15 SP2 で NVMe/FC を有効にします</block>
+  <block id="f7a582d94c3c08d29da52684240c7e5e" category="section-title">1MB I/O サイズを有効にする（オプション）</block>
+  <block id="7988dd645d080901aa85637adea3c152" category="sidebar">NVMeoF ESXi</block>
+  <block id="e0f04c85d16be7d67287c02eeb4c1ca8" category="sidebar">NVMeF RHEL</block>
+  <block id="6450317152c5c108daebac9e8e1a387c" category="sidebar">SLES</block>
+  <block id="2f9c81bcc0340cf8ca367c73fc2605c3" category="sidebar">NVMeoF SLES</block>
+  <block id="f77a693c238b55e124aad6c742f7abd9" category="sidebar">SLES 15</block>
+  <block id="9a5aadcd2f712e90b04bd1524cdd6dc4" category="sidebar">SLES 12</block>
 </blocks>

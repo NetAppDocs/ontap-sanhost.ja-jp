@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_suse_12SP2.html 
-keywords: host utilities, suse linux enterprise server 12 SP2, suse, linux, 12 SP2, netapp, ontap 
-summary: SUSE Linux Enterprise Server 12 SP2 with ONTAP の使用方法について説明します 
+permalink: hu_sles_12SP1.html 
+keywords: host utilities, suse linux enterprise server 12 SP1, suse, linux, 12 SP1, netapp, ontap 
+summary: SUSE Linux Enterprise Server 12 SP1 と ONTAP の使用方法について説明します 
 ---
-= NetApp ONTAP で SUSE Linux Enterprise Server 12 SP2 を使用している
+= SUSE Linux Enterprise Server 12 SP1 と NetApp ONTAP を使用している
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -57,7 +57,7 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=77284;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71679;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -76,7 +76,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-SUSE Linux Enterprise Server 12 SP2 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP2 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。
+SUSE Linux Enterprise Server 12 SP1 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP1 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされます。
 
 「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
 
@@ -130,7 +130,7 @@ NOTE: 1 つの LUN へのパスを余分に使用しないでください。必�
 
 == 推奨設定
 
-SUSE Linux Enterprise Server 12 SP2 OS は、 ONTAP LUN を認識し、すべての設定パラメータを正しく自動的に正しく設定するようにコンパイルされています。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます
+SUSE Linux Enterprise Server 12 SP1 OS は、 ONTAP LUN を認識し、すべての設定パラメータを正しく自動的に正しく設定するようにコンパイルされています。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます
 
 このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。
 
@@ -252,7 +252,7 @@ devices {
 
 == 既知の問題および制限
 
-SUSE Linux Enterprise Server 12 SP2 には既知の問題はありません。
+SUSE Linux Enterprise Server 12 SP1 には既知の問題はありません。
 
 
 

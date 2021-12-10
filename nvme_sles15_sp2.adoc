@@ -33,7 +33,7 @@ SLES15 SP2 では、 ONTAP 9.6 以降で NVMe/FC がサポートされます。S
 
 
 
-== SLES15 SP2 での NVMe/FC の有効化
+== SLES15 SP2 で NVMe/FC を有効にします
 
 . 推奨される SLES15 SP2 MU カーネルバージョンにアップグレードします。
 . ネイティブの nvme-CLI パッケージをアップグレードします。
@@ -162,7 +162,7 @@ FCP CMPL: xb 0000159d Err 000135c3
 
 
 
-== NVMe/FC を検証しています
+== NVMe/FC を検証
 
 . 以下の NVMe/FC 設定を確認してください。
 +
@@ -233,7 +233,7 @@ Device Vserver Namespace Path NSID UUID Size
 
 
 
-== Broadcom NVMe/FC で 1MB の I/O サイズを有効にします
+== Broadcom NVMe/FC の 1MB I/O サイズを有効にします
 
 ホストで問題 1MB サイズの I/O を使用するには、 lpfc_sg_seg_cnt パラメータを 256 に設定する必要があります
 
