@@ -46,9 +46,28 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-Citrix ハイパーバイザーでのマルチパスのサポートは、 Device Mapper multipathd コンポーネントに基づいています。デバイスマッパーノードは、ハイパーバイザーに提供されるすべての LUN に対して自動的に作成されるわけではなく、 Storage Management Layer （ API ；ストレージ管理レイヤ）で LUN がアクティブに使用されている場合にのみプロビジョニングされます。Citrix Hypervisor Storage Manager API プラグインは、マルチパスノードのアクティブ化と非アクティブ化を自動的に処理します。
+Citrix Hypervisor (CH) 8.x の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。CH 8.x は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定を含めてコンパイルされます。/sbin/mpathutil status コマンドを使用して、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA Persona にマッピングされた LUN のマルチパス出力の例を示します。
 
-Integrated Multipath Management のアーキテクチャとの互換性がないため、 Citrix XenCenter アプリケーションを使用してストレージ構成を管理することを推奨します。Device Mapper テーブルのステータスを手動で照会したり、システム上のアクティブな Device Mapper マルチパスノードのリストを表示したりする必要がある場合は、 /usr/sbin/mpathutil status コマンドを使用して ONTAP LUN の設定を確認できます。詳細については、 Citrix ハイパーバイザーの標準的なベンダーのドキュメントを参照してください。
+
+
+=== オール SAN アレイ（ ASA ）構成
+
+オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ / 最適化されており、コントローラによって処理され、すべてのアクティブパスで I/O が送信されます。
+
+次の例は、 4 つのアクティブな最適パスがある ONTAP LUN に対する正しい出力を表示します。
+
+....
+# mpathutil status
+3600a09803830344674244a357579386a dm-13 NETAPP  ,LUN C-Mode
+size=30G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+policy='service-time 0' prio=50 status=active
+  |- 11:0:7:1    sdfi   130:64   active ready running
+  |- 11:0:9:1    sdiy  8:288     active ready running
+  |- 11:0:10:1  sdml 69:464   active ready running
+  |- 11:0:11:1  sdpt  131:304  active ready running
+....
+
+NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。ストレージ障害時に 8 個を超えるパスで原因パスの問題が発生する可能性があります。
 
 
 
@@ -58,30 +77,23 @@ ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパス�
 
 次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
 
-[listing]
-----
+....
 # mpathutil status
-show topology
-3600a098038303458772450714535317a dm-0 NETAPP  , LUN C-Mode
-size=80G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+3600a09803830344674244a357579386a dm-13 NETAPP  ,LUN C-Mode
+size=30G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
-| |- 2:0:2:0   sdc   8:32    active ready running
-| |- 12:0:5:0  sdn   8:208   active ready running
-| |- 2:0:6:0   sdg   8:96    active ready running
-| `- 12:0:0:0  sdi   8:128   active ready running
-`-+-`policy='service-time 0' prio=10 status=enabled
-  |- 2:0:0:0   sda   8:0     active ready running
-  |- 2:0:1:0   sdb   8:16    active ready running
-  |- 12:0:3:0  sd1   8:176   active ready running
-  `-12:0:6:0   sdo   8:224   active ready running
-[root@sanhost ~]#
-----
+ |- 1:0:0:11   sde   8:64    active ready running
+`- 12:0:8:11  sdua  66:544  active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+   |- 1:0:9:11   sddo  71:96   active ready running
+   `- 12:0:26:11 sdyt  129:720 active ready running
+....
 
 NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。ストレージ障害時に 8 個を超えるパスで原因パスの問題が発生する可能性があります。
 
 
 
-=== 推奨設定
+== 推奨設定
 
 Citrix Hypervisor 8.x OS は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定でコンパイルされます。Citrix Hypervisor 8.x の場合、空の zerobyte /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。
 
@@ -146,52 +158,52 @@ blacklist {
 | パラメータ | 設定 
 
 
-| detect_prio | はい。 
+| 「 detect_prio 」 | はい。 
 
 
-| DEV_DETION_TMO | " 無限 " 
+| dev_los_TMO | " 無限 " 
 
 
 | フェイルバック | 即時 
 
 
-| fast_io_fail_TMO | 5. 
+| 'fast_io_fail_tmo | 5. 
 
 
-| の機能 | "3 queue_if_no_path pg_init_retries 50" 
+| 「特長」 | "3 queue_if_no_path pg_init_retries 50" 
 
 
-| flush_on_last_del | はい。 
+| 「 flush_on_last_del` 」 | はい。 
 
 
-| hardware_handler | 0 
+| 'hardware_handler' | 0 
 
 
-| path_checker です | " tur " 
+| 「 path_checker 」のようになります | " tur " 
 
 
-| path_grouping_policy | 「 group_by_prio 」 
+| 「 path_grouping_policy 」と入力します | 「 group_by_prio 」 
 
 
-| path_selector | "service-time 0" 
+| 「 path_selector` 」 | "service-time 0" 
 
 
-| polling _interval （ポーリング間隔） | 5. 
+| polling _interval | 5. 
 
 
-| Prio | ONTAP 
+| 「 prio` | ONTAP 
 
 
-| プロダクト | LUN. * 
+| 「 product 」を参照してください | LUN. * 
 
 
-| retain_attached _hw_handler | はい。 
+| retain_attached hw_handler | はい。 
 
 
-| RR_weight を指定します | " 均一 " 
+| 「 RR_WEIGHT」 | " 均一 " 
 
 
-| ユーザーフレンドリ名 | いいえ 
+| 「 user_friendly _ names 」 | いいえ 
 
 
 | ベンダー | ネットアップ 

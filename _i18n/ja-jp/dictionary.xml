@@ -1798,8 +1798,6 @@
   <block id="a51f869a9a131effa58d99e63266e02d" category="summary">ONTAP で Citrix Hypervisor 8.x を使用する方法について説明します</block>
   <block id="e9cb7b8f17e8f27f0130bdc68558c4cc" category="doc">Citrix ハイパーバイザーと NetApp ONTAP の使用</block>
   <block id="b4fb72e88112026a3055df686f0141d6" category="paragraph">このドキュメントでは、 FC 、 FCoE 、および iSCSI の各プロトコルを使用した ONTAP ハイパーバイザー 8 シリーズ OS リリースの SAN ホストの設定について説明します。</block>
-  <block id="34468ed6ec9e2e21b7d020a702e2759a" category="paragraph">Citrix ハイパーバイザーでのマルチパスのサポートは、 Device Mapper multipathd コンポーネントに基づいています。デバイスマッパーノードは、ハイパーバイザーに提供されるすべての LUN に対して自動的に作成されるわけではなく、 Storage Management Layer （ API ；ストレージ管理レイヤ）で LUN がアクティブに使用されている場合にのみプロビジョニングされます。Citrix Hypervisor Storage Manager API プラグインは、マルチパスノードのアクティブ化と非アクティブ化を自動的に処理します。</block>
-  <block id="ec2f0ee8cb8f6fcbb5558bd05bb411a3" category="paragraph">Integrated Multipath Management のアーキテクチャとの互換性がないため、 Citrix XenCenter アプリケーションを使用してストレージ構成を管理することを推奨します。Device Mapper テーブルのステータスを手動で照会したり、システム上のアクティブな Device Mapper マルチパスノードのリストを表示したりする必要がある場合は、 /usr/sbin/mpathutil status コマンドを使用して ONTAP LUN の設定を確認できます。詳細については、 Citrix ハイパーバイザーの標準的なベンダーのドキュメントを参照してください。</block>
   <block id="dfdecabe17f4f61a0c5b353fdc3dfeef" category="paragraph">Citrix Hypervisor 8.x OS は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定でコンパイルされます。Citrix Hypervisor 8.x の場合、空の zerobyte /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。</block>
   <block id="4d9e4d5a080304464911deeebee0a0b3" category="paragraph">マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 /etc/multipath.conf ファイルにコンテンツを追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。</block>
   <block id="258e01d6ca463cd89e79be409a5b9398" category="paragraph">この Citrix Hypervisor 8.x の例では、「 da 」はブラックリストに登録する必要のあるローカル SCSI ディスクです。</block>
@@ -2223,4 +2221,25 @@
   <block id="2f9c81bcc0340cf8ca367c73fc2605c3" category="sidebar">NVMeoF SLES</block>
   <block id="f77a693c238b55e124aad6c742f7abd9" category="sidebar">SLES 15</block>
   <block id="9a5aadcd2f712e90b04bd1524cdd6dc4" category="sidebar">SLES 12</block>
+  <block id="d87433b06a0f03952a4dc973f5315687" category="paragraph">Citrix Hypervisor (CH) 8.x の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。CH 8.x は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定を含めてコンパイルされます。/sbin/mpathutil status コマンドを使用して、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA Persona にマッピングされた LUN のマルチパス出力の例を示します。</block>
+  <block id="d6001c34c29bb04684b5c07f3b8c9209" category="section-title">オール SAN アレイ（ ASA ）構成</block>
+  <block id="c17362e9d01452047d060a128e8e3634" category="paragraph">オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ / 最適化されており、コントローラによって処理され、すべてのアクティブパスで I/O が送信されます。</block>
+  <block id="15e8bfaa3c1b932b597dedce3820fa11" category="paragraph">次の例は、 4 つのアクティブな最適パスがある ONTAP LUN に対する正しい出力を表示します。</block>
+  <block id="093280d0b1b888a2d2861cdc763f5f54" category="cell">「 detect_prio 」</block>
+  <block id="d4f9e6cd04344d6033229cebcf82d8e6" category="cell">dev_los_TMO</block>
+  <block id="0b45dcda8325354552a9f3f77a81fb12" category="cell">フェイルバック</block>
+  <block id="f723063a7c67a9c4d6dc09fcc9258bc0" category="cell">'fast_io_fail_tmo</block>
+  <block id="9b1acf92108be93042969ae0cd15c662" category="cell">「特長」</block>
+  <block id="51639d9d920527eeeeb339933ef1d388" category="cell">「 flush_on_last_del` 」</block>
+  <block id="dd3d09a74b9822f94f3022c45d6d89eb" category="cell">'hardware_handler'</block>
+  <block id="7793f55f663016533cfccea244686d20" category="cell">「 path_checker 」のようになります</block>
+  <block id="0229f06974ddf0fbb6c8163410252381" category="cell">「 path_grouping_policy 」と入力します</block>
+  <block id="100ea8f1ede2192d241e4386cfe3c479" category="cell">「 path_selector` 」</block>
+  <block id="06d7756e9ce36c56b9cea270ed31aa7d" category="cell">polling _interval</block>
+  <block id="5b64d224179378eb0872e824614167de" category="cell">「 prio`</block>
+  <block id="dc2ba82454a2923edf99404df680c7ee" category="cell">「 product 」を参照してください</block>
+  <block id="aaa74fa881bc5ea07b9b9aef23bb28ab" category="cell">retain_attached hw_handler</block>
+  <block id="1b1f4bb4b35ee6994917bd6527d2e343" category="cell">「 RR_WEIGHT」</block>
+  <block id="677641ebec419b9c5915ed13974b0c07" category="cell">「 user_friendly _ names 」</block>
+  <block id="34fed3385bd742bd2b178de283f371b7" category="cell">ベンダー</block>
 </blocks>

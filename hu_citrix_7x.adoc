@@ -146,52 +146,52 @@ blacklist {
 | パラメータ | 設定 
 
 
-| detect_prio | はい。 
+| 「 detect_prio 」 | はい。 
 
 
-| DEV_DETION_TMO | " 無限 " 
+| dev_los_TMO | " 無限 " 
 
 
 | フェイルバック | 即時 
 
 
-| fast_io_fail_TMO | 5. 
+| 'fast_io_fail_tmo | 5. 
 
 
-| の機能 | "3 queue_if_no_path pg_init_retries 50" 
+| 「特長」 | "3 queue_if_no_path pg_init_retries 50" 
 
 
-| flush_on_last_del | はい。 
+| 「 flush_on_last_del` 」 | はい。 
 
 
-| hardware_handler | 0 
+| 'hardware_handler' | 0 
 
 
-| path_checker です | " tur " 
+| 「 path_checker 」のようになります | " tur " 
 
 
-| path_grouping_policy | 「 group_by_prio 」 
+| 「 path_grouping_policy 」と入力します | 「 group_by_prio 」 
 
 
-| path_selector | "service-time 0" 
+| 「 path_selector` 」 | "service-time 0" 
 
 
-| polling _interval （ポーリング間隔） | 5. 
+| polling _interval | 5. 
 
 
-| Prio | ONTAP 
+| 「 prio` | ONTAP 
 
 
-| プロダクト | LUN. * 
+| 「 product 」を参照してください | LUN. * 
 
 
-| retain_attached _hw_handler | はい。 
+| retain_attached hw_handler | はい。 
 
 
-| RR_weight を指定します | " 均一 " 
+| 「 RR_WEIGHT」 | " 均一 " 
 
 
-| ユーザーフレンドリ名 | いいえ 
+| 「 user_friendly _ names 」 | いいえ 
 
 
 | ベンダー | ネットアップ 
