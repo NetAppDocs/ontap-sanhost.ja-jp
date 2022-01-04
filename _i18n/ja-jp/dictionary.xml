@@ -2079,11 +2079,9 @@
   <block id="087c6f6069a3f1c08cb62e3d53029f80" category="list-text">ESXi 7.0 以降のリリースでは、ハイパフォーマンスプラグイン（ HPP ）が NVMe デバイスのデフォルトプラグインです。</block>
   <block id="f19c49e2c5af4fdef9d76da8243928b8" category="paragraph">次の構成はサポートされません。</block>
   <block id="0baafa49aae4a0470bfc558baa32e371" category="list-text">ESXi ホストの NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列と一致していることを確認します。</block>
-  <block id="a2da92c5d726acd949aaa27a8aa3153b" category="section-title">Broadcom / Emulex を設定しています</block>
   <block id="9800cef048ddc104a174cdb11416156c" category="list-text">lpfc ドライバ・パラメータ lpfc_enable_fc4_type=3 を設定して 'lpfc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します</block>
   <block id="bf7cba7a9056a716211324109312cd61" category="admonition">vSphere 7.0 アップデート 3 以降、「 brcmnvmefc 」ドライバは使用できなくなりました。したがって 'lpfc' ドライバには 'brcmnvmefc' ドライバとともに以前に提供された NVMe over Fibre Channel (NVMe/FC ) 機能が含まれています</block>
   <block id="460c25e7bb5010dbb0ff63a998a73cf9" category="admonition">lpfc_enable_fc4_type=3` パラメータは、 LPe35000 シリーズのアダプタに対してデフォルトで設定されています。LPe32000 シリーズおよび LPe31000 シリーズアダプタに手動で設定するには、次のコマンドを実行する必要があります。</block>
-  <block id="eeeff75243446a5649a1a32a4fc8b74e" category="section-title">Marvell / QLogic を設定しています</block>
   <block id="0ddb0350e0867842f11bd0619f22f3fc" category="list-text">qlnativefc ドライバ・パラメータ ql2xnvmetupport =1 を設定して 'qlnativefc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します</block>
   <block id="f86f2d0f74b3f5bda1a49097fcdecaeb" category="paragraph">「 #esxcfg-module -s 」 ql2xnvmetupport = 1'qlnativefc</block>
   <block id="17627ac666e764dc705796280424855d" category="admonition">qLE 277x シリーズ・アダプタのデフォルトでは 'qlnativefc' ドライバ・パラメータが設定されていますQLE 277x シリーズ・アダプタに手動で設定するには、次のコマンドを実行する必要があります。</block>
@@ -2242,4 +2240,7 @@
   <block id="1b1f4bb4b35ee6994917bd6527d2e343" category="cell">「 RR_WEIGHT」</block>
   <block id="677641ebec419b9c5915ed13974b0c07" category="cell">「 user_friendly _ names 」</block>
   <block id="34fed3385bd742bd2b178de283f371b7" category="cell">ベンダー</block>
+  <block id="3226f4c6b2d594c2a4e8db91fcc55341" category="section-title">Broadcom / Emulex を設定します</block>
+  <block id="63d2eef6ffb1f9f0f6a378b0692f6dd3" category="section-title">Marvell / QLogic を設定します</block>
+  <block id="b1db54564fe54a4c74a975b18a791532" category="sidebar">7.x</block>
 </blocks>

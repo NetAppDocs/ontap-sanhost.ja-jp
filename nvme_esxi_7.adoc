@@ -44,7 +44,7 @@ ONTAP 9.7 以降では、 NVMe over Fibre Channel （ NVMe/FC ）がサポート
 
 
 
-== NVMe/FC の有効化
+== NVMe/FC を有効にします
 
 . ESXi ホストの NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列と一致していることを確認します。
 +
@@ -62,7 +62,7 @@ Host NQN: nqn.2014-08.com.vmware:nvme:nvme-esx
 
 
 
-=== Broadcom / Emulex を設定しています
+=== Broadcom / Emulex を設定します
 
 . を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 . lpfc ドライバ・パラメータ lpfc_enable_fc4_type=3 を設定して 'lpfc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します
@@ -91,7 +91,7 @@ vmhba65   lpfc     link-up     fc.200000109b954570:100000109b954570             
 ----
 
 
-=== Marvell / QLogic を設定しています
+=== Marvell / QLogic を設定します
 
 . を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 . qlnativefc ドライバ・パラメータ ql2xnvmetupport =1 を設定して 'qlnativefc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します
@@ -124,7 +124,7 @@ vmhba65   qlnativefc  link-up     fc.20000024ff1817af:21000024ff1817af          
 
 
 
-== NVMe/FC を検証しています
+== NVMe/FC を検証
 
 . ESXi ホストに NVMe/FC アダプタが表示されていることを確認します。
 +
