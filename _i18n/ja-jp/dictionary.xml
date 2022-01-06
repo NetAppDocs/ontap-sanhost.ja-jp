@@ -2243,4 +2243,11 @@
   <block id="3226f4c6b2d594c2a4e8db91fcc55341" category="section-title">Broadcom / Emulex を設定します</block>
   <block id="63d2eef6ffb1f9f0f6a378b0692f6dd3" category="section-title">Marvell / QLogic を設定します</block>
   <block id="b1db54564fe54a4c74a975b18a791532" category="sidebar">7.x</block>
+  <block id="61092b92c56a8527051cc09db7ffcf96" category="summary">ONTAP で Red Hat Enterprise Linux 8.5 を使用する方法について説明します</block>
+  <block id="741d2402053ca439d535ee1e7db603b7" category="doc">NetApp ONTAP を搭載した Red Hat Enterprise Linux 8.5 の使用</block>
+  <block id="10a8491b4d5d18409c61a4a90c61750b" category="section-title">Linux Unified Host Utilities をインストールします</block>
+  <block id="5297043b43f5cb19511228a79f308d23" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 8.5 の場合、 /etc/multipath.conf ファイルは存在する必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.5 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
+  <block id="685ee6c581bc2df3a8910672a2af1ac3" category="paragraph">RHEL 8.5 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
+  <block id="85970e65e1203ba97f80413235d75970" category="paragraph">RHEL 8.5 には既知の問題はありません。</block>
+  <block id="845e85fa64a2d6037055beba19fe0bd8" category="sidebar">8.5</block>
 </blocks>
