@@ -2250,4 +2250,7 @@
   <block id="685ee6c581bc2df3a8910672a2af1ac3" category="paragraph">RHEL 8.5 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
   <block id="85970e65e1203ba97f80413235d75970" category="paragraph">RHEL 8.5 には既知の問題はありません。</block>
   <block id="845e85fa64a2d6037055beba19fe0bd8" category="sidebar">8.5</block>
+  <block id="c22c65685ac3f8701da1a00c478b1333" category="cell">1447287</block>
+  <block id="778fd215ce10bd514de565e6df2b1758" category="cell">SM-BC 構成の独立したマスタークラスタで AUFO イベントが発生すると、 HP-UX ホストが一時的に停止します</block>
+  <block id="6f80f2e204ff92f2e954367d70413775" category="cell">この問題は、 SnapMirror の Business Continuity （ SM-BC ）構成の分離されたマスタークラスタで Automatic Unplanned Failover （ AUFO ）イベントが発生したときに発生します。HP-UX ホストで I/O が再開されるまでに 120 秒以上かかることがありますが、原因で I/O の中断やエラーメッセージが表示されない可能性があります。この問題では、プライマリクラスタとセカンダリクラスタの間の接続が失われ、プライマリクラスタとメディエーターの間の接続も失われるため、二重イベント障害が発生します。これは、他の AUFO イベントとは異なり、まれなイベントとみなされます。</block>
 </blocks>
