@@ -1644,7 +1644,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 12:17:45 +0000">01/31/2022</time>
+    <time datetime="2022-02-01 15:52:21 +0000">02/01/2022</time>
     
   
 
@@ -1900,6 +1900,12 @@ up       primary    /dev/dsk/c8t0d2      fcd1    248_1d_hp</pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1447287</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SM-BC 構成の独立したマスタークラスタで AUFO イベントが発生すると、 HP-UX ホストが一時的に停止します</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">この問題は、 SnapMirror の Business Continuity （ SM-BC ）構成の分離されたマスタークラスタで Automatic Unplanned Failover （ AUFO ）イベントが発生したときに発生します。HP-UX ホストで I/O が再開されるまでに 120 秒以上かかることがありますが、原因で I/O の中断やエラーメッセージが表示されない可能性があります。この問題では、プライマリクラスタとセカンダリクラスタの間の接続が失われ、プライマリクラスタとメディエーターの間の接続も失われるため、二重イベント障害が発生します。これは、他の AUFO イベントとは異なり、まれなイベントとみなされます。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">該当なし</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1344935</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HPUX 11.31 ホストで、 ASA セットアップでパスステータスが誤って報告されることがあります。</p></td>
