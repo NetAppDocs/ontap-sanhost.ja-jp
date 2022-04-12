@@ -13,12 +13,16 @@ sidebar:
     url: "/index.html"
   - title: SAN Host Utilities の略語
     entries:
-    - title: Linux Unified Host Utilities のこと
-      url: "/hu_luhu_71.html"
-    - title: Windows Unified Host Utilities のことです
-      url: "/hu_wuhu_71.html"
     - title: AIX Host Utilities の略語
       url: "/hu_aix_61.html"
+    - title: HPUX ホストユーティリティ
+      url: "/hu_hpux_60.html"
+    - title: Linux Unified Host Utilities のこと
+      url: "/hu_luhu_71.html"
+    - title: Solaris Host Utilities のことです
+      url: "/hu_solaris_62.html"
+    - title: Windows Unified Host Utilities のことです
+      url: "/hu_wuhu_71.html"
   - title: NVMe-oF ホスト構成
     entries:
     - title: ESXi

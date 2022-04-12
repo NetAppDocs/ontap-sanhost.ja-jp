@@ -1,0 +1,217 @@
+---
+sidebar: sidebar 
+permalink: hu_solaris_62.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法について説明します 
+---
+= Solaris Host Utilities 6.2
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+.必要なもの
+* 安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。
+
+
+を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
+
+
+
+== SAN ツールキット
+
+Solaris Host Utilities は、 Oracle Solaris ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+
+次の例では 'lun lun lun show コマンドは LUN 情報を返します
+
+[listing]
+----
+#sanlun lun show all
+controller(7mode)/ device host lun
+vserver(Cmode)                     lun-pathname       filename                                       adapter protocol size mode
+-----------------------------------------------------------------------------------------------------------------------------------
+data_vserver                     /vol/vol1/lun1     /dev/rdsk/c0t600A098038304437522B4E694E49792Dd0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol0/lun2     /dev/rdsk/c0t600A098038304437522B4E694E497938d0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol2/lun3     /dev/rdsk/c0t600A098038304437522B4E694E497939d0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A098038304437522B4E694E497941d0s2 qlc3   FCP       10g cDOT
+
+
+----
+
+NOTE: このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。
+
+
+
+== Solaris Host Utilities をインストールしています
+
+Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。主な Host Utilities 環境は次のとおりです。
+
+* SPARC プロセッサまたは x86-64 プロセッサを使用するシステムで、ファイバチャネル（ FC ）または iSCSI プロトコルを持つ MPxIO を搭載したネイティブ OS 。
+* SPARC プロセッサを使用するシステム上では FC プロトコルまたは iSCSI プロトコルのいずれかを使用し 'x86-64 プロセッサを使用するシステムでは iSCSI プロトコルを使用する Veritas Dynamic Multipathing （ DMP ）
+
+
+
+NOTE: NetApp Solaris Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] プロセッサの圧縮ファイル形式。環境に対応した Host Utilities ソフトウェアパッケージは、サポートサイトからダウンロードできます。
+
+.手順
+. ホストに root としてログインします。
+. Host Utilities が含まれている圧縮ファイルのコピーをからダウンロードします link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] をホスト上のディレクトリに移動します。
++
+このドキュメントの作成時点では、圧縮ファイルの名前は次のようになりました。
+
++
+** SPARC CPU ： 'NetApp_solaris_host_utilities_6_2_sparc.tar.gz
+** x86/x64 CPU ：「 NetApp_solaris_host_utilities_6_2_AMD.tar.gz
+
+
+. ダウンロードを格納しているディレクトリに移動します。
+. gunzip コマンドを使用してファイルを解凍します
++
+#gunzip NetApp_solaris_host_utilities_6_2_sparc.tar.gz
+
+. ファイルを解凍します。これを行うには 'tar xvf コマンドを使用します
++
+tar xvf NetApp _Solaris_host_utilities_6_2_sparc.tar
+
+. tar ファイルから抽出したパッケージをホストに追加します。これを行うには 'pkgadd コマンドを使用します
++
+パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます次の例では 'pkgadd コマンドを使用して Solaris インストールパッケージをインストールします
+
++
+#pkgadd -d ./NTAPSANTool.pkg
+
+. pkginfo コマンドまたは ls -al コマンドを使用して ' ツールキットが正常にインストールされたことを確認します
++
+[listing]
+----
+# ls -alR /opt/NTAP/SANToolkit
+/opt/NTAP/SANToolkit:
+total 1038
+drwxr-xr-x   3 root     sys            4 Jul 22  2019 .
+drwxr-xr-x   3 root     sys            3 Jul 22  2019 ..
+drwxr-xr-x   2 root     sys            6 Jul 22  2019 bin
+-r-xr-xr-x   1 root     sys       432666 Sep 13  2017 NOTICES.PDF
+
+/opt/NTAP/SANToolkit/bin:
+total 7962
+drwxr-xr-x   2 root     sys            6 Jul 22  2019 .
+drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
+-r-xr-xr-x   1 root     sys      2308252 Sep 13  2017 host_config
+-r-xr-xr-x   1 root     sys          995 Sep 13  2017 san_version
+-r-xr-xr-x   1 root     sys      1669204 Sep 13  2017 sanlun
+-r-xr-xr-x   1 root     sys          677 Sep 13  2017 vidpid.dat
+
+# (cd /usr/share/man/man1; ls -al host_config.1 sanlun.1)
+-r-xr-xr-x   1 root     sys        12266 Sep 13  2017 host_config.1
+-r-xr-xr-x   1 root     sys         9044 Sep 13  2017 sanlun.1
+----
+. 終了後、 /opt/NTAP /SANToolkit/bin/host_config コマンドを使用して、環境に応じたホストパラメータを設定する必要があります。
++
+** MPxIO
+** Veritas DMP の略
+
+
+. インストールを確認します。
++
+「 anlun version 」を参照してください
+
+
+
+
+
+== コマンド・リファレンスの例
+
+
+
+=== ホストにマッピングされているすべてのホストイニシエータを一覧表示
+
+[listing]
+----
+# sanlun fcp show adapter -v
+adapter name:      qlc3
+WWPN:              21000024ff17a301
+WWNN:              20000024ff17a301
+driver name:       qlc
+model:             7335902
+model description: 7115462, Oracle Storage Dual-Port 32 Gb Fibre Channel PCIe HBA
+serial number:     463916R+1720333838
+hardware version:  Not Available
+driver version:    210226-5.10
+firmware version:  8.08.04
+Number of ports:   1 of 2
+port type:         Fabric
+port state:        Operational
+supported speed:   8 GBit/sec, 16 GBit/sec, 32 GBit/sec
+negotiated speed:  32 GBit/sec
+OS device name:    /dev/cfg/c7
+
+adapter name:      qlc2
+WWPN:              21000024ff17a300
+WWNN:              20000024ff17a300
+driver name:       qlc
+model:             7335902
+model description: 7115462, Oracle Storage Dual-Port 32 Gb Fibre Channel PCIe HBA
+serial number:     463916R+1720333838
+hardware version:  Not Available
+driver version:    210226-5.10
+firmware version:  8.08.04
+Number of ports:   2 of 2
+port type:         Fabric
+port state:        Operational
+supported speed:   8 GBit/sec, 16 GBit/sec, 32 GBit/sec
+negotiated speed:  16 GBit/sec
+OS device name:    /dev/cfg/c6
+----
+
+
+=== ホストにマッピングされているすべての LUN をリストします
+
+[listing]
+----
+# sanlun lun show -p -v all
+
+                    ONTAP Path: data_vserver:/vol1/lun1
+                           LUN: 1
+                      LUN Size: 10g
+                   Host Device: /dev/rdsk/c0t600A0980383044485A3F4E694E4F775Ad0s2
+                          Mode: C
+            Multipath Provider: Sun Microsystems
+              Multipath Policy: Native
+
+----
+
+
+=== 特定の SVM / リストからホストにマッピングされているすべての LUN をリストします。ホストにマッピングされている特定の LUN のすべての属性をリストします
+
+[listing]
+----
+# sanlun lun show -p -v sanboot_unix`
+ONTAP Path: sanboot_unix:/vol/sol_boot/sanboot_lun
+                           LUN: 0
+                      LUN Size: 180.0g
+
+----
+
+
+=== ONTAP LUN 属性をホストデバイスファイル名別に表示します
+
+[listing]
+----
+# sanlun lun show all
+
+controller(7mode/E-Series)/                                         device
+vserver(cDOT/FlashRay)       lun-pathname                           filename
+---------------------------------------------------------------------------------------------------------------
+sanboot_unix                 /vol/sol_193_boot/chatsol_193_sanboot /dev/rdsk/c0t600A098038304437522B4E694E4A3043d0s2
+
+host adapter    protocol lun size   product
+---------------------------------------------
+qlc3            FCP      180.0g     cDOT
+----

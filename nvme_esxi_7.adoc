@@ -27,7 +27,7 @@ ONTAP 9.7 以降では、 NVMe over Fibre Channel （ NVMe/FC ）がサポート
 
 == の機能
 
-* ESXi イニシエータホストは、 NVMe/FC と FCP の両方のトラフィックを同じアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。を参照してください  サポートされる構成およびバージョンの最新のリストについては、を参照してください。
+* ESXi イニシエータホストは、 NVMe/FC と FCP の両方のトラフィックを同じアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされる構成およびバージョンの最新のリストについては、を参照してください。
 * ONTAP 9.9.1 P3 以降では、 ESXi 7.0 Update 3 で NVMe/FC 機能がサポートされます。
 * ESXi 7.0 以降のリリースでは、ハイパフォーマンスプラグイン（ HPP ）が NVMe デバイスのデフォルトプラグインです。
 
@@ -211,5 +211,5 @@ fc.200034800d6d7268:210034800d6d7268-fc.201700a098dfe3d1:201900a098dfe3d1-uuid.5
 == 関連リンク
 
 link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^]
-
-
+link:https://kb.vmware.com/s/article/2031038["NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）"^]
+link:https://kb.vmware.com/s/article/83370["NetApp ® SnapMirror ® ビジネス継続性（ SM-BC ）による VMware vSphere 6.x および 7.x のサポート"^]

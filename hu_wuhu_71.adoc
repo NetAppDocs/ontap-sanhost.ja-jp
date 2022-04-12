@@ -66,13 +66,13 @@ Fibre Channel プロトコルと iSCSI プロトコルのライセンスは、 S
 
 . ケーブル接続を確認します
 +
-を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["『 SAN 構成ガイド』"^] ONTAP のバージョンに応じて、またはを使用してください ケーブル接続と構成の詳細については、を参照してください。
+を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["『 SAN 構成ガイド』"^] ONTAP のバージョンに応じて、またはを使用してください https://mysupport.netapp.com/ecm/ecm_get_file/ECMLP2773533["『 E-Series Hardware Cabling Guide 』を参照してください"^] ケーブル接続と構成の詳細については、を参照してください。
 
 
 
 
 
-== FC HBA およびスイッチの設定
+== FC HBA およびスイッチを設定します
 
 ストレージシステムへのファイバチャネル接続用に、サポートされている 1 つ以上の Fibre Channel Host Bus Adapter （ HBA ；ホストバスアダプタ）をインストールして設定します。
 
@@ -406,7 +406,7 @@ QLogic ファイバチャネル HBA の場合、 MPIO が選択されていな�
 
 NOTE: パラメータの名前は、プログラムによって多少異なる場合があります。たとえば 'QLogic QConvergeConsole プログラムでは ' パラメータは Link Down Timeout と表示されますHost Utilities の「 fcconfig.ini` 」ファイルには、 MPIO が指定されているかどうかに応じて、このパラメータが「 LinkDownTimeOut 」または「 M pioLinkDownTimeOut 」のいずれかで表示されます。ただし、これらの名前はすべて同じ HBA パラメータを表します。
 
-を参照してください https://www.broadcom.com/support/download-search["Emulex 社"^] または タイムアウトパラメータの詳細については、サイトを参照してください。
+を参照してください https://www.broadcom.com/support/download-search["Emulex 社"^] または https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx["QLogic"^] タイムアウトパラメータの詳細については、サイトを参照してください。
 
 
 
@@ -433,8 +433,8 @@ NOTE: パラメータの名前は、プログラムによって多少異なる�
 
 
 http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
-
-
+https://mysupport.netapp.com/portal/documentation["NetApp のドキュメント"^]
+https://mysupport.netapp.com/NOW/cgi-bin/bol["NetApp Bugs Online では"^]
 
 
 

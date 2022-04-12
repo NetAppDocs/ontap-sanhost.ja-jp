@@ -2141,9 +2141,6 @@
   <block id="9f845ca5de3d71f2c5f7eed4864a12b4" category="list-text">サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="1e5bb2c5d5a9a2921f17983d8f8db70b" category="list-text">推奨される Broadcom lpfc ファームウェア、ネイティブインボックスドライバ、および outbox 自動接続パッケージバージョンを使用していることを確認します。サポートされているバージョンの一覧については、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="2a0a4348e3cfffb7106ae13ae6827b6d" category="paragraph">NVMe/FC は、 ONTAP Linux 8.2 では 9.6 以降でサポートされます。Oracle Linux 8.2 ホストでは、 NVMe/FC と FCP の両方のトラフィックを、同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポート経由で実行できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
-  <block id="772d04265dc6e94b3e6f5c725fbf42e6" category="paragraph"><block ref="e1df9b7b8db07e2cb30146cd5a6e04ef" category="inline-link-macro-rx"></block>
-<block ref="414cc440da9b8860f85936c8ca7199d3" category="inline-link-macro-rx"></block>
-<block ref="c70054656a6156c5d554f172fbb27a7a" category="inline-link-macro-rx"></block></block>
   <block id="6fa026cc896a9aa46993e867a29d973c" category="paragraph">VVOL のプロビジョニングと管理の詳細については、 VMware vSphere 用の ONTAP ツールのドキュメントも参照してください <block ref="52e81e11040c41825151f9c7710055f2" category="inline-link-macro-rx"></block> および <block ref="a74613d919ef64732e37564f6282a452" category="inline-link-macro-rx"></block></block>
   <block id="24b832a3c490bb4e76193c9ae615cd2b" category="admonition">UNMAP が機能するために、 VMware vSphere にマッピングされているすべての LUN で space-allocation 設定を有効にします。詳細については、を参照してください<block ref="ecbbd19c2959ac5708c6c4723def4492" category="inline-link-rx"></block>。</block>
   <block id="1ce6b82da1e4c8ef0696742f32ee8517" category="list-text">TR-4597 -VMware vSphere with ONTAP にアクセスするには、を参照してください <block ref="0b49ef6859bcc6d029643944be119d56" category="inline-link-macro-rx"></block> および <block ref="ea34cfa716537242c2b4837bb8c55109" category="inline-link-macro-rx"></block></block>
@@ -2175,7 +2172,6 @@
   <block id="20ef4219f8282a156b90a588df2efcd7" category="section-title">RHEL 8.3 で NVMe/FC を有効にします</block>
   <block id="bf2fd4f30d4d99e83aea737d5c100ea0" category="section-title">Broadcom FC アダプタを NVMe/FC 用に設定します</block>
   <block id="c0a6e0dc55b98c30081b044a2713737b" category="section-title">ホストとストレージシステムの構成を確認します</block>
-  <block id="93d35d1948374a90e0c2dc20afe8976a" category="section-title">FC HBA およびスイッチの設定</block>
   <block id="b60c7a8315c7b9d353b5fda462709b16" category="section-title">Host Utilities をインストールする</block>
   <block id="96d192942ad7d0399b1d3c052048858e" category="section-title">Host Utilities を対話型モードでインストールします</block>
   <block id="b9f1aba85711fc915cd6550e3ca2e6e7" category="section-title">コマンドラインから Host Utilities をインストールします</block>
@@ -2253,4 +2249,49 @@
   <block id="c22c65685ac3f8701da1a00c478b1333" category="cell">1447287</block>
   <block id="778fd215ce10bd514de565e6df2b1758" category="cell">SM-BC 構成の独立したマスタークラスタで AUFO イベントが発生すると、 HP-UX ホストが一時的に停止します</block>
   <block id="6f80f2e204ff92f2e954367d70413775" category="cell">この問題は、 SnapMirror の Business Continuity （ SM-BC ）構成の分離されたマスタークラスタで Automatic Unplanned Failover （ AUFO ）イベントが発生したときに発生します。HP-UX ホストで I/O が再開されるまでに 120 秒以上かかることがありますが、原因で I/O の中断やエラーメッセージが表示されない可能性があります。この問題では、プライマリクラスタとセカンダリクラスタの間の接続が失われ、プライマリクラスタとメディエーターの間の接続も失われるため、二重イベント障害が発生します。これは、他の AUFO イベントとは異なり、まれなイベントとみなされます。</block>
+  <block id="71a803ec7e0a7413f38513eccfb51d23" category="doc">HPUX Host Utilities 6.0</block>
+  <block id="9e1ea4643210fa4abca0c804c4fe3eec" category="paragraph">を使用できます <block ref="1c6d071c1749743e8ebf715f1c64c2a1" category="inline-link-macro-rx"></block> 構成を確認します。</block>
+  <block id="3112cdbeaee6d9032c13b95ac8d4dc32" category="paragraph">HPUX Host Utilities は、 HPUX ホストにコマンドラインツールキットを提供するネットアップのホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
+  <block id="d4fafab7425136eae505dcc30fe94743" category="section-title">HPUX Host Utilities をインストールします</block>
+  <block id="235ab8a9f571fa3f1ae7daa2b9e3a1c3" category="paragraph">NetApp HPUX Host Utilities ソフトウェアパッケージはにあります <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 圧縮されたファイル。</block>
+  <block id="e6836ae92ec45bf946aba470c3ee98e5" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>。ダウンロードしたファイルは、インストール前に解凍する必要があります。</block>
+  <block id="dd0ef0f389a16b505e475797a7b752ac" category="list-text">から HP-UX Host Utilities ファイル netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` をダウンロードします <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> を HP-UX ホストにインストールします。</block>
+  <block id="5eaf61000f0f261f2e4793f7e336889a" category="list-text">次のコマンドを入力して 'netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` ファイルを解凍します</block>
+  <block id="93b6e09e96afb8006209af84f438ca2b" category="paragraph">#gunzip netapp_hpux_host_utilities_6.0_ia_pa.depot.gz`</block>
+  <block id="d10caeaed75e8947d0e8840674994b68" category="paragraph">デポファイルを圧縮解除したディレクトリに、抽出したソフトウェアが配置されます。</block>
+  <block id="2a346f59c525e5728cec25bf9a377f2f" category="list-text">次のコマンドを入力してソフトウェアをインストールします。</block>
+  <block id="2d903390e509c4d2f6da1a4d0787b5b6" category="paragraph">「 #swinstall-s/depot_path 」</block>
+  <block id="999cc5e84fec57fdd157e6fdacc5c96a" category="paragraph">「 depot_path 」は、デポファイルのパスと名前を提供します。</block>
+  <block id="e661cef1335457aaa4b6047327cfb656" category="paragraph">swinstall コマンドは 'HP-UX セットアップの状態を確認するインストール・スクリプトを実行しますシステムが要件を満たしている場合、このスクリプトは「 sanlun 」ユーティリティおよび診断スクリプトを「 /opt/NetApp/santools/bin 」ディレクトリにインストールします。</block>
+  <block id="96e0cae7407a65fe53018dd9c13dbbe7" category="section-title">FC HBA およびスイッチを設定します</block>
+  <block id="4305e9936b83d45d04d4e15cb3f002d2" category="paragraph"><block ref="e5534403168e57c1e34879bb31a5b6d6" category="inline-link-macro-rx"></block>
+<block ref="414cc440da9b8860f85936c8ca7199d3" category="inline-link-macro-rx"></block>
+<block ref="c70054656a6156c5d554f172fbb27a7a" category="inline-link-macro-rx"></block></block>
+  <block id="13875804930272cb7e31a51605d09c65" category="doc">Solaris Host Utilities 6.2</block>
+  <block id="408c1c436b88f56a9e4cf815ca520ffc" category="list-text">安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。</block>
+  <block id="8f3b9d0cc42d20c0623a5f0990c4181e" category="paragraph">Solaris Host Utilities は、 Oracle Solaris ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
+  <block id="ad13fbfcd593d66a0a805929eb221e19" category="section-title">Solaris Host Utilities をインストールしています</block>
+  <block id="03b4fa4e47ce5a6711a2ad9d886d63b4" category="paragraph">Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。主な Host Utilities 環境は次のとおりです。</block>
+  <block id="4dae86ccd354e19dab3d36ea3289ddf9" category="list-text">SPARC プロセッサまたは x86-64 プロセッサを使用するシステムで、ファイバチャネル（ FC ）または iSCSI プロトコルを持つ MPxIO を搭載したネイティブ OS 。</block>
+  <block id="bcbce11571c35a16833e1cad61fe922b" category="list-text">SPARC プロセッサを使用するシステム上では FC プロトコルまたは iSCSI プロトコルのいずれかを使用し 'x86-64 プロセッサを使用するシステムでは iSCSI プロトコルを使用する Veritas Dynamic Multipathing （ DMP ）</block>
+  <block id="62f9b54c9ec5d04b22835a93b9aa1fa6" category="admonition">NetApp Solaris Host Utilities ソフトウェアパッケージは、にあります <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> プロセッサの圧縮ファイル形式。環境に対応した Host Utilities ソフトウェアパッケージは、サポートサイトからダウンロードできます。</block>
+  <block id="fea59de608f0d3ad102d8ee095187049" category="list-text">ホストに root としてログインします。</block>
+  <block id="9b81dac243940d3f9c3490234e86754f" category="list-text">Host Utilities が含まれている圧縮ファイルのコピーをからダウンロードします <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> をホスト上のディレクトリに移動します。</block>
+  <block id="b2d33f0e0e850a2d778dfce3637f0b06" category="paragraph">このドキュメントの作成時点では、圧縮ファイルの名前は次のようになりました。</block>
+  <block id="9957056b4d6f0788b84485f7f408d79d" category="list-text">SPARC CPU ： 'NetApp_solaris_host_utilities_6_2_sparc.tar.gz</block>
+  <block id="8b2e8dcabd2803cfffe6d347e740d632" category="list-text">x86/x64 CPU ：「 NetApp_solaris_host_utilities_6_2_AMD.tar.gz</block>
+  <block id="4b9b8c4fa4d1eb96283d16c11c709e8e" category="list-text">gunzip コマンドを使用してファイルを解凍します</block>
+  <block id="1f2423b6dd7c87600c006dd4fe70055e" category="paragraph">#gunzip NetApp_solaris_host_utilities_6_2_sparc.tar.gz</block>
+  <block id="72f9fed930907b19e060560561469054" category="list-text">ファイルを解凍します。これを行うには 'tar xvf コマンドを使用します</block>
+  <block id="d35a857c138589666873eef37b70bd9c" category="paragraph">tar xvf NetApp _Solaris_host_utilities_6_2_sparc.tar</block>
+  <block id="963069b30b9e059f13bf53eb0a7cfbfe" category="list-text">tar ファイルから抽出したパッケージをホストに追加します。これを行うには 'pkgadd コマンドを使用します</block>
+  <block id="0c91635f19857d5fe1642e137ecfe86f" category="paragraph">パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます次の例では 'pkgadd コマンドを使用して Solaris インストールパッケージをインストールします</block>
+  <block id="e0da89c5b7248a8324e10a5d7c6af64f" category="paragraph">#pkgadd -d ./NTAPSANTool.pkg</block>
+  <block id="230a086a88f004fde1f1d6cfcc3f4f87" category="list-text">pkginfo コマンドまたは ls -al コマンドを使用して ' ツールキットが正常にインストールされたことを確認します</block>
+  <block id="43993f1d866abd26f6850284c50866b3" category="list-text">終了後、 /opt/NTAP /SANToolkit/bin/host_config コマンドを使用して、環境に応じたホストパラメータを設定する必要があります。</block>
+  <block id="cdfd79e32ab8a821a843e89d91bdcd8d" category="list-text">MPxIO</block>
+  <block id="8ae046464e598978903e62c0c706373c" category="list-text">Veritas DMP の略</block>
+  <block id="a335fa6e5bef06439b229f8adabc7dfe" category="section-title">特定の SVM / リストからホストにマッピングされているすべての LUN をリストします。ホストにマッピングされている特定の LUN のすべての属性をリストします</block>
+  <block id="19b1462d6d0a4e6e5b814edb100a77c6" category="sidebar">HPUX ホストユーティリティ</block>
+  <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
 </blocks>

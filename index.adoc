@@ -25,6 +25,6 @@ iSCSI および FC の場合、従来の Linux Unified Host Utilities のガイ�
 
 SAN 構成の追加情報については、次のドキュメントを参照してください。
 
-link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-asa-config/home.html["『 All SAN Array Software Configuration Guide 』を参照してください"^]
-
-
+link:https://docs.netapp.com/us-en/ontap/task_asa_software_configuration.html["『 All SAN Array Software Configuration Guide 』を参照してください"^]
+link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["『 SAN アドミニストレーションガイド』"^]
+link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html["『 SAN 構成ガイド』"^]
