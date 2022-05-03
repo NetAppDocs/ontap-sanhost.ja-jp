@@ -8,6 +8,7 @@ summary: ONTAP を使用した Windows Server 2012 R2 の NVMe/FC ホスト構�
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

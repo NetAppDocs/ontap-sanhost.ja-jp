@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます

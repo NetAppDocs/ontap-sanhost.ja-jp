@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。

@@ -1,4 +1,5 @@
 = Non-ASA の設定
+:allow-uri-read: 
 
 
 

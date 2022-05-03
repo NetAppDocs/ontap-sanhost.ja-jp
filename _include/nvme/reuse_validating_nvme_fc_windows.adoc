@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 . ポートタイプが FC + NVMe であることを確認します。

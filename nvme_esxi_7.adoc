@@ -8,6 +8,7 @@ summary: ONTAP で ESXi 7.x の NVMe-oF を設定する方法について説明�
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 . lpfc_enable_fc4_type' が *3* に設定されていることを確認します

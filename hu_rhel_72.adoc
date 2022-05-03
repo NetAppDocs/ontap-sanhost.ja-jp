@@ -8,6 +8,7 @@ summary: ONTAP で Red Hat Enterprise Linux 7.2 を使用する方法につい�
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 . Windows Host Utility Kit 7.1 をインストールして、 FC と NVMe の両方に共通のドライバパラメータを設定します。

@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 SAN ブートを使用する場合は、構成でサポートされている必要があります。NetApp Interoperability Matrix Tool を使用して、お使いの OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされているかどうかを確認できます。

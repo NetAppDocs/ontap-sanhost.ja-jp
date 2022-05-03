@@ -8,6 +8,7 @@ summary: 例を使用した、 Oracle Linux 7.9 用の VME/FC ホスト構成の
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

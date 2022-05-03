@@ -8,6 +8,7 @@ summary: ONTAP で Citrix Hypervisor 8.x を使用する方法について説明
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

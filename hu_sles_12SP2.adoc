@@ -8,6 +8,7 @@ summary: SUSE Linux Enterprise Server 12 SP2 with ONTAP の使用方法につい
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

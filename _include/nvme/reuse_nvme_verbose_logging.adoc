@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 . lpfc_log_verbose ドライバの設定を次のいずれかの値に設定して 'NVMe/FC イベントをログに記録できます

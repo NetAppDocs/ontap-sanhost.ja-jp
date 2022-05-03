@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 GRUB ブートローダを使用して Linux ゲスト OS の PowerShell Toolkit と MBR アライメントを修正するためにディスク上で「 m bralign 」を実行した後、ゲスト OS が正しく起動するように GRUB を再インストールする必要があります。

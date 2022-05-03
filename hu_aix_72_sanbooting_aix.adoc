@@ -8,6 +8,7 @@ summary: AIX で LUN を検出して設定する方法について説明しま�
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

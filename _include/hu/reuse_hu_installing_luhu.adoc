@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["ネットアップサポートサイト"^] 32 ビットまたは 64 ビットの .rpm ファイル。

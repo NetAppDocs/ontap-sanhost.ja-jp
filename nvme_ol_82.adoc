@@ -8,6 +8,7 @@ summary: 例を使用して、 ONTAP を使用した Oracle Linux 8.2 用の VME
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

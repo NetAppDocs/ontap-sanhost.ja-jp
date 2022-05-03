@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 Broadcom イニシエータは、 NVMe/FC と FCP の両方のトラフィックを同じ 32G FC アダプタポートで処理できます。FCP および FC/NVMe の場合は、 Microsoft Multipath I/O （ MPIO ；マルチパス I/O ）オプションとして MSDSM を使用してください。

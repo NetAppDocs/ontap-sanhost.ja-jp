@@ -1,4 +1,5 @@
 = ASM ミラーリング
+:allow-uri-read: 
 
 
 

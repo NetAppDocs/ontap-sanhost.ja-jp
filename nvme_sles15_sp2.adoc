@@ -8,6 +8,7 @@ summary: SUSE Linux Enterprise Server 15 SP2 （ ONTAP ）用に NVMe/FC を設�
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

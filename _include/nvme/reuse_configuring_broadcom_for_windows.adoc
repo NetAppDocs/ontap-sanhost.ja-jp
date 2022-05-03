@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 Windows 環境の FC/NVMe 用 Broadcom アダプタでは '+hostnqn+' が各 HBA ポートに関連付けられます「 + hostnqn+' 」は次のようにフォーマットされます。

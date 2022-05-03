@@ -8,6 +8,7 @@ summary: ONTAP で CentOS 7.9 を使用する方法について説明します
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

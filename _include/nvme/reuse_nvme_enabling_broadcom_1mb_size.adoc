@@ -1,4 +1,5 @@
 = 
+:allow-uri-read: 
 
 
 ホストで問題 1MB サイズの I/O を使用するには、 lpfc_sg_seg_cnt パラメータを 256 に設定する必要があります

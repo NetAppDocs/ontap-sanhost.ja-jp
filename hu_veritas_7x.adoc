@@ -8,6 +8,7 @@ summary: VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト�
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

@@ -8,6 +8,7 @@ summary: PowerVM vSCSI で LUN の検出と設定を使用する方法につい�
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

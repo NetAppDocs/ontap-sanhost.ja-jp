@@ -8,6 +8,7 @@ summary: Solaris Host Utilities のインストール方法について説明し
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

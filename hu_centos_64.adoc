@@ -8,6 +8,7 @@ summary: CentOS 6.4 と ONTAP の使用方法について説明します
 :toc: macro
 :hardbreaks:
 :toclevels: 1
+:allow-uri-read: 
 :toc: 
 :toclevels: 1
 :nofooter: 

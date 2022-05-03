@@ -6,6 +6,7 @@ summary: SAN ホストのドキュメント
 ---
 = ONTAP SAN ホスト構成
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
