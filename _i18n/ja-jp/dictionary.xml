@@ -2294,4 +2294,11 @@
   <block id="a335fa6e5bef06439b229f8adabc7dfe" category="section-title">特定の SVM / リストからホストにマッピングされているすべての LUN をリストします。ホストにマッピングされている特定の LUN のすべての属性をリストします</block>
   <block id="19b1462d6d0a4e6e5b814edb100a77c6" category="sidebar">HPUX ホストユーティリティ</block>
   <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
+  <block id="072bbeb072deda2033d37a6e9af67b96" category="summary">ONTAP でOracle Linux 8.5を使用する方法について説明します</block>
+  <block id="bebf74152cdc0b8f2233ff49a9112052" category="doc">NetApp ONTAP でOracle Linux 8.5を使用する</block>
+  <block id="5afff738a58f6889eebdd3efb2f2c405" category="paragraph">Oracle Linux（OL）8.5の場合、/etc/multipath.confファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 8.5は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を組み込んでコンパイルされます。</block>
+  <block id="d361bd25a0b2583985eb39dd89875090" category="paragraph">Oracle Linux 8.5 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされます。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます</block>
+  <block id="2e4318e2eccbd53d66a800f6dabff27f" category="admonition">Oracle Linux 8.5 Red Hat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="7e47a54075763937d25ec51fa82726e1" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.5の場合。</block>
+  <block id="2e4b1a8e103650d2f0fe4c61f4f8d5fb" category="paragraph">Oracle Linux 8.5で確認されている既知の問題はありません。</block>
+  <block id="5d90071a09878a695a26d84f9a4f073b" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="b5087b96e856dc400373808e0f627382" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
 </blocks>
