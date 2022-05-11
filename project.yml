@@ -14,11 +14,14 @@ sidebar:
   - title: SAN Host Utilities の略語
     entries:
     - title: AIX Host Utilities の略語
-      url: "/hu_aix_61.html"
     - title: HPUX ホストユーティリティ
       url: "/hu_hpux_60.html"
     - title: Linux Unified Host Utilities のこと
-      url: "/hu_luhu_71.html"
+      entries:
+      - title: Luhu 7.1をインストールします
+        url: "/hu_luhu_71.html"
+      - title: リリースノート
+        url: "/hu_luhu_71_rn.html"
     - title: Solaris Host Utilities のことです
       url: "/hu_solaris_62.html"
     - title: Windows Unified Host Utilities のことです
