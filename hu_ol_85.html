@@ -1791,7 +1791,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-04 14:08:19 +0000">05/04/2022</time>
+    <time datetime="2022-05-11 15:31:50 +0000">05/11/2022</time>
     
   
 
@@ -1977,7 +1977,10 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 <h2 id="推奨設定">推奨設定</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Oracle Linux 8.5 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされます。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます</p>
+<p>Oracle Linux 8.5 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされます。</p>
+</div>
+<div class="paragraph">
+<p>マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます</p>
 </div>
 <div class="paragraph">
 <p>このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。</p>
@@ -2038,7 +2041,10 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 </ol>
 </div>
 <div class="paragraph">
-<p>デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</p>
+<p>デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください</p>
+</div>
+<div class="paragraph">
+<p>次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2126,13 +2132,6 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 </tr>
 </tbody>
 </table>
-<div class="ulist">
-<ul>
-<li>
-<p>例 *</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合 ' マルチパス .conf ファイルは 'path_checker' および ONTAP LUN と互換性のない 'no-path_retry' の値を定義しますホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</p>
 </div>
