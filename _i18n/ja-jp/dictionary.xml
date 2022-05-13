@@ -96,7 +96,6 @@
   <block id="5dd03e8d039863e563e049be198c3fd3" category="section-title">リリースノート</block>
   <block id="f25da2d4ec4aacff4750d97e83acec21" category="section-title">ASM ミラーリング</block>
   <block id="446548f2b1301893641e29657fc7fe53" category="inline-link-macro">ONTAP を基盤にした Oracle データベース</block>
-  <block id="84ab437a6a1e12ed066bb64a998dbdff" category="paragraph">ASM ミラーリングでは、 ASM が問題を認識して代替の障害グループに切り替えるために、 Linux マルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください <block ref="85b4e48fbc653b43bc1d23927e9a43d3" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="7466d31b9a4018d8f402bd6f92090e59" category="summary">Solaris Host Utilities のインストール方法について説明します</block>
   <block id="e1084bfbacc7e9ee1de94f35fce4fca3" category="doc">NetApp ONTAP で Solaris 11.3 を使用します</block>
   <block id="16dcd3f6f3bbebb1de9769e4045dbb3f" category="section-title">Solaris Host Utilities のインストール</block>
@@ -2371,4 +2370,15 @@
   <block id="73d4b705776db33e6478d2847ebc567c" category="paragraph">Oracle Linux 8.5 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="cb209f9eec3baeb4065409d39ca1f4d5" category="paragraph">Oracle Linux 8.3 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
   <block id="ce431e2558ea7b456c531991fb4a7e92" category="paragraph">Oracle Linux 8.4 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
+  <block id="c785c7cbae0a664e0cc339dfef33bde1" category="paragraph">ASMミラーリングでは、ASMが問題を認識して代替障害グループに切り替えるために、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください <block ref="85b4e48fbc653b43bc1d23927e9a43d3" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="3eeb371f92f74d2b6501646282092ca7" category="summary">ONTAP でCentOS 8.4を使用する方法について説明します</block>
+  <block id="32d86924bbcb8820c9a350a7d741cbea" category="doc">NetApp ONTAP でCentOS 8.4を使用する</block>
+  <block id="e5a962185d7bd63be4f29de827478b1c" category="paragraph">CentOS 8.4の場合'/etc/multipath.confファイルが存在している必要がありますが'ファイルに特定の変更を加える必要はありませんCentOS 8.4は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を含むようにコンパイルされています。</block>
+  <block id="ea4f6ca54725c6a00ccdbd33cafe2aa2" category="paragraph">CentOS 8.4は、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
+  <block id="a90e366fa7d3040cef07cc0169093dcc" category="paragraph">CentOS 8.4には既知の問題はありません。</block>
+  <block id="c33b879e8a189cf4ded38992165273b7" category="summary">ONTAP でCentOS 8.5を使用する方法について説明します</block>
+  <block id="d5af4406caf44199917cb9aa00203c40" category="doc">CentOS 8.5とNetApp ONTAP を使用する</block>
+  <block id="60d0d78dbe9bb18e16690c35ce6867e1" category="paragraph">CentOS 8.5の場合'/etc/multipath.confファイルは存在している必要がありますが'ファイルに特定の変更を加える必要はありませんCentOS 8.5は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を備えています。</block>
+  <block id="fd586a803662833af2a4932bc04d30c2" category="paragraph">CentOS 8.5 OSは、ONTAP LUNを認識するようにコンパイルされ、すべての構成パラメータがASA 構成と非ASA構成の両方に対して自動的に正しく設定されます。</block>
+  <block id="18c14def8d42f0c0db0b8f08922c712b" category="paragraph">CentOS 8.5の既知の問題はありません。</block>
 </blocks>
