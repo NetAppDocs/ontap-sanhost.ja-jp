@@ -2381,4 +2381,10 @@
   <block id="60d0d78dbe9bb18e16690c35ce6867e1" category="paragraph">CentOS 8.5の場合'/etc/multipath.confファイルは存在している必要がありますが'ファイルに特定の変更を加える必要はありませんCentOS 8.5は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を備えています。</block>
   <block id="fd586a803662833af2a4932bc04d30c2" category="paragraph">CentOS 8.5 OSは、ONTAP LUNを認識するようにコンパイルされ、すべての構成パラメータがASA 構成と非ASA構成の両方に対して自動的に正しく設定されます。</block>
   <block id="18c14def8d42f0c0db0b8f08922c712b" category="paragraph">CentOS 8.5の既知の問題はありません。</block>
+  <block id="6ae085cbc4684a00a3e68524ecf70cfa" category="doc">VERITAS Infosscale 8 for LinuxとNetApp ONTAP の併用</block>
+  <block id="1b2a59730ea53da6436d8353216d1a0c" category="paragraph">このドキュメントでは、FC、FCoE、およびiSCSIプロトコルを搭載したRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVERITAS Infoscaleストレージ基盤8シリーズのONTAP SANホスト構成設定について説明します。</block>
+  <block id="c5b648f7fb06555dc55d907fcf7b4c14" category="paragraph">構成がシステム要件を満たしていることを確認する必要があります。詳細については、ネットアップのInteroperability Matrix ToolとVeritas HCL Matrixを参照してください。</block>
+  <block id="ce081634ead33780d73e0e1f6b9ea0ca" category="paragraph">Veritas Dynamic Multipathing （ VxDMP ）を使用すると、ネットアップ LUN を Veritas Multipath Devices として要求するための設定タスクを実行する必要があります。Veritas からネットアップストレージシステムに提供される Array Support Library （ ASL ）と Array Policy Module （ APM ）パッケージをインストールしておく必要があります。Veritas Software Installation では、デフォルトの ASL APM パッケージが製品とともにロードされますが、 Veritas サポートポータルにリストされている最新のサポートされているパッケージを使用することをお勧めします。</block>
+  <block id="697675a4c21edc6fc07599249d9fe748" category="paragraph">All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。</block>
+  <block id="4e0b2b4c829cef3166a5190a135bb26f" category="sidebar">Infoscale 8.</block>
 </blocks>
