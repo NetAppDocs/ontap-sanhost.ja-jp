@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head class="at-element-marker">
-  <title>SUSE Linux Enterprise Server 12 SP5 と NetApp ONTAP を使用する</title>
+  <title>VERITAS Infosscale 8 for LinuxとNetApp ONTAP の併用</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="SUSE Linux Enterprise Server 12 SP5 と NetApp ONTAP を使用する" />
+  <meta property="og:title" content="VERITAS Infosscale 8 for LinuxとNetApp ONTAP の併用" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/ja-jp/ontap-sanhost/hu_sles_12SP5.html" />
-	<meta property="og:description" content="SUSE Linux Enterprise Server 12 SP5 と ONTAP の使用方法について説明します" />
+	<meta property="og:url" content="https://docs.netapp.com/ja-jp/ontap-sanhost/hu_veritas_8x.html" />
+	<meta property="og:description" content="VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト構成設定に関するガイダンスを示します" />
   <meta property="og:image" content="https://docs.netapp.com/ja-jp/ontap-sanhost/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="SUSE Linux Enterprise Server 12 SP5 と ONTAP の使用方法について説明します">
-  <meta name="keywords" content=" host utilities, suse linux enterprise server 12 SP5, suse, linux, 12 SP5, netapp, ontap"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト構成設定に関するガイダンスを示します">
+  <meta name="keywords" content=" host utilities, veritas, infoscale, 8, netapp, ontap, sanhost, iscsi, red, hat linux, oracle, linux"><!-- Icons -->
   <link rel="icon" href="/ja-jp/ontap-sanhost/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -169,7 +169,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/issues/new?body=Page%3A%20[SUSE Linux Enterprise Server 12 SP5 と NetApp ONTAP を使用する](https://docs.netapp.com/ja-jp/ontap-sanhost/hu_sles_12SP5.html)" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-sanhost/images/discuss-sm.svg" class="github-icon" />ドキュメントの変更をリクエスト</a><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/blob/main/hu_sles_12SP5.adoc" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-sanhost/images/edit-sm.svg" class="github-icon" />GitHub で編集</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/ja-jp/ontap-sanhost/images/article-sm.svg" class="github-icon" />寄稿者向けガイド</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/issues/new?body=Page%3A%20[VERITAS Infosscale 8 for LinuxとNetApp ONTAP の併用](https://docs.netapp.com/ja-jp/ontap-sanhost/hu_veritas_8x.html)" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-sanhost/images/discuss-sm.svg" class="github-icon" />ドキュメントの変更をリクエスト</a><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/blob/main/hu_veritas_8x.adoc" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-sanhost/images/edit-sm.svg" class="github-icon" />GitHub で編集</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/ja-jp/ontap-sanhost/images/article-sm.svg" class="github-icon" />寄稿者向けガイド</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">このページ</div>
@@ -292,15 +292,15 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/ontap-sanhost/hu_sles_12SP5.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/ontap-sanhost/hu_veritas_8x.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/ontap-sanhost/hu_sles_12SP5.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/ontap-sanhost/hu_veritas_8x.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/ontap-sanhost/hu_sles_12SP5.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                  <a href="https://docs.netapp.com/ko-kr/ontap-sanhost/hu_veritas_8x.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/ontap-sanhost/hu_sles_12SP5.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/ontap-sanhost/hu_veritas_8x.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-tw/ontap-sanhost/hu_sles_12SP5.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                  <a href="https://docs.netapp.com/zh-tw/ontap-sanhost/hu_veritas_8x.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -1268,15 +1268,6 @@
             SLES 12
           </a>
           
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/ja-jp/ontap-sanhost/pdfs/pages/hu_sles_12SP5.pdf" >
-    <img src="/ja-jp/ontap-sanhost/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
-  
 
 
 
@@ -1323,6 +1314,15 @@
             Veritas の略
           </a>
           
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/ja-jp/ontap-sanhost/pdfs/pages/hu_veritas_8x.pdf" >
+    <img src="/ja-jp/ontap-sanhost/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
 
 
 
@@ -1712,7 +1712,7 @@
       </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> SLES 12</div>
       </a>
-      <ul><li class="  active "><a class="na-navbar-padding" href="/ja-jp/ontap-sanhost/hu_sles_12SP5.html">
+      <ul><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-sanhost/hu_sles_12SP5.html">
         12 SP 5
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-sanhost/hu_sles_12SP4.html">
         12 SP 4
@@ -1727,7 +1727,7 @@
       </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> Veritas の略</div>
       </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-sanhost/hu_veritas_8x.html">
+      <ul><li class="  active "><a class="na-navbar-padding" href="/ja-jp/ontap-sanhost/hu_veritas_8x.html">
         Infoscale 8.
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-sanhost/hu_veritas_7x.html">
         Infoscale 7.
@@ -1796,14 +1796,14 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">SUSE Linux Enterprise Server 12 SP5 と NetApp ONTAP を使用する</h1>
+  <h1 class="n-doc__component-detail-heading">VERITAS Infosscale 8 for LinuxとNetApp ONTAP の併用</h1>
 </div>
 
 
 <p class="page-details">
   
     
-    <time datetime="2022-05-13 18:21:36 +0000">05/13/2022</time>
+    <time datetime="2022-05-25 10:31:18 +0000">05/25/2022</time>
     
   
 
@@ -1813,20 +1813,30 @@
 <div id="toc" class="toc">
 <div id="toctitle">目次</div>
 <ul class="sectlevel1">
+<li><a href="#はじめに">はじめに</a></li>
 <li><a href="#linux-unified-host-utilities-のインストール">Linux Unified Host Utilities のインストール</a></li>
 <li><a href="#san-ツールキット">SAN ツールキット</a></li>
 <li><a href="#san-ブート中です">SAN ブート中です</a></li>
 <li><a href="#マルチパス">マルチパス</a></li>
-<li><a href="#推奨設定">推奨設定</a></li>
+<li><a href="#オール-san-アレイ構成">オール SAN アレイ構成</a></li>
+<li><a href="#non-asa-の設定">Non-ASA の設定</a></li>
+<li><a href="#マルチパス共存">マルチパス共存</a></li>
 <li><a href="#既知の問題および制限">既知の問題および制限</a></li>
-<li><a href="#リリースノート">リリースノート</a></li>
 </ul>
+</div>
+<div class="sect1">
+<h2 id="はじめに">はじめに</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>このドキュメントでは、FC、FCoE、およびiSCSIプロトコルを搭載したRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVERITAS Infoscaleストレージ基盤8シリーズのONTAP SANホスト構成設定について説明します。</p>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="linux-unified-host-utilities-のインストール">Linux Unified Host Utilities のインストール</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります <a href="https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&amp;platform=Linux" target="_blank" rel="noopener">"ネットアップサポートサイト"</a> 32 ビットおよび 64 ビットの .rpm ファイル。構成に適したファイルがわからない場合は、を使用してください <a href="https://mysupport.netapp.com/matrix/#welcome" target="_blank" rel="noopener">"NetApp Interoperability Matrix Tool で確認できます"</a> 必要なものを確認します。</p>
+<p>NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります <a href="https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab" target="_blank" rel="noopener">"ネットアップサポートサイト"</a> 64 ビットの .rpm ファイル。</p>
 </div>
 <div class="paragraph">
 <p>Linux Unified Host Utilities をインストールすることを強く推奨しますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。</p>
@@ -1835,9 +1845,10 @@
 <p>現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします <a href="https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&amp;platform=Linux" target="_blank" rel="noopener">"ネットアップサポートサイト"</a> サイトからホスト。</p>
+<p>から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします <a href="https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab" target="_blank" rel="noopener">"ネットアップサポートサイト"</a> ホストに接続します。</p>
 </li>
 <li>
 <p>次のコマンドを使用して、ソフトウェアパッケージをインストールします。</p>
@@ -1856,18 +1867,27 @@
 <p>このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</p>
 </div>
 <div class="paragraph">
-<p>次の例では 'lun lun show コマンドは 'LUN 情報を返します</p>
+<p>次の図では 'lun show コマンドは LUN 情報を返します</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre># sanlun lun show all
-controller(7mode/E-Series)/            device     host               lun
-vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
--------------------------------------------------------------------------
-data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT</pre>
+<pre># sanlun show -p -v SFRAC:/vol/fen1/lun1
+
+              ONTAP Path: SFRAC:/vol/fen1/lun1
+                     LUN: 0
+                LUN Size: 10g
+                 Product: cDOT
+                DMP NODE: sfrac0_47
+      Multipath Provider: Veritas
+----------  ------  ---------  ------  -------------------------------------
+Veritas     host    vserver    host:
+path        path    path     /dev/   chan:     vserver           major:
+state       state   type     node    id:lun    LIF                   minor
+----------  ------  ---------  ------  -------------------------------------
+enabled     up      active/non-optimized sdea   14:0:1:0   lif_10    128:32
+enabled (a) up      active/optimized     sdcj   14:0:0:0   lif_2      69:112
+enabled (a) up      active/optimized     sdb    13:0:0:0   lif_1       8:16
+enabled     up      active/non-optimized sdas   13:0:1:0   lif_9      66:192</pre>
 </div>
 </div>
 </div>
@@ -1876,7 +1896,10 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 <h2 id="san-ブート中です">SAN ブート中です</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <a href="https://mysupport.netapp.com/matrix/imt.jsp?components=91704;&amp;solution=1&amp;isHWU&amp;src=IMT" target="_blank" rel="noopener">"NetApp Interoperability Matrix Tool で確認できます"</a> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</p>
+<p>SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <a href="https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&amp;solution=1&amp;isHWU&amp;src=IMT" target="_blank" rel="noopener">"NetApp Interoperability Matrix Tool で確認できます"</a> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</p>
+</div>
+<div class="paragraph">
+<p>Veritas Support Portal （ Product Matrix 、 Platform Lookup 、 HCL Matrix ）を参照して、 SAN ブート構成がサポートされていること、および既知の警告を確認してください。</p>
 </div>
 <div class="olist arabic">
 <div class="title">手順</div>
@@ -1907,13 +1930,52 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 <h2 id="マルチパス">マルチパス</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SUSE Linux Enterprise Server 12 SP5 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP5 は、 ONTAP LUN を認識して適切に管理するために必要なすべての設定でコンパイルされます。</p>
+<p>構成がシステム要件を満たしていることを確認する必要があります。詳細については、ネットアップのInteroperability Matrix ToolとVeritas HCL Matrixを参照してください。</p>
 </div>
 <div class="paragraph">
-<p>「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。</p>
+<p>この例では 'vxdmpadm コマンドを使用して 'VxDMP マルチパスに ONTAP ターゲットアレイが接続されていることを確認します</p>
 </div>
-<div class="sect2">
-<h3 id="オール-san-アレイ構成">オール SAN アレイ構成</h3>
+<div class="listingblock">
+<div class="content">
+<pre># vxdmpadm listenclosure
+ENCLR_NAME   ENCLR_TYPE  ENCLR_SNO     STATUS      ARRAY_TYPE    LUN_COUNT    FIRMWARE
+=====================================================================================
+sfrac0       SFRAC       804Xw$PqE52h  CONNECTED   ALUA          43           9800
+# vxdmpadm getdmpnode
+NAME       STATE    ENCLR-TYPE  PATHS  ENBL  DSBL ENCLR-NAME
+===================================================================
+sfrac0_47  ENABLED  SFRAC       4      4     0    sfrac0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Veritas Dynamic Multipathing （ VxDMP ）を使用すると、ネットアップ LUN を Veritas Multipath Devices として要求するための設定タスクを実行する必要があります。Veritas からネットアップストレージシステムに提供される Array Support Library （ ASL ）と Array Policy Module （ APM ）パッケージをインストールしておく必要があります。Veritas Software Installation では、デフォルトの ASL APM パッケージが製品とともにロードされますが、 Veritas サポートポータルにリストされている最新のサポートされているパッケージを使用することをお勧めします。</p>
+</div>
+<div class="paragraph">
+<p>次の例は、 Veritas Support Library （ ASL ）および Array Policy Module （ APM ）の設定を表示します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># vxdmpadm list dmpnode dmpnodename=sfrac0_47 | grep asl
+asl        = libvxnetapp.so
+# vxddladm listversion |grep libvxnetapp.so
+libvxnetapp.so                  vm-8.0.0-rev-1   8.0
+
+# rpm -qa |grep VRTSaslapm
+VRTSaslapm-x.x.x.0000-RHEL8.X86_64
+vxddladm listsupport libname=libvxnetapp.so
+ATTR_NAME   ATTR_VALUE
+=========================================
+LIBNAME     libvxnetapp.so
+VID         NETAPP
+PID         All
+ARRAY_TYPE  ALUA, A/A</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="オール-san-アレイ構成">オール SAN アレイ構成</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。</p>
 </div>
@@ -1922,15 +1984,13 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 </div>
 <div class="listingblock">
 <div class="content">
-<pre># multipath -ll
-3600a0980383034466b2b4a3775474859 dm-3 NETAPP,LUN C-Mode
-size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
-|-+- policy='round-robin 0' prio=50 status=active
-| |- 1:0:8:1  sdb 8:16 active ready running
-| `- 2:0:8:1  sdd 8:48 active ready running
-`-+- policy='round-robin 0' prio=10 status=enabled
-  |- 1:0:9:1  sdc 8:32 active ready running
-  `- 2:0:9:1  sde 8:64 active ready running</pre>
+<pre># vxdmpadm getsubpaths dmpnodename-sfrac0_47
+NAME  STATE[A]   PATH-TYPE[M]   CTLR-NAME   ENCLR-TYPE  ENCLR-NAME  ATTRS  PRIORITY
+===================================================================================
+sdas  ENABLED (A)    Active/Optimized c13   SFRAC       sfrac0     -      -
+sdb   ENABLED(A) Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdea  ENABLED (A)    Active/Optimized c14   SFRAC       sfrac0     -</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1946,8 +2006,10 @@ size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="non-asa-の設定">Non-ASA の設定</h3>
+</div>
+<div class="sect1">
+<h2 id="non-asa-の設定">Non-ASA の設定</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</p>
 </div>
@@ -1956,15 +2018,13 @@ size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>#multipath -ll
-3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
-size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-|-+- policy='service-time 0' prio=50 status=active
-| |- 11:0:1:0 sdj 8:144 active ready running
-| |- 11:0:2:0 sdr 65:16 active ready running
-`-+- policy='service-time 0' prio=10 status=enabled
-|- 11:0:0:0 sdb 8:i6 active ready running
-|- 12:0:0:0 sdz 65:144 active ready running</pre>
+<pre># vxdmpadm getsubpaths dmpnodename-sfrac0_47
+NAME  STATE[A]   PATH-TYPE[M]   CTLR-NAME   ENCLR-TYPE  ENCLR-NAME  ATTRS  PRIORITY
+===================================================================================
+sdas  ENABLED     Active/Non-Optimized c13   SFRAC       sfrac0     -      -
+sdb   ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1979,78 +2039,12 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 </tr>
 </table>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="推奨設定">推奨設定</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="推奨設定">推奨設定</h3>
+<div class="sect3">
+<h4 id="veritas-multipath-の設定">Veritas Multipath の設定</h4>
 <div class="paragraph">
-<p>SUSE Linux Enterprise Server 12 SP5 OS は、 ONTAP LUN を認識し、すべての設定パラメータを正しく自動的に設定するようにコンパイルされています。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます</p>
-</div>
-<div class="paragraph">
-<p>このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># systemctl enable multipathd
-# systemctl start multipathd</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、「 multipath.conf 」ファイルに直接何も追加する必要はありません。</p>
-</div>
-<div class="paragraph">
-<p>不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。</p>
-</div>
-<div class="paragraph">
-<p>「 &lt;DevId&gt; 」を除外するデバイスの WWID の文字列に置き換えます。次のコマンドを使用して WWID を特定します。</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>blacklist {
-        wwid &lt;DevId&gt;
-        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-        devnode "^hd[a-z]"
-        devnode "^cciss.*"
-}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>この例では '`d`s はブラックリストに登録する必要があるローカル SCSI ディスクです</p>
-</div>
-<div class="olist arabic">
-<div class="title">手順</div>
-<ol class="arabic">
-<li>
-<p>次のコマンドを実行して WWID を特定します。</p>
-<div class="literalblock">
-<div class="content">
-<pre># /lib/udev/scsi_id -gud /dev/sda
-360030057024d0730239134810c0cb833</pre>
-</div>
-</div>
-</li>
-<li>
-<p>/etc/multipath.conf 内のブラックリストスタンザに、次の WWID を追加します。</p>
-<div class="literalblock">
-<div class="content">
-<pre>blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください</p>
-</div>
-<div class="paragraph">
-<p>次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</p>
+<p>ストレージフェイルオーバー処理でシステム構成を最適化するために、ネットアップでは次の Veritas VxDMP チューニング可能なオプションを推奨します。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2065,137 +2059,127 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">detect_prio</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">はい。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dmp_lun_retry_timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DEV_DETION_TMO</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">" 無限 "</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dmp_path_age</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">フェイルバック</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">即時</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fast_io_fail_TMO</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">の機能</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"2 pg_init_retries 50"</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">flush_on_last_del</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">はい。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hardware_handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">パスの再試行なし</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">キュー</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">path_checker です</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">" tur "</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">path_grouping_policy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">「 group_by_prio 」</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">path_selector</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"service-time 0"</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">polling _interval （ポーリング間隔）</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prio</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ONTAP</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">プロダクト</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LUN. *</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">retain_attached _hw_handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">はい。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RR_weight を指定します</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">" 均一 "</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ユーザーフレンドリ名</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">いいえ</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ベンダー</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ネットアップ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dmp_restore_interval の値です</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合 ' マルチパス .conf ファイルは 'path_checker' および ONTAP LUN と互換性のない 'no-path_retry' の値を定義しますホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</p>
+<p>DMP チューニング可能な値は 'vxdmpadm コマンドを使用して ' 次のようにオンラインで設定します</p>
+</div>
+<div class="paragraph">
+<p>#vxdmpadm settune dmp_tadate=value</p>
+</div>
+<div class="paragraph">
+<p>これらの調整可能な値は '#vxdmpadm gettune' を使用して動的に確認できます</p>
+</div>
+<div class="paragraph">
+<p>次の例は、 SAN ホストの実質的な VxDMP 調整可能な設定を示しています。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>defaults {
- path_checker readsector0
- no_path_retry fail
-}
-devices {
- device {
- vendor "NETAPP "
- product "LUN.*"
- no_path_retry queue
- path_checker tur
- }
-}</pre>
+<pre># vxdmpadm gettune
+
+Tunable                    Current Value    Default Value
+dmp_cache_open                      on                on
+dmp_daemon_count                    10                10
+dmp_delayq_interval                 15                15
+dmp_display_alua_states             on                on
+dmp_fast_recovery                   on                on
+dmp_health_time                     60                60
+dmp_iostats_state              enabled           enabled
+dmp_log_level                        1                 1
+dmp_low_impact_probe                on                on
+dmp_lun_retry_timeout               60                30
+dmp_path_age                       120               300
+dmp_pathswitch_blks_shift            9                 9
+dmp_probe_idle_lun                  on                on
+dmp_probe_threshold                  5                 5
+dmp_restore_cycles                  10                10
+dmp_restore_interval                60               300
+dmp_restore_policy         check_disabled   check_disabled
+dmp_restore_state              enabled           enabled
+dmp_retry_count                      5                 5
+dmp_scsi_timeout                    20                20
+dmp_sfg_threshold                    1                 1
+dmp_stat_interval                    1                 1
+dmp_monitor_ownership               on                on
+dmp_monitor_fabric                  on                on
+dmp_native_support                 off               off</pre>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="プロトコル別の設定">プロトコル別の設定</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>FC / FCoE のみ：デフォルトのタイムアウト値を使用します。</p>
+</li>
+<li>
+<p>iSCSI の場合のみ： 'replacement_timeout' パラメータの値を 120 に設定します</p>
+<div class="paragraph">
+<p>iscsi 'replacement_timeout' パラメータは、タイムアウトしたパスまたはセッションが再確立されるまで iSCSI レイヤが待機してからコマンドをすべて失敗させるまでの時間を制御します。iSCSI 構成ファイルでは 'replacement_timeout' の値を 120 に設定することをお勧めします</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">例</div>
+<div class="content">
+<pre># grep replacement_timeout /etc/iscsi/iscsid.conf
+node.session.timeo.replacement_timeout = 120</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="os-プラットフォーム別の設定">OS プラットフォーム別の設定</h4>
+<div class="paragraph">
+<p>Red Hat Enterprise Linux 7 および 8 シリーズでは ' ストレージ・フェイルオーバー・シナリオで Veritas Infosscale 環境をサポートするために 'udev rport' 値を設定する必要がありますファイル /etc/udev/rules.d/ 40-rport.rules` を次のファイル内容で作成します</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># cat /etc/udev/rules.d/40-rport.rules
+KERNEL=="rport-*", SUBSYSTEM=="fc_remote_ports", ACTION=="add", RUN+=/bin/sh -c 'echo 20 &gt; /sys/class/fc_remote_ports/%k/fast_io_fail_tmo;echo 864000 &gt;/sys/class/fc_remote_ports/%k/dev_loss_tmo'"</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="注記">
+</td>
+<td class="content">
+VERITAS 固有のその他の設定については ' 標準の VERITAS Infosscale 製品マニュアルを参照してください
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="マルチパス共存">マルチパス共存</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Veritas Infoscale 、 Linux Native Device Mapper 、 LVM ボリュームマネージャなどの異種マルチパス環境がある場合は、構成設定について Veritas Product Administration ガイドを参照してください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="既知の問題および制限">既知の問題および制限</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">NetApp バグ ID</th>
-<th class="tableblock halign-left valign-top">タイトル</th>
-<th class="tableblock halign-left valign-top">説明</th>
-<th class="tableblock halign-left valign-top">Bugzilla ID</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&amp;Display=1284293" target="_blank" rel="noopener">"1284293"</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ストレージフェイルオーバー処理中に、 QLogic QLE2562 8GB FC HBA を搭載した SLES12 SP5 でカーネルの停止が発生します</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">QLogic QLE2562 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した SLES12 SP5 カーネルで、ストレージフェイルオーバー処理中にカーネルが停止します。カーネルが中断すると SLES12 SP5 が再起動し、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、停止の原因を特定します。QLogic QLE2562 HBA イベントを使用したストレージフェイルオーバーは、「 thread_Info ： 8affffedf723c2c0 」モジュールに影響します。次の文字列を検索して、 vmcore ファイルでこのイベントを探します。 "[thread _Info: ffff8aedf723c2c0]"カーネルが停止したら、ホスト OS をリブートしてリカバリできるようにします。次に、アプリケーションを再起動します。</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://bugzilla.suse.com/show_bug.cgi?id=1157966" target="_blank" rel="noopener">"1157966"</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="リリースノート">リリースノート</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="asm-ミラーリング">ASM ミラーリング</h3>
 <div class="paragraph">
-<p>ASMミラーリングでは、ASMが問題を認識して代替障害グループに切り替えるために、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください <a href="https://www.netapp.com/us/media/tr-3633.pdf" target="_blank" rel="noopener">"ONTAP を基盤にした Oracle データベース"</a> を参照してください。</p>
-</div>
+<p>既知の問題や制限はありません。</p>
 </div>
 </div>
 </div>
