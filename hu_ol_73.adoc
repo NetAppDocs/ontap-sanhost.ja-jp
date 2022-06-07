@@ -232,9 +232,6 @@ NOTE: Oracle Linux 7.3 RedHat Enterprise カーネル (RHCCK) を設定するに
 Oracle Linux 7.3 には既知の問題はありません。
 
 
-NOTE: Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください link:hu_rhel_73.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux （ RHEL ） 7.3 の場合
-
-
 
 == リリースノート
 

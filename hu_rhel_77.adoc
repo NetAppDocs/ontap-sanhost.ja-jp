@@ -271,6 +271,9 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 | NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
 
+| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 | 該当なし 
+
+
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1258856["1258856"^] | ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC を搭載した RHEL7U7 で、リモートポートがブロック状態になっています | ストレージフェイルオーバー処理中に、 LPe16002 16Gb FC アダプタを搭載した RHEL 7.7 ホストでは、リモートポートがブロック状態に移行する可能性があります。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1743667["1743667"^] 
 
 

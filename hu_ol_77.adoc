@@ -234,6 +234,9 @@ NOTE: Oracle Linux 7.7 Red Hat Enterprise Kernel （ RHCK ）を設定するに�
 | NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
 
+| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 | 該当なし 
+
+
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1311575["1311575"^] | Qlogic QLE2672 （ 16G ）を使用してストレージをフェイルオーバーする際に、読み取り / 書き込み処理でセカンダリパスを経由できなかったために I/O の遅延が発生する | Oracle Linux 7.7 カーネル（ 5.4.17-2011.0.7.el7uek.x86_64 ）で QLogic QLE2672 16G HBA を使用したストレージフェイルオーバー処理で、 I/O 処理がセカンダリパス経由で再開されないことがあります。ストレージフェイルオーバー中にプライマリパスがブロックされているために I/O の進行が停止した場合、セカンダリパス経由で I/O 処理が再開されず、 I/O に遅延が生じる可能性があります。I/O 処理は、ストレージフェイルオーバーのギブバック処理が完了したあとにプライマリパスがオンラインになった時点で再開されます。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=17171["17171"^] 
 
 
@@ -245,5 +248,3 @@ NOTE: Oracle Linux 7.7 Red Hat Enterprise Kernel （ RHCK ）を設定するに�
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246327["1246327"^] | I/O 遅延が確認され、かつポートがブロックされた状態に移行しています。 Qlogic QLE2672 （ 16G ）および QLE2742 （ 32G ）を使用してストレージフェイルオーバーを実行している場合、この状態は発生しません。 | ストレージフェイルオーバー処理中に、 Fibre Channel （ FC ）リモートポートが Red Hat Enterprise Linux （ RHEL ） 7.6 で QLogic QLE2672 16G ホストでブロックされることがあります。ストレージノードが停止すると論理インターフェイスが停止するため、リモートポートでストレージノードのステータスがブロック済みに設定されます。QLogic QLE2672 16G ホストと QLE2742 32GB Fibre Channel （ FC ）ホストバスアダプタ（ HBA ）の両方を実行している場合、ブロックされたポートが原因で IO の進捗が停止することがあります。ストレージノードが最適状態に戻ると、論理インターフェイスも稼働し、リモートポートがオンラインになります。ただし、リモートポートは引き続きブロックされる場合があります。このブロック状態は、マルチパスレイヤで LUN に障害が発生したと登録されます。リモートポートの状態は、次のコマンドで確認できます。 # cat /sys/class/fc_remote_ports/rport-*/port_stat Blocked Blocked Online Online | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16853["16853"^] 
 |===
-
-NOTE: Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください link:hu_rhel_77.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux （ RHEL ） 7.7 の場合。

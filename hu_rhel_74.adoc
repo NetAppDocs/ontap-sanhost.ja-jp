@@ -266,8 +266,13 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 == 既知の問題および制限
 
-RHEL 7.4 には既知の問題はありません。
+[cols="4*"]
+|===
+| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
+
+| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 | 該当なし 
+|===
 
 
 == リリースノート

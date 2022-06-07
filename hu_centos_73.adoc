@@ -264,7 +264,7 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 == 既知の問題および制限
 
-CentOS （ Red Hat 互換カーネル）の既知の問題については、を参照してください link:hu_rhel_73.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux （ RHEL ） 7.3 の場合
+CentOS 7.3には既知の問題はありません。
 
 
 
