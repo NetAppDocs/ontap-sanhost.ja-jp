@@ -2373,4 +2373,42 @@
   <block id="3c0005e386c72a025042c9cd742e78cf" category="paragraph">CentOS 7.2の既知の問題はありません。</block>
   <block id="4a77bd6ca1098e847cb75095287cdf8d" category="paragraph">CentOS 7.3には既知の問題はありません。</block>
   <block id="ebc6dd08dd10ab545441a995fcd41e3f" category="paragraph">CentOS 7.1に関する既知の問題はありません。</block>
+  <block id="4391e4a69364ebb845d6562846716af4" category="doc">『AIX Host Utilities 6.1 Release Notes』</block>
+  <block id="81bca837c40611da67f18f391bb32923" category="paragraph">このリリースノートドキュメントには、AIX Host Utilities 6.1リリースに関する最新情報が記載されています。これには、既知の問題、制限事項、ONTAP ストレージシステムの構成と管理に関する最新情報が含まれています。</block>
+  <block id="ebdfd2288177a34c60438efc134f52c4" category="paragraph">『リリースノート』ドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。</block>
+  <block id="cfbc0c9386472f86132990683d16796f" category="section-title">AIX Host Utilities 6.1リリースの概要</block>
+  <block id="f418c08cd071f42a28a07d007dd30c34" category="paragraph">AIX Host Utilitiesを使用すると、AIXホストをネットアップストレージに接続できます。AIX Host Utilitiesは、複数の環境とFC、FCoE、iSCSIの各プロトコルをサポートしています。サポートされている環境は、AIX MPIO（ネイティブOS）とPowerVMです。</block>
+  <block id="66c2d1ced882bffc99d6170e17a232ef" category="paragraph">オペレーティングシステムのバージョンおよびHost Utilitiesがサポートする更新については、を参照してください <block ref="7ce73c7ae176dd6b577d1c14b445f0cd" category="inline-link-macro-rx"></block>。</block>
+  <block id="3f26b03249bcf33b72a6e9f71d4c4282" category="paragraph">PowerVM機能の詳細については、IBM PowerVM Live Partition Mobility Red Bookを参照してください。</block>
+  <block id="7388ad4cb5a7feb6810701b52e7fcead" category="paragraph">Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、ネットアップサポートサイトからダウンロードできます。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。</block>
+  <block id="96fc0af94642a00891e1f664446fd1e7" category="admonition">clustered Data ONTAP 環境では、すべてのFCイニシエータおよびFCoEイニシエータに対して動的追跡を有効にする必要があります。</block>
+  <block id="156a1e571b521a8e82a746701d96aeca" category="section-title">AIX Host Utilities 6.1の機能拡張</block>
+  <block id="40289338bc754c0009f5e9a173f6e09a" category="list-text">AIX Host Utilities 6.1では、以前のバージョンのAIXホストOSで発生したメモリ障害問題 のサポートが追加されています。AIX Host Utilities 6.1では、sanlunバイナリのみが変更されています。MPIOおよび関連するODMは変更されません。</block>
+  <block id="1d453c5c717af73a82e2d6b6cedf1fce" category="section-title">Fixed問題 の略</block>
+  <block id="31e6a451d2627922bc41740af153d931" category="cell">Bugid</block>
+  <block id="ce88cf74aded8b7f41efd83d007f21f2" category="inline-link-macro">872113</block>
+  <block id="91100cceb259d6da4a14b08359cc3eb8" category="cell"><block ref="91100cceb259d6da4a14b08359cc3eb8" category="inline-link-macro-rx"></block></block>
+  <block id="3a2f9996a60f471edd9edae7099e1d69" category="cell">「sanlun lun show–p」コマンド原因 を使用すると、一部のバージョンのAIXホストOSでメモリ障害が発生する可能性があります</block>
+  <block id="74aed4fe3d0a3c89158ce037c3d1305f" category="cell">AIXコアダンプの断続的なインスタンスは、「sanlun lun show -p」コマンドの実行中に報告されます。sanlunの「lun show -p」オプションは、ホストで検出されたすべてのLUNのマルチパス情報を提供します。この情報を整理して、どのSCSIデバイスがソースLUN、パスの状態（プライマリまたはセカンダリ）、およびその他の詳細情報を提供します。ただし、「sanlun lun show -p」コマンドを実行している一部のAIXホストでは、原因 にメモリ障害が発生する可能性があります。この問題 は、sanlunコマンドに「-p」オプションを指定した場合にのみ表示されます。</block>
+  <block id="18dfadbcd8c4c8fb9d50fac0fb3aeb16" category="paragraph">Host Utilitiesを効率的に使用するには、ネットワークなどの特定の機能に関する既知の問題、または特定のバージョンのオペレーティングシステムなど、Host Utilitiesがサポートしない機能によってパフォーマンスが低下する可能性があることに注意してください。</block>
+  <block id="b066ca6122c9857ad1ee3a44f18cc5e7" category="cell">バグ ID</block>
+  <block id="31a061fd71807c34f31d154d95c10691" category="inline-link-macro">1069147</block>
+  <block id="e8c18173fb06e0c2666a1fd7a0fbe17b" category="cell"><block ref="e8c18173fb06e0c2666a1fd7a0fbe17b" category="inline-link-macro-rx"></block></block>
+  <block id="cad62af5cd7e448be659302e1eba73b4" category="cell">AIX HU sanlunで、HBA速度が正しくないと報告される</block>
+  <block id="64c42781be8a2208b9ffdc60d28bc076" category="cell">sanlun fcp show adapter–v’コマンドの実行時に、誤ったHBA速度を表示したインスタンスが報告されます。「sanlun fcp show adapter–v」コマンドを使用すると、アダプタのサポート速度やネゴシエート速度などのHBAカード情報が表示されます。これは問題 のみのレポートであるようです。実際の速度を確認するには、「fcstat fcsx」コマンドを使用します。</block>
+  <block id="f83b431a86f1d264a4fc51c9a667a1ee" category="paragraph"><block ref="2f247b6bc715dd3b3f556a7c1dea26c9" category="inline-link-macro-rx"></block> 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。使用するキーワードの組み合わせとバグの種類には、次のものがあります。</block>
+  <block id="31dade612c24301b89dad4a9747ed73e" category="list-text">FCP General：特定のホストに関連付けられていないFCおよびHBAのバグが表示されます。</block>
+  <block id="09244b95824d6e702b6eaab2034bdeec" category="list-text">FCP - AIXの場合</block>
+  <block id="bba7946c172f683f15783fc909c9d5cf" category="paragraph">には、SAN Host Utilitiesのマニュアルが含まれています <block ref="257925f1258b094e61a79b35ac8d3a5c" category="inline-link-macro-rx"></block> ドキュメントONTAP SANホストの構成に関するドキュメントは、SANホストの現在のすべてのリリースをカバーしており、これまでのものは累積的ですリリース間の機能の違いは、コンテキストに基づいて示されます。</block>
+  <block id="50f66ded0854572ca8ed0f243a0ec38c" category="list-text">。 <block ref="206633049dac20bcc789824bc56ff330" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
+  <block id="e01ab2a4280a36b99ef1be4dac2123ef" category="inline-link-macro">ONTAP 『SANアドミニストレーションガイド』</block>
+  <block id="ec263c216b2591d09b1b18cac1d6d689" category="list-text">。 <block ref="7aab157b9ae6c78afbd7e0b3cade79f0" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
+  <block id="012e2372f667cb2ee5fbb880bb6b907f" category="list-text">。 <block ref="70e6266524a3fa8cf76b1611cdf89cf0" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
+  <block id="1c2375a9f8b4b3c327caa1bfc9cb07c2" category="list-text"><block ref="1c2375a9f8b4b3c327caa1bfc9cb07c2" category="inline-link-macro-rx"></block></block>
+  <block id="4d0377323e0534441af71e05c931ef5c" category="list-text"><block ref="6ec228dfe84ccdb5f038627d2fe43701" category="inline-link-macro-rx"></block> （旧称は『システム構成ガイド』）</block>
+  <block id="b90eb3e688d069ada30157d4030b66f5" category="inline-link-macro">サポートされているファイバチャネルSANトポロジ</block>
+  <block id="a1976a5397f63f5caa13a0e86733d543" category="list-text"><block ref="a1976a5397f63f5caa13a0e86733d543" category="inline-link-macro-rx"></block></block>
+  <block id="c0965c2d259d63a3e2cbab60c837eaaa" category="inline-link-macro">Host Utilitiesを使用するためのホストの設定</block>
+  <block id="903a5a2a39aaeff84744ed68f14407d4" category="list-text"><block ref="903a5a2a39aaeff84744ed68f14407d4" category="inline-link-macro-rx"></block></block>
+  <block id="2ee1fba4400a50245e66ef649b54d588" category="sidebar">AIX HU 6.1をインストールします</block>
 </blocks>

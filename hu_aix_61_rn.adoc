@@ -1,0 +1,102 @@
+---
+sidebar: sidebar 
+permalink: hu_aix_61_rn.html 
+keywords: host utilities, aix, 6.1 netapp, ontap 
+summary: Linux Unified Host Utilities 7.1のリリースノート 
+---
+= 『AIX Host Utilities 6.1 Release Notes』
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+このリリースノートドキュメントには、AIX Host Utilities 6.1リリースに関する最新情報が記載されています。これには、既知の問題、制限事項、ONTAP ストレージシステムの構成と管理に関する最新情報が含まれています。
+
+『リリースノート』ドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
+
+
+
+== AIX Host Utilities 6.1リリースの概要
+
+AIX Host Utilitiesを使用すると、AIXホストをネットアップストレージに接続できます。AIX Host Utilitiesは、複数の環境とFC、FCoE、iSCSIの各プロトコルをサポートしています。サポートされている環境は、AIX MPIO（ネイティブOS）とPowerVMです。
+
+[NOTE]
+====
+オペレーティングシステムのバージョンおよびHost Utilitiesがサポートする更新については、を参照してください link:https://mysupport.netapp.com/matrix/imt.jsp?components=85803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^]。
+
+PowerVM機能の詳細については、IBM PowerVM Live Partition Mobility Red Bookを参照してください。
+
+====
+Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、ネットアップサポートサイトからダウンロードできます。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。
+
+
+NOTE: clustered Data ONTAP 環境では、すべてのFCイニシエータおよびFCoEイニシエータに対して動的追跡を有効にする必要があります。
+
+
+
+== AIX Host Utilities 6.1の機能拡張
+
+* AIX Host Utilities 6.1では、以前のバージョンのAIXホストOSで発生したメモリ障害問題 のサポートが追加されています。AIX Host Utilities 6.1では、sanlunバイナリのみが変更されています。MPIOおよび関連するODMは変更されません。
+
+
+
+
+== Fixed問題 の略
+
+[cols="3"]
+|===
+| Bugid | タイトル | 説明 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/872113["872113"] | 「sanlun lun show–p」コマンド原因 を使用すると、一部のバージョンのAIXホストOSでメモリ障害が発生する可能性があります | AIXコアダンプの断続的なインスタンスは、「sanlun lun show -p」コマンドの実行中に報告されます。sanlunの「lun show -p」オプションは、ホストで検出されたすべてのLUNのマルチパス情報を提供します。この情報を整理して、どのSCSIデバイスがソースLUN、パスの状態（プライマリまたはセカンダリ）、およびその他の詳細情報を提供します。ただし、「sanlun lun show -p」コマンドを実行している一部のAIXホストでは、原因 にメモリ障害が発生する可能性があります。この問題 は、sanlunコマンドに「-p」オプションを指定した場合にのみ表示されます。 
+|===
+
+
+== 既知の問題および制限
+
+Host Utilitiesを効率的に使用するには、ネットワークなどの特定の機能に関する既知の問題、または特定のバージョンのオペレーティングシステムなど、Host Utilitiesがサポートしない機能によってパフォーマンスが低下する可能性があることに注意してください。
+
+[cols="3"]
+|===
+| バグ ID | タイトル | 説明 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1069147["1069147"] | AIX HU sanlunで、HBA速度が正しくないと報告される | sanlun fcp show adapter–v’コマンドの実行時に、誤ったHBA速度を表示したインスタンスが報告されます。「sanlun fcp show adapter–v」コマンドを使用すると、アダプタのサポート速度やネゴシエート速度などのHBAカード情報が表示されます。これは問題 のみのレポートであるようです。実際の速度を確認するには、「fcstat fcsx」コマンドを使用します。 
+|===
+link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。使用するキーワードの組み合わせとバグの種類には、次のものがあります。
+
+* FCP General：特定のホストに関連付けられていないFCおよびHBAのバグが表示されます。
+* FCP - AIXの場合
+
+
+
+
+== SANホスト構成のドキュメントについて
+
+には、SAN Host Utilitiesのマニュアルが含まれています link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["ONTAP SAN ホスト構成"] ドキュメントONTAP SANホストの構成に関するドキュメントは、SANホストの現在のすべてのリリースをカバーしており、これまでのものは累積的ですリリース間の機能の違いは、コンテキストに基づいて示されます。
+
+
+
+== 製品マニュアルとその他の情報の参照先
+
+ネットアップのすべての製品のマニュアルにアクセスし、ネットアップ社内サイトの製品ドキュメントページで、テクニカルレポートやホワイトペーパーなど、製品に関するその他の情報を参照できます。
+
+* ONTAP ストレージ・システムの構成と管理*
+
+* 。 link:https://docs.netapp.com/us-en/ontap/setup-upgrade/index.html["『ONTAP ソフトウェアセットアップガイド』"] ONTAP のバージョンに応じて更新します
+* 。 link:https://docs.netapp.com/us-en/ontap/san-management/index.html["ONTAP 『SANアドミニストレーションガイド』"] ONTAP のバージョンに応じて更新します
+* 。 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP リリースノート"] ONTAP のバージョンに応じて更新します
+* link:https://mysupport.netapp.com/site/["NetApp Interoperability Matrix を参照してください"]
+* link:https://hwu.netapp.com/["Hardware Universe"] （旧称は『システム構成ガイド』）
+* link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["サポートされているファイバチャネルSANトポロジ"]
+* link:https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61343["Host Utilitiesを使用するためのホストの設定"]
+

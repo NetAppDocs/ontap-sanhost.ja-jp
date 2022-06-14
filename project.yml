@@ -14,7 +14,11 @@ sidebar:
   - title: SAN Host Utilities の略語
     entries:
     - title: AIX Host Utilities の略語
-      url: "/hu_aix_61.html"
+      entries:
+      - title: AIX HU 6.1をインストールします
+        url: "/hu_aix_61.html"
+      - title: リリースノート
+        url: "/hu_aix_61_rn.html"
     - title: HPUX ホストユーティリティ
       url: "/hu_hpux_60.html"
     - title: Linux Unified Host Utilities のこと
