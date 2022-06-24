@@ -1566,7 +1566,6 @@
   <block id="0abc977b99b5f67c94ba5221df34ff03" category="admonition">Oracle Linux 7.8 RedHat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="f258b7d81a3180e673755835c6a903ac" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.8 に対応しています。</block>
   <block id="33fb3916b5bbccadc7502b97d2b47e0a" category="summary">ONTAP で Citrix XenServer 7.x を使用する方法について説明します</block>
   <block id="9873f1b83211d16cf532c7bbb3c830b9" category="doc">Citrix XenServer と NetApp ONTAP を使用する方法について説明します</block>
-  <block id="c2c2558eb447d94ed557cacb48863870" category="paragraph">このドキュメントでは、 FC 、 FCoE 、 iSCSI の各プロトコルを使用する Citrix XenServer 7 シリーズ OS リリースでの ONTAP SAN ホストの構成設定について説明します。</block>
   <block id="a51e3210f96458fa393e6f4bf88caabc" category="paragraph">Citrix XenServer でのマルチパスのサポートは、 Device Mapper multipathd コンポーネントに基づいています。Device Mapper ノードは、 XenServer に提供されるすべての LUN に対して自動的には作成されず、 Storage Management Layer （ API ）で LUN がアクティブに使用されている場合にのみプロビジョニングされます。Citrix XenServer Storage Manager API プラグインは、マルチパスノードのアクティブ化と非アクティブ化を自動的に処理します。</block>
   <block id="614673c0b1eeb91e8ffc86cde6faa93b" category="paragraph">Integrated Multipath Management のアーキテクチャとの互換性がないため、 Citrix XenCenter アプリケーションを使用してストレージ構成を管理することを推奨します。Device Mapper テーブルのステータスを手動で照会したり、システム上のアクティブな Device Mapper マルチパスノードのリストを表示したりする必要がある場合は、 /usr/sbin/mpathutil status コマンドを使用して ONTAP LUN の設定を確認できます。詳細については、 Citrix XenServer の標準的なベンダー提供のドキュメントを参照してください。</block>
   <block id="9fc86c956b59ea355d470ac30580447a" category="paragraph">Citrix XenServer 7.x OS は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされます。Citrix XenServer 7.x の場合、空のゼロバイト「 /etc/multipath.conf 」ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。</block>
@@ -2417,4 +2416,7 @@
   <block id="98d83a607473e5d6dab1096f6758273a" category="paragraph">RHEL 8.6 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定します。</block>
   <block id="18b8e1deb73eabf9425b04753d2b006d" category="paragraph">RHEL 8.6には、既知の問題はありません。</block>
   <block id="9b402891c0d38b9c654dcfa36df9d722" category="sidebar">8.6</block>
+  <block id="cebcd1a5ff2049be4533aaf6b185029d" category="summary">『Release Notes for AIX Host Utilities 6.1』</block>
+  <block id="b46a43d1dd4c2f14b94228f8a8b1e193" category="paragraph">このドキュメントでは、FC、FCoE、およびiSCSIの各プロトコルを使用するCitrix XenServer 7シリーズOSリリースでのONTAP SANホストの構成設定について説明します。</block>
+  <block id="c03432d938277a67cb7c8ce5d783b2ca" category="paragraph">次の例は、4つのアクティブ/最適パスがすべて設定されたONTAP LUNに対する正しい出力を表示します。</block>
 </blocks>
