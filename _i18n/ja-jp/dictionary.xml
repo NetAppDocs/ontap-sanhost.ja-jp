@@ -2419,4 +2419,11 @@
   <block id="cebcd1a5ff2049be4533aaf6b185029d" category="summary">『Release Notes for AIX Host Utilities 6.1』</block>
   <block id="b46a43d1dd4c2f14b94228f8a8b1e193" category="paragraph">このドキュメントでは、FC、FCoE、およびiSCSIの各プロトコルを使用するCitrix XenServer 7シリーズOSリリースでのONTAP SANホストの構成設定について説明します。</block>
   <block id="c03432d938277a67cb7c8ce5d783b2ca" category="paragraph">次の例は、4つのアクティブ/最適パスがすべて設定されたONTAP LUNに対する正しい出力を表示します。</block>
+  <block id="c1326fec4f12ec093296d507d6b6e33a" category="summary">ONTAP でOracle Linux 8.6を使用する方法について説明します</block>
+  <block id="b53c88044f47f5b72ea564dc18bd61d6" category="doc">NetApp ONTAP でOracle Linux 8.6を使用する</block>
+  <block id="fa491ee178ddf6e96992dad027671112" category="paragraph">Oracle Linux (OL) 8.6の場合は'/etc/multipath.conf'ファイルが存在している必要がありますが'ファイルに特定の変更を加える必要はありませんOL 8.6は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされます。</block>
+  <block id="ea11e68a3ea4e3736ee4012985057991" category="paragraph">Oracle Linux 8.6 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定します。</block>
+  <block id="805a476dee7a3e2c96d744778fabadf2" category="admonition">Oracle Linux 8.6 Red Hat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.6の場合。</block>
+  <block id="eb39e2dacde05fafa987d04a67eb15ff" category="paragraph">Oracle Linux 8.6には、既知の問題はありません。</block>
+  <block id="5ebe49302359fb6e4d762fdceb288864" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="10ee08d1b3d909bc389f3b317276174b" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
 </blocks>
