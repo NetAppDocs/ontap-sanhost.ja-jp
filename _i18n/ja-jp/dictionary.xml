@@ -2426,4 +2426,9 @@
   <block id="805a476dee7a3e2c96d744778fabadf2" category="admonition">Oracle Linux 8.6 Red Hat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.6の場合。</block>
   <block id="eb39e2dacde05fafa987d04a67eb15ff" category="paragraph">Oracle Linux 8.6には、既知の問題はありません。</block>
   <block id="5ebe49302359fb6e4d762fdceb288864" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="10ee08d1b3d909bc389f3b317276174b" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
+  <block id="c0555368ec9919ce9b1c9712c00dbb76" category="section-title">SM-BCによるAIXサポート</block>
+  <block id="a87c560166b76536072b61a847b883d2" category="paragraph">ONTAP 9.11.1以降では、SM-BCでAIXがサポートされます。AIX構成では、プライマリクラスタが「アクティブ」クラスタになります。</block>
+  <block id="244c37afdc307098d90d497c08f88069" category="paragraph">AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーが発生するたびに、ホストで再スキャンを実行してI/O処理を再開する必要があります。</block>
+  <block id="ba865279c8bb1f9a639935e3cb2406b0" category="inline-link-macro">SnapMirrorのビジネス継続性を実現するためのAIXホストの構成方法（SM-BC）</block>
+  <block id="ce41c78a17a5925101abf561eb152ad3" category="paragraph">AIX for SM-BCを設定する方法については、ナレッジベースの記事を参照してください <block ref="bfd553e439e8f0adcfe76e0cf010b4a4" category="inline-link-macro-rx"></block>。</block>
 </blocks>
