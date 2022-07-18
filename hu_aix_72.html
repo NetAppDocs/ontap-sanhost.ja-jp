@@ -258,11 +258,13 @@
           <div id="react-search" 
           data-search-html="/ja-jp/ontap-sanhost/search.html"
           data-type="widget" 
-          data-placeholder="ドキュメントを検索" 
-          data-no-results-found="{query}に該当する結果はありません" 
-          data-did-you-mean="{suggestion} を検索" 
-          data-no-results-found-did-you-mean="{query} に該当する結果はありません。{suggestion} の間違いではありませんか?" 
-          data-results-found="{hitCount} 件見つかりました"  
+          data-placeholder="ドキュメントを検索"
+          data-no-results-found="{query}に該当する結果はありません"
+          data-did-you-mean="{suggestion} を検索"
+          data-no-results-found-did-you-mean="{query} に該当する結果はありません。{suggestion} の間違いではありませんか?"
+          data-results-found="{hitCount} 件見つかりました"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
           data-sk-es-pf-indexes=""
           data-flavor=""></div>
           <button class="n-property-bar__search-toggle-button" type="button">
@@ -1763,7 +1765,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-03 10:27:34 +0000">05/03/2022</time>
+    <time datetime="2022-07-18 13:29:48 +0000">07/18/2022</time>
     
   
 
@@ -1779,6 +1781,7 @@
 <li><a href="#マルチパス">マルチパス</a></li>
 <li><a href="#推奨設定">推奨設定</a></li>
 <li><a href="#metrocluster-の推奨設定">MetroCluster の推奨設定</a></li>
+<li><a href="#sm-bcによるaixサポート">SM-BCによるAIXサポート</a></li>
 <li><a href="#既知の問題および制限">既知の問題および制限</a></li>
 </ul>
 </div>
@@ -2080,6 +2083,20 @@ up     primary  path3  fcs1    fc_aix_4     1</pre>
 <div class="sectionbody">
 <div class="paragraph">
 <p>デフォルトでは、 LUN へのパスがない場合、 AIX オペレーティングシステムは I/O タイムアウトを短縮します。この状況は、シングルスイッチの SAN ファブリック構成や MetroCluster 構成など、計画外のフェイルオーバーが発生する構成で発生することがあります。追加情報および推奨されるデフォルト設定の変更については、を参照してください <a href="https://kb.netapp.com/app/answers/answer_view/a_id/1001318" target="_blank" rel="noopener">"NetApp KB1001318"</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sm-bcによるaixサポート">SM-BCによるAIXサポート</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ONTAP 9.11.1以降では、SM-BCでAIXがサポートされます。AIX構成では、プライマリクラスタが「アクティブ」クラスタになります。</p>
+</div>
+<div class="paragraph">
+<p>AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーが発生するたびに、ホストで再スキャンを実行してI/O処理を再開する必要があります。</p>
+</div>
+<div class="paragraph">
+<p>AIX for SM-BCを設定する方法については、ナレッジベースの記事を参照してください <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)" target="_blank" rel="noopener">"SnapMirrorのビジネス継続性を実現するためのAIXホストの構成方法（SM-BC）"</a>。</p>
 </div>
 </div>
 </div>
