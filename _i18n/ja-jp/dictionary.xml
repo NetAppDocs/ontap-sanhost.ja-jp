@@ -13,7 +13,6 @@
   <block id="04a6a4dcd6c76702d2da3ff70e4a7ec8" category="paragraph">「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください</block>
   <block id="b80744314bf569766c44748e7c613ca7" category="section-title">SAN ツールキット</block>
   <block id="fdc9ca1731d1c119aadc1c244f9b44ce" category="paragraph">このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
-  <block id="bdf731284d034aaa9944ce43fb0b02f5" category="paragraph">次の例では 'lun lun show コマンドは 'LUN 情報を返します</block>
   <block id="35182f1950df8120cb4894c510afca6f" category="section-title">SAN ブート中です</block>
   <block id="863caf0294a7c372ca28147bbbaedbd7" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="1d4d73668c8df825ee5b823e8af57ec1" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">手順</block>
@@ -273,7 +272,6 @@
   <block id="72e702431882de8ed92aa1c2e3726dea" category="list-text">RHEL 8.2 ホストでは、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。</block>
   <block id="2490396f1344fd16bd1bd0da5ce25167" category="paragraph">ホストの NQN 文字列が一致しない場合は、「 vserver modify 」コマンドを使用して、対応する ONTAP アレイサブシステム上のホストの NQN 文字列を、ホストの /etc/nvme/hostnqn にある NQM 文字列と一致するように更新します。</block>
   <block id="b041c12317a88da69581757a98db42d2" category="list-text">'enable_foreign' Setting_( オプション )_ を更新します</block>
-  <block id="62304a27ab79f1e94b19449dd83b7fcc" category="paragraph">同じ RHEL 8.2 で同じホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要があります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。</block>
   <block id="4e9e6a353c31b00bcbf2e522fd8093c3" category="list-text">multipathd デーモンを再起動するには、 'ystemctl restart multipathd を実行します。</block>
   <block id="f89e24c920e9c7f547e3742a47871d9c" category="list-text">サポートされているアダプタを使用していることを確認します。</block>
   <block id="8cd46a779e9b68135d1a640170cd6b2e" category="list-text">lpfc_enable_fc4_type' が *3* に設定されていることを確認します</block>
@@ -496,7 +494,6 @@
   <block id="cd1096d4eecda656e5c9911606fb0c35" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 8.4 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.4 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定を含むようにコンパイルされています。</block>
   <block id="0c1a2fa6a162d103bd725793b80bb571" category="paragraph">RHEL 8.4 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
   <block id="2d42bb9d7307ce616ea0bcece7fd8556" category="cell">"2 pg_init_retries 50"</block>
-  <block id="0ec69b0cdf656c32bffa9e37cf748912" category="paragraph">RHEL 8.4 には既知の問題はありません。</block>
   <block id="a2e4546887c7d826529e2c2bc558c869" category="summary">ONTAP で Oracle Linux 7.1 を使用する方法について説明します</block>
   <block id="7c30b44b559434a28ec34eef25698142" category="doc">NetApp ONTAP で Oracle Linux 7.1 を使用する</block>
   <block id="409809eafe9ba8af313e70c545a2b09f" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="65858e88d5a37b29d5e945cdcd520db6" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
@@ -677,10 +674,8 @@
   <block id="1885ddcecff8f91b0975af971f8cc3e4" category="cell">Lua_enabled</block>
   <block id="e4204a0208badbec59a9c1ac68364a31" category="cell">ESD _ 秒</block>
   <block id="ccea754e7046e3a8078e83df3db0dd24" category="cell">1344935</block>
-  <block id="f41d0ae017cb9a0c3ddccf20caaaedd2" category="cell">HPUX 11.31 ホストで、 ASA セットアップでパスステータスが誤って報告されることがあります。</block>
   <block id="ae1b434f4d27837b33cfc80ed6814a95" category="cell">ASA の設定に関する問題を報告するパス。</block>
   <block id="1288c56822a6bb56a7acdc5941948855" category="cell">1306354</block>
-  <block id="8e3600ab3c3c846015270c7967718159" category="cell">HPUX LVM を作成すると、ブロックサイズが 1MB を超える I/O が送信されます</block>
   <block id="fc3dae564fdea298fb1911d12d99bb45" category="cell">ONTAP All SAN Array では、 SCSI Maximum Transfer Length （ 1 MB ）が適用されます。ONTAP All SAN Array に接続したときに HP-UX ホストからの最大転送長を制限するには、 HP-UX SCSI サブシステムで許可される最大 I/O サイズを 1MB に設定する必要があります。詳細については、 HP-UX ベンダーのドキュメントを参照してください。</block>
   <block id="f2ec2908e789bd4d085520a7536b0d19" category="summary">ONTAP で CentOS 6.10 を使用する方法について説明します</block>
   <block id="0e83be94544606967434ef88712ad07b" category="doc">CentOS 6.10 と NetApp ONTAP を使用する</block>
@@ -1605,7 +1600,6 @@
   <block id="4137ad0ecb9476c03488b817fe529868" category="doc">NetApp ONTAP で Red Hat Enterprise Linux 8.3 を使用する</block>
   <block id="76a654b50e8a1ecef0af22f2af8b3a5e" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 8.3 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.3 がコンパイルされ、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が適用されます。</block>
   <block id="5454d075074e8f827f59ce80d2e812c2" category="paragraph">RHEL 8.3 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
-  <block id="0685794451729fed8cf073d1a389dc27" category="paragraph">RHEL 8.3 に関する既知の問題はありません。</block>
   <block id="9128494ba0ee37c628f015b5af093f58" category="summary">ONTAP で CentOS 7.0 を使用する方法について説明します</block>
   <block id="7d13d9d03b198e9d73862389907f42a3" category="doc">CentOS 7.0 と NetApp ONTAP を使用する</block>
   <block id="5bd816c2094b5347fe9888b31305809d" category="paragraph">CentOS 7.0 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、そのファイルに特定の変更を加える必要はありません。CentOS 7.0 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
@@ -2214,16 +2208,11 @@
   <block id="10a8491b4d5d18409c61a4a90c61750b" category="section-title">Linux Unified Host Utilities をインストールします</block>
   <block id="5297043b43f5cb19511228a79f308d23" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 8.5 の場合、 /etc/multipath.conf ファイルは存在する必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.5 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
   <block id="685ee6c581bc2df3a8910672a2af1ac3" category="paragraph">RHEL 8.5 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
-  <block id="85970e65e1203ba97f80413235d75970" category="paragraph">RHEL 8.5 には既知の問題はありません。</block>
   <block id="845e85fa64a2d6037055beba19fe0bd8" category="sidebar">8.5</block>
   <block id="c22c65685ac3f8701da1a00c478b1333" category="cell">1447287</block>
   <block id="778fd215ce10bd514de565e6df2b1758" category="cell">SM-BC 構成の独立したマスタークラスタで AUFO イベントが発生すると、 HP-UX ホストが一時的に停止します</block>
   <block id="6f80f2e204ff92f2e954367d70413775" category="cell">この問題は、 SnapMirror の Business Continuity （ SM-BC ）構成の分離されたマスタークラスタで Automatic Unplanned Failover （ AUFO ）イベントが発生したときに発生します。HP-UX ホストで I/O が再開されるまでに 120 秒以上かかることがありますが、原因で I/O の中断やエラーメッセージが表示されない可能性があります。この問題では、プライマリクラスタとセカンダリクラスタの間の接続が失われ、プライマリクラスタとメディエーターの間の接続も失われるため、二重イベント障害が発生します。これは、他の AUFO イベントとは異なり、まれなイベントとみなされます。</block>
-  <block id="71a803ec7e0a7413f38513eccfb51d23" category="doc">HPUX Host Utilities 6.0</block>
   <block id="9e1ea4643210fa4abca0c804c4fe3eec" category="paragraph">を使用できます <block ref="1c6d071c1749743e8ebf715f1c64c2a1" category="inline-link-macro-rx"></block> 構成を確認します。</block>
-  <block id="3112cdbeaee6d9032c13b95ac8d4dc32" category="paragraph">HPUX Host Utilities は、 HPUX ホストにコマンドラインツールキットを提供するネットアップのホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
-  <block id="d4fafab7425136eae505dcc30fe94743" category="section-title">HPUX Host Utilities をインストールします</block>
-  <block id="235ab8a9f571fa3f1ae7daa2b9e3a1c3" category="paragraph">NetApp HPUX Host Utilities ソフトウェアパッケージはにあります <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 圧縮されたファイル。</block>
   <block id="e6836ae92ec45bf946aba470c3ee98e5" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>。ダウンロードしたファイルは、インストール前に解凍する必要があります。</block>
   <block id="dd0ef0f389a16b505e475797a7b752ac" category="list-text">から HP-UX Host Utilities ファイル netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` をダウンロードします <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> を HP-UX ホストにインストールします。</block>
   <block id="5eaf61000f0f261f2e4793f7e336889a" category="list-text">次のコマンドを入力して 'netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` ファイルを解凍します</block>
@@ -2262,7 +2251,6 @@
   <block id="cdfd79e32ab8a821a843e89d91bdcd8d" category="list-text">MPxIO</block>
   <block id="8ae046464e598978903e62c0c706373c" category="list-text">Veritas DMP の略</block>
   <block id="a335fa6e5bef06439b229f8adabc7dfe" category="section-title">特定の SVM / リストからホストにマッピングされているすべての LUN をリストします。ホストにマッピングされている特定の LUN のすべての属性をリストします</block>
-  <block id="19b1462d6d0a4e6e5b814edb100a77c6" category="sidebar">HPUX ホストユーティリティ</block>
   <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
   <block id="072bbeb072deda2033d37a6e9af67b96" category="summary">ONTAP でOracle Linux 8.5を使用する方法について説明します</block>
   <block id="bebf74152cdc0b8f2233ff49a9112052" category="doc">NetApp ONTAP でOracle Linux 8.5を使用する</block>
@@ -2351,7 +2339,6 @@
   <block id="32d86924bbcb8820c9a350a7d741cbea" category="doc">NetApp ONTAP でCentOS 8.4を使用する</block>
   <block id="e5a962185d7bd63be4f29de827478b1c" category="paragraph">CentOS 8.4の場合'/etc/multipath.confファイルが存在している必要がありますが'ファイルに特定の変更を加える必要はありませんCentOS 8.4は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を含むようにコンパイルされています。</block>
   <block id="ea4f6ca54725c6a00ccdbd33cafe2aa2" category="paragraph">CentOS 8.4は、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
-  <block id="a90e366fa7d3040cef07cc0169093dcc" category="paragraph">CentOS 8.4には既知の問題はありません。</block>
   <block id="c33b879e8a189cf4ded38992165273b7" category="summary">ONTAP でCentOS 8.5を使用する方法について説明します</block>
   <block id="d5af4406caf44199917cb9aa00203c40" category="doc">CentOS 8.5とNetApp ONTAP を使用する</block>
   <block id="60d0d78dbe9bb18e16690c35ce6867e1" category="paragraph">CentOS 8.5の場合'/etc/multipath.confファイルは存在している必要がありますが'ファイルに特定の変更を加える必要はありませんCentOS 8.5は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を備えています。</block>
@@ -2379,42 +2366,32 @@
   <block id="f418c08cd071f42a28a07d007dd30c34" category="paragraph">AIX Host Utilitiesを使用すると、AIXホストをネットアップストレージに接続できます。AIX Host Utilitiesは、複数の環境とFC、FCoE、iSCSIの各プロトコルをサポートしています。サポートされている環境は、AIX MPIO（ネイティブOS）とPowerVMです。</block>
   <block id="66c2d1ced882bffc99d6170e17a232ef" category="paragraph">オペレーティングシステムのバージョンおよびHost Utilitiesがサポートする更新については、を参照してください <block ref="7ce73c7ae176dd6b577d1c14b445f0cd" category="inline-link-macro-rx"></block>。</block>
   <block id="3f26b03249bcf33b72a6e9f71d4c4282" category="paragraph">PowerVM機能の詳細については、IBM PowerVM Live Partition Mobility Red Bookを参照してください。</block>
-  <block id="7388ad4cb5a7feb6810701b52e7fcead" category="paragraph">Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、ネットアップサポートサイトからダウンロードできます。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。</block>
   <block id="96fc0af94642a00891e1f664446fd1e7" category="admonition">clustered Data ONTAP 環境では、すべてのFCイニシエータおよびFCoEイニシエータに対して動的追跡を有効にする必要があります。</block>
   <block id="156a1e571b521a8e82a746701d96aeca" category="section-title">AIX Host Utilities 6.1の機能拡張</block>
   <block id="40289338bc754c0009f5e9a173f6e09a" category="list-text">AIX Host Utilities 6.1では、以前のバージョンのAIXホストOSで発生したメモリ障害問題 のサポートが追加されています。AIX Host Utilities 6.1では、sanlunバイナリのみが変更されています。MPIOおよび関連するODMは変更されません。</block>
   <block id="1d453c5c717af73a82e2d6b6cedf1fce" category="section-title">Fixed問題 の略</block>
   <block id="31e6a451d2627922bc41740af153d931" category="cell">Bugid</block>
   <block id="ce88cf74aded8b7f41efd83d007f21f2" category="inline-link-macro">872113</block>
-  <block id="91100cceb259d6da4a14b08359cc3eb8" category="cell"><block ref="91100cceb259d6da4a14b08359cc3eb8" category="inline-link-macro-rx"></block></block>
   <block id="3a2f9996a60f471edd9edae7099e1d69" category="cell">「sanlun lun show–p」コマンド原因 を使用すると、一部のバージョンのAIXホストOSでメモリ障害が発生する可能性があります</block>
   <block id="74aed4fe3d0a3c89158ce037c3d1305f" category="cell">AIXコアダンプの断続的なインスタンスは、「sanlun lun show -p」コマンドの実行中に報告されます。sanlunの「lun show -p」オプションは、ホストで検出されたすべてのLUNのマルチパス情報を提供します。この情報を整理して、どのSCSIデバイスがソースLUN、パスの状態（プライマリまたはセカンダリ）、およびその他の詳細情報を提供します。ただし、「sanlun lun show -p」コマンドを実行している一部のAIXホストでは、原因 にメモリ障害が発生する可能性があります。この問題 は、sanlunコマンドに「-p」オプションを指定した場合にのみ表示されます。</block>
   <block id="18dfadbcd8c4c8fb9d50fac0fb3aeb16" category="paragraph">Host Utilitiesを効率的に使用するには、ネットワークなどの特定の機能に関する既知の問題、または特定のバージョンのオペレーティングシステムなど、Host Utilitiesがサポートしない機能によってパフォーマンスが低下する可能性があることに注意してください。</block>
   <block id="b066ca6122c9857ad1ee3a44f18cc5e7" category="cell">バグ ID</block>
   <block id="31a061fd71807c34f31d154d95c10691" category="inline-link-macro">1069147</block>
-  <block id="e8c18173fb06e0c2666a1fd7a0fbe17b" category="cell"><block ref="e8c18173fb06e0c2666a1fd7a0fbe17b" category="inline-link-macro-rx"></block></block>
   <block id="cad62af5cd7e448be659302e1eba73b4" category="cell">AIX HU sanlunで、HBA速度が正しくないと報告される</block>
   <block id="64c42781be8a2208b9ffdc60d28bc076" category="cell">sanlun fcp show adapter–v’コマンドの実行時に、誤ったHBA速度を表示したインスタンスが報告されます。「sanlun fcp show adapter–v」コマンドを使用すると、アダプタのサポート速度やネゴシエート速度などのHBAカード情報が表示されます。これは問題 のみのレポートであるようです。実際の速度を確認するには、「fcstat fcsx」コマンドを使用します。</block>
   <block id="f83b431a86f1d264a4fc51c9a667a1ee" category="paragraph"><block ref="2f247b6bc715dd3b3f556a7c1dea26c9" category="inline-link-macro-rx"></block> 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。使用するキーワードの組み合わせとバグの種類には、次のものがあります。</block>
   <block id="31dade612c24301b89dad4a9747ed73e" category="list-text">FCP General：特定のホストに関連付けられていないFCおよびHBAのバグが表示されます。</block>
   <block id="09244b95824d6e702b6eaab2034bdeec" category="list-text">FCP - AIXの場合</block>
   <block id="bba7946c172f683f15783fc909c9d5cf" category="paragraph">には、SAN Host Utilitiesのマニュアルが含まれています <block ref="257925f1258b094e61a79b35ac8d3a5c" category="inline-link-macro-rx"></block> ドキュメントONTAP SANホストの構成に関するドキュメントは、SANホストの現在のすべてのリリースをカバーしており、これまでのものは累積的ですリリース間の機能の違いは、コンテキストに基づいて示されます。</block>
-  <block id="50f66ded0854572ca8ed0f243a0ec38c" category="list-text">。 <block ref="206633049dac20bcc789824bc56ff330" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
   <block id="e01ab2a4280a36b99ef1be4dac2123ef" category="inline-link-macro">ONTAP 『SANアドミニストレーションガイド』</block>
-  <block id="ec263c216b2591d09b1b18cac1d6d689" category="list-text">。 <block ref="7aab157b9ae6c78afbd7e0b3cade79f0" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
-  <block id="012e2372f667cb2ee5fbb880bb6b907f" category="list-text">。 <block ref="70e6266524a3fa8cf76b1611cdf89cf0" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
-  <block id="1c2375a9f8b4b3c327caa1bfc9cb07c2" category="list-text"><block ref="1c2375a9f8b4b3c327caa1bfc9cb07c2" category="inline-link-macro-rx"></block></block>
-  <block id="4d0377323e0534441af71e05c931ef5c" category="list-text"><block ref="6ec228dfe84ccdb5f038627d2fe43701" category="inline-link-macro-rx"></block> （旧称は『システム構成ガイド』）</block>
   <block id="b90eb3e688d069ada30157d4030b66f5" category="inline-link-macro">サポートされているファイバチャネルSANトポロジ</block>
   <block id="a1976a5397f63f5caa13a0e86733d543" category="list-text"><block ref="a1976a5397f63f5caa13a0e86733d543" category="inline-link-macro-rx"></block></block>
   <block id="c0965c2d259d63a3e2cbab60c837eaaa" category="inline-link-macro">Host Utilitiesを使用するためのホストの設定</block>
-  <block id="903a5a2a39aaeff84744ed68f14407d4" category="list-text"><block ref="903a5a2a39aaeff84744ed68f14407d4" category="inline-link-macro-rx"></block></block>
   <block id="2ee1fba4400a50245e66ef649b54d588" category="sidebar">AIX HU 6.1をインストールします</block>
   <block id="b767aaa513fc8b09074940ccea06b212" category="summary">ONTAP でRed Hat Enterprise Linux 8.6を使用する方法について説明します</block>
   <block id="0202939493cea9d89d8217a646a65b54" category="doc">NetApp ONTAP でRed Hat Enterprise Linux 8.6を使用する</block>
   <block id="be200813e91d3b0e3285391fd2e20825" category="paragraph">Red Hat Enterprise Linux（RHEL）8.6の場合、/etc/multipath.confファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.6には、ONTAP LUNを認識して正しく管理するために必要なすべての設定が含まれています。</block>
   <block id="98d83a607473e5d6dab1096f6758273a" category="paragraph">RHEL 8.6 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定します。</block>
-  <block id="18b8e1deb73eabf9425b04753d2b006d" category="paragraph">RHEL 8.6には、既知の問題はありません。</block>
   <block id="9b402891c0d38b9c654dcfa36df9d722" category="sidebar">8.6</block>
   <block id="cebcd1a5ff2049be4533aaf6b185029d" category="summary">『Release Notes for AIX Host Utilities 6.1』</block>
   <block id="b46a43d1dd4c2f14b94228f8a8b1e193" category="paragraph">このドキュメントでは、FC、FCoE、およびiSCSIの各プロトコルを使用するCitrix XenServer 7シリーズOSリリースでのONTAP SANホストの構成設定について説明します。</block>
@@ -2431,4 +2408,127 @@
   <block id="244c37afdc307098d90d497c08f88069" category="paragraph">AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーが発生するたびに、ホストで再スキャンを実行してI/O処理を再開する必要があります。</block>
   <block id="ba865279c8bb1f9a639935e3cb2406b0" category="inline-link-macro">SnapMirrorのビジネス継続性を実現するためのAIXホストの構成方法（SM-BC）</block>
   <block id="ce41c78a17a5925101abf561eb152ad3" category="paragraph">AIX for SM-BCを設定する方法については、ナレッジベースの記事を参照してください <block ref="bfd553e439e8f0adcfe76e0cf010b4a4" category="inline-link-macro-rx"></block>。</block>
+  <block id="90d3fa524bd535112a1305441a6b2d57" category="paragraph">RHEL 8.5の既知の問題はありません。</block>
+  <block id="ad2169ec031852e9940a4b4b46c207f8" category="paragraph">RHEL 8.4には既知の問題はありません。</block>
+  <block id="16ded13e0c1b6477bffcca576db8e692" category="doc">NetApp ONTAP でRed Hat Enterprise Linux 9.0を使用する</block>
+  <block id="ea1335497ead6bd540f2e523154123a0" category="paragraph">Red Hat Enterprise Linux (RHEL) 9.0では'/etc/multipath.confファイルが存在している必要がありますが'ファイルに特定の変更を加える必要はありませんRHEL 9.0がコンパイルされ、ONTAP LUNを認識して正しく管理するために必要なすべての設定が適用されます。</block>
+  <block id="40aa2a6195f4abccde9c89cc1ad6965b" category="paragraph">RHEL 9.0 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
+  <block id="29cafbf989ec1577f968e04d52752f5e" category="paragraph">RHEL 9.0で確認されている問題はありません。</block>
+  <block id="587384a32d909bff27b8405e18d9d7cf" category="summary">ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方法</block>
+  <block id="e9ee682ada1a582afd7d18367051b9ba" category="doc">ONTAP を使用したRHEL 9.0でのNVMe-oFホストの設定</block>
+  <block id="d5a9179e304fd13ff8268ac2240e3ef4" category="paragraph">NVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでのストレージフェイルオーバー（SFO）の実行にANA（Asymmetric Namespace Access）が必要なRHEL 9.0でサポートされます。ANAは、NVM環境でも同じです。現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.0およびONTAP でANAをターゲットとして使用し、カーネル内でNVMeマルチパスを有効にするための詳細が記載されています。</block>
+  <block id="95369a4b9030e2f901d021df167f021b" category="list-text">RHEL 9.0以降では、NVMe/FCはテクノロジプレビュー機能ではなくなりましたが（RHEL 8とは異なり）、完全にサポートされているエンタープライズ機能自体が追加されています。</block>
+  <block id="c1e6aa7090af15f8d8efefa50c5ebbb9" category="list-text">RHEL 9.0以降では、明示的な設定（RHEL 8とは異なり）を必要とせずに、NVMeネームスペースに対してインカーネルNVMeマルチパスがデフォルトで有効になっています。</block>
+  <block id="e646e16bee8b32e6ea29e30d01970a6c" category="section-title">制限</block>
+  <block id="8dc2bb86558c5fa9a6925f0d8bd82e21" category="list-text">NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これは、Linuxホストでは次の2つの大きな制限事項を反映しています。</block>
+  <block id="b7c3db78c3a82d963056f99e4aa58d39" category="list-text">パスが復活した後に自動再接続が行われない-NVMe/TCPは、パスがダウンしてからデフォルトの「Ctrl-loss -TTMO」の10分を超えて復活したパスに自動的に再接続することはできません。</block>
+  <block id="fa4425742c4d1fb5d8e39e4339d06d6e" category="list-text">ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。NVMe/FCのONTAP フェイルオーバーイベント（SFOなど）を快適に潮汐させるには、「ctrl_loos_tmo」タイマーを微調整して、30分などの長い再試行期間を設定することをお勧めします。</block>
+  <block id="140268ba3849abd78f34f907f067407f" category="paragraph">を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成の正確な情報については、を参照</block>
+  <block id="061e98174e60e8e432e858a83311d44d" category="list-text">サーバにRHEL 9.0をインストールします。インストールが完了したら、指定したRHEL 9.0カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="aa752093cf87ece20a99a98640048b70" category="list-text">インストールが完了したら、指定したRHEL 9.0カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="d79792e27890df0330ac43850943e028" category="list-text">「nvme-cli」パッケージをインストールします。</block>
+  <block id="f5b9e6db2b2e5a554b55fd280914f516" category="list-text">ホストで、 /etc/nvme/hostnqn に示されたホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。例：</block>
+  <block id="e842da2108d28a3593f8615a854fc699" category="admonition">ホストのNQN文字列が一致しない場合は、「vserver modify」コマンドを使用して、対応するONTAP サブシステム上のホストのNQN文字列を、ホストの「/etc/nvme/hostnqn」のホストNQN文字列と一致するように更新します。</block>
+  <block id="bad5d213c95812779e8e7d73fa0f92a4" category="list-text">サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
+  <block id="2a8380564c8c0b5cd202773abd4f94d3" category="list-text">推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
+  <block id="f3eaa9e3e89c370c17729852377aed2f" category="list-text">lpfc_enable_fc4_type'が'3'に設定されていることを確認します</block>
+  <block id="3966ea09485d038487c75511d7133dc9" category="list-text">1MBのI/Oサイズを有効にします。</block>
+  <block id="99e650add6ead46b272ac60ccc4c6184" category="paragraph">lpfc'ドライバから問題 I/Oへの要求を最大1MBにするには'lpfc_sg_seg_cnt'パラメータを256に設定する必要があります</block>
+  <block id="7f905df84e3f641e977ad2d5240dee4b" category="list-text">ホストが起動したら'lpfc_sg_seg_cnt'が256に設定されていることを確認します</block>
+  <block id="73a7814e5695a25d9824e6de50fe0979" category="paragraph">RHEL 9.0カーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP のサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="b3cc0f8131b6dd17671baba8c63d88b6" category="paragraph">NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これは、Linux NVMe/FCホストには次の2つの大きな制限事項があることを反映しています。</block>
+  <block id="828f6c28a4d526b6783eecef0ac05b8a" category="list-text">ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。ONTAP フェイルオーバーイベント (SFO など ) を快適に利用するには 'Ctrl_LONS_TMO' タイマーを調整して '30 分間などの長い再試行期間を設定することをお勧めします詳細は次のとおりです。</block>
+  <block id="055436915aa042f3fdf8045e013acbb5" category="list-text">イニシエータポートが、サポートされているNVMe/FC LIF経由で検出ログページデータを読み込めたかどうかを確認します。</block>
+  <block id="351f4726c12d45250df101c8bd9578d6" category="list-text">同様に、もう一方のNVMe/FCイニシエータターゲットLIFのコンボファイルが検出ログページのデータを正常に取得できることを確認します。例：</block>
+  <block id="7ce841894f1ef8447498c5c8f5b1f19a" category="section-title">NVMfを検証してください</block>
+  <block id="dc53dad0b533fb8bfe7d6c60ef1fa91e" category="list-text">各ONTAP ネームスペースの適切なNVMf設定（たとえば、「NetApp ONTAP Controller」に設定されたモデルとロードバランシング「iopolicy」を「ラウンドロビン」に設定）がホストに正しく反映されていることを確認します。</block>
+  <block id="85d648e4cde5d10dc52f7133eae3a296" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例（A）、</block>
+  <block id="cebb9dfdc378481f9e93e7b505fe4f1d" category="paragraph">例（b）：</block>
+  <block id="cdb0ca847e914e0c124768ae14142869" category="list-text">各パスのコントローラの状態がライブであり、適切なANAステータスであることを確認します。例（A）、</block>
+  <block id="86a8f02d0c1226cbab77460737c32b26" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例（A）、</block>
+  <block id="1718051495b27f0539c358a077bb3e35" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、必ずIMT の仕様に準拠した設定を実行していることを確認してください。ホスト側の問題をデバッグするには、次の手順に進みます。</block>
+  <block id="8f04ccd4b6d17f7acb33a4a2262bb3e9" category="section-title">lpfc詳細ログ</block>
+  <block id="aaea768bb3e8e6a627ea335fd9c9f934" category="paragraph">次に'drivers /scsi/lpfc/lpfc_logmsg.h'に示されている'NVMe/FCで使用可能なlpfcドライバ・ロギング・ビットマスクのリストを示します</block>
+  <block id="bcb565adfa69c5b85ffe2a63c2276769" category="paragraph">lpfc_log_sverbose`ドライバ設定(/etc/modprobe.d/lpfc.confのlpfc行に追加)を上記のいずれかの値に設定して'lpfc'ドライバの観点からNVMe/FCイベントをロギングできます次に'dracut -fコマンドを実行して'initiramfs'を再作成し'ホストを再起動します再起動後、上記の「LOG_NVME_DISC」ビットマスクの例を使用して、詳細ログが適用されていることを確認します。</block>
+  <block id="dd1f73319dd2881afa35604270a821b9" category="section-title">qla2xxx詳細ログ</block>
+  <block id="292a88b738894f862e50bb3161bd2fac" category="paragraph">「lpfc」にあるように、NVMe/FCに類似したqla2xxxログはありません。ここで一般的なqla2xxxログレベルを設定できますたとえば'ql2xextended_error_logging=0x1e400000`ですこれを行うには'対応するmodprobe qla2xxx confファイルにこの値を追加します次に'dracut-fを実行してinitramfsを再作成し'ホストを再起動しますリブート後、詳細ログが次のように適用されていることを確認します。</block>
+  <block id="e3f05e6b08d377aca967243a953ecfb9" category="section-title">一般的なnvme-CLIエラーとその回避策があります</block>
+  <block id="22c54dce95fdc049759d97572077c406" category="cell">/dev/nvme-Fabricsへの書き込みに失敗しました:引数が無効です'nvme discover 'NVMe connect 'またはNVMe connect-allの実行中にエラーが発生しました</block>
+  <block id="45161d7ae04ea62480ae1583b09c337a" category="cell">このエラーメッセージは、構文が間違っている場合に表示されます。</block>
+  <block id="4d68eca36b7598d8d220c8109ee77d2c" category="cell">'/dev/nvme-Fabricsへの書き込みに失敗しました:NVMeの検出中に'このようなファイルやディレクトリ''nvme connect 'または'nvme connect -all 'はありません</block>
+  <block id="0d6f3d7e1a23f40a79b28023090d2a74" category="cell">複数の問題が原因でこのエラーが発生する可能性一般的なケースとしては、上記のNVMeコマンドに誤った引数を渡した場合などがあります。</block>
+  <block id="0300a463a2779250716b195b0f15c1ba" category="paragraph">上記のコマンドに適切な引数（適切なWWNN文字列、WWPN文字列など）を渡していることを確認してください。引数が正しいにもかかわらずこのエラーが表示される場合は、「/sys/class/scsi_host*/nvme_info」の出力が正しいことを確認し、NVMeイニシエータの「enabled」と表示され、NVMe/FCターゲットLIFがリモートポートのセクションに正しく表示されていることを確認します。例：</block>
+  <block id="ad02181fdbf4245ee0052cfb92cb8bcc" category="paragraph">回避策 ：「nvme_info」の出力に上記のようにターゲットLIFが表示されない場合は、「/var/log/messages」および「dmesg」の出力でNVMe/FCエラーがないかどうかを確認し、それに応じて報告または修正してください。</block>
+  <block id="9f7680250af5452ad3bc6e1373a71a11" category="cell">'NVMe discover（NVMe検出）'NVMe connect（NVMe接続）'または'NVMe connect-all（NVMe接続）の間にフェッチする検出ログ・エントリーはありません</block>
+  <block id="5bb9931249b357349ab3bbe1fedc8d23" category="cell">このエラーメッセージは、一般に、「/etc/nvme/hostnqn'」文字列がネットアップアレイの対応するサブシステムに追加されていないか、適切でないhostnqn文字列が各サブシステムに追加されている場合に表示されます。</block>
+  <block id="6bd22b028f1c581999993ec8672aea1c" category="cell">正確な「/etc/nvme/hostnqn」文字列がネットアップアレイの対応するサブシステムに追加されていることを確認します（「vserver nvme subsystem host show」で確認します）。</block>
+  <block id="00443539b6acea3b81b118f7a7f62818" category="cell">「/dev/nvme-Fabricsへの書き込みに失敗しました。オペレーションは「nvme discover」、「nvme connect」、または「nvme connect -all」の間にすでに進行中です</block>
+  <block id="796b7594f30be7947c1efffc9c471c02" category="cell">このエラーメッセージは、コントローラの関連付けまたは指定された処理がすでに作成されている場合や作成中の場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
+  <block id="628687124665ca6b9dfc96e945da3db4" category="cell">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。また'nvme connectとconnect-allに対して'nvme listを実行して'名前空間デバイスがすでに作成され'ホストに表示されていることを確認します</block>
+  <block id="d8d35afc7bc23b483a5dc93bbbfaef70" category="section-title">デバッグに必要なファイルおよびコマンド出力</block>
+  <block id="2d9c87ae045b9e45b670135f74d969b1" category="paragraph">それでも問題が解決しない場合は、次のファイルとコマンドの出力を収集し、ファイルを送信してトリアージしてください。</block>
+  <block id="e7e8e011c8e0651dc3a6d06305d8279e" category="paragraph">RHEL 8.3に関する既知の問題はありません。</block>
+  <block id="ce420cebd9b134c2ee33ae6a490c31ba" category="paragraph">同じ RHEL 8.2 で同じホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。</block>
+  <block id="6507882f376544268e31289f84d4ee08" category="doc">HP-UX Host Utilities 6.0</block>
+  <block id="0f03ad1ba726a38547e37a072e28a71f" category="paragraph">HP-UX Host Utilitiesは、HP-UXホスト上にコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
+  <block id="272bb0cd3faf2ede65f3ff18b59a2e04" category="section-title">HP-UX Host Utilitiesのインストール</block>
+  <block id="8d8dc06df50e7cce23a5ef1dbeed7796" category="paragraph">NetApp HP-UX Host Utilitiesソフトウェアパッケージは、にあります <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 圧縮されたファイル。</block>
+  <block id="c0a1ecccf7e7b3c14696d029be49ed25" category="paragraph">RHEL 8.6には、既知の問題はありません。</block>
+  <block id="dfd9db293eabf1724158b5cc08e4dd12" category="cell">HP-UX 11.31ホストで、ASA のセットアップ時にパスのステータスが誤って報告されることがあります。</block>
+  <block id="478829f91ffe1d5a9fcb7ae0a4fa2eda" category="cell">HP-UX LVMを作成すると、1MBを超えるブロックサイズのI/Oが送信されます</block>
+  <block id="24cc4783034cf857703516141d8cc8ad" category="summary">Solaris Host Utilities 6.2リリースノート</block>
+  <block id="07cb401e35e41c1ea4ba568ba75b0261" category="doc">Solaris Host Utilities 6.2リリースノート</block>
+  <block id="6680e6f1f2da4905e1106056bcccc97b" category="paragraph">このリリースノートのドキュメントには'Solaris Host Utilities 6.2の最新情報が記載されていますこれには'既知の問題と制限事項の更新'およびONTAP ストレージシステムの構成と管理が含まれます</block>
+  <block id="a8d190b8be84e8cfdb8b2df1b04cb957" category="paragraph">『リリースノート』ドキュメントは、Solaris Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。</block>
+  <block id="83abaefac7375849eeb586ba637a2d22" category="section-title">Solaris Host Utilities 6.2リリースの概要</block>
+  <block id="d64c00d8393bc6d797e2fd2eb038c7f6" category="paragraph">Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。</block>
+  <block id="5a5633c19126b79400042b56b8dcdf4a" category="paragraph">主な Host Utilities 環境は次のとおりです。</block>
+  <block id="767f7d3fe0b51453e22e1a752809bb31" category="paragraph">Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、からダウンロードできます <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。</block>
+  <block id="fb9cdd561144e3cb503f58cd43dd40d8" category="section-title">Solaris Host Utilities 6.2の機能拡張</block>
+  <block id="52750b526bc4bf2e606bf8c9f028a7dd" category="paragraph">Solaris Unified Host Utilities 6.2は、引き続き次のバージョンのSolarisをサポートしています。</block>
+  <block id="238f1d3f645f5f1e553625afd4dc7fb0" category="list-text">Solaris 11.xシリーズ</block>
+  <block id="2b8110c907876ccbe7f01756c156e957" category="list-text">Solaris 10.xシリーズ</block>
+  <block id="d73ed314065ad31059ac799a62ab4558" category="inline-link-macro">1385189</block>
+  <block id="61699638eccafbea1975db4ccc09e234" category="cell"><block ref="61699638eccafbea1975db4ccc09e234" category="inline-link-macro-rx"></block></block>
+  <block id="a86ba0de523aff5743fd70c108891432" category="cell">Solaris 11.4 HUK 6.2では、FCドライババインディングの変更が必要です</block>
+  <block id="675cd835d9ce32e06a4658192745eec8" category="cell">Solaris 11.4 および HUK の推奨事項FCドライバのバインドは'SSD(4D)'から'SD(4D)'に変更されます「ssm.conf」にある構成を、Oracleに記載されている「sd.conf」に移動します（ドキュメントID 2595926.1）。この動作は、新しくインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます。</block>
+  <block id="00dc1b7be02ff53d2291441f5821cfa6" category="paragraph"><block ref="355b22d66d025f6de0a19431aae0f536" category="inline-link-macro-rx"></block> 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。使用するキーワードの組み合わせとバグの種類には、次のものがあります。</block>
+  <block id="5efa35169834b61127329a24175ec34d" category="list-text">FCP General：特定のホストに関連付けられていないFCおよびHBAのバグが表示されます</block>
+  <block id="f19106aa57c6316e97d751c16d547b41" category="list-text">FCP - Solarisの場合</block>
+  <block id="3c7828b2d190734834ce40e8064c1dac" category="list-text"><block ref="3c7828b2d190734834ce40e8064c1dac" category="inline-link-macro-rx"></block></block>
+  <block id="2aa7ada2848fa0738fbfac1114907aa4" category="list-text"><block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block> （旧称は『システム構成ガイド』）</block>
+  <block id="15b39b3049d63d1b09b2b4d4ddc115a4" category="list-text"><block ref="15b39b3049d63d1b09b2b4d4ddc115a4" category="inline-link-macro-rx"></block></block>
+  <block id="c52f3cfca61100f76a974648c1c9a180" category="list-text"><block ref="c52f3cfca61100f76a974648c1c9a180" category="inline-link-macro-rx"></block></block>
+  <block id="0a9958781afdc779222e135d13dce352" category="paragraph">Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、からダウンロードできます <block ref="c51b16e40c82542166bd05959a366a37" category="inline-link-macro-rx"></block>。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。</block>
+  <block id="0d39b3cffd5d0d33f0a5ed2db83a7aea" category="cell"><block ref="0d39b3cffd5d0d33f0a5ed2db83a7aea" category="inline-link-macro-rx"></block></block>
+  <block id="ba57f19b6b69755c2919b58188582a77" category="cell"><block ref="ba57f19b6b69755c2919b58188582a77" category="inline-link-macro-rx"></block></block>
+  <block id="e8db03fc399918672bed8132e0d8ea35" category="list-text">。 <block ref="0f33c30ae119203ebbfd38575ad3015e" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
+  <block id="230a02b4afeea5b0d97c6a68a6530da3" category="summary">HPUX Host Utilities 6.0リリースノート</block>
+  <block id="e16c4360565a75371ee1b578b4c1ecca" category="doc">HP-UX Host Utilities 6.0リリースノート</block>
+  <block id="928dee6fba9a0c4ccb1b167e31071cc0" category="paragraph">本リリースノートには、HP-UX Host Utilities 6.0リリースの最新情報に加え、既知の問題、制限事項、ONTAP ストレージシステムの構成と管理に関する最新情報が記載されています。『リリースノート』ドキュメントは、HP-UX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。</block>
+  <block id="02f8eb4aa3c5b1158e37fd1a9c849ca8" category="section-title">HP-UX Host Utilities 6.0リリースの概要</block>
+  <block id="18691c1295f4b1c26d2e8a9a5b67cfb9" category="paragraph">HP-UX Host Utilitiesは、いくつかのHP-UX環境と複数のプロトコルをサポートします。HP-UX Host Utilitiesは、次の環境をサポートします。</block>
+  <block id="8017a7ef798d9749aaed2e77fcebed98" category="list-text">ネイティブMPIO</block>
+  <block id="4aade2cc63558a9db8aa3c9a6c9639d3" category="list-text">Veritas Dynamic Multipathing（DMP；動的マルチパス）</block>
+  <block id="89d83ddcffe2153b6741a0e85d8548a2" category="admonition">使用されている環境をすぐに明確にするために、本書ではVeritas DMP環境の場合は「DMP」、HP-UXネイティブ環境の場合は「MPIO」を指定します。使用するコマンドは、使用するドライバによって異なる場合があります。このような場合は、環境とドライバの両方のタイプを指定します。</block>
+  <block id="06cc7f9865c73b00a63121a0f4b0b752" category="section-title">HP-UX Host Utilities 6.0の機能拡張</block>
+  <block id="8812d57ba4da4daf9e7f43422d05e0a9" category="paragraph">リリースノートは、新しい情報が提供されるたびに製品リリースごとに更新されます。HP-UX Host Utilities 6.0は、引き続き次のバージョンをサポートしています。</block>
+  <block id="c7c7e4d1fc8a47f946a88914900694c3" category="list-text">HP-UX 11iv2</block>
+  <block id="4feac8845db3a6b1f4e4ead570b6b3ad" category="list-text">HP-UX 11iv3</block>
+  <block id="7a1ba2e6d3a8198d5626f5d4e55d2293" category="paragraph">HP-UX 6.0リリースでは既知の問題はありません。</block>
+  <block id="24fd1012a719e6b6977b3715ecf0b77d" category="inline-link-macro">ONTAP SANホスト構成のドキュメント</block>
+  <block id="7ab7d878b8d563f012f51b55009390ab" category="paragraph">には、SAN Host Utilitiesのマニュアルが含まれています <block ref="63739903ee7032df0e31764cc24a819c" category="inline-link-macro-rx"></block> ONTAP SANホストの構成に関するドキュメントは、SANホストの現在のすべてのリリースをカバーしているため、累積的なものです。リリース間の機能の違いは、コンテキストに基づいて示されます。</block>
+  <block id="5f5628241e19b1175cc4bdd9c398f5b7" category="inline-link-macro">使用しているONTAP バージョンに対応した『ONTAP ソフトウェアセットアップガイド』</block>
+  <block id="3b0fe6f7d254eb266d210040bae111f5" category="list-text">。 <block ref="18f02cc408dbe2e94ae9ae202c089ef8" category="inline-link-macro-rx"></block></block>
+  <block id="29ecce87abc03f76c20d3fe564e26dbe" category="inline-link-macro">使用しているONTAP バージョンに対応した『ONTAP SANアドミニストレーションガイド』</block>
+  <block id="2895d2b5c5ce91fe3e854c5054f19b62" category="list-text">。 <block ref="13c491dae34255ba8eee5d0f620c1f33" category="inline-link-macro-rx"></block></block>
+  <block id="13d4f4be1ab239d2cd36fb812fad5fc1" category="inline-link-macro">使用しているONTAP のバージョンに対応したONTAP リリースノート</block>
+  <block id="d7b5ae94e622a21572fe07c48e20da09" category="list-text">。 <block ref="2ba744c2429cbcfc53bdb0428522a053" category="inline-link-macro-rx"></block></block>
+  <block id="60cb9c3f22cf2b74a314e1d7baf48bef" category="paragraph">CentOS 8.4で確認されている既知の問題はありません。</block>
+  <block id="2cac689df6b99782e23a143c9bfa2346" category="sidebar">HP-UX Host Utilitiesのことです</block>
+  <block id="032f858f49a253e7a44870c242d0aa5b" category="sidebar">HP-UX HU 6.0をインストールします</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">リリースノート</block>
+  <block id="a7a862c0d782706aace5e07821f4f4c9" category="sidebar">Solaris HU 6.2をインストールします</block>
+  <block id="cf5f238fca8b6e155078aa41c175743a" category="sidebar">9.0</block>
+  <block id="38aef0bc7cf230dfcf5476915774aa95" category="sidebar">RHEL 9</block>
 </blocks>

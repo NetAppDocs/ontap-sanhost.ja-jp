@@ -42,7 +42,7 @@ Linux Unified Host Utilities をインストールすることを強く推奨し
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
-次の例では 'lun lun show コマンドは 'LUN 情報を返します
+次の例では 'lun lun lun show コマンドは LUN 情報を返します
 
 [listing]
 ----
@@ -267,7 +267,7 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 == 既知の問題および制限
 
-RHEL 8.5 には既知の問題はありません。
+RHEL 8.5の既知の問題はありません。
 
 
 

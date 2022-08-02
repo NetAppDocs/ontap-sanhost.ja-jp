@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: hu_solaris_62_rn.html 
+keywords: host utilities, solaris, 6.2 netapp, ontap 
+summary: Solaris Host Utilities 6.2リリースノート 
+---
+= Solaris Host Utilities 6.2リリースノート
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+このリリースノートのドキュメントには'Solaris Host Utilities 6.2の最新情報が記載されていますこれには'既知の問題と制限事項の更新'およびONTAP ストレージシステムの構成と管理が含まれます
+
+『リリースノート』ドキュメントは、Solaris Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
+
+
+
+== Solaris Host Utilities 6.2リリースの概要
+
+Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。
+
+主な Host Utilities 環境は次のとおりです。
+
+* SPARC プロセッサまたは x86-64 プロセッサを使用するシステムで、ファイバチャネル（ FC ）または iSCSI プロトコルを持つ MPxIO を搭載したネイティブ OS 。
+* SPARC プロセッサを使用するシステム上では FC プロトコルまたは iSCSI プロトコルのいずれかを使用し 'x86-64 プロセッサを使用するシステムでは iSCSI プロトコルを使用する Veritas Dynamic Multipathing （ DMP ）
+
+
+Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、からダウンロードできます link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。
+
+
+
+== Solaris Host Utilities 6.2の機能拡張
+
+リリースノートは、新しい情報が提供されるたびに製品リリースごとに更新されます。
+
+Solaris Unified Host Utilities 6.2は、引き続き次のバージョンのSolarisをサポートしています。
+
+* Solaris 11.xシリーズ
+* Solaris 10.xシリーズ
+
+
+
+
+== 既知の問題および制限
+
+Host Utilitiesを効率的に使用するには、ネットワークなどの特定の機能に関する既知の問題、または特定のバージョンのオペレーティングシステムなど、Host Utilitiesがサポートしない機能によってパフォーマンスが低下する可能性があることに注意してください。
+
+[cols="3"]
+|===
+| バグ ID | タイトル | 説明 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1385189["1385189"^] | Solaris 11.4 HUK 6.2では、FCドライババインディングの変更が必要です | Solaris 11.4 および HUK の推奨事項FCドライバのバインドは'SSD(4D)'から'SD(4D)'に変更されます「ssm.conf」にある構成を、Oracleに記載されている「sd.conf」に移動します（ドキュメントID 2595926.1）。この動作は、新しくインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます。 
+|===
+link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。使用するキーワードの組み合わせとバグの種類には、次のものがあります。
+
+* FCP General：特定のホストに関連付けられていないFCおよびHBAのバグが表示されます
+* FCP - Solarisの場合
+
+
+
+
+== SANホスト構成のドキュメントについて
+
+には、SAN Host Utilitiesのマニュアルが含まれています link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["ONTAP SAN ホスト構成"] ドキュメントONTAP SANホストの構成に関するドキュメントは、SANホストの現在のすべてのリリースをカバーしており、これまでのものは累積的ですリリース間の機能の違いは、コンテキストに基づいて示されます。
+
+
+
+== 製品マニュアルとその他の情報の参照先
+
+ネットアップのすべての製品のマニュアルにアクセスし、ネットアップ社内サイトの製品ドキュメントページで、テクニカルレポートやホワイトペーパーなど、製品に関するその他の情報を参照できます。
+
+* ONTAP ストレージ・システムの構成と管理*
+
+* 。 link:https://docs.netapp.com/us-en/ontap/setup-upgrade/index.html["『ONTAP ソフトウェアセットアップガイド』"^] ONTAP のバージョンに応じて更新します
+* 。 link:https://docs.netapp.com/us-en/ontap/san-management/index.html["『ONTAP SANアドミニストレーションガイド』"^] ONTAP のバージョンに応じて更新します
+* 。 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP リリースノート"^] ONTAP のバージョンに応じて更新します
+* link:https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix を参照してください"^]
+* link:https://hwu.netapp.com/["Hardware Universe"^] （旧称は『システム構成ガイド』）
+* link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["サポートされているファイバチャネルSANトポロジ"^]
+* link:https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61343["Host Utilitiesを使用するためのホストの設定"^]
+

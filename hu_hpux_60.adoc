@@ -4,7 +4,7 @@ permalink: hu_hpux_60.html
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
 summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法について説明します 
 ---
-= HPUX Host Utilities 6.0
+= HP-UX Host Utilities 6.0
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -28,7 +28,7 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 
 == SAN ツールキット
 
-HPUX Host Utilities は、 HPUX ホストにコマンドラインツールキットを提供するネットアップのホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+HP-UX Host Utilitiesは、HP-UXホスト上にコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
 次の例では 'lun lun lun show コマンドは LUN 情報を返します
 
@@ -50,9 +50,9 @@ NOTE: このツールキットは、 Host Utilities のすべての構成とプ�
 
 
 
-== HPUX Host Utilities をインストールします
+== HP-UX Host Utilitiesのインストール
 
-NetApp HPUX Host Utilities ソフトウェアパッケージはにあります link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] 圧縮されたファイル。
+NetApp HP-UX Host Utilitiesソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] 圧縮されたファイル。
 
 Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。ダウンロードしたファイルは、インストール前に解凍する必要があります。
 
