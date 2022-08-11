@@ -2531,4 +2531,21 @@
   <block id="a7a862c0d782706aace5e07821f4f4c9" category="sidebar">Solaris HU 6.2をインストールします</block>
   <block id="cf5f238fca8b6e155078aa41c175743a" category="sidebar">9.0</block>
   <block id="38aef0bc7cf230dfcf5476915774aa95" category="sidebar">RHEL 9</block>
+  <block id="3f11bd75d4bcc18b35f7eeb9b9966c9c" category="summary">ONTAP でRHEL 8.6を使用するためのNVMe-oFホストの設定方法</block>
+  <block id="b9eb9bf81c2c715367e1e8b187ea1f75" category="doc">ONTAP を使用したRHEL 8.6でのNVMe-oFホストの設定</block>
+  <block id="fefda4d440faefacdda0158d1d3fb686" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.6でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。ここでは、RHEL 8.6およびONTAP でANAを使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について詳しく説明します。</block>
+  <block id="d5328c13c170a1ce1607fad34405b646" category="list-text">RHEL 8.6では、NVMe/FCに加え、（テクノロジプレビュー機能としての）NVMe/FCがサポートされます。ネイティブのnvme-CLIパッケージに含まれているネットアッププラグインで、NVMe/FCネームスペースとNVMe/FCネームスペースの両方のONTAP の詳細を表示できます。</block>
+  <block id="8b247e50297ab7aed14b6a8ff2b845c9" category="list-text">RHEL 8.6では、カーネル内のNVMeマルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。</block>
+  <block id="be5312f4fb03f3ebb989659ec7b543ee" category="inline-link">RHEL 8.6リリースノート</block>
+  <block id="4e51b6ca34ea06c883ab4b1c963bee49" category="list-text">RHEL 8.6のNVMe/FCは、未解決の問題が原因でテクノロジプレビュー機能のままです。を参照してください<block ref="e25c0351018067ddae5b70edc45d84fc" category="inline-link-rx"></block> を参照してください。</block>
+  <block id="5060cc5b216e626855bc2ef2a9b98372" category="list-text">サーバにRHEL 8.6をインストールします。インストールが完了したら、指定したRHEL 8.6カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="67a7c2662b17653a8ac76448e703f0b7" category="list-text">インストールが完了したら、指定したRHEL 8.6カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="71dcdd59971df1a5bb4dfbb60ffe2bad" category="list-text">イニシエータポートが動作していること、およびターゲットLIFが表示されることを確認してください。</block>
+  <block id="95e3f3faa5bf8e48441621d165c05044" category="paragraph">RHEL 8.6カーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
+  <block id="b964263fad43476391626a8c5994d66f" category="paragraph">ONTAP フェイルオーバーイベント(SFOなど)を快適に利用するには'Ctrl_LONS_TMO'タイマーを調整して'このような30分間の再試行期間を長く設定することをお勧めします詳細は次のとおりです。</block>
+  <block id="346a874868cfe5950cc070d607e10dda" category="list-text">他のNVMe/FCイニシエータターゲットLIFのコンボファイルが検出ログページデータを正常に取得できることを確認します。例：</block>
+  <block id="7e4e5f748eea832eccfa25b6f84c9beb" category="list-text">ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。接続中に 'ctrl_loss _tmo' 期間を延長して（たとえば '-l 1800' で設定できる 30 分） ' パスが失われた場合に再試行するようにしてください例：</block>
+  <block id="3bb5487a25f2c91e7d62566cb6026b68" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例：</block>
+  <block id="f2af591771f10d63662bd947024ee100" category="list-text">各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。例：</block>
+  <block id="c13733aade7c22e1d6c0fb7be8a8c754" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例：</block>
 </blocks>
