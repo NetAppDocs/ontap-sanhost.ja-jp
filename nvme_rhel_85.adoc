@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_rhel_86.html 
+permalink: nvme_rhel_85.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
-summary: ONTAP でRHEL 8.6を使用するためのNVMe-oFホストの設定方法 
+summary: ONTAP を使用してRHEL 8.5用のNVMe-oFホストを設定する方法 
 ---
-= ONTAP を使用したRHEL 8.6でのNVMe-oFホストの設定
+= ONTAP を使用したRHEL 8.5向けのNVMe-oFホスト構成
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -23,21 +23,21 @@ summary: ONTAP でRHEL 8.6を使用するためのNVMe-oFホストの設定方�
 
 == サポート性
 
-NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.6でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。ここでは、RHEL 8.6およびONTAP でANAを使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について詳しく説明します。
+NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.5でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。RHEL 8.5およびONTAP でANAを使用し、インカーネルNVMeマルチパスをターゲットとして使用してNVMe-oFを有効にする方法について、ここで詳しく説明します。
 
 
 
 == の機能
 
-* RHEL 8.6では、NVMe/FCに加え、（テクノロジプレビュー機能としての）NVMe/FCがサポートされます。ネイティブのnvme-CLIパッケージに含まれているネットアッププラグインで、NVMe/FCネームスペースとNVMe/FCネームスペースの両方のONTAP の詳細を表示できます。
+* RHEL 8.5では、NVMe / FCに加え、NVMe / TCP（テクノロジプレビュー機能）もサポートされています。ネイティブのnvme-CLIパッケージに含まれているネットアッププラグインでは、NVMe/FCネームスペースとNVMe/FCネームスペースの両方のONTAP の詳細を表示できます。
 
 
 
 
 == 既知の制限
 
-* RHEL 8.6では、カーネル内のNVMeマルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。
-* RHEL 8.6のNVMe/FCは、未解決の問題が原因でテクノロジプレビュー機能のままです。を参照してください https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.6_release_notes/index#technology-preview_file-systems-and-storage["RHEL 8.6リリースノート"^] を参照してください。
+* RHEL 8.5では、カーネル内のNVMeマルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。
+* RHEL 8.5のNVMe/FCは、未解決の問題が原因でテクノロジプレビュー機能のままです。を参照してください https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.5_release_notes/index#technology-preview_file-systems-and-storage["RHEL 8.5リリースノート"^] を参照してください。
 
 
 
@@ -50,8 +50,7 @@ NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は�
 
 == カーネル内の NVMe マルチパスを有効にします
 
-. サーバにRHEL 8.6をインストールします。インストールが完了したら、指定したRHEL 8.6カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
-. インストールが完了したら、指定したRHEL 8.6カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. RHEL 8.5 GAをサーバにインストールします。インストールが完了したら、指定したRHEL 8.5 GAカーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
 +
 例
 
@@ -59,7 +58,7 @@ NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は�
 [listing]
 ----
 # uname -r
-4.18.0-372.9.1.el8.x86_64
+4.18.0-348.el8.x86_64
 ----
 . 「 nvme-cli 」パッケージをインストールします。
 +
@@ -69,13 +68,13 @@ NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は�
 [listing]
 ----
 # rpm -qa|grep nvme-cli
-nvme-cli-1.16-3.el8.x86_64
+nvme-cli-1.14-3.el8.x86_64
 ----
 . カーネル内の NVMe マルチパスを有効にします。
 +
 [listing]
 ----
-# grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-372.9.1.el8.x86_64
+# grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-348.el8.x86_64
 ----
 . ホストで、 /etc/nvme/hostnqn に示されたホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。例
 +
@@ -138,7 +137,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 12.8.351.47, sli-4:2:c
 12.8.351.47, sli-4:2:c
 # cat /sys/module/lpfc/version
-0:14.0.0.4
+0:12.8.0.10
 ----
 . lpfc_enable_fc4_typeが3に設定されていることを確認します
 +
@@ -154,10 +153,13 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 # cat /sys/class/fc_host/host*/port_name
 0x100000109b1c1204
 0x100000109b1c1205
+
 # cat /sys/class/fc_host/host*/port_state
 Online
 Online
+
 # cat /sys/class/scsi_host/host*/nvme_info
+
 NVME Initiator Enabled
 XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
 NVME LPORT lpfc0 WWPN x100000109b1c1204 WWNN x200000109b1c1204 DID x011d00 ONLINE
@@ -216,15 +218,15 @@ options lpfc lpfc_sg_seg_cnt=256
 
 === Marvell/QLogic
 
-RHEL 8.6カーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。
+RHEL 8.5 GAカーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。
 
 . 次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。
 +
 [listing]
 ----
 # cat /sys/class/fc_host/host*/symbolic_name
-QLE2742 FW:v9.06.02 DVR:v10.02.00.200-k
-QLE2742 FW:v9.06.02 DVR:v10.02.00.200-k
+QLE2742 FW:v9.06.02 DVR:v10.02.00.106-k
+QLE2742 FW:v9.06.02 DVR:v10.02.00.106-k
 ----
 . 次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。
 +
@@ -245,7 +247,7 @@ NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません
 * * ホストの起動時に自動接続が行われない * ホストの起動時に NVMe/FC が自動的に接続されることもありません。
 
 
-ONTAP フェイルオーバーイベント(SFOなど)を快適に利用するには'Ctrl_LONS_TMO'タイマーを調整して'このような30分間の再試行期間を長く設定することをお勧めします詳細は次のとおりです。
+ONTAP フェイルオーバーイベント (SFO など ) を快適に利用するには 'Ctrl_LONS_TMO' タイマーを調整して '30 分間などの長い再試行期間を設定することをお勧めします詳細は次のとおりです。
 
 . サポートされている NVMe/FC LIF の検出ログページデータをイニシエータポートが読み込めたかどうかを確認します。
 +
@@ -294,7 +296,7 @@ sectype: none
 # nvme discover -t tcp -w 192.168.2.9 -a 192.168.2.56
 # nvme discover -t tcp -w 192.168.2.9 -a 192.168.2.57
 ----
-. ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。接続中に 'ctrl_loss _tmo' 期間を延長して（たとえば '-l 1800' で設定できる 30 分） ' パスが失われた場合に再試行するようにしてください例：
+. ノード全体でサポートされているすべてのNVMe/FCイニシエータターゲットLIFに対して、「nvme connect -all」コマンドを実行します。接続中に'ctrl_loss _tmo'期間を延長して（たとえば'-l 1800'で設定可能な30分）'パスが失われた場合に再試行するようにしてください例：
 +
 [listing]
 ----
@@ -316,7 +318,7 @@ sectype: none
 # cat /sys/module/nvme_core/parameters/multipath
 Y
 ----
-. 各ONTAP ネームスペースの適切なNVMe-oF設定（「model」を「NetApp ONTAP Controller」に設定し、ロードバランシング「iopolicy」を「ラウンドロビン」に設定するなど）がホストに正しく反映されていることを確認します。
+. 各 ONTAP ネームスペースの適切な NVMe-oF 設定（「 NetApp ONTAP Controller 」に設定された「 model 」や「 loadbalancing iopolicy 」が「ラウンドロビン」に設定されているなど）がホストに正しく反映されていることを確認します。
 +
 [listing]
 ----
@@ -335,7 +337,7 @@ round-robin
 # nvme list
 Node           SN                    Model                   Namespace
 ------------   --------------------- ---------------------------------
-/dev/nvme0n1   814vWBNRwf9HAAAAAAAB   NetApp ONTAP Controller   1
+/dev/nvme0n1    814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller   1
 
 Usage                Format         FW Rev
 -------------------  -----------    --------
@@ -345,8 +347,8 @@ Usage                Format         FW Rev
 +
 [listing, subs="+quotes"]
 ----
-# nvme list-subsys /dev/nvme1n1
-nvme-subsys1 - nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:subsystem.nvme_141_1
+# nvme list-subsys /dev/nvme0n1
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:subsystem.nvme_141_1
 \
 +- nvme0 fc traddr=nn-0x203700a098dfdd91:pn-0x203800a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 *live inaccessible*
 +- nvme1 fc traddr=nn-0x203700a098dfdd91:pn-0x203900a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 *live inaccessible*
@@ -360,7 +362,7 @@ nvme-subsys1 - nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e
 # nvme netapp ontapdevices -o column
 Device       Vserver          Namespace Path
 ---------    -------          --------------------------------------------------
-/dev/nvme0n1 vs_fcnvme_141    /vol/fcnvme_141_vol_1_1_0/fcnvme_141_ns
+/dev/nvme0n1 vs_fcnvme_141  vol/fcnvme_141_vol_1_1_0/fcnvme_141_ns
 
 NSID  UUID                                   Size
 ----  ------------------------------         ------

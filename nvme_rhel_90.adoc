@@ -528,10 +528,16 @@ Cmpl 00000000000000a8 Outstanding 0000000000000001
 
 
 
-| 'NVMe discover（NVMe検出）'NVMe connect（NVMe接続）'または'NVMe connect-all（NVMe接続）の間にフェッチする検出ログ・エントリーはありません | このエラーメッセージは、一般に、「/etc/nvme/hostnqn'」文字列がネットアップアレイの対応するサブシステムに追加されていないか、適切でないhostnqn文字列が各サブシステムに追加されている場合に表示されます。 | 正確な「/etc/nvme/hostnqn」文字列がネットアップアレイの対応するサブシステムに追加されていることを確認します（「vserver nvme subsystem host show」で確認します）。 
+| 'NVMe discover（NVMe検出）'NVMe connect（NVMe接続）'または'NVMe connect-all（NVMe接続）の間にフェッチする検出ログ・エントリーはありません  a| 
+このエラーメッセージは、一般に、「/etc/nvme/hostnqn'」文字列がネットアップアレイの対応するサブシステムに追加されていないか、誤った「hostnqn」文字列が各サブシステムに追加された場合に表示されます。
+ a| 
+正確な「/etc/nvme/hostnqn」文字列がネットアップアレイの対応するサブシステムに追加されていることを確認します（「vserver nvme subsystem host show」で確認します）。
 
 
-| 「/dev/nvme-Fabricsへの書き込みに失敗しました。オペレーションは「nvme discover」、「nvme connect」、または「nvme connect -all」の間にすでに進行中です | このエラーメッセージは、コントローラの関連付けまたは指定された処理がすでに作成されている場合や作成中の場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。 | なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。また'nvme connectとconnect-allに対して'nvme listを実行して'名前空間デバイスがすでに作成され'ホストに表示されていることを確認します 
+
+| 「/dev/nvme-Fabricsへの書き込みに失敗しました。オペレーションは「nvme discover」、「nvme connect」、または「nvme connect -all」の間にすでに進行中です | このエラーメッセージは、コントローラの関連付けまたは指定された処理がすでに作成されている場合や作成中の場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。  a| 
+なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。また'nvme connectとconnect-allに対して'nvme listを実行して'名前空間デバイスがすでに作成され'ホストに表示されていることを確認します
+
 |===
 
 

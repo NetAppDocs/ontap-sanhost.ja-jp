@@ -1910,7 +1910,6 @@
   <block id="de19b5a5ee04a9d75ed01f3017e72811" category="paragraph">NVMe と SCSI の両方のトラフィックを同じホストで同時に実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには 'enable_foreign 設定を /etc/multipath.conf ファイルに追加します</block>
   <block id="2c4ca691e5adaf801e0bf8d274c9b482" category="list-text">multipathd デーモンを再起動します。新しい設定が有効になるように、「 ystemctl restart multipathd 」コマンドを実行します。</block>
   <block id="3ea394f2d9cebf2dfc911ba5e025db7a" category="section-title">Broadcom / Emulex</block>
-  <block id="46e2b7cc014d11d7552d6921801d0753" category="list-text">lpfc_enable_fc4_type が 3 に設定されていることを確認します</block>
   <block id="2defc9958244f438872605820e3ca11a" category="list-text">イニシエータポートが起動して実行中であること、およびターゲット LIF が表示されていることを確認してください。</block>
   <block id="ebca1c9e44630148af4439559839580e" category="paragraph">ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイズ） 8 を報告します。つまり、最大 I/O 要求サイズは最大 1 MB でなければなりません。ただし 'Broadcom NVMe/FC ホストのサイズが 1 MB の問題 I/O 要求の場合 'lpfc パラメータ 'lpfc_sg_seg_cnt' もデフォルト値の 64 から 256 までバンピングする必要があります次の手順を使用して実行します。</block>
   <block id="fec3fcd81ccab102d0ff0e385ca80b74" category="list-text">それぞれの「 m odprobe lpfc.conf 」ファイルに「 256 」という値を追加します。</block>
@@ -2460,7 +2459,6 @@
   <block id="0300a463a2779250716b195b0f15c1ba" category="paragraph">上記のコマンドに適切な引数（適切なWWNN文字列、WWPN文字列など）を渡していることを確認してください。引数が正しいにもかかわらずこのエラーが表示される場合は、「/sys/class/scsi_host*/nvme_info」の出力が正しいことを確認し、NVMeイニシエータの「enabled」と表示され、NVMe/FCターゲットLIFがリモートポートのセクションに正しく表示されていることを確認します。例：</block>
   <block id="ad02181fdbf4245ee0052cfb92cb8bcc" category="paragraph">回避策 ：「nvme_info」の出力に上記のようにターゲットLIFが表示されない場合は、「/var/log/messages」および「dmesg」の出力でNVMe/FCエラーがないかどうかを確認し、それに応じて報告または修正してください。</block>
   <block id="9f7680250af5452ad3bc6e1373a71a11" category="cell">'NVMe discover（NVMe検出）'NVMe connect（NVMe接続）'または'NVMe connect-all（NVMe接続）の間にフェッチする検出ログ・エントリーはありません</block>
-  <block id="5bb9931249b357349ab3bbe1fedc8d23" category="cell">このエラーメッセージは、一般に、「/etc/nvme/hostnqn'」文字列がネットアップアレイの対応するサブシステムに追加されていないか、適切でないhostnqn文字列が各サブシステムに追加されている場合に表示されます。</block>
   <block id="6bd22b028f1c581999993ec8672aea1c" category="cell">正確な「/etc/nvme/hostnqn」文字列がネットアップアレイの対応するサブシステムに追加されていることを確認します（「vserver nvme subsystem host show」で確認します）。</block>
   <block id="00443539b6acea3b81b118f7a7f62818" category="cell">「/dev/nvme-Fabricsへの書き込みに失敗しました。オペレーションは「nvme discover」、「nvme connect」、または「nvme connect -all」の間にすでに進行中です</block>
   <block id="796b7594f30be7947c1efffc9c471c02" category="cell">このエラーメッセージは、コントローラの関連付けまたは指定された処理がすでに作成されている場合や作成中の場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
@@ -2548,4 +2546,19 @@
   <block id="3bb5487a25f2c91e7d62566cb6026b68" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例：</block>
   <block id="f2af591771f10d63662bd947024ee100" category="list-text">各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。例：</block>
   <block id="c13733aade7c22e1d6c0fb7be8a8c754" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例：</block>
+  <block id="295d37bcf3aa6754427b612bea361663" category="paragraph">このエラーメッセージは、一般に、「/etc/nvme/hostnqn'」文字列がネットアップアレイの対応するサブシステムに追加されていないか、誤った「hostnqn」文字列が各サブシステムに追加された場合に表示されます。</block>
+  <block id="dcda2cb33413b9ab0c8373225de75578" category="summary">ONTAP を使用してRHEL 8.5用のNVMe-oFホストを設定する方法</block>
+  <block id="3ae77fb5b2d43b5802128bed00b85944" category="doc">ONTAP を使用したRHEL 8.5向けのNVMe-oFホスト構成</block>
+  <block id="9eea7fd01633455098385cd20b7dd183" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.5でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。RHEL 8.5およびONTAP でANAを使用し、インカーネルNVMeマルチパスをターゲットとして使用してNVMe-oFを有効にする方法について、ここで詳しく説明します。</block>
+  <block id="ec81597eac06c85c5ddfa44cc8fcbd52" category="list-text">RHEL 8.5では、NVMe / FCに加え、NVMe / TCP（テクノロジプレビュー機能）もサポートされています。ネイティブのnvme-CLIパッケージに含まれているネットアッププラグインでは、NVMe/FCネームスペースとNVMe/FCネームスペースの両方のONTAP の詳細を表示できます。</block>
+  <block id="206f20ba4ee9fc54736165b9006258a5" category="list-text">RHEL 8.5では、カーネル内のNVMeマルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。</block>
+  <block id="46e2bc1ba1e17f9c87c8bdd0665dde6a" category="inline-link">RHEL 8.5リリースノート</block>
+  <block id="ba53163a27cd9bc34ed5a326c3bcd717" category="list-text">RHEL 8.5のNVMe/FCは、未解決の問題が原因でテクノロジプレビュー機能のままです。を参照してください<block ref="e17db2abe54f171cfce139c1feeab28f" category="inline-link-rx"></block> を参照してください。</block>
+  <block id="9c7d4fd2f8e0f3f2d80343ad47595e46" category="list-text">RHEL 8.5 GAをサーバにインストールします。インストールが完了したら、指定したRHEL 8.5 GAカーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="3010e81137392b43d689728401eb1ea9" category="list-text">lpfc_enable_fc4_typeが3に設定されていることを確認します</block>
+  <block id="d5236e74852c6cce228c1229faf5ea4f" category="paragraph">RHEL 8.5 GAカーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
+  <block id="e23d82164b7ed25abb97130635815a09" category="list-text">ノード全体でサポートされているすべてのNVMe/FCイニシエータターゲットLIFに対して、「nvme connect -all」コマンドを実行します。接続中に'ctrl_loss _tmo'期間を延長して（たとえば'-l 1800'で設定可能な30分）'パスが失われた場合に再試行するようにしてください例：</block>
+  <block id="431b68e6f738b5c8bf76d7972d17685f" category="paragraph">一般に'/etc/nvme/hostnqn'文字列がNetAppアレイの対応するサブシステムに追加されていないか'不正なhostnqn'文字列が各サブシステムに追加されています</block>
+  <block id="d9062f55beecc22ab1e0baaa195b1f68" category="paragraph">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。「nvme connect」および「connect-all」の場合は、「nvme list」コマンドを実行して、ネームスペースデバイスがすでに作成され、ホストに表示されていることを確認します。</block>
+  <block id="9b2d197e1555229882f18589d7c32cce" category="list-text">各ONTAP ネームスペースの適切なNVMe-oF設定（「model」を「NetApp ONTAP Controller」に設定し、ロードバランシング「iopolicy」を「ラウンドロビン」に設定するなど）がホストに正しく反映されていることを確認します。</block>
 </blocks>
