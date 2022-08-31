@@ -2561,4 +2561,11 @@
   <block id="431b68e6f738b5c8bf76d7972d17685f" category="paragraph">一般に'/etc/nvme/hostnqn'文字列がNetAppアレイの対応するサブシステムに追加されていないか'不正なhostnqn'文字列が各サブシステムに追加されています</block>
   <block id="d9062f55beecc22ab1e0baaa195b1f68" category="paragraph">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。「nvme connect」および「connect-all」の場合は、「nvme list」コマンドを実行して、ネームスペースデバイスがすでに作成され、ホストに表示されていることを確認します。</block>
   <block id="9b2d197e1555229882f18589d7c32cce" category="list-text">各ONTAP ネームスペースの適切なNVMe-oF設定（「model」を「NetApp ONTAP Controller」に設定し、ロードバランシング「iopolicy」を「ラウンドロビン」に設定するなど）がホストに正しく反映されていることを確認します。</block>
+  <block id="6cbc9fed5483c62cf8d3ec78d1467ec4" category="list-text">7.0U3c以降では、ESXiハイパーバイザーでNVMe/FC機能がサポートされます。</block>
+  <block id="cc2bd6356672cd21ca706ee5860d746e" category="list-text">ONTAP 9.10.1以降では、ONTAP でNVMe/FC機能がサポートされます。</block>
+  <block id="fc42d5b62a406fecb7a634ca014f42c2" category="paragraph">7.0U3c以降、必要なNVMe/FCモジュールがデフォルトでロードされます。ネットワークとNVMe/FCアダプタの設定については、VMware vSphereのドキュメントを参照してください。</block>
+  <block id="209ae9abdc2efd05e90e3a97a8913a9b" category="section-title">NVMe/FCを検証</block>
+  <block id="e4dbb8bc2f2492f010d3f33dd68f00c8" category="list-text">NVMe/FCアダプタのステータスを確認します。</block>
+  <block id="d4babb87959d757516a4f480642224cf" category="list-text">NVMe/FC接続を一覧表示するには、次のコマンドを使用します。</block>
+  <block id="75d2257ae841105f67aa7e6940b3fccb" category="list-text">NVMeネームスペースへのパスの数を表示するには、次のコマンドを使用します。</block>
 </blocks>
