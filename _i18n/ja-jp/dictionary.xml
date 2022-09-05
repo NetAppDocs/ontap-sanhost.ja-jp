@@ -2568,4 +2568,14 @@
   <block id="e4dbb8bc2f2492f010d3f33dd68f00c8" category="list-text">NVMe/FCアダプタのステータスを確認します。</block>
   <block id="d4babb87959d757516a4f480642224cf" category="list-text">NVMe/FC接続を一覧表示するには、次のコマンドを使用します。</block>
   <block id="75d2257ae841105f67aa7e6940b3fccb" category="list-text">NVMeネームスペースへのパスの数を表示するには、次のコマンドを使用します。</block>
+  <block id="d1672d22493ff360a1f07bc1cfac7524" category="doc">NetApp ONTAP でSUSE Linux Enterprise Server 15 SP4を使用する方法</block>
+  <block id="aaf285a33d84d021ddb3cf7d93395617" category="paragraph">SUSE Linux Enterprise Server 15 SP4の場合は、/etc/multipath.confファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 15 SP4は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="3dfda629d29a9eff997fc21c726b36da" category="paragraph">SUSE Linux Enterprise Server 15 SP4 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。</block>
+  <block id="bdb5443c5dd9643367f9496b5fb35d08" category="paragraph">マルチパス・デーモンを開始するには'multipath.confファイルが存在している必要がありますが'次のコマンドを使用して空の0バイトのファイルを作成できます'touch /etc/multipath.conf</block>
+  <block id="a96d8f77801154cf5d51080e06fa3215" category="paragraph">「&lt;DevId&gt;」を、除外するデバイスの「WWID」文字列に置き換えます。次のコマンドを使用して'wwidを決定します</block>
+  <block id="9d29c9f01ddee621ba147e8ccc4bc7b0" category="list-text">次のコマンドを実行して'wwidを決定します</block>
+  <block id="e97b2c87e2a473e6975fd85e7af8bc02" category="list-text">/etc/multipath.conf内のブラックリストスタンザに'wwidを追加します</block>
+  <block id="588664bdfe3aca23316ad7f26a08e2a5" category="paragraph">次の表に、ONTAP LUNのmultipathdパラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
+  <block id="e1f518829ea0b48c92b1926c70a84380" category="paragraph">SUSE Linux Enterprise Server 15 SP4には、既知の問題はありません。</block>
+  <block id="cf79be42f6c9a2f2225f202bfec080c2" category="sidebar">15 SP4</block>
 </blocks>
