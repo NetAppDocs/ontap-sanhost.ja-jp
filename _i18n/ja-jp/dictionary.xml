@@ -2578,4 +2578,27 @@
   <block id="588664bdfe3aca23316ad7f26a08e2a5" category="paragraph">次の表に、ONTAP LUNのmultipathdパラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
   <block id="e1f518829ea0b48c92b1926c70a84380" category="paragraph">SUSE Linux Enterprise Server 15 SP4には、既知の問題はありません。</block>
   <block id="cf79be42f6c9a2f2225f202bfec080c2" category="sidebar">15 SP4</block>
+  <block id="8da61845fa1ac07e5d54097fe9d2a4cb" category="summary">ONTAP を搭載したSUSE Linux Enterprise Server 15 SP4でNVMe/FCを設定する方法について説明します</block>
+  <block id="8eb74debb51b4f25feba23cb4c810b37" category="doc">ONTAP 搭載SUSE Linux Enterprise Server 15 SP4のNVMe-oFホスト構成</block>
+  <block id="c75db19ac5a0dcb194a365e12ad2a6df" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他の転送を含む）は、SUSE Linux Enterprise Server 15 SP4（SLES15 SP4）およびANA（非対称ネームスペースアクセス）でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在インカーネル NVMe マルチパスで実装されています。SLES15 SP4およびONTAP でANAをターゲットとして使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について、ここで詳しく説明します。</block>
+  <block id="6bf6f26e72e1a43152386a3d529598cb" category="list-text">SLES15 SP4では、NVMe/FCおよびその他の転送がサポートされます。</block>
+  <block id="142ea2bd2623f2c2d64d9ef53c347b24" category="list-text">NVMe-oFには「sanlun」のサポートはありません。そのため、SLES15 SP4では、NVMe-oFはLuhuでサポートされていません。代わりに、ネイティブの「nvme-cli」に含まれているNetAppプラグインを使用してもかまいません。これはすべての NVMe-oF 転送で機能します。</block>
+  <block id="10bc893eed35189e5092c4f181aedb5e" category="list-text">NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。実際、これは一般的に導入されるホスト構成であると想定されています。したがって、SCSIの場合、SCSI LUNでは通常どおり「dm-multipath」を設定してから、mpathデバイスを作成できますが、NVMeマルチパスを使用してホストでNVMe-oFマルチパスデバイスを設定することもできます。</block>
+  <block id="4b148e1d7f44cff075101f1edbc6a9fe" category="paragraph">を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
+  <block id="b545ab3ca975cd0517fdd21a1729e795" category="paragraph">SLES15 SP4などのSLESホストでは、カーネル内NVMeマルチパスはデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
+  <block id="4933033127862860b194cbe455635310" category="list-text">SLES15 SP4 MUホストに、必要なカーネルおよび「nvme-cli」メンテナンスアップデート(MU)パッケージがインストールされていることを確認します。</block>
+  <block id="c5887937b5b23714e6333cc2805b4864" category="list-text">ホストの/etc/nvme/hostnqn'でhostnqn'文字列を確認し、ONTAP アレイの対応するサブシステムのhostnqn'文字列と適切に一致していることを確認します例：</block>
+  <block id="d9f4f7d9a9eb182e8b8863d6c183e841" category="paragraph">ホストで使用しているFCアダプタに応じて、次の手順を実行します。</block>
+  <block id="75870a630c07f219a37133dad55f104f" category="paragraph">新しいlpfcドライバ（受信トレイと送信ボックスの両方）には'lpfc_enable_fc4_type`のデフォルトが3に設定されているため'/etc/modprobe.d/lpfc.confでこれを明示的に設定しなくても'initrd'を再作成できますlpfc nvme のサポートは ' デフォルトですでに有効になっています</block>
+  <block id="32ecb9890aed827558c7cd1a318fda14" category="paragraph">既存のネイティブインボックス lpfc ドライバは、 NVMe / FC に対応した最新のバージョンです。したがって、lpfc Out of Box（OOB）ドライバをインストールする必要はありません。</block>
+  <block id="ce48d43c1e6c7a418733e722925a43b8" category="list-text">NVMe/FC イニシエータポートが有効になっていることと、ターゲットポートが認識され、すべて稼働していることを確認してください。次の例では、の出力からわかるように、有効になっているイニシエータポートが1つだけあり、2つのターゲットLIFで接続されています。</block>
+  <block id="bc1eafdc5546c34f6a9034570437fcc0" category="list-text">dracut -fコマンドを実行し、ホストをリブートします。</block>
+  <block id="61efa8d63e1b266809e1e79422fed58f" category="paragraph">新しいSLES15 SP4 MUカーネルに含まれているネイティブインボックスqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
+  <block id="859c1dcdb0decd8fe22f184abe2b92f7" category="list-text">パスが復活したあとの自動再接続が行われないNVMe/FCは'パスがダウンしてから10分経過したデフォルトのCtrl-loss -TMO'タイマーを超えたパスに自動的に再接続することはできません</block>
+  <block id="1077e8ad3542ff8af32bed26b6b21ee8" category="list-text">ホストのブート時に自動接続を行わないNVMe/FCは、ホストのブート時にも自動的に接続できません。</block>
+  <block id="bf67db93bdc191f54bf3b60580bdafe9" category="paragraph">ストレージフェイルオーバー（SFO）などのONTAP フェイルオーバーイベントを快適に潮流させるには、「ctrl_loos_tmo」タイマーを調整して30分程度の再試行期間を設定することをお勧めします。詳細は次のとおりです。</block>
+  <block id="bf093b1c5c4b0f979c7987042c56c3d8" category="list-text">ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。パスが失われた場合に再試行するように'connect-allの間に'ctrl_loss _tmo'期間を延長してください（たとえば'30分～l 1800で設定できます）例：</block>
+  <block id="b2edbac4a48e893081ffbe4cda9a7dec" category="list-text">該当するONTAP ネームスペースの該当するNVMe-oF設定（NetApp ONTAP コントローラに設定したモデル、ラウンドロビンに設定したロードバランシングポリシーなど）がホストに正しく反映されていることを確認します。</block>
+  <block id="0882578f9915da36a8ab5c612728ad30" category="paragraph">例（A）：</block>
+  <block id="07cf625ee23005956a460fdd83c0142d" category="list-text">出力「nvme_info」に上記のようにターゲットLIFが表示されない場合は、「/var/log/messages」と「dmesges`の出力で、疑わしいNVMe/FCエラーがないかどうかを確認し、それに応じて報告または修正してください。</block>
 </blocks>
