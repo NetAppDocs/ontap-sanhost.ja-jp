@@ -2671,4 +2671,43 @@
   <block id="b3b940fc372d8951896f13c236f63d70" category="sidebar">RHEL-6-FCP</block>
   <block id="c11de2cda31d67ed47c0182334a7ac91" category="sidebar">SLES-15-FCPの場合</block>
   <block id="2f7ca50ec80cb8bec6ae8dd04c29748c" category="sidebar">Windows - FCP</block>
+  <block id="752a324c176d2c493675458b92ddd613" category="summary">例を使用して、ONTAP を使用したOracle Linux 8.6でのVME/FCホスト構成のセットアップ</block>
+  <block id="0dea8ccda08dc1647ed0a458849e5cda" category="doc">ONTAP を使用したOracle Linux 8.6でのNVMe/FCホスト構成</block>
+  <block id="56c808f331e6b3c9820175d57306e0f3" category="paragraph">NVMe/FCは、ONTAP Linux 8.6では9.6以降でサポートされます。Oracle Linux 8.6ホストは、NVMe/FCとFCPの両方のトラフィックを同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。を参照してください <block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> 。</block>
+  <block id="b6aacf330be58e59ae9c6e632264ada4" category="list-text">Oracle Linux 8.6では、NVMeネームスペース用にカーネル内NVMeマルチパスがデフォルトで有効になっています。</block>
+  <block id="632a014dfdbbcfe7be2f4a3299f8179f" category="list-text">Oracle Linux 8.6では'nvme-fc auto-connect`スクリプトがネイティブの'nvme-cli'パッケージに含まれていますそのため、外部ベンダーが提供するoutbox自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用することもできます。</block>
+  <block id="c8313026557b779f395283c2ea9714a2" category="list-text">Oracle Linux 8.6では'ネイティブのudevルールが'nvme-cli'パッケージの一部としてすでに提供されており'NVMeマルチパスのラウンド・ロビン・ロード・バランシングが可能になりますそのため、このルールを手動で作成する必要はありません（Oracle Linux 8.1の場合と同様）。</block>
+  <block id="8e8806fe2838afa9bf15e3dbbfece6ac" category="list-text">Oracle Linux 8.6を使用すると、NVMeとSCSIの両方のトラフィックを、同じ新規のホストで実行できます。実際、これは一般的に導入されるホスト構成であると想定されています。SCSIの場合'dm-multipathをSCSI LUNで通常どおりに設定してから'mpathデバイスを生成できます一方'NVMeマルチパスを使用してNVMe-oFマルチパスデバイス（つまり'/dev/nvmeXnY')をホストで設定できます</block>
+  <block id="8ca36637dafccfba226982d60fc919af" category="list-text">Oracle Linux 8.6では、ネイティブの「nvme-cli」に含まれるネットアッププラグインで、ONTAP ネームスペースのONTAP の詳細を表示できます。</block>
+  <block id="32ad96e08f0745dafe749450924fe262" category="list-text">NVMe/FCはテクノロジプレビュー機能であるため、サポートはInteroperability Matrix Toolには掲載されていません。</block>
+  <block id="263a466cd0e85665ea1116eaa30f6d8f" category="list-text">NVMe/FC（ストレージフェイルオーバー）などのONTAP フェイルオーバーイベントを快適に潮流させるには、「ctrl_loos_tmo」タイマーを微調整して、30分などの長い再試行期間を設定することをお勧めします。以下の詳細を参照してください。</block>
+  <block id="852276567efe7b56afec8ce96d0b81be" category="section-title">Oracle Linux 8.6でのNVMe/FCの有効化</block>
+  <block id="1e37ab7e798e668edd8a9933d40ebce8" category="list-text">サーバにOracle Linux 8.6 GAをインストールします。インストールが完了したら、指定したOracle Linux 8.6 GAカーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="b3c9256bf72a3e95e62e3b27fb7a272c" category="list-text">Oracle Linux 8.6ホストでは'/etc/nvme/hostnqn'でhostnqn'文字列を確認し'それがONTAP アレイ上の対応するサブシステムのhostnqn'文字列に一致することを確認します</block>
+  <block id="c3f945c387081e13e35b50e7a9596c45" category="admonition">hostnqn文字列が一致しない場合は、「vserver modify」コマンドを使用して、対応するONTAP アレイサブシステムのhostnqn文字列を、ホストの「/etc/nvme/hostnqn」からの「hostnqn」文字列に一致するように更新します。</block>
+  <block id="80c56c3864b926fe136ad892a00d18ae" category="paragraph">同一のOracle Linux 8.6ホスト上でNVMeトラフィックとSCSIトラフィックの両方を実行する予定の場合は、ONTAP ネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはそれぞれ「dm-multipath」を使用することを推奨します。また'dm-multipathでONTAP ネームスペースがこれらのネームスペースデバイスを要求しないようにブラックリストに登録される必要がありますこれを行うには'enable_foreign'設定を/etc/multipath.confに追加します</block>
+  <block id="26723dffa61ae0f61d6a8cd44850bd2c" category="list-text">新しい設定を有効にするには'systemctl restart multipathdコマンドを実行して' multipathdデーモンを再起動します</block>
+  <block id="04e72c0ba3af5aaae0fee06a8ca8d6ef" category="list-text">サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> 。</block>
+  <block id="cbfc68d368a87a077c1eef36f75da871" category="list-text">推奨されるBroadcom lpfcのファームウェアと受信トレイ・ドライバを使用していることを確認しますサポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> 。</block>
+  <block id="e42d2937239f99af3555e447c690bae4" category="section-title">1MBのI/Oサイズを有効にします</block>
+  <block id="b28285499ae17175e806b94fc3cb4e9e" category="list-text">dracut -fコマンドを実行し、ホストをリブートします。</block>
+  <block id="4e607aa60f743cf23d102c38d262e0ce" category="section-title">Marvell / QLogic FCアダプタをNVMe/FC用に設定します</block>
+  <block id="8dfeb89cb3c09b7e1a84c8cb64942605" category="list-text">RHEL 8.6 GAカーネルに含まれているネイティブインボックスqla2xxxドライバには、ONTAP のサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="d089a5874400b4d27c5c75a27689a763" category="paragraph">ONTAP フェイルオーバーイベント(SFOなど)を快適に利用するには'Ctrl_LONS_TMO'タイマーを調整して'30分などの長い再試行期間を設定することをお勧めします以下の詳細を参照してください。</block>
+  <block id="fa018ab34241962fb97609ee124f1513" category="list-text">同様に、他のNVMe/FCイニシエータターゲットLIFのコンボファイルから検出ログページのデータを正常に取得できることを確認してください。例：</block>
+  <block id="1549872eccb230def9ed61fd6e643da1" category="list-text">次に、ノード全体でサポートされているすべてのNVMe/FCイニシエータターゲットLIFに対して、「nvme connect -all」コマンドを実行します。パスが失われた場合に再試行する期間が長くなるように'connect-allの間に'ctrl_loss _tmo'期間を延長してください（たとえば'-30分は'-l 1800'で設定できます）例：</block>
+  <block id="fcd0d6c9e19d4cbc025e05cfc23cdaf2" category="list-text">Oracle Linux 8.6ホストでの次のNVMe/FC設定の有効化：</block>
+  <block id="1c90df85f9ac017905701f01a5b3788b" category="list-text">ネームスペースが作成され、ホスト上で正しく検出されたことを確認します。</block>
+  <block id="2ff06b30bf2e564bdee443c4b385552e" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、必ずIMT の仕様に準拠した設定を実行していることを確認し、ホスト側の問題をデバッグするために次の手順を実行します。</block>
+  <block id="7be9aa10f19f6b39286cbd2769f88cd5" category="section-title">lpfc詳細ログ</block>
+  <block id="433e600c7cc5c16a4c4ef2eafbfbeba1" category="paragraph">したがって'lpfcドライバの観点からNVMe/FCイベントをロギングするには'lpfc_log_verbose'ドライバ設定（/etc/modprobe.d/lpfc.confのlpfc行に追加）を上記のいずれかの値に設定します次に'racut-f 'を実行してinitiramfsを再作成し、ホストを再起動します。再起動後、上記の「LOG_NVME_DISC」ビットマスクの例を使用して、詳細ログが適用されていることを確認します。</block>
+  <block id="9c2f86beda575f2401b682f52ff52734" category="paragraph">「nvme discover」、「nvme connect」、または「nvme connect -all」操作中に「nvme-cli」によって表示されるエラーとその回避策を次の表に示します。</block>
+  <block id="03e777a5d13f745b3711328f199b68eb" category="cell">構文が正しくありません。</block>
+  <block id="613c0357c7acc38fb1ef11262cea3be4" category="cell">複数の問題が原因でこのエラーが発生する可能性一般的なケースとしては、上記のNVMeコマンドに誤った引数を渡した場合などがあります。</block>
+  <block id="675759a03d5b6eaf83372c004fb00e5f" category="list-text">上記のコマンドの適切な引数（適切なWWNN文字列、WWPN文字列など）が渡されていることを確認してください。</block>
+  <block id="1ae0589eecd3f3226905a705c23041c9" category="list-text">引数が正しいにもかかわらずこのエラーが表示される場合は、「/sys/class/scsi_host*/nvme_info」の出力が正しいことを確認し、NVMeイニシエータの「enabled」と表示され、NVMe/FCターゲットLIFがリモートポートのセクションに正しく表示されていることを確認します。例：</block>
+  <block id="9a852133465a9739a4e76a8c4c1b0003" category="list-text">出力「nvme_info」に上記のようにターゲットLIFが表示されない場合は、「/var/log/messages」と「dmesg」の出力でNVMe/FCエラーがないかどうかを確認し、それに応じてレポート/修正してください。</block>
+  <block id="36cef896471a12b0f41c40926a1d02dc" category="cell">このエラーメッセージは、通常、「/etc/nvme/hostnqn」文字列がネットアップアレイの対応するサブシステムに追加されていない場合に表示されます。または無効なhostnqn文字列がそれぞれのサブシステムに追加されています。</block>
+  <block id="db0bd7baf16dc60d55f11a9b309bc749" category="cell">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。また'nvme connectとconnect-allの場合は'nvme listコマンドを実行して'ネームスペース・デバイスがすでに作成され'ホストに表示されていることを確認します</block>
+  <block id="9e9ad12d8f7b421ec7b07bcffb518755" category="paragraph">問題が解決しない場合は、次のファイルとコマンドの出力を収集し、テクニカルサポートに問い合わせてトリアージを依頼してください。</block>
 </blocks>
