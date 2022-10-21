@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: overview.html 
+keywords: ontap, san, host, rhel, red, hat, linux, sles, suse, esxi, nvme, oracle, linux, windows, enterprise, fc, fcp, isci, aix, powervm, vios, centos, citrix, hp-ux, solaris, veritas, cvo, cloud, volume, ontap, clients, configuration, FSx, instance, netapp 
+summary: このコンテンツでは、オンプレミスのONTAP ストレージに接続されたONTAP ホストとSANホストについて、Cloud Volumes ONTAP とAmazon FSXに接続されたクラウドクライアントを設定する方法について、配布に固有のガイダンスを提供します。 
+---
+= SANホストの構成の概要
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+このコンテンツでは、ONTAP ストレージに接続されたSANホストを簡単に構成するための、ホストとバージョンに固有のベストプラクティスを紹介します。
+
+SANホストとONTAP ストレージは、オンプレミス、クラウド、またはその両方に配置できます。
+
+
+NOTE: クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるすべてのホスト固有の情報は、環境 クラウドクライアントにも該当します。
+
+たとえば、オンプレミスのONTAP ストレージをオンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりすることができます。を設定することもできます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。
+
+最適なパフォーマンスとフェイルオーバーを実現するには、適切な設定が重要です。

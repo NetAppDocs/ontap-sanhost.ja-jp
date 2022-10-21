@@ -1,0 +1,51 @@
+---
+indexpage:
+  lead: このコンテンツでは、ONTAP ストレージに接続するSANクライアントの設定方法について、配信ごとのガイダンスを提供します。SANクライアントとONTAP
+    ストレージは、オンプレミスとクラウドのどちらにも配置できます。
+  tiles:
+  - title: はじめに
+    links:
+    - title: AIX Host Utilitiesのリリースノート
+      url: "/hu_aix_61_rn.html"
+    - title: HP-UX Host Utilitiesのリリースノート
+      url: "/hu_hpux_60_rn.html"
+    - title: Linux Host Utilitiesのリリースノート
+      url: "/hu_luhu_71_rn.html"
+    - title: Solaris Host Utilitiesのリリースノート
+      url: "/hu_solaris_62_rn.html"
+  - title: FCPおよびiSCSIホストの設定
+    links:
+    - title: VMware vSphere 7
+      url: "/hu_vsphere_7.html"
+    - title: Red Hat Enterprise Linux 9.0
+      url: "/hu_rhel_90.html"
+    - title: SUSE Linux Enterprise Server 15 SP4
+      url: "/hu_sles_15SP4.html"
+    - title: Windows Server 2022
+      url: "/hu_windows_2022.html"
+    - title: IBM AIX 7.2およびPowerVM（VIOS 3.1）
+      url: "/hu_aix_72.html"
+    - title: Oracle Solaris 11.4
+      url: "/hu_solaris_114.html"
+  - title: NVMe-oFホストの設定
+    links:
+    - title: VMware vSphere 7
+      url: "/nvme_esxi_7.html"
+    - title: Red Hat Enterprise Linux 9.0
+      url: "/nvme_rhel_90.html"
+    - title: SUSE Linux Enterprise Server 15 SP4
+      url: "/nvme_sles15_sp4.html"
+    - title: Windows Server 2022
+      url: "/nvme_windows_2022.html"
+  - title: リソースの追加
+    links:
+    - title: Cloud Volumes ONTAP
+      url: https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html
+    - title: ONTAP 対応の Amazon FSX
+      url: https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html
+    - title: オールSANアレイソフトウェア構成
+      url: https://docs.netapp.com/us-en/ontap/task_asa_software_configuration.html
+    - title: SAN 管理
+      url: https://docs.netapp.com/us-en/ontap/san-admin/index.html
+    - title: SAN の設定
+      url: https://docs.netapp.com/us-en/ontap-metrocluster/

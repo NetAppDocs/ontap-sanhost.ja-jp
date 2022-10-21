@@ -1087,14 +1087,7 @@
   <block id="2a1ab1135667d6dc77c69e8562aa36e0" category="paragraph">CentOS 6.7 の場合は '/etc/multipath.conf ファイルが存在している必要がありますが ' ファイルに特定の変更を加える必要はありませんCentOS 6.7 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="eb694d82bb8432a9005a1a1f219b1fa0" category="paragraph">CentOS 6.7 OS は、 ONTAP LUN を認識し、すべての設定パラメータを ASA 構成と非 ASA 構成の両方に対して自動的に正しく設定するようにコンパイルされます。</block>
   <block id="9d2a87ba78cec8237c139f77ffb44261" category="paragraph">CentOS （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="fd679b4991af24edfd6d66f5cbc5db76" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.7 の場合</block>
-  <block id="4a9d6f77a85370fcefc81c6198d55611" category="summary">SAN ホストのドキュメント</block>
   <block id="79e721357e358d77c4700c25c863fc37" category="doc">ONTAP SAN ホスト構成</block>
-  <block id="e86a7e3bea38d2583e3a667f01b9c8c1" category="paragraph">このコンテンツでは、 NVMe 、 iSCSI 、 FC の各プロトコル向けに ONTAP SAN ホストを設定する方法について、配信固有のガイダンスを提供します。</block>
-  <block id="ff45216534e3f7d14efcedbac9ce3e18" category="paragraph">最適なパフォーマンスを実現し、フェイルオーバーを正常に実行するには、 ONTAP ストレージを使用して SAN ホストを正しく設定することが重要です。これらのドキュメントでは、ベストプラクティス構成を簡単にセットアップする方法を紹介しています。</block>
-  <block id="47e46257d0b1fbf2e6359578f279e2e1" category="paragraph">iSCSI および FC の場合、従来の Linux Unified Host Utilities のガイドはこのマニュアルに代わるものです。各ドキュメントは 1 つのディストリビューションと Linux バージョンに固有なので、正確なバージョンの情報のみが表示されます。お使いのディストリビューションと Linux のバージョンがまだ記載されていない場合は、すぐにご確認ください。</block>
-  <block id="ab066b3292d8ab61ef3b5c77169cdd19" category="section-title">詳細情報</block>
-  <block id="77e0defdbacbcd12c42e7a582cf75709" category="paragraph">SAN 構成の追加情報については、次のドキュメントを参照してください。</block>
-  <block id="891d3d61b8fac48b3a3480b3a2f6d3c9" category="inline-link-macro">『 All SAN Array Software Configuration Guide 』を参照してください</block>
   <block id="a76193f5d9397d9c49ca283a20ccf649" category="inline-link-macro">『 SAN アドミニストレーションガイド』</block>
   <block id="8cb9ee34636093f5ba25008ebc7b7287" category="inline-link-macro">『 SAN 構成ガイド』</block>
   <block id="f75fbeea110530ab4a9306fd42a5e085" category="summary">ONTAP で Oracle Linux 6.8 を使用する方法について説明します</block>
@@ -1797,10 +1790,6 @@
   <block id="2abffb2205f281bc82ee25fbb0545967" category="paragraph">CentOS 8.0 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、そのファイルに特定の変更を加える必要はありません。CentOS 8.0 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
   <block id="789946f446a9091348366818339bb5af" category="paragraph">CentOS 8.0 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。マルチパスデーモンを開始するには、「 multipath.conf 」ファイルが存在している必要がありますが、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトファイルを作成できます</block>
   <block id="16c8f9caff89a168a424e7f5ade0f822" category="paragraph">CentOS （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="13be8945161aaeca52d4e4a694080916" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.0 の場合。</block>
-  <block id="8cf04a9734132302f96da8e113e80ce5" category="sidebar">ホーム</block>
-  <block id="7b77ca74daebfde9d9723cc5ef879cf8" category="sidebar">SAN Host Utilities の略語</block>
-  <block id="a4d5754af636a6318ee2ffcd80c52e27" category="sidebar">Linux Unified Host Utilities のこと</block>
-  <block id="748753e893fd2f6b904a298d120af491" category="sidebar">Windows Unified Host Utilities のことです</block>
   <block id="1aa66ef3a8e34a7a538960a80d2e1e31" category="sidebar">ESXi</block>
   <block id="01deebfa87b938c89ecb3dcb4effcbe2" category="sidebar">7.0</block>
   <block id="fdcd362ac5f5f9817e70642dd2a48bfd" category="sidebar">Oracle Linux の場合</block>
@@ -1816,7 +1805,6 @@
   <block id="ea6b2efbdd4255a9f1b3bbc6399b58f4" category="sidebar">2019 年</block>
   <block id="95192c98732387165bf8e396c0f2dad2" category="sidebar">2016 年</block>
   <block id="f997434446ca6b2fcbb19d33852187d3" category="sidebar">2012 R2</block>
-  <block id="16b27b38be3c36e579e929b4c20b9fbd" category="sidebar">FCP および iSCSI ホスト構成</block>
   <block id="9be5573ac1f42b7e45f53ea9bcbacde3" category="sidebar">AIX および PowerVM/VIOS</block>
   <block id="f418ab5fac16133ff4e30e12dffff5f7" category="sidebar">6.3.1 を参照してください</block>
   <block id="7cd31cf6820896d838535a73cafb15ca" category="sidebar">7.1</block>
@@ -1980,7 +1968,6 @@
   <block id="a0eb26e72e628156638ad8b9cea45ac5" category="list-text">次のチェックボックスをオンにして、カーネル内の NVMe マルチパスが実際に有効になっていることを確認</block>
   <block id="80748b874d55c5038d34ce16a870e640" category="section-title">qla2xxx 詳細ログ</block>
   <block id="38a517c65e7a4cfa6d1b781c6a6e35f4" category="cell">必ず正しい構文を使用してください。</block>
-  <block id="c93b085fcb8e1f8bc98e8da71741e760" category="sidebar">NVMe-oF ホスト構成</block>
   <block id="be3d2421a8f8e1a506cd8ec6140627fb" category="paragraph">tar -xvf ntap_aix_host_utilities_6.1.tar.tgz</block>
   <block id="6a60f15d3addedaaeee9fbd5c320d06d" category="paragraph">ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります</block>
   <block id="4a74fae0987c7a6283e4b1f5c07e2bf2" category="paragraph">'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.mpio_Host_Utilities_Kit</block>
@@ -2021,7 +2008,6 @@
   <block id="dfa4360b9ef5c59ee3bab4c95d016689" category="admonition">Oracle Linux 8.3 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用してください <block ref="4e79a9939610f9dc89e0e26786a809f0" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.3 の場合：</block>
   <block id="dbe552aa6706cdda69944fc1f527ec35" category="paragraph">Oracle Linux 8.3 に関する既知の問題はありません。</block>
   <block id="273955f9a81b6001ec0fed11c89c61c3" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="3c7f0100e93cbb394731ee7d8982c161" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
-  <block id="069c43556e66148f1f1eeabd7e9e7872" category="sidebar">AIX Host Utilities の略語</block>
   <block id="095f17ad6c7f706c5fa881fa28d2b0e2" category="sidebar">XenServer 7</block>
   <block id="7818dfcab7a1c05d51aa00ac15f3beac" category="paragraph">マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Solaris 11.4 では、 Oracle Solaris I/O マルチパス（ MPxIO ）がデフォルトで有効になっています。デフォルト設定は '/kernel/drv/fp.conf で MPxIO disable="no" に変更されます</block>
   <block id="1014a6a04423d551549d409e08fbcc51" category="paragraph">LDOM 内で LUN が仮想ディスクデバイスとして使用されている場合、 LUN のソースは仮想化によってマスクされ、 LDOM はブロックサイズを適切に検出しません。この問題を防止するには、 Oracle バグ 15824910 の LDOM オペレーティング・システムにパッチを適用し、仮想ディスクのブロック・サイズを 4096 に設定する「 vdc.conf 」ファイルを作成する必要があります。詳細については、 Oracle Doc 2157669.1 を参照してください。</block>
@@ -2173,7 +2159,6 @@
   <block id="7f281a8c95a2d1ea3fef7e5b156beee5" category="section-title">SLES15 SP2 で NVMe/FC を有効にします</block>
   <block id="f7a582d94c3c08d29da52684240c7e5e" category="section-title">1MB I/O サイズを有効にする（オプション）</block>
   <block id="7988dd645d080901aa85637adea3c152" category="sidebar">NVMeoF ESXi</block>
-  <block id="e0f04c85d16be7d67287c02eeb4c1ca8" category="sidebar">NVMeF RHEL</block>
   <block id="6450317152c5c108daebac9e8e1a387c" category="sidebar">SLES</block>
   <block id="2f9c81bcc0340cf8ca367c73fc2605c3" category="sidebar">NVMeoF SLES</block>
   <block id="f77a693c238b55e124aad6c742f7abd9" category="sidebar">SLES 15</block>
@@ -2201,7 +2186,6 @@
   <block id="34fed3385bd742bd2b178de283f371b7" category="cell">ベンダー</block>
   <block id="3226f4c6b2d594c2a4e8db91fcc55341" category="section-title">Broadcom / Emulex を設定します</block>
   <block id="63d2eef6ffb1f9f0f6a378b0692f6dd3" category="section-title">Marvell / QLogic を設定します</block>
-  <block id="b1db54564fe54a4c74a975b18a791532" category="sidebar">7.x</block>
   <block id="61092b92c56a8527051cc09db7ffcf96" category="summary">ONTAP で Red Hat Enterprise Linux 8.5 を使用する方法について説明します</block>
   <block id="741d2402053ca439d535ee1e7db603b7" category="doc">NetApp ONTAP を搭載した Red Hat Enterprise Linux 8.5 の使用</block>
   <block id="10a8491b4d5d18409c61a4a90c61750b" category="section-title">Linux Unified Host Utilities をインストールします</block>
@@ -2222,9 +2206,6 @@
   <block id="999cc5e84fec57fdd157e6fdacc5c96a" category="paragraph">「 depot_path 」は、デポファイルのパスと名前を提供します。</block>
   <block id="e661cef1335457aaa4b6047327cfb656" category="paragraph">swinstall コマンドは 'HP-UX セットアップの状態を確認するインストール・スクリプトを実行しますシステムが要件を満たしている場合、このスクリプトは「 sanlun 」ユーティリティおよび診断スクリプトを「 /opt/NetApp/santools/bin 」ディレクトリにインストールします。</block>
   <block id="96e0cae7407a65fe53018dd9c13dbbe7" category="section-title">FC HBA およびスイッチを設定します</block>
-  <block id="4305e9936b83d45d04d4e15cb3f002d2" category="paragraph"><block ref="e5534403168e57c1e34879bb31a5b6d6" category="inline-link-macro-rx"></block>
-<block ref="414cc440da9b8860f85936c8ca7199d3" category="inline-link-macro-rx"></block>
-<block ref="c70054656a6156c5d554f172fbb27a7a" category="inline-link-macro-rx"></block></block>
   <block id="13875804930272cb7e31a51605d09c65" category="doc">Solaris Host Utilities 6.2</block>
   <block id="408c1c436b88f56a9e4cf815ca520ffc" category="list-text">安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。</block>
   <block id="8f3b9d0cc42d20c0623a5f0990c4181e" category="paragraph">Solaris Host Utilities は、 Oracle Solaris ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
@@ -2250,7 +2231,6 @@
   <block id="cdfd79e32ab8a821a843e89d91bdcd8d" category="list-text">MPxIO</block>
   <block id="8ae046464e598978903e62c0c706373c" category="list-text">Veritas DMP の略</block>
   <block id="a335fa6e5bef06439b229f8adabc7dfe" category="section-title">特定の SVM / リストからホストにマッピングされているすべての LUN をリストします。ホストにマッピングされている特定の LUN のすべての属性をリストします</block>
-  <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
   <block id="072bbeb072deda2033d37a6e9af67b96" category="summary">ONTAP でOracle Linux 8.5を使用する方法について説明します</block>
   <block id="bebf74152cdc0b8f2233ff49a9112052" category="doc">NetApp ONTAP でOracle Linux 8.5を使用する</block>
   <block id="5afff738a58f6889eebdd3efb2f2c405" category="paragraph">Oracle Linux（OL）8.5の場合、/etc/multipath.confファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 8.5は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を組み込んでコンパイルされます。</block>
@@ -2522,7 +2502,6 @@
   <block id="13d4f4be1ab239d2cd36fb812fad5fc1" category="inline-link-macro">使用しているONTAP のバージョンに対応したONTAP リリースノート</block>
   <block id="d7b5ae94e622a21572fe07c48e20da09" category="list-text">。 <block ref="2ba744c2429cbcfc53bdb0428522a053" category="inline-link-macro-rx"></block></block>
   <block id="60cb9c3f22cf2b74a314e1d7baf48bef" category="paragraph">CentOS 8.4で確認されている既知の問題はありません。</block>
-  <block id="2cac689df6b99782e23a143c9bfa2346" category="sidebar">HP-UX Host Utilitiesのことです</block>
   <block id="032f858f49a253e7a44870c242d0aa5b" category="sidebar">HP-UX HU 6.0をインストールします</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">リリースノート</block>
   <block id="a7a862c0d782706aace5e07821f4f4c9" category="sidebar">Solaris HU 6.2をインストールします</block>
@@ -2710,4 +2689,40 @@
   <block id="36cef896471a12b0f41c40926a1d02dc" category="cell">このエラーメッセージは、通常、「/etc/nvme/hostnqn」文字列がネットアップアレイの対応するサブシステムに追加されていない場合に表示されます。または無効なhostnqn文字列がそれぞれのサブシステムに追加されています。</block>
   <block id="db0bd7baf16dc60d55f11a9b309bc749" category="cell">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。また'nvme connectとconnect-allの場合は'nvme listコマンドを実行して'ネームスペース・デバイスがすでに作成され'ホストに表示されていることを確認します</block>
   <block id="9e9ad12d8f7b421ec7b07bcffb518755" category="paragraph">問題が解決しない場合は、次のファイルとコマンドの出力を収集し、テクニカルサポートに問い合わせてトリアージを依頼してください。</block>
+  <block id="c345c92c1db74865c1b5cb8dad478651" category="summary">このコンテンツでは、ONTAP ストレージに接続するSANクライアントの設定方法について、配信ごとのガイダンスを提供します。</block>
+  <block id="d1c811acf82829db30f1d8b3e6c940d6" category="doc">SANホストとクラウドクライアント</block>
+  <block id="708c2a641aba7d3caf588312e9a41596" category="summary">このコンテンツでは、オンプレミスのONTAP ストレージに接続されたONTAP ホストとSANホストについて、Cloud Volumes ONTAP とAmazon FSXに接続されたクラウドクライアントを設定する方法について、配布に固有のガイダンスを提供します。</block>
+  <block id="be2f9317bef1b02401365be22d60a02b" category="doc">SANホストの構成の概要</block>
+  <block id="08d0a34cb57428b1414232e7c1592ef5" category="paragraph">このコンテンツでは、ONTAP ストレージに接続されたSANホストを簡単に構成するための、ホストとバージョンに固有のベストプラクティスを紹介します。</block>
+  <block id="ab5c1cc33879491a00632f6478216936" category="paragraph">SANホストとONTAP ストレージは、オンプレミス、クラウド、またはその両方に配置できます。</block>
+  <block id="d99091ccf334938dd920fe960b4e1341" category="admonition">クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるすべてのホスト固有の情報は、環境 クラウドクライアントにも該当します。</block>
+  <block id="117bdbda976fe8b3212bc3b6327a0a1b" category="inline-link-macro">Cloud Volumes ONTAP</block>
+  <block id="18cf072964a583150dd247485ba75b92" category="inline-link-macro">ONTAP 対応の Amazon FSX</block>
+  <block id="aad6098c26fd28acf5ce95db0964f759" category="paragraph">たとえば、オンプレミスのONTAP ストレージをオンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりすることができます。を設定することもできます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> または <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block> オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。</block>
+  <block id="bd4300690dfdbe14b72c16ede45c8a40" category="paragraph">最適なパフォーマンスとフェイルオーバーを実現するには、適切な設定が重要です。</block>
+  <block id="5206f5e3d376aae380267b11c8d7e8a0" category="sidebar">このコンテンツでは、ONTAP ストレージに接続するSANクライアントの設定方法について、配信ごとのガイダンスを提供します。SANクライアントとONTAP ストレージは、オンプレミスとクラウドのどちらにも配置できます。</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">はじめに</block>
+  <block id="5547603ff69e3da92f703bcf50ce3f6b" category="sidebar">AIX Host Utilitiesのリリースノート</block>
+  <block id="07f600a27795dcb67160c1a6254ac955" category="sidebar">HP-UX Host Utilitiesのリリースノート</block>
+  <block id="e5df731937a491dd8cd0cc7b6ebee041" category="sidebar">Linux Host Utilitiesのリリースノート</block>
+  <block id="6ef0df02f01fe0ace4a41985abbcac96" category="sidebar">Solaris Host Utilitiesのリリースノート</block>
+  <block id="bb27f844f9da131bbc413a981aac48b0" category="sidebar">FCPおよびiSCSIホストの設定</block>
+  <block id="5518a21314616fae9f003bf96e584f7f" category="sidebar">Red Hat Enterprise Linux 9.0</block>
+  <block id="28cf759ac2f6eab35d6588e5a7c44eac" category="sidebar">SUSE Linux Enterprise Server 15 SP4</block>
+  <block id="de547bcab0e20f54ec4d5e95ba44b0b1" category="sidebar">Windows Server 2022</block>
+  <block id="926f2d20f93d6be035bae2a94b2a5fc4" category="sidebar">IBM AIX 7.2およびPowerVM（VIOS 3.1）</block>
+  <block id="48d339e5fe7e520b196955902fda50d4" category="sidebar">Oracle Solaris 11.4</block>
+  <block id="524d2ef3f81ea92b8da31f7bfb61fdfa" category="sidebar">NVMe-oFホストの設定</block>
+  <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">リソースの追加</block>
+  <block id="8f631f7b4d000947dcf86232c51cf147" category="sidebar">オールSANアレイソフトウェア構成</block>
+  <block id="587c9aa3c6003c9a9fa1fc9c2ceb2eaa" category="sidebar">SAN 管理</block>
+  <block id="2275d26c218f9babebe06ed5dcc73dab" category="sidebar">SANホストとクラウドクライアントを設定</block>
+  <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">概要</block>
+  <block id="bd2327e60e0cfdc7632cb188bd1c7293" category="sidebar">SANホストユーティリティ</block>
+  <block id="db3a7c082080fd11b89a35d4b36694db" category="sidebar">AIXホストユーティリティ</block>
+  <block id="6644e7ab2de97becedaef22c5a1099e9" category="sidebar">HP-UXホストユーティリティ</block>
+  <block id="237e46c87c95b6d72dceaf420c603d90" category="sidebar">Linux Unified Host Utilitiesのこと</block>
+  <block id="c134d5805f93afa1db7c6399465d2bd8" category="sidebar">Solarisホストユーティリティ</block>
+  <block id="bcc66daaa6f6f7ca19890b95ffa6b4c0" category="sidebar">Windows Unified Host Utilitiesのことです</block>
+  <block id="1a0d3890b0eb9dc0c7e3f33e1b9f1865" category="sidebar">NVMeoF RHEL</block>
 </blocks>

@@ -1,6 +1,6 @@
 ---
 settings:
-  name: SAN Host
+  name: SAN hosts and cloud clients
   internal:
     pdf_enabled: true
   prod:
@@ -9,42 +9,44 @@ settings:
   langs: ja-jp,us-en,zh-cn,zh-tw,ko-kr
 sidebar:
   entries:
-  - title: ホーム
+  - title: SANホストとクラウドクライアントを設定
     url: "/index.html"
-  - title: SAN Host Utilities の略語
+  - title: 概要
+    url: "/overview.html"
+  - title: SANホストユーティリティ
     entries:
-    - title: AIX Host Utilities の略語
+    - title: AIXホストユーティリティ
       entries:
       - title: AIX HU 6.1をインストールします
         url: "/hu_aix_61.html"
       - title: リリースノート
         url: "/hu_aix_61_rn.html"
-    - title: HP-UX Host Utilitiesのことです
+    - title: HP-UXホストユーティリティ
       entries:
       - title: HP-UX HU 6.0をインストールします
         url: "/hu_hpux_60.html"
       - title: リリースノート
         url: "/hu_hpux_60_rn.html"
-    - title: Linux Unified Host Utilities のこと
+    - title: Linux Unified Host Utilitiesのこと
       entries:
       - title: Luhu 7.1をインストールします
         url: "/hu_luhu_71.html"
       - title: リリースノート
         url: "/hu_luhu_71_rn.html"
-    - title: Solaris Host Utilities のことです
+    - title: Solarisホストユーティリティ
       entries:
       - title: Solaris HU 6.2をインストールします
         url: "/hu_solaris_62.html"
       - title: リリースノート
         url: "/hu_solaris_62_rn.html"
-    - title: Windows Unified Host Utilities のことです
+    - title: Windows Unified Host Utilitiesのことです
       url: "/hu_wuhu_71.html"
-  - title: NVMe-oF ホスト構成
+  - title: NVMe-oFホストの設定
     entries:
     - title: ESXi
       pdf-filename: NVMeoF ESXi
       entries:
-      - title: 7.x
+      - title: VMware vSphere 7
         url: "/nvme_esxi_7.html"
     - title: Oracle Linux の場合
       entries:
@@ -68,7 +70,7 @@ sidebar:
         - title: '7.7'
           url: "/nvme_ol_77.html"
     - title: RHEL
-      pdf-filename: NVMeF RHEL
+      pdf-filename: NVMeoF RHEL
       entries:
       - title: RHEL 9
         entries:
@@ -111,7 +113,7 @@ sidebar:
         url: "/nvme_windows_2016.html"
       - title: 2012 R2
         url: "/nvme_windows_2012r2.html"
-  - title: FCP および iSCSI ホスト構成
+  - title: FCPおよびiSCSIホストの設定
     entries:
     - title: AIX および PowerVM/VIOS
       entries:
