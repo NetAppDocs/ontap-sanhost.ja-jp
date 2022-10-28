@@ -25,6 +25,9 @@ summary: 例を使用した、 Oracle Linux 7.9 用の VME/FC ホスト構成の
 ONTAP 9.6 以降では、 Oracle Linux 7.9 に対して NVMe/FC がサポートされます。Oracle Linux 7.9 ホストでは、 NVMe トラフィックと SCSI トラフィックの両方を、同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
 
+NOTE: このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+
+
 
 == 既知の制限
 
@@ -246,4 +249,7 @@ options lpfc lpfc_sg_seg_cnt=256
 # cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 256
 ----
++
+xxx
+
 

@@ -25,6 +25,9 @@ summary: 例を使用して、ONTAP を使用したOracle Linux 8.6でのVME/FC�
 NVMe/FCは、ONTAP Linux 8.6では9.6以降でサポートされます。Oracle Linux 8.6ホストは、NVMe/FCとFCPの両方のトラフィックを同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] 。
 
 
+NOTE: このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+
+
 
 == の機能
 

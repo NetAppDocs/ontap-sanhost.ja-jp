@@ -26,6 +26,9 @@ summary: ONTAP を使用して RHEL 8.4 用に NVMe-oF ホストを設定する�
 NVMe over Fabrics または NVMe-oF （ NVMe/FC やその他の転送を含む）は、 ANA （ Asymmetric Namespace Access ）を使用する RHEL 8.4 でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。RHEL 8.4 および ONTAP で ANA を使用し、カーネル内で NVMe マルチパスを使用して NVMe-oF を有効にする方法について、詳しくはこちらで説明しています。
 
 
+NOTE: このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+
+
 
 == の機能
 

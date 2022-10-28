@@ -25,6 +25,9 @@ summary: SUSE Linux Enterprise Server 15 SP3 （ ONTAP ）用に NVMe/FC を設�
 NVMe over Fabrics または NVMe-oF （ NVMe/FC およびその他の転送を含む）は、 ANA （非対称ネームスペースアクセス）を使用した SUSE Linux Enterprise Server 15 SP3 （ SLES15 SP3 ）でサポートされています。ANA は、 NVMe-oF 環境では ALUA に相当し、現在インカーネル NVMe マルチパスで実装されています。SLES15 SP3 および ONTAP で ANA を使用してカーネル内 NVMe マルチパスで NVMe-oF を有効にする方法について、ここで詳しく説明します。
 
 
+NOTE: このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+
+
 
 == の機能
 
