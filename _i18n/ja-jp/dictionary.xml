@@ -309,7 +309,6 @@
   <block id="56dd1899b4280d897ff6670fb0968e02" category="admonition">多くの修正プログラムでは Windows ホストのリブートが必要ですが、 Host Utilities のインストールまたはアップグレードの実行後、ホストのリブートを待機することもできます。</block>
   <block id="36b258cf83367d27741cf0be3d246eca" category="section-title">Windows Unified Host Utilities のインストール</block>
   <block id="ba490f365e20da97a23546cfe0da8569" category="inline-link-macro">WUHU 7.1 のドキュメント</block>
-  <block id="47e355e7eaad5d4a7f631164efee9da4" category="paragraph">Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhu の構成情報と手順については、を参照してください <block ref="8ecfeb68c5bc6c6d13bf3c3939739f31" category="inline-link-macro-rx"></block>。</block>
   <block id="d25621141f24193488d8ea2276c47e01" category="paragraph">Windows ホストにストレージシステムへのパスが複数ある場合は、 MPIO ソフトウェアをインストールし、マルチパスをセットアップする必要があります。MPIO ソフトウェアがないと、各パスが別々のディスクとしてオペレーティングシステムに認識され、データの破損を招くことがあります。MPIO ソフトウェアは、すべてのパスに対して単一のディスクをオペレーティングシステムに提供し、デバイス固有モジュール（ DSM ）はパスのフェイルオーバーを管理します。</block>
   <block id="a0e497cbff11ff2d61625663418c3fc8" category="paragraph">Windows システムでは、 MPIO 解決策の 2 つの主要コンポーネントは DSM と Windows MPIO です。MPIO は、 Hyper-V 仮想マシンで実行されている Windows XP または Windows Vista ではサポートされていません。</block>
   <block id="60bdc643bd0e4fed0f4a29dbcd77bc2b" category="admonition">MPIO サポートを選択すると、 Windows Unified Host Utilities によって、 Windows Server 2012 R2 に搭載されている MPIO 機能が有効になります。</block>
@@ -859,7 +858,6 @@
   <block id="814e9f528f5fa391cd6774e57a5c651c" category="list-text">NVMEMode = 0</block>
   <block id="12975cfd6b02fcd31121a100cbbb128c" category="list-text">転送サイズ = 1</block>
   <block id="95feeb984f6b07e38a54290d155380fb" category="paragraph">Windows 環境の FC/NVMe 用 Broadcom アダプタでは '+hostnqn+' が各 HBA ポートに関連付けられます「 + hostnqn+' 」は次のようにフォーマットされます。</block>
-  <block id="410fc92241ee85585a89a22f4f38a389" category="list-text">Windows Host Utility Kit 7.1 をインストールして、 FC と NVMe の両方に共通のドライバパラメータを設定します。</block>
   <block id="cc6f38a02ffcad6a7b76b5c9c2a8a868" category="list-text">MPIO のプロパティを開きます。</block>
   <block id="8eff5eebf9f16bb0e2893ae3c5998da1" category="list-text">[* マルチパスの検出 * ] タブで、 NVMe 用にリストされたデバイス ID を追加します。</block>
   <block id="1fc4b6b7368b8cca78fdc9a59572d5bb" category="paragraph">MPIO は NVMe デバイスを認識し、 NVMe デバイスはディスク管理の下に表示されます。</block>
@@ -1200,10 +1198,8 @@
   <block id="271e95bb5110c34300c9e4e30ad2991d" category="cell">'a_version.exe'</block>
   <block id="ab595e8644eb54589f5d769321b11cc4" category="cell">Host Utilities HBA と Fibre Channel HBA のバージョンが表示されます。</block>
   <block id="86d6299bc9dab5266c5f61d0a0769264" category="section-title">Host Utilities でサポートされる設定</block>
-  <block id="298aa3c26f019d0f6b504317238a932c" category="paragraph">Host Utilities は、さまざまな Windows ホスト構成、プロトコル、およびマルチパスオプションをサポートしています。詳細については、を参照してください<block ref="b7322bec4509d45107de6de43ca1f517" category="inline-link-rx"></block>。</block>
   <block id="700f2514d3d4cc2ed02cb06d8b922b2d" category="paragraph">Host Utilities をインストールする前に、 Host Utilities のバージョンがホストおよびストレージシステムの構成に対応していることを確認し、ソフトウェアが正しくインストールされるようにする必要があります。</block>
   <block id="84d4097a38ff264dfaf97e1cec24b529" category="list-text">でサポートされている構成を確認します<block ref="49d81d143d5c8b402603532056154481" category="inline-link-rx"></block>。</block>
-  <block id="bd723d0221300797678f431604539bd8" category="list-text">「 San Host Documentation 」で、該当するホストに必要な修正プログラムを確認します。</block>
   <block id="29cd26a0b6469ed25fabeac1805eb8a6" category="list-text">iSCSI または FCP ライセンスを追加し、ターゲットサービスを開始します。</block>
   <block id="185e819968cd77ce618663a3c7abd72d" category="paragraph">Fibre Channel プロトコルと iSCSI プロトコルのライセンスは、 SANtricity Storage Manager を使用する E シリーズストレージシステムには必要ありません。</block>
   <block id="dafd8a261adaf4e33c8e8c74baa71755" category="list-text">ケーブル接続を確認します</block>
@@ -2723,8 +2719,51 @@
   <block id="6644e7ab2de97becedaef22c5a1099e9" category="sidebar">HP-UXホストユーティリティ</block>
   <block id="237e46c87c95b6d72dceaf420c603d90" category="sidebar">Linux Unified Host Utilitiesのこと</block>
   <block id="c134d5805f93afa1db7c6399465d2bd8" category="sidebar">Solarisホストユーティリティ</block>
-  <block id="bcc66daaa6f6f7ca19890b95ffa6b4c0" category="sidebar">Windows Unified Host Utilitiesのことです</block>
   <block id="1a0d3890b0eb9dc0c7e3f33e1b9f1865" category="sidebar">NVMeoF RHEL</block>
   <block id="8200a3db147155676a7739eb43b685c9" category="admonition">このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> および <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block>。</block>
   <block id="f561aaf6ef0bf14d4208bb46a4ccb3ad" category="paragraph">xxx</block>
+  <block id="47e2092f9d666fc24b67c7da02de84c7" category="paragraph">Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhu の構成情報と手順については、を参照してください <block ref="f7fe1c204ed60a7e9dd594c09fd7b1a5" category="inline-link-macro-rx"></block>。</block>
+  <block id="38022ef96e4c7edb41b89fa3a008c3f6" category="inline-link-macro">Windows Host Utility Kit 7.1</block>
+  <block id="47806b50157f4c2450dab9085e65bf42" category="list-text">をインストールします <block ref="3da09c0cdee3c0d99e3c71a79e706ce0" category="inline-link-macro-rx"></block> を使用して、FCとNVMeの両方に共通のドライバパラメータを設定します。</block>
+  <block id="a94e97667092f5ff8b67813ccebdb0ca" category="paragraph">Host Utilitiesは、さまざまなWindowsホスト構成、プロトコル、およびマルチパスオプションをサポートしています。詳細については、を参照してください<block ref="b7322bec4509d45107de6de43ca1f517" category="inline-link-rx"></block>。</block>
+  <block id="0165fb41a35ddb937948f77394256403" category="inline-link-macro">SANホストのWindowsに関するドキュメント</block>
+  <block id="6edf97e112927c25a9a1571ba78c02f9" category="list-text">で、該当するホストに必要な修正プログラムを確認します <block ref="d639dff184f4bf79d87dbc978d26f542" category="inline-link-macro-rx"></block>。</block>
+  <block id="125c89a36748abb41fb38e89f5009ec9" category="inline-link-macro">ONTAP で2022にWindowsサーバを使用する</block>
+  <block id="eff83cf87307f9f0c4cf876914031ade" category="inline-link-macro">Windowsホットフィックスのインストール</block>
+  <block id="74c96d3ba2305a0f126dc2494f4cd977" category="admonition"><block ref="c6686e038b760393cddd662d474b7627" category="inline-link-macro-rx"></block> に、の手順を示します <block ref="9dcc96c7a1b888cfbb8ae39c864be341" category="inline-link-macro-rx"></block> Windowsサーバ2022の場合：以前のバージョンのWindowsサーバに関連する修正プログラム情報については、ホスト構成カテゴリのWindowsのドキュメントを参照してください。</block>
+  <block id="f8a9c652b77d95b070fee4e944c23c55" category="summary">Windows Unified Host Utilities 7.1のリリースノート</block>
+  <block id="8a9391447d14b7fa38cc33b8b42a5eee" category="doc">『Windows Unified Host Utilities 7.1 Release Notes』</block>
+  <block id="84f4f58e26d14120cd13928993415ef8" category="paragraph">このリリースノートドキュメントには、Windows Unified Host Utilities 7.1リリースの最新情報として、新機能、拡張機能、および既知の問題に関する更新情報が記載されています。このドキュメントは、Windows Host Utilitiesの使用に関する新しい情報が入手可能になると更新されます。</block>
+  <block id="792c65ea8e28d4d1ad3178bd5ed7a65b" category="section-title">Windows Unified Host Utilities 7.1リリースの概要</block>
+  <block id="34eb6bacd27b9f225e7ca9de29f4668b" category="paragraph">Windows Unified Host Utilitiesを使用すると、Windowsホストコンピュータをネットアップストレージシステムに接続できます。Windows Unified Host Utilitiesには、必要なWindowsレジストリとHBA値を設定するインストールプログラムが含まれています。</block>
+  <block id="13e6b822d7fe9f7e9f0efeca225b29a0" category="paragraph">Windows Unified Host Utilities 7.1では、引き続き次のバージョンのWindowsがサポートされます。</block>
+  <block id="8e81245b7f02b8484320ddb3e4b13c18" category="list-text">Windows Server 2012</block>
+  <block id="1347f9ce905795bee095e16712f81913" category="list-text">Windows Server 2012 R2の場合</block>
+  <block id="4083fee85864d55c66d5e0b21a7928b3" category="list-text">Windows * 2016</block>
+  <block id="0a412bceaa4a8d671231ab04d2e0296e" category="list-text">Windows Server 2019</block>
+  <block id="3ffd22c07b48a1c76b76f941ad1cad96" category="list-text">Windows 2022</block>
+  <block id="f30ac79774ac72cad690c3f814efd2fa" category="admonition">ネットアップでは、Host Utilitiesソフトウェアのリリース間で追加コンポーネントを認定しています。システム要件の最新情報については、を参照してください <block ref="454ffc53fb26d285d765b8fbe8c25a5d" category="inline-link-macro-rx"></block>。</block>
+  <block id="feb11f8755baed6ff89937754d9fdb5e" category="section-title">このHost Utilitiesリリースの機能</block>
+  <block id="ff71b00ca4f59efb041754af8a3c5633" category="paragraph">Windows Unified Host Utilities 7.1では、Eシリーズストレージシステム、ONTAP 9以降のバージョンのサポート、およびiSCSIタイムアウトの強化により、フェイルオーバーの高速化がサポートされます。</block>
+  <block id="2f7c358042ffb7d37991aff648b1cb3d" category="section-title">重要な注意事項</block>
+  <block id="aacc0d256c74ef3a06a601980b807a0e" category="paragraph">最新リリースのWindows Host Utilitiesを導入する前に、システムの運用に影響する可能性がある問題を特定して解決するのに役立つ情報を確認しておく必要があります。</block>
+  <block id="7cd36e8f4d329b5cfafec87711c36cbd" category="paragraph">個々のバグの詳細およびその他のバグ関連ツールについては、を参照してください <block ref="06c8d471f4d0311b3446a94e54fc8a82" category="inline-link-macro-rx"></block>。</block>
+  <block id="14604b92d34df545c8df1df02158a241" category="section-title">必要な修正プログラムをインストールします</block>
+  <block id="9271b83ea2248c31dc793920e78f3085" category="paragraph">Windows Unified Host Utilitiesのインストールまたはアップグレードを正常に行うために、特定のWindowsホットフィックスをインストールする必要があります。一部のホットフィックスは、Windowsの更新プログラムのコンポーネントです。</block>
+  <block id="f00aa3de5284bd6ffc1c6eb440a68428" category="inline-link-macro">Windows Host Utilitiesのマニュアル</block>
+  <block id="231e5ff41539516674c45e33de03b0be" category="paragraph">を参照してください <block ref="f5596c1e3b207c40ba7cdd523469fc51" category="inline-link-macro-rx"></block> をクリックしてください。</block>
+  <block id="95dc0391ce7b396d7dd5622284e8fc3e" category="section-title">既知の問題</block>
+  <block id="fa8a4c6fcae2ff0a42db985d96655a59" category="paragraph">このリリースでは、いくつかの予期しない動作や望ましくない動作の可能性がある動作、およびこれらの動作を回避するための回避策が確認されています。</block>
+  <block id="56659c18435d50a38e076a58b32163a4" category="cell">を実行します<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> スクリプトは、Red Hat Enterprise LinuxまたはSUSE Linux Enterprise Serverを実行するHyper-Vゲストには必要ありません</block>
+  <block id="ea42119311b1ebffaae8c2a3d60d8cfd" category="cell">を実行する必要はなくなりました<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> デフォルトのタイムアウト設定が使用されているため、Red Hat Enterprise Linux 5、Red Hat Enterprise Linux 6、またはSUSE Linux Enterprise Server 11 Hyper-Vゲストでディスクタイムアウトを変更するスクリプト。。<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> 以前のバージョンのHost Utilitiesに含まれていたスクリプトは、Windows Unified Host Utilitiesに含まれなくなりました。Windows Unified Host Utilities 7.1では、デフォルトのディスクタイムアウト設定が使用されています。</block>
+  <block id="e91b41f5f9d74fcfaa3733fe1534d7c8" category="cell">IPv4とIPv6が混在したiSCSIセッションは、リブート後に再接続されません</block>
+  <block id="03a5ef9a07e32294246c302f24714cba" category="cell">マルチパスI/O（MPIO）構成、またはIPv4とIPv6の両方のエンドポイントを含むセッション（MCS）ごとに複数の接続を設定すると、Windowsホストのリブート後に一部のiSCSIセッションが再接続に失敗することがあります。</block>
+  <block id="7781892f22565c078543a9afe054eafe" category="cell">リブート後にすべてのiSCSIパスが戻るようにするには、すべてのIPv4エンドポイントまたはすべてのIPv6を使用します。IPv4とIPv6を混在させないでください。</block>
+  <block id="9ffe40d778f0a3ffe9e1f6de2a49fb40" category="cell">MCSは、iSCSIソフトウェアブートではサポートされません</block>
+  <block id="63f871187249b3071dc36a54982c1e17" category="cell">iSCSIソフトウェアブートを使用して、iSCSI Multiple connections per session（MCS；セッションごとのiSCSI複数接続）を使用している場合、iSCSIブートをリードする接続は保護できません。これにより、ブートLUNとの接続が切断されて、ホストがクラッシュする可能性があります。</block>
+  <block id="a77cd68a790d44f2359fe8a4dd45b1dc" category="cell">Microsoftでは、iSCSIソフトウェアブートホストのMCSはサポートしていません。MPIOを高可用性解決策 として使用してください。MPIOとMCSの混在はサポートされていません。</block>
+  <block id="05aa4f4bc5b51efef2c52f4fb2ddc55f" category="paragraph"><block ref="06c8d471f4d0311b3446a94e54fc8a82" category="inline-link-macro-rx"></block> 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。</block>
+  <block id="a64644439f45078aa7c8e54709b6fb99" category="paragraph">を参照してください <block ref="098b68c05e072d65de8b63c55177a5c6" category="inline-link-macro-rx"></block> をクリックして、SANtricity 関連ドキュメントを参照してください</block>
+  <block id="748753e893fd2f6b904a298d120af491" category="sidebar">Windows Unified Host Utilities のことです</block>
+  <block id="7b4c9d36bd8121e0d136897711d66090" category="sidebar">Wuhu 7.1をインストールします</block>
 </blocks>
