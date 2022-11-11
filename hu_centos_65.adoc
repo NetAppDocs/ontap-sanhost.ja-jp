@@ -84,6 +84,7 @@ CentOS 6.5 の場合 '/etc/multipath.conf ファイルが存在している必�
 
 ALUA ハンドラを有効にするには、次の手順を実行します。
 
+.手順
 . initrd-image のバックアップを作成します。
 . ALUA および非 ALUA が機能するようにカーネルに次のパラメータ値を追加します。 `rdloaddriver=scsi_dh_alua`
 +

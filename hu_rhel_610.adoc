@@ -82,6 +82,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 Red Hat Enterprise Linux （ RHEL ） 6.10 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 6.10 をコンパイルし、 ONTAP LUN を認識して正しく管理するために必要なすべての設定を適用します。ALUA ハンドラを有効にするには、次の手順を実行します。
 
+.手順
 . initrd-image のバックアップを作成します。
 . ALUA および非 ALUA が機能するようにカーネルに次のパラメータ値を追加します。 `rdloaddriver=scsi_dh_alua`
 +

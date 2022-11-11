@@ -4,6 +4,7 @@
 
 サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
+.手順
 . サポートされているアダプタを使用していることを確認します。
 +
 [listing]

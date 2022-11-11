@@ -13,6 +13,8 @@ indexpage:
       url: "/hu_luhu_71_rn.html"
     - title: Solaris Host Utilitiesのリリースノート
       url: "/hu_solaris_62_rn.html"
+    - title: Windows Host Utilitiesのリリースノート
+      url: "/hu_wuhu_71_rn.html"
   - title: FCPおよびiSCSIホストの設定
     links:
     - title: VMware vSphere 7

@@ -153,7 +153,7 @@ up     primary  path3  fcs1    fc_aix_4     1
 
 == 推奨設定
 
-以下は、 NetApp ONTAP LUN の推奨パラメータ設定です。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
+NetApp ONTAP LUN の推奨されるパラメータ設定は次のとおりです。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
 
 [cols="4*"]
 |===
@@ -208,7 +208,7 @@ up     primary  path3  fcs1    fc_aix_4     1
 
 == MetroCluster の推奨設定
 
-デフォルトでは、 LUN へのパスがない場合、 AIX オペレーティングシステムは I/O タイムアウトを短縮します。この状況は、シングルスイッチの SAN ファブリック構成や MetroCluster 構成など、計画外のフェイルオーバーが発生する構成で発生することがあります。追加情報および推奨されるデフォルト設定の変更については、を参照してください link:https://kb.netapp.com/app/answers/answer_view/a_id/1001318["NetApp KB1001318"^]
+デフォルトでは、LUNへのパスがない場合、AIXオペレーティングシステムはI/Oタイムアウトを短縮します。この状況は、シングルスイッチの SAN ファブリック構成や MetroCluster 構成など、計画外のフェイルオーバーが発生する構成で発生することがあります。追加情報 および推奨されるデフォルト設定の変更については、を参照してください link:https://kb.netapp.com/app/answers/answer_view/a_id/1001318["NetApp KB1001318"^]
 
 
 

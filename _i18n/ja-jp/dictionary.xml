@@ -28,7 +28,6 @@
   <block id="8bec1661077d28352868870f186e4392" category="list-text">ALUA および非 ALUA が機能するようにカーネルに次のパラメータ値を追加します。 `rdloaddriver=scsi_dh_alua`</block>
   <block id="4c489d4721694c4117162307ded4345c" category="list-text">initrd-image を再作成するには、「 m kinitrd` 」コマンドを使用します。Oracle 6x 以降のバージョンでは、次のいずれかを使用します。「 m kinitrd -f /boot/initrd - "uname -r 」 .img uname -r 」またはコマンド「 `d racut -f 」</block>
   <block id="8418b94a2a307b3e96b6474bc55e08b7" category="list-text">ホストをリブートします。</block>
-  <block id="fdb062d5e36f31296f4e16a54ea52c2e" category="list-text">設定が完了したことを確認するために 'cat /proc/cmdline コマンドの出力を確認します「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
   <block id="0aa6d9cb7674d34a808be2224e074189" category="paragraph">次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。</block>
   <block id="aa89a86e36a09e87ac1e23a259c8d26c" category="admonition">1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。ストレージ障害時に 8 個を超えるパスで原因パスの問題が発生する可能性があります。</block>
   <block id="21a58bdeaf70327c6f6f5fd597b24fa3" category="section-title">推奨設定</block>
@@ -38,7 +37,6 @@
   <block id="3bd7fde20a9abc176890c7422cf0f77f" category="admonition">&lt;DevId&gt; を除外するデバイスの WWID の文字列に置き換えます。次のコマンドを使用して WWID を特定します。</block>
   <block id="58449f79b301eee405bcc04689e38467" category="paragraph">この例では、 sda はブラックリストに登録する必要があるローカル SCSI ディスクです。</block>
   <block id="4d70a817ac85626aff88bbc73d0a2deb" category="list-text">次のコマンドを実行して WWID を特定します。</block>
-  <block id="8d39ccb2975dcb64ce078ed12e229a84" category="list-text">/etc/multipath.conf 内のブラックリストスタンザに、次の WWID を追加します。</block>
   <block id="21613f1f81985ce9edca2dc6272a765e" category="paragraph">デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
   <block id="83f499a540b1323009c200d6f8cc9396" category="cell">パラメータ</block>
   <block id="51ac4bf63a0c6a9cefa7ba69b4154ef1" category="cell">設定</block>
@@ -445,7 +443,6 @@
   <block id="a8dc135d317a36a2ccd92726f9e0e598" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="33a1f2b8cd02575a35b77c10ba65d8f8" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="31db1dbc8875fe1d1fb0c598273975d6" category="paragraph">Oracle Linux 7.0 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.0 には、 ONTAP LUN を認識して正しく管理するために必要な設定がすべて含まれています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="40c5d9e1e896025a107a6c97b22c1167" category="list-text">「 racut-f 」コマンドを使用して initrd-image を再作成します。</block>
-  <block id="f01b02d5e89762686d3f51d4b0f7f138" category="paragraph">「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
   <block id="ed1146f14c5bbbbb36046ba06da1cd88" category="paragraph">Oracle Linux 7.0 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="a071ebe8686e61a0aa4fe307a3225ad9" category="cell">"service-time 0"</block>
   <block id="833392375a19e092bb249773aab90ae7" category="admonition">Oracle Linux 7.0 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="95c92cba905c8a4ca7d7698440b6011a" category="inline-link-macro-rx"></block> （ Red Hat Enterprise Linux （ RHEL ） 7.0 の場合）</block>
@@ -499,7 +496,6 @@
   <block id="073055d89f87f920dc7706848774e7b2" category="paragraph">Oracle Linux 7.1 では、 Unbreakable Enterprise Kernel （ UEK ） R3 と UEK R4 がサポートされています。OS はデフォルトで UEK R3 カーネルで起動します。</block>
   <block id="66cd34e86ff7d645147b1d5d5a6c9f10" category="paragraph">Oracle Linux 7.1 UEK R3 では、空の multipath.conf ファイルを作成します。ALUA の更新が有効な場合と無効な場合、 Oracle Linux 7.1 UEK の設定はデフォルトで自動的に更新されます。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="f4d88f38762443125e864f0e0bf3dc56" category="list-text">「 dracut-f 」コマンドを使用して initrd-image を再作成します。</block>
-  <block id="020cab387f9cfdce82fc2e3751625f87" category="paragraph">Oracle Linux 7.1 UEK R4 の場合、 /etc/multipath.conf ファイルは存在する必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.1 では、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が組み込まれています。「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
   <block id="6ff43f8d58cf03692931460affd888be" category="paragraph">Oracle Linux 7.1 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="de50d87828d6c062d5ee3ed42e95ae42" category="admonition">Oracle Linux 7.1 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="ac06888ec4e3e5a4526108ac1f8520b7" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.1 の場合：</block>
   <block id="d92da7c3e5e1c0b3a496a0771d576f96" category="paragraph">Oracle Linux 7.1 では、既知の問題はありません。</block>
@@ -513,7 +509,6 @@
   <block id="a12eee609318f789b110fe7492bac976" category="list-text">QLogic HBA – QConvergeConsole CLI</block>
   <block id="59b271fe18b45209cf86bc956dfb5f7e" category="list-text">Emulex HBA - OneCommand Manager コアアプリケーション CLI</block>
   <block id="5ab8738b15e4372e4fe9670449a5b820" category="list-text">Brocade HBA ： Brocade Command Utility CLI</block>
-  <block id="ac6b9eb61f566a414937fce88a660057" category="paragraph">RPM パッケージ「 libhbaapi 」と「 libhbalinux 」は、各 Linux ディストリビューションで使用できるホスト OS にインストールする必要があります。</block>
   <block id="ffdedbe1187a1ddb0d5c60a0ac382630" category="paragraph">Linux Unified Host Utilities は、 Linux ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。</block>
   <block id="00c00a19ea488ceb63e99f408a6b6118" category="admonition">このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。</block>
   <block id="7f239a97a66cea4e3bb767698099b430" category="admonition">SAN ツールキットは、 Citrix XenServer 、 Oracle VM 、および Red Hat Enterprise Virtualization Hypervisor ではサポートされていません。</block>
@@ -622,7 +617,6 @@
   <block id="a40ecef4a09b118c1f7f8b069486d849" category="list-text">ファイルを解凍して、 SAN Toolkit ソフトウェアパッケージを展開します。</block>
   <block id="f79c6b17105bfd3884500ded694cb1f2" category="paragraph">SAN ブートとは、 AIX / PowerVM ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスのことです。SAN ブート LUN は、 FC プロトコルまたは FCoE プロトコルで AIX Host Utilities を実行する AIX MPIO 環境で動作するようにセットアップできます。SAN ブート LUN を作成し、その LUN に新しい OS イメージをインストールする方法は、使用するプロトコルによって異なります。</block>
   <block id="4b1288921d45a28c64d922c51edfb95d" category="paragraph">マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Host Utilities の AIX および PowerVM 環境では、 AIX のネイティブマルチパス解決策（ MPIO ）を使用します。</block>
-  <block id="1697f4d36614d1ab7c528058860fd4fd" category="paragraph">以下は、 NetApp ONTAP LUN の推奨パラメータ設定です。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。</block>
   <block id="0e413d300c65d6eeae3946b5cd377d21" category="cell">VIOS 用 AIX 3072 では 1024</block>
   <block id="c4dd079617b8872443b613d8a94e3cbc" category="cell">パートナー ID</block>
   <block id="de6158aaf59eefd0e967674f80bf69a0" category="cell">1307653</block>
@@ -1756,7 +1750,6 @@
   <block id="dfdecabe17f4f61a0c5b353fdc3dfeef" category="paragraph">Citrix Hypervisor 8.x OS は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定でコンパイルされます。Citrix Hypervisor 8.x の場合、空の zerobyte /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。</block>
   <block id="4d9e4d5a080304464911deeebee0a0b3" category="paragraph">マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 /etc/multipath.conf ファイルにコンテンツを追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。</block>
   <block id="258e01d6ca463cd89e79be409a5b9398" category="paragraph">この Citrix Hypervisor 8.x の例では、「 da 」はブラックリストに登録する必要のあるローカル SCSI ディスクです。</block>
-  <block id="90b4f63b7d8602eb40cd95b55d20f105" category="paragraph">「 $multipathd show config 」コマンドを使用して、マルチパスパラメータの実行時間の設定を参照します。デフォルト設定よりも優先される可能性がある古い設定については、必ず実行コンフィギュレーションを確認してください。特に、 defaults セクションで確認します。</block>
   <block id="891983ab249dd51fa02a51e1da92fd57" category="admonition">Citrix ハイパーバイザーでは、 Linux および Windows ベースのすべてのゲスト VM に対して Citrix VM ツールを使用することを推奨しています。</block>
   <block id="39f11cb747dafe51ae2cd54386744d96" category="cell">Citrix Tracker ID</block>
   <block id="37a4830e2093543aff3053de0d030043" category="inline-link-macro">1242343</block>
@@ -2035,7 +2028,6 @@
   <block id="a4e09728b21e07eb8de92849a3239079" category="admonition">ONTAP 9.7 では、 NVMe/FC ネームスペースのデフォルトのブロックサイズは 4K です。このデフォルトサイズは ESXi に対応していません。したがって、 ESXi のネームスペースを作成する場合は、ネームスペースのブロックサイズを 512b に設定する必要があります。これを行うには、「 vserver nvme namespace create 」コマンドを使用します。</block>
   <block id="b19cff5a6d037faf5ffa796506cf839f" category="inline-link-macro">ONTAP 9 コマンドのマニュアルページ</block>
   <block id="e83464ce8bd634efb1f099c956ec64a8" category="section-title">Known 問題の略</block>
-  <block id="7c6b30ab95aa6f3eeb2a6b9cbaf31f6c" category="list-text">ONTAP 9.9.1 P3 以降では、 ESXi 7.0 U3 （およびそれ以降） NVMe/FC がサポートされます。これは、 ONTAP 9.9.1 P3 以降でのみ使用可能なキー NVMe の中止（ ESXi 7.0 U3 以降で発行）に関する修正が原因です。にある BURT パブリックレポートを参照してください<block ref="e74f384cf37401802acc612082793163" category="inline-link-rx"></block> を参照してください。</block>
   <block id="471e82326ed5017bfdb518b5d33377cc" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
   <block id="0a7c052037789d22811592a15b7a2e17" category="inline-link-macro">NetApp ® SnapMirror ® ビジネス継続性（ SM-BC ）による VMware vSphere 6.x および 7.x のサポート</block>
   <block id="ff09581cb2c13d8ad132e71c1320dc7e" category="cell"><block ref="108e2d22c5beb633cb3cfe03baa4f66f" category="inline-link-macro-rx"></block></block>
@@ -2074,7 +2066,6 @@
   <block id="3809aec0d76653aef580fe5a05c2ceea" category="paragraph"><block ref="b1540a3ec25c7d8277b499a1cc1d920b" category="inline-link-rx"></block>
 <block ref="37fb4b1646680720393f2c3367174dbe" category="inline-link-rx"></block>
 <block ref="787134229d52d08fef0caa9611cbbc06" category="inline-link-rx"></block></block>
-  <block id="78ba88bcc67458c1a5065ee8f68514e8" category="paragraph">デフォルトでは、 LUN へのパスがない場合、 AIX オペレーティングシステムは I/O タイムアウトを短縮します。この状況は、シングルスイッチの SAN ファブリック構成や MetroCluster 構成など、計画外のフェイルオーバーが発生する構成で発生することがあります。追加情報および推奨されるデフォルト設定の変更については、を参照してください <block ref="682b92f396ad2229bd62e99c5a518610" category="inline-link-macro-rx"></block></block>
   <block id="63de1f29f867ea5090af94f0fe852e73" category="paragraph">ONTAP 9.6 以降では、 RHEL 8.2 で NVMe/FC がサポートされます。RHEL 8.2 ホストは、 NVMe と SCSI の両方のトラフィックを同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行します。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされている構成およびバージョンの最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="fe11a5d007b30b19387669fa13d0bc9d" category="paragraph">を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
   <block id="62ec2bcab7e05f6212dbc5211b403a26" category="list-text">サーバに RHEL 8.4 GA をインストールします。インストールが完了したら、指定した RHEL 8.4 GA カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
@@ -2126,7 +2117,6 @@
   <block id="71a1238a2a3eb2842a1147f88470407a" category="section-title">Windows Host Utilities を修復して削除します</block>
   <block id="7ec91814b4b8031452953e60444fdac1" category="section-title">Windows Host Utilities を対話的に修復または削除します</block>
   <block id="e4ab25c62c74b247f110cc0ddf4a7128" category="section-title">コマンドラインから Windows Host Utilities を修復または削除します</block>
-  <block id="9781d69195e9bb9dad9ea221e352929d" category="list-text">を確認しておく必要があります<block ref="c98f6369245de310035299ae832b1997" category="inline-link-rx"></block> をクリックして、既知の問題を確認します。リリースノートには、既知の問題と制限事項の一覧が記載されています。</block>
   <block id="46795771824c20823fe2d0312b584a17" category="section-title">Host Utilities の変更内容を FC HBA ドライバの設定に把握します</block>
   <block id="afe3961340d8bd7d749848a97e031049" category="section-title">FC システムで Emulex HBA ドライバの設定を確認します</block>
   <block id="884960c052ad072d600fae7dc861c0c6" category="section-title">FC システムで QLogic HBA ドライバの設定を確認します</block>
@@ -2161,7 +2151,6 @@
   <block id="9a5aadcd2f712e90b04bd1524cdd6dc4" category="sidebar">SLES 12</block>
   <block id="d87433b06a0f03952a4dc973f5315687" category="paragraph">Citrix Hypervisor (CH) 8.x の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。CH 8.x は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定を含めてコンパイルされます。/sbin/mpathutil status コマンドを使用して、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA Persona にマッピングされた LUN のマルチパス出力の例を示します。</block>
   <block id="d6001c34c29bb04684b5c07f3b8c9209" category="section-title">オール SAN アレイ（ ASA ）構成</block>
-  <block id="c17362e9d01452047d060a128e8e3634" category="paragraph">オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ / 最適化されており、コントローラによって処理され、すべてのアクティブパスで I/O が送信されます。</block>
   <block id="15e8bfaa3c1b932b597dedce3820fa11" category="paragraph">次の例は、 4 つのアクティブな最適パスがある ONTAP LUN に対する正しい出力を表示します。</block>
   <block id="093280d0b1b888a2d2861cdc763f5f54" category="cell">「 detect_prio 」</block>
   <block id="d4f9e6cd04344d6033229cebcf82d8e6" category="cell">dev_los_TMO</block>
@@ -2196,7 +2185,6 @@
   <block id="dd0ef0f389a16b505e475797a7b752ac" category="list-text">から HP-UX Host Utilities ファイル netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` をダウンロードします <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> を HP-UX ホストにインストールします。</block>
   <block id="5eaf61000f0f261f2e4793f7e336889a" category="list-text">次のコマンドを入力して 'netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` ファイルを解凍します</block>
   <block id="93b6e09e96afb8006209af84f438ca2b" category="paragraph">#gunzip netapp_hpux_host_utilities_6.0_ia_pa.depot.gz`</block>
-  <block id="d10caeaed75e8947d0e8840674994b68" category="paragraph">デポファイルを圧縮解除したディレクトリに、抽出したソフトウェアが配置されます。</block>
   <block id="2a346f59c525e5728cec25bf9a377f2f" category="list-text">次のコマンドを入力してソフトウェアをインストールします。</block>
   <block id="2d903390e509c4d2f6da1a4d0787b5b6" category="paragraph">「 #swinstall-s/depot_path 」</block>
   <block id="999cc5e84fec57fdd157e6fdacc5c96a" category="paragraph">「 depot_path 」は、デポファイルのパスと名前を提供します。</block>
@@ -2217,7 +2205,6 @@
   <block id="8b2e8dcabd2803cfffe6d347e740d632" category="list-text">x86/x64 CPU ：「 NetApp_solaris_host_utilities_6_2_AMD.tar.gz</block>
   <block id="4b9b8c4fa4d1eb96283d16c11c709e8e" category="list-text">gunzip コマンドを使用してファイルを解凍します</block>
   <block id="1f2423b6dd7c87600c006dd4fe70055e" category="paragraph">#gunzip NetApp_solaris_host_utilities_6_2_sparc.tar.gz</block>
-  <block id="72f9fed930907b19e060560561469054" category="list-text">ファイルを解凍します。これを行うには 'tar xvf コマンドを使用します</block>
   <block id="d35a857c138589666873eef37b70bd9c" category="paragraph">tar xvf NetApp _Solaris_host_utilities_6_2_sparc.tar</block>
   <block id="963069b30b9e059f13bf53eb0a7cfbfe" category="list-text">tar ファイルから抽出したパッケージをホストに追加します。これを行うには 'pkgadd コマンドを使用します</block>
   <block id="0c91635f19857d5fe1642e137ecfe86f" category="paragraph">パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます次の例では 'pkgadd コマンドを使用して Solaris インストールパッケージをインストールします</block>
@@ -2335,7 +2322,6 @@
   <block id="4a77bd6ca1098e847cb75095287cdf8d" category="paragraph">CentOS 7.3には既知の問題はありません。</block>
   <block id="ebc6dd08dd10ab545441a995fcd41e3f" category="paragraph">CentOS 7.1に関する既知の問題はありません。</block>
   <block id="4391e4a69364ebb845d6562846716af4" category="doc">『AIX Host Utilities 6.1 Release Notes』</block>
-  <block id="81bca837c40611da67f18f391bb32923" category="paragraph">このリリースノートドキュメントには、AIX Host Utilities 6.1リリースに関する最新情報が記載されています。これには、既知の問題、制限事項、ONTAP ストレージシステムの構成と管理に関する最新情報が含まれています。</block>
   <block id="ebdfd2288177a34c60438efc134f52c4" category="paragraph">『リリースノート』ドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。</block>
   <block id="cfbc0c9386472f86132990683d16796f" category="section-title">AIX Host Utilities 6.1リリースの概要</block>
   <block id="f418c08cd071f42a28a07d007dd30c34" category="paragraph">AIX Host Utilitiesを使用すると、AIXホストをネットアップストレージに接続できます。AIX Host Utilitiesは、複数の環境とFC、FCoE、iSCSIの各プロトコルをサポートしています。サポートされている環境は、AIX MPIO（ネイティブOS）とPowerVMです。</block>
@@ -2451,7 +2437,6 @@
   <block id="478829f91ffe1d5a9fcb7ae0a4fa2eda" category="cell">HP-UX LVMを作成すると、1MBを超えるブロックサイズのI/Oが送信されます</block>
   <block id="24cc4783034cf857703516141d8cc8ad" category="summary">Solaris Host Utilities 6.2リリースノート</block>
   <block id="07cb401e35e41c1ea4ba568ba75b0261" category="doc">Solaris Host Utilities 6.2リリースノート</block>
-  <block id="6680e6f1f2da4905e1106056bcccc97b" category="paragraph">このリリースノートのドキュメントには'Solaris Host Utilities 6.2の最新情報が記載されていますこれには'既知の問題と制限事項の更新'およびONTAP ストレージシステムの構成と管理が含まれます</block>
   <block id="a8d190b8be84e8cfdb8b2df1b04cb957" category="paragraph">『リリースノート』ドキュメントは、Solaris Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。</block>
   <block id="83abaefac7375849eeb586ba637a2d22" category="section-title">Solaris Host Utilities 6.2リリースの概要</block>
   <block id="d64c00d8393bc6d797e2fd2eb038c7f6" category="paragraph">Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。</block>
@@ -2472,7 +2457,6 @@
   <block id="2aa7ada2848fa0738fbfac1114907aa4" category="list-text"><block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block> （旧称は『システム構成ガイド』）</block>
   <block id="15b39b3049d63d1b09b2b4d4ddc115a4" category="list-text"><block ref="15b39b3049d63d1b09b2b4d4ddc115a4" category="inline-link-macro-rx"></block></block>
   <block id="c52f3cfca61100f76a974648c1c9a180" category="list-text"><block ref="c52f3cfca61100f76a974648c1c9a180" category="inline-link-macro-rx"></block></block>
-  <block id="0a9958781afdc779222e135d13dce352" category="paragraph">Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、からダウンロードできます <block ref="c51b16e40c82542166bd05959a366a37" category="inline-link-macro-rx"></block>。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。</block>
   <block id="0d39b3cffd5d0d33f0a5ed2db83a7aea" category="cell"><block ref="0d39b3cffd5d0d33f0a5ed2db83a7aea" category="inline-link-macro-rx"></block></block>
   <block id="ba57f19b6b69755c2919b58188582a77" category="cell"><block ref="ba57f19b6b69755c2919b58188582a77" category="inline-link-macro-rx"></block></block>
   <block id="e8db03fc399918672bed8132e0d8ea35" category="list-text">。 <block ref="0f33c30ae119203ebbfd38575ad3015e" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
@@ -2689,12 +2673,9 @@
   <block id="d1c811acf82829db30f1d8b3e6c940d6" category="doc">SANホストとクラウドクライアント</block>
   <block id="708c2a641aba7d3caf588312e9a41596" category="summary">このコンテンツでは、オンプレミスのONTAP ストレージに接続されたONTAP ホストとSANホストについて、Cloud Volumes ONTAP とAmazon FSXに接続されたクラウドクライアントを設定する方法について、配布に固有のガイダンスを提供します。</block>
   <block id="be2f9317bef1b02401365be22d60a02b" category="doc">SANホストの構成の概要</block>
-  <block id="08d0a34cb57428b1414232e7c1592ef5" category="paragraph">このコンテンツでは、ONTAP ストレージに接続されたSANホストを簡単に構成するための、ホストとバージョンに固有のベストプラクティスを紹介します。</block>
   <block id="ab5c1cc33879491a00632f6478216936" category="paragraph">SANホストとONTAP ストレージは、オンプレミス、クラウド、またはその両方に配置できます。</block>
-  <block id="d99091ccf334938dd920fe960b4e1341" category="admonition">クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるすべてのホスト固有の情報は、環境 クラウドクライアントにも該当します。</block>
   <block id="117bdbda976fe8b3212bc3b6327a0a1b" category="inline-link-macro">Cloud Volumes ONTAP</block>
   <block id="18cf072964a583150dd247485ba75b92" category="inline-link-macro">ONTAP 対応の Amazon FSX</block>
-  <block id="aad6098c26fd28acf5ce95db0964f759" category="paragraph">たとえば、オンプレミスのONTAP ストレージをオンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりすることができます。を設定することもできます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> または <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block> オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。</block>
   <block id="bd4300690dfdbe14b72c16ede45c8a40" category="paragraph">最適なパフォーマンスとフェイルオーバーを実現するには、適切な設定が重要です。</block>
   <block id="5206f5e3d376aae380267b11c8d7e8a0" category="sidebar">このコンテンツでは、ONTAP ストレージに接続するSANクライアントの設定方法について、配信ごとのガイダンスを提供します。SANクライアントとONTAP ストレージは、オンプレミスとクラウドのどちらにも配置できます。</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">はじめに</block>
@@ -2766,4 +2747,23 @@
   <block id="a64644439f45078aa7c8e54709b6fb99" category="paragraph">を参照してください <block ref="098b68c05e072d65de8b63c55177a5c6" category="inline-link-macro-rx"></block> をクリックして、SANtricity 関連ドキュメントを参照してください</block>
   <block id="748753e893fd2f6b904a298d120af491" category="sidebar">Windows Unified Host Utilities のことです</block>
   <block id="7b4c9d36bd8121e0d136897711d66090" category="sidebar">Wuhu 7.1をインストールします</block>
+  <block id="1f87ccc57172166c30629890b2884f0e" category="paragraph">を使用できます<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block> コマンドを使用して、ONTAP LUNの設定を確認します。優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ/最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
+  <block id="1bad318175e7aa1eb67e6db2256bb9b1" category="paragraph">デポファイルを解凍したディレクトリに、抽出したソフトウェアが配置されます。</block>
+  <block id="5bd6f64a8cbf5643612affb8bd552a8d" category="paragraph">このリリースノートドキュメントには、ONTAP Host Utilities 6.1リリースの最新情報が記載されています。これには、既知の問題、制限事項、ストレージシステムの構成と管理に関する更新情報が含まれています。</block>
+  <block id="39b3dd6edf4819881415b4ccbfcf4d58" category="paragraph">Oracle Linux 7.1 UEK R4 の場合、 /etc/multipath.conf ファイルは存在する必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.1 では、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が組み込まれています。を使用できます<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block> コマンドを使用して、ONTAP LUNの設定を確認します。優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ/最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
+  <block id="b2cff30246d08cdfde41ba01866ee693" category="list-text">ONTAP 9.9.1 P3以降では、ESXi 7.0 U3（およびそれ以降）のNVMe/FCサポートが利用可能になりました。ONTAP 9.9.1 P3以降では、キーNVMe中止の修正（ESXi 7.0 U3以降で発行）が提供されます。にある BURT パブリックレポートを参照してください<block ref="e74f384cf37401802acc612082793163" category="inline-link-rx"></block> を参照してください。</block>
+  <block id="36889db7961eacd91f01477a29a2c5ea" category="list-text">の出力を確認します<block ref="76b66d5f379b691153dc22425201f6ae" prefix=" " category="inline-code"></block> 設定が完了したことを確認するためのコマンドです。を使用できます<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block> コマンドを使用して、ONTAP LUNの設定を確認します。優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ/最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
+  <block id="8798c6858a1c8968b7b9cad1ace9d91a" category="list-text">/etc/multipath.confの「blacklist」行に次のWWIDを追加します。</block>
+  <block id="3ad269cd9c25c5c028bf155f768f0618" category="paragraph">デフォルトでは、LUNへのパスがない場合、AIXオペレーティングシステムはI/Oタイムアウトを短縮します。この状況は、シングルスイッチの SAN ファブリック構成や MetroCluster 構成など、計画外のフェイルオーバーが発生する構成で発生することがあります。追加情報 および推奨されるデフォルト設定の変更については、を参照してください <block ref="682b92f396ad2229bd62e99c5a518610" category="inline-link-macro-rx"></block></block>
+  <block id="eae76491b6011f6e80494775aea500b6" category="paragraph">オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ/最適化されており、コントローラによって処理され、すべてのアクティブパスでI/Oが送信されます。</block>
+  <block id="3012ce3908219f8e726469f86858ac26" category="paragraph">AIX の場合、 Path Control Module （ PCM ；パス制御モジュール）が複数のパスを制御します。PCMは、パス管理を処理するストレージベンダーが提供するコードです。これは、 Host Utilities のインストール時にインストールして有効にします。</block>
+  <block id="f5188f0db18a0455b279280c37baccd9" category="list-text">ファイルを解凍します。を使用できます<block ref="310cb972d0a51b72a4a64dd98fcc2fb1" prefix=" " category="inline-code"></block> コマンドを実行します。</block>
+  <block id="5c3a15590c180da4d9be3de55cf1bab9" category="list-text">を確認しておく必要があります <block ref="a681b254fb67a8552286997361f8b0b5" category="inline-link-macro-rx"></block> をクリックして、既知の問題を確認します。リリースノートには、既知の問題と制限事項の一覧が記載されています。</block>
+  <block id="488ee7d410bfc05042cf79417f62b731" category="paragraph">このコンテンツでは、ONTAP ストレージに接続されたSANホストを簡単に構成するための、ホストとバージョンに固有のベストプラクティスを紹介します。</block>
+  <block id="bb80358d422ec918cde74cab08e90d5c" category="admonition">クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるホスト固有のすべての情報は、環境 クラウドクライアントにも該当します。</block>
+  <block id="7dac0335f353ff4aea15e7349355818e" category="paragraph">たとえば、オンプレミスのONTAP ストレージを設定して、オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。を設定することもできます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> または <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block> オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。</block>
+  <block id="6889073c7d1502d89a41a22f7b933a57" category="paragraph">このリリースノートのドキュメントONTAP には'Solaris Host Utilities 6.2の最新情報が記載されていますこれには'既知の問題'制限事項'構成'管理に関するアップデートが含まれています</block>
+  <block id="94ed2eb93c1ea841359ebf631638ec66" category="paragraph">優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ/最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
+  <block id="a667026321ffb956d941d648c0ad659f" category="paragraph">各Linuxディストリビューションで使用できるRPMパッケージ「libhbaapi」と「libhbalinux」は、ホストOSにインストールする必要があります。</block>
+  <block id="2e2f435df31672c9332b32b2b69afe2a" category="sidebar">Windows Host Utilitiesのリリースノート</block>
 </blocks>

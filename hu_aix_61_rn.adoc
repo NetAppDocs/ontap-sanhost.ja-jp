@@ -19,7 +19,7 @@ summary: 『Release Notes for AIX Host Utilities 6.1』
 
 
 [role="lead"]
-このリリースノートドキュメントには、AIX Host Utilities 6.1リリースに関する最新情報が記載されています。これには、既知の問題、制限事項、ONTAP ストレージシステムの構成と管理に関する最新情報が含まれています。
+このリリースノートドキュメントには、ONTAP Host Utilities 6.1リリースの最新情報が記載されています。これには、既知の問題、制限事項、ストレージシステムの構成と管理に関する更新情報が含まれています。
 
 『リリースノート』ドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
 
@@ -36,7 +36,7 @@ AIX Host Utilitiesを使用すると、AIXホストをネットアップスト�
 PowerVM機能の詳細については、IBM PowerVM Live Partition Mobility Red Bookを参照してください。
 
 ====
-Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、からダウンロードできます link:link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。
+Host Utilitiesソフトウェアは、圧縮機能が1つのファイルとしてパッケージされています。圧縮ファイルとドキュメントは、からダウンロードできます link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。ONTAP SANホスト構成では、環境やプロトコルに対応するようにHost Utilitiesをインストールしてセットアップする手順が説明されています。
 
 
 NOTE: clustered Data ONTAP 環境では、すべてのFCイニシエータおよびFCoEイニシエータに対して動的追跡を有効にする必要があります。

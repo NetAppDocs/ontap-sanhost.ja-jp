@@ -38,7 +38,7 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 
 
 
-RPM パッケージ「 libhbaapi 」と「 libhbalinux 」は、各 Linux ディストリビューションで使用できるホスト OS にインストールする必要があります。
+各Linuxディストリビューションで使用できるRPMパッケージ「libhbaapi」と「libhbalinux」は、ホストOSにインストールする必要があります。
 
 
 
@@ -75,6 +75,7 @@ NetApp Linux Unified Host Utilities ソフトウェアパッケージは、に�
 
 Linux Unified Host Utilities をインストールすることを強く推奨しますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
+.手順
 . 現在インストールされている Linux Unified Host Utilities のバージョンがある場合、次のコマンドを使用してそのバージョンを削除します。
 +
 `rpm -e NetApp_linux_unified-connect host_utilities-7-1'

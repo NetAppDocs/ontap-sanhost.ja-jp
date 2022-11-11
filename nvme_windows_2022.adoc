@@ -43,6 +43,7 @@ NOTE: Broadcom for Windows NVMe/FC によって出荷された外部ドライバ
 
 Windows イニシエータホストで FC / NVMe を有効にするには、次の手順を実行します。
 
+.手順
 . Windows ホストに OneCommand Manager ユーティリティをインストールします。
 . 各 HBA イニシエータポートで、次の HBA ドライバパラメータを設定します。
 +

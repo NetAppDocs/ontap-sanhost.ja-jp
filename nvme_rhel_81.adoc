@@ -264,6 +264,7 @@ Device   Vserver  Namespace Path             NSID   UUID   Size
 
 ホストで問題 1MB サイズの I/O を使用するには、 lpfc_sg_seg_cnt パラメータを 256 に設定する必要があります
 
+.手順
 . lpfc_sg_seg_cnt パラメータを 256 に設定します
 +
 [listing]

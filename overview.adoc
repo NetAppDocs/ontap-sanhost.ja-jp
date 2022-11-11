@@ -23,8 +23,8 @@ summary: このコンテンツでは、オンプレミスのONTAP ストレー�
 SANホストとONTAP ストレージは、オンプレミス、クラウド、またはその両方に配置できます。
 
 
-NOTE: クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるすべてのホスト固有の情報は、環境 クラウドクライアントにも該当します。
+NOTE: クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるホスト固有のすべての情報は、環境 クラウドクライアントにも該当します。
 
-たとえば、オンプレミスのONTAP ストレージをオンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりすることができます。を設定することもできます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。
+たとえば、オンプレミスのONTAP ストレージを設定して、オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。を設定することもできます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。
 
 最適なパフォーマンスとフェイルオーバーを実現するには、適切な設定が重要です。

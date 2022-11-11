@@ -77,7 +77,7 @@ NOTE: NetApp Solaris Host Utilities ソフトウェアパッケージは、に�
 +
 #gunzip NetApp_solaris_host_utilities_6_2_sparc.tar.gz
 
-. ファイルを解凍します。これを行うには 'tar xvf コマンドを使用します
+. ファイルを解凍します。を使用できます `tar xvf` コマンドを実行します。
 +
 tar xvf NetApp _Solaris_host_utilities_6_2_sparc.tar
 
