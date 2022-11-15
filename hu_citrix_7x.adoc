@@ -139,7 +139,7 @@ blacklist {
 
 NOTE: 「 * <devd>* 」を除外するデバイスの WWID の文字列に置き換えます。
 
-Citrix XenServer 7.x のこの例では、「 da 」はブラックリストに登録する必要があるローカル SCSI ディスクです。
+このCitrix XenServer 7.xの例では、 `sda` は、ブラックリストに追加する必要があるローカルSCSIディスクです。
 
 . 次のコマンドを実行して WWID を特定します。
 +

@@ -35,7 +35,6 @@
   <block id="eed881bb2a34d1ee7f7f847943028439" category="paragraph">multipath .conf ファイルはマルチパスデーモンを開始するために存在している必要がありますが、このファイルを初めて作成するときに、「 touch /etc/multipath.conf 」コマンドを使用して空のゼロバイトのファイルを作成できます。マルチパスサービスを有効にして開始する必要がある場合があります。</block>
   <block id="3e62478acd97c41a7fea67ffea8ef9a1" category="paragraph">multipath で管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 multipath.conf に直接何も追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。</block>
   <block id="3bd7fde20a9abc176890c7422cf0f77f" category="admonition">&lt;DevId&gt; を除外するデバイスの WWID の文字列に置き換えます。次のコマンドを使用して WWID を特定します。</block>
-  <block id="58449f79b301eee405bcc04689e38467" category="paragraph">この例では、 sda はブラックリストに登録する必要があるローカル SCSI ディスクです。</block>
   <block id="4d70a817ac85626aff88bbc73d0a2deb" category="list-text">次のコマンドを実行して WWID を特定します。</block>
   <block id="21613f1f81985ce9edca2dc6272a765e" category="paragraph">デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
   <block id="83f499a540b1323009c200d6f8cc9396" category="cell">パラメータ</block>
@@ -413,7 +412,6 @@
   <block id="6e7eef95f0e9ee9b717340ce72d65e5b" category="paragraph">マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、「 multipath.conf 」ファイルに直接何も追加する必要はありません。</block>
   <block id="36da0e0b56843a1256e96e81029390fa" category="paragraph">不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。</block>
   <block id="32fdadaf90804487f6b463983fc1c553" category="paragraph">「 &lt;DevId&gt; 」を除外するデバイスの WWID の文字列に置き換えます。次のコマンドを使用して WWID を特定します。</block>
-  <block id="090f01b46aada524696024ccba0a31de" category="paragraph">この例では '`d`s はブラックリストに登録する必要があるローカル SCSI ディスクです</block>
   <block id="ff73d7e0f0c6051bbd80575105bb1cb1" category="list-text">/etc/multipath.conf 内のブラックリストスタンザに、次の WWID を追加します。</block>
   <block id="e652073cb2a43641b24496c09164f62a" category="paragraph">次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合 ' マルチパス .conf ファイルは 'path_checker' および ONTAP LUN と互換性のない 'no-path_retry' の値を定義しますホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</block>
   <block id="5fa917b25abcb73abe17905f90a2c698" category="section-title">KVM 設定</block>
@@ -1550,7 +1548,6 @@
   <block id="410267f88a5f79f5d40838a8e7a35e62" category="paragraph">XenCenter Management Portal からホストマルチパスサービスを有効にし、マルチパスサービスが有効で実行されていることを確認します。</block>
   <block id="cd96c3aa1c1e2627c438d2fe6fda056c" category="paragraph">マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 /etc/multipath.conf ファイルにコンテンツを追加する必要はありません。不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。</block>
   <block id="b00ab7c17a141468a5921157cdf11ec3" category="admonition">「 * &lt;devd&gt;* 」を除外するデバイスの WWID の文字列に置き換えます。</block>
-  <block id="71b9d2719d4bd590da83c5da238b05fc" category="paragraph">Citrix XenServer 7.x のこの例では、「 da 」はブラックリストに登録する必要があるローカル SCSI ディスクです。</block>
   <block id="ec8b35f300ba884a5dff762db20c0a35" category="paragraph">「 $multipathd show config 」コマンドを使用して、マルチパスパラメータのランタイム設定を参照します。デフォルト設定よりも優先される可能性がある古い設定については、必ず実行コンフィギュレーションを確認してください。特に、 defaults セクションで確認します。</block>
   <block id="aea5fd959632948a3225c2ddd5323d43" category="paragraph">次の表に、 ONTAP LUN の multipathd * パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが無視された場合は、 ONTAP LUN に特に適用される * multipath.conf * の後の行 AS によって修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。以下のデフォルト設定は、影響を完全に把握したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
   <block id="9d5bc46c4aa8d12cf17b1243dea3cdb8" category="paragraph">次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合、 * multipath.conf * ファイルは、 ONTAP LUN と互換性のない * path_checker * および * detect_prio * の値を定義します。ホストに接続された他の SAN アレイが原因でパラメータを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</block>
@@ -1749,7 +1746,6 @@
   <block id="b4fb72e88112026a3055df686f0141d6" category="paragraph">このドキュメントでは、 FC 、 FCoE 、および iSCSI の各プロトコルを使用した ONTAP ハイパーバイザー 8 シリーズ OS リリースの SAN ホストの設定について説明します。</block>
   <block id="dfdecabe17f4f61a0c5b353fdc3dfeef" category="paragraph">Citrix Hypervisor 8.x OS は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定でコンパイルされます。Citrix Hypervisor 8.x の場合、空の zerobyte /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。</block>
   <block id="4d9e4d5a080304464911deeebee0a0b3" category="paragraph">マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 /etc/multipath.conf ファイルにコンテンツを追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。</block>
-  <block id="258e01d6ca463cd89e79be409a5b9398" category="paragraph">この Citrix Hypervisor 8.x の例では、「 da 」はブラックリストに登録する必要のあるローカル SCSI ディスクです。</block>
   <block id="891983ab249dd51fa02a51e1da92fd57" category="admonition">Citrix ハイパーバイザーでは、 Linux および Windows ベースのすべてのゲスト VM に対して Citrix VM ツールを使用することを推奨しています。</block>
   <block id="39f11cb747dafe51ae2cd54386744d96" category="cell">Citrix Tracker ID</block>
   <block id="37a4830e2093543aff3053de0d030043" category="inline-link-macro">1242343</block>
@@ -2130,10 +2126,8 @@
   <block id="02ec5a6431274b50044361aad326cbdc" category="paragraph">NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これにより、 Linux NVMe/FC ホストには次の 2 つの大きな制限があります。</block>
   <block id="524fa08703d908aeca5cccda70508020" category="list-text">* パスが復活した後の自動再接続は行われない * NVMe/TCP は、パスダウン後 10 分間のデフォルトの「 Ctrl-loss -TTMO 」タイマーを超えて復活したパスに自動的に再接続することはできません。</block>
   <block id="5ac8d4417219a758cb216b44e499a52a" category="list-text">* ホストの起動時に自動接続が行われない * ホストの起動時に NVMe/FC が自動的に接続されることもありません。</block>
-  <block id="237af845a336c688dd92384a771f5c92" category="paragraph">ONTAP フェイルオーバーイベント (SFO など ) を快適に利用するには 'Ctrl_LONS_TMO' タイマーを調整して '30 分間などの長い再試行期間を設定することをお勧めします詳細は次のとおりです。</block>
   <block id="9f291dc2ffc26a15b15d66dfbe7c03c7" category="list-text">サポートされている NVMe/FC LIF の検出ログページデータをイニシエータポートが読み込めたかどうかを確認します。</block>
   <block id="cdad7a1e7e4e6d6a5603c6ee5b84a18b" category="list-text">他の NVMe/FC イニシエータターゲット LIF のコンボファイルが検出ログページデータを正常に取得できることを確認します。例：</block>
-  <block id="c3f202b40a54d75b57fbe1fedd71b1e7" category="list-text">ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。接続中に 'ctrl_loss _tmo' 期間を延長して（たとえば '-l 1800' で設定できる 30 分） ' パスが失われた場合に再試行するようにしてください例：</block>
   <block id="55ab77cd94d55aaa364453f7cf104285" category="section-title">NVMe-oF を検証します</block>
   <block id="d59a70bb68888f817286630067489719" category="list-text">各 ONTAP ネームスペースの適切な NVMe-oF 設定（「 NetApp ONTAP Controller 」に設定された「 model 」や「 loadbalancing iopolicy 」が「ラウンドロビン」に設定されているなど）がホストに正しく反映されていることを確認します。</block>
   <block id="6d678a1cb8ddbf76f2e82d8950f207e7" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例：</block>
@@ -2383,7 +2377,6 @@
   <block id="e646e16bee8b32e6ea29e30d01970a6c" category="section-title">制限</block>
   <block id="8dc2bb86558c5fa9a6925f0d8bd82e21" category="list-text">NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これは、Linuxホストでは次の2つの大きな制限事項を反映しています。</block>
   <block id="b7c3db78c3a82d963056f99e4aa58d39" category="list-text">パスが復活した後に自動再接続が行われない-NVMe/TCPは、パスがダウンしてからデフォルトの「Ctrl-loss -TTMO」の10分を超えて復活したパスに自動的に再接続することはできません。</block>
-  <block id="fa4425742c4d1fb5d8e39e4339d06d6e" category="list-text">ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。NVMe/FCのONTAP フェイルオーバーイベント（SFOなど）を快適に潮汐させるには、「ctrl_loos_tmo」タイマーを微調整して、30分などの長い再試行期間を設定することをお勧めします。</block>
   <block id="140268ba3849abd78f34f907f067407f" category="paragraph">を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成の正確な情報については、を参照</block>
   <block id="061e98174e60e8e432e858a83311d44d" category="list-text">サーバにRHEL 9.0をインストールします。インストールが完了したら、指定したRHEL 9.0カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
   <block id="aa752093cf87ece20a99a98640048b70" category="list-text">インストールが完了したら、指定したRHEL 9.0カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
@@ -2398,7 +2391,6 @@
   <block id="7f905df84e3f641e977ad2d5240dee4b" category="list-text">ホストが起動したら'lpfc_sg_seg_cnt'が256に設定されていることを確認します</block>
   <block id="73a7814e5695a25d9824e6de50fe0979" category="paragraph">RHEL 9.0カーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP のサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
   <block id="b3cc0f8131b6dd17671baba8c63d88b6" category="paragraph">NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これは、Linux NVMe/FCホストには次の2つの大きな制限事項があることを反映しています。</block>
-  <block id="828f6c28a4d526b6783eecef0ac05b8a" category="list-text">ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。ONTAP フェイルオーバーイベント (SFO など ) を快適に利用するには 'Ctrl_LONS_TMO' タイマーを調整して '30 分間などの長い再試行期間を設定することをお勧めします詳細は次のとおりです。</block>
   <block id="055436915aa042f3fdf8045e013acbb5" category="list-text">イニシエータポートが、サポートされているNVMe/FC LIF経由で検出ログページデータを読み込めたかどうかを確認します。</block>
   <block id="351f4726c12d45250df101c8bd9578d6" category="list-text">同様に、もう一方のNVMe/FCイニシエータターゲットLIFのコンボファイルが検出ログページのデータを正常に取得できることを確認します。例：</block>
   <block id="7ce841894f1ef8447498c5c8f5b1f19a" category="section-title">NVMfを検証してください</block>
@@ -2498,9 +2490,7 @@
   <block id="67a7c2662b17653a8ac76448e703f0b7" category="list-text">インストールが完了したら、指定したRHEL 8.6カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
   <block id="71dcdd59971df1a5bb4dfbb60ffe2bad" category="list-text">イニシエータポートが動作していること、およびターゲットLIFが表示されることを確認してください。</block>
   <block id="95e3f3faa5bf8e48441621d165c05044" category="paragraph">RHEL 8.6カーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
-  <block id="b964263fad43476391626a8c5994d66f" category="paragraph">ONTAP フェイルオーバーイベント(SFOなど)を快適に利用するには'Ctrl_LONS_TMO'タイマーを調整して'このような30分間の再試行期間を長く設定することをお勧めします詳細は次のとおりです。</block>
   <block id="346a874868cfe5950cc070d607e10dda" category="list-text">他のNVMe/FCイニシエータターゲットLIFのコンボファイルが検出ログページデータを正常に取得できることを確認します。例：</block>
-  <block id="7e4e5f748eea832eccfa25b6f84c9beb" category="list-text">ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。接続中に 'ctrl_loss _tmo' 期間を延長して（たとえば '-l 1800' で設定できる 30 分） ' パスが失われた場合に再試行するようにしてください例：</block>
   <block id="3bb5487a25f2c91e7d62566cb6026b68" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例：</block>
   <block id="f2af591771f10d63662bd947024ee100" category="list-text">各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。例：</block>
   <block id="c13733aade7c22e1d6c0fb7be8a8c754" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例：</block>
@@ -2515,7 +2505,6 @@
   <block id="9c7d4fd2f8e0f3f2d80343ad47595e46" category="list-text">RHEL 8.5 GAをサーバにインストールします。インストールが完了したら、指定したRHEL 8.5 GAカーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
   <block id="3010e81137392b43d689728401eb1ea9" category="list-text">lpfc_enable_fc4_typeが3に設定されていることを確認します</block>
   <block id="d5236e74852c6cce228c1229faf5ea4f" category="paragraph">RHEL 8.5 GAカーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
-  <block id="e23d82164b7ed25abb97130635815a09" category="list-text">ノード全体でサポートされているすべてのNVMe/FCイニシエータターゲットLIFに対して、「nvme connect -all」コマンドを実行します。接続中に'ctrl_loss _tmo'期間を延長して（たとえば'-l 1800'で設定可能な30分）'パスが失われた場合に再試行するようにしてください例：</block>
   <block id="431b68e6f738b5c8bf76d7972d17685f" category="paragraph">一般に'/etc/nvme/hostnqn'文字列がNetAppアレイの対応するサブシステムに追加されていないか'不正なhostnqn'文字列が各サブシステムに追加されています</block>
   <block id="d9062f55beecc22ab1e0baaa195b1f68" category="paragraph">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。「nvme connect」および「connect-all」の場合は、「nvme list」コマンドを実行して、ネームスペースデバイスがすでに作成され、ホストに表示されていることを確認します。</block>
   <block id="9b2d197e1555229882f18589d7c32cce" category="list-text">各ONTAP ネームスペースの適切なNVMe-oF設定（「model」を「NetApp ONTAP Controller」に設定し、ロードバランシング「iopolicy」を「ラウンドロビン」に設定するなど）がホストに正しく反映されていることを確認します。</block>
@@ -2554,8 +2543,6 @@
   <block id="61efa8d63e1b266809e1e79422fed58f" category="paragraph">新しいSLES15 SP4 MUカーネルに含まれているネイティブインボックスqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
   <block id="859c1dcdb0decd8fe22f184abe2b92f7" category="list-text">パスが復活したあとの自動再接続が行われないNVMe/FCは'パスがダウンしてから10分経過したデフォルトのCtrl-loss -TMO'タイマーを超えたパスに自動的に再接続することはできません</block>
   <block id="1077e8ad3542ff8af32bed26b6b21ee8" category="list-text">ホストのブート時に自動接続を行わないNVMe/FCは、ホストのブート時にも自動的に接続できません。</block>
-  <block id="bf67db93bdc191f54bf3b60580bdafe9" category="paragraph">ストレージフェイルオーバー（SFO）などのONTAP フェイルオーバーイベントを快適に潮流させるには、「ctrl_loos_tmo」タイマーを調整して30分程度の再試行期間を設定することをお勧めします。詳細は次のとおりです。</block>
-  <block id="bf093b1c5c4b0f979c7987042c56c3d8" category="list-text">ノード全体でサポートされているすべての NVMe/FC イニシエータターゲット LIF に対して、「 nvme connect -all 」コマンドを実行します。パスが失われた場合に再試行するように'connect-allの間に'ctrl_loss _tmo'期間を延長してください（たとえば'30分～l 1800で設定できます）例：</block>
   <block id="b2edbac4a48e893081ffbe4cda9a7dec" category="list-text">該当するONTAP ネームスペースの該当するNVMe-oF設定（NetApp ONTAP コントローラに設定したモデル、ラウンドロビンに設定したロードバランシングポリシーなど）がホストに正しく反映されていることを確認します。</block>
   <block id="0882578f9915da36a8ab5c612728ad30" category="paragraph">例（A）：</block>
   <block id="07cf625ee23005956a460fdd83c0142d" category="list-text">出力「nvme_info」に上記のようにターゲットLIFが表示されない場合は、「/var/log/messages」と「dmesges`の出力で、疑わしいNVMe/FCエラーがないかどうかを確認し、それに応じて報告または修正してください。</block>
@@ -2766,4 +2753,16 @@
   <block id="94ed2eb93c1ea841359ebf631638ec66" category="paragraph">優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ/最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
   <block id="a667026321ffb956d941d648c0ad659f" category="paragraph">各Linuxディストリビューションで使用できるRPMパッケージ「libhbaapi」と「libhbalinux」は、ホストOSにインストールする必要があります。</block>
   <block id="2e2f435df31672c9332b32b2b69afe2a" category="sidebar">Windows Host Utilitiesのリリースノート</block>
+  <block id="3972a4868b0682bd7aa086e3f90df6a5" category="paragraph">この例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
+  <block id="83b4ba657748695cb0894283702e0f3e" category="list-text">ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。</block>
+  <block id="f0f82e2793c63d13158f3daced159083" category="list-text">ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。詳細は次のとおりです。</block>
+  <block id="b23eda8b5a2eb7f788559c0df550f0fa" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）connect-all中に、パス損失が発生した場合に長期間再試行されるようにします。例：</block>
+  <block id="30058c2cccf9fdeeb47f9d3fbf9108bf" category="paragraph">この例では、sdaはブラックリストに追加する必要があるローカルSCSIディスクです。</block>
+  <block id="ed53d9bb40cf906cb73ab578cb3adb1d" category="paragraph">タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。詳細は次のとおりです。</block>
+  <block id="9ac1e2761e536d1b08b677a24976cad9" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> の実行中のタイマー再試行期間（30分、-l 1800で設定可能）<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> これにより、パス障害が発生した場合に再試行を長時間にわたって行うことができます。例：</block>
+  <block id="1272c37c0c38bd618d6d76d763f54041" category="paragraph">次のCitrixハイパーバイザー8.xの例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
+  <block id="1de6caecfe16b961f2f1c858579203f0" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）connect-allの実行中に、パス損失が発生した場合に、長時間にわたって再試行されます。例：</block>
+  <block id="557c4124a10a18982aa7103d5c4f8b02" category="paragraph">このCitrix XenServer 7.xの例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
+  <block id="ad6d243201e40d0f0153f9cf8a6eca49" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）connect-all中に、パス損失が発生した場合に長期間再試行されるようにします。例：</block>
+  <block id="96e313a007231cc32cb878d3d92047fb" category="paragraph">タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。詳細は次のとおりです。</block>
 </blocks>
