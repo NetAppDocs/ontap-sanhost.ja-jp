@@ -28,6 +28,7 @@ summary: ONTAP で VERITAS Infosscale 6.5 および 6.7 for Linux を使用す�
 
 == ハイパーバイザーの SAN ブート
 
+.必要なもの
 SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 .手順
@@ -72,6 +73,7 @@ system        tpgs_on          MW_PSP_RR 	      NetApp arrays with ALUA support
 
 All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。
 
+.例
 次の例は、 ONTAP LUN の正しい出力を表示します。
 
 *esxcli storage nmp device list -d naa.600a0988038304759563f4e7837574453`*
@@ -122,6 +124,7 @@ fc.20000024ff171d37:21000024ff171d37-fc.202300a098ea5e27:201e00a098ea5e27-naa.60
 
 ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。
 
+.例
 次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
 
 *esxcli storage nmp path list -d naa.600a0988038313530772b4d673979372f`*

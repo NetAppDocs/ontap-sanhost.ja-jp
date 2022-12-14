@@ -30,6 +30,7 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 
 Solaris Host Utilities は、 Oracle Solaris ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
+.例
 次の例では 'lun lun lun show コマンドは LUN 情報を返します
 
 [listing]

@@ -32,6 +32,7 @@ NetApp Linux Unified Host Utilities ソフトウェアパッケージは、に�
 
 Linux Unified Host Utilities をインストールすることを強く推奨しますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
+.必要なもの
 現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。
 
 .手順
@@ -48,6 +49,7 @@ Linux Unified Host Utilities をインストールすることを強く推奨し
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
+.例
 次の図では 'lun show コマンドは LUN 情報を返します
 
 [listing]
@@ -74,6 +76,7 @@ enabled     up      active/non-optimized sdas   13:0:1:0   lif_9      66:192
 
 == SAN ブート中です
 
+.必要なもの
 SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 Veritas Support Portal （ Product Matrix 、 Platform Lookup 、 HCL Matrix ）を参照して、 SAN ブート構成がサポートされていること、および既知の警告を確認してください。
@@ -97,6 +100,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 構成がシステム要件を満たしていることを確認する必要があります。詳細については、ネットアップのInteroperability Matrix ToolとVeritas HCL Matrixを参照してください。
 
+.例
 この例では 'vxdmpadm コマンドを使用して 'VxDMP マルチパスに ONTAP ターゲットアレイが接続されていることを確認します
 
 [listing]
@@ -112,6 +116,7 @@ sfrac0_47  ENABLED  SFRAC       4      4     0    sfrac0
 ----
 Veritas Dynamic Multipathing （ VxDMP ）を使用すると、ネットアップ LUN を Veritas Multipath Devices として要求するための設定タスクを実行する必要があります。Veritas からネットアップストレージシステムに提供される Array Support Library （ ASL ）と Array Policy Module （ APM ）パッケージをインストールしておく必要があります。Veritas Software Installation では、デフォルトの ASL APM パッケージが製品とともにロードされますが、 Veritas サポートポータルにリストされている最新のサポートされているパッケージを使用することをお勧めします。
 
+.例
 次の例は、 Veritas Support Library （ ASL ）および Array Policy Module （ APM ）の設定を表示します。
 
 [listing]
@@ -137,6 +142,7 @@ ARRAY_TYPE  ALUA, A/A
 
 All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。
 
+.例
 次の例は、 ONTAP LUN の正しい出力を表示します。
 
 [listing]
@@ -158,6 +164,7 @@ NOTE: 1 つの LUN へのパスを余分に使用しないでください。必�
 
 ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。
 
+.例
 次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
 
 [listing]
@@ -202,6 +209,7 @@ DMP チューニング可能な値は 'vxdmpadm コマンドを使用して ' �
 
 これらの調整可能な値は '#vxdmpadm gettune' を使用して動的に確認できます
 
+.例
 次の例は、 SAN ホストの実質的な VxDMP 調整可能な設定を示しています。
 
 [listing]

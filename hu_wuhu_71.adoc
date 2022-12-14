@@ -358,6 +358,7 @@ Windows Unified Host Utilities インストーラは、インストール時に�
 
 | HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval | 1. | サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 のみの場合 
 |===
+.関連情報
 を参照してください https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users["Microsoft のドキュメント"^] を参照してください。
 
 
@@ -411,6 +412,7 @@ QLogic ファイバチャネル HBA の場合、 MPIO が選択されていな�
 
 NOTE: パラメータの名前は、プログラムによって多少異なる場合があります。たとえば 'QLogic QConvergeConsole プログラムでは ' パラメータは Link Down Timeout と表示されますHost Utilities の「 fcconfig.ini` 」ファイルには、 MPIO が指定されているかどうかに応じて、このパラメータが「 LinkDownTimeOut 」または「 M pioLinkDownTimeOut 」のいずれかで表示されます。ただし、これらの名前はすべて同じ HBA パラメータを表します。
 
+.関連情報
 を参照してください https://www.broadcom.com/support/download-search["Emulex 社"^] または https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx["QLogic"^] タイムアウトパラメータの詳細については、サイトを参照してください。
 
 
@@ -437,6 +439,7 @@ NOTE: パラメータの名前は、プログラムによって多少異なる�
 * 問題を解決できない場合は、ネットアップテクニカルサポートにお問い合わせください。
 
 
+.関連情報
 http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 https://mysupport.netapp.com/portal/documentation["NetApp のドキュメント"^]
 https://mysupport.netapp.com/NOW/cgi-bin/bol["NetApp Bugs Online では"^]

@@ -131,6 +131,7 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 「 #sanlun lun show 」というエラーが表示されます
 
 +
+.例
 この例は、 MPIO マルチパス環境での「 lun lun show 」コマンドの典型的な出力を示しています。
 
 +

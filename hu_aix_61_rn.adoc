@@ -90,6 +90,7 @@ link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"] 既知の�
 
 ネットアップのすべての製品のマニュアルにアクセスし、ネットアップ社内サイトの製品ドキュメントページで、テクニカルレポートやホワイトペーパーなど、製品に関するその他の情報を参照できます。
 
+.関連情報
 * ONTAP ストレージ・システムの構成と管理*
 
 * 。 link:https://docs.netapp.com/us-en/ontap/setup-upgrade/index.html["『ONTAP ソフトウェアセットアップガイド』"^] ONTAP のバージョンに応じて更新します

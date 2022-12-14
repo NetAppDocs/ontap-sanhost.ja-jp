@@ -48,6 +48,7 @@ Linux Unified Host Utilities は、 Linux ホストにコマンドラインツ�
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
+.例
 次の例では 'lun lun lun show コマンドは LUN 情報を返します
 
 [listing]
