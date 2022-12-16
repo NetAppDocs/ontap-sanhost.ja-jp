@@ -25,7 +25,7 @@ summary: ONTAP を使用して RHEL 8.3 用に NVMe/FC ホストを設定する�
 ONTAP 9.6 以降では、 RHEL 8.3 で NVMe/FC がサポートされます。RHEL 8.3 ホストは、 NVMe トラフィックと SCSI トラフィックの両方を同じ Fibre Channel （ FC ）イニシエータアダプタポートで実行します。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされている構成およびバージョンの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
 
-NOTE: このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
 

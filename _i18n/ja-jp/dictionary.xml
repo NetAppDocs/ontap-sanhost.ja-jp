@@ -2281,7 +2281,6 @@
   <block id="476ffa3f7602d624a09df7aa5753ffef" category="paragraph">にアクセスします <block ref="9baa7224a8255cea231b31bb3cb8d26c" category="inline-link-macro-rx"></block> をクリックして、SANtricity 関連ドキュメントを参照してください</block>
   <block id="2c0074fce84282581b2b52e56eacf78e" category="sidebar">Luhu 7.1をインストールします</block>
   <block id="3e88abad927ef9520e50cf89d3f1ddf7" category="paragraph">デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください</block>
-  <block id="ac9cd03712fd30de041cfad595bfc616" category="paragraph">次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
   <block id="51f210eb8bfa53321744e9dca7258c87" category="paragraph">Oracle Linux 8.1 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="60f09d4774647857c92f5a51f6de2354" category="paragraph">Oracle Linux 8.0 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="ffe5b32185032e3b293e94d4a0232f34" category="paragraph">Oracle Linux 8.2 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
@@ -2596,7 +2595,6 @@
   <block id="237e46c87c95b6d72dceaf420c603d90" category="sidebar">Linux Unified Host Utilitiesのこと</block>
   <block id="c134d5805f93afa1db7c6399465d2bd8" category="sidebar">Solarisホストユーティリティ</block>
   <block id="1a0d3890b0eb9dc0c7e3f33e1b9f1865" category="sidebar">NVMeoF RHEL</block>
-  <block id="8200a3db147155676a7739eb43b685c9" category="admonition">このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> および <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block>。</block>
   <block id="f561aaf6ef0bf14d4208bb46a4ccb3ad" category="paragraph">xxx</block>
   <block id="47e2092f9d666fc24b67c7da02de84c7" category="paragraph">Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhu の構成情報と手順については、を参照してください <block ref="f7fe1c204ed60a7e9dd594c09fd7b1a5" category="inline-link-macro-rx"></block>。</block>
   <block id="38022ef96e4c7edb41b89fa3a008c3f6" category="inline-link-macro">Windows Host Utility Kit 7.1</block>
@@ -2680,4 +2678,41 @@
   <block id="41984fe104ed2a03ac98e13699db0858" category="section-title">7.1リリースの新機能</block>
   <block id="f76dacb09cf26865aa39e565e340c25b" category="paragraph-title">Oracle Linux 7.2 UEK R3構成</block>
   <block id="214edbb0ed79a899577c5689a76a98e3" category="paragraph-title">Oracle Linux 7.2 UEK R4の構成</block>
+  <block id="50d880869dbad54df4986a506d8e811c" category="admonition">このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> および <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block>。</block>
+  <block id="563bea0904ae52572ef481dbaa30e7b6" category="paragraph">に直接何も追加する必要はありません<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ファイル。マルチパスで管理しないデバイスがある場合、またはデフォルトよりも優先される既存の設定がある場合を除きます。</block>
+  <block id="c6c681f2d9c6e0299e9cad2b809ff1be" category="paragraph">常にを確認する必要があります<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> レガシー設定のファイル、特にデフォルトセクションでは、デフォルト設定を上書きする可能性があります。</block>
+  <block id="e7ca608348039bbac0657502a5108091" category="paragraph">次の表に、クリティカルなボリュームの状態を示します<block ref="8732863da72605a20ed96b4eee87a5fb" prefix=" " category="inline-code"></block> ONTAP LUNのパラメータと必要な値。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無効になっている場合は、で後述するstanzasで修正する必要があります<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ONTAP LUNに適用されるファイル。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
+  <block id="98a246e1f1b81f16a2ceb0cc274c4da8" category="summary">ONTAP でRHEL 8.7用のNVMe-oFホストを設定する方法</block>
+  <block id="b4c2617aeac68a32be5cd8b1d7435cda" category="doc">ONTAP を使用したRHEL 8.7のNVMe-oFホスト構成</block>
+  <block id="848b204c7de8049fc74d45505dd8d0c7" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.7でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。ここでは、RHEL 8.7およびONTAP でANAをターゲットとして使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にするための詳細について説明します。</block>
+  <block id="a3492942cb4c45f8a31e3e3845c9f04a" category="paragraph">RHEL 8.7では、NVMe/FCに加えて、（テクノロジプレビュー機能としての）NVMe/FCがサポートされます。ネイティブのnvme-CLIパッケージに含まれているネットアッププラグインで、NVMe/FCネームスペースとNVMe/FCネームスペースの両方のONTAP の詳細を表示できます。</block>
+  <block id="0e15c36dca614df066cc960ea227ce1c" category="list-text">RHEL 8.7では、カーネル内のNVMeマルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。</block>
+  <block id="22bdfd7e91e72cf608df0b09fc912791" category="inline-link-macro">RHEL 8.7リリースノート</block>
+  <block id="8c2b765ab97c39979798e34af69b0f1c" category="list-text">RHEL 8.7のNVMe/FCは、未解決の問題が原因で引き続きテクノロジプレビュー機能です。を参照してください <block ref="3b0b5f7859cfdb8f0e4748ec41710206" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="0762a5fd7b3c1a28aefc4db9de8ed1fa" category="list-text">サーバにRHEL 8.7をインストールします。インストールが完了したら、指定したRHEL 8.7カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="37d7cdc3434cd2c93f357a0dbab71896" category="list-text">インストールが完了したら、指定したRHEL 8.7カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="2575819b82d12e9109581acdab9442a5" category="paragraph">NVMeとSCSIの両方のトラフィックを同じホストで同時に実行する場合は、ONTAP ネームスペースにはカーネル内のNVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには、enable_foreign設定をに追加します<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイル：</block>
+  <block id="336e17a7bbcba7cb9c2f65ad935d30f6" category="paragraph">ネイティブ受信ボックス<block ref="88eda681ac370265f103675d0de61c63" prefix=" " category="inline-code"></block> RHEL 8.7カーネルに含まれるドライバには、ONTAP のサポートに必要な最新のアップストリーム修正が含まれています。</block>
+  <block id="18364f61161412813e05ad8b27bed23e" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、IMT の仕様に準拠した設定を実行していることを確認し、次の手順に進んでホスト側の問題をデバッグします。</block>
+  <block id="3a3b7ac2e39541ea05707ccd6eb054d4" category="section-title">既知の問題および制限事項</block>
+  <block id="4c865e0cb70fa33868e69a5e88daad47" category="cell">1479047</block>
+  <block id="cf6366d36f548ad4fbfb319ac121f2a5" category="cell">RHEL 8.x NVMe-oFホストでは、重複する永続的検出コントローラが作成されます</block>
+  <block id="c58f4b32e0b4018e032143845aa6c3e4" category="cell">NVMe over Fabrics（NVMe-oF）ホストでは、を提供することでPersistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます<block ref="b3868ba70a8f4cf55464dd9926381db1" prefix=" " category="inline-code"></block> オプションをに設定します<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> コマンドを実行します指定したイニシエータとターゲットの組み合わせでは、の呼び出しごとに1つのPDCが作成されます<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> コマンドを実行しますただし、ONTAP 9.10.1以降のRed Hat Enterprise Linux（RHEL）8.x NVMe-oFホストでは、の呼び出しごとに重複するCMCが作成されます<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> コマンドにを指定します<block ref="b3868ba70a8f4cf55464dd9926381db1" prefix=" " category="inline-code"></block> オプションこのため、ホストとターゲットの両方のリソースが大量に消費されます。</block>
+  <block id="f890a2d3eb444832b655a9838102f3df" category="cell">2087000</block>
+  <block id="3f4a3b3eec403674aa0cd9427d6deec9" category="cell">上記のNVMeコマンドに正しい構文を使用していることを確認してください。</block>
+  <block id="e0f847d0d970d13348c3311998e2e15c" category="cell">複数の問題が原因でこのエラーが発生する可能性NVMeコマンドに誤った引数を指定することは、一般的な原因の1つです。</block>
+  <block id="aaf9ff463934c32d04f550169d6bf924" category="list-text">コマンドに正しい引数（正しいWWNN文字列、WWPN文字列など）を渡したことを確認してください。</block>
+  <block id="e3839c8fe205bd822dc235a5cd5a1f23" category="paragraph">必ず正確に確認してください<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> 文字列がネットアップアレイの対応するサブシステムに追加されます（で確認してください）<block ref="0e04d4bf4054a77eef58ff3d9b9e59ae" prefix=" " category="inline-code"></block> コマンド）。</block>
+  <block id="77f83f52d54fb4aeb889da304fc0ebe1" category="paragraph">コントローラの関連付けまたは指定された操作が既に作成されているか、または作成中であるかどうかに注意します。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
+  <block id="de63239808aba6bc3b6e058c280e2334" category="summary">ONTAP でRed Hat Enterprise Linux 8.7を使用する方法について説明します</block>
+  <block id="054dec9601134c2039198642192ad5cd" category="doc">NetApp ONTAP でRed Hat Enterprise Linux 8.7を使用します</block>
+  <block id="42629720f0dd50e499b39533a5c8c6c6" category="paragraph">Red Hat Enterprise Linux（RHEL）8.7の場合<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.7は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされます。</block>
+  <block id="41e60f77441a26af306d1caa0723d32b" category="paragraph">RHEL 8.7 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
+  <block id="3563f88528058cb4204fdaa22c14f966" category="cell">1501048</block>
+  <block id="dcda3b905d6ce3cc8adfc8ef13a4e227" category="cell">FCトランスポートレイヤタイムアウトパラメータ<block ref="f92718f463480c9c4b4291e7fd4ef19e" prefix=" " category="inline-code"></block> リモートSCSIターゲットポートの場合、負の値（-1）が報告される</block>
+  <block id="139739455b391a36001ab3e7b53f83cd" category="cell"><block ref="f92718f463480c9c4b4291e7fd4ef19e" prefix="" category="inline-code"></block> タイムアウトパラメータは、リモートポートが失われないようにFC転送を絶縁するデフォルトの秒数を表します。この値を超えると、SCSIターゲットがホストから削除されます。このパラメータ値は正の整数値である必要があります。ただし、RHEL 8.7では、<block ref="58fa55ed07383d23de64a931619c03fe" prefix=" " category="inline-code"></block> Filesystemはの負の値（-1）を返します<block ref="f92718f463480c9c4b4291e7fd4ef19e" prefix=" " category="inline-code"></block> SCSIデバイスのタイムアウトパラメータ。次に、を確認するコマンドラインの例を示します<block ref="f92718f463480c9c4b4291e7fd4ef19e" prefix=" " category="inline-code"></block> 稼働中のホストのパラメータ：<block ref="227979672a108771b68f10c269922312" prefix=" " category="inline-code"></block>。RHEL 8.7には、この問題 の回避策 はありません。</block>
+  <block id="5b876ec80b215faac6b29b80c4b9ccb3" category="inline-link-macro">2124297</block>
+  <block id="06f7b53dab389e67432643a56b42a885" category="cell"><block ref="06f7b53dab389e67432643a56b42a885" category="inline-link-macro-rx"></block></block>
+  <block id="796d3a90e43ce105cbf37298c5065f7e" category="sidebar">9.1</block>
+  <block id="c7ed23f5281d7f5b606a1019ecd9fd97" category="sidebar">8.7</block>
 </blocks>

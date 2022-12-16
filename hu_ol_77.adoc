@@ -37,7 +37,7 @@ Linux Unified Host Utilities をインストールすることを強く推奨し
 
 
 
-NOTE: このコンテンツで提供される設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
 
@@ -118,7 +118,7 @@ Oracle Linux 7.7 OS は、 ONTAP LUN を認識し、すべての構成パラメ�
 # systemctl enable multipathd
 # systemctl start multipathd
 ----
-マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、「 multipath.conf 」ファイルに直接何も追加する必要はありません。
+に直接何も追加する必要はありません `multipath.conf` ファイル。マルチパスで管理しないデバイスがある場合、またはデフォルトよりも優先される既存の設定がある場合を除きます。
 
 不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。
 
@@ -154,9 +154,9 @@ blacklist {
 ....
 
 
-デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください
+常にを確認する必要があります `/etc/multipath.conf` レガシー設定のファイル、特にデフォルトセクションでは、デフォルト設定を上書きする可能性があります。
 
-次の表に、 ONTAP LUN のクリティカルな「マルチパス」パラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。
+次の表に、クリティカルなボリュームの状態を示します `multipathd` ONTAP LUNのパラメータと必要な値。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無効になっている場合は、で後述するstanzasで修正する必要があります `multipath.conf` ONTAP LUNに適用されるファイル。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。
 
 [cols="2*"]
 |===
