@@ -26,7 +26,7 @@ summary: ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方�
 NVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでのストレージフェイルオーバー（SFO）の実行にANA（Asymmetric Namespace Access）が必要なRHEL 9.0でサポートされます。ANAは、NVM環境でも同じです。現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.0およびONTAP でANAをターゲットとして使用し、カーネル内でNVMeマルチパスを有効にするための詳細が記載されています。
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: このトピックで示す設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
 

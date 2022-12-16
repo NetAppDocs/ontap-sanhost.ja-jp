@@ -23,10 +23,10 @@ summary: ONTAP でRHEL 8.7用のNVMe-oFホストを設定する方法
 
 == サポート性
 
-NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.7でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。ここでは、RHEL 8.7およびONTAP でANAをターゲットとして使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にするための詳細について説明します。
+NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.7でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。ここでは、RHEL 8.7およびONTAP でANAをターゲットとして使用し、カーネル内でNVMeマルチパスを有効にする方法について説明します。
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: このトピックで示す設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
 
@@ -53,7 +53,7 @@ RHEL 8.7では、NVMe/FCに加えて、（テクノロジプレビュー機能�
 == カーネル内の NVMe マルチパスを有効にします
 
 .手順
-. サーバにRHEL 8.7をインストールします。インストールが完了したら、指定したRHEL 8.7カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. サーバにRHEL 8.7をインストールします。
 . インストールが完了したら、指定したRHEL 8.7カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
 +
 例
@@ -194,7 +194,7 @@ FCP CMPL: xb 0000006b Err 00017f99
 
 
 
-==== 1MB の I/O サイズを有効にする（オプション）
+==== 1MBのI/Oサイズを有効にする（オプション）
 
 ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイズ） 8 を報告します。つまり、最大 I/O 要求サイズは最大 1 MB でなければなりません。ただし 'Broadcom NVMe/FC ホストのサイズが 1 MB の問題 I/O 要求の場合 'lpfc パラメータ 'lpfc_sg_seg_cnt' もデフォルト値の 64 から 256 までバンピングする必要があります次の手順を使用して実行します。
 
@@ -215,7 +215,7 @@ options lpfc lpfc_sg_seg_cnt=256
 256
 ----
 +
-これで、 Broadcom FC-NVMe ホストが ONTAP ネームスペースデバイスで最大 1MB の I/O 要求を送信できるようになります。
+これで、Broadcom FC-NVMeホストがONTAP ネームスペースデバイスに最大1MBのI/O要求を送信できるようになります。
 
 
 
@@ -233,7 +233,7 @@ options lpfc lpfc_sg_seg_cnt=256
 QLE2772 FW:v9.08.02 DVR:v10.02.07.400-k-debug
 QLE2772 FW:v9.08.02 DVR:v10.02.07.400-k-debug
 ----
-. 次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。
+. 確認します `ql2xnvmeenable` が設定されている場合、次のコマンドを使用して、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
 +
 [listing]
 ----
@@ -469,7 +469,7 @@ NVMe/FC障害のトラブルシューティングを開始する前に、IMT の
 
 
 
-=== lpfc 詳細ログ
+=== lpfc詳細ログ
 
 .手順
 . lpfc_log_sverbose' ドライバ設定を次のいずれかの値に設定して 'NVMe/FC イベントをログに記録できます
@@ -499,7 +499,7 @@ options lpfc lpfc_log_verbose=0xf00083
 
 
 
-=== qla2xxx 詳細ログ
+=== qla2xxx詳細ログ
 
 lpfc ドライバの場合と同様の、 NVMe/FC 用の qla2xxx ログ機能はありません。したがって、次の手順を使用して一般的な qla2xxx ログレベルを設定できます。
 
@@ -530,7 +530,7 @@ options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 |===
 
 
-=== 一般的な nvme-CLI エラーとその回避策があります
+=== 一般的なnvme-CLIエラーとその回避策があります
 
 NVMe 検出、 NVMe 接続、または NVMe 接続の際に「 nvme-cli 」で表示されるエラーとその回避策を次の表に示します。
 
