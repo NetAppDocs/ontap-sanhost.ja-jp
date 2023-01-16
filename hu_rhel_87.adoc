@@ -38,7 +38,7 @@ Linux Unified Host Utilities をインストールすることを強く推奨し
 
 
 
-NOTE: このトピックで示す設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
 
@@ -273,19 +273,6 @@ devices {
 
 Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用できます。LUN がハイパーバイザーにマッピングされるため、 KVM の設定を変更する必要はありません。
 
-
-
-== 既知の問題
-
-[cols="10,30,30,10"]
-|===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
-
-
-| 1501048 | FCトランスポートレイヤタイムアウトパラメータ `dev_loss_tmo` リモートSCSIターゲットポートの場合、負の値（-1）が報告される |  `dev_loss_tmo` タイムアウトパラメータは、リモートポートが失われないようにFC転送を絶縁するデフォルトの秒数を表します。この値を超えると、SCSIターゲットがホストから削除されます。このパラメータ値は正の整数値である必要があります。ただし、RHEL 8.7では、 `sysfs` Filesystemはの負の値（-1）を返します `dev_loss_tmo` SCSIデバイスのタイムアウトパラメータ。次に、を確認するコマンドラインの例を示します `dev_loss_tmo` 稼働中のホストのパラメータ：
-`# cat /sys/devices/pci*/*/*/host*/rport*/fc_remote_ports/rport*/dev_loss_tmo
-4294967295`。RHEL 8.7には、この問題 の回避策 はありません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=2124297["2124297"^] 
-|===
 
 
 == リリースノート

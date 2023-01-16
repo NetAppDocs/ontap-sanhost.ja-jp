@@ -26,7 +26,7 @@ summary: ONTAP でRHEL 8.7用のNVMe-oFホストを設定する方法
 NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.7でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。ここでは、RHEL 8.7およびONTAP でANAをターゲットとして使用し、カーネル内でNVMeマルチパスを有効にする方法について説明します。
 
 
-NOTE: このトピックで示す設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
 
@@ -526,7 +526,7 @@ options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 | NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
 
-| 1479047 | RHEL 8.x NVMe-oFホストでは、重複する永続的検出コントローラが作成されます | NVMe over Fabrics（NVMe-oF）ホストでは、を提供することでPersistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます `-p` オプションをに設定します `nvme discover` コマンドを実行します指定したイニシエータとターゲットの組み合わせでは、の呼び出しごとに1つのPDCが作成されます `nvme discover` コマンドを実行しますただし、ONTAP 9.10.1以降のRed Hat Enterprise Linux（RHEL）8.x NVMe-oFホストでは、の呼び出しごとに重複するCMCが作成されます `nvme discover` コマンドにを指定します `-p` オプションこのため、ホストとターゲットの両方のリソースが大量に消費されます。 | 2087000 
+| 1479047 | RHEL 8.7 NVMe-oFホストでは、重複する永続的検出コントローラが作成されます | NVMe over Fabrics（NVMe-oF）ホストでは、「nvme discover -p」コマンドを使用して、Persistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1とRed Hat Enterprise Linux（RHEL）8.7を実行している場合は、「nvme discover -p」を実行するたびに重複するPDCが作成されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。 | 2087000 
 |===
 
 

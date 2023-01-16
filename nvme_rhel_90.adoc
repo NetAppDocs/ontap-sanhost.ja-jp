@@ -26,7 +26,7 @@ summary: ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方�
 NVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでのストレージフェイルオーバー（SFO）の実行にANA（Asymmetric Namespace Access）が必要なRHEL 9.0でサポートされます。ANAは、NVM環境でも同じです。現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.0およびONTAP でANAをターゲットとして使用し、カーネル内でNVMeマルチパスを有効にするための詳細が記載されています。
 
 
-NOTE: このトピックで示す設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
 
@@ -34,18 +34,6 @@ NOTE: このトピックで示す設定を使用して、に接続するクラ�
 
 * RHEL 9.0以降では、NVMe/FCはテクノロジプレビュー機能ではなくなりましたが（RHEL 8とは異なり）、完全にサポートされているエンタープライズ機能自体が追加されています。
 * RHEL 9.0以降では、明示的な設定（RHEL 8とは異なり）を必要とせずに、NVMeネームスペースに対してインカーネルNVMeマルチパスがデフォルトで有効になっています。
-
-
-
-
-== 制限
-
-* NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これは、Linuxホストでは次の2つの大きな制限事項を反映しています。
-+
-** パスが復活した後に自動再接続が行われない-NVMe/TCPは、パスがダウンしてからデフォルトの「Ctrl-loss -TTMO」の10分を超えて復活したパスに自動的に再接続することはできません。
-** ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。
-
-
 
 
 
@@ -232,11 +220,13 @@ Marvell アダプタが NVMe/FC イニシエータとして機能できるよう
 
 == NVMe/FC を設定
 
-NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これは、Linux NVMe/FCホストには次の2つの大きな制限事項があることを反映しています。
+NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これにより、 Linux NVMe/FC ホストには次の 2 つの大きな制限があります。
 
-* パスが復活した後に自動再接続が行われない-NVMe/TCPは、パスがダウンしてからデフォルトの「Ctrl-loss -TTMO」の10分を超えて復活したパスに自動的に再接続することはできません。
-* ホストのブート時に自動接続が行われない- NVMe/FCはホストのブート時にも自動的に接続できません。タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。詳細は次のとおりです。
+* * パスが復活した後の自動再接続は行われない * NVMe/TCP は、パスダウン後 10 分間のデフォルトの「 Ctrl-loss -TTMO 」タイマーを超えて復活したパスに自動的に再接続することはできません。
+* * ホストの起動時に自動接続が行われない * ホストの起動時に NVMe/FC が自動的に接続されることもありません。
 
+
+タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。詳細は次のとおりです。
 
 .手順
 . イニシエータポートが、サポートされているNVMe/FC LIF経由で検出ログページデータを読み込めたかどうかを確認します。
@@ -302,6 +292,7 @@ sectype: none
 
 == NVMfを検証してください
 
+.手順
 . 次のチェックボックスをオンにして、カーネル内の NVMe マルチパスが実際に有効になっていることを確認
 +
 [listing]
@@ -491,6 +482,17 @@ options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 # cat /sys/module/qla2xxx/parameters/ql2xextended_error_logging
 507510784
 ----
+
+
+== 既知の問題
+
+[cols="10,30,30,10"]
+|===
+| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+
+
+| 1479047 | RHEL 9.0 NVMe-oFホストは、重複するPersistent Discovery Controllerを作成します | NVMe over Fabrics（NVMe-oF）ホストでは、「nvme discover -p」コマンドを使用して、Persistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストを使用してONTAP 9.10.1とRed Hat Enterprise Linux（RHEL）9.0を実行している場合は、「nvme discover -p」を実行するたびに重複するPDCが作成されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。 | 2087000 
+|===
 
 
 === 一般的なnvme-CLIエラーとその回避策があります
