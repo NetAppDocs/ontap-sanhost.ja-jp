@@ -22,7 +22,7 @@ summary: ONTAP で ESXi 7.x の NVMe-oF を設定する方法について説明�
 
 == サポート性
 
-* ONTAP 9.7 以降では、 NVMe over Fibre Channel （ NVMe/FC ）がサポートされます。
+* ONTAP 9.7以降では、VMware vSphereのリリースでNVMe over Fibre Channel（NVMe/FC）がサポートされるようになりました。
 * 7.0U3c以降では、ESXiハイパーバイザーでNVMe/FC機能がサポートされます。
 * ONTAP 9.10.1以降では、ONTAP でNVMe/FC機能がサポートされます。
 

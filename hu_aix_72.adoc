@@ -20,11 +20,11 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 
 
 
-== AIX/VIOS Host Utilities のインストール
+== AIX/VIOS Host Utilitiesのインストール
 
-AIX MPIO と NetApp ONTAP ストレージを使用する場合、 AIX Host Utilities Kit をインストールする必要があります。
+AIX MPIOとNetApp ONTAP ストレージを使用する場合、AIX Host Utilities Kitをインストールする必要があります。
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルを展開したら、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。
+Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、NetApp Support Siteからダウンロードできます。ファイルを展開したら、Host Utilitiesのインストールに必要な2つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。
 
 NetApp AIX Host Utilities 6.1 は最新リリースです。このリリースでは、以前のリリースで報告されたメモリリーク問題について説明しています。追加情報のリリースノートのセクションを参照してください。
 
@@ -54,7 +54,7 @@ tar -xvf ntap_aix_host_utilities_6.1.tar.gz
 
 
 
-== SAN ツールキット
+== SANツールキット
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
@@ -191,7 +191,7 @@ NetApp ONTAP LUN の推奨されるパラメータ設定は次のとおりです
 | RESERVE_policy | MPIO または非 MPIO | 予約なし | Host Utilities で設定します 
 
 
-| re_timeout （ディスク） | MPIO または非 MPIO | 30 秒 | OS のデフォルト値を使用します 
+| rw_timeout（ディスク） | MPIO または非 MPIO | 30 秒 | OS のデフォルト値を使用します 
 
 
 | dyntrk | MPIO または非 MPIO | はい。 | OS のデフォルト値を使用します 
