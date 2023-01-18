@@ -395,7 +395,7 @@ options lpfc lpfc_sg_seg_cnt=256
 
 == lpfc 詳細ログ
 
-. lpfc_log_verbose ドライバの設定を次のいずれかの値に設定して 'NVMe/FC イベントをログに記録できます
+. を設定します `lpfc_log_verbose` NVMe/FCイベントをログに記録するためのドライバ設定は次のいずれかです。
 +
 [listing]
 ----
@@ -404,8 +404,8 @@ options lpfc lpfc_sg_seg_cnt=256
 #define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
 #define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
 ----
-. これらの値のいずれかを設定したら、「 racut-f 」を実行してホストを再起動します。
-. リブート後、設定を確認します。
+. 値を設定したら、を実行します `dracut-f` コマンドを実行し、ホストをリブートします。
+. 設定を確認します。
 +
 [listing]
 ----
