@@ -70,7 +70,7 @@ pkgadd -d NTAPSANTool.pkg
 
 
 
-== SAN ツールキット
+== SANツールキット
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
@@ -182,7 +182,7 @@ NOTE: ONTAP 9.8 以降では、すべての SAN アレイ（ ASA ）構成がサ
 
 
 
-== Oracle Solaris 仮想化
+== Oracle Solaris仮想化
 
 * Solaris の仮想化オプションには 'Solaris 論理ドメイン (LDoms または Oracle VM Server for SPARC) 'Solaris 動的ドメイン 'Solaris ゾーン 'Solaris コンテナなどがありますこれらのテクノロジは、アーキテクチャがまったく異なるにもかかわらず、一般に「 Oracle 仮想マシン」としてブランド変更されています。
 * 場合によっては ' 特定の Solaris 論理ドメイン内の Solaris コンテナなど ' 複数のオプションを同時に使用できます
@@ -210,6 +210,40 @@ LDOM 内で LUN が仮想ディスクデバイスとして使用されている�
 
 
 NOTE: Oracle バグ 15824910 の各種バージョンの Solaris に対するパッチが用意されています。最適なカーネル・パッチを決定するためにサポートが必要な場合は、 Oracle にお問い合わせください。
+
+
+
+== SnapMirrorのBusiness Continuityの推奨設定です
+
+SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときに、Solarisクライアントアプリケーションがシステムを停止しないようにするには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュール–を上書きします `f_tpgs` 矛盾を検出するコードパスが実行されないようにします。
+
+
+NOTE: ONTAP 9.9..1以降では'Solaris 11.3ホストでSM-BC設定がサポートされています
+
+指示に従って、オーバーライドパラメータを設定します。
+
+.手順
+. 構成ファイルを作成します `/etc/driver/drv/scsi_vhci.conf` ネットアップストレージタイプがホストに接続されている場合は、次のようなエントリが表示されます。
++
+[listing]
+----
+scsi-vhci-failover-override =
+"NETAPP  LUN","f_tpgs"
+----
+. を使用します `devprop` および `mdb` オーバーライドパラメータが正常に適用されたことを確認するコマンド：
++
+`root@host-a:~# devprop-v-n /scsi_vhci -failover-override scsi-vhci -failover-override= NetApp LUN + f_tpgs root@host -a :~# echo "* scsi_vhci_dibling :print-x struct dev_info deive_vdive_vacuct | vdc_info vibl_sig_ info vstruct
+
++
+[listing]
+----
+svl_lun_wwn = 0xa002a1c8960 "600a098038313477543f524539787938"
+svl_fops_name = 0xa00298d69e0 "conf f_tpgs"
+----
+
+
+
+NOTE: `conf` がに追加されます `svl_fops_name` いつ `scsi-vhci-failover-override` が適用されました。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
 
 
 
