@@ -1909,11 +1909,9 @@
   <block id="55fd3388a3964cd90c0a1fb25a5104e0" category="list-text">引数が正しいにもかかわらずこのエラーが表示される場合は、「 /sys/class/scsi_host*/nvme_info 」の出力が正しいかどうか、 NVMe イニシエータが「 enabled 」と表示されているか、 NVMe/FC ターゲット LIF がリモートポートのセクションに正しく表示されているかどうかを確認してください。例</block>
   <block id="0d996d199c6027dc68cd4cab85563b7c" category="list-text">nvme_info の出力に上記のようにターゲット LIF が表示されない場合は、「 /var/log/messages 」および「 dmesg 」の出力で疑わしい NVMe/FC エラーがないかどうかを確認し、それに応じてレポートまたは修正してください。</block>
   <block id="64ede1e6f2ef30c339f9a3e100f40cfc" category="cell">' 取得する検出ログエントリがありません</block>
-  <block id="b0dfa52656cffd6e279876e38ade4449" category="cell">一般に、「 /etc/nvme/hostnqn 」文字列がネットアップアレイの対応するサブシステムに追加されていないか、不正な hostnqn 文字列が各サブシステムに追加されています。</block>
   <block id="63de53510175cd2fa7213647b4db5fda" category="cell">正確な「 /etc/nvme/hostnqn 」文字列がネットアップアレイの対応するサブシステムに追加されていることを確認します（「 vserver nvme subsystem host show 」コマンドで確認します）。</block>
   <block id="abbdb018748bb6cd12284ad6c1685b67" category="cell">'/dev/nvme-Fabrics への書き込みに失敗しました：オペレーションはすでに進行中です</block>
   <block id="225b7a6d4ea820127fe205c2526ea209" category="cell">コントローラの関連付けまたは指定された処理がすでに作成されているか、または作成中であるかを示します。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
-  <block id="3c7b3855799d1d584f0b34f56b7e8a85" category="cell">なしNVMe 検出を実行するには、しばらくしてからこのコマンドを実行してください。nvme connect および connect-all の場合は 'nvme list コマンドを実行して ' ネームスペースデバイスがすでに作成され ' ホストに表示されていることを確認します</block>
   <block id="5d58354522165b88ab742ec42aac9161" category="section-title">テクニカルサポートへの連絡のタイミング</block>
   <block id="db4ed55dc4a3e29a642f71c4df28880b" category="paragraph">問題が解決しない場合は、次のファイルとコマンドの出力を収集し、テクニカルサポートに問い合わせてトリアージを依頼してください。</block>
   <block id="b5532e466b7ace9d1d9ddb98b57ec0d7" category="summary">SUSE Linux Enterprise Server 15 SP3 （ ONTAP ）用に NVMe/FC を設定する方法について説明します</block>
@@ -1945,8 +1943,6 @@
   <block id="79ba4cec11a87f2af036439169eabd6c" category="list-text">Marvell アダプタが NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。</block>
   <block id="c59affec436f2685c9cf2603d66c8362" category="paragraph">`# cat /sys/module/qla2xxx /parameters/ql2xnvmeenable 1`</block>
   <block id="a0eb26e72e628156638ad8b9cea45ac5" category="list-text">次のチェックボックスをオンにして、カーネル内の NVMe マルチパスが実際に有効になっていることを確認</block>
-  <block id="80748b874d55c5038d34ce16a870e640" category="section-title">qla2xxx 詳細ログ</block>
-  <block id="38a517c65e7a4cfa6d1b781c6a6e35f4" category="cell">必ず正しい構文を使用してください。</block>
   <block id="be3d2421a8f8e1a506cd8ec6140627fb" category="paragraph">tar -xvf ntap_aix_host_utilities_6.1.tar.tgz</block>
   <block id="6a60f15d3addedaaeee9fbd5c320d06d" category="paragraph">ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります</block>
   <block id="4a74fae0987c7a6283e4b1f5c07e2bf2" category="paragraph">'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.mpio_Host_Utilities_Kit</block>
@@ -2064,7 +2060,6 @@
   <block id="1ce6b82da1e4c8ef0696742f32ee8517" category="list-text">TR-4597 -VMware vSphere with ONTAP にアクセスするには、を参照してください <block ref="0b49ef6859bcc6d029643944be119d56" category="inline-link-macro-rx"></block> および <block ref="ea34cfa716537242c2b4837bb8c55109" category="inline-link-macro-rx"></block></block>
   <block id="8a515fe16331b7269862c5871e55c7e4" category="list-text"><block ref="8a515fe16331b7269862c5871e55c7e4" category="inline-link-macro-rx"></block></block>
   <block id="5306229c164cfe6b066f8442f64d8268" category="list-text"><block ref="5306229c164cfe6b066f8442f64d8268" category="inline-link-macro-rx"></block></block>
-  <block id="69c554c1475a518cc1bc743c147bcae6" category="paragraph">デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これは 'FCP_OFFLINE_DELAY パラメータによって制御されますデフォルト値の「 fcp_offline_delay 」は、標準の ONTAP クラスタに適しています。ただし、 MetroCluster 構成では、計画外フェイルオーバーを含む処理中に I/O が早期にタイムアウトしないように、「 FCP_OFFLINE_DELAY 」の値を *120S * に増やす必要があります。追加情報およびデフォルト設定に対する推奨される変更については、ネットアップを参照してください<block ref="c1922a8e804b8190c0daa8263ddd5748" category="inline-link-rx"></block>。</block>
   <block id="ffc3e17a9258b28dbcb840e63a4da4d4" category="list-text">ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます<block ref="0a2387641ef9263b02d75ca03cdebda2" category="inline-link-rx"></block> サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。</block>
   <block id="ce5e3ba4f12b670c7cec88d808b05d5b" category="list-text">仮想化ストレージ・リソース（ vdsk など）のみを使用するパーティションや仮想マシンは、 NetApp LUN に直接アクセスできないため、特別な認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります<block ref="0a2387641ef9263b02d75ca03cdebda2" category="inline-link-rx"></block>。</block>
   <block id="3773c551729981917923f39164f9b765" category="paragraph">RHEL 8.1 ホストは、同じ Fibre Channel イニシエータアダプタポートを介して NVMe トラフィックと SCSI トラフィックの両方を実行できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
@@ -2378,25 +2373,9 @@
   <block id="cebb9dfdc378481f9e93e7b505fe4f1d" category="paragraph">例（b）：</block>
   <block id="cdb0ca847e914e0c124768ae14142869" category="list-text">各パスのコントローラの状態がライブであり、適切なANAステータスであることを確認します。例（A）、</block>
   <block id="86a8f02d0c1226cbab77460737c32b26" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例（A）、</block>
-  <block id="1718051495b27f0539c358a077bb3e35" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、必ずIMT の仕様に準拠した設定を実行していることを確認してください。ホスト側の問題をデバッグするには、次の手順に進みます。</block>
   <block id="8f04ccd4b6d17f7acb33a4a2262bb3e9" category="section-title">lpfc詳細ログ</block>
-  <block id="aaea768bb3e8e6a627ea335fd9c9f934" category="paragraph">次に'drivers /scsi/lpfc/lpfc_logmsg.h'に示されている'NVMe/FCで使用可能なlpfcドライバ・ロギング・ビットマスクのリストを示します</block>
-  <block id="bcb565adfa69c5b85ffe2a63c2276769" category="paragraph">lpfc_log_sverbose`ドライバ設定(/etc/modprobe.d/lpfc.confのlpfc行に追加)を上記のいずれかの値に設定して'lpfc'ドライバの観点からNVMe/FCイベントをロギングできます次に'dracut -fコマンドを実行して'initiramfs'を再作成し'ホストを再起動します再起動後、上記の「LOG_NVME_DISC」ビットマスクの例を使用して、詳細ログが適用されていることを確認します。</block>
   <block id="dd1f73319dd2881afa35604270a821b9" category="section-title">qla2xxx詳細ログ</block>
-  <block id="292a88b738894f862e50bb3161bd2fac" category="paragraph">「lpfc」にあるように、NVMe/FCに類似したqla2xxxログはありません。ここで一般的なqla2xxxログレベルを設定できますたとえば'ql2xextended_error_logging=0x1e400000`ですこれを行うには'対応するmodprobe qla2xxx confファイルにこの値を追加します次に'dracut-fを実行してinitramfsを再作成し'ホストを再起動しますリブート後、詳細ログが次のように適用されていることを確認します。</block>
   <block id="e3f05e6b08d377aca967243a953ecfb9" category="section-title">一般的なnvme-CLIエラーとその回避策があります</block>
-  <block id="22c54dce95fdc049759d97572077c406" category="cell">/dev/nvme-Fabricsへの書き込みに失敗しました:引数が無効です'nvme discover 'NVMe connect 'またはNVMe connect-allの実行中にエラーが発生しました</block>
-  <block id="45161d7ae04ea62480ae1583b09c337a" category="cell">このエラーメッセージは、構文が間違っている場合に表示されます。</block>
-  <block id="4d68eca36b7598d8d220c8109ee77d2c" category="cell">'/dev/nvme-Fabricsへの書き込みに失敗しました:NVMeの検出中に'このようなファイルやディレクトリ''nvme connect 'または'nvme connect -all 'はありません</block>
-  <block id="0d6f3d7e1a23f40a79b28023090d2a74" category="cell">複数の問題が原因でこのエラーが発生する可能性一般的なケースとしては、上記のNVMeコマンドに誤った引数を渡した場合などがあります。</block>
-  <block id="0300a463a2779250716b195b0f15c1ba" category="paragraph">上記のコマンドに適切な引数（適切なWWNN文字列、WWPN文字列など）を渡していることを確認してください。引数が正しいにもかかわらずこのエラーが表示される場合は、「/sys/class/scsi_host*/nvme_info」の出力が正しいことを確認し、NVMeイニシエータの「enabled」と表示され、NVMe/FCターゲットLIFがリモートポートのセクションに正しく表示されていることを確認します。例：</block>
-  <block id="ad02181fdbf4245ee0052cfb92cb8bcc" category="paragraph">回避策 ：「nvme_info」の出力に上記のようにターゲットLIFが表示されない場合は、「/var/log/messages」および「dmesg」の出力でNVMe/FCエラーがないかどうかを確認し、それに応じて報告または修正してください。</block>
-  <block id="9f7680250af5452ad3bc6e1373a71a11" category="cell">'NVMe discover（NVMe検出）'NVMe connect（NVMe接続）'または'NVMe connect-all（NVMe接続）の間にフェッチする検出ログ・エントリーはありません</block>
-  <block id="6bd22b028f1c581999993ec8672aea1c" category="cell">正確な「/etc/nvme/hostnqn」文字列がネットアップアレイの対応するサブシステムに追加されていることを確認します（「vserver nvme subsystem host show」で確認します）。</block>
-  <block id="00443539b6acea3b81b118f7a7f62818" category="cell">「/dev/nvme-Fabricsへの書き込みに失敗しました。オペレーションは「nvme discover」、「nvme connect」、または「nvme connect -all」の間にすでに進行中です</block>
-  <block id="796b7594f30be7947c1efffc9c471c02" category="cell">このエラーメッセージは、コントローラの関連付けまたは指定された処理がすでに作成されている場合や作成中の場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
-  <block id="628687124665ca6b9dfc96e945da3db4" category="cell">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。また'nvme connectとconnect-allに対して'nvme listを実行して'名前空間デバイスがすでに作成され'ホストに表示されていることを確認します</block>
-  <block id="2d9c87ae045b9e45b670135f74d969b1" category="paragraph">それでも問題が解決しない場合は、次のファイルとコマンドの出力を収集し、ファイルを送信してトリアージしてください。</block>
   <block id="e7e8e011c8e0651dc3a6d06305d8279e" category="paragraph">RHEL 8.3に関する既知の問題はありません。</block>
   <block id="ce420cebd9b134c2ee33ae6a490c31ba" category="paragraph">同じ RHEL 8.2 で同じホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。</block>
   <block id="6507882f376544268e31289f84d4ee08" category="doc">HP-UX Host Utilities 6.0</block>
@@ -2473,7 +2452,6 @@
   <block id="3bb5487a25f2c91e7d62566cb6026b68" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例：</block>
   <block id="f2af591771f10d63662bd947024ee100" category="list-text">各パスのコントローラの状態がライブで、適切な ANA ステータスであることを確認します。例：</block>
   <block id="c13733aade7c22e1d6c0fb7be8a8c754" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例：</block>
-  <block id="295d37bcf3aa6754427b612bea361663" category="paragraph">このエラーメッセージは、一般に、「/etc/nvme/hostnqn'」文字列がネットアップアレイの対応するサブシステムに追加されていないか、誤った「hostnqn」文字列が各サブシステムに追加された場合に表示されます。</block>
   <block id="dcda2cb33413b9ab0c8373225de75578" category="summary">ONTAP を使用してRHEL 8.5用のNVMe-oFホストを設定する方法</block>
   <block id="3ae77fb5b2d43b5802128bed00b85944" category="doc">ONTAP を使用したRHEL 8.5向けのNVMe-oFホスト構成</block>
   <block id="9eea7fd01633455098385cd20b7dd183" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.5でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。RHEL 8.5およびONTAP でANAを使用し、インカーネルNVMeマルチパスをターゲットとして使用してNVMe-oFを有効にする方法について、ここで詳しく説明します。</block>
@@ -2522,7 +2500,6 @@
   <block id="1077e8ad3542ff8af32bed26b6b21ee8" category="list-text">ホストのブート時に自動接続を行わないNVMe/FCは、ホストのブート時にも自動的に接続できません。</block>
   <block id="b2edbac4a48e893081ffbe4cda9a7dec" category="list-text">該当するONTAP ネームスペースの該当するNVMe-oF設定（NetApp ONTAP コントローラに設定したモデル、ラウンドロビンに設定したロードバランシングポリシーなど）がホストに正しく反映されていることを確認します。</block>
   <block id="0882578f9915da36a8ab5c612728ad30" category="paragraph">例（A）：</block>
-  <block id="07cf625ee23005956a460fdd83c0142d" category="list-text">出力「nvme_info」に上記のようにターゲットLIFが表示されない場合は、「/var/log/messages」と「dmesges`の出力で、疑わしいNVMe/FCエラーがないかどうかを確認し、それに応じて報告または修正してください。</block>
   <block id="806707e47ee8fe684a6d5e5b0898539a" category="sidebar">NVMeネームスペース</block>
   <block id="d1b92a4930d50c6ed1038655db0d2684" category="sidebar">すべてのONTAP 製品ドキュメント</block>
   <block id="0b6a095cb9010243600ae8c7163d4eab" category="summary">Windows Server 2022 with ONTAP のNVMe/FCホスト構成</block>
@@ -2668,13 +2645,8 @@
   <block id="37d7cdc3434cd2c93f357a0dbab71896" category="list-text">インストールが完了したら、指定したRHEL 8.7カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
   <block id="2575819b82d12e9109581acdab9442a5" category="paragraph">NVMeとSCSIの両方のトラフィックを同じホストで同時に実行する場合は、ONTAP ネームスペースにはカーネル内のNVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには、enable_foreign設定をに追加します<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイル：</block>
   <block id="336e17a7bbcba7cb9c2f65ad935d30f6" category="paragraph">ネイティブ受信ボックス<block ref="88eda681ac370265f103675d0de61c63" prefix=" " category="inline-code"></block> RHEL 8.7カーネルに含まれるドライバには、ONTAP のサポートに必要な最新のアップストリーム修正が含まれています。</block>
-  <block id="18364f61161412813e05ad8b27bed23e" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、IMT の仕様に準拠した設定を実行していることを確認し、次の手順に進んでホスト側の問題をデバッグします。</block>
-  <block id="3a3b7ac2e39541ea05707ccd6eb054d4" category="section-title">既知の問題および制限事項</block>
   <block id="4c865e0cb70fa33868e69a5e88daad47" category="cell">1479047</block>
   <block id="f890a2d3eb444832b655a9838102f3df" category="cell">2087000</block>
-  <block id="3f4a3b3eec403674aa0cd9427d6deec9" category="cell">上記のNVMeコマンドに正しい構文を使用していることを確認してください。</block>
-  <block id="e0f847d0d970d13348c3311998e2e15c" category="cell">複数の問題が原因でこのエラーが発生する可能性NVMeコマンドに誤った引数を指定することは、一般的な原因の1つです。</block>
-  <block id="77f83f52d54fb4aeb889da304fc0ebe1" category="paragraph">コントローラの関連付けまたは指定された操作が既に作成されているか、または作成中であるかどうかに注意します。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
   <block id="de63239808aba6bc3b6e058c280e2334" category="summary">ONTAP でRed Hat Enterprise Linux 8.7を使用する方法について説明します</block>
   <block id="054dec9601134c2039198642192ad5cd" category="doc">NetApp ONTAP でRed Hat Enterprise Linux 8.7を使用します</block>
   <block id="42629720f0dd50e499b39533a5c8c6c6" category="paragraph">Red Hat Enterprise Linux（RHEL）8.7の場合<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.7は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされます。</block>
@@ -2684,9 +2656,6 @@
   <block id="41e09c9ea0ff8203b49cf60b08453bc3" category="section-title">1MBのI/Oサイズを有効にする（オプション）</block>
   <block id="1ceacdae6aaf4ce4b35e9d889205b688" category="paragraph">これで、Broadcom FC-NVMeホストがONTAP ネームスペースデバイスに最大1MBのI/O要求を送信できるようになります。</block>
   <block id="579f8656182e55995ca799f60b8b3706" category="list-text">確認します<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block> が設定されている場合、次のコマンドを使用して、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。</block>
-  <block id="7be9aa10f19f6b39286cbd2769f88cd5" category="section-title">lpfc詳細ログ</block>
-  <block id="55cf75d4c35a2f0318cd0878633a2b64" category="list-text">コマンドに正しい引数（正しいWWNN文字列、WWPN文字列など）を渡したことを確認してください。</block>
-  <block id="d3ac6c9b9f08add73cc79ed8987c7638" category="paragraph">必ず正確に確認してください<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> 文字列がネットアップアレイの対応するサブシステムに追加されます（で確認してください）<block ref="0e04d4bf4054a77eef58ff3d9b9e59ae" prefix=" " category="inline-code"></block> コマンド）。</block>
   <block id="0fffdf54ff26eafef72a1df48bb79f76" category="paragraph">RHEL 8.7 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
   <block id="0dea8ccda08dc1647ed0a458849e5cda" category="doc">ONTAP を使用したOracle Linux 8.6でのNVMe/FCホスト構成</block>
   <block id="6b9300bd0ee78fc87c33ec2c07cd7201" category="paragraph">Oracle 8.6のNVMe / FCホスト構成の詳細は、OracleでのNVMe/FCのサポートがこのホストOSバージョンに完全に対応している場合に公開されます。</block>
@@ -2710,13 +2679,11 @@
   <block id="7912d4b61044915bf839431d678f055d" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）を実行しているとき<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> コマンドの実行時に、パス障害が発生した場合に再試行を長時間化するようにします。例：</block>
   <block id="8820bbf46f22897008878290f6060725" category="paragraph">例（b）</block>
   <block id="8ee542f1260df38017c8fcd1811b07cf" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、Interoperability Matrix Tool（IMT ）の仕様に準拠した設定を実行していることを確認し、次の手順に進んでホスト側の問題をデバッグします。</block>
-  <block id="c93461d811b67f37d132425264a4d474" category="list-text">を設定します<block ref="6a6d27f670629373aedb61a672b398f8" prefix=" " category="inline-code"></block> NVMe/FCイベントをログに記録するためのドライバ設定は次のいずれかです。</block>
   <block id="df474dd19781ab3788a85cc52bf31865" category="paragraph">NVMe/FCについては、同様の固有のqla2xxxロギングはありません<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> ドライバ。したがって、次の手順を使用して一般的なqla2xxxログレベルを設定できます。</block>
   <block id="0929df0c2d7b307ae019137c488669a8" category="cell">1503468</block>
   <block id="2f8adf6e51ddcf7b0618dad0e63a4144" category="cell"><block ref="f3d48156832e70ac41335c007fa76798" prefix="" category="inline-code"></block> コマンドは、指定したサブシステムに対して繰り返し実行されているNVMeコントローラのリストを返します</block>
   <block id="95a3009a54be763a347295539b3b924d" category="cell">。<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、特定のサブシステムに関連付けられているNVMeコントローラの一意のリストを返す必要があります。RHEL 9.1では、<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、特定のサブシステムに属するすべてのネームスペースについて、NVMeコントローラのANA状態をそれぞれ返します。ただし、ANA状態はネームスペース単位の属性であるため、特定のネームスペースについてsubsystemコマンドの構文を表示すると、パスの状態にある一意のNVMeコントローラエントリを表示するのが理想的です。</block>
   <block id="83dccde7d3d49df72143822cd414e991" category="cell">2130106.</block>
-  <block id="3f9c3f7f21b77382c688aa95e76f1ff4" category="paragraph">によって表示されるエラーです<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> 実行中<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block>、<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block> または<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> 処理とその対処方法を次の表に示します。</block>
   <block id="9e9ad12d8f7b421ec7b07bcffb518755" category="paragraph">問題が解決しない場合は、次のファイルとコマンドの出力を収集し、テクニカルサポートに問い合わせてトリアージを依頼してください。</block>
   <block id="54bb88571442321a8544c55cb834deb7" category="cell">RHEL 8.7 NVMe-oFホストでは、重複する永続的検出コントローラが作成されます</block>
   <block id="c66549c6038d3ebbf4c13fa9699ba9c4" category="cell">NVMe over Fabrics（NVMe-oF）ホストでは、「nvme discover -p」コマンドを使用して、Persistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1とRed Hat Enterprise Linux（RHEL）8.7を実行している場合は、「nvme discover -p」を実行するたびに重複するPDCが作成されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。</block>
@@ -2761,15 +2728,19 @@
   <block id="c25aa2a919e3a63ca18f5d2ba0d93494" category="paragraph">が正確であることを確認します<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> 文字列がネットアップアレイの対応するサブシステムに追加されます（を使用して確認してください）<block ref="0e04d4bf4054a77eef58ff3d9b9e59ae" prefix=" " category="inline-code"></block> コマンド）。</block>
   <block id="d517a34201e69d7cbd98e82863cbb016" category="paragraph">コントローラの関連付けまたは指定された操作がすでに作成されている場合、または作成中に発生した場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
   <block id="ed88a4dfde1eda848d0cd0880569e29d" category="paragraph">なしを実行してみてください<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> しばらくしてからもう一度コマンドを実行してください。の場合<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block> および<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block>を実行します<block ref="b0f1705bbfcfb10368af21a019072318" prefix=" " category="inline-code"></block> コマンドを使用して、ネームスペースデバイスが作成済みで、ホストに表示されていることを確認します。</block>
-  <block id="46a8331e5e839c47acb3298049532616" category="section-title">Oracle Solaris仮想化</block>
   <block id="1b047686d1675f4b3beb6b06153998c1" category="section-title">仮想化の推奨設定</block>
   <block id="23013fc45b1e28aeba8b4521f80156eb" category="section-title">SnapMirrorのBusiness Continuityの推奨設定です</block>
-  <block id="32553d76838b87cefddf124e0799eafb" category="paragraph">SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときに、Solarisクライアントアプリケーションがシステムを停止しないようにするには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュール–を上書きします<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
-  <block id="0dfb4cdaba75a3cede493d07bb6a34a7" category="admonition">ONTAP 9.9..1以降では'Solaris 11.3ホストでSM-BC設定がサポートされています</block>
   <block id="7682043e346a0976ad107c7cb3989145" category="list-text">構成ファイルを作成します<block ref="2c50293ac08c6ad6b30ce2ba7a8fcd9c" prefix=" " category="inline-code"></block> ネットアップストレージタイプがホストに接続されている場合は、次のようなエントリが表示されます。</block>
-  <block id="05e4ba462549c2424bbff74659b276f2" category="list-text">を使用します<block ref="01fe732856e5259c0c505f9054c784ba" prefix=" " category="inline-code"></block> および<block ref="801693b1d56b19d77272b3c6db46a751" prefix=" " category="inline-code"></block> オーバーライドパラメータが正常に適用されたことを確認するコマンド：</block>
-  <block id="7f7d67d4a4b1712dc7bf97b923fea01b" category="admonition"><block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix="" category="inline-code"></block> がに追加されます<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block> いつ<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください<block ref="0b0122d84e6b5077349fe91550e086e2" category="inline-link-rx"></block>。</block>
-  <block id="ca9ed2ccbdcc305e9773420d7547b568" category="paragraph">SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションを無停止で実行できるようにするには、Solaris 11.4ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュール–を上書きします<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにするため。</block>
   <block id="976902513d73f70373bf832d81070379" category="admonition">ONTAP 9.9.9..1以降では'Solaris 11.4ホストでSM-BC設定がサポートされています</block>
-  <block id="fbd29cc67321a256f7cc8237fc832a9b" category="list-text">使用<block ref="01fe732856e5259c0c505f9054c784ba" prefix=" " category="inline-code"></block> および<block ref="801693b1d56b19d77272b3c6db46a751" prefix=" " category="inline-code"></block> オーバーライドパラメータが正常に適用されたことを確認するコマンド：</block>
+  <block id="e49ccc598a2a177291bac4be5c852c5f" category="cell"><block ref="e49ccc598a2a177291bac4be5c852c5f" category="inline-link-macro-rx"></block></block>
+  <block id="5b3496bb3deba2c2222970d5c975df4a" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、Interoperability Matrix Tool（IMT ）の仕様に準拠した設定を実行していることを確認し、ホスト側の問題をデバッグするために次の手順を実行します。</block>
+  <block id="872e3157142338f8780c9227100229cb" category="paragraph">デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます<block ref="23bc35b0d0a6788857b3169bbd3adddd" prefix=" " category="inline-code"></block> パラメータのデフォルト値<block ref="23bc35b0d0a6788857b3169bbd3adddd" prefix=" " category="inline-code"></block> は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成の場合は、の値になります<block ref="23bc35b0d0a6788857b3169bbd3adddd" prefix=" " category="inline-code"></block> 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。追加情報 の場合、およびデフォルト設定に推奨される変更については、ネットアップを参照してください<block ref="c1922a8e804b8190c0daa8263ddd5748" category="inline-link-rx"></block>。</block>
+  <block id="edd08258c3c5f3718f84028ff5971d1d" category="section-title">Oracle Solarisの仮想化</block>
+  <block id="fd515dc1fb4215f1d4f9c5a754b19cab" category="section-title">仮想化の推奨設定</block>
+  <block id="c25aaa60cb981e43df9a60c24d76e170" category="paragraph">SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションがシステムを停止しないことを確認するには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
+  <block id="a581ca8b747415e1f36b69571ad2cd82" category="admonition">ONTAP 9.9..1以降では'Solaris 11.3ホストでSM-BC設定がサポートされています</block>
+  <block id="e246c6fa1d97174589605e1deac30e48" category="list-text">を使用します<block ref="01fe732856e5259c0c505f9054c784ba" prefix=" " category="inline-code"></block> および<block ref="801693b1d56b19d77272b3c6db46a751" prefix=" " category="inline-code"></block> 上書きパラメータが正常に適用されたことを確認するコマンド。</block>
+  <block id="206258ae3de99b2eff4c714432cf5621" category="admonition">実行後<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。<block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix=" " category="inline-code"></block> がに追加されました<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block>。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください<block ref="0b0122d84e6b5077349fe91550e086e2" category="inline-link-rx"></block>。</block>
+  <block id="ce9171caa524742973555de6b74fd04b" category="paragraph">SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションが無停止であることを確認するには、Solaris 11.4ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
+  <block id="f70abbfa68e7755bcd0d439688edae06" category="admonition">実行後<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。<block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix=" " category="inline-code"></block> がに追加されました<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block> 。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください<block ref="0b0122d84e6b5077349fe91550e086e2" category="inline-link-rx"></block>。</block>
 </blocks>

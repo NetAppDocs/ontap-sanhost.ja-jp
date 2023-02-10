@@ -178,11 +178,11 @@ NOTE: ONTAP 9.8 以降では、すべての SAN アレイ（ ASA ）構成がサ
 
 === MetroCluster の推奨設定
 
-デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これは 'FCP_OFFLINE_DELAY パラメータによって制御されますデフォルト値の「 fcp_offline_delay 」は、標準の ONTAP クラスタに適しています。ただし、 MetroCluster 構成では、計画外フェイルオーバーを含む処理中に I/O が早期にタイムアウトしないように、「 FCP_OFFLINE_DELAY 」の値を *120S * に増やす必要があります。追加情報およびデフォルト設定に対する推奨される変更については、ネットアップを参照してください https://kb.netapp.com/app/answers/answer_view/a_id/1001373/loc/en_US["KB1001373"^]。
+デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成の場合は、の値になります `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。追加情報 の場合、およびデフォルト設定に推奨される変更については、ネットアップを参照してください https://kb.netapp.com/app/answers/answer_view/a_id/1001373/loc/en_US["KB1001373"^]。
 
 
 
-== Oracle Solaris仮想化
+== Oracle Solarisの仮想化
 
 * Solaris の仮想化オプションには 'Solaris 論理ドメイン (LDoms または Oracle VM Server for SPARC) 'Solaris 動的ドメイン 'Solaris ゾーン 'Solaris コンテナなどがありますこれらのテクノロジは、アーキテクチャがまったく異なるにもかかわらず、一般に「 Oracle 仮想マシン」としてブランド変更されています。
 * 場合によっては ' 特定の Solaris 論理ドメイン内の Solaris コンテナなど ' 複数のオプションを同時に使用できます
@@ -215,7 +215,7 @@ NOTE: Oracle バグ 15824910 の各種バージョンの Solaris に対するパ
 
 == SnapMirrorのBusiness Continuityの推奨設定です
 
-SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときに、Solarisクライアントアプリケーションがシステムを停止しないようにするには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュール–を上書きします `f_tpgs` 矛盾を検出するコードパスが実行されないようにします。
+SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションがシステムを停止しないことを確認するには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます `f_tpgs` 矛盾を検出するコードパスが実行されないようにします。
 
 
 NOTE: ONTAP 9.9..1以降では'Solaris 11.3ホストでSM-BC設定がサポートされています
@@ -230,7 +230,7 @@ NOTE: ONTAP 9.9..1以降では'Solaris 11.3ホストでSM-BC設定がサポー�
 scsi-vhci-failover-override =
 "NETAPP  LUN","f_tpgs"
 ----
-. を使用します `devprop` および `mdb` オーバーライドパラメータが正常に適用されたことを確認するコマンド：
+. を使用します `devprop` および `mdb` 上書きパラメータが正常に適用されたことを確認するコマンド。
 +
 `root@host-a:~# devprop-v-n /scsi_vhci -failover-override scsi-vhci -failover-override= NetApp LUN + f_tpgs root@host -a :~# echo "* scsi_vhci_dibling :print-x struct dev_info deive_vdive_vacuct | vdc_info vibl_sig_ info vstruct
 
@@ -243,7 +243,7 @@ svl_fops_name = 0xa00298d69e0 "conf f_tpgs"
 
 
 
-NOTE: `conf` がに追加されます `svl_fops_name` いつ `scsi-vhci-failover-override` が適用されました。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
+NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name`。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
 
 
 
