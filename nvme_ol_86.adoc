@@ -35,7 +35,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 * Oracle Linux 8.6では、 `nvme-fc auto-connect` スクリプトはネイティブに含まれています `nvme-cli` パッケージ。外部ベンダーが提供するアウトボックス自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
 * Oracle Linux 8.6（ネイティブ）を使用しています `udev` ルールはの一部として提供されます `nvme-cli` NVMeマルチパスのラウンドロビンによるロードバランシングを可能にするパッケージ。したがって、このルールを手動で作成する必要はありません。
 * Oracle Linux 8.6を使用すると、NVMeとSCSIの両方のトラフィックを、同じ新規のホストで実行できます。実際、これは一般的に導入されるホスト構成であると想定されています。したがって、SCSI LUNでは通常どおりdm-multipathを設定できます。その結果、mpathデバイスが作成されますが、NVMeマルチパスを使用してNVMe-oFマルチパスデバイスを設定できます（例： `/dev/nvmeXnY`）を実行します。
-* Oracle Linux 8.6では、ネットアップのプラグインがネイティブに含まれています `nvme-cli` パッケージでは、ONTAP の詳細とONTAP ネームスペースを表示できます。
+* Oracle Linux 8.6では、ネットアッププラグインが標準搭載されています `nvme-cli` パッケージでは、ONTAP の詳細とONTAP ネームスペースを表示できます。
 
 
 
@@ -62,7 +62,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 # uname -r
 5.4.17-2136.307.3.1.el8uek.x86_64
 ----
-. 「nvme-cli」パッケージをインストールします。
+. 「 nvme-cli 」パッケージをインストールします。
 +
 [listing]
 ----
@@ -82,7 +82,7 @@ vs_ol_nvme  nvme_ss_ol_1    nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-9
 ----
 +
 
-NOTE: hostnqn文字列が一致しない場合は、を使用する必要があります `vserver modify` 対応するONTAP アレイサブシステムのhostnqn文字列を、のhostnqn文字列と一致するように更新するコマンド `/etc/nvme/hostnqn` ホスト。
+NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合はを使用してください `vserver modify` コマンドを使用してを更新します `hostnqn` に一致する、対応するONTAP アレイサブシステム上の文字列 `hostnqn` から文字列 `/etc/nvme/hostnqn` ホスト：
 
 . ホストをリブートします。
 +
@@ -107,7 +107,7 @@ defaults {
 == Broadcom FCアダプタをNVMe/FC用に設定
 
 .手順
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] 。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]：
 +
 [listing]
 ----
@@ -118,7 +118,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアと受信トレイドライバ。サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] 。
+. 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアと受信トレイドライバ。サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]：
 +
 [listing]
 ----
@@ -129,14 +129,14 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 # cat /sys/module/lpfc/version
 0:12.8.0.11
 ----
-. lpfc_enable_fc4_type'が'3'に設定されていることを確認します
+. 確認します `lpfc_enable_fc4_type` がに設定されます `3`：
 +
 [listing]
 ----
 # cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 3
 ----
-. イニシエータポートが動作していること、およびターゲットLIFが表示されることを確認してください。
+. イニシエータポートが動作していること、およびターゲットLIFが表示されていることを確認します。
 +
 [listing]
 ----
@@ -201,7 +201,7 @@ options lpfc lpfc_sg_seg_cnt=256
 == Marvell / QLogic FCアダプタをNVMe/FC用に設定します
 
 .手順
-. サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。OL 8.6 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAP のサポートに不可欠な最新のアップストリーム修正が含まれています。
+. サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。OL 8.6 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。
 +
 [listing]
 ----
@@ -231,7 +231,7 @@ NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません
 タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。の値を増やすことで、再試行期間を長くすることができます `ctrl_loss_tmo` 次の手順 を使用してタイマーを設定します。
 
 .手順
-. イニシエータポートがサポートされているNVMe/TCP LIF全体で検出ログページのデータを取得できるかどうかを確認します。
+. イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
 +
 [listing]
 ----
@@ -307,7 +307,7 @@ NetApp ONTAP Controller
 round-robin
 round-robin
 ----
-. ネームスペースが作成され、ホストで適切に検出されたことを確認します。
+. ネームスペースが作成され、ホストで正しく検出されたことを確認します。
 +
 [listing]
 ----
@@ -325,7 +325,7 @@ Namespace Usage    Format             FW             Rev
 2                 85.90 GB / 85.90 GB  24 KiB + 0 B  FFFFFFFF
 3                 85.90 GB / 85.90 GB  4 KiB + 0 B   FFFFFFFF
 ----
-. 各パスのコントローラの状態がliveで、ANAステータスが正しいことを確認します。
+. 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
 +
 [listing]
 ----
@@ -337,7 +337,7 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:su
 +- nvme2 fc traddr=nn-0x203700a098dfdd91:pn-0x203a00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
 +- nvme3 fc traddr=nn-0x203700a098dfdd91:pn-0x203d00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
 ----
-. ネットアッププラグインに表示される各ONTAP ネームスペースデバイスの値が正しいことを確認します。
+. ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
 +
 [listing]
 ----
