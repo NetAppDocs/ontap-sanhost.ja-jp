@@ -54,6 +54,11 @@ Linux Unified Host Utilities は、 Linux ホストにコマンドラインツ�
 [listing]
 ----
 # sanlun lun show all
+----
+出力例：
+
+[listing]
+----
 controller(7mode/E-Series)/            device     host               lun
 vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
 -------------------------------------------------------------------------

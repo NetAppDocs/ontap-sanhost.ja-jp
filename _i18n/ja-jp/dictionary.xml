@@ -2756,9 +2756,6 @@
   <block id="e42d2937239f99af3555e447c690bae4" category="section-title">1MBのI/Oサイズを有効にします</block>
   <block id="4e607aa60f743cf23d102c38d262e0ce" category="section-title">Marvell / QLogic FCアダプタをNVMe/FC用に設定します</block>
   <block id="dcf9c1daaefaae22f7202d217cd05be1" category="list-text">確認します<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block> は、MarvellアダプタをNVMe/FCイニシエータとして機能させるために設定されています。</block>
-  <block id="e98cbaaa1dad7fa881f7b9e5dc526195" category="list-text">*パスが復元されたあとに自動再接続されない*- NVMe/TCPは、デフォルト以外に復元されたパスに自動的に再接続できません<block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block> パスダウン後10分間のタイマー。</block>
-  <block id="d2022b31505ee91b7e27d079c2942aec" category="list-text">*ホストのブート時に自動接続しない*-ホストのブート時にNVMe/TCPが自動的に接続できません。</block>
-  <block id="a4ab86f49ce98a35d17bd2f072f94439" category="paragraph">タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。の値を増やすことで、再試行期間を長くすることができます<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> 次の手順 を使用してタイマーを設定します。</block>
   <block id="497514b0e075b1b4f0a02b0a0bdc49c3" category="list-text">イニシエータポートがサポートされているNVMe/TCP LIF全体で検出ログページのデータを取得できるかどうかを確認します。</block>
   <block id="cc1376f3d88929c0b6332513de3fdbc9" category="list-text">同様に、NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで、検出ログページのデータを正常に取得できることを確認します。例：</block>
   <block id="7f6f90fe10241433c68e7ce29b87dbde" category="list-text">次に、を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。もっと長くパスするようにしてください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> ピリオド（30分など、を使用して設定できます<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）をクリックします<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> パスが失われた場合に、より長い期間再試行されるようにします。例：</block>
@@ -2881,4 +2878,44 @@
   <block id="acad552cc1f69d130b13381f823afd65" category="list-text"><block ref="acad552cc1f69d130b13381f823afd65" category="inline-link-macro-rx"></block></block>
   <block id="c44700394b9a4063439bc92ea42d5e41" category="inline-link-macro">Windowsの場合は注意してください</block>
   <block id="9d9a9c7064b8193ac433a5365fe1afdb" category="list-text"><block ref="9d9a9c7064b8193ac433a5365fe1afdb" category="inline-link-macro-rx"></block></block>
+  <block id="8637d6c1f3e0436f7f2ec935b829bd22" category="paragraph">出力例：</block>
+  <block id="4c4c3dde0aa2241b7309f48a51b17be1" category="paragraph">NVMe/TCPには自動接続機能はありません。そのため、パスがダウンしてデフォルトのタイムアウト（10分）内に復元されないと、NVMe/TCPは自動的に再接続できません。タイムアウトを回避するには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。</block>
+  <block id="e5bb15bb11bc9d2f4a5298c657566227" category="summary">ONTAP でOracle Linux 9.0を使用する方法について説明します</block>
+  <block id="4218cca0e66f5dacb43716e0a9523276" category="doc">NetApp ONTAP でOracle Linux 9.0を使用</block>
+  <block id="70c435210209e4fcc06e3525a39366c4" category="paragraph">このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには、LUNとHBAの管理に役立つsanlunユーティリティが用意されています。sanlunコマンドは、ホストにマッピングされたLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
+  <block id="768382c1e455944bfcfdcebd2c7be7af" category="paragraph">次の例では、sanlun lun lun showコマンドからLUN情報が返されます。</block>
+  <block id="ae8e81252a704349cea5f061e9fb652e" category="paragraph">Oracle Linux（OL）9.0の場合<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 9.0は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="5e51169d33c14ff0aaa1bdcad247d216" category="paragraph">次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。</block>
+  <block id="2722dd408e2c6dddce120893d4c5c0a7" category="paragraph">Oracle Linux 9.0 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。</block>
+  <block id="834ccc84967581d1336062ada79c9a0e" category="admonition">Oracle Linux 9.0 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）9.0の場合</block>
+  <block id="2de4eb9b3af281c4790a039cf2f92eb7" category="section-title">KVM設定</block>
+  <block id="fdf71d22ca12e1b94c3cffe88a22f330" category="paragraph">Oracle Linux 9.0の既知の問題はありません。</block>
+  <block id="e5d062225c58cec8d22b3128331f0488" category="paragraph">ASMミラーリングでは、ASMが問題を認識して代替障害グループに切り替えるために、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。詳細については、「ONTAP 上のOracleデータベース」を参照してください。</block>
+  <block id="678b361384466d6bf28f930dd514a9a8" category="doc">NVMe/FCホスト構成（Oracle Linux 9.0 with ONTAP</block>
+  <block id="5cb5911912e86cb36a8fd5e61044fcf9" category="paragraph">NVMe/FCやその他の転送を含むNVMe over Fabrics（NVMe-oF）は、Asymmetric Namespace Access（ANA）対応のOracle Linux 9.0でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="2cbaf680f82c54fd6fb7778f0101ab88" category="paragraph">サポートされる構成の詳細については、を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>。</block>
+  <block id="55fb7862f01474277c3620f9debfb3d5" category="list-text">Oracle Linux 9.0では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。</block>
+  <block id="b064015a3282fc489c69be4a7699cc91" category="section-title">ソフトウェアのバージョンを確認します</block>
+  <block id="b76db361f4ec79f85164719f414b064f" category="paragraph">サポートされるOL 9.0ソフトウェアの最小バージョンは、次の手順 を使用して検証できます。</block>
+  <block id="ed14e1c5f9c2e5c334a5bff4288d87ce" category="list-text">Oracle Linux 9.0 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 9.0 GAカーネルを実行していることを確認します。</block>
+  <block id="52b5830420efb96c3a91beb52bac3b23" category="paragraph">*出力例：*</block>
+  <block id="2dae71c1d86116eab552b9b056780e26" category="list-text">Oracle Linux 9.0ホストで、を確認します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> 文字列<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
+  <block id="256141e56255da4626b3cd641b2f785a" category="list-text">を確認します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> 文字列はに一致します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> ONTAP アレイ上の対応するサブシステムの文字列。</block>
+  <block id="79894377ddb5e7ce912ed785003b69fe" category="admonition">状況に応じて<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> 文字列が一致しない場合はを使用してください<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> コマンドを使用してを更新します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> 対応するONTAP アレイサブシステムで、に一致する文字列を指定します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> から文字列<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> ホスト。</block>
+  <block id="d56e4e530b3041c524f4212efc9efc17" category="paragraph">NVMe/FCは、Broadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設定できます。</block>
+  <block id="2f749c740a41c151c1485b84206264ca" category="list-text">サポートされているアダプタモデルを使用していることを確認します。</block>
+  <block id="fd3cbdb4a32644d25b951ee0b3bc5aae" category="open-title">NVMe / FC向けMarvell/QLogic FCアダプタ</block>
+  <block id="632cccb989f7ba938ccedab64dafd738" category="list-text">サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。OL 9.0 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
+  <block id="61048cc84224cb0a87e2b824e5e313ea" category="list-text">NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで、検出ログページのデータを正常に取得できることを確認します。</block>
+  <block id="ce6047856868bd861d72aba06f0054ce" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象にコマンドを実行し、コントローラ損失のタイムアウト時間を30分または1、800秒以上に設定します。</block>
+  <block id="707080871f35808fd049a250385d4f06" category="list-text">Oracle Linux 9.0ホストで次のNVMe/FC設定を確認します。</block>
+  <block id="0121ea908d2a2cb95436d77156b96a8c" category="cell">Oracle Linux 9.0 NVMe-oFホストでは、永続的検出コントローラが重複して作成されます</block>
+  <block id="91ef9105de2091600f7c347406622a2e" category="cell">Oracle Linux 9.0のNVMe over Fabrics（NVMe-oF）ホストでは、を使用できます<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1およびOracle Linux 9.0を実行している場合は、毎回重複するPDCが作成されます<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> が実行されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。</block>
+  <block id="f50972c35190e5df79b7272d295f432e" category="paragraph">NVMe/FCの障害をトラブルシューティングする前に、実行している構成がIMT の仕様に準拠していることを確認してから、次の手順に進んでホスト側の問題をデバッグします。</block>
+  <block id="25f321fe018cf20163dc0c70e2eea888" category="section-title">詳細ログを有効にします</block>
+  <block id="39015274ce6bc3d4a2365f4b9d55591e" category="paragraph">構成に問題 が含まれている場合は、詳細なロギングを使用すると、トラブルシューティングに不可欠な貴重な情報を得ることができます。</block>
+  <block id="65427f0cfd42249488837342e79863a2" category="paragraph">Qlogicの詳細ロギングを設定する手順 （qla2xxx）は、lpfc詳細ロギングを設定する手順 とは異なります。</block>
+  <block id="2401f6c892699dd24f7fa72c9a39b053" category="open-title">LPFC</block>
+  <block id="db9afb1f05f1d6930c84839b76060ccc" category="open-title">qla2xxx</block>
+  <block id="7ad56430e8db8d37194a3ee41cf45911" category="sidebar">OL 9</block>
 </blocks>

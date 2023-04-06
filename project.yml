@@ -54,6 +54,11 @@ sidebar:
         url: "/nvme_esxi_7.html"
     - title: Oracle Linux の場合
       entries:
+      - title: OL 9
+        pdf-filename: NVMeネームスペース
+        entries:
+        - title: '9.0'
+          url: "/nvme_ol_90.html"
       - title: OL 8.
         pdf-filename: NVMeネームスペース
         entries:
@@ -206,6 +211,10 @@ sidebar:
     - title: Oracle Linux の場合
       pdf-filename: OL-FCP
       entries:
+      - title: OL 9
+        entries:
+        - title: '9.0'
+          url: "/hu_ol_90.html"
       - title: OL 8.
         pdf-filename: OL-8-FCP
         entries:
