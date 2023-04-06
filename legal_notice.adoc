@@ -1,0 +1,51 @@
+---
+permalink: legal_notice.html 
+sidebar: sidebar 
+keywords: legal, notices, copyright, trademarks, patents 
+summary: 著作権に関する声明、商標、特許などにアクセスできます。 
+---
+= 法的通知
+:allow-uri-read: 
+
+
+著作権に関する声明、商標、特許などにアクセスできます。
+
+
+
+== 著作権
+
+http://www.netapp.com/us/legal/copyright.aspx[]
+
+
+
+== 商標
+
+NetApp 、 NetApp のロゴ、および NetApp の商標ページに記載されているマークは、 NetApp, Inc. の商標です。その他の会社名および製品名は、それぞれの所有者の商標である場合があります。
+
+http://www.netapp.com/us/legal/netapptmlist.aspx[]
+
+
+
+== 特許
+
+ネットアップが所有する特許の最新リストは、次のサイトで入手できます。
+
+https://www.netapp.com/us/media/patents-page.pdf[]
+
+
+
+== プライバシーポリシー
+
+https://www.netapp.com/us/legal/privacypolicy/index.aspx[]
+
+
+
+== オープンソース
+
+本製品で使用されているサードパーティの著作権およびライセンスに関する情報を提供します。
+
+* link:./media/Notices-AIX61-2023.pdf["AIXの場合は注意してください"^]
+* link:./media/Linux_Unified_Host_Utilities.pdf["Linuxの場合は注意してください"^]
+* link:./media/Solaris_Host_Utilities-2017.09.12-01.25.35.pdf["Solarisの場合は注意してください"^]
+* link:./media/Windows_Unified_Host_Utilities_(WUHU)Notice.pdf["Windowsの場合は注意してください"^]
+
