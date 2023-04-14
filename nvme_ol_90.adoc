@@ -19,7 +19,7 @@ summary:
 
 
 [role="lead"]
-NVMe/FCやその他の転送を含むNVMe over Fabrics（NVMe-oF）は、Asymmetric Namespace Access（ANA）対応のOracle Linux 9.0でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
+NVMe/FCやその他の転送を含むNVMe over Fabrics（NVMe-oF）は、Oracle Linux（OL）9.0とAsymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
 
 サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
 
@@ -43,7 +43,7 @@ NVMe/FCやその他の転送を含むNVMe over Fabrics（NVMe-oF）は、Asymmet
 サポートされるOL 9.0ソフトウェアの最小バージョンは、次の手順 を使用して検証できます。
 
 .手順
-. Oracle Linux 9.0 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 9.0 GAカーネルを実行していることを確認します。
+. サーバーにOL 9.0 GAをインストールします。インストールが完了したら、指定したOL 9.0 GAカーネルを実行していることを確認します。
 +
 [listing]
 ----
@@ -353,7 +353,7 @@ options lpfc lpfc_sg_seg_cnt=256
 == NVMe-oF を検証します
 
 .手順
-. Oracle Linux 9.0ホストで次のNVMe/FC設定を確認します。
+. OL 9.0ホストで次のNVMe/FC設定を確認します。
 +
 [listing]
 ----
@@ -497,7 +497,7 @@ NVMe/FCの障害をトラブルシューティングする前に、実行して�
 
 === 詳細ログを有効にします
 
-構成に問題 が含まれている場合は、詳細なロギングを使用すると、トラブルシューティングに不可欠な貴重な情報を得ることができます。
+構成に問題 が含まれている場合は、詳細なロギングを使用してトラブルシューティングに必要な情報を得ることができます。
 
 .手順
 Qlogicの詳細ロギングを設定する手順 （qla2xxx）は、lpfc詳細ロギングを設定する手順 とは異なります。

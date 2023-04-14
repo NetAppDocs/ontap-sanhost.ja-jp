@@ -41,6 +41,8 @@ sidebar:
         url: "/hu_solaris_62_rn.html"
     - title: Windows Unified Host Utilities のことです
       entries:
+      - title: Wuhu 7.2をインストールします
+        url: "/hu_wuhu_72.html"
       - title: Wuhu 7.1をインストールします
         url: "/hu_wuhu_71.html"
       - title: リリースノート

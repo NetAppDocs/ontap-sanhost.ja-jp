@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_wuhu_71_rn.html 
-keywords: host utilities, linux, 7.1, netapp, ontap, release, notes 
-summary: Windows Unified Host Utilities 7.1のリリースノート 
+keywords: host utilities, linux, 7.1, 7.2, netapp, ontap, release, notes 
+summary: リリースノート（Windows Unified Host Utilities 
 ---
-= 『Windows Unified Host Utilities 7.1 Release Notes』
+= 『Windows Unified Host Utilities Release Notes』を参照してください
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -18,15 +18,16 @@ summary: Windows Unified Host Utilities 7.1のリリースノート
 :toc-position: content
 
 
-このリリースノートドキュメントには、Windows Unified Host Utilities 7.1リリースの最新情報として、新機能、拡張機能、および既知の問題に関する更新情報が記載されています。このドキュメントは、Windows Host Utilitiesの使用に関する新しい情報が入手可能になると更新されます。
+[role="lead"]
+このリリースノートには、Windows Unified Host Utilities 7.2および7.1リリースの最新情報（新機能、拡張機能、既知の問題に関する更新情報など）が記載されています。このドキュメントは、Windows Host Utilitiesの使用に関する新しい情報が入手可能になると更新されます。
 
 
 
-== Windows Unified Host Utilities 7.1リリースの概要
+== Windows Unified Host Utilitiesについて
 
 Windows Unified Host Utilitiesを使用すると、Windowsホストコンピュータをネットアップストレージシステムに接続できます。Windows Unified Host Utilitiesには、必要なWindowsレジストリとHBA値を設定するインストールプログラムが含まれています。
 
-Windows Unified Host Utilities 7.1では、引き続き次のバージョンのWindowsがサポートされます。
+Windows Unified Host Utilitiesでは、次のバージョンのWindowsが引き続きサポートされます。
 
 * Windows Server 2012
 * Windows Server 2012 R2の場合
@@ -40,9 +41,11 @@ NOTE: ネットアップでは、Host Utilitiesソフトウェアのリリース
 
 
 
-== このHost Utilitiesリリースの機能
+== の機能
 
-Windows Unified Host Utilities 7.1では、Eシリーズストレージシステム、ONTAP 9以降のバージョンのサポート、およびiSCSIタイムアウトの強化により、フェイルオーバーの高速化がサポートされます。
+* Windows Unified Host Utilities 7.2では、NVMe/FCドライバパラメータの設定がサポートされ、新しいベンダーカードに関するバグが修正されています。
+* Windows Unified Host Utilities 7.1では、Eシリーズストレージシステム、ONTAP 9以降のバージョンのサポート、およびiSCSIタイムアウトの強化により、フェイルオーバーの高速化がサポートされます。
+
 
 
 
@@ -56,15 +59,15 @@ Windows Unified Host Utilities 7.1では、Eシリーズストレージシステ
 
 === 必要な修正プログラムをインストールします
 
-Windows Unified Host Utilitiesのインストールまたはアップグレードを正常に行うために、特定のWindowsホットフィックスをインストールする必要があります。一部のホットフィックスは、Windowsの更新プログラムのコンポーネントです。
+Windows Unified Host Utilitiesのインストールまたはアップグレードを適切に行うには、特定のWindowsホットフィックスをインストールする必要があります。一部のホットフィックスは、Windowsの更新プログラムのコンポーネントです。
 
-を参照してください link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71.html["Windows Host Utilitiesのマニュアル"] をクリックしてください。
+を参照してください link:hu_wuhu_72.html["Windows Host Utilitiesのマニュアル"] をクリックしてください。
 
 
 
 == 既知の問題
 
-このリリースでは、いくつかの予期しない動作や望ましくない動作の可能性がある動作、およびこれらの動作を回避するための回避策が確認されています。
+7.1リリースでは、予期しない動作や望ましくない動作、およびこれらの動作を回避するための回避策がいくつか確認されています。
 
 [cols="30, 30, 20"]
 |===
@@ -74,7 +77,7 @@ Windows Unified Host Utilitiesのインストールまたはアップグレー�
 | を実行します `linux_gos_timeout-install.sh` スクリプトは、Red Hat Enterprise LinuxまたはSUSE Linux Enterprise Serverを実行するHyper-Vゲストには必要ありません | を実行する必要はなくなりました `linux_gos_timeout-install.sh` デフォルトのタイムアウト設定が使用されているため、Red Hat Enterprise Linux 5、Red Hat Enterprise Linux 6、またはSUSE Linux Enterprise Server 11 Hyper-Vゲストでディスクタイムアウトを変更するスクリプト。。 `linux_gos_timeout-install.sh` 以前のバージョンのHost Utilitiesに含まれていたスクリプトは、Windows Unified Host Utilitiesに含まれなくなりました。Windows Unified Host Utilities 7.1では、デフォルトのディスクタイムアウト設定が使用されています。 | 該当なし 
 
 
-| IPv4とIPv6が混在したiSCSIセッションは、リブート後に再接続されません | マルチパスI/O（MPIO）構成、またはIPv4とIPv6の両方のエンドポイントを含むセッション（MCS）ごとに複数の接続を設定すると、Windowsホストのリブート後に一部のiSCSIセッションが再接続に失敗することがあります。 | リブート後にすべてのiSCSIパスが戻るようにするには、すべてのIPv4エンドポイントまたはすべてのIPv6を使用します。IPv4とIPv6を混在させないでください。 
+| IPv4とIPv6が混在したiSCSIセッションは、リブート後に再接続されません | マルチパスI/O（MPIO）構成、またはIPv4とIPv6の両方のエンドポイントを含むセッション（MCS）ごとに複数の接続を設定すると、Windowsホストのリブート後に一部のiSCSIセッションが再接続に失敗することがあります。 | リブート後にすべてのiSCSIパスが戻ることを確認するには、すべてのIPv4エンドポイントまたはすべてのIPv6を使用します。IPv4とIPv6を混在させないでください。 
 
 
 | MCSは、iSCSIソフトウェアブートではサポートされません | iSCSIソフトウェアブートを使用して、iSCSI Multiple connections per session（MCS；セッションごとのiSCSI複数接続）を使用している場合、iSCSIブートをリードする接続は保護できません。これにより、ブートLUNとの接続が切断されて、ホストがクラッシュする可能性があります。 | Microsoftでは、iSCSIソフトウェアブートホストのMCSはサポートしていません。MPIOを高可用性解決策 として使用してください。MPIOとMCSの混在はサポートされていません。 
@@ -85,7 +88,7 @@ link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online �
 
 == SANホスト構成のドキュメントについて
 
-には、SAN Host Utilitiesのマニュアルが含まれています link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["ONTAP SANホスト構成のドキュメント"]。ONTAP SANホストの構成に関するドキュメントは、SANホストの現在のすべてのリリースをカバーしており、これまでのものは累積的ですリリース間の機能の違いは、コンテキストに基づいて示されます。
+SAN Host Utilitiesのドキュメントは、に記載されています link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["ONTAP SANホストの構成に関するドキュメント"]。ONTAP SANホスト構成に関するドキュメントは累積的に作成され、現在のすべてのSANホストリリースをカバーしています。リリース間の機能の違いは、コンテキストに基づいて示されます。
 
 
 
@@ -106,7 +109,7 @@ link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online �
 * 使用するプロトコルに適した『SANtricity Storage Manager Configuration and Provisioning for Windows Express Guide』を参照してください
 * 使用しているオペレーティングシステム、プロトコル、およびバージョンのSANtricity に対応した『SANtricity Storage Manager構成およびプロビジョニングエクスプレスガイド』
 * 使用しているSANtricity のバージョンに固有のSANtricity Storage Managerソフトウェアインストールリファレンス。
-* 使用しているSANtricity バージョンに対応した『SANtricity ストレージマネージャマルチパスドライバガイド』。
+* 使用しているSANtricity のバージョンに対応したSANtricity ストレージマネージャマルチパスドライバのガイド。
 * 使用しているSANtricity のバージョンに対応した『SANtricity ストレージマネージャリリースノート』。
 
 
