@@ -160,4 +160,4 @@ Linuxカーネルにバンドルされているネイティブの受信トレイ
 * 使用しているSANtricity のバージョンに対応した『SANtricity ストレージマネージャリリースノート』。
 
 
-にアクセスします link:https://docs.netapp.com/us-en/e-series/getting-started/index.html["E シリーズのドキュメント"] をクリックして、SANtricity 関連ドキュメントを参照してください
+を参照してください link:https://docs.netapp.com/us-en/e-series/index.html["E シリーズのドキュメント"] をクリックして、SANtricity 関連ドキュメントを参照してください

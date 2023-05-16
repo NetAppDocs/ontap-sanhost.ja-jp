@@ -113,4 +113,4 @@ SAN Host Utilitiesのドキュメントは、に記載されています link:ht
 * 使用しているSANtricity のバージョンに対応した『SANtricity ストレージマネージャリリースノート』。
 
 
-を参照してください link:https://docs.netapp.com/us-en/e-series/getting-started/index.html["E シリーズのドキュメント"^] をクリックして、SANtricity 関連ドキュメントを参照してください
+を参照してください link:https://docs.netapp.com/us-en/e-series-family/["E シリーズのドキュメント"^] をクリックして、SANtricity 関連ドキュメントを参照してください

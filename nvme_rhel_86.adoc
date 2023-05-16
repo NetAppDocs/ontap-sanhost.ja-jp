@@ -40,7 +40,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 == 既知の制限
 
 * RHEL 8.6では、カーネル内のNVMeマルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。
-* RHEL 8.6のNVMe/FCは、未解決の問題が原因でテクノロジプレビュー機能のままです。を参照してください https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.6_release_notes/index#technology-preview_file-systems-and-storage["RHEL 8.6リリースノート"^] を参照してください。
+* RHEL 8.6のNVMe/FCは、未解決の問題が原因でテクノロジプレビュー機能のままです。を参照してください https://["RHEL 8.6リリースノート"^] を参照してください。
 
 
 

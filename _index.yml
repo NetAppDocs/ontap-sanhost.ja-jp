@@ -50,4 +50,4 @@ indexpage:
     - title: SAN 管理
       url: https://docs.netapp.com/us-en/ontap/san-admin/index.html
     - title: SAN の設定
-      url: https://docs.netapp.com/us-en/ontap-metrocluster/
+      url: https://docs.netapp.com/us-en/ontap/san-config/index.html

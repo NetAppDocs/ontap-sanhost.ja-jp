@@ -3,4 +3,4 @@
 
 
 
-NOTE: Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、対応するの「既知の問題」の項を参照してください https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=63146["Red Hat Enterprise Linux リリース"^] ドキュメント
+NOTE: Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、対応するの「既知の問題」の項を参照してください https://["Red Hat Enterprise Linux リリース"^] ドキュメント

@@ -271,7 +271,7 @@ tcp.vmnic3:34:80:Od:30:ca:el-tcp.unknown-uuid.400bf333abf74ab8b96dc18ffadc3f99
 
 == Known 問題の略
 
-* ONTAP 9.9.1 P3以降では、ESXi 7.0 U3（およびそれ以降）のNVMe/FCサポートが利用可能になりました。ONTAP 9.9.1 P3以降では、キーNVMe中止の修正（ESXi 7.0 U3以降で発行）が提供されます。にある BURT パブリックレポートを参照してください https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1420654[] を参照してください。
+* ONTAP 9.9.1 P3以降では、ESXi 7.0 U3（およびそれ以降）のNVMe/FCサポートが利用可能になりました。ONTAP 9.9.1 P3以降では、キーNVMe中止の修正（ESXi 7.0 U3以降で発行）が提供されます。にある BURT パブリックレポートを参照してください https://[] を参照してください。
 
 
 

@@ -22,7 +22,7 @@ summary: Solaris Host Utilities のインストール方法について説明し
 
 == Solaris Host Utilities のインストール
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルを展開して、 Host Utilities のインストールに必要なソフトウェアパッケージを取得する必要があります。
+Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^]。ファイルを展開して、 Host Utilities のインストールに必要なソフトウェアパッケージを取得する必要があります。
 
 .手順
 . から Host Utilities が含まれている圧縮ファイルのコピーをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] をホスト上のディレクトリに移動します。
@@ -46,7 +46,7 @@ pkgadd -d NTAPSANTool.pkg
 パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます
 
 +
-インストールを完了するには 'host_config' コマンドを使用して ' ご使用の環境のホスト・パラメータ（この場合は MPxIO ）を構成する必要があります
+インストールを完了するには、を使用して環境のホストパラメータ（この場合はMPxIO）を設定する必要があります `host_config` コマンドを実行します
 
 +
 「 host_config 」コマンドの形式は次のとおりです。
@@ -58,7 +58,7 @@ pkgadd -d NTAPSANTool.pkg
 「 host_config 」コマンドでは、次の処理が行われます。
 
 +
-** x86 システムと SPARC システムの両方で、ファイバチャネルドライバと SCSI ドライバの設定を変更します
+** x86システムとSPARCシステムのファイバチャネルドライバとSCSIドライバの設定を変更します
 ** 両方の MPxIO 構成の SCSI タイムアウト設定を提供します
 ** VID / PID 情報を設定します
 ** ALUA を有効または無効にします
@@ -96,7 +96,7 @@ SAN ブートを使用する場合は、構成でサポートされている必�
 
 SAN ブートとは、 Solaris ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。
 
-FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください link:https://library.netapp.com/ecmdocs/ECMLP2748974/html/frameset.html["『 Solaris Host Utilities Installation and Setup Guide 』"^] Solaris MPIO 環境での SAN ブート LUN の詳細については、を参照してください。
+FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください https://["Solaris Host Utilitiesをインストールします"^] Solaris MPIO環境でのSANブートLUNの詳細については、を参照してください。
 
 
 
@@ -178,7 +178,7 @@ NOTE: ONTAP 9.8 以降では、すべての SAN アレイ（ ASA ）構成がサ
 
 === MetroCluster の推奨設定
 
-デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成の場合は、の値になります `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。追加情報 の場合、およびデフォルト設定に推奨される変更については、ネットアップを参照してください https://kb.netapp.com/app/answers/answer_view/a_id/1001373/loc/en_US["KB1001373"^]。
+デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成の場合は、の値になります `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。追加情報 およびデフォルト設定の推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
 
 
 
@@ -186,8 +186,8 @@ NOTE: ONTAP 9.8 以降では、すべての SAN アレイ（ ASA ）構成がサ
 
 * Solaris の仮想化オプションには 'Solaris 論理ドメイン (LDoms または Oracle VM Server for SPARC) 'Solaris 動的ドメイン 'Solaris ゾーン 'Solaris コンテナなどがありますこれらのテクノロジは、アーキテクチャがまったく異なるにもかかわらず、一般に「 Oracle 仮想マシン」としてブランド変更されています。
 * 場合によっては ' 特定の Solaris 論理ドメイン内の Solaris コンテナなど ' 複数のオプションを同時に使用できます
-* ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^] サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。
-* 仮想化ストレージ・リソース（ vdsk など）のみを使用するパーティションや仮想マシンは、 NetApp LUN に直接アクセスできないため、特別な認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^]。
+* ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます https://["NetApp Interoperability Matrix を参照してください"^] サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。
+* 仮想化ストレージ・リソース（ vdsk など）のみを使用するパーティションや仮想マシンは、 NetApp LUN に直接アクセスできないため、特別な認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります https://["NetApp Interoperability Matrix を参照してください"^]。
 
 
 
@@ -198,6 +198,7 @@ LDOM 内で LUN が仮想ディスクデバイスとして使用されている�
 
 パッチを確認するには、次の手順を実行します。
 
+.手順
 . zpool を作成します。
 . ZDB-C を zpool に対して実行し、 * ashift * の値が 12 であることを確認します。
 +
@@ -243,7 +244,7 @@ svl_fops_name = 0xa00298d69e0 "conf f_tpgs"
 
 
 
-NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name`。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
+NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name`。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
 
 
 
@@ -257,5 +258,5 @@ NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf`
 | 1366780 | x86 アーキテクチャ上の Emulex 32G HBA で GB 中に Solaris LIF の問題が発生しました | x86_64 プラットフォームに Emulex ファームウェアバージョン 12.6.x 以降が搭載されています | SR 3-24746803021 
 
 
-| 1368957 | Solaris 11.x の cfgadm -c configure ' により ' エンド・ツー・エンドの Emulex 構成で I/O エラーが発生する | Emulex エンドツーエンド構成で「 cfgadm -c configure 」を実行すると、 I/O エラーが発生します。これは 9.5P17 、 9.6P14 、 9.7P13 、 9.8P2 で修正されています | 該当なし 
+| 1368957 | Solaris 11.x 'cfgadm -c configure'でエンドツーエンドのEmulex構成でI/Oエラーが発生する | 実行中です `cfgadm -c configure` Emulexのエンドツーエンド構成では、I/Oエラーが発生します。これは 9.5P17 、 9.6P14 、 9.7P13 、 9.8P2 で修正されています | 該当なし 
 |===
