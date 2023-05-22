@@ -216,7 +216,7 @@ NOTE: VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツ�
 
 を参照してください https://["NetApp Interoperability Matrix Tool で確認できます"^] 特定のバージョンの ONTAP ツール、または使用している vSphere と ONTAP の特定のバージョンの VASA Provider
 
-VVOL のプロビジョニングと管理の詳細については、 VMware vSphere 用の ONTAP ツールのドキュメントも参照してください link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^] および link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^]
+VVOL のプロビジョニングと管理の詳細については、 VMware vSphere 用の ONTAP ツールのドキュメントも参照してください link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^] および link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^]。
 
 
 

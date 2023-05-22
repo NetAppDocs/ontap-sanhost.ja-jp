@@ -58,7 +58,7 @@ pkgadd -d NTAPSANTool.pkg
 「 host_config 」コマンドでは、次の処理が行われます。
 
 +
-** x86システムとSPARCシステムのファイバチャネルドライバとSCSIドライバの設定を変更します
+** x86およびSPARCシステムのファイバチャネルおよびSCSIドライバの設定を変更します
 ** 両方の MPxIO 構成の SCSI タイムアウト設定を提供します
 ** VID / PID 情報を設定します
 ** ALUA を有効または無効にします
@@ -178,7 +178,7 @@ NOTE: ONTAP 9.8 以降では、すべての SAN アレイ（ ASA ）構成がサ
 
 === MetroCluster の推奨設定
 
-デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成の場合は、の値になります `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。追加情報 およびデフォルト設定の推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
+デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成の場合は、の値になります `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。追加情報 およびデフォルト設定の推奨される変更については、ナレッジベースの記事を参照してください https://["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
 
 
 
@@ -258,5 +258,5 @@ NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf`
 | 1366780 | x86 アーキテクチャ上の Emulex 32G HBA で GB 中に Solaris LIF の問題が発生しました | x86_64 プラットフォームに Emulex ファームウェアバージョン 12.6.x 以降が搭載されています | SR 3-24746803021 
 
 
-| 1368957 | Solaris 11.x 'cfgadm -c configure'でエンドツーエンドのEmulex構成でI/Oエラーが発生する | 実行中です `cfgadm -c configure` Emulexのエンドツーエンド構成では、I/Oエラーが発生します。これは 9.5P17 、 9.6P14 、 9.7P13 、 9.8P2 で修正されています | 該当なし 
+| 1368957 | Solaris 11.x 'cfgadm -c configure'でエンドツーエンドのEmulex構成でI/Oエラーが発生する | 実行中です `cfgadm -c configure` Emulexのエンドツーエンド構成では、I/Oエラーが発生します。この問題は、ONTAP 9.5P17、9.6P14、9.7P13、9.8P2で修正されています | 該当なし 
 |===

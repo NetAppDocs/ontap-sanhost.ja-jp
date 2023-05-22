@@ -58,7 +58,7 @@ pkgadd -d NTAPSANTool.pkg
 「 host_config 」コマンドでは、次の処理が行われます。
 
 +
-** x86システムとSPARCシステムのファイバチャネルドライバとSCSIドライバの設定を変更します
+** x86およびSPARCシステムのファイバチャネルおよびSCSIドライバの設定を変更します
 ** 両方の MPxIO 構成の SCSI タイムアウト設定を提供します
 ** VID / PID 情報を設定します
 ** ALUA を有効または無効にします
@@ -96,7 +96,7 @@ SAN ブートを使用する場合は、構成でサポートされている必�
 
 SAN ブートとは、 Solaris ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。
 
-FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください https://["Solaris Host Utilitiesをインストールします"^] Solaris MPIO環境でのSANブートLUNの詳細については、を参照してください。
+FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください https://["Solaris Host Utilitiesをインストールします"] Solaris MPIO環境でのSANブートLUNの詳細については、を参照してください。
 
 
 
@@ -178,13 +178,13 @@ NOTE: オールSANアレイ（ASA ）構成は、Solarisホスト用のONTAP 9.8
 
 === MetroCluster の推奨設定
 
-デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成ではの値です `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。デフォルト設定の追加情報と推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
+デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成ではの値です `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。デフォルト設定の追加情報と推奨される変更については、ナレッジベースの記事を参照してください https://["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
 
 
 
 == Oracle Solaris 仮想化
 
-* Solaris の仮想化オプションには 'Solaris 論理ドメイン (LDoms または Oracle VM Server for SPARC) 'Solaris 動的ドメイン 'Solaris ゾーン 'Solaris コンテナなどがありますこれらのテクノロジは、アーキテクチャが異なるにもかかわらず、一般に「Oracle仮想マシン」という名称に変更されています。
+* Solaris の仮想化オプションには 'Solaris 論理ドメイン (LDoms または Oracle VM Server for SPARC) 'Solaris 動的ドメイン 'Solaris ゾーン 'Solaris コンテナなどがありますこれらのテクノロジは、さまざまなアーキテクチャをベースにしているにもかかわらず、一般的に「Oracle仮想マシン」というブランド名に変更されています。
 * 場合によっては ' 特定の Solaris 論理ドメイン内の Solaris コンテナなど ' 複数のオプションを同時に使用できます
 * ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^] サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。
 * vdsk などの仮想ストレージリソースのみを使用するパーティションや仮想マシンについては、 NetApp LUN に直接アクセスできないため、特定の認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^]。
