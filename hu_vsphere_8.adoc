@@ -26,7 +26,7 @@ FC、FCoE、およびiSCSIの各プロトコルを使用するVMware vSphere 8.x
 == ハイパーバイザーSANブート
 
 .必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -233,7 +233,7 @@ NOTE: VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツ�
 
 現時点で VVOL の設定をデフォルトから変更することは推奨されません。
 
-を参照してください https://["NetApp Interoperability Matrix Tool で確認できます"^] 特定のバージョンの ONTAP ツール、または使用している vSphere と ONTAP の特定のバージョンの VASA Provider
+を参照してください https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 特定のバージョンの ONTAP ツール、または使用している vSphere と ONTAP の特定のバージョンの VASA Provider
 
 VVOLのプロビジョニングと管理の詳細については、ONTAP tools for VMware vSphereのドキュメントを参照してください。 link:https://docs.netapp.com/us-en/netapp-solutions/hybrid-cloud/vsphere_ontap_ontap_for_vsphere.html["TR-4597"^]および link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^]。
 

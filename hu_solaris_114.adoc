@@ -96,7 +96,7 @@ SAN ブートを使用する場合は、構成でサポートされている必�
 
 SAN ブートとは、 Solaris ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。
 
-FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください https://["Solaris Host Utilitiesをインストールします"] Solaris MPIO環境でのSANブートLUNの詳細については、を参照してください。
+FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください https://docs.netapp.com/us-en/ontap-sanhost/hu_solaris_62.html["Solaris Host Utilitiesをインストールします"] Solaris MPIO環境でのSANブートLUNの詳細については、を参照してください。
 
 
 
@@ -178,7 +178,7 @@ NOTE: オールSANアレイ（ASA ）構成は、Solarisホスト用のONTAP 9.8
 
 === MetroCluster の推奨設定
 
-デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成ではの値です `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。デフォルト設定の追加情報と推奨される変更については、ナレッジベースの記事を参照してください https://["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
+デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成ではの値です `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。デフォルト設定の追加情報と推奨される変更については、ナレッジベースの記事を参照してください https://kb.netapp.com/onprem/ontap/metrocluster/Solaris_host_support_considerations_in_a_MetroCluster_configuration["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
 
 
 
@@ -243,7 +243,7 @@ svl_fops_name = 0xa00298d69e0 "conf f_tpgs"
 
 
 
-NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name` 。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
+NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name` 。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
 
 
 

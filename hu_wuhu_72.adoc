@@ -45,7 +45,7 @@ Windows ホストコンピュータには、次のプログラムとファイル
 
 == Host Utilitiesでサポートされる構成
 
-Host Utilitiesでは、さまざまなWindowsホスト構成、プロトコル、マルチパスオプションがサポートされます。詳細については、を参照してください https://["NetApp Interoperability Matrix Tool で確認できます"^]。
+Host Utilitiesでは、さまざまなWindowsホスト構成、プロトコル、マルチパスオプションがサポートされます。詳細については、を参照してください https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
 
 
 
@@ -54,7 +54,7 @@ Host Utilitiesでは、さまざまなWindowsホスト構成、プロトコル�
 Host Utilitiesをインストールする前に、Host Utilitiesのバージョンがホストとストレージシステムの構成をサポートしていることを確認して、ソフトウェアを正しくインストールする必要があります。
 
 .手順
-. でサポートされている構成を確認します http://["NetApp Interoperability Matrix Tool で確認できます"^]。
+. でサポートされている構成を確認します http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]。
 . で、該当するホストに必要なホットフィックスを確認します link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["SANホストのWindowsに関するドキュメント"]。
 +
 
@@ -66,7 +66,7 @@ SANtricity Storage Managerを使用するEシリーズストレージシステ�
 
 . ケーブル接続を確認します。
 +
-を参照してください https://["『 SAN 構成ガイド』"^] を参照してくださいONTAP https://["『 E-Series Hardware Cabling Guide 』を参照してください"^] ケーブル接続と構成の詳細については、を参照してください。
+を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["『 SAN 構成ガイド』"^] を参照してくださいONTAP https://mysupport.netapp.com/ecm/ecm_get_file/ECMLP2773533["『 E-Series Hardware Cabling Guide 』を参照してください"^] ケーブル接続と構成の詳細については、を参照してください。
 
 
 
@@ -86,7 +86,7 @@ CAUTION: HBA設定を手動で変更しないでください。
 . サポートされている HBA ドライバと管理ユーティリティを入手し、 HBA ベンダーの指示に従ってインストールします。
 . HBAをFCスイッチに接続するか、またはストレージシステムに直接接続します。
 . FCスイッチのドキュメントに従って、FCスイッチにゾーンを作成します。
-. ONTAP の場合は、WWPNでスイッチをゾーニングします。必ず、ストレージコントローラの物理ポートのWWPNではなく、論理インターフェイス（LIF）のWWPNを使用してください。詳細については、を参照してください https://["『 SAN 構成ガイド』"^]。
+. ONTAP の場合は、WWPNでスイッチをゾーニングします。必ず、ストレージコントローラの物理ポートのWWPNではなく、論理インターフェイス（LIF）のWWPNを使用してください。詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["『 SAN 構成ガイド』"^]。
 
 
 
@@ -111,7 +111,7 @@ MPIO の選択は、 Windows XP および Windows Vista システムでは使用
 Host Utilitiesソフトウェアパッケージを対話的にインストールするには、Host Utilitiesのインストールプログラムを実行してプロンプトの指示に従う必要があります。
 
 .手順
-. から実行可能ファイルをダウンロードします https://["ネットアップサポートサイト"^]。
+. から実行可能ファイルをダウンロードします https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。
 . 実行ファイルをダウンロードしたディレクトリに移動します。
 . を実行します `netapp_windows_host_utilities_7.2_x64` ファイルを作成し、画面の指示に従います。
 . プロンプトが表示されたら、 Windows ホストをリブートします。
@@ -432,14 +432,14 @@ Windows Host Utilitiesの一般的なトラブルシューティングテクニ�
 === 可能性のある相互運用性の問題を特定するためのさまざまな領域
 
 * 潜在的な相互運用性の問題を特定するには、ホストオペレーティングシステムソフトウェア、ホストハードウェア、ONTAP ソフトウェア、およびストレージシステムハードウェアの組み合わせがHost Utilitiesでサポートされていることを確認する必要があります。
-* を確認する必要があります http://["NetApp Interoperability Matrix Tool で確認できます"^]。
+* を確認する必要があります http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]。
 * 正しい iSCSI 構成を使用していることを確認する必要があります。
 * リブート後にiSCSI LUNを使用できない場合は、Microsoft iSCSIイニシエータGUIの* Persistent Targets *タブで、ターゲットがpersistentと表示されていることを確認する必要があります。
 * LUN を使用するアプリケーションの起動時にエラーが表示される場合は、そのアプリケーションが iSCSI サービスに依存するように設定されていることを確認する必要があります。
 * ONTAP を実行するストレージコントローラへのFCパスでは、ノードの物理ポートのWWPNではなく、ターゲットLIFのWWPNを使用してFCスイッチがゾーニングされていることを確認する必要があります。
 * を確認しておく必要があります link:hu_wuhu_71_rn.html["リリースノート"] Windows Host Utilitiesを使用して既知の問題を確認します。このリリースノートには、既知の問題と制限事項が記載されています。
 * 使用しているONTAP のバージョンに対応したSANアドミニストレーションガイドのトラブルシューティング情報を確認してください。
-* 検索する必要があります https://["NetApp Bugs Online では"^] を参照してください。
+* 検索する必要があります https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] を参照してください。
 +
 ** [Advanced Search]の[Bug Type]フィールドで、* iSCSI - Windows *を選択し、*[Go]*を選択します。Bug Type * FCP-Windows *の検索を再度実行する必要があります。
 

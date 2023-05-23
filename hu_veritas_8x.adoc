@@ -36,7 +36,7 @@ Linux Unified Host Utilities をインストールすることを強く推奨し
 現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。
 
 .手順
-. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://["ネットアップサポートサイト"^] ホストに接続します。
+. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] ホストに接続します。
 . 次のコマンドを使用して、ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
@@ -77,7 +77,7 @@ enabled     up      active/non-optimized sdas   13:0:1:0   lif_9      66:192
 == SAN ブート中です
 
 .必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 Veritas Support Portal （ Product Matrix 、 Platform Lookup 、 HCL Matrix ）を参照して、 SAN ブート構成がサポートされていること、および既知の警告を確認してください。
 

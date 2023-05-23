@@ -485,7 +485,7 @@ NSID       UUID                                   Size
 | NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
 
-| 1517321年 | Oracle Linux 9.0 NVMe-oFホストでは、永続的検出コントローラが重複して作成されます | Oracle Linux 9.0のNVMe over Fabrics（NVMe-oF）ホストでは、を使用できます `nvme discover -p` 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1およびOracle Linux 9.0を実行している場合は、毎回重複するPDCが作成されます `nvme discover -p` が実行されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。 | https://["18118年"^] 
+| 1517321年 | Oracle Linux 9.0 NVMe-oFホストでは、永続的検出コントローラが重複して作成されます | Oracle Linux 9.0のNVMe over Fabrics（NVMe-oF）ホストでは、を使用できます `nvme discover -p` 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1およびOracle Linux 9.0を実行している場合は、毎回重複するPDCが作成されます `nvme discover -p` が実行されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。 | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118年"^] 
 |===
 
 

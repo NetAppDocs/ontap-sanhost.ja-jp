@@ -24,7 +24,7 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 
 * 安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。
 +
-を使用できます https://["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
+を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
 
 * ベンダー提供の HBA 管理パッケージを Web サイトにインストールする必要があります。
 +
