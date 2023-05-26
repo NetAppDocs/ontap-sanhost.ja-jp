@@ -3114,4 +3114,81 @@
   <block id="6900c94ed3bcf3920ffd579cf50e5209" category="paragraph">QFullSampleSizeを確認するには、次のコマンドを使用します。</block>
   <block id="7cdbf4845592ad7b5cdb4ccc2c4e2638" category="paragraph"><block ref="d6c304a8136df005fd734e2f1889954c" prefix="" category="inline-code"></block></block>
   <block id="8d0e68de728c46da62cafb173eb4dabc" category="sidebar">VMware vSphere 8</block>
+  <block id="2e920bc4fea58a11c2cd8f0900ced25a" category="summary">ONTAPを使用するAIX用のNVMe/FCホストの設定方法</block>
+  <block id="ef44b1520fc219818110cbb848b83d4c" category="doc">ONTAPを使用したAIXのNVMe/FCホスト構成</block>
+  <block id="8ab281bb60ad999625aaf3de3c38fb65" category="paragraph">NVMe/FCは、ONTAPストレージをターゲットとして使用して、IBM AIXホストおよびVIOS/PowerVMホストで有効にすることができます。サポートされる構成の詳細については、を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>。</block>
+  <block id="3f30b3d0388d2e37b9eab09266e88352" category="paragraph">ONTAPを備えたAIXホストでは、NVMe/FCホスト構成が次のようにサポートされます。</block>
+  <block id="0ea2a32c53bc6cd3ea3534dccecb8603" category="list-text">ONTAP 9.13.1以降では、IBM AIX 7.2 TL5 SP6、AIX 7.3 TL1 SP2、およびVIOS 3.1.4.21リリースでNVMe over Fibre Channel（NVMe/FC）のサポートが追加され、物理スタックと仮想スタックの両方でSANブートがサポートされます。SANブートサポートの設定の詳細については、IBMのドキュメントを参照してください。</block>
+  <block id="870666297c802760e0f740c23ba0f86a" category="list-text">NVMe/FCは、POWER9およびPower10 IBMサーバでのみサポートされます。</block>
+  <block id="2cbe79c2517f134493f44b09d5cbb74f" category="list-text">NVMeデバイスには、AIX SCSI MPIOサポート用のHUKなど、個別のPCM（Path Control Module）は必要ありません。</block>
+  <block id="4eb7ab60a4431529679ce25f0492c7af" category="list-text">VIOS 3.1.4.21では、NetApp（VIOS/PowerVM）による仮想化のサポートが導入されました。これは、Power10 IBMサーバを使用したNPIV（N_PortID Virtualization）ストレージ仮想化モードでのみサポートされます。</block>
+  <block id="3f11c6032647a5818c534829ca2b2ee0" category="list-text">アダプタファームウェア12.4.257.30以降のバージョンの32Gb FC Emulexアダプタ（EN1A、EN1B、EN1L、EN1M）または64Gb FCアダプタ（EN1N、EN1P）があることを確認します。</block>
+  <block id="8bd787dd7b428233f651ee1c46e21ee9" category="list-text">MetroCluster構成を使用している場合は、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントがサポートされるように、AIX NVMe/FCのデフォルトのAPD（All Path Down）時間を変更することを推奨します。追加情報および推奨されるデフォルト設定の変更については、パブリックレポート1553249を参照してください。</block>
+  <block id="0e7e32cf18062ea2f0711c507e314b8a" category="list-text">デフォルトでは、AIXホストOSのANATT値は30秒です。IBMは、ANATT値を60秒に制限するInterim Fix（IFIX）を提供しています。すべてのONTAPワークフローが無停止であることを確認するには、IBMのWebサイトからIFIXをインストールする必要があります。</block>
+  <block id="feea0cbb465b6caacbe6b2e93f04da1d" category="admonition">NVMe/FC AIXをサポートするには、GAバージョンのAIX OSにIFIXをインストールする必要があります。これは、VIOS/PowerVM OSでは必要ありません。</block>
+  <block id="c07e427521a4c5ceb9704138566e124e" category="paragraph">IFIXの詳細は次のとおりです。</block>
+  <block id="e1fa9920a353e14604b971646734d9ad" category="list-text">AIXレベル72-TL5-SP6-2320の場合は、をインストールします<block ref="f896e07534b8a3b773955f68065d246e" prefix=" " category="inline-code"></block> パッケージ。</block>
+  <block id="532cbcbb7aad95ce1f00e4e3fb4b03f6" category="list-text">AIXレベル73-TL1-SP2-2320の場合は、をインストールします<block ref="9b3ffcc15ca4d75da623901d3832fc42" prefix=" " category="inline-code"></block> パッケージ。</block>
+  <block id="f17bfdf5999401bcdd6897f6d5dd675b" category="inline-link-macro">AIXでの暫定修正の管理</block>
+  <block id="bcdcf815cb913fe205982051fea55f20" category="paragraph">ifixの管理の詳細については、を参照してください <block ref="d0c56d52e1733062faaa4c2667974f7c" category="inline-link-macro-rx"></block>。</block>
+  <block id="fe969132e8cace79306a9789cbb1baf4" category="admonition">に関連する以前にインストールされたifixがないAIXバージョンにifixをインストールする必要があります<block ref="ed3d677bd9df1c532cefdc326b4fb80e" prefix=" " category="inline-code"></block> システム上。これらのifixが存在する場合、新しいインストールと競合します。</block>
+  <block id="940130be22cd59a60c9c2a5671450753" category="paragraph">次の表に、非仮想化モードでAIX LPAR（AIX論理パーティション）または物理/ネイティブスタックに割り当てられたHBAを示します。</block>
+  <block id="0437eec9c1ba5909642a99ee90c5a546" category="cell">ホストOS</block>
+  <block id="11b3050b36fe4bf65551c9379e74cac7" category="cell">パワーアーチ</block>
+  <block id="807dd41b75918d70b41f7722ef76ddcb" category="cell">電源FWバージョン</block>
+  <block id="650be61892bf690026089544abbd9d26" category="cell">モード</block>
+  <block id="8413c683b4b27cc3f4dbd4c90329d8ba" category="cell">コメント</block>
+  <block id="7b9eb3515c255f26f173af0f1d02ca10" category="cell">AIX 7.2 TL5 SP6</block>
+  <block id="89832886f2c91d14b5ea95e8c8b2efc3" category="cell">POWER9</block>
+  <block id="fdcfefc0dd4d47b4775e7a895353b298" category="cell">Fw 950以降</block>
+  <block id="da032935d38f58f2a80e85824e285a21" category="cell">物理スタック</block>
+  <block id="948c847302bfad6875962089bd70b8eb" category="cell">IFIXはTS012877410から入手できます。</block>
+  <block id="ef68d757b6bda6ddbe9888cee04ed83e" category="cell">パワー10</block>
+  <block id="491f480bd25135b61af1898f4382d024" category="cell">Fw 1010以降</block>
+  <block id="e7cda58d3cb375f2860722871215ea51" category="cell">SANブーティングがサポートされています。IFIXはTS012877410から入手できます。</block>
+  <block id="307b80695029d3fb204f358d595aa521" category="cell">AIX 7.3 TL1 SP2</block>
+  <block id="bfbb073807eefa21522d9a2da6f6143e" category="cell">物理スタックと仮想スタック</block>
+  <block id="2169ce752df21260967f4168dcd448df" category="paragraph">次の表に、仮想化モードでNPIV対応サポートを使用するVIOSに割り当てられたHBAを示します。</block>
+  <block id="c31bfee70971bfd9d23d0e828b31f576" category="cell">VIOS/PowerVM 3.1.4.21</block>
+  <block id="8ed3cb67c40a76fb7e1d9cf52f588283" category="cell">仮想スタック</block>
+  <block id="ffe61e892c57af1c7ba6edcf6cd43164" category="cell">サポートは、AIX 7.3 TL1 SP2 for VIOCcから開始されます</block>
+  <block id="7497bca195bb082ae940f34297194a2d" category="paragraph">ONTAPを使用したAIXでのNVMe/FCホスト構成には、次の既知の制限事項があります。</block>
+  <block id="e210d5a356038b64a9864c04f6066b20" category="list-text">AIXホスト上のQLogic / Marvel 32G FC HBAでは、NVMe/FCはサポートされません。</block>
+  <block id="0addf2aa980ae0c0697b70236083a535" category="list-text">POWER9 IBMサーバを使用するNVMe/FCデバイスでは、SANブートはサポートされません。</block>
+  <block id="108d929e2d13a7291d4c2a75f9607cb3" category="paragraph">NVMeマルチパスに使用されるIBM MPIO（マルチパスI/O）は、AIX OSのインストール時にデフォルトで提供されます。</block>
+  <block id="55bd8b08aa29008e531a080aa61ecdb8" category="paragraph">を使用して、AIXホストでNVMeマルチパスが有効になっていることを確認できます<block ref="d4911144bc4ed6672c49d5124ec36d0d" prefix=" " category="inline-code"></block> コマンドを実行します</block>
+  <block id="6ca857f7a44a21cfffda914cf9549710" category="paragraph">*出力例*</block>
+  <block id="befb82eb50a6a0cc76543fdb7fa81b05" category="paragraph">次の手順を使用して、Broadcom/Emulexアダプタ用にNVMe/FCを設定できます。</block>
+  <block id="869544161f77927dc1a5671f65d62425" category="list-text">サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>。</block>
+  <block id="ce2df3d84c39fdb894251f18b0f706c8" category="list-text">NVMe/FCプロトコルのサポートは、物理FCではデフォルトで有効になっていますが、NVMe/FCプロトコルのサポートは、Virtual I/O Server（VIOS）のVirtual Fibre Channel（VFC；仮想ファイバチャネル）では無効になっています。NVMe/FCのサポートが無効になっているアダプタのリストを取得します。</block>
+  <block id="955736fca778773f397bfff3fb13554e" category="list-text">を実行して、アダプタでNVMe/FCプロトコルのサポートを有効にします<block ref="298944b0d52065fb6d4009e722898415" prefix=" " category="inline-code"></block> VIOSでのコマンド：</block>
+  <block id="6cd5c80cb797f1e2d35f1d580ffe6d20" category="list-text">アダプタでサポートが有効になっていることを確認します。</block>
+  <block id="8efc24b1df9bc9f173cfba2079a3ac11" category="list-text">現在のすべてのアダプタまたは選択したアダプタに対してNVMe/FCプロトコルを有効にします。</block>
+  <block id="84b3e0604b5f47c082acaf2ab109e481" category="list-text">すべてのアダプタに対してNVMe/FCプロトコルを有効にします。</block>
+  <block id="af34ce57ad4def33e18653786afd224e" category="list-text">を変更します<block ref="f554e1472be57a017a09b8e72df7e0b2" prefix=" " category="inline-code"></block> の属性値<block ref="6366faad0ce9db50ad4ec0b944e6804f" prefix=" " category="inline-code"></block> 疑似デバイスをに送信します<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block>。</block>
+  <block id="1e51be8d7b5e359a2e676b1786aa6f7c" category="list-text">を設定します<block ref="29869abeb6a28a2a0c3dcbf38108e625" prefix=" " category="inline-code"></block> 属性値をに設定します<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block> すべてのVFCホストデバイスに対して。</block>
+  <block id="6ea83948bb41db592f1dd144bab617d5" category="list-text">を変更して、選択したアダプタのNVMe/FCプロトコルを有効にします<block ref="29869abeb6a28a2a0c3dcbf38108e625" prefix=" " category="inline-code"></block> へのVFCホストデバイス属性の値<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block>。</block>
+  <block id="2b7b658346d3fa52c5363c17cfe2b64f" category="list-text">確認します<block ref="fb697c2845ab4f6877db5fb0f162a140" prefix=" " category="inline-code"></block> がサーバに作成されました：</block>
+  <block id="9ca965cb8c1f3cc98538fd9fe17ee462" category="paragraph">* exmaple output *</block>
+  <block id="6205e6a8adf00a039a76f80fba751d5d" category="list-text">サーバからホストのNQNを記録します。</block>
+  <block id="5609ae4308e7e13b571a4609a80ca28c" category="list-text">パーティションUUIDを表示します。</block>
+  <block id="46fb92f9d8bcac6d074199517bcfd9da" category="list-text">ホストのNQNをチェックし、ONTAPアレイの対応するサブシステムのホストのNQN文字列と一致することを確認します。</block>
+  <block id="da208fb575db2ac57ff1319036af2a6f" category="list-text">イニシエータポートが動作しており、ターゲットLIFが表示されていることを確認します。</block>
+  <block id="413d1a842341ac8491856d35085746ac" category="paragraph">ONTAPネームスペースがホストに正しく反映されていることを確認する必要があります。これを行うには、次のコマンドを実行します。</block>
+  <block id="c4815a9e7bab07d952f3a16f2d250f1f" category="paragraph">マルチパスのステータスを確認できます。</block>
+  <block id="b1460fc99f40abf0e4777c0ef83f9340" category="paragraph">ONTAPを備えたAIXでのNVMe/FCホストの設定には、次の既知の問題があります。</block>
+  <block id="31c5b0de25b168798dceb058bef8a7f6" category="cell">BURT ID</block>
+  <block id="42dcdffc46f5810bfaac54d46fbf50ef" category="cell">1553249</block>
+  <block id="650a7c31a67a66d1f1f10b3eccb13db4" category="cell">MCC計画外スイッチオーバーイベントをサポートするために変更されるAIX NVMe/FCのデフォルトAPD時間</block>
+  <block id="9f84e76956bfe4d716d3866a854ef57e" category="cell">AIXオペレーティングシステムでは、NVMe/FCにデフォルトでAll Path Down（APD）タイムアウト値の20秒が使用されます。  ただし、ONTAP MetroClusterの自動計画外スイッチオーバー（AUSO）とTiebreakerで開始されるスイッチオーバーのワークフローには、APDのタイムアウト時間よりも少し時間がかかり、I/Oエラーが発生することがあります。</block>
+  <block id="5f6372d1d8f487ae80b5feed7e441420" category="cell">1546017だ</block>
+  <block id="24f2a7ff1a2835519ea571d3e22b1a36" category="cell">AIX NVMe/FCではANATTの上限が60秒に設定されていますが、ONTAPでは120秒に設定されています</block>
+  <block id="16c567932b89582ab5042df30072ca4e" category="cell">ONTAPは、120秒のコントローラ識別でANA（非対称ネームスペースアクセス）移行タイムアウトをアドバタイズします。現在、IFIXでは、AIXはコントローラ識別からANA移行タイムアウトを読み取りますが、その制限を超えている場合は実質的に60秒にクランプします。</block>
+  <block id="9539a7ea940559ecdced176b2592b5d3" category="cell">1541386年</block>
+  <block id="7dcc9f5201e7653745b04540dfb62afa" category="cell">AIX NVMe/FCがANATTの有効期限後にEIOにヒットしました</block>
+  <block id="005bc828fe1c9102500705a406202e5c" category="cell">Storage Failover（SFO；ストレージフェイルオーバー）イベントが発生した場合、特定のパスでANA（非対称ネームスペースアクセス）移行がタイムアウトの上限を超えると、ネームスペースへの正常な代替パスがあるにもかかわらず、AIX NVMe/FCホストがI/Oエラーで失敗します。</block>
+  <block id="51febd786dec93062cef9cfc8123006f" category="cell">1541380</block>
+  <block id="875f8b6e43bcfbc9770e44865a0aed5c" category="cell">AIX NVMe/FCは、ANATTのハーフ/フルの有効期限が切れるまで待機してから、ANA AENのあとにI/Oを再開します</block>
+  <block id="656b00a7eb6f6aa3f9eb9c87cb124f32" category="cell">IBM AIX NVMe/FCでは、ONTAPで公開されるAsynchronous Notification（AEN；非同期通知）の一部がサポートされません。このように最適化されていないANA処理は、SFO処理中に最適化されていません。</block>
+  <block id="7e6bb0931a72759d39514aa924b420bc" category="sidebar">AIX の場合</block>
 </blocks>
