@@ -1,0 +1,675 @@
+---
+sidebar: sidebar 
+permalink: nvme_rhel_92.html 
+keywords: nvme, linux, rhel, red hat, enterprise 
+summary: ONTAP でRHEL 8.7用のNVMe-oFホストを設定する方法 
+---
+= ONTAPを使用したRHEL 9.2のNVMe-oFホスト構成
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:source-highlighter: highlighter.js
+:toc-position: content
+
+
+[role="lead"]
+NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたRed Hat Enterprise Linux（RHEL）9.2でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
+
+ONTAPを使用するRHEL 9.2では、NVMe-oFホスト構成が次のようにサポートされます。
+
+* NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
+* 特定のHost Bus Adapter（HBA；ホストバスアダプタ）の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。
+
+
+サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+
+
+
+== の機能
+
+* RHEL 9.2では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。
+
+
+
+
+== 既知の制限
+
+既知の制限事項はありません。
+
+
+
+== ソフトウェアのバージョンを確認します
+
+次の手順を使用して、サポートされるRHEL 9.2ソフトウェアの最小バージョンを検証できます。
+
+.手順
+. サーバにRHEL 9.2をインストールします。インストールが完了したら、指定したRHEL 9.2カーネルが実行されていることを確認します。
++
+[listing]
+----
+# uname -r
+----
++
+*出力例：*
+
++
+[listing]
+----
+5.14.0-284.11.1.el9_2.x86_64
+----
+. 「 nvme-cli 」パッケージをインストールします。
++
+[listing]
+----
+# rpm -qa|grep nvme-cli
+----
++
+*出力例：*
+
++
+[listing]
+----
+nvme-cli-2.2.1-2.el9.x86_64
+----
+. をインストールします `libnvme` パッケージ：
++
+[listing]
+----
+#rpm -qa|grep libnvme
+----
++
+*出力例*
+
++
+[listing]
+----
+libnvme-1.2-2.el9.x86_64
+----
+. RHEL 9.2ホストで、hostnqnの文字列を確認します `/etc/nvme/hostnqn`：
++
+[listing]
+----
+# cat /etc/nvme/hostnqn
+----
++
+*出力例*
+
++
+[listing]
+----
+nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0032-3310-8033-b8c04f4c5132
+----
+. を確認します `hostnqn` 文字列はに一致します `hostnqn` ONTAP アレイ上の対応するサブシステムの文字列。
++
+[listing]
+----
+::> vserver nvme subsystem host show -vserver vs_ol_nvme
+----
++
+*出力例：*
+
++
+[listing]
+----
+Vserver     Subsystem          Host NQN
+----------- --------------- ----------------------------------------------------------
+vs_nvme207   rhel_207_LPe32002    nqn.2014-08.org.nvmexpress:uuid:325e7554-1f9b-11ec-8489-3a68dd61a4df
+----
++
+
+NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合は、を使用してください `vserver modify` コマンドを使用してを更新します `hostnqn` 対応するONTAP アレイサブシステムで、に一致する文字列を指定します `hostnqn` から文字列 `/etc/nvme/hostnqn` ホスト。
+
+
+
+
+
+== NVMe/FC を設定
+
+NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設定できます。
+
+[role="tabbed-block"]
+====
+.Broadcom / Emulex
+--
+.手順
+. サポートされているアダプタモデルを使用していることを確認します。
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modelname
+----
++
+*出力例：*
+
++
+[listing]
+----
+LPe32002-M2
+LPe32002-M2
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modeldesc
+----
++
+*出力例：*
+
++
+[listing]
+----
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+----
+. 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアと受信トレイドライバ。
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/fwrev
+14.0.639.18, sli-4:2:c
+14.0.639.18, sli-4:2:c
+
+# cat /sys/module/lpfc/version
+0:12.8.0.11
+----
++
+サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+
+. 確認します `lpfc_enable_fc4_type` がに設定されます `3`：
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
+. イニシエータポートが動作していること、およびターゲットLIFが表示されていることを確認します。
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x100000109b1c1204
+0x100000109b1c1205
+----
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109b1c1204 WWNN x200000109b1c1204 DID x011d00 ONLINE
+NVME RPORT WWPN x203800a098dfdd91 WWNN x203700a098dfdd91 DID x010c07 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203900a098dfdd91 WWNN x203700a098dfdd91 DID x011507 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000f78 Cmpl 0000000f78 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002fe29bba Issue 000000002fe29bc4 OutIO 000000000000000a
+abort 00001bc7 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001e15 Err 0000d906
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109b1c1205 WWNN x200000109b1c1205 DID x011900 ONLINE
+NVME RPORT WWPN x203d00a098dfdd91 WWNN x203700a098dfdd91 DID x010007 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203a00a098dfdd91 WWNN x203700a098dfdd91 DID x012a07 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000fa8 Cmpl 0000000fa8 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002e14f170 Issue 000000002e14f17a OutIO 000000000000000a
+abort 000016bb noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001f50 Err 0000d9f8
+----
+
+
+--
+.NVMe / FC向けMarvell/QLogic FCアダプタ
+--
+.手順
+. RHEL 9.2 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPのサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/symbolic_name
+----
++
+*出力例*
+
++
+[listing]
+----
+QLE2742 FW:v9.08.02 DVR:v10.02.00.106-k
+QLE2742 FW:v9.08.02 DVR:v10.02.00.106-k
+----
+. 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
++
+[listing]
+----
+# cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+1
+----
+
+
+--
+====
+
+
+=== 1MB I/Oを有効にする（オプション）
+
+ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）を8と報告します。つまり、I/O要求の最大サイズは1MBまでです。ただし、Broadcom NVMe/FCホストに対する1MBの問題I/O要求には、を増やす必要があります `lpfc` の値 `lpfc_sg_seg_cnt` パラメータを256に設定します（デフォルト値の64から）。
+
+.手順
+. lpfc_sg_seg_cnt パラメータを 256 に設定します
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. 「 racut-f 」コマンドを実行し、ホストを再起動します。
+. lpfc_sg_seg_cnt' が 256 であることを確認します
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+NOTE: これはQlogic NVMe/FCホストには該当しません。
+
+
+
+== NVMe/FC を設定
+
+NVMe/TCPには自動接続機能はありません。そのため、パスがダウンしてデフォルトのタイムアウト（10分）内に復元されないと、NVMe/TCPは自動的に再接続できません。タイムアウトを回避するには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。
+
+.手順
+. イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
++
+[listing]
+----
+nvme discover -t tcp -w host-traddr -a traddr
+----
++
+*出力例：*
+
++
+[listing]
+----
+# nvme discover -t tcp -w 192.168.167.5 -a 192.168.167.22
+
+Discovery Log Number of Records 8, Generation counter 18
+=====Discovery Log Entry 0======
+trtype:  tcp
+adrfam:  ipv4
+subtype: current discovery subsystem
+treq:    not specified
+portid:  0
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.c680f5bcae1411ed8639d039ea951c46:discovery
+traddr:  192.168.166.23
+eflags:  explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 1======
+trtype:  tcp
+adrfam:  ipv4
+subtype: current discovery subsystem
+treq:    not specified
+portid:  1
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.c680f5bcae1411ed8639d039ea951c46:discovery
+traddr:  192.168.166.22
+eflags:  explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 2======
+trtype:  tcp
+adrfam:  ipv4
+subtype: current discovery subsystem
+treq:    not specified
+portid:  2
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.c680f5bcae1411ed8639d039ea951c46:discovery
+traddr:  192.168.167.23
+eflags:  explicit discovery connections, duplicate discovery information
+sectype: none
+..........
+----
+. NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで、検出ログページのデータを正常に取得できることを確認します。
++
+[listing]
+----
+nvme discover -t tcp -w host-traddr -a traddr
+----
++
+*出力例：*
+
++
+[listing]
+----
+#nvme discover -t tcp -w 192.168.166.5 -a 192.168.166.22
+#nvme discover -t tcp -w 192.168.166.5 -a 192.168.166.23
+#nvme discover -t tcp -w 192.168.167.5 -a 192.168.167.22
+#nvme discover -t tcp -w 192.168.167.5 -a 192.168.167.23
+----
+. を実行します `nvme connect-all` ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象にコマンドを実行し、コントローラ損失のタイムアウト時間を30分または1、800秒以上に設定します。
++
+[listing]
+----
+nvme connect-all -t tcp -w host-traddr -a traddr -l 1800
+----
++
+*出力例：*
+
++
+[listing]
+----
+#	nvme	connect-all	-t	tcp	-w	192.168.166.5	-a	192.168.166.22	-l	1800
+#	nvme	connect-all	-t	tcp	-w	192.168.166.5	-a	192.168.166.23	-l	1800
+#	nvme	connect-all	-t	tcp	-w	192.168.167.5	-a	192.168.167.22	-l	1800
+#	nvme	connect-all	-t	tcp	-w	192.168.167.5	-a	192.168.167.23	-l	1800
+
+----
+
+
+
+
+== NVMe-oF を検証します
+
+NVMe-oFの検証には、次の手順を使用できます。
+
+.手順
+. カーネル内NVMeマルチパスが有効になっていることを確認します。
++
+[listing]
+----
+# cat /sys/module/nvme_core/parameters/multipath
+Y
+----
+. 該当するONTAPネームスペースの適切なNVMe-oF設定（modelをNetApp ONTAPコントローラに設定し、load balancing iopolicyをラウンドロビンに設定するなど）がホストに正しく反映されていることを確認します。
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/model
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+round-robin
+round-robin
+----
+. ネームスペースが作成され、ホストで正しく検出されたことを確認します。
++
+[listing]
+----
+# nvme list
+----
++
+*出力例：*
+
++
+[listing]
+----
+Node         SN                   Model
+---------------------------------------------------------
+/dev/nvme0n1 81CZ5BQuUNfGAAAAAAAB	NetApp ONTAP Controller
+
+
+Namespace Usage    Format             FW             Rev
+-----------------------------------------------------------
+1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
+----
+. 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
++
+[role="tabbed-block"]
+====
+.NVMe/FC
+--
+[listing]
+----
+# nvme list-subsys /dev/nvme0n1
+----
+*出力例：*
+
+[listing]
+----
+nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.8763d311b2ac11ed950ed039ea951c46:subsystem.rhel_207_LB \
++- nvme1 fc traddr=nn-0x20a6d039ea954d17:pn-0x20a7d039ea954d17,host_traddr=nn-0x200000109b1b95ef:pn-0x100000109b1b95ef live optimized
++- nvme2 fc traddr=nn-0x20a6d039ea954d17:pn-0x20a8d039ea954d17,host_traddr=nn-0x200000109b1b95f0:pn-0x100000109b1b95f0 live optimized
++- nvme3 fc traddr=nn-0x20a6d039ea954d17:pn-0x20aad039ea954d17,host_traddr=nn-0x200000109b1b95f0:pn-0x100000109b1b95f0 live non-optimized
++- nvme5 fc traddr=nn-0x20a6d039ea954d17:pn-0x20a9d039ea954d17,host_traddr=nn-0x200000109b1b95ef:pn-0x100000109b1b95ef live non-optimized
+
+----
+--
+.NVMe/FC
+--
+[listing]
+----
+# nvme list-subsys /dev/nvme1n1
+----
+*出力例：*
+
+[listing]
+----
+
+nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.c680f5bcae1411ed8639d039ea951c46:subsystem.rhel_tcp97 \
++- nvme1 tcp traddr=192.168.167.23,trsvcid=4420,host_traddr=192.168.167.5 live non-optimized
++- nvme2 tcp traddr=192.168.167.22,trsvcid=4420,host_traddr=192.168.167.5 live non-optimized
++- nvme3 tcp traddr=192.168.166.23,trsvcid=4420,host_traddr=192.168.166.5 live optimized
++- nvme4 tcp traddr=192.168.166.22,trsvcid=4420,host_traddr=192.168.166.5 live optimized
+
+----
+--
+====
+. ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
++
+[role="tabbed-block"]
+====
+.列（ Column ）
+--
+[listing]
+----
+# nvme netapp ontapdevices -o column
+----
+*出力例：*
+
+[listing]
+----
+Device        Vserver   Namespace Path
+----------------------- ------------------------------
+/dev/nvme0n1 vs_tcp           /vol/vol1/ns1
+
+
+
+NSID       UUID                                   Size
+------------------------------------------------------------
+1          79c2c569-b7fa-42d5-b870-d9d6d7e5fa84	21.47GB
+----
+--
+.JSON
+--
+[listing]
+----
+# nvme netapp ontapdevices -o json
+----
+*出力例*
+
+[listing]
+----
+{
+
+"ONTAPdevices" : [
+{
+
+"Device" : "/dev/nvme0n1",
+"Vserver" : "vs_tcp79",
+"Namespace_Path" : "/vol/vol1/ns1",
+"NSID" : 1,
+"UUID" : "79c2c569-b7fa-42d5-b870-d9d6d7e5fa84",
+"Size" : "21.47GB",
+"LBA_Data_Size" : 4096,
+"Namespace_Size" : 5242880
+},
+
+]
+}
+----
+--
+====
+
+
+
+
+== 既知の問題
+
+既知の問題はありません。
+
+
+
+== トラブルシューティング
+
+NVMe-oFの障害をトラブルシューティングする前に、実行している設定がIMTの仕様に準拠していることを確認してから、次の手順に進んでホスト側の問題をデバッグします。
+
+
+
+=== 詳細ログを有効にします
+
+構成に問題 が含まれている場合は、詳細なロギングを使用してトラブルシューティングに必要な情報を得ることができます。
+
+.手順
+Qlogicの詳細ロギングを設定する手順 （qla2xxx）は、lpfc詳細ロギングを設定する手順 とは異なります。
+
+[role="tabbed-block"]
+====
+.LPFC
+--
+.手順
+. を設定します `lpfc_log_verbose` NVMe/FCイベントをログに記録するためのドライバ設定は次のいずれかです。
++
+[listing]
+----
+#define LOG_NVME 0x00100000 /* NVME general events. */
+#define LOG_NVME_DISC 0x00200000 /* NVME Discovery/Connect events. */
+#define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
+#define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
+----
+. 値を設定したら、を実行します `dracut-f` コマンドを実行し、ホストをリブートします。
+. 設定を確認します。
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_log_verbose=0xf00083
+
+# cat /sys/module/lpfc/parameters/lpfc_log_verbose
+15728771
+----
+
+
+--
+.qla2xxx
+--
+NVMe/FCについては、同様の固有のqla2xxxロギングはありません `lpfc` ドライバ。したがって、次の手順を使用して一般的なqla2xxxログレベルを設定できます。
+
+.手順
+. 対応する「 m odprobe qla2xxx conf 」ファイルに「 ql2xextended_error_logging=0x1e400000 」の値を追加します。
+. 「 d racut-f 」コマンドを実行して「 initramfs 」を再作成し、ホストを再起動します。
+. リブート後、次のように詳細ログが適用されていることを確認します。
++
+[listing]
+----
+# cat /etc/modprobe.d/qla2xxx.conf
+options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
+# cat /sys/module/qla2xxx/parameters/ql2xextended_error_logging
+507510784
+----
+
+
+--
+====
+
+
+=== 一般的なnvme-CLIエラーとその回避策があります
+
+によって表示されるエラーです `nvme-cli` 実行中 `nvme discover`、 `nvme connect`または `nvme connect-all` 処理とその対処方法を次の表に示します。
+
+[cols="20, 20, 50"]
+|===
+| エラーは 'nvme-cli' によって表示されます | 原因と考えられます | 回避策 
+
+
+| '/dev/nvme-Fabrics への書き込みに失敗しました : 引数が無効です | 構文が正しくありません | の正しい構文を使用していることを確認します `nvme discover`、 `nvme connect`および `nvme connect-all` コマンド 
+
+
+| '/dev/nvme-Fabrics への書き込みに失敗しました : このようなファイルまたはディレクトリはありません | NVMeコマンドに誤った引数を指定した場合など、複数の問題が原因でこのエラーがトリガーされることがあります。  a| 
+* コマンドに正しい引数（正しいWWNN文字列、WWPN文字列など）が渡されたことを確認します。
+* 引数が正しいにもかかわらず、このエラーが引き続き表示される場合は、を確認してください `/sys/class/scsi_host/host*/nvme_info` コマンドの出力は正しいですが、NVMeイニシエータはと表示されます `Enabled`、およびNVMe/FCターゲットLIFがリモートポートのセクションに正しく表示されます。例
++
+[listing]
+----
+
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+NVME LPORT lpfc0 WWPN x10000090fae0ec9d WWNN x20000090fae0ec9d DID x012000 ONLINE
+NVME RPORT WWPN x200b00a098c80f09 WWNN x200a00a098c80f09 DID x010601 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000071 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a6 Outstanding 0000000000000001
+NVME Initiator Enabled
+NVME LPORT lpfc1 WWPN x10000090fae0ec9e WWNN x20000090fae0ec9e DID x012400 ONLINE
+NVME RPORT WWPN x200900a098c80f09 WWNN x200800a098c80f09 DID x010301 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000073 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a8 Outstanding 0000000000000001
+----
+* ターゲットLIFがに表示されない場合は、で上記のように表示されます `nvme_info` コマンドの出力で、を確認します `/var/log/messages` および `dmesg` 疑わしいNVMe/FCエラーがないかどうかをコマンドで出力し、状況に応じて報告または修正
+
+
+
+
+| ' 取得する検出ログエントリがありません  a| 
+一般的には、が観察されます `/etc/nvme/hostnqn` 文字列がネットアップアレイの対応するサブシステムに追加されていないか、正しくありません `hostnqn` 文字列がそれぞれのサブシステムに追加されています。
+ a| 
+が正確であることを確認します `/etc/nvme/hostnqn` 文字列がネットアップアレイの対応するサブシステムに追加されます（を使用して確認してください） `vserver nvme subsystem host show` コマンド）。
+
+
+
+| '/dev/nvme-Fabrics への書き込みに失敗しました：オペレーションはすでに進行中です  a| 
+コントローラの関連付けまたは指定された操作がすでに作成されている場合、または作成中に発生した場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。
+ a| 
+なしを実行してみてください `nvme discover` しばらくしてからもう一度コマンドを実行してください。の場合 `nvme connect` および `connect-all`を実行します `nvme list` コマンドを使用して、ネームスペースデバイスが作成済みで、ホストに表示されていることを確認します。
+
+|===
+
+
+=== テクニカルサポートへの連絡のタイミング
+
+問題が解決しない場合は、次のファイルとコマンドの出力を収集し、テクニカルサポートに問い合わせてトリアージを依頼してください。
+
+[listing]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+/var/log/messages
+dmesg
+nvme discover output as in:
+nvme discover --transport=fc --traddr=nn-0x200a00a098c80f09:pn-0x200b00a098c80f09 --host-traddr=nn-0x20000090fae0ec9d:pn-0x10000090fae0ec9d
+nvme list
+nvme list-subsys /dev/nvmeXnY
+----

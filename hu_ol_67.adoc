@@ -127,10 +127,11 @@ NOTE: 1 つの LUN へのパスを余分に使用しないでください。必�
 
 Oracle Linux 6.7 OS は、 ONTAP LUN を認識し、すべての設定パラメータを自動的に正しく設定するようにコンパイルされます。
 
-* 。 `multipath.conf` マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。
-`touch /etc/multipath.conf`。
-* このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。
+。 `multipath.conf` マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。
 
+`touch /etc/multipath.conf`。
+
+このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。
 
 [listing]
 ----
@@ -138,21 +139,27 @@ Oracle Linux 6.7 OS は、 ONTAP LUN を認識し、すべての設定パラメ�
 # /etc/init.d/multipathd start
 ----
 * に直接何も追加する必要はありません `multipath.conf` ファイル。ただし、マルチパスで管理しないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除きます。
-* 不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。
-* <DevId>を、除外するデバイスのWWID文字列に置き換えます。
-
-
-....
+* には、次の構文を追加できます `multipath.conf` 不要なデバイスを除外するファイル：
++
+** <DevId>を、除外するデバイスのWWID文字列に置き換えます。
++
+[listing]
+----
 blacklist {
         wwid <DevId>
         devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
         devnode "^hd[a-z]"
         devnode "^cciss.*"
 }
-....
+----
+
+
+
+
 .例
 この例では、 `sda` は、ブラックリストに追加する必要があるローカルSCSIディスクです。
 
+.手順
 . 次のコマンドを実行して WWID を特定します。
 +
 [listing]
@@ -160,21 +167,22 @@ blacklist {
 # /lib/udev/scsi_id -gud /dev/sda
 360030057024d0730239134810c0cb833
 ----
-. /etc/multipath.confの「blacklist」行に次のWWIDを追加します。
+. このWWIDをの「blacklist」スタンザに追加します `/etc/multipath.conf`：
 +
-....
+[listing]
+----
 blacklist {
      wwid   360030057024d0730239134810c0cb833
      devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
      devnode "^hd[a-z]"
      devnode "^cciss.*"
 }
-....
+----
 
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、クリティカルなボリュームの状態を示します `multipathd` ONTAP LUNのパラメータと必要な値。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが上書きされた場合は、の以降のスタンザで修正する必要があります `multipath.conf` ONTAP LUNに適用されるファイル。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解してから、NetAppやOSベンダーに相談してください。
+次の表は、重要なを示しています `multipathd` ONTAP LUNのパラメータと必要な値。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが上書きされた場合は、の以降のスタンザで修正する必要があります `multipath.conf` ONTAP LUNに適用されるファイル。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解してから、NetAppやOSベンダーに相談してください。
 
 [cols="2*"]
 |===
