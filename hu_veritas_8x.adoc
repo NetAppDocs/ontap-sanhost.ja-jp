@@ -30,14 +30,14 @@ summary: VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト�
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
 
-Linux Unified Host Utilities をインストールすることを強く推奨しますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 .必要なもの
-現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。
+Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、そのバージョンをアップグレードまたは削除してから、次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
 . から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] ホストに接続します。
-. 次のコマンドを使用して、ソフトウェアパッケージをインストールします。
+. ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
 
@@ -83,15 +83,16 @@ Veritas Support Portal （ Product Matrix 、 Platform Lookup 、 HCL Matrix ）
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
-. 複数のパスが使用可能であることを確認する。
+. 複数のパスが使用可能であることを確認します。
 +
-複数のパスを使用できるのは、ホスト OS が稼働していて、パス上でのみです。
+
+NOTE: ホストOSが起動してパスで実行されると、複数のパスが使用可能になります。
 
 . SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
 
-. ホストをリブートして、ブートが正常に完了したことを確認します。
+. ホストをリブートしてブートが成功したことを確認します。
 
 
 
