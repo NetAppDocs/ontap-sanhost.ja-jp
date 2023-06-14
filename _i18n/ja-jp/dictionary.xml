@@ -3302,4 +3302,36 @@ xxx</block>
   <block id="fa084ae8b2dbc6a95f37460eeee74436" category="paragraph">Oracle Linux 7.3 OSは、ONTAP LUNを認識し、すべての設定パラメータを自動的に正しく設定するようにコンパイルされています。
 。<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。</block>
   <block id="43784ec2c1aaa42346ed96f22c8410b6" category="sidebar">9.2.</block>
+  <block id="30c9201611d0a0e2f87585a1866fa4bd" category="doc">NVMe-oFホスト構成（Oracle Linux 9.1 with ONTAP</block>
+  <block id="4f50054d9d230419cddd33dc0dfec902" category="paragraph">NVMe/FCやその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Asymmetric Namespace Access（ANA）対応のOracle Linux（OL）9.1でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="de83b7a38e0f01ada520a571da1c0ae7" category="paragraph">ONTAPを使用するOL 9.1のNVMe-oFホスト構成では、次のサポートが提供されます。</block>
+  <block id="3178ea29b080ab675001ea00192c87ef" category="list-text">Oracle Linux 9.1では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。</block>
+  <block id="6108d173e82e63fbc1c54d48885f9779" category="paragraph">次の手順を使用して、サポートされるOL 9.1ソフトウェアの最小バージョンを検証できます。</block>
+  <block id="04f2004bd2882021bd0d5a844d49db59" category="list-text">サーバにOL 9.1 GAをインストールします。インストールが完了したら、指定したOL 9.1 GAカーネルを実行していることを確認します。</block>
+  <block id="36613551a6c1d90fed466f991d6d7bed" category="list-text">Oracle Linux 9.1ホストで、を確認します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> 文字列<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
+  <block id="bef7b9714a6aa50ad9f306404bee35cc" category="paragraph">NVMe/FCは、Broadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設定できます。</block>
+  <block id="9cdf71978b23a4023a75f102c03f30d0" category="list-text">サポートされているアダプタモデルを使用していることを確認します。</block>
+  <block id="b7d859687cee13a86312666f61100178" category="list-text">OL 9.1 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPのサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="30a04882c68a73c9cf9bda1fde81eb99" category="list-text">OL 9.1ホストで次のNVMe/FC設定を確認します。</block>
+  <block id="2fa1372c51233d5657736d3be228889f" category="paragraph">ONTAPリリースを使用したOL 9.1のNVMe-oFホスト構成には、次の既知の問題があります。</block>
+  <block id="bed8afd121bcc77f7679ad8aa66edc6e" category="cell">1536937</block>
+  <block id="277f83d9faff75a0f8017279fcf07969" category="cell"><block ref="f3d48156832e70ac41335c007fa76798" prefix="" category="inline-code"></block> コマンドを実行すると、サブシステムについて繰り返しNVMeコントローラが出力されます</block>
+  <block id="8e34704e7af729eb74fd3ebaac0a9342" category="cell">。<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、指定したサブシステムに関連付けられているNVMeコントローラの一意のリストを返す必要があります。Oracle Linux 9.1の場合は、<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、指定したサブシステムに属するすべてのネームスペースについて、それぞれのAsymmetric Namespace Access（ANA）状態のNVMeコントローラを返します。ただし、ANAの状態はネームスペースごとの属性であるため、特定のネームスペースのサブシステムコマンド構文をリストすると、パスの状態を含む一意のNVMeコントローラエントリを表示すると便利です。</block>
+  <block id="260e47ef04cdd6f9d4989f12facd3a91" category="inline-link-macro">17998年</block>
+  <block id="1c68cdd2e6afb2c09809c25810c520aa" category="cell"><block ref="1c68cdd2e6afb2c09809c25810c520aa" category="inline-link-macro-rx"></block></block>
+  <block id="5cf8c44d0d04885f386e9f0d05461ec2" category="cell">1539101</block>
+  <block id="91a845901382406af3acfb27b99025ea" category="cell">Oracle Linux 9.1 NVMe-oFホストで永続的検出コントローラを作成できない</block>
+  <block id="465d3ac157f9559a71ac205312d4cf83" category="cell">Oracle Linux 9.1のNVMe over Fabrics（NVMe-oF）ホストでは、を使用できます<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとに1つのPDCを作成する必要があります。ただし、NVMe-oFホストでOracle Linux 9.1を実行している場合は、の実行時にPDCの作成が失敗します<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> コマンドが実行されます。</block>
+  <block id="86d73f9a9eafbf2a1bc89961929ab3e0" category="inline-link-macro">18196年</block>
+  <block id="84ccd25799ec2ea76f7f5faab8db9837" category="cell"><block ref="84ccd25799ec2ea76f7f5faab8db9837" category="inline-link-macro-rx"></block></block>
+  <block id="533f5c2e4bcf35d9cefe9c97046f7654" category="summary">ONTAPでOracle Linux 9.1を使用する方法について説明します</block>
+  <block id="83b6364b5fed0880c85b1a8caf70b15f" category="doc">NetApp ONTAPでOracle Linux 9.1を使用</block>
+  <block id="d1e17b610d12e40ce0477f24b702c3d2" category="paragraph">OL 9.1の場合は<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 9.1は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="2d3eb2d12b839784838915ca9789047f" category="paragraph">Oracle Linux 9.1 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方についてすべての構成パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="4c27689c3548176781daa0cf49fc86d5" category="paragraph">次の例は、上書きされたデフォルトを修正する方法を示しています。この場合は、を参照してください<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ファイルはの値を定義します<block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix=" " category="inline-code"></block> および<block ref="9434de34302b4f40887a7277cf35a8fc" prefix=" " category="inline-code"></block> ONTAP LUNと互換性がありません。ホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</block>
+  <block id="c6951501d0b58604dc509284a2398484" category="admonition">Oracle Linux 9.1 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> （Red Hat Enterprise Linux（RHEL）9.1の場合）</block>
+  <block id="1c50fcd4efa065aedf6e2667df8523f3" category="paragraph">Oracle Linux 9.1 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
+  <block id="da80aa62fc6cf6b66539a5a3933874a8" category="cell"><block ref="da80aa62fc6cf6b66539a5a3933874a8" category="inline-link-rx"></block></block>
+  <block id="00afbfe7fe5cea7d2316cbbc96e387c4" category="cell">Emulex HBAを使用するSAN LUNユーティリティには、ライブラリパッケージからのシンボリックリンクが必要です</block>
+  <block id="20e1c7fed64a39ad5334f26be4f4d8c7" category="paragraph">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、ホストバスアダプタ（HBA）検出に必要なライブラリの依存関係が見つからないというエラーメッセージが表示されます。</block>
 </blocks>
