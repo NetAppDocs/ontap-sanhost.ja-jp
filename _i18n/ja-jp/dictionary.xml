@@ -3362,4 +3362,19 @@ xxx</block>
   <block id="5df3ff7cb7b785e8c8bebccf076a731e" category="paragraph">次の例は、上書きされたデフォルトを修正する方法を示しています。この場合は、を参照してください<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ファイルはの値を定義します<block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix=" " category="inline-code"></block> および<block ref="9434de34302b4f40887a7277cf35a8fc" prefix=" " category="inline-code"></block> ONTAP LUNと互換性がありません。他のSANアレイがまだホストに接続されているためにこれらのパラメータを削除できない場合は、デバイススタンザを使用してONTAP LUN専用にこれらのパラメータを修正できます。</block>
   <block id="675cd8e52ba395fba110b2ae7c90675b" category="cell">Emulex HBAを搭載したSAN LUNユーティリティには、ライブラリパッケージからのシンボリックリンクが必要です</block>
   <block id="76da8e16b4b35b8424eb298d2b37d666" category="sidebar">8.8</block>
+  <block id="176cc9bb29c2c566372a62c8e2b9207f" category="summary">NVMe-oFホスト構成（Oracle Linux 9.2（ONTAP）</block>
+  <block id="c21e5441440a02a8ac88bceeb45f2e62" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Asymmetric Namespace Access（ANA）を使用するOracle Linux（OL）9.2でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="82beb63f036c3b1abac405a0e61d475e" category="paragraph">ONTAPを使用するOL 9.2のNVMe-oFホスト構成では、次の機能がサポートされます。</block>
+  <block id="cd79fc62c068824d6dc568dc509ac385" category="list-text">Oracle Linux 9.2では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。</block>
+  <block id="8aedc35fcf91dcf2a275ceabc6729295" category="paragraph">次の手順を使用して、サポートされるOL 9.2ソフトウェアの最小バージョンを検証できます。</block>
+  <block id="14374a8eee952ba9020eba6e85e99557" category="list-text">OL 9.2 GAをサーバにインストールします。インストールが完了したら、指定したOL 9.2 GAカーネルを実行していることを確認します。</block>
+  <block id="1c5ecc74e916278d5c8a3b5c5d8285ee" category="list-text">Oracle Linux 9.2ホストで、を確認します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> 文字列<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
+  <block id="52b073397dc3c50d460ba25c1ff0ffdc" category="list-text">OL 9.2 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPのサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="50b3b109855fd86109ac2efd64fb0104" category="list-text">OL 9.2ホストで次のNVMe/FC設定を確認します。</block>
+  <block id="5ca07756ac4e8650b2d00a4453c23b6c" category="summary">ONTAPでOracle Linux 9.2を使用する方法について説明します</block>
+  <block id="0673df3f2f443598fc466c25c247d676" category="doc">NetApp ONTAPでのOracle Linux 9.2の使用</block>
+  <block id="a55c64674e30e11be44367361a197b70" category="paragraph">OL 9.2の場合は<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 9.2は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="beb55dba3ba1d2be4056c146cb0bf458" category="paragraph">Oracle Linux 9.2 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="a706283e3f8c7062e0c4c4b423b93965" category="admonition">Oracle Linux 9.2 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）9.2の場合。</block>
+  <block id="01ae493ab1dc24745cd1c1e47aa25447" category="paragraph">Oracle Linux 9.2 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
 </blocks>
