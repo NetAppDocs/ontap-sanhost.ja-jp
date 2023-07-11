@@ -290,8 +290,23 @@ NOTE: Oracle Linux 9.0 RedHat Enterprise Kernel（RHCK）を設定するには�
 
 == 既知の問題
 
-Oracle Linux 9.0の既知の問題はありません。
+Oracle Linux 9.0 with NetApp ONTAPリリースには、次の既知の問題があります。
 
+[cols="10,30,30,10"]
+|===
+| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+
+
+| https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1508554["1508554."^] | Emulex HBAを搭載したSAN LUNユーティリティには、ライブラリパッケージからのシンボリックリンクが必要です  a| 
+SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、ホストバスアダプタ（HBA）検出に必要なライブラリの依存関係が見つからないというエラーメッセージが表示されます。
+
+[listing]
+----
+[root@hostname ~]# sanlun fcp show adapter -v
+Unable to locate /usr/lib64/libHBAAPI.so library
+Make sure the package installing the library is installed & loaded
+----| 該当なし 
+|===
 
 
 == リリースノート

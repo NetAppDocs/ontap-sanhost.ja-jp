@@ -2801,7 +2801,6 @@
   <block id="2722dd408e2c6dddce120893d4c5c0a7" category="paragraph">Oracle Linux 9.0 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。</block>
   <block id="834ccc84967581d1336062ada79c9a0e" category="admonition">Oracle Linux 9.0 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）9.0の場合</block>
   <block id="2de4eb9b3af281c4790a039cf2f92eb7" category="section-title">KVM設定</block>
-  <block id="fdf71d22ca12e1b94c3cffe88a22f330" category="paragraph">Oracle Linux 9.0の既知の問題はありません。</block>
   <block id="678b361384466d6bf28f930dd514a9a8" category="doc">NVMe/FCホスト構成（Oracle Linux 9.0 with ONTAP</block>
   <block id="2cbaf680f82c54fd6fb7778f0101ab88" category="paragraph">サポートされる構成の詳細については、を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>。</block>
   <block id="55fb7862f01474277c3620f9debfb3d5" category="list-text">Oracle Linux 9.0では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。</block>
@@ -3324,7 +3323,6 @@ xxx</block>
   <block id="533f5c2e4bcf35d9cefe9c97046f7654" category="summary">ONTAPでOracle Linux 9.1を使用する方法について説明します</block>
   <block id="83b6364b5fed0880c85b1a8caf70b15f" category="doc">NetApp ONTAPでOracle Linux 9.1を使用</block>
   <block id="c6951501d0b58604dc509284a2398484" category="admonition">Oracle Linux 9.1 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> （Red Hat Enterprise Linux（RHEL）9.1の場合）</block>
-  <block id="1c50fcd4efa065aedf6e2667df8523f3" category="paragraph">Oracle Linux 9.1 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
   <block id="da80aa62fc6cf6b66539a5a3933874a8" category="cell"><block ref="da80aa62fc6cf6b66539a5a3933874a8" category="inline-link-rx"></block></block>
   <block id="20e1c7fed64a39ad5334f26be4f4d8c7" category="paragraph">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、ホストバスアダプタ（HBA）検出に必要なライブラリの依存関係が見つからないというエラーメッセージが表示されます。</block>
   <block id="945ae6ecd5de8145a44bcea8e9d26556" category="summary">ONTAPでRed Hat Enterprise Linux 8.8を使用する方法について説明します</block>
@@ -3377,4 +3375,7 @@ xxx</block>
   <block id="beb55dba3ba1d2be4056c146cb0bf458" category="paragraph">Oracle Linux 9.2 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
   <block id="a706283e3f8c7062e0c4c4b423b93965" category="admonition">Oracle Linux 9.2 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）9.2の場合。</block>
   <block id="01ae493ab1dc24745cd1c1e47aa25447" category="paragraph">Oracle Linux 9.2 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
+  <block id="02b2bcdfe73b2cce057d7b84806fa6ed" category="paragraph">Oracle Linux 9.1 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
+  <block id="5890aebb0489382354458498eb36394e" category="paragraph">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、ホストバスアダプタ（HBA）検出に必要なライブラリの依存関係が見つからないというエラーメッセージが表示されます。</block>
+  <block id="cc40ed991073c638cc114ee18ad15d8c" category="paragraph">Oracle Linux 9.0 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
 </blocks>
