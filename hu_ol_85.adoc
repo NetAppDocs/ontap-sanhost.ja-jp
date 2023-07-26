@@ -4,7 +4,7 @@ permalink: hu_ol_85.html
 keywords: host utilities, oracle, linux, 8.5, netapp, ontap 
 summary: ONTAP でOracle Linux 8.5を使用する方法について説明します 
 ---
-= NetApp ONTAP でOracle Linux 8.5を使用する
+= Oracle Linux 8.5とONTAPの併用
 :toc: macro
 :hardbreaks:
 :toclevels: 1P
@@ -20,7 +20,7 @@ summary: ONTAP でOracle Linux 8.5を使用する方法について説明しま�
 
 
 
-== Linux Unified Host Utilities のインストール
+== Linux Unified Host Utilities をインストールします
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
 

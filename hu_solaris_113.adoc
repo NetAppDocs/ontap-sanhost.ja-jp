@@ -4,7 +4,7 @@ permalink: hu_solaris_113.html
 keywords: host utilities, solaris, 113, netapp, ontap 
 summary: Solaris Host Utilities のインストール方法について説明します 
 ---
-= NetApp ONTAP で Solaris 11.3 を使用します
+= Solaris 11.3とONTAPの併用
 :toc: macro
 :hardbreaks:
 :toclevels: 1

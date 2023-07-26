@@ -4,7 +4,7 @@ permalink: hu_ol_75.html
 keywords: host utilities, oracle, linux, 7.5, netapp, ontap 
 summary: ONTAP で Oracle Linux 7.5 を使用する方法について説明します 
 ---
-= NetApp ONTAP で Oracle Linux 7.5 を使用する
+= Oracle Linux 7.5とONTAPの併用
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,11 +20,11 @@ summary: ONTAP で Oracle Linux 7.5 を使用する方法について説明し�
 
 
 
-== Linux Unified Host Utilities のインストール
+== Linux Unified Host Utilities をインストールします
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["ネットアップサポートサイト"^] 32 ビットおよび 64 ビットの .rpm ファイル。構成に適したファイルがわからない場合は、を使用してください link:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^] 必要なものを確認します。
 
-Linux Unified Host Utilities をインストールすることを強く推奨しますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 .必要なもの
 現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。
@@ -262,12 +262,3 @@ NOTE: Oracle Linux 7.5 RedHat Enterprise カーネル (RHCCK) を設定するに
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1177239["1177239"^] | ストレージフェイルオーバー処理中に、 Qlogic QLE2672 16G FC を使用して OL7.5 でカーネルが停止することが確認されました | カーネル 4.1.12-112.16.4.el7uek.x86_64 および Qlogic QLE2672 HBA を使用した Oracle Linux 7 （ OL7.5 ）でストレージフェイルオーバー処理を実行する際に、カーネルが停止することがあります。これにより、オペレーティングシステムのリブートが要求され、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが作成されます。この中断は、モジュール「 kmem_cache_alloc+118 」で確認できます。このモジュールは vmcore ファイルに記録され、文字列「 exception RIP:kmem_cache_alloc+118 」で識別されます。 カーネルの停止後、ホストオペレーティングシステムをリブートし、アプリケーションを再起動することでリカバリできます。 |  
 |===
-
-
-== リリースノート
-
-
-
-=== ASM ミラーリング
-
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください link:https://www.netapp.com/us/media/tr-3633.pdf["ONTAP を基盤にした Oracle データベース"^] を参照してください。

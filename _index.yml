@@ -5,40 +5,26 @@ indexpage:
   tiles:
   - title: はじめに
     links:
-    - title: AIX Host Utilitiesのリリースノート
+    - title: 製品の概要
+      url: "/overview.html"
+    - title: AIX Host Utilitiesリリースノート
       url: "/hu_aix_61_rn.html"
-    - title: HP-UX Host Utilitiesのリリースノート
+    - title: HP-UX Host Utilitiesリリースノート
       url: "/hu_hpux_60_rn.html"
-    - title: Linux Host Utilitiesのリリースノート
+    - title: Linux Host Utilitiesリリースノート
       url: "/hu_luhu_71_rn.html"
-    - title: Solaris Host Utilitiesのリリースノート
+    - title: Solaris Host Utilitiesリリースノート
       url: "/hu_solaris_62_rn.html"
-    - title: Windows Host Utilitiesのリリースノート
+    - title: Windows Host Utilitiesリリースノート
       url: "/hu_wuhu_71_rn.html"
-  - title: FCPおよびiSCSIホストの設定
+  - title: SANホストをインストールして設定する
     links:
-    - title: VMware vSphere 7
-      url: "/hu_vsphere_7.html"
-    - title: Red Hat Enterprise Linux 9.0
-      url: "/hu_rhel_90.html"
-    - title: SUSE Linux Enterprise Server 15 SP4
-      url: "/hu_sles_15SP4.html"
-    - title: Windows Server 2022
-      url: "/hu_windows_2022.html"
-    - title: IBM AIX 7.2およびPowerVM（VIOS 3.1）
-      url: "/hu_aix_72.html"
-    - title: Oracle Solaris 11.4
-      url: "/hu_solaris_114.html"
-  - title: NVMe-oFホストの設定
-    links:
-    - title: VMware vSphere 7
-      url: "/nvme_esxi_7.html"
-    - title: Red Hat Enterprise Linux 9.0
-      url: "/nvme_rhel_90.html"
-    - title: SUSE Linux Enterprise Server 15 SP4
-      url: "/nvme_sles15_sp4.html"
-    - title: Windows Server 2022
-      url: "/nvme_windows_2022.html"
+    - title: SAN Host Utilitiesのインストール
+      url: "/hu_sanhost_index.html"
+    - title: FCPとiSCSIを使用したホストの設定
+      url: "/hu_fcp_scsi_index.html"
+    - title: NVMe-oFを使用したホストの設定
+      url: "/hu_nvme_index.html"
   - title: リソースの追加
     links:
     - title: Cloud Volumes ONTAP

@@ -4,7 +4,7 @@ permalink: hu_ol_71.html
 keywords: host utilities, oracle, linux, 7.1, netapp, ontap 
 summary: ONTAP で Oracle Linux 7.1 を使用する方法について説明します 
 ---
-= NetApp ONTAP で Oracle Linux 7.1 を使用する
+= ONTAPでOracle Linux 7.1を使用する
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,11 +20,11 @@ summary: ONTAP で Oracle Linux 7.1 を使用する方法について説明し�
 
 
 
-== Linux Unified Host Utilities のインストール
+== Linux Unified Host Utilities をインストールします
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["ネットアップサポートサイト"^] 32 ビットおよび 64 ビットの .rpm ファイル。構成に適したファイルがわからない場合は、を使用してください link:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^] 必要なものを確認します。
 
-Linux Unified Host Utilities をインストールすることを強く推奨しますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 .必要なもの
 現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。
@@ -269,13 +269,3 @@ NOTE: Oracle Linux 7.1 Red Hat Enterprise Kernel （ RHCK ）を設定するに�
 == 既知の問題および制限
 
 Oracle Linux 7.1 では、既知の問題はありません。
-
-
-
-== リリースノート
-
-
-
-=== ASM ミラーリング
-
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください link:https://www.netapp.com/us/media/tr-3633.pdf["ONTAP を基盤にした Oracle データベース"^] を参照してください。

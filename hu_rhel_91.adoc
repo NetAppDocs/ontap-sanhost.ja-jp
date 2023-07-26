@@ -4,7 +4,7 @@ permalink: hu_rhel_91.html
 keywords: host utilities, red hat, rhel, linux, 9.1, netapp, ontap, rhel 
 summary: ONTAP でRed Hat Enterprise Linux 9.1を使用する方法について説明します 
 ---
-= NetApp ONTAP でRed Hat Enterprise Linux 9.1を使用している場合
+= ONTAPでRed Hat Enterprise Linux 9.1を使用
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -24,7 +24,7 @@ summary: ONTAP でRed Hat Enterprise Linux 9.1を使用する方法について�
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
 
-ネットアップでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 .必要なもの
 現在インストールされているLinux Unified Host Utilitiesのバージョンがある場合、このユーティリティをアップグレードまたは削除し、次の手順に従って最新バージョンをインストールする必要があります。
@@ -297,12 +297,3 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 | 1508554. | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.1では、NetApp Linux SAN Host Utilities CLIを使用します `sanlun fcp show adapter -v` は、HBA検出をサポートするライブラリパッケージの依存関係が見つからないために失敗します。 | 該当なし 
 |===
-
-
-== リリースノート
-
-
-
-=== ASM ミラーリング
-
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください link:https://www.netapp.com/us/media/tr-3633.pdf["ONTAP を基盤にした Oracle データベース"^] を参照してください。

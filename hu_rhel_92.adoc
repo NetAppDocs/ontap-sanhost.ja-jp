@@ -4,7 +4,7 @@ permalink: hu_rhel_92.html
 keywords: host utilities, red hat, rhel, linux, 9.2, netapp, ontap, rhel 
 summary: ONTAPでRed Hat Enterprise Linux 9.2を使用する方法について説明します 
 ---
-= 『Using Red Hat Enterprise Linux 9.2 with NetApp ONTAP』を参照してください
+= Red Hat Enterprise Linux 9.2とONTAPの併用
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -301,12 +301,3 @@ ONTAPリリースを使用したRHEL 9.2のNVMe-oFホスト設定には、次の
 
 | 1537359 | Emulex HBAを搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します | ストレージフェイルオーバーのギブバック処理で、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）を搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します。カーネルが中断されると、オペレーティングシステムが再起動します `kdump` が設定されると、が生成されます `vmcore` の下にあるファイル `/var/crash/` ディレクトリ。問題をでトリアージしています `lpfc` ドライバーですが、一貫して再現することはできません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=2173947["2173947"^] 
 |===
-
-
-== リリースノート
-
-
-
-=== ASM ミラーリング
-
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください link:https://www.netapp.com/us/media/tr-3633.pdf["ONTAP を基盤にした Oracle データベース"^] を参照してください。

@@ -4,7 +4,7 @@ permalink: hu_rhel_80.html
 keywords: host utilities, red hat, rhel, linux, 8.0, netapp, ontap 
 summary: ONTAP で Red Hat Enterprise Linux 8.0 を使用する方法について説明します 
 ---
-= NetApp ONTAP で Red Hat Enterprise Linux 8.0 を使用する
+= Red Hat Enterprise Linux 8.0とONTAPの併用
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,7 +20,7 @@ summary: ONTAP で Red Hat Enterprise Linux 8.0 を使用する方法につい�
 
 
 
-== Linux Unified Host Utilities のインストール
+== Linux Unified Host Utilities をインストールします
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
 
@@ -311,12 +311,3 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GB FC を搭載した RHEL8 のリモートポートがブロック状態に移行しています | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GBFibre Channel （ FC ）を搭載した RHEL8 で、リモートポートがブロック状態になっています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1705573["1705573"^] 
 |===
-
-
-== リリースノート
-
-
-
-=== ASM ミラーリング
-
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください link:https://www.netapp.com/us/media/tr-3633.pdf["ONTAP を基盤にした Oracle データベース"^] を参照してください。

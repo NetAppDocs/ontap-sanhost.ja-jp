@@ -4,7 +4,7 @@ permalink: hu_centos_80.html
 keywords: host utilities, centos, linux, 8.0, netapp, ontap 
 summary: ONTAP で CentOS 8.0 を使用する方法について説明します 
 ---
-= CentOS 8.0 と NetApp ONTAP を使用する
+= ONTAPでCentOS 8.0を使用
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,7 +20,7 @@ summary: ONTAP で CentOS 8.0 を使用する方法について説明します
 
 
 
-== Linux Unified Host Utilities のインストール
+== Linux Unified Host Utilities をインストールします
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
 
@@ -289,13 +289,3 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 == 既知の問題および制限
 
 CentOS （ Red Hat 互換カーネル）の既知の問題については、を参照してください link:hu_rhel_80.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux （ RHEL ） 8.0 の場合。
-
-
-
-== リリースノート
-
-
-
-=== ASM ミラーリング
-
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください link:https://www.netapp.com/us/media/tr-3633.pdf["ONTAP を基盤にした Oracle データベース"^] を参照してください。

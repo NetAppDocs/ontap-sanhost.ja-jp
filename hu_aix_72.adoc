@@ -4,7 +4,7 @@ permalink: hu_aix_72.html
 keywords: host utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
 summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法について説明します 
 ---
-= NetApp ONTAP で IBM AIX 7.2 または PowerVM （ VIOS 3.1 ）を使用している場合
+= ONTAPでIBM AIX 7.2またはPowerVM（VIOS 3.1）を使用する
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -157,7 +157,7 @@ up     primary  path3  fcs1    fc_aix_4     1
 
 == 推奨設定
 
-NetApp ONTAP LUN の推奨されるパラメータ設定は次のとおりです。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
+次に、ONTAP LUNの推奨されるパラメータ設定を示します。  ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
 
 [cols="4*"]
 |===

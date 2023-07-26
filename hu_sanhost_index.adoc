@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: hu_sanhost_index.html 
+keywords:  
+summary:  
+---
+= 概要
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+SANホストユーティリティのリリースに関する最新情報を確認し、ホスト構成に対応するインストール手順にアクセスします。
+
+
+NOTE: インストール後に信頼性の高い操作を行うには、 https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] ホストがNVMe over Fabrics（NVMe over TCPおよびNVMe over Fibre Channelを含む）、iSCSI、FC、またはFCoE構成全体をサポートしていることを確認するため。

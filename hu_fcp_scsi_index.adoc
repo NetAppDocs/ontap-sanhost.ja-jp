@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: hu_fcp_scsi_index.html 
+keywords:  
+summary:  
+---
+= 概要
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+ONTAPをターゲットとして、特定のSANホストをFCPまたはiSCSI用に設定できます。まず、関連するオペレーティングシステムホストユーティリティパッケージ（SANツールキットが含まれています）をインストールしてから、NetApp ONTAP LUNのマルチパス設定を確認します。

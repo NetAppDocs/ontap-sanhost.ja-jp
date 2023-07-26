@@ -4,7 +4,7 @@ permalink: hu_veritas_7x.html
 keywords: host utilities, veritas, infoscale, 7, netapp, ontap, sanhost, iscsi, red, hat linux, oracle, linux 
 summary: VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト構成設定に関するガイダンスを示します 
 ---
-= VERITAS Infosscale 7 for Linux と NetApp ONTAP の併用
+= ONTAPでVeritas Infoscale 7 for Linuxを使用
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -26,7 +26,7 @@ summary: VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト�
 
 
 
-== Linux Unified Host Utilities のインストール
+== Linux Unified Host Utilities をインストールします
 
 NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
 

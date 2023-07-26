@@ -4,7 +4,7 @@ permalink: hu_vsphere_8.html
 keywords: host utilities, veritas, infoscale, 8.x, netapp, ontap, vmware, vspehere 
 summary: FC、FCoE、およびiSCSIの各プロトコルを使用するVMware vSphere 8.xリリース用のONTAP SANホスト設定を行うことができます。 
 ---
-= 『Using VMware vSphere 8.x with NetApp ONTAP 』を参照してください
+= VMware vSphere 8.xとONTAPの併用
 :toc: macro
 :hardbreaks:
 :toclevels: 1

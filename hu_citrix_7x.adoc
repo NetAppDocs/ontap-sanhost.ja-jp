@@ -4,7 +4,7 @@ permalink: hu_citrix_7x.html
 keywords: host utilities, citrix, XenServer, 7 series, netapp, ontap, san, boot 
 summary: ONTAP で Citrix XenServer 7.x を使用する方法について説明します 
 ---
-= Citrix XenServer と NetApp ONTAP を使用する方法について説明します
+= ONTAPでCitrix XenServerを使用する
 :toc: macro
 :hardbreaks:
 :toclevels: 1
