@@ -78,18 +78,6 @@ link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"] 既知の�
 * FCP - AIXの場合
 
 
-
-
-== SANホスト構成のドキュメントについて
-
-には、SAN Host Utilitiesのマニュアルが含まれています link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["ONTAP SAN ホスト構成"] ドキュメントONTAP SANホストの構成に関するドキュメントは、SANホストの現在のすべてのリリースをカバーしており、これまでのものは累積的ですリリース間の機能の違いは、コンテキストに基づいて示されます。
-
-
-
-== 製品マニュアルとその他の情報の参照先
-
-ネットアップのすべての製品のマニュアルにアクセスし、ネットアップ社内サイトの製品ドキュメントページで、テクニカルレポートやホワイトペーパーなど、製品に関するその他の情報を参照できます。
-
 .関連情報
 * ONTAP ストレージ・システムの構成と管理*
 

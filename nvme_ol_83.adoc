@@ -395,7 +395,7 @@ Device      Vserver         Namespace Path             NSID UUID                
 
 == 既知の問題
 
-ONTAPリリースを使用したOL 8.3のNVMe-oFホスト設定には、次の既知の問題があります。
+ONTAPを使用したOL 8.3のNVMe-oFホスト設定には、次の既知の問題があります。
 
 [cols="20, 20, 50, 20"]
 |===

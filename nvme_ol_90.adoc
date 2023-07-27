@@ -488,7 +488,7 @@ NSID       UUID                                   Size
 
 == 既知の問題
 
-Oracle Linux 9.0（ONTAPリリース）でのNVMe-oFホスト設定には、次の既知の問題があります。
+ONTAPを使用したOracle Linux 9.0向けのNVMe-oFホスト設定には、次の既知の問題があります。
 
 [cols=""20"]
 |===

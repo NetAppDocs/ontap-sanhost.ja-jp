@@ -19,7 +19,7 @@ summary: ONTAP 搭載の Windows Server 2019 向け NVMe/FC ホスト構成
 
 
 [role="lead"]
-Windows Server 2019およびONTAPを実行するホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。
+ONTAPをターゲットとして使用して、Windows Server 2019を実行しているホストにNVMe over Fibre Channel（NVMe/FC）を設定できます。
 
 NVMe/FC は ONTAP 9.7 以降の Windows Server 2019 でサポートされます。
 

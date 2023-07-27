@@ -28,3 +28,10 @@ NOTE: クラウド環境では、ホストは一般にクライアントと呼�
 たとえば、オンプレミスのONTAP ストレージを設定して、オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。を設定することもできます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。
 
 最適なパフォーマンスとフェイルオーバーを実現するには、適切な設定が重要です。
+
+.関連情報
+* 。 link:https://docs.netapp.com/us-en/ontap/san-config/index.html["ONTAP SANの構成"^] ONTAP のバージョンに応じて更新します
+* 。 link:https://docs.netapp.com/us-en/ontap/san-management/index.html["『ONTAP SANアドミニストレーションガイド』"^] ONTAP のバージョンに応じて更新します
+* 。 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP リリースノート"^] ONTAP のバージョンに応じて更新します
+* 。 link:https://docs.netapp.com/us-en/e-series/index.html["E シリーズのドキュメント"^] をクリックして、SANtricity 関連ドキュメントを参照してください
+

@@ -7,7 +7,7 @@
 .例
 次の例では 'lun lun lun show コマンドは LUN 情報を返します
 
-[listing]
+[source, cli]
 ----
 # sanlun lun show all
 ----

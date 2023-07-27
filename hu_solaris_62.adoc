@@ -18,6 +18,9 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 :toc-position: content
 
 
+[role="lead"]
+Solaris Unified Host Utilitiesは、Solarisホストに接続されているNetApp ONTAPストレージの管理に役立ちます。
+
 
 
 == SAN ツールキット
@@ -45,7 +48,7 @@ NOTE: このツールキットは、 Host Utilities のすべての構成とプ�
 
 
 
-== Solaris Host Utilities をインストールしています
+== Solaris Host Utilitiesをインストールします
 
 Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。主な Host Utilities 環境は次のとおりです。
 
@@ -119,95 +122,3 @@ drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
 「 anlun version 」を参照してください
 
 
-
-
-
-== コマンド・リファレンスの例
-
-
-
-=== ホストにマッピングされているすべてのホストイニシエータを一覧表示
-
-[listing]
-----
-# sanlun fcp show adapter -v
-adapter name:      qlc3
-WWPN:              21000024ff17a301
-WWNN:              20000024ff17a301
-driver name:       qlc
-model:             7335902
-model description: 7115462, Oracle Storage Dual-Port 32 Gb Fibre Channel PCIe HBA
-serial number:     463916R+1720333838
-hardware version:  Not Available
-driver version:    210226-5.10
-firmware version:  8.08.04
-Number of ports:   1 of 2
-port type:         Fabric
-port state:        Operational
-supported speed:   8 GBit/sec, 16 GBit/sec, 32 GBit/sec
-negotiated speed:  32 GBit/sec
-OS device name:    /dev/cfg/c7
-
-adapter name:      qlc2
-WWPN:              21000024ff17a300
-WWNN:              20000024ff17a300
-driver name:       qlc
-model:             7335902
-model description: 7115462, Oracle Storage Dual-Port 32 Gb Fibre Channel PCIe HBA
-serial number:     463916R+1720333838
-hardware version:  Not Available
-driver version:    210226-5.10
-firmware version:  8.08.04
-Number of ports:   2 of 2
-port type:         Fabric
-port state:        Operational
-supported speed:   8 GBit/sec, 16 GBit/sec, 32 GBit/sec
-negotiated speed:  16 GBit/sec
-OS device name:    /dev/cfg/c6
-----
-
-
-=== ホストにマッピングされているすべての LUN をリストします
-
-[listing]
-----
-# sanlun lun show -p -v all
-
-                    ONTAP Path: data_vserver:/vol1/lun1
-                           LUN: 1
-                      LUN Size: 10g
-                   Host Device: /dev/rdsk/c0t600A0980383044485A3F4E694E4F775Ad0s2
-                          Mode: C
-            Multipath Provider: Sun Microsystems
-              Multipath Policy: Native
-
-----
-
-
-=== 特定の SVM / リストからホストにマッピングされているすべての LUN をリストします。ホストにマッピングされている特定の LUN のすべての属性をリストします
-
-[listing]
-----
-# sanlun lun show -p -v sanboot_unix`
-ONTAP Path: sanboot_unix:/vol/sol_boot/sanboot_lun
-                           LUN: 0
-                      LUN Size: 180.0g
-
-----
-
-
-=== ONTAP LUN 属性をホストデバイスファイル名別に表示します
-
-[listing]
-----
-# sanlun lun show all
-
-controller(7mode/E-Series)/                                         device
-vserver(cDOT/FlashRay)       lun-pathname                           filename
----------------------------------------------------------------------------------------------------------------
-sanboot_unix                 /vol/sol_193_boot/chatsol_193_sanboot /dev/rdsk/c0t600A098038304437522B4E694E4A3043d0s2
-
-host adapter    protocol lun size   product
----------------------------------------------
-qlc3            FCP      180.0g     cDOT
-----
