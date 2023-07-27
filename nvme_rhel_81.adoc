@@ -289,6 +289,8 @@ NOTE: これはQlogic NVMe/FCホストには該当しません。
 
 == lpfc 詳細ログ
 
+NVMe/FC用のLPFCドライバを設定します。
+
 .手順
 . を設定します `lpfc_log_verbose` NVMe/FCイベントをログに記録するためのドライバ設定は次のいずれかです。
 +

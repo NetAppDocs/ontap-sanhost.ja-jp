@@ -31,7 +31,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 
 == 既知の制限
 
-なし
+既知の制限事項はありません。
 
 
 
@@ -242,7 +242,7 @@ Device                 Vserver                         Namespace Path           
 
 
 
-== Broadcom NVMe/FC の 1MB I/O サイズを有効にします
+== Broadcom NVMe/FC用に1MBのI/Oサイズを有効にする
 
 ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）を8と報告します。つまり、I/O要求の最大サイズは1MBまでです。ただし、Broadcom NVMe/FCホストに対する1MBの問題I/O要求には、を増やす必要があります `lpfc` の値 `lpfc_sg_seg_cnt` パラメータを256に設定します（デフォルト値の64から）。
 

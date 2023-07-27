@@ -18,11 +18,8 @@ summary: VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト�
 :toc-position: content
 
 
-
-
-== はじめに
-
-このドキュメントでは、FC、FCoE、およびiSCSIプロトコルを搭載したRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVERITAS Infoscaleストレージ基盤8シリーズのONTAP SANホスト構成設定について説明します。
+[role="lead"]
+FC、FCoE、およびiSCSIの各プロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVeritas Infoscale Storage Foundation 8シリーズリリースでは、ONTAP SANホストの構成設定を使用できます。
 
 
 
@@ -283,6 +280,6 @@ Veritas Infoscale 、 Linux Native Device Mapper 、 LVM ボリュームマネ�
 
 
 
-== 既知の問題および制限
+== 既知の問題
 
-既知の問題や制限はありません。
+既知の問題はありません。

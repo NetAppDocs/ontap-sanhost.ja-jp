@@ -20,7 +20,7 @@ summary: Solaris Host Utilities のインストール方法について説明し
 
 
 
-== Solaris Host Utilities のインストール
+== Solaris Host Utilitiesのインストール
 
 Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^]。ファイルを展開して、 Host Utilities のインストールに必要なソフトウェアパッケージを取得する必要があります。
 

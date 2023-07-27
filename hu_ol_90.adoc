@@ -307,12 +307,3 @@ Unable to locate /usr/lib64/libHBAAPI.so library
 Make sure the package installing the library is installed & loaded
 ----| 該当なし 
 |===
-
-
-== リリースノート
-
-
-
-=== ASM ミラーリング
-
-ASMミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。詳細については、「ONTAP 上のOracleデータベース」を参照してください。

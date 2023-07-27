@@ -18,11 +18,8 @@ summary: ONTAP で Citrix Hypervisor 8.x を使用する方法について説明
 :toc-position: content
 
 
-
-
-== はじめに
-
-このドキュメントでは、 FC 、 FCoE 、および iSCSI の各プロトコルを使用した ONTAP ハイパーバイザー 8 シリーズ OS リリースの SAN ホストの設定について説明します。
+[role="lead"]
+FC、FCoE、およびiSCSIプロトコルを使用するCitrix Hypervisor 8シリーズOSリリースのONTAP SANホスト構成設定を構成できます。
 
 
 

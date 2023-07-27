@@ -84,7 +84,6 @@
   <block id="f25da2d4ec4aacff4750d97e83acec21" category="section-title">ASM ミラーリング</block>
   <block id="446548f2b1301893641e29657fc7fe53" category="inline-link-macro">ONTAP を基盤にした Oracle データベース</block>
   <block id="7466d31b9a4018d8f402bd6f92090e59" category="summary">Solaris Host Utilities のインストール方法について説明します</block>
-  <block id="16dcd3f6f3bbebb1de9769e4045dbb3f" category="section-title">Solaris Host Utilities のインストール</block>
   <block id="c454d997c91275b70f2f0433fad3fe36" category="list-text">ダウンロードを格納しているディレクトリに移動します。</block>
   <block id="88a1748445927988a69d31c53331a565" category="list-text">ファイルを展開します。</block>
   <block id="f6e9198a006ec354ae70027fd194c6a2" category="paragraph">「 gunzip NetApp_solaris_host_utilities_6_2N20170913_0304_sparc.tar.gz</block>
@@ -224,7 +223,6 @@
   <block id="72663606b8411ccc0666f2a99b78df08" category="list-text">ネームスペースが作成されたことを確認します。</block>
   <block id="d58a6348af94cbfcbf65485358c4a07d" category="list-text">ANA パスのステータスを確認します。</block>
   <block id="61713dcee5b85916fbe59e04b45b37d0" category="list-text">ONTAP デバイス用ネットアッププラグインを確認します。</block>
-  <block id="4d1a5dc427910a8f8e64f05cd745f04b" category="section-title">Broadcom NVMe/FC で 1MB の I/O サイズを有効にします</block>
   <block id="b2c535b12eae5c28a532e07cea962627" category="list-text">lpfc_sg_seg_cnt パラメータを 256 に設定します</block>
   <block id="d73152e7a2f3eb9fac20bc98a1ee9686" category="list-text">「 racut-f 」コマンドを実行し、ホストを再起動します。</block>
   <block id="681e25842821aed88b9536b9cde94730" category="list-text">lpfc_sg_seg_cnt' が 256 であることを確認します</block>
@@ -841,8 +839,6 @@
   <block id="12e2cfab649729e3b20b64d80b423083" category="inline-link-macro">1139137</block>
   <block id="c97f8d4c7b18c5daac79ce8d70751e54" category="cell"><block ref="c97f8d4c7b18c5daac79ce8d70751e54" category="inline-link-macro-rx"></block></block>
   <block id="53cded606153345462c89bc6a568b1dc" category="summary">VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト構成設定に関するガイダンスを示します</block>
-  <block id="0b79795d3efc95b9976c7c5b933afce2" category="section-title">はじめに</block>
-  <block id="988ade58b67caf90656e537886fb1daa" category="paragraph">このドキュメントでは、 FC 、 FCoE 、および iSCSI プロトコルを搭載した Red Hat Enterprise Linux および Oracle Linux （ RHCK ベース）プラットフォーム用の VERITAS Infoscale ストレージ基盤 7 シリーズの ONTAP SAN ホスト構成設定について説明します。</block>
   <block id="31296a34c84ac7a114e2a64e59cc9d34" category="paragraph">次の図では 'lun show コマンドは LUN 情報を返します</block>
   <block id="9bdb0807ef78c7192456335c7ef96e18" category="paragraph">Veritas Support Portal （ Product Matrix 、 Platform Lookup 、 HCL Matrix ）を参照して、 SAN ブート構成がサポートされていること、および既知の警告を確認してください。</block>
   <block id="2385edf0d68ac69421a103d7c6128cd0" category="paragraph">構成がシステム要件を満たしていることを確認する必要があります。詳細については、を参照してください<block ref="77ab0bbf377853176c70e55d32dcb81a" category="inline-link-rx"></block> および Veritas HCL Matrix に掲載されています。</block>
@@ -986,7 +982,6 @@
   <block id="1793cac86fac919fc2d9ce3ee8be0a5b" category="doc">SUSE Linux Enterprise Server 15 SP1 と ONTAP の NVMe/FC ホスト構成</block>
   <block id="583e457484849f189a3e543adfcbfa01" category="paragraph">ONTAP 9.6 以降では、次のバージョンの SLES で NVMe/FC がサポートされます。</block>
   <block id="f2803bf30a3eaf1cf725f98652c23d14" category="list-text">SLES15 SP1</block>
-  <block id="b8bcc67e9c36e9d4f18d613df77d7151" category="paragraph">なしNVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SLES15 SP1 では、ネイティブの inbox lpfc ドライバを使用できます。</block>
   <block id="2faf433f2b14b03d43c24261953419bc" category="list-text">推奨される SLES15 SP2 MU カーネルにアップグレードします</block>
   <block id="c7f1791a3f59c536386990c900c326c1" category="list-text">推奨される nvme-CLI MU バージョンにアップグレードします。</block>
   <block id="bc22120b8e6d0a4466dfd9ad5afc5302" category="paragraph">この nvme-cli パッケージには、ネイティブの NVMe/FC 自動接続スクリプトが含まれているため、 SLES15 SP1 ホストに Broadcom から提供された外部 NVMe/FC 自動接続スクリプトをインストールする必要はありません。このパッケージには、 ONTAP の udev ルールも含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP デバイス用ネットアッププラグインが有効になります。</block>
@@ -1019,7 +1014,6 @@
   <block id="62dd7fb15e47b2ae7ac0c8828a09368e" category="inline-link-macro">1104173.</block>
   <block id="fe5f3cc9f696069f06b3705195c48a2c" category="cell"><block ref="fe5f3cc9f696069f06b3705195c48a2c" category="inline-link-macro-rx"></block></block>
   <block id="bea05db7b205cebd49d85c581b86c97e" category="summary">VERITAS ONTAP Infosscale 6 シリーズ・リリースの SAN ホスト構成設定に関するガイダンスを提供します</block>
-  <block id="736c980a1fb2f447faa0dedf6080305f" category="paragraph">このドキュメントでは、 FC 、 FCoE 、および iSCSI プロトコルを使用する Red Hat Enterprise Linux および Oracle Linux （ RHCK ベース）プラットフォーム用の Veritas Storage Foundation 6 シリーズリリースの ONTAP SAN ホスト構成設定に関するガイダンスを提供します。</block>
   <block id="5116d27ab3c67a2413a9afe024b82a38" category="summary">ONTAP を使用して RHEL 8.3 用に NVMe/FC ホストを設定する方法</block>
   <block id="af59960049c1f2bff52a1746f8d7c912" category="doc">ONTAP を使用した RHEL 8.3 用 NVMe/FC ホスト構成</block>
   <block id="c7bc96121734b19b104696509562ddf4" category="paragraph">RHEL 8.3 では、カーネル内の NVMe マルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。この手順については、次のセクション「 Enabling NVMe/FC on RHEL 8.3 」を参照してください。</block>
@@ -1466,7 +1460,6 @@
   <block id="533852468832f0054559eec6bf0ecebe" category="paragraph">SUSE Linux Enterprise Server 12 SP2 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP2 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
   <block id="643a6a2bdd020c4b3fb247c000912e7f" category="paragraph">SUSE Linux Enterprise Server 12 SP2 には既知の問題はありません。</block>
   <block id="f8f27557fe3d0fcb534e0bcda02971bf" category="summary">ONTAP で VERITAS Infosscale 7.3 for Linux を使用する方法について説明します</block>
-  <block id="cc239a4513b4519cac8458b3c718aa7c" category="paragraph">本ドキュメントでは、 FC 、 FCoE 、および iSCSI の各プロトコルを使用した vSphere 7.x リリースでの ONTAP SAN ホストの構成設定について説明します。</block>
   <block id="e1059765ab19f25f118520b9942cefe8" category="section-title">ハイパーバイザーの SAN ブート</block>
   <block id="98743d7644276c713659bcbc70ea0c5b" category="paragraph">ESXi は、 Native Multipathing Plug-in （ NMP ）と呼ばれる拡張可能なマルチパスモジュールを備えており、ストレージアレイタイププラグイン（ SATP ）とパス選択プラグイン（ PSP ）を管理します。これらの SATP ルールは、 ESXi でデフォルトで使用されます。</block>
   <block id="2526204e100c100b381fc3cfbc2bed3a" category="paragraph">NetApp ONTAP ストレージの場合、 VMW_SATP_ALUA プラグインがデフォルトで使用され、パス選択ポリシー（ PSP ）として VMW_PSP_RR が使用されます。確認するには、次のコマンドを使用します。</block>
@@ -1521,9 +1514,7 @@
   <block id="9061941d5061bda4bcf4edf310b59de1" category="section-title">QFullSampleSize を検証しています</block>
   <block id="32014634f5e91fea92881a76289729e4" category="paragraph">次のコマンドを使用して、 QFullSampleSize を確認します</block>
   <block id="bcf5b4c5647c7c3861431c638d411876" category="paragraph">*esxcli system settings advanced list --option/Disk/QFullSampleSize`*</block>
-  <block id="558ab0bef1894a7a726109d36632d09d" category="section-title">既知の問題</block>
   <block id="784c795c066fdf3c4713aae58af639ff" category="paragraph">既知の問題はありません。</block>
-  <block id="f8ec0f3aa329ebfedf13a79184b7867e" category="section-title">関連リンク</block>
   <block id="c2e11c6f1a87d8cf2bf465e9c2562bdb" category="inline-link-macro">TR-4597 ：『 VMware vSphere with ONTAP 』</block>
   <block id="52f50d0f0ab285059648c7da67b4b07f" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
   <block id="929c9a7053ca6d930b0835cb93342235" category="inline-link-macro">NetApp ONTAP と NetApp SnapMirror によるビジネス継続性（ SM-BC ）と VMware vSphere Metro Storage Cluster （ vMSC ）</block>
@@ -1570,7 +1561,6 @@
   <block id="f32d48cf755668783343d18d81af5662" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="13be8945161aaeca52d4e4a694080916" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.0 の場合。</block>
   <block id="ce33fe68519e0e2d14428572a71c7569" category="summary">例を使用して、 ONTAP を使用した Oracle Linux 8.2 用の VME / FC ホスト構成をセットアップします</block>
   <block id="89d62bb3e0891fdc6a601122dddc0440" category="doc">ONTAP を使用した Oracle Linux 8.2 の NVMe/FC ホスト構成</block>
-  <block id="983e45d9f14c8e4b92b207877e7cabb0" category="paragraph">なし</block>
   <block id="444ce06dcc32d405185ecb72eb5ab7a2" category="list-text">サーバに Oracle Linux 8.2 をインストールします。</block>
   <block id="4aab3393d576bcf2907352ae44a0a440" category="list-text">nvme-CLI パッケージをアップグレードします。ネイティブの nvme-CLI パッケージには、 NVMe/FC 自動接続スクリプト、 ONTAP udev ルールが含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP ネームスペース用のネットアッププラグインが有効になります。</block>
   <block id="f66be2d78c31b4dcc20cc20c3d56d86f" category="list-text">Oracle Linux 8.2 ホストで、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。</block>
@@ -1598,7 +1588,6 @@
   <block id="62d54f77039c15fe0a65691e9ff3f4c2" category="summary">ONTAP で CentOS 7.5 を使用する方法について説明します</block>
   <block id="6a2c85eca0b58ae9120cd4aa738a6949" category="paragraph">CentOS 7.5 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、特定の変更をファイルに加える必要はありません。CentOS 7.5 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
   <block id="a51f869a9a131effa58d99e63266e02d" category="summary">ONTAP で Citrix Hypervisor 8.x を使用する方法について説明します</block>
-  <block id="b4fb72e88112026a3055df686f0141d6" category="paragraph">このドキュメントでは、 FC 、 FCoE 、および iSCSI の各プロトコルを使用した ONTAP ハイパーバイザー 8 シリーズ OS リリースの SAN ホストの設定について説明します。</block>
   <block id="dfdecabe17f4f61a0c5b353fdc3dfeef" category="paragraph">Citrix Hypervisor 8.x OS は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定でコンパイルされます。Citrix Hypervisor 8.x の場合、空の zerobyte /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。</block>
   <block id="4d9e4d5a080304464911deeebee0a0b3" category="paragraph">マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、 /etc/multipath.conf ファイルにコンテンツを追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。</block>
   <block id="891983ab249dd51fa02a51e1da92fd57" category="admonition">Citrix ハイパーバイザーでは、 Linux および Windows ベースのすべてのゲスト VM に対して Citrix VM ツールを使用することを推奨しています。</block>
@@ -1688,7 +1677,6 @@
   <block id="47d254fd002b7f1a6c06e1aa7c25a4ef" category="sidebar">Infoscale 7.</block>
   <block id="66b0812a8cbedc46db133ed5327291bd" category="sidebar">Storage Foundation 6.</block>
   <block id="eea65c7c864efb688d55381c5b21a910" category="summary">ONTAP で VERITAS Infosscale 6.5 および 6.7 for Linux を使用する方法について説明します</block>
-  <block id="cf46645d175a0f99f53e120079789f83" category="paragraph">本ドキュメントでは、 FC 、 FCoE 、 iSCSI の各プロトコルを使用した vSphere 6.5.x および 6.7.x リリースの ONTAP SAN ホストの設定についてガイダンスを示します。</block>
   <block id="d285d6f90c81abd47d57e4425faf9ed5" category="paragraph">NetApp ONTAP ストレージの場合、デフォルトでは VMW_SATP_ALUA プラグインが使用され、パス選択ポリシー（ PSP ）として「 VMW_PSP_RR 」が使用されます。確認するには、次のコマンドを使用します。</block>
   <block id="97702a0c8ad7bf7deb907e6a931a9c14" category="paragraph">上記の例では、 LUN がネットアップストレージから 4 つのパス（アクティブ / 最適化済み 4 つ）でマッピングされています。</block>
   <block id="285dc13017989020e1a1eb0ca9eb9125" category="paragraph">上記の例では、 LUN がネットアップストレージから 4 つのパス（ 2 つのアクティブ最適化パスと 2 つのアクティブ非最適化パス）でマッピングされています。</block>
@@ -1740,34 +1728,18 @@
   <block id="1af9cb3d6c724363f724486734a76f7f" category="paragraph">RHEL 8.4 GA カーネルに含まれているネイティブインボックスの qla2xxx ドライバには、 ONTAP のサポートに不可欠な最新のアップストリーム修正が含まれています。</block>
   <block id="01e99a43df9a9e103daa49144d80325a" category="list-text">次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。</block>
   <block id="996bc8c555f8b2265c43a9a361d7bcd2" category="list-text">次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。</block>
-  <block id="7b7cf2f51a50fd1958747b87b9de79d0" category="paragraph">NVMe/FC 障害のトラブルシューティングを開始する前に、 IMT の仕様に準拠した設定を実行していることを確認し、次の手順に進んでホスト側の問題をデバッグします。</block>
-  <block id="b74dd8eaf171dc7bdadb4b02805e11ef" category="list-text">lpfc_log_sverbose' ドライバ設定を次のいずれかの値に設定して 'NVMe/FC イベントをログに記録できます</block>
-  <block id="72eeec6a3c176f0aa6e7a2c82b9104d4" category="list-text">これらの値のいずれかを設定した後、「 dracut-f 」コマンドを実行して「 initramfs 」を再作成し、ホストを再起動します。</block>
-  <block id="c6c4209c61e5d15f1cdf22504926d2ab" category="list-text">リブート後、設定を確認します。</block>
-  <block id="e8211b68f4f8fe540f8a1f1df578cb9d" category="section-title">qla2xxx 詳細ログ</block>
-  <block id="7e1bab1590d0a1b7415ae6393834f5f0" category="paragraph">lpfc ドライバの場合と同様の、 NVMe/FC 用の qla2xxx ログ機能はありません。したがって、次の手順を使用して一般的な qla2xxx ログレベルを設定できます。</block>
   <block id="0199c49af15b1997cf6d2ddd0ea8adf4" category="list-text">対応する「 m odprobe qla2xxx conf 」ファイルに「 ql2xextended_error_logging=0x1e400000 」の値を追加します。</block>
   <block id="5d14823339a99ad173c461c5934c7795" category="list-text">「 d racut-f 」コマンドを実行して「 initramfs 」を再作成し、ホストを再起動します。</block>
   <block id="18c1ce7cd10cb855d9571af493e60d2f" category="list-text">リブート後、次のように詳細ログが適用されていることを確認します。</block>
-  <block id="336bb1163b96188b27a0c400c9ed3e7e" category="section-title">一般的な nvme-CLI エラーとその回避策があります</block>
-  <block id="34df248e027a4c30ed1b7d088594b696" category="paragraph">NVMe 検出、 NVMe 接続、または NVMe 接続の際に「 nvme-cli 」で表示されるエラーとその回避策を次の表に示します。</block>
   <block id="bd578ecd5b4e2ae0680ca3e17e20ed2a" category="cell">エラーは 'nvme-cli' によって表示されます</block>
   <block id="e8a5a7214d896558232c2e63f40a05c2" category="cell">原因と考えられます</block>
   <block id="7aebfa1e2291377e040de92d7f7f335f" category="cell">回避策</block>
   <block id="37ea58a1ef8410b6d6bf6ec383fdb9bb" category="cell">'/dev/nvme-Fabrics への書き込みに失敗しました : 引数が無効です</block>
   <block id="e6abe40d88718ddd0b9bffc84a71160e" category="cell">構文が正しくありません</block>
-  <block id="5db86bac1ba97f8a89650fb87fa3f00a" category="cell">上記の NVMe コマンドに正しい構文を使用していることを確認してください。</block>
   <block id="60059d5e6355695d881f6470b0b221b0" category="cell">'/dev/nvme-Fabrics への書き込みに失敗しました : このようなファイルまたはディレクトリはありません</block>
-  <block id="364d4f2f5f0f5b369d500a6d7ef097b8" category="cell">複数の問題が原因でこのエラーが発生する可能性NVMe コマンドに誤った引数を渡すことが、一般的な原因の 1 つです。</block>
-  <block id="fd7607192f54bfc64a916ff4265b8284" category="list-text">コマンドに正しい引数（正しい WWNN 文字列、 WWPN 文字列など）を渡したことを確認してください。</block>
-  <block id="55fd3388a3964cd90c0a1fb25a5104e0" category="list-text">引数が正しいにもかかわらずこのエラーが表示される場合は、「 /sys/class/scsi_host*/nvme_info 」の出力が正しいかどうか、 NVMe イニシエータが「 enabled 」と表示されているか、 NVMe/FC ターゲット LIF がリモートポートのセクションに正しく表示されているかどうかを確認してください。例</block>
-  <block id="0d996d199c6027dc68cd4cab85563b7c" category="list-text">nvme_info の出力に上記のようにターゲット LIF が表示されない場合は、「 /var/log/messages 」および「 dmesg 」の出力で疑わしい NVMe/FC エラーがないかどうかを確認し、それに応じてレポートまたは修正してください。</block>
   <block id="64ede1e6f2ef30c339f9a3e100f40cfc" category="cell">' 取得する検出ログエントリがありません</block>
-  <block id="63de53510175cd2fa7213647b4db5fda" category="cell">正確な「 /etc/nvme/hostnqn 」文字列がネットアップアレイの対応するサブシステムに追加されていることを確認します（「 vserver nvme subsystem host show 」コマンドで確認します）。</block>
   <block id="abbdb018748bb6cd12284ad6c1685b67" category="cell">'/dev/nvme-Fabrics への書き込みに失敗しました：オペレーションはすでに進行中です</block>
-  <block id="225b7a6d4ea820127fe205c2526ea209" category="cell">コントローラの関連付けまたは指定された処理がすでに作成されているか、または作成中であるかを示します。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
   <block id="5d58354522165b88ab742ec42aac9161" category="section-title">テクニカルサポートへの連絡のタイミング</block>
-  <block id="db4ed55dc4a3e29a642f71c4df28880b" category="paragraph">問題が解決しない場合は、次のファイルとコマンドの出力を収集し、テクニカルサポートに問い合わせてトリアージを依頼してください。</block>
   <block id="b5532e466b7ace9d1d9ddb98b57ec0d7" category="summary">SUSE Linux Enterprise Server 15 SP3 （ ONTAP ）用に NVMe/FC を設定する方法について説明します</block>
   <block id="59788ae5607a12c1afe34deb1ad155a2" category="doc">ONTAP を搭載した SUSE Linux Enterprise Server 15 SP3 用 NVMe-oF ホスト構成</block>
   <block id="e70c1030d9edf847e05fc47a0de27a27" category="paragraph">NVMe over Fabrics または NVMe-oF （ NVMe/FC およびその他の転送を含む）は、 ANA （非対称ネームスペースアクセス）を使用した SUSE Linux Enterprise Server 15 SP3 （ SLES15 SP3 ）でサポートされています。ANA は、 NVMe-oF 環境では ALUA に相当し、現在インカーネル NVMe マルチパスで実装されています。SLES15 SP3 および ONTAP で ANA を使用してカーネル内 NVMe マルチパスで NVMe-oF を有効にする方法について、ここで詳しく説明します。</block>
@@ -1775,7 +1747,6 @@
   <block id="79b488f9eaea99a6d3f6667b30d733e5" category="list-text">sanlun にも対応していません。そのため、 SLES15 SP3 では、 NVMe-oF はサポートされていません。代わりに、ネイティブの nvme-CLI に含まれているネットアッププラグインを使用してもかまいません。これはすべての NVMe-oF 転送で機能します。</block>
   <block id="fcfc5ba070a0675d68aab9fb9f245c43" category="list-text">NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。したがって、 SCSI の場合、 SCSI LUN では「 d-mmultipath 」を通常どおりに設定しても mpath デバイスになることがありますが、 NVMe マルチパスを使用してホスト上で NVMe-oF マルチパスデバイスを設定することもできます。</block>
   <block id="1733de5a596dfd8c9179b7f061fe9051" category="paragraph">既知の制限事項はありません。</block>
-  <block id="42104bec91c2c82c24dfb75610f2ff97" category="section-title">構成要件</block>
   <block id="83314818bb7c47b391616d0ff767a7de" category="section-title">NVMe-oF イニシエータパッケージ</block>
   <block id="abc4d57007eba9b1d8b3f88edac97e68" category="list-text">必要なカーネルおよび nvme-cli MU パッケージが SLES15 SP3 MU ホストにインストールされていることを確認します。</block>
   <block id="21c405f2155cb8a6afae52ce69ea30ba" category="paragraph">上記の nvme-cli MU パッケージには、次のものが含まれています。</block>
@@ -1856,7 +1827,6 @@
   <block id="262311c06b4d7e1d63d9ec53a8513969" category="list-text">ESXi ホストに NVMe/FC アダプタが表示されていることを確認します。</block>
   <block id="a4e09728b21e07eb8de92849a3239079" category="admonition">ONTAP 9.7 では、 NVMe/FC ネームスペースのデフォルトのブロックサイズは 4K です。このデフォルトサイズは ESXi に対応していません。したがって、 ESXi のネームスペースを作成する場合は、ネームスペースのブロックサイズを 512b に設定する必要があります。これを行うには、「 vserver nvme namespace create 」コマンドを使用します。</block>
   <block id="b19cff5a6d037faf5ffa796506cf839f" category="inline-link-macro">ONTAP 9 コマンドのマニュアルページ</block>
-  <block id="e83464ce8bd634efb1f099c956ec64a8" category="section-title">Known 問題の略</block>
   <block id="471e82326ed5017bfdb518b5d33377cc" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
   <block id="0a7c052037789d22811592a15b7a2e17" category="inline-link-macro">NetApp ® SnapMirror ® ビジネス継続性（ SM-BC ）による VMware vSphere 6.x および 7.x のサポート</block>
   <block id="ff09581cb2c13d8ad132e71c1320dc7e" category="cell"><block ref="108e2d22c5beb633cb3cfe03baa4f66f" category="inline-link-macro-rx"></block></block>
@@ -2113,7 +2083,6 @@
   <block id="60d0d78dbe9bb18e16690c35ce6867e1" category="paragraph">CentOS 8.5の場合'/etc/multipath.confファイルは存在している必要がありますが'ファイルに特定の変更を加える必要はありませんCentOS 8.5は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を備えています。</block>
   <block id="fd586a803662833af2a4932bc04d30c2" category="paragraph">CentOS 8.5 OSは、ONTAP LUNを認識するようにコンパイルされ、すべての構成パラメータがASA 構成と非ASA構成の両方に対して自動的に正しく設定されます。</block>
   <block id="18c14def8d42f0c0db0b8f08922c712b" category="paragraph">CentOS 8.5の既知の問題はありません。</block>
-  <block id="1b2a59730ea53da6436d8353216d1a0c" category="paragraph">このドキュメントでは、FC、FCoE、およびiSCSIプロトコルを搭載したRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVERITAS Infoscaleストレージ基盤8シリーズのONTAP SANホスト構成設定について説明します。</block>
   <block id="c5b648f7fb06555dc55d907fcf7b4c14" category="paragraph">構成がシステム要件を満たしていることを確認する必要があります。詳細については、ネットアップのInteroperability Matrix ToolとVeritas HCL Matrixを参照してください。</block>
   <block id="ce081634ead33780d73e0e1f6b9ea0ca" category="paragraph">Veritas Dynamic Multipathing （ VxDMP ）を使用すると、ネットアップ LUN を Veritas Multipath Devices として要求するための設定タスクを実行する必要があります。Veritas からネットアップストレージシステムに提供される Array Support Library （ ASL ）と Array Policy Module （ APM ）パッケージをインストールしておく必要があります。Veritas Software Installation では、デフォルトの ASL APM パッケージが製品とともにロードされますが、 Veritas サポートポータルにリストされている最新のサポートされているパッケージを使用することをお勧めします。</block>
   <block id="697675a4c21edc6fc07599249d9fe748" category="paragraph">All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。</block>
@@ -2204,8 +2173,6 @@
   <block id="cebb9dfdc378481f9e93e7b505fe4f1d" category="paragraph">例（b）：</block>
   <block id="cdb0ca847e914e0c124768ae14142869" category="list-text">各パスのコントローラの状態がライブであり、適切なANAステータスであることを確認します。例（A）、</block>
   <block id="86a8f02d0c1226cbab77460737c32b26" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例（A）、</block>
-  <block id="8f04ccd4b6d17f7acb33a4a2262bb3e9" category="section-title">lpfc詳細ログ</block>
-  <block id="dd1f73319dd2881afa35604270a821b9" category="section-title">qla2xxx詳細ログ</block>
   <block id="e3f05e6b08d377aca967243a953ecfb9" category="section-title">一般的なnvme-CLIエラーとその回避策があります</block>
   <block id="e7e8e011c8e0651dc3a6d06305d8279e" category="paragraph">RHEL 8.3に関する既知の問題はありません。</block>
   <block id="ce420cebd9b134c2ee33ae6a490c31ba" category="paragraph">同じ RHEL 8.2 で同じホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。</block>
@@ -2293,8 +2260,6 @@
   <block id="9c7d4fd2f8e0f3f2d80343ad47595e46" category="list-text">RHEL 8.5 GAをサーバにインストールします。インストールが完了したら、指定したRHEL 8.5 GAカーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
   <block id="3010e81137392b43d689728401eb1ea9" category="list-text">lpfc_enable_fc4_typeが3に設定されていることを確認します</block>
   <block id="d5236e74852c6cce228c1229faf5ea4f" category="paragraph">RHEL 8.5 GAカーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
-  <block id="431b68e6f738b5c8bf76d7972d17685f" category="paragraph">一般に'/etc/nvme/hostnqn'文字列がNetAppアレイの対応するサブシステムに追加されていないか'不正なhostnqn'文字列が各サブシステムに追加されています</block>
-  <block id="d9062f55beecc22ab1e0baaa195b1f68" category="paragraph">なし'nvme discover（NVMe検出）'の場合は、しばらくしてからこのコマンドを実行してください。「nvme connect」および「connect-all」の場合は、「nvme list」コマンドを実行して、ネームスペースデバイスがすでに作成され、ホストに表示されていることを確認します。</block>
   <block id="9b2d197e1555229882f18589d7c32cce" category="list-text">各ONTAP ネームスペースの適切なNVMe-oF設定（「model」を「NetApp ONTAP Controller」に設定し、ロードバランシング「iopolicy」を「ラウンドロビン」に設定するなど）がホストに正しく反映されていることを確認します。</block>
   <block id="fc42d5b62a406fecb7a634ca014f42c2" category="paragraph">7.0U3c以降、必要なNVMe/FCモジュールがデフォルトでロードされます。ネットワークとNVMe/FCアダプタの設定については、VMware vSphereのドキュメントを参照してください。</block>
   <block id="209ae9abdc2efd05e90e3a97a8913a9b" category="section-title">NVMe/FCを検証</block>
@@ -2470,13 +2435,10 @@
   <block id="4b74cb8caf9869d9c39202f5a7c8cd4d" category="list-text">もう一方のNVMe/FCイニシエータターゲットLIFのコンボファイルが検出ログページデータを正常に取得できることを確認します。例：</block>
   <block id="7912d4b61044915bf839431d678f055d" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）を実行しているとき<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> コマンドの実行時に、パス障害が発生した場合に再試行を長時間化するようにします。例：</block>
   <block id="8820bbf46f22897008878290f6060725" category="paragraph">例（b）</block>
-  <block id="8ee542f1260df38017c8fcd1811b07cf" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、Interoperability Matrix Tool（IMT ）の仕様に準拠した設定を実行していることを確認し、次の手順に進んでホスト側の問題をデバッグします。</block>
-  <block id="df474dd19781ab3788a85cc52bf31865" category="paragraph">NVMe/FCについては、同様の固有のqla2xxxロギングはありません<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> ドライバ。したがって、次の手順を使用して一般的なqla2xxxログレベルを設定できます。</block>
   <block id="0929df0c2d7b307ae019137c488669a8" category="cell">1503468</block>
   <block id="2f8adf6e51ddcf7b0618dad0e63a4144" category="cell"><block ref="f3d48156832e70ac41335c007fa76798" prefix="" category="inline-code"></block> コマンドは、指定したサブシステムに対して繰り返し実行されているNVMeコントローラのリストを返します</block>
   <block id="95a3009a54be763a347295539b3b924d" category="cell">。<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、特定のサブシステムに関連付けられているNVMeコントローラの一意のリストを返す必要があります。RHEL 9.1では、<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、特定のサブシステムに属するすべてのネームスペースについて、NVMeコントローラのANA状態をそれぞれ返します。ただし、ANA状態はネームスペース単位の属性であるため、特定のネームスペースについてsubsystemコマンドの構文を表示すると、パスの状態にある一意のNVMeコントローラエントリを表示するのが理想的です。</block>
   <block id="83dccde7d3d49df72143822cd414e991" category="cell">2130106.</block>
-  <block id="9e9ad12d8f7b421ec7b07bcffb518755" category="paragraph">問題が解決しない場合は、次のファイルとコマンドの出力を収集し、テクニカルサポートに問い合わせてトリアージを依頼してください。</block>
   <block id="54bb88571442321a8544c55cb834deb7" category="cell">RHEL 8.7 NVMe-oFホストでは、重複する永続的検出コントローラが作成されます</block>
   <block id="c66549c6038d3ebbf4c13fa9699ba9c4" category="cell">NVMe over Fabrics（NVMe-oF）ホストでは、「nvme discover -p」コマンドを使用して、Persistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1とRed Hat Enterprise Linux（RHEL）8.7を実行している場合は、「nvme discover -p」を実行するたびに重複するPDCが作成されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。</block>
   <block id="666e694f580810d83f5f40c26c2bb04c" category="summary">ONTAP でRed Hat Enterprise Linux 9.1を使用する方法について説明します</block>
@@ -2521,7 +2483,6 @@
   <block id="7682043e346a0976ad107c7cb3989145" category="list-text">構成ファイルを作成します<block ref="2c50293ac08c6ad6b30ce2ba7a8fcd9c" prefix=" " category="inline-code"></block> ネットアップストレージタイプがホストに接続されている場合は、次のようなエントリが表示されます。</block>
   <block id="976902513d73f70373bf832d81070379" category="admonition">ONTAP 9.9.9..1以降では'Solaris 11.4ホストでSM-BC設定がサポートされています</block>
   <block id="e49ccc598a2a177291bac4be5c852c5f" category="cell"><block ref="e49ccc598a2a177291bac4be5c852c5f" category="inline-link-macro-rx"></block></block>
-  <block id="5b3496bb3deba2c2222970d5c975df4a" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、Interoperability Matrix Tool（IMT ）の仕様に準拠した設定を実行していることを確認し、ホスト側の問題をデバッグするために次の手順を実行します。</block>
   <block id="edd08258c3c5f3718f84028ff5971d1d" category="section-title">Oracle Solarisの仮想化</block>
   <block id="fd515dc1fb4215f1d4f9c5a754b19cab" category="section-title">仮想化の推奨設定</block>
   <block id="c25aaa60cb981e43df9a60c24d76e170" category="paragraph">SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションがシステムを停止しないことを確認するには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
@@ -2553,7 +2514,6 @@
   <block id="eadd99715c27e14fe7508d5c9bf2c8bc" category="cell">Oracle Linux 8.6 NVMe-oFホストは重複する永続的検出コントローラを作成します</block>
   <block id="f775b9dd25663187ef2a06904bcffd62" category="cell">Oracle Linux 8.6 NVMe over Fabrics（NVMe-oF）ホストでは、を使用できます<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、ONTAP 9.10.1とOracle Linux 8.6をNVMe-oFホストで実行している場合は、毎回重複するPDCが作成されます<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> が実行されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。</block>
   <block id="ea537a490c78c08866a1149ac8451043" category="cell">18118年</block>
-  <block id="18364f61161412813e05ad8b27bed23e" category="paragraph">NVMe/FC障害のトラブルシューティングを開始する前に、IMT の仕様に準拠した設定を実行していることを確認し、次の手順に進んでホスト側の問題をデバッグします。</block>
   <block id="6a133285885bbf7ad82fbc82c4bfd8ee" category="summary">ONTAP を使用したOracle Linux 8.4向けVME / FCホスト構成のセットアップ例を示します</block>
   <block id="2d60c3fc33d0bb9862234393561976b3" category="doc">ONTAP を使用したOracle Linux 8.4向けNVMe/FCホスト構成</block>
   <block id="d06d1d488461357bdc27f97d34980d21" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびNVMe/TCPを含む）は、Oracle Linux 8.4 with Asymmetric Namespace Access（ANA）でサポートされます。ANAは、ONTAP アレイで稼働しているストレージフェイルオーバー（SFO）に必要です。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。ここでは、ONTAP をターゲットとしてOracle Linux 8.4でANAを使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について説明します。</block>
@@ -2644,7 +2604,6 @@
   <block id="ca13d5e31c4c214fae823252ea3ac466" category="list-text">ネットアッププラグインに表示される各ONTAP ネームスペースデバイスの値が正しいことを確認します。</block>
   <block id="2777856007ced53036238eb6ac77a35c" category="cell">Oracle Linux 8.5 NVMe-oFホストは重複する永続的検出コントローラを作成します</block>
   <block id="2f0abad3e4805563c626305c7ea008ba" category="cell">Oracle Linux 8.5 NVMe over Fabrics（NVMe-oF）ホストでは、を使用できます<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1とOracle Linux 8.5を実行している場合は、毎回重複するPDCが作成されます<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> が実行されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。</block>
-  <block id="049cf7a01c96a6039648d00060516545" category="paragraph">NVMe/FC障害のトラブルシューティングを行う前に、IMT 仕様に準拠した構成を実行していることを確認してから、次の手順に進んでホスト側の問題を解決してください。</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="summary">著作権に関する声明、商標、特許などにアクセスできます。</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法的通知</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="section-title">著作権</block>
@@ -2710,7 +2669,6 @@
   <block id="fea53c4695433409c2501af776af21c3" category="paragraph">SAN Host Utilitiesのドキュメントは、に記載されています <block ref="83855932909dca92603efe77cb42c173" category="inline-link-macro-rx"></block>。ONTAP SANホスト構成に関するドキュメントは累積的に作成され、現在のすべてのSANホストリリースをカバーしています。リリース間の機能の違いは、コンテキストに基づいて示されます。</block>
   <block id="b941110e14a54d454e0dea4fa380b5b9" category="list-text">使用しているSANtricity のバージョンに対応したSANtricity ストレージマネージャマルチパスドライバのガイド。</block>
   <block id="54ed56ff6f53cace0a89cfd9c793d498" category="paragraph">推奨設定を使用してKernel-Based Virtual Machine（KVM）を設定することもできます。LUN がハイパーバイザーにマッピングされるため、 KVM の設定を変更する必要はありません。</block>
-  <block id="663a5883675ae80b4bcdfec1d5268ae6" category="paragraph">ASMミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。詳細については、「ONTAP 上のOracleデータベース」を参照してください。</block>
   <block id="e0a63b6c7b84f763f3ca8d8b86db69b8" category="summary">WindowsユニファイドHost Utilitiesにはインストールプログラムが含まれています。このプログラムでは、WindowsホストがNetApp ONTAP およびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定します。</block>
   <block id="e16334a1a12d2e212a82720b2f25b627" category="doc">Windows Unified Host Utilities 7.2</block>
   <block id="bf992d142295c3f916496b43e9f9214e" category="section-title">Windows Host Utilitiesについて</block>
@@ -2862,7 +2820,6 @@
   <block id="c39a85f8ec6b0a29f08919e66d066295" category="cell">Solaris 11.4およびHUKの推奨事項に従います。FC ドライバのバインドが SSD （ 4D ）から SD （ 4D ）に変更されました。の構成を移動します<block ref="d5ef7f69fa74e42b54d8244ee447ab2b" prefix=" " category="inline-code"></block> 終了：<block ref="88cafedaeae385b0e8278ab1804829cd" prefix=" " category="inline-code"></block> 詳細については、 Oracle （ドキュメント ID 2595926.1 ）を参照してください。この動作は、新しくインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます。</block>
   <block id="cb5a5fbf7b377c4121e5a7dee7e950e5" category="cell">Solaris 11.x<block ref="cb4b12dfd645e3fcd47ea6dec988643f" prefix=" " category="inline-code"></block> エンドツーエンドのEmulex構成でI/Oエラーが発生する</block>
   <block id="a15ed55b009e93df31791bff39016875" category="paragraph">を参照してください <block ref="a39850964251401babb6e797f9dd15c1" category="inline-link-macro-rx"></block> をクリックして、SANtricity 関連ドキュメントを参照してください</block>
-  <block id="f6bd0d7447ff66cc6b859603a88fbde9" category="section-title">関連リンク</block>
   <block id="ec1f030f0caddb932644a46761f74630" category="list-text"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block></block>
   <block id="e0ace13bee28a678ec04ad1b076b4b00" category="admonition">VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツールを導入する必要があります。すべてのigroup設定はVASA Providerによって管理されるため、VVOL環境でigroupを作成または管理する必要はありません。</block>
   <block id="a2093eec2c1b326b4a76efce454cc95a" category="paragraph">VVOL のプロビジョニングと管理の詳細については、 VMware vSphere 用の ONTAP ツールのドキュメントも参照してください<block ref="fc9815e7b1405959c49ad47e9a23e3a5" category="inline-link-rx"></block> および <block ref="a74613d919ef64732e37564f6282a452" category="inline-link-macro-rx"></block></block>
@@ -2983,7 +2940,6 @@
   <block id="da208fb575db2ac57ff1319036af2a6f" category="list-text">イニシエータポートが動作しており、ターゲットLIFが表示されていることを確認します。</block>
   <block id="413d1a842341ac8491856d35085746ac" category="paragraph">ONTAPネームスペースがホストに正しく反映されていることを確認する必要があります。これを行うには、次のコマンドを実行します。</block>
   <block id="c4815a9e7bab07d952f3a16f2d250f1f" category="paragraph">マルチパスのステータスを確認できます。</block>
-  <block id="b1460fc99f40abf0e4777c0ef83f9340" category="paragraph">ONTAPを備えたAIXでのNVMe/FCホストの設定には、次の既知の問題があります。</block>
   <block id="31c5b0de25b168798dceb058bef8a7f6" category="cell">BURT ID</block>
   <block id="42dcdffc46f5810bfaac54d46fbf50ef" category="cell">1553249</block>
   <block id="650a7c31a67a66d1f1f10b3eccb13db4" category="cell">MCC計画外スイッチオーバーイベントをサポートするために変更されるAIX NVMe/FCのデフォルトAPD時間</block>
@@ -3010,8 +2966,6 @@
   <block id="64ccbd06c1f5d18122faf6ea96805341" category="list-text">NVMe/FCプロトコルのサポートは、物理FCではデフォルトで有効になっていますが、NVMe/FCプロトコルのサポートは、Virtual I/O Server（VIOS）のVirtual Fibre Channel（VFC；仮想ファイバチャネル）では無効になっています。</block>
   <block id="9fd88788efc2039d4c86e3d60310b147" category="paragraph">仮想アダプタのリストを取得します。</block>
   <block id="e31c4b8d2ef22d8837e50793ada5f2e9" category="cell">AIXオペレーティングシステムでは、NVMe/FCにデフォルトで20秒のオールパスダウン（APD）タイムアウト値が使用されます。  ただし、ONTAP MetroClusterの自動計画外スイッチオーバー（AUSO）とTiebreakerで開始されるスイッチオーバーのワークフローには、APDのタイムアウト時間よりも少し時間がかかり、I/Oエラーが発生することがあります。</block>
-  <block id="bf14ca0596cd773b04205ea1d53bcc29" category="paragraph">NVMe/FCの障害をトラブルシューティングする前に、実行している構成がIMTの仕様に準拠していることを確認してください。
-問題が解決しない場合は、テクニカルサポートに連絡してトリアージを進めてください。</block>
   <block id="9e10b0a5aea11686043890a4e7f7d67d" category="list-text">複数のパスが使用可能であることを確認します。</block>
   <block id="f2e04893e244d58e7312b018d7c330cd" category="admonition">ホストOSが起動してパスで実行されると、複数のパスが使用可能になります。</block>
   <block id="159e1cf7b9f0c43c83e2d3d06cfe2786" category="list-text">ホストをリブートしてブートが成功したことを確認します。</block>
@@ -3036,7 +2990,6 @@
   <block id="7558802010b056df08332b675440eea8" category="admonition">Oracle Linux 8.7 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="2799389175d462b609c459275109bc99" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.7の場合。</block>
   <block id="73ba9729c9740db82f51a4f8954414ff" category="paragraph">推奨設定を使用してKernel-Based Virtual Machine（KVM）を設定することもできます。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。</block>
   <block id="8c7c84346d72ecc6e19907a700f38429" category="paragraph">Oracle Linux 8.7に関する既知の問題はありません。</block>
-  <block id="2c9a7203cf50b708a9ec676237f0b25d" category="paragraph">Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。詳細については、「ONTAP 上のOracleデータベース」を参照してください。</block>
   <block id="1918c14015c19cfe7ab5da89745a137f" category="doc">NVMe-oFホスト構成（Oracle Linux 8.7 with ONTAP</block>
   <block id="24aa52aa9699b501c3a8bed92978c144" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Asymmetric Namespace Access（ANA）対応のOracle Linux（OL）8.7でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
   <block id="5e23e6a5bed72a0ca8cbff0598786db4" category="paragraph">ONTAPを使用したOL 8.7のNVMe/FCホスト構成では、次の機能がサポートされます。</block>
@@ -3064,11 +3017,7 @@
   <block id="942bc9ba97662019cbc2b7e41f8381db" category="paragraph">ONTAPリリースを使用したOL 8.7のNVMe-oFホスト設定には、次の既知の問題があります。</block>
   <block id="4d85197b1029241623e97a28c5823630" category="cell">Oracle Linux 8.7 NVMe-oFホストは重複する永続的検出コントローラを作成します</block>
   <block id="07ad87616fe3ef97097ef4a56610ba36" category="cell">OL 8.7 NVMe-oFホストでは、を渡すことでPersistent Discovery Controller（PDC；永続的検出コントローラ）が作成されます<block ref="b3868ba70a8f4cf55464dd9926381db1" prefix=" " category="inline-code"></block> オプションをに設定します<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> コマンドを実行します特定のイニシエータとターゲットの組み合わせでは、の呼び出しごとにPDCが1つだけ作成される必要があります<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> コマンドを実行しますただし、OL 8.x以降では、NVMe-oFホストがを呼び出すたびにPDCが重複して作成されます<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> コマンドにを指定します<block ref="b3868ba70a8f4cf55464dd9926381db1" prefix=" " category="inline-code"></block> オプションこれにより、ホストとターゲットの両方のリソースが無駄になります。</block>
-  <block id="e547a2a229ecff025ac8a9944e494a73" category="paragraph">NVMe-oFの障害をトラブルシューティングする前に、実行している設定がIMTの仕様に準拠していることを確認してから、次の手順に進んでホスト側の問題をデバッグします。</block>
   <block id="564a7e3459c5ede626fd0f47cac71ff3" category="list-text">OL 9.0 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPのサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
-  <block id="c48bd590bf88d48a24d60b6b5c163ad4" category="paragraph">Oracle Linux 9.0（ONTAPリリース）でのNVMe-oFホスト設定には、次の既知の問題があります。</block>
-  <block id="7fc2293e459de57e2832a921a712ac35" category="admonition">これはQlogic NVMe/FCホストには該当しません。
-xxx</block>
   <block id="a3bfd4755428917359c01fd362495acc" category="paragraph">。<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。</block>
   <block id="e30c75b0dc59992b638dfe73b8bf5597" category="paragraph"><block ref="307e748c432594fde04ec1d02c6808e4" prefix="" category="inline-code"></block></block>
   <block id="cf0c07eb31e8fda788f0ed252dc6975a" category="paragraph">このファイルを初めて作成するときは、マルチパスサービスを有効にして開始しなければならない場合があります。</block>
@@ -3241,7 +3190,6 @@ xxx</block>
   <block id="a55c64674e30e11be44367361a197b70" category="paragraph">OL 9.2の場合は<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 9.2は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
   <block id="beb55dba3ba1d2be4056c146cb0bf458" category="paragraph">Oracle Linux 9.2 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
   <block id="a706283e3f8c7062e0c4c4b423b93965" category="admonition">Oracle Linux 9.2 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）9.2の場合。</block>
-  <block id="01ae493ab1dc24745cd1c1e47aa25447" category="paragraph">Oracle Linux 9.2 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
   <block id="02b2bcdfe73b2cce057d7b84806fa6ed" category="paragraph">Oracle Linux 9.1 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
   <block id="5890aebb0489382354458498eb36394e" category="paragraph">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、ホストバスアダプタ（HBA）検出に必要なライブラリの依存関係が見つからないというエラーメッセージが表示されます。</block>
   <block id="cc40ed991073c638cc114ee18ad15d8c" category="paragraph">Oracle Linux 9.0 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
@@ -3314,7 +3262,6 @@ xxx</block>
   <block id="8081080397baec608d84fd3afffdb29d" category="doc">CentOS 6.5とONTAPの併用</block>
   <block id="5fef9070d7cec9b1052ec5f805c82203" category="doc">ONTAPでCentOS 8.0を使用</block>
   <block id="fcd5a26f819291c5057cf1bf9ba4b0e3" category="doc">Red Hat Enterprise Linux 6.10とONTAPの併用</block>
-  <block id="0f58bb2843522e2206b491398ef785df" category="doc">ONTAPでのVeritas Storage Foundation 6 for Linuxの使用</block>
   <block id="3e537edf35b6854e2685914d33b9835d" category="doc">Solaris 11.3とONTAPの併用</block>
   <block id="136a479cd65c7a7cb09b6cb800da37d1" category="doc">ONTAPでCentOS 6.10を使用</block>
   <block id="3369bed83566ad14c6e2c04fbbca3406" category="doc">Oracle Linux 7.7とONTAPの併用</block>
@@ -3372,4 +3319,47 @@ xxx</block>
   <block id="2cac689df6b99782e23a143c9bfa2346" category="sidebar">HP-UX Host Utilitiesのことです</block>
   <block id="a4d5754af636a6318ee2ffcd80c52e27" category="sidebar">Linux Unified Host Utilities のこと</block>
   <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
+  <block id="8557e53cdfdd197b67dd8b986e602bf0" category="paragraph">FC、FCoE、およびiSCSIプロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム向けのVeritas Infoscale Storage Foundation 7シリーズリリースでは、ONTAP SANホストの設定を使用できます。</block>
+  <block id="2748559fa3f480a739ce5c8aa1fb9f04" category="paragraph">Oracle Linux 9.2 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
+  <block id="1bbb67631847a06bbd9b2e9dafec2134" category="section-title">Solaris Host Utilitiesのインストール</block>
+  <block id="3b6d73c1a990f96b5a1195998cefcf0a" category="paragraph">ONTAPリリースを使用したESXi 7.xのNVMe-oFホスト構成には、次の既知の問題があります。</block>
+  <block id="7d2ac39702ab406c53e1e589396dc20a" category="paragraph">Windows Server 2019およびONTAPを実行するホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="3f20da7f97c0948dba60855f74d8feb3" category="paragraph">NVMe over Fibre Channel（NVMe/FC）は、SUSE Linux Enterprise Server 15 SP1およびONTAPを実行するホストにターゲットとして設定できます。</block>
+  <block id="c783ac9d690ea6f6744d8edf596a145a" category="list-text">NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SLES15 SP1 では、ネイティブの inbox lpfc ドライバを使用できます。</block>
+  <block id="c5572eca1bd94cf7d7a382167c292395" category="paragraph">==既知の問題</block>
+  <block id="04e8d5a4c40a30787e3a35e62dfd0c1e" category="paragraph">NVMe/FC用のLPFCドライバを設定します。</block>
+  <block id="9f988f6d1200dcd570b84c8116f6eecd" category="paragraph">FC、FCoE、およびiSCSIプロトコルを使用するCitrix Hypervisor 8シリーズOSリリースのONTAP SANホスト構成設定を構成できます。</block>
+  <block id="58778ead591330ae1dd8f24f2549fc34" category="paragraph">ONTAPリリースを使用したOL 8.4のNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="7b3bf1d8eef841f0a31f40eb5d332ced" category="paragraph">Windows Server 2012 R2およびONTAPを実行するホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="838ed30bf9830d174974818ad89ac4c7" category="paragraph">ONTAPリリースを搭載したRHEL 8.6のNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="e62de6043f25aae2915aa8c10fbaec9d" category="cell"><block ref="e62de6043f25aae2915aa8c10fbaec9d" category="inline-link-macro-rx"></block></block>
+  <block id="fad1bada1216764738043e879ec198a9" category="paragraph">==既知の問題
+既知の問題はありません。</block>
+  <block id="c29b12d2cc17f9149a97f1cf82a6c263" category="paragraph">ONTAPリリースを使用したOL 8.6のNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="f5c1b43cd99bf5053de182854bd7e76a" category="paragraph">RHEL 9.1とONTAPリリースのNVMe-oFホスト構成には、次の既知の問題があります。</block>
+  <block id="1341add2fe573f7064d22ce6afde8495" category="paragraph">Windows Server 2016およびONTAPを実行するホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="6dbaaee7c23e43374599aa43c101fa0b" category="paragraph">RHEL 8.7に関する既知の問題はありません。</block>
+  <block id="0ea1561176c96894fb977d38bd38f871" category="section-title">Broadcom NVMe/FCテノ1MBノI/Oサイスノユウコウカ</block>
+  <block id="624e2520b17b79e6e7312aaab546e064" category="section-title">Broadcom NVMe/FC用に1MBのI/Oサイズを有効にする</block>
+  <block id="794c839c1ce38d3e3fe9ddbfd7d3ee62" category="paragraph">RHEL 9.0（ONTAPリリース）のNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="7ed61b389d995a259f689087e9ac7cbf" category="paragraph">RHEL 8.8に関する既知の問題はありません。</block>
+  <block id="0fcb153a09cf9f735fd10ea86aa03c38" category="paragraph">Windows Server 2022とONTAPを実行しているホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="eeb65ac9a4f35e659e92b61cc21d24b5" category="paragraph">ONTAPリリースを搭載したRHEL 8.7のNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="a597507af40f2b893bf64299ba506a89" category="doc">ONTAPでVeritas Storage Foundation 6 for Linuxを使用</block>
+  <block id="f1ae093ec47cacaea6fabc35758d35f7" category="paragraph">FC、FCoE、およびiSCSIプロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVeritas Storage Foundation 6シリーズリリースでは、ONTAP SANホスト設定を使用できます。</block>
+  <block id="7766164b38459bfd3947f7747d94760a" category="paragraph">vSphere 6.5.xおよび6.7.xリリースでは、FC、FCoE、およびiSCSIプロトコルを使用してONTAP SANホストの構成設定を使用できます。</block>
+  <block id="d60c463bb4096f3ed4bd1618626dfe10" category="doc">トラブルシューティングを行う</block>
+  <block id="e1cd8c01047ab9aa65fc1c931ccdb0a8" category="paragraph">RHEL、OL、およびSLESホストのNVMe-oF障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してから、次の手順に進み、ホスト側の問題をデバッグします。</block>
+  <block id="4a446daa2697df931fbab571c023baef" category="admonition">AIX、Windows、ESXiホストにはトラブルシューティング手順は適用されません。</block>
+  <block id="96050aafb2fca1409b0f952e7597fd11" category="paragraph">NVMe/FCについては、のようなqla2xxxのロギングはありません。<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> ドライバ。代わりに、一般的なqla2xxxログレベルを設定します。</block>
+  <block id="0659d428df833a806e29e65e632d380a" category="inline-link-macro">ネットアップサポート</block>
+  <block id="b3303f1e3e1d5672f6b839c968637989" category="paragraph">問題が解決しない場合は、次のファイルとコマンド出力を収集し、 <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> さらなるトリアージ：</block>
+  <block id="678a8f2b559ba91fc985c5641c2d8f28" category="paragraph">Oracle Linux 9.0（ONTAPリリース）でのNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="b9e735e8617edf1ba79d42cb4c76dd1b" category="paragraph">ONTAPリリースを使用したOL 8.5のNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="78186bcc2bcf3016d00a067d67064dea" category="paragraph">ONTAPリリースを使用したOL 8.3のNVMe-oFホスト設定には、次の既知の問題があります。</block>
+  <block id="8e2fe53ccb05734b777fbcc2363d25ab" category="paragraph">vSphere 7.xリリースでは、FC、FCoE、およびiSCSIプロトコルでONTAP SANホストの構成設定を使用できます。</block>
+  <block id="bb8697c974d608376ec4f0aa538c9a50" category="paragraph">ONTAPリリースを使用するAIXのNVMe/FCホスト設定には、次の既知の問題があります。</block>
+  <block id="d9a42f0deac96b98dbebf2e560cd7f5c" category="paragraph">NVMe/FCの障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してください。問題が解決しない場合は、 <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> さらなるトリアージのために。</block>
+  <block id="3a4b11723a00030809010d89daf7ebe2" category="paragraph">FC、FCoE、およびiSCSIの各プロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVeritas Infoscale Storage Foundation 8シリーズリリースでは、ONTAP SANホストの構成設定を使用できます。</block>
+  <block id="eaf39d9dce68a53c6bc9882062e6b8ac" category="paragraph">ESXi 8.x（ONTAPリリース）のNVMe-oFホスト構成には、次の既知の問題があります。</block>
 </blocks>
