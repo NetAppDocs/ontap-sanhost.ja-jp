@@ -18,7 +18,7 @@ summary: HPUX Host Utilities 6.0リリースノート
 :toc-position: content
 
 
-本リリースノートには、HP-UX Host Utilities 6.0リリースの最新情報に加え、既知の問題、制限事項、ONTAP ストレージシステムの構成と管理に関する最新情報が記載されています。『リリースノート』ドキュメントは、HP-UX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
+リリースノートには、HP-UX Host Utilities 6.0リリースに関する最新情報（既知の問題、制限事項、ONTAPストレージシステムの設定と管理に関する更新情報など）が記載されています。『リリースノート』ドキュメントは、HP-UX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
 
 
 

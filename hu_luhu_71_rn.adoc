@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: hu_luhu_71_rn.html 
-keywords: host utilities, linux, 7.1, netapp, ontap, release, notes 
+keywords: host utilities, linux, 7.1, netapp, ontap, release, notes, linux 
 summary: Linux Unified Host Utilities 7.1のリリースノート 
 ---
 = 『Linux Unified Host Utilities 7.1 Release Notes』
@@ -45,8 +45,8 @@ NOTE: 本ドキュメントに記載されているHost UtilitiesまたはLinux 
 ** Citrix XenServer
 
 
-* Red Hat Enterprise Linux（RHEL）6およびRHEL 7ホストでは、サーバプロファイルを設定するためのチューニング済みパッケージがサポートされるようになりました。を使用できます `tuned-adm` 環境に応じて異なるプロファイルを設定するコマンド。  たとえば、仮想ゲストプロファイルをゲスト仮想マシンとして使用したり、エンタープライズストレージプロファイルを使用して、エンタープライズストレージアレイのLUNを使用する構成を行うこともできます。  これらの調整済みパッケージを使用すると、ONTAPのスループットとレイテンシが向上します。
-* Broadcom EmulexおよびMarvell Qlogicの32 GBファイバチャネルアダプタのサポートが追加されました。
+* Red Hat Enterprise Linux（RHEL）6およびRHEL 7ホストでは、サーバプロファイルを設定するためのチューニング済みパッケージがサポートされるようになりました。を使用できます `tuned-adm` 環境に応じて異なるプロファイルを設定するコマンド。たとえば、仮想ゲストプロファイルをゲスト仮想マシンとして使用したり、エンタープライズストレージプロファイルを使用して、エンタープライズストレージアレイのLUNを使用する構成を行うこともできます。これらの調整済みパッケージを使用すると、ONTAPのスループットとレイテンシが向上します。
+* Broadcom EmulexおよびMarvell Qlogicから32Gb FCアダプタのサポートが追加されました。
 
 
 
