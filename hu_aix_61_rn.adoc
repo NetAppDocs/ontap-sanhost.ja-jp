@@ -21,7 +21,7 @@ summary: 『Release Notes for AIX Host Utilities 6.1』
 [role="lead"]
 リリースノートには、既知の問題、制限事項、ONTAPストレージシステムの設定と管理に関する更新情報など、AIX Host Utilities 6.1リリースに関する最新情報が記載されています。
 
-『リリースノート』ドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
+リリースノートドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が追加されたときに更新されます。
 
 
 

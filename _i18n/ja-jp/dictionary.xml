@@ -2051,7 +2051,6 @@
   <block id="4a77bd6ca1098e847cb75095287cdf8d" category="paragraph">CentOS 7.3には既知の問題はありません。</block>
   <block id="ebc6dd08dd10ab545441a995fcd41e3f" category="paragraph">CentOS 7.1に関する既知の問題はありません。</block>
   <block id="4391e4a69364ebb845d6562846716af4" category="doc">『AIX Host Utilities 6.1 Release Notes』</block>
-  <block id="ebdfd2288177a34c60438efc134f52c4" category="paragraph">『リリースノート』ドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。</block>
   <block id="cfbc0c9386472f86132990683d16796f" category="section-title">AIX Host Utilities 6.1リリースの概要</block>
   <block id="f418c08cd071f42a28a07d007dd30c34" category="paragraph">AIX Host Utilitiesを使用すると、AIXホストをネットアップストレージに接続できます。AIX Host Utilitiesは、複数の環境とFC、FCoE、iSCSIの各プロトコルをサポートしています。サポートされている環境は、AIX MPIO（ネイティブOS）とPowerVMです。</block>
   <block id="66c2d1ced882bffc99d6170e17a232ef" category="paragraph">オペレーティングシステムのバージョンおよびHost Utilitiesがサポートする更新については、を参照してください <block ref="7ce73c7ae176dd6b577d1c14b445f0cd" category="inline-link-macro-rx"></block>。</block>
@@ -2137,7 +2136,6 @@
   <block id="478829f91ffe1d5a9fcb7ae0a4fa2eda" category="cell">HP-UX LVMを作成すると、1MBを超えるブロックサイズのI/Oが送信されます</block>
   <block id="24cc4783034cf857703516141d8cc8ad" category="summary">Solaris Host Utilities 6.2リリースノート</block>
   <block id="07cb401e35e41c1ea4ba568ba75b0261" category="doc">Solaris Host Utilities 6.2リリースノート</block>
-  <block id="a8d190b8be84e8cfdb8b2df1b04cb957" category="paragraph">『リリースノート』ドキュメントは、Solaris Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。</block>
   <block id="83abaefac7375849eeb586ba637a2d22" category="section-title">Solaris Host Utilities 6.2リリースの概要</block>
   <block id="d64c00d8393bc6d797e2fd2eb038c7f6" category="paragraph">Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。</block>
   <block id="5a5633c19126b79400042b56b8dcdf4a" category="paragraph">主な Host Utilities 環境は次のとおりです。</block>
@@ -3374,4 +3372,31 @@
   <block id="03b35db54926510f82d04231162aa4bc" category="paragraph">リリースノートには、Solaris Host Utilities 6.2の最新情報（既知の問題、制限、ONTAPストレージシステムの設定と管理に関する更新情報など）が記載されています。</block>
   <block id="8b98a90c0f8d947a6126ce4314f1d147" category="paragraph">このリリースノートには、Windows Unified Host Utilities 7.2および7.1リリースの最新情報（新機能、拡張機能、既知の問題に関する更新情報など）が記載されています。このドキュメントは、Windows Host Utilitiesの使用に関する新しい情報が入手可能になると更新されます。</block>
   <block id="83c2a71fbf38a299fb12e6baeabd4505" category="paragraph">リリースノートには、既知の問題、制限事項、ONTAPストレージシステムの設定と管理に関する更新情報など、AIX Host Utilities 6.1リリースに関する最新情報が記載されています。</block>
+  <block id="d183f649aa9dd1befe9fbbbebb9ce6f3" category="paragraph">この例では、デバイスのWWIDを特定し、<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ファイル。</block>
+  <block id="9befbb0a2a211b5683af5265f22799fb" category="paragraph"><block ref="59b466fd93164953e56bdd1358dc0044" prefix="" category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
+  <block id="8f832cd06827c0d578f135a31564e7cf" category="summary">SUSE Linux Enterprise Server 15 SP5とONTAPの使用方法について説明します。</block>
+  <block id="f380df15f54bded5a312678b9e8d1316" category="doc">SUSE Linux Enterprise Server 15 SP5とONTAPの併用</block>
+  <block id="36143cd0461c285a2eca19136916ef01" category="paragraph">SUSE Linux Enterprise Server 15 SP5の場合、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 15 SP5は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="dc0fc37f340703d773442e3a17af6d7a" category="paragraph">SUSE Linux Enterprise Server 15 SP5 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="b25e39830857186678d47588cf34427b" category="paragraph">リリースノートドキュメントは、AIX Host Utilitiesの使用に関する新しい情報が追加されたときに更新されます。</block>
+  <block id="9371be445976145cde05ce83e4737332" category="paragraph">このリリースノートドキュメントは、Solaris Host Utilitiesの使用に関する新しい情報が追加されたときに更新されます。</block>
+  <block id="6927b4ed365e3f3d6b1daf74c1ed53f2" category="summary">SUSE Linux Enterprise Server 15 SP5 with ONTAP向けNVMe-oFホスト構成</block>
+  <block id="cef327de24717c0ad1a3577819070251" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたSUSE Linux Enterprise Server（SLES）15 SP5でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="b1342a2fc9721ae555225a23c38646ee" category="paragraph">ONTAPを備えたSLES 15 SP5のNVMe-oFホスト構成では、次のサポートが提供されます。</block>
+  <block id="adc8ef4a0481c8ef901d03cbd4bf8186" category="list-text">NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。</block>
+  <block id="006918920124fa71bdbcdf36bd28ae8a" category="list-text">sanlun にも対応していません。そのため、SLES15 SP5ホストではNVMe-oFのホストユーティリティはサポートされません。すべてのNVMe-oF転送では、標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。</block>
+  <block id="d4e23fcba4bc0b1061b10f6685f457d0" category="list-text">NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNの場合はSCSI mpathデバイスにdm-multipathを設定できますが、NVMeマルチパスを使用してホストのNVMe-oFネームスペースデバイスを設定できます。</block>
+  <block id="9289ca9c2249e04ae2bff00d83dcc81a" category="paragraph">SLES 15 SP5では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。したがって、明示的な設定は必要ありません。</block>
+  <block id="e19a5cfce66766fef9f35d8014318a0d" category="paragraph">次の手順を使用して、サポートされているSLES 15 SP5ソフトウェアの最小バージョンを検証できます。</block>
+  <block id="c294ad6ecc5f6261d8e788ca4d8d70e8" category="list-text">必要なカーネルパッケージとnvme-cliメンテナンスアップデートパッケージがSLES15 SP5メンテナンスアップデートホストにインストールされていることを確認します。</block>
+  <block id="5168cf93841071a3e1f60a0f4b0c3d43" category="paragraph">。<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> メンテナンスアップデートパッケージには次のものが含まれています。</block>
+  <block id="d739ab3b1cb915174aa72612ba6c2a52" category="list-text">* NVMe/FC自動接続スクリプト*-ネームスペースへの基盤となるパスがリストアされた場合、およびホストのリブート時にNVMe/FCの自動再接続に自動接続スクリプトが必要です。</block>
+  <block id="dce4a7fd8636104bab20d3ef1ecafee2" category="list-text">* ONTAP udevルール*-新規<block ref="ab775c875d5f89d991a670444dd32ad2" prefix=" " category="inline-code"></block> NVMeマルチパスラウンドロビンロードバランサ環境All ONTAPネームスペースがデフォルトで設定されていることを確認するルール：</block>
+  <block id="de16dfda1a2f3a67b92c3c6961d20447" category="list-text">* ONTAPデバイス用NetAppプラグイン*- ONTAPネームスペースを含めるように既存のNetAppプラグインを変更します。</block>
+  <block id="a0eeee903845ea8eb9c7b13f5d7a9c4a" category="list-text">を確認します<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> 文字列<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
+  <block id="83f602f6ddd60bbecd2701b962883e96" category="paragraph">既存のネイティブ受信トレイ<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> ドライバは最新のもので、NVMe/FCと互換性があります。したがって、lpfc out-of-box（OOB）ドライバをインストールする必要はありません。ドライバのバージョンを確認します。</block>
+  <block id="1ebdde2be7f564cea3a55372d3a0f091" category="paragraph">。<block ref="7c21ff5d058ac57f39085c6b934e1ac8" prefix=" " category="inline-code"></block> サポートはデフォルトで有効になっています。新しいlpfcドライバ（受信トレイと送信トレイの両方）には、<block ref="2daa99bd4c709cddaca678ef2050fb39" prefix=" " category="inline-code"></block> パラメータが3に設定されているため、<block ref="39cb7236e95ada10fc0d69173bd48cdb" prefix=" " category="inline-code"></block> ファイル、再作成<block ref="a35ad41999d0ef4fe38eeb93c6e7076b" prefix=" " category="inline-code"></block>。次のことを確認できます。<block ref="2daa99bd4c709cddaca678ef2050fb39" prefix=" " category="inline-code"></block> がに設定されます<block ref="eccbc87e4b5ce2fe28308fd9f2a7baf3" prefix=" " category="inline-code"></block>：</block>
+  <block id="6823ef6314c55fa0a8e99cebacd9594d" category="list-text">SLES 15 SP5カーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="2a7e9b55568d2461dc6a6662ab294d24" category="list-text">SLES 15 SP5ホストで次のNVMe/FC設定を確認します。</block>
+  <block id="7027855d0b65fefb5ac52eae93da7ac6" category="sidebar">15 SP5</block>
 </blocks>

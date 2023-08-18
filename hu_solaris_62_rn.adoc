@@ -21,7 +21,7 @@ summary: Solaris Host Utilities 6.2リリースノート
 [role="lead"]
 リリースノートには、Solaris Host Utilities 6.2の最新情報（既知の問題、制限、ONTAPストレージシステムの設定と管理に関する更新情報など）が記載されています。
 
-『リリースノート』ドキュメントは、Solaris Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
+このリリースノートドキュメントは、Solaris Host Utilitiesの使用に関する新しい情報が追加されたときに更新されます。
 
 
 
