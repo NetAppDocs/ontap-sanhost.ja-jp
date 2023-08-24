@@ -111,6 +111,22 @@ vs_ol_nvme  nvme_ss_ol_1    nqn.2014-08.org.nvmexpress:uuid:791c54eb-545d-4ed3-8
 
 NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合はを使用できます `vserver modify` コマンドを使用してを更新します `hostnqn` 対応するONTAP アレイサブシステムで、に一致する文字列を指定します `hostnqn` から文字列 `/etc/nvme/hostnqn` ホスト。
 
+. ホストをリブートします。
++
+[NOTE]
+====
+NetAppでは、同じOracle Linux 8.7に共存するホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨しています。つまり、dm-multipathがこれらのネームスペースデバイスを要求しないように、ONTAP ネームスペースはdm-multipathでブラックリストに登録する必要があります。これを行うには、を追加します `enable_foreign` に設定します `/etc/multipath.conf` ファイル：
+
+[listing]
+----
+#cat /etc/multipath.conf
+defaults {
+    enable_foreign  NONE
+}
+----
+を実行してmultipathdデーモンを再起動します `systemctl restart multipathd` 新しい設定を有効にするコマンド。
+
+====
 
 
 
