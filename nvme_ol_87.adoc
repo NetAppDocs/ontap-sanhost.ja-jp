@@ -115,7 +115,7 @@ NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合はを使用
 +
 [NOTE]
 ====
-NetAppでは、同じOracle Linux 8.7に共存するホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨しています。つまり、dm-multipathがこれらのネームスペースデバイスを要求しないように、ONTAP ネームスペースはdm-multipathでブラックリストに登録する必要があります。これを行うには、を追加します `enable_foreign` に設定します `/etc/multipath.conf` ファイル：
+NetAppでは、同じOracle Linux 8.7に共存するホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨しています。つまり、dm-multipathがこれらのネームスペースデバイスを要求しないように、ONTAP ネームスペースはdm-multipathでブラックリストに登録する必要があります。これを行うには、 `enable_foreign` に設定します `/etc/multipath.conf` ファイル：
 
 [listing]
 ----
@@ -124,7 +124,7 @@ defaults {
     enable_foreign  NONE
 }
 ----
-を実行してmultipathdデーモンを再起動します `systemctl restart multipathd` 新しい設定を有効にするコマンド。
+を実行してmultipathdデーモンを再起動します `systemctl restart multipathd` コマンドを使用して新しい設定を適用します。
 
 ====
 
