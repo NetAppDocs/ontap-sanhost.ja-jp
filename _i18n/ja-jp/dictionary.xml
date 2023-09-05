@@ -515,7 +515,6 @@
   <block id="77e11862f04c6ec12fa9eddd581dafa1" category="summary">ONTAP で Oracle Linux 7.9 を使用する方法について説明します</block>
   <block id="6dc52e1e053dff71affc3d2bba0668d4" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="e5d3b515d8d9f71d6ecc6d12f04876c6" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="150ce233c309a7f628f109b1bf8bd7f6" category="paragraph">Oracle Linux （ OL ） 7.9 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、ファイルに特定の変更を加える必要はありません。OL 7.9 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれます。</block>
-  <block id="e604f6870b50383d4e1d8ffa3a2b18bb" category="paragraph">「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および ASA Persona 以外にマッピングされた LUN のマルチパス出力の例を示します。</block>
   <block id="89d8b4fe15405a87af2ec65fc634abbc" category="paragraph">次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合、「 multipath.conf 」ファイルは「 path_checker 」および「 detect_prio 」の値を定義しますが、 ONTAP LUN と互換性はありません。ホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</block>
   <block id="4872a64c8bfb39aee94e3643229c1575" category="admonition">Oracle Linux 7.9 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="44610b841747038fd655ebbf0a88f02e" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.9 の場合。</block>
   <block id="f87d076eb7d3558e4df3a472ec88d6f2" category="summary">ONTAP で Red Hat Enterprise Linux 6.6 を使用する方法について説明します</block>
@@ -1273,7 +1272,6 @@
   <block id="af4bdc6f0612ae419e8be2df4a6dc1f8" category="cell">I/O 遅延が確認され、かつポートがブロックされた状態に移行しています。 Qlogic QLE2672 （ 16G ）および QLE2742 （ 32G ）を使用してストレージフェイルオーバーを実行している場合、この状態は発生しません。</block>
   <block id="501bcccc8f9d47ad0f5a58eda68930e0" category="cell">ストレージフェイルオーバー処理中に、 Fibre Channel （ FC ）リモートポートが Red Hat Enterprise Linux （ RHEL ） 7.6 で QLogic QLE2672 16G ホストでブロックされることがあります。ストレージノードが停止すると論理インターフェイスが停止するため、リモートポートでストレージノードのステータスがブロック済みに設定されます。QLogic QLE2672 16G ホストと QLE2742 32GB Fibre Channel （ FC ）ホストバスアダプタ（ HBA ）の両方を実行している場合、ブロックされたポートが原因で IO の進捗が停止することがあります。ストレージノードが最適状態に戻ると、論理インターフェイスも稼働し、リモートポートがオンラインになります。ただし、リモートポートは引き続きブロックされる場合があります。このブロック状態は、マルチパスレイヤで LUN に障害が発生したと登録されます。リモートポートの状態は、次のコマンドで確認できます。 # cat /sys/class/fc_remote_ports/rport-*/port_stat Blocked Blocked Online Online</block>
   <block id="af542c850dcba761107186a0c4f1cd8f" category="summary">ONTAP で Red Hat Enterprise Linux 8.2 を使用する方法について説明します</block>
-  <block id="4760c3b673835516c579d9024201af61" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 8.2 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.2 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定を反映してコンパイルされます。</block>
   <block id="83aa98b0663a07abe5c12cd92f6e7e99" category="paragraph">RHEL 8.2 OS は、 ONTAP LUN を認識し、すべての設定パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="5201f3364243bc1b14657349eb16cf69" category="paragraph">RHEL 8.2 に関する既知の問題はありません。</block>
   <block id="8e606d3994d1276c51a72c8493480d0d" category="summary">CentOS 6.4 と ONTAP の使用方法について説明します</block>
@@ -3424,4 +3422,6 @@
   <block id="0433af93410c428ea57c876adfd242d8" category="cell">Oracle Linux 8.8 NVMe-oFホストでPDCが重複して作成される</block>
   <block id="fd0f0a6b64ca823427a2d1d6062c2102" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます<block ref="64a98ab9b930adade338f7896c6bf819" category="inline-link-rx"></block>。ファイルを展開して、 Host Utilities のインストールに必要なソフトウェアパッケージを取得する必要があります。</block>
   <block id="e70f1869df403451e259e10988ea5f80" category="cell">を設定した場合<block ref="08dba88199429f4a52c71e37581877d5" prefix=" " category="inline-code"></block> マルチパス構成パラメータをYESに設定すると、World Wide Identifier（WWID；ワールドワイド識別子）が変更された場合にパスデバイスへのアクセスが無効になります。multipathは、パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、パスデバイスへのアクセスを無効にします。を参照してください <block ref="5e3e42b5c40ab78809e1bb63eb29a681" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="50f145df2b9dca1b51d6f136b1d6e045" category="section-title">ASAイカイノコウセイ</block>
+  <block id="bb515059c478efd249d74e65644dd114" category="paragraph">Red Hat Enterprise Linux（RHEL）8.2の場合<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.2 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定を反映してコンパイルされます。</block>
 </blocks>
