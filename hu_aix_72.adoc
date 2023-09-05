@@ -24,7 +24,7 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 
 AIX MPIOとNetApp ONTAP ストレージを使用する場合、AIX Host Utilities Kitをインストールする必要があります。
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、NetApp Support Siteからダウンロードできます。ファイルを展開したら、Host Utilitiesのインストールに必要な2つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。
+Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^]。ファイルを展開したら、Host Utilitiesのインストールに必要な2つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。
 
 NetApp AIX Host Utilities 6.1 は最新リリースです。このリリースでは、以前のリリースで報告されたメモリリーク問題について説明しています。追加情報のリリースノートのセクションを参照してください。
 

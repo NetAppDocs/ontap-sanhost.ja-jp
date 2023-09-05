@@ -24,7 +24,7 @@ NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含�
 ONTAPを使用したOL 8.8のNVMe-oFホスト構成では、次の機能がサポートされます。
 
 * NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。NetAppプラグインをネイティブにインストールします `nvme-cli` [パッケージ]には、NVMe/FCとNVMe/TCPの両方のネームスペースのONTAPの詳細が表示されます。
-* NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNの場合はSCSI mpathデバイスにdm-multipathを設定できますが、NVMeマルチパスを使用してホストのNVMe-oFネームスペースデバイスを設定できます。
+* NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNの場合はSCSI mpathデバイスにdm-multipathを設定できますが、NVMeマルチパスを使用してホスト上のNVMe-oFネームスペースデバイスを設定することができます。
 * sanlun にも対応していません。そのため、OL 8.8ホストではNVMe-oFのホストユーティリティはサポートされません。標準のに含まれているNetAppプラグインを使用できます。 `nvme-cli` すべてのNVMe-oF転送用パッケージ。
 
 
@@ -34,15 +34,13 @@ ONTAPを使用したOL 8.8のNVMe-oFホスト構成では、次の機能がサ�
 
 == の機能
 
-* Oracle Linux 8.8では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。
-
+Oracle Linux 8.8では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。
 
 
 
 == 既知の制限
 
-* NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
-
+NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 
@@ -127,7 +125,7 @@ defaults {
   enable_foreign     NONE
 }
 ----
-次のコマンドを実行してmultipathdデーモンを再起動します。 `systemctl restart multipathd` 新しい設定を有効にするコマンド。
+次のコマンドを実行してmultipathdデーモンを再起動します。 `systemctl restart multipathd` コマンドを実行しますこれにより、新しい設定が有効になります。
 
 ====
 
@@ -246,7 +244,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 .NVMe / FC向けMarvell/QLogic FCアダプタ
 --
 .手順
-. OL 8.8 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPのサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
+. OL 8.8 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPのサポートに不可欠な最新の修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [listing]
 ----
@@ -400,7 +398,7 @@ nvme connect-all -t tcp -w host-traddr -a traddr -l 1800
 NVMe-oFの検証には、次の手順を使用できます。
 
 .手順
-. 次の項目をチェックして、カーネル内NVMeマルチパスが有効になっていることを確認します。
+. カーネル内の NVMe マルチパスが有効になっていることを確認します。
 +
 [listing]
 ----
@@ -589,5 +587,5 @@ ONTAPリリースを使用したOL 8.8のNVMe-oFホスト設定には、次の�
 | NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
 
-| 1517321年 | Oracle Linux 8.8 NVMe-oFホストで重複する永続的検出コントローラが作成される | OL 8.8 NVMe-oFホストでは、 `-p` オプションをに設定します `nvme discover` コマンドを実行します特定のイニシエータとターゲットの組み合わせでは、の呼び出しごとにPDCが1つだけ作成される必要があります `nvme discover` コマンドを実行しますただし、OL 8.x以降では、NVMe-oFホストがを呼び出すたびにPDCが重複して作成されます `nvme discover` コマンドにを指定します `-p` オプションこれにより、ホストとターゲットの両方のリソースが無駄になります。 | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118年"^] 
+| 1517321年 | Oracle Linux 8.8 NVMe-oFホストでPDCが重複して作成される | OL 8.8 NVMe-oFホストでは、 `-p` オプションをに設定します `nvme discover` コマンドを実行します特定のイニシエータとターゲットの組み合わせでは、の呼び出しごとにPDCが1つだけ作成される必要があります `nvme discover` コマンドを実行しますただし、OL 8.x以降では、NVMe-oFホストがを呼び出すたびにPDCが重複して作成されます `nvme discover` コマンドにを指定します `-p` オプションこれにより、ホストとターゲットの両方のリソースが無駄になります。 | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118年"^] 
 |===

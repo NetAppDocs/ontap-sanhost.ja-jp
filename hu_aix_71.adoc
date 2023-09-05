@@ -22,9 +22,9 @@ summary: ONTAP で IBM AIX 7.1 を使用する方法について説明します
 
 == AIX Host Utilitiesのインストール
 
-AIX MPIO と NetApp ONTAP ストレージを使用する場合、 AIX Host Utilities Kit をインストールする必要があります。
+AIX MPIOとNetApp ONTAP ストレージを使用する場合、AIX Host Utilities Kitをインストールする必要があります。
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルを展開して、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得する必要があります。
+Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^]。ファイルを展開して、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得する必要があります。
 
 .手順
 . ホストにログインします。
