@@ -87,7 +87,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-Red Hat Enterprise Linux（RHEL）8.2の場合 `/etc/multipath.conf` ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.2 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定を反映してコンパイルされます。
+Red Hat Enterprise Linux（RHEL）8.2の場合 `/etc/multipath.conf` ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.2は、ONTAP LUNを認識して適切に管理するために必要なすべての設定が組み込まれています。
 
 「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
 
