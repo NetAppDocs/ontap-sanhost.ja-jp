@@ -40,5 +40,5 @@ FCドライバのバインドが `ssd(4D)` 終了： `sd(4D)`。の構成を移�
 link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。使用するキーワードの組み合わせとバグの種類には、次のものがあります。
 
 * fcp General：特定のホストに関連付けられていないFCおよびHost Bus Adapter（HBA；ホストバスアダプタ）のバグを表示します。
-* FCP Solaris
+* FCP - Solarisの場合
 

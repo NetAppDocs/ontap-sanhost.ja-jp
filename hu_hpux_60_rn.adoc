@@ -18,45 +18,12 @@ summary: HPUX Host Utilities 6.0リリースノート
 :toc-position: content
 
 
-リリースノートには、HP-UX Host Utilities 6.0リリースに関する最新情報（既知の問題、制限事項、ONTAPストレージシステムの設定と管理に関する更新情報など）が記載されています。『リリースノート』ドキュメントは、HP-UX Host Utilitiesの使用に関する新しい情報が入手できるようになると更新されます。
+このリリースノートでは、新機能と拡張機能、現在のリリースで解決された問題、既知の問題と制限事項、およびONTAPストレージシステムで特定のHP-UXホストを設定および管理する際の重要な注意事項について説明します。
 
-
-
-== HP-UX Host Utilities 6.0リリースの概要
-
-HP-UX Host Utilitiesは、いくつかのHP-UX環境と複数のプロトコルをサポートします。HP-UX Host Utilitiesは、次の環境をサポートします。
-
-* ネイティブMPIO
-* Veritas Dynamic Multipathing（DMP；動的マルチパス）
-
-
-
-NOTE: 使用されている環境をすぐに明確にするために、本書ではVeritas DMP環境の場合は「DMP」、HP-UXネイティブ環境の場合は「MPIO」を指定します。使用するコマンドは、使用するドライバによって異なる場合があります。このような場合は、環境とドライバの両方のタイプを指定します。
-
-
-
-== HP-UX Host Utilities 6.0の機能拡張
-
-リリースノートは、新しい情報が提供されるたびに製品リリースごとに更新されます。HP-UX Host Utilities 6.0は、引き続き次のバージョンをサポートしています。
+HP-UX Host Utilities 6.0は、引き続き次のバージョンをサポートしています。
 
 * HP-UX 11iv2
 * HP-UX 11iv3
 
 
-
-
-== 既知の問題および制限
-
-HP-UX 6.0リリースでは既知の問題はありません。
-
-.関連情報
-* ONTAP ストレージ・システムの構成と管理*
-
-* 。 link:https://docs.netapp.com/us-en/ontap/setup-upgrade/index.html["使用しているONTAP バージョンに対応した『ONTAP ソフトウェアセットアップガイド』"^]
-* 。 link:https://docs.netapp.com/us-en/ontap/san-management/index.html["使用しているONTAP バージョンに対応した『ONTAP SANアドミニストレーションガイド』"^]
-* 。 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["使用しているONTAP のバージョンに対応したONTAP リリースノート"^]
-* link:https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix を参照してください"^]
-* link:https://hwu.netapp.com/["Hardware Universe"^] （旧称は『システム構成ガイド』）
-* link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["サポートされているファイバチャネルSANトポロジ"]
-* link:https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61343["Host Utilitiesを使用するためのホストの設定"^]
-
+HP-UX Host Utilities 6.0リリースには、新機能、拡張機能、既知の制限事項、および注意事項はありません。

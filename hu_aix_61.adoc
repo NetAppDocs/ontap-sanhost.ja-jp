@@ -21,14 +21,14 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 [role="lead"]
 AIX Unified Host Utilitiesは、AIXホストに接続されているNetApp ONTAPストレージの管理に役立ちます。
 
-サポートされるプロトコルは次のとおりです。
+AIX Host Utilitiesは次のプロトコルをサポートします。
 
 * FC
 * FCoE
 * iSCSI
 
 
-サポートされる環境は次のとおりです。
+AIX Host Utilitiesは次の環境をサポートします。
 
 * AIX MPIO（ネイティブOS）
 * PowerVM
@@ -38,7 +38,7 @@ PowerVMの詳細については、『IBM PowerVM Live Partition Mobility Red Boo
 
 
 .必要なもの
-* 安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。
+* 安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。
 +
 を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
 
@@ -85,7 +85,7 @@ tar -xvf ntap_aix_host_utilities_6.1.tar.gz
 
 == SAN ツールキット
 
-AIX Host Utilitiesは、IBM AIXホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNとHBAの管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+AIX Host Utilitiesは、IBM AIXホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
 * 例 *
 
@@ -109,4 +109,4 @@ data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
 data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
 ----
 
-NOTE: このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョンでサポートされています。
+NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョンでサポートされています。
