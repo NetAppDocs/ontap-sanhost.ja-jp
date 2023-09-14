@@ -4,7 +4,7 @@ permalink: hu_aix_61.html
 keywords: host utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
 summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法について説明します 
 ---
-= AIX Host Utilities 6.1
+= AIX Host Utilities 6.1のインストール
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -21,56 +21,43 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 [role="lead"]
 AIX Unified Host Utilitiesは、AIXホストに接続されているNetApp ONTAPストレージの管理に役立ちます。
 
+サポートされるプロトコルは次のとおりです。
+
+* FC
+* FCoE
+* iSCSI
 
 
-== SAN ツールキット
+サポートされる環境は次のとおりです。
 
-AIX Host Utilities は、 IBM AIX ホスト上にコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
-
-* 例 *
-
-次の例では 'lun lun lun show コマンドは LUN 情報を返します
-
-[listing]
-----
-#sanlun lun show all
-
-controller(7mode)/ device host lun
-
-vserver(Cmode) lun-pathname filename adapter protocol size mode
-----------------------------------------------------------------
-data_vserver   /vol/vol1/lun1 hdisk0 fcs0    FCP      60g C
-data_vserver   /vol/vol2/lun2 hdisk0 fcs0    FCP      20g C
-data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
-data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
-----
-
-NOTE: このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。
-
-
-NOTE: SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョンでサポートされています。
+* AIX MPIO（ネイティブOS）
+* PowerVM
++
+PowerVMの詳細については、『IBM PowerVM Live Partition Mobility Red Book』を参照してください。
 
 
 
-== AIX Host Utilities をインストールする
+.必要なもの
+* 安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。
++
+を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
 
-NetApp AIX Host Utilities ソフトウェアパッケージは、にあります https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host%2BUtilities%2B-%2BSAN&platform=Linux["ネットアップサポートサイト"^] 圧縮された tar.gz ファイル。
+* すべてのFCイニシエータおよびFCoEイニシエータで動的追跡を有効にする必要があります。
 
-AIX MPIO と NetApp ONTAP ストレージを使用する場合、 AIX Host Utilities Kit をインストールする必要があります。
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、ネットアップサポートサイトからダウンロードできます。ファイルをダウンロードしたら、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。
 
-* 手順 *
+NOTE: NetApp AIX Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^] 圧縮された tar.gz ファイル。AIX MPIOとNetApp ONTAPストレージを使用する際には、AIX Host Utilitiesキットをインストールする必要があります。
 
+.手順
 . ホストにログインします。
 +
 ** AIX ホストでは、 * root * としてログインします。
-** PowerVM ホストで、 *padmin* としてログインし、 oem_setup_env コマンドを入力して root になります。
+** PowerVM ホストで '*padmin* としてログインし 'root になるように 'oem_setup_env' コマンドを入力します
 
 
-. Host Utilities が含まれている圧縮ファイルを、ネットアップサポートサイトからホスト上のディレクトリにダウンロードします。
+. にアクセスします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^] を実行し、Host Utilitiesを含む圧縮ファイルをホストのディレクトリにダウンロードします。
 . ダウンロードを格納しているディレクトリに移動します。
-. ファイルを解凍して、 SAN Toolkit ソフトウェアパッケージを展開します。
+. ファイルを解凍し、SAN Toolkitソフトウェアパッケージを展開します。
 +
 tar -xvf ntap_aix_host_utilities_6.1.tar.gz
 
@@ -81,13 +68,45 @@ tar -xvf ntap_aix_host_utilities_6.1.tar.gz
 +
 'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.mpio_Host_Utilities_Kit
 
-. SAN Toolkit をインストールします。
+. SANツールキットをインストールします。
 +
 'installp-aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit
 
 . ホストをリブートします。
 . インストールを確認します。
 +
-「 anlun version 」を参照してください
+[listing]
+----
+`sanlun version`
+----
 
 
+
+
+== SAN ツールキット
+
+AIX Host Utilitiesは、IBM AIXホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNとHBAの管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+
+* 例 *
+
+次の例では 'lun lun lun show コマンドは LUN 情報を返します
+
+[listing]
+----
+#sanlun lun show all
+----
+*出力例*
+
+[listing]
+----
+controller(7mode)/ device host lun
+
+vserver(Cmode) lun-pathname filename adapter protocol size mode
+----------------------------------------------------------------
+data_vserver   /vol/vol1/lun1 hdisk0 fcs0    FCP      60g C
+data_vserver   /vol/vol2/lun2 hdisk0 fcs0    FCP      20g C
+data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
+data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
+----
+
+NOTE: このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョンでサポートされています。
