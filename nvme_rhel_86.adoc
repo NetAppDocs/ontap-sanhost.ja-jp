@@ -19,10 +19,7 @@ summary: ONTAP でRHEL 8.6を使用するためのNVMe-oFホストの設定方�
 :toc-position: content
 
 
-
-
-== サポート性
-
+[role="lead"]
 NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.6でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。ここでは、RHEL 8.6およびONTAP でANAを使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について詳しく説明します。
 
 
@@ -41,6 +38,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 
 * RHEL 8.6では、カーネル内のNVMeマルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。
 * RHEL 8.6のNVMe/FCは、未解決の問題が原因でテクノロジプレビュー機能のままです。を参照してください https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.6_release_notes/index#technology-preview_file-systems-and-storage["RHEL 8.6リリースノート"^] を参照してください。
+* NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 

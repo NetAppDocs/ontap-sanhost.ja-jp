@@ -19,10 +19,7 @@ summary: ONTAP を使用して RHEL 8.4 用に NVMe-oF ホストを設定する�
 :toc-position: content
 
 
-
-
-== サポート性
-
+[role="lead"]
 NVMe over Fabrics または NVMe-oF （ NVMe/FC やその他の転送を含む）は、 ANA （ Asymmetric Namespace Access ）を使用する RHEL 8.4 でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。RHEL 8.4 および ONTAP で ANA を使用し、カーネル内で NVMe マルチパスを使用して NVMe-oF を有効にする方法について、詳しくはこちらで説明しています。
 
 
@@ -30,20 +27,11 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 
 
 
-== の機能
-
-* RHEL 8.2 以降 'nvme-fc auto-connect' スクリプトはネイティブの 'nvme-cli' パッケージに含まれています外部ベンダーが提供する outbox 自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
-* RHEL 8.2 以降、ネイティブの udev ルールは、 NVMe マルチパスのラウンドロビンロードバランシングを可能にする「 nvme-cli 」パッケージの一部としてすでに提供されています。（ RHEL 8.1 の場合と同様に）これ以上このルールを手動で作成する必要はありません。
-* RHEL 8.2 以降では、新規の同じホスト上で NVMe トラフィックと SCSI トラフィックの両方を実行できます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。したがって、 SCSI の場合、 SCSI LUN では「 m-mmultipath 」を通常どおりに設定すると「 m path 」デバイスになりますが、 NVMe マルチパスを使用してホスト上の NVMe-oF マルチパスデバイスを設定することができます。
-* RHEL 8.2 以降、ネイティブの「 nvme-cli 」パッケージに含まれるネットアッププラグインでは、 ONTAP ネームスペースと同様に ONTAP の詳細を表示できます。
-
-
-
-
 == 既知の制限
 
 * RHEL 8.4 では、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。
 * RHEL 8.4 の NVMe/FC は、未解決の問題が原因で引き続きテクノロジプレビュー機能です。を参照してください https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.4_release_notes/index#technology-preview_file-systems-and-storage["RHEL 8.4 リリースノート"^] を参照してください。
+* NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 

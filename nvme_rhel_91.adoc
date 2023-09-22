@@ -37,7 +37,7 @@ NVMe over FabricsまたはNVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP �
 
 == 既知の制限
 
-既知の制限事項はありません。
+NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 

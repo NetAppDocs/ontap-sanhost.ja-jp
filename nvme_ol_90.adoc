@@ -34,7 +34,7 @@ NVMe/FCやその他の転送を含むNVMe over Fabrics（NVMe-oF）は、Oracle 
 
 == 既知の制限
 
-既知の制限事項はありません。
+NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 

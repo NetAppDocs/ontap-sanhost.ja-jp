@@ -224,7 +224,6 @@
   <block id="681e25842821aed88b9536b9cde94730" category="list-text">lpfc_sg_seg_cnt' が 256 であることを確認します</block>
   <block id="911e585c5684ba9f5c2b87af879f4a13" category="summary">ONTAP を使用して RHEL 8.2 用に NVMe/FC ホストを設定する方法</block>
   <block id="1e2ea077f54493b4670fb3cb63e05215" category="doc">ONTAP を使用した RHEL 8.2 の NVMe/FC ホスト構成</block>
-  <block id="c6669fd579995b65e30bee38f5da1a94" category="paragraph">RHEL 8.2 の場合、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。この手順については、次のセクション「 Enabling NVMe/FC on RHEL 8.2 」を参照してください。</block>
   <block id="797aea72ebbc1431192817ec206cafb4" category="list-text">Red Hat Enterprise Linux 8.2 GA をサーバにインストールします。</block>
   <block id="219a0c52523adf3bd5e0b81ca98a88a1" category="paragraph">yum update/upgrade を使用して RHEL 8.1 から RHEL 8.2 にアップグレードすると、 /etc/nvme/host * ファイルが失われることがあります。ファイルの損失を防ぐには、次の手順を実行します。</block>
   <block id="6af8ec9e9e6b66a700434d4b32213979" category="list-text">/etc/nvme/host *' ファイルをバックアップします</block>
@@ -683,7 +682,6 @@
   <block id="2e3750c608ef9c088598a72e91ddb608" category="list-text">RHEL 8.1</block>
   <block id="23573be9c7dbe4494659f6a90bc05b8a" category="list-text">NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージでは使用できません。HBA ベンダー提供の外部自動接続スクリプトを使用できます。</block>
   <block id="1293e1b1ae6bd1e6a01f05541df9ce9f" category="list-text">デフォルトでは、 NVMe マルチパスは無効になっています。手動で有効にする必要があります。手順については、 RHEL 8.1 での NVMe/FC の有効化に関するセクションを参照してください。</block>
-  <block id="0d683aa46dbb260c50031bd00c3f5e6f" category="list-text">デフォルトでは、ラウンドロビンによるロードバランシングは有効になっていません。この機能を有効にするには、 udev ルールを記述する必要があります。手順については、 RHEL 8.1 での NVMe/FC の有効化に関するセクションを参照してください。</block>
   <block id="1f66f3a5a69d2cce3c5a6e2c4cee2b1a" category="list-text">サーバに Red Hat Enterprise Linux 8.1 をインストールします。</block>
   <block id="6f72b48df47d9c45155f84a6cbab74f6" category="list-text">nvme-cli-1.8.1-3.el8 パッケージをインストールします。</block>
   <block id="e8b45cd7975466cea80842914943b27f" category="list-text">RHEL 8.1 ホストでは、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。</block>
@@ -988,7 +986,6 @@
   <block id="bea05db7b205cebd49d85c581b86c97e" category="summary">VERITAS ONTAP Infosscale 6 シリーズ・リリースの SAN ホスト構成設定に関するガイダンスを提供します</block>
   <block id="5116d27ab3c67a2413a9afe024b82a38" category="summary">ONTAP を使用して RHEL 8.3 用に NVMe/FC ホストを設定する方法</block>
   <block id="af59960049c1f2bff52a1746f8d7c912" category="doc">ONTAP を使用した RHEL 8.3 用 NVMe/FC ホスト構成</block>
-  <block id="c7bc96121734b19b104696509562ddf4" category="paragraph">RHEL 8.3 では、カーネル内の NVMe マルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。この手順については、次のセクション「 Enabling NVMe/FC on RHEL 8.3 」を参照してください。</block>
   <block id="23cd3fb20334805933445d4e9e38f375" category="list-text">Red Hat Enterprise Linux 8.3 GA をサーバにインストールします。</block>
   <block id="a5846cf11c0c17a2d80c96a138e56624" category="paragraph">yum update/upgrade を使用して RHEL 8.2 から RHEL 8.3 にアップグレードすると、 /etc/nvme/host * ファイルが失われることがあります。ファイルの損失を防ぐには、次の手順を実行します。</block>
   <block id="d72d2f5661cb55b44d10f141c8b04ac2" category="list-text">インストールが完了したら、指定した Red Hat Enterprise Linux カーネルを実行していることを確認します。</block>
@@ -1676,10 +1673,6 @@
   <block id="1124bd13d48eff16726e09da76f5e2b3" category="doc">ONTAP を使用した RHEL 8.4 用 NVMe-oF ホスト構成</block>
   <block id="c86cc04a60faa82236164aaa2faeb7fd" category="paragraph">NVMe over Fabrics または NVMe-oF （ NVMe/FC やその他の転送を含む）は、 ANA （ Asymmetric Namespace Access ）を使用する RHEL 8.4 でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。RHEL 8.4 および ONTAP で ANA を使用し、カーネル内で NVMe マルチパスを使用して NVMe-oF を有効にする方法について、詳しくはこちらで説明しています。</block>
   <block id="98f770b0af18ca763421bac22b4b6805" category="section-title">の機能</block>
-  <block id="b7474f811791dcc10dc5c4c83cd68ff8" category="list-text">RHEL 8.2 以降 'nvme-fc auto-connect' スクリプトはネイティブの 'nvme-cli' パッケージに含まれています外部ベンダーが提供する outbox 自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。</block>
-  <block id="1edfd9e2cff717b737df6889a024b9e7" category="list-text">RHEL 8.2 以降、ネイティブの udev ルールは、 NVMe マルチパスのラウンドロビンロードバランシングを可能にする「 nvme-cli 」パッケージの一部としてすでに提供されています。（ RHEL 8.1 の場合と同様に）これ以上このルールを手動で作成する必要はありません。</block>
-  <block id="230e651755d5387d3a7fc2291f07bfec" category="list-text">RHEL 8.2 以降では、新規の同じホスト上で NVMe トラフィックと SCSI トラフィックの両方を実行できます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。したがって、 SCSI の場合、 SCSI LUN では「 m-mmultipath 」を通常どおりに設定すると「 m path 」デバイスになりますが、 NVMe マルチパスを使用してホスト上の NVMe-oF マルチパスデバイスを設定することができます。</block>
-  <block id="bd89f3a395591c17f8cb7f0aaea6cc0b" category="list-text">RHEL 8.2 以降、ネイティブの「 nvme-cli 」パッケージに含まれるネットアッププラグインでは、 ONTAP ネームスペースと同様に ONTAP の詳細を表示できます。</block>
   <block id="509e52d19112a7c7188376d101160b4c" category="paragraph">RHEL 8.4 では、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。</block>
   <block id="c8fe594dab6cb1395df34d73b005c900" category="section-title">設定要件</block>
   <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph">例</block>
@@ -1717,7 +1710,6 @@
   <block id="9ecac4a21a7fe6b2f71d8fdffa72bb05" category="list-text">SLES15 SP3 は、 NVMe/FC およびその他の転送をサポートしています。</block>
   <block id="79b488f9eaea99a6d3f6667b30d733e5" category="list-text">sanlun にも対応していません。そのため、 SLES15 SP3 では、 NVMe-oF はサポートされていません。代わりに、ネイティブの nvme-CLI に含まれているネットアッププラグインを使用してもかまいません。これはすべての NVMe-oF 転送で機能します。</block>
   <block id="fcfc5ba070a0675d68aab9fb9f245c43" category="list-text">NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。したがって、 SCSI の場合、 SCSI LUN では「 d-mmultipath 」を通常どおりに設定しても mpath デバイスになることがありますが、 NVMe マルチパスを使用してホスト上で NVMe-oF マルチパスデバイスを設定することもできます。</block>
-  <block id="1733de5a596dfd8c9179b7f061fe9051" category="paragraph">既知の制限事項はありません。</block>
   <block id="83314818bb7c47b391616d0ff767a7de" category="section-title">NVMe-oF イニシエータパッケージ</block>
   <block id="abc4d57007eba9b1d8b3f88edac97e68" category="list-text">必要なカーネルおよび nvme-cli MU パッケージが SLES15 SP3 MU ホストにインストールされていることを確認します。</block>
   <block id="21c405f2155cb8a6afae52ce69ea30ba" category="paragraph">上記の nvme-cli MU パッケージには、次のものが含まれています。</block>
@@ -2075,7 +2067,6 @@
   <block id="e7e8e011c8e0651dc3a6d06305d8279e" category="paragraph">RHEL 8.3に関する既知の問題はありません。</block>
   <block id="ce420cebd9b134c2ee33ae6a490c31ba" category="paragraph">同じ RHEL 8.2 で同じホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。</block>
   <block id="6507882f376544268e31289f84d4ee08" category="doc">HP-UX Host Utilities 6.0</block>
-  <block id="0f03ad1ba726a38547e37a072e28a71f" category="paragraph">HP-UX Host Utilitiesは、HP-UXホスト上にコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、 LUN および HBA の管理を支援する「 sanlun 」ユーティリティが含まれています。「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
   <block id="c0a1ecccf7e7b3c14696d029be49ed25" category="paragraph">RHEL 8.6には、既知の問題はありません。</block>
   <block id="dfd9db293eabf1724158b5cc08e4dd12" category="cell">HP-UX 11.31ホストで、ASA のセットアップ時にパスのステータスが誤って報告されることがあります。</block>
   <block id="478829f91ffe1d5a9fcb7ae0a4fa2eda" category="cell">HP-UX LVMを作成すると、1MBを超えるブロックサイズのI/Oが送信されます</block>
@@ -3387,16 +3378,13 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="f8d5aed6f51d94047f74a803aca5670b" category="list-text">ファイルを解凍し、SAN Toolkitソフトウェアパッケージを展開します。</block>
   <block id="d7acb320d7561ff28aba5271a650f74e" category="list-text">SANツールキットをインストールします。</block>
   <block id="d371e5ff58b865f46aa4c65beb73405c" category="paragraph">このリリースノートでは、新機能と拡張機能、現在のリリースで解決された問題、既知の問題と制限事項、およびONTAPストレージシステムで特定のHP-UXホストを設定および管理する際の重要な注意事項について説明します。</block>
-  <block id="3517bcea87b684bd347c95104562d327" category="paragraph">HP-UX Host Utilities 6.0は、引き続き次のバージョンをサポートしています。</block>
   <block id="a869215e627d2812c817b80130aa7824" category="paragraph">HP-UX Host Utilities 6.0リリースには、新機能、拡張機能、既知の制限事項、および注意事項はありません。</block>
   <block id="f19106aa57c6316e97d751c16d547b41" category="list-text">FCP - Solarisの場合</block>
   <block id="7c0e66bb6addd5d99fc9457c74d9f1e5" category="summary">HP-UX Unified Host Utilities 6.0とONTAPの使用方法について説明します。</block>
   <block id="6dea40462e0a36a918cc6ee609a75f0c" category="paragraph">HP-UX Host Utilitiesを使用すると、HP-UXホストをNetAppストレージに接続できます。</block>
-  <block id="0a6cda4b6b1ee30ff2b1c2e7b1452c79" category="paragraph">HP-UX Host Utilitiesは、いくつかのHP-UX環境と複数のプロトコルをサポートします。サポートされる環境は次のとおりです。</block>
   <block id="466488bfcdd5dd2620fa669f44a082d5" category="admonition">このドキュメントでは、使用している環境を示すために、Veritas DMP環境には「DMP」、HP-UXネイティブ環境には「MPIO」と指定することがあります。使用するコマンドは、使用するドライバによって異なる場合があります。このような場合は、環境とドライバの両方のタイプを指定します。</block>
   <block id="db0942d60692ceb816c153d46b6755a4" category="list-text">安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。</block>
   <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">このタスクについて</block>
-  <block id="4b9a66cc328c269b47204207ea997015" category="paragraph">NetApp HP-UX Host Utilitiesソフトウェアパッケージは、にあります <block ref="47b65262ba52aec6a3b66c8c933e9234" category="inline-link-macro-rx"></block> 圧縮されたファイル。ダウンロードしたファイルは、インストール前に解凍する必要があります。</block>
   <block id="89b1d0829beb11befe8cef17a1a88149" category="list-text">ホストにログインします。</block>
   <block id="411f721c4d437c447636df81f300973a" category="list-text">を解凍します。<block ref="dfa8e0cbcc24953d6f700e7d845f35aa" prefix=" " category="inline-code"></block> ファイル：</block>
   <block id="685e21144e7e399ef67e8a809cd52a1e" category="list-text">ソフトウェアをインストールします。</block>
@@ -3407,5 +3395,14 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="01cf7b9650b6a23329edafdd13452ac5" category="paragraph">AIX Host Utilitiesは次の環境をサポートします。</block>
   <block id="09c2778b4197dd6dcc821c85eaf45906" category="paragraph">AIX Host Utilitiesは、IBM AIXホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> ユーティリティ。LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立ちます。。<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
   <block id="bdaec84e97380168b375e0f6cc8968bc" category="admonition">このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。SAN ツールキットは、 AIX および PowerVM/VIOS OS バージョンでサポートされています。</block>
-  <block id="237e46c87c95b6d72dceaf420c603d90" category="sidebar">Linux Unified Host Utilitiesのこと</block>
+  <block id="19d92ebb7cd64db05a92ba4d1f8c169a" category="paragraph">HP-UX Host Utilities 6.0では、引き続き次のバージョンがサポートされます。</block>
+  <block id="aa4b835c1f569c111bb0517546a161b9" category="list-text">RHEL 8.2 の場合、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。</block>
+  <block id="86d2f7a04841036a331f83b9d4f4c8b5" category="list-text">RHEL 8.3 では、カーネル内の NVMe マルチパスはデフォルトで無効なままです。そのため、手動で有効にする必要があります。</block>
+  <block id="6dc5c9d254e31b97a6a6ca189c137c1a" category="paragraph">HP-UX Host Utilitiesは、複数のプロトコルと次の環境をサポートします。</block>
+  <block id="1d150b0bd2398e740a0840f9f22c0926" category="paragraph">NetApp HP-UX Host Utilitiesソフトウェアパッケージは、にあります <block ref="47b65262ba52aec6a3b66c8c933e9234" category="inline-link-macro-rx"></block> 圧縮されたファイル。ファイルをダウンロードしたら、インストール前に解凍する必要があります。</block>
+  <block id="f6548a8dc796bca1238a2023b7facffa" category="paragraph">HP-UX Host Utilitiesは、HP-UXホスト上にコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> LUNおよびホストバスアダプタの管理に役立つユーティリティ。（HBA）。。<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
+  <block id="a1b24514cc1570dc7f2dc2843ef4ced8" category="admonition">このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。</block>
+  <block id="aa07c7ef7fefb6efdf9ed0ebebbac729" category="list-text">デフォルトでは、ラウンドロビンによるロードバランシングは有効になっていません。
+この機能を有効にするには、 udev ルールを記述する必要があります。</block>
+  <block id="c8ef204b9a39e596096e42f5bdae91e9" category="sidebar">Linux Unified Host Utilities</block>
 </blocks>

@@ -40,6 +40,7 @@ RHEL 8.7では、NVMe/FCに加えて、（テクノロジプレビュー機能�
 
 * RHEL 8.7では、カーネル内のNVMeマルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。
 * RHEL 8.7のNVMe/FCは、未解決の問題が原因で引き続きテクノロジプレビュー機能です。を参照してください link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.7_release_notes/index["RHEL 8.7リリースノート"^] を参照してください。
+* NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 

@@ -36,7 +36,7 @@ NVMe over Fabrics または NVMe-oF （ NVMe/FC およびその他の転送を�
 
 == 既知の制限
 
-既知の制限事項はありません。
+NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 
