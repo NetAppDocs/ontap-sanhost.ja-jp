@@ -4,7 +4,7 @@ permalink: nvme_rhel_82.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: ONTAP を使用して RHEL 8.2 用に NVMe/FC ホストを設定する方法 
 ---
-= ONTAP を使用した RHEL 8.2 の NVMe/FC ホスト構成
+= ONTAPヲシヨウシタRHEL 8.2ノNVMe/FCホストノセツテイ
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,27 +19,37 @@ summary: ONTAP を使用して RHEL 8.2 用に NVMe/FC ホストを設定する�
 
 
 [role="lead"]
-ONTAP 9.6 以降では、 RHEL 8.2 で NVMe/FC がサポートされます。RHEL 8.2 ホストは、 NVMe と SCSI の両方のトラフィックを同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行します。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされている構成およびバージョンの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+NVMe/FCはRed Hat Enterprise Linux（RHEL）8.2でONTAP 9.6以降でサポートされます。RHEL 8.2 ホストは、 NVMe と SCSI の両方のトラフィックを同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行します。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
+
+を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] を参照してください。
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+
+== の機能
+
+* RHEL 8.2以降では、 `nvme-fc auto-connect` スクリプトはネイティブに含まれています `nvme-cli` パッケージ。外部ベンダーが提供する outbox 自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
+* RHEL 8.2以降の標準 `udev` ルールは、 `nvme-cli` NVMeマルチパスのラウンドロビンによるロードバランシングを可能にするパッケージ。（ RHEL 8.1 の場合と同様に）これ以上このルールを手動で作成する必要はありません。
+* RHEL 8.2以降では、同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行できます。実際、これは想定される導入済みホスト構成です。したがって、SCSIの場合は、 `dm-multipath` 通常のSCSI LUNの場合と同様に実行される `mpath` デバイス。NVMeマルチパスを使用してホストにNVMe-oFマルチパスデバイスを設定できます。
+* RHEL 8.2以降の標準のNetAppプラグイン `nvme-cli` パッケージでは、ONTAPネームスペースのONTAPの詳細を表示できます。
+
 
 
 
 == 既知の制限
 
-* RHEL 8.2 の場合、カーネル内の NVMe マルチパスはデフォルトで無効なままになります。そのため、手動で有効にする必要があります。
+* RHEL 8.2では、カーネル内NVMeマルチパスはデフォルトで無効になっています。そのため、手動で有効にする必要があります。
 * NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 
 
-== RHEL 8.2 で NVMe/FC を有効にする
+== NVMe/FC を有効にします
 
+NVMe/FCを有効にするには、次の手順を使用します。
+
+.手順
 . Red Hat Enterprise Linux 8.2 GA をサーバにインストールします。
-+
-yum update/upgrade を使用して RHEL 8.1 から RHEL 8.2 にアップグレードすると、 /etc/nvme/host * ファイルが失われることがあります。ファイルの損失を防ぐには、次の手順を実行します。
-
+. を使用してRHEL 8.1からRHEL 8.2にアップグレードする場合 `yum update/upgrade`、あなたの `/etc/nvme/host*` ファイルが失われる可能性があります。ファイルが失われないようにするには、次の手順を実行します。
 +
 .. /etc/nvme/host *' ファイルをバックアップします
 .. 手動で「 udev 」ルールを編集した場合は、削除します。
@@ -72,7 +82,7 @@ yum install nvmecli
 4.18.0-193.el8.x86_64
 ----
 +
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされるバージョンの最新のリストについては、を参照してください。
 
 . nvme-CLI パッケージをインストールします。
 +
@@ -87,7 +97,7 @@ nvme-cli-1.9.5.el8.x86_64
 ----
 # grubby –args=nvme_core.multipath=Y –update-kernel /boot/vmlinuz-4.18.0-193.el8.x86_64
 ----
-. RHEL 8.2 ホストでは、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。
+. RHEL 8.2ホストで、次の場所でホストのNQN文字列を確認します。 `/etc/nvme/hostnqn` と、ONTAPアレイの対応するサブシステムのホストNQN文字列が一致していることを確認します。
 +
 [listing]
 ----
@@ -103,12 +113,12 @@ Vserver      Subsystem        Host           NQN
         nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-97b3-1b5d986345d1
 ----
 +
-ホストの NQN 文字列が一致しない場合は、「 vserver modify 」コマンドを使用して、対応する ONTAP アレイサブシステム上のホストの NQN 文字列を、ホストの /etc/nvme/hostnqn にある NQM 文字列と一致するように更新します。
+ホストのNQN文字列が一致しない場合は、 `vserver modify` 対応するONTAPアレイサブシステムのホストNQN文字列をホストNQN文字列と一致するように更新するコマンド `/etc/nvme/hostnqn` ホスト。
 
 . ホストをリブートします。
 . 'enable_foreign' Setting_( オプション )_ を更新します
 +
-同じ RHEL 8.2 で同じホストで NVMe トラフィックと SCSI トラフィックの両方を実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、次に示すように、 /etc/multipath.conf に「 enable_foreign 」設定を追加します。
+NetAppでは、同じRHEL 8.2に共存したホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨しています。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、 `enable_foreign` に設定します `/etc/multipath.conf`を参照してください。
 
 +
 [listing]
@@ -125,7 +135,9 @@ defaults {
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+Broadcom FCアダプタを設定するには、次の手順を使用します。
+
+サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
 
 .手順
 . サポートされているアダプタを使用していることを確認します。
@@ -297,6 +309,9 @@ options lpfc lpfc_sg_seg_cnt=256
 
 == NVMe/FC を検証
 
+NVMe/FCの検証には、次の手順 を使用できます。
+
+.手順
 . 以下の NVMe/FC 設定を確認してください。
 +
 [listing]
@@ -363,34 +378,5 @@ Device   Vserver  Namespace Path             NSID   UUID   Size
          "Namespace_Size" : 13107200
     }
 ]
-----
-
-
-
-
-== lpfc 詳細ログ
-
-NVMe/FC用のLPFCドライバを設定します。
-
-.手順
-. を設定します `lpfc_log_verbose` NVMe/FCイベントをログに記録するためのドライバ設定は次のいずれかです。
-+
-[listing]
-----
-#define LOG_NVME 0x00100000 /* NVME general events. */
-#define LOG_NVME_DISC 0x00200000 /* NVME Discovery/Connect events. */
-#define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
-#define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
-----
-. 値を設定したら、を実行します `dracut-f` コマンドを実行し、ホストをリブートします。
-. 設定を確認します。
-+
-[listing]
-----
-# cat /etc/modprobe.d/lpfc.conf
-options lpfc lpfc_log_verbose=0xf00083
-
-# cat /sys/module/lpfc/parameters/lpfc_log_verbose
-15728771
 ----
 

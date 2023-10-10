@@ -4,7 +4,7 @@ permalink: nvme_rhel_88.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: How to Configure NVMe-oF Host for RHEL 8.8 with<xmt-block0> ONTAP</xmt-block>を参照してください 
 ---
-= ONTAPを使用したRHEL 8.8のNVMe-oFホスト構成
+= ONTAPを搭載したRHEL 8.8向けのNVMe-oFホストの設定
 :toc: macro
 :hardbreaks:
 :toclevels: 1

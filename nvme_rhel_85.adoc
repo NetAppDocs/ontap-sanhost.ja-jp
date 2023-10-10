@@ -4,7 +4,7 @@ permalink: nvme_rhel_85.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: ONTAP を使用してRHEL 8.5用のNVMe-oFホストを設定する方法 
 ---
-= ONTAP を使用したRHEL 8.5向けのNVMe-oFホスト構成
+= ONTAPを搭載したRHEL 8.5向けのNVMe-oFホストの設定
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,17 +20,15 @@ summary: ONTAP を使用してRHEL 8.5用のNVMe-oFホストを設定する方�
 
 
 [role="lead"]
-NVMe over FabricsまたはNVMe-oF（NVMe/FCやその他の転送を含む）は、ANA（Asymmetric Namespace Access）を使用するRHEL 8.5でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在はカーネル内 NVMe マルチパスで実装されています。RHEL 8.5およびONTAP でANAを使用し、インカーネルNVMeマルチパスをターゲットとして使用してNVMe-oFを有効にする方法について、ここで詳しく説明します。
+Red Hat Enterprise Linux（RHEL）8.5とANA（非対称ネームスペースアクセス）では、NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他のトランスポートを含む）がサポートされます。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。この手順では、RHEL 8.5のANAとONTAPをターゲットとして使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にします。
 
-
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされている構成に関する正確な情報については、を参照
 
 
 
 == の機能
 
-* RHEL 8.5では、NVMe / FCに加え、NVMe / TCP（テクノロジプレビュー機能）もサポートされています。ネイティブのnvme-CLIパッケージに含まれているネットアッププラグインでは、NVMe/FCネームスペースとNVMe/FCネームスペースの両方のONTAP の詳細を表示できます。
-
+RHEL 8.5では、NVMe / FCに加え、NVMe / TCP（テクノロジプレビュー機能）もサポートされています。ネイティブのnvme-CLIパッケージに含まれているネットアッププラグインでは、NVMe/FCネームスペースとNVMe/FCネームスペースの両方のONTAP の詳細を表示できます。
 
 
 
@@ -43,14 +41,11 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 
 
 
-== 設定要件
-
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
-
-
-
 == カーネル内の NVMe マルチパスを有効にします
 
+カーネル内NVMeマルチパスを有効にするには、次の手順を使用します。
+
+.手順
 . RHEL 8.5 GAをサーバにインストールします。インストールが完了したら、指定したRHEL 8.5 GAカーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
 +
 例
@@ -98,7 +93,7 @@ NOTE: ホストの NQN 文字列が一致しない場合は、「 vserver modify
 +
 [NOTE]
 ====
-NVMe と SCSI の両方のトラフィックを同じホストで同時に実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには 'enable_foreign 設定を /etc/multipath.conf ファイルに追加します
+NVMeとSCSIの両方のトラフィックを同じホストで実行する場合はNetApp、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには、enable_foreign設定を `/etc/multipath.conf` ファイル：
 
 [listing]
 ----
@@ -107,18 +102,22 @@ defaults {
         enable_foreign     NONE
 }
 ----
+multipathd デーモンを再起動します。新しい設定が有効になるように、「 ystemctl restart multipathd 」コマンドを実行します。
+
 ====
-. multipathd デーモンを再起動します。新しい設定が有効になるように、「 ystemctl restart multipathd 」コマンドを実行します。
 
 
 
 
 == NVMe/FC を設定
 
+NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設定できます。
 
-
-=== Broadcom / Emulex
-
+[role="tabbed-block"]
+====
+.Broadcom / Emulex
+--
+.手順
 . サポートされているアダプタを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされているアダプタの最新のリストについては、を参照してください。
 +
 [listing]
@@ -189,39 +188,13 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 ----
 
 
+--
+.Marvell/QLogic
+--
+ネイティブ受信ボックス `qla2xxx` RHEL 8.5 GAカーネルに含まれるドライバには、ONTAPのサポートに不可欠な最新の修正が含まれています。
 
-
-==== 1MB の I/O サイズを有効にする（オプション）
-
-ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイズ） 8 を報告します。つまり、最大 I/O 要求サイズは最大 1 MB でなければなりません。ただし 'Broadcom NVMe/FC ホストのサイズが 1 MB の問題 I/O 要求の場合 'lpfc パラメータ 'lpfc_sg_seg_cnt' もデフォルト値の 64 から 256 までバンピングする必要があります次の手順を使用して実行します。
-
-. それぞれの「 m odprobe lpfc.conf 」ファイルに「 256 」という値を追加します。
-+
-[listing]
-----
-# cat /etc/modprobe.d/lpfc.conf
-options lpfc lpfc_sg_seg_cnt=256
-----
-. 「 racut-f 」コマンドを実行し、ホストを再起動します。
-. リブート後、対応する「 sysfs 」の値を確認して、上記の設定が適用されていることを確認します。
-+
-[listing]
-----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
-----
-+
-これで、 Broadcom FC-NVMe ホストが ONTAP ネームスペースデバイスで最大 1MB の I/O 要求を送信できるようになります。
-
-
-
-
-
-=== Marvell/QLogic
-
-RHEL 8.5 GAカーネルに含まれているネイティブインボックスのqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。
-
-. 次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。
+.手順
+. サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [listing]
 ----
@@ -229,7 +202,7 @@ RHEL 8.5 GAカーネルに含まれているネイティブインボックスの
 QLE2742 FW:v9.06.02 DVR:v10.02.00.106-k
 QLE2742 FW:v9.06.02 DVR:v10.02.00.106-k
 ----
-. 次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。
+. Marvell アダプタが NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。
 +
 [listing]
 ----
@@ -238,17 +211,40 @@ QLE2742 FW:v9.06.02 DVR:v10.02.00.106-k
 ----
 
 
+--
+====
+
+
+=== 1MB I/Oを有効にする（オプション）
+
+ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）を8と報告します。つまり、I/O要求の最大サイズは1MBまでです。ただし、Broadcom NVMe/FCホストに対する1MBの問題I/O要求には、を増やす必要があります `lpfc` の値 `lpfc_sg_seg_cnt` パラメータを256に設定します（デフォルト値の64から）。
+
+.手順
+. lpfc_sg_seg_cnt パラメータを 256 に設定します
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. 「 racut-f 」コマンドを実行し、ホストを再起動します。
+. lpfc_sg_seg_cnt' が 256 であることを確認します
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+NOTE: これはQlogic NVMe/FCホストには該当しません。
+
 
 
 == NVMe/FC を設定
 
-NVMe/FC とは異なり、 NVMe/FC は自動接続機能を備えていません。これにより、 Linux NVMe/FC ホストには次の 2 つの大きな制限があります。
-
-* * パスが復活した後の自動再接続は行われない * NVMe/TCP は、パスダウン後 10 分間のデフォルトの「 Ctrl-loss -TTMO 」タイマーを超えて復活したパスに自動的に再接続することはできません。
-* * ホストの起動時に自動接続が行われない * ホストの起動時に NVMe/FC が自動的に接続されることもありません。
-
-
-タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。詳細は次のとおりです。
+NVMe/TCPには自動接続機能はありません。そのため、パスがダウンしてデフォルトのタイムアウト（10分）内に復元されないと、NVMe/TCPは自動的に再接続できません。タイムアウトを回避するには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。
 
 .手順
 . サポートされている NVMe/FC LIF の検出ログページデータをイニシエータポートが読み込めたかどうかを確認します。
@@ -313,7 +309,10 @@ sectype: none
 
 == NVMe-oF を検証します
 
-. 次のチェックボックスをオンにして、カーネル内の NVMe マルチパスが実際に有効になっていることを確認
+NVMe-oFの検証には、次の手順を使用できます。
+
+.手順
+. カーネル内の NVMe マルチパスが有効になっていることを確認します。
 +
 [listing]
 ----
