@@ -22,14 +22,14 @@ summary: ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方�
 [role="lead"]
 NVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでのストレージフェイルオーバー（SFO）の実行にANA（Asymmetric Namespace Access）が必要なRHEL 9.0でサポートされます。ANAは、NVM環境でも同じです。現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.0およびONTAP でANAをターゲットとして使用し、カーネル内でNVMeマルチパスを有効にするための詳細が記載されています。
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成の正確な情報については、を参照
+サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
 
 
 
 == の機能
 
-* RHEL 9.0以降では、NVMe/FCはテクノロジプレビュー機能ではなくなりましたが（RHEL 8とは異なり）、完全にサポートされているエンタープライズ機能自体が追加されています。
-* RHEL 9.0以降では、明示的な設定（RHEL 8とは異なり）を必要とせずに、NVMeネームスペースに対してインカーネルNVMeマルチパスがデフォルトで有効になっています。
+* RHEL 9.0以降では、NVMe/TCPはテクノロジプレビュー機能ではなく（RHEL 8とは異なり）、エンタープライズ機能自体が完全にサポートされます。
+* RHEL 9.0以降では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になり、明示的に設定する必要はありません（RHEL 8とは異なり）。
 
 
 
@@ -93,7 +93,7 @@ NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設�
 .Broadcom / Emulex
 --
 .手順
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの詳細については、を参照してください。 link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
 +
 [listing]
 ----
@@ -324,7 +324,10 @@ NetApp ONTAP Controller
 round-robin
 round-robin
 ----
-. ONTAP ネームスペースがホストに正しく反映されていることを確認します。例（A）、
+. ONTAP ネームスペースがホストに正しく反映されていることを確認します。
++
+例（A）：
+
 +
 [listing]
 ----
@@ -352,7 +355,10 @@ Format         FW Rev
 -----------------------
 4 KiB + 0 B   FFFFFFFF
 ----
-. 各パスのコントローラの状態がライブであり、適切なANAステータスであることを確認します。例（A）、
+. 各パスのコントローラの状態がライブであり、適切なANAステータスであることを確認します。
++
+例（A）：
+
 +
 [listing]
 ----
@@ -378,7 +384,10 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.56e362e9bb4f11ebbaded039ea165abc:su
 +- nvme15 tcp traddr=192.168.2.57 trsvcid=4420 host_traddr=192.168.2.9 live non-optimized
 +- nvme5 tcp traddr=192.168.1.52 trsvcid=4420 host_traddr=192.168.1.8 live non-optimized
 ----
-. ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例（A）、
+. ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。
++
+例（A）：
+
 +
 [listing]
 ----
@@ -390,7 +399,10 @@ Device       Vserver        Namespace Path                            NSID
 UUID                                   Size
 --------------------------------------------
 72b887b1-5fb6-47b8-be0b-33326e2542e2   85.90GB
-
+----
++
+[listing]
+----
 # nvme netapp ontapdevices -o json
 {
 "ONTAPdevices" : [

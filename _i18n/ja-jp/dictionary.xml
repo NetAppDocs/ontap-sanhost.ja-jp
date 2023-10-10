@@ -2003,23 +2003,17 @@
   <block id="29cafbf989ec1577f968e04d52752f5e" category="paragraph">RHEL 9.0で確認されている問題はありません。</block>
   <block id="587384a32d909bff27b8405e18d9d7cf" category="summary">ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方法</block>
   <block id="d5a9179e304fd13ff8268ac2240e3ef4" category="paragraph">NVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでのストレージフェイルオーバー（SFO）の実行にANA（Asymmetric Namespace Access）が必要なRHEL 9.0でサポートされます。ANAは、NVM環境でも同じです。現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.0およびONTAP でANAをターゲットとして使用し、カーネル内でNVMeマルチパスを有効にするための詳細が記載されています。</block>
-  <block id="95369a4b9030e2f901d021df167f021b" category="list-text">RHEL 9.0以降では、NVMe/FCはテクノロジプレビュー機能ではなくなりましたが（RHEL 8とは異なり）、完全にサポートされているエンタープライズ機能自体が追加されています。</block>
-  <block id="c1e6aa7090af15f8d8efefa50c5ebbb9" category="list-text">RHEL 9.0以降では、明示的な設定（RHEL 8とは異なり）を必要とせずに、NVMeネームスペースに対してインカーネルNVMeマルチパスがデフォルトで有効になっています。</block>
   <block id="140268ba3849abd78f34f907f067407f" category="paragraph">を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成の正確な情報については、を参照</block>
   <block id="aa752093cf87ece20a99a98640048b70" category="list-text">インストールが完了したら、指定したRHEL 9.0カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
   <block id="d79792e27890df0330ac43850943e028" category="list-text">「nvme-cli」パッケージをインストールします。</block>
   <block id="f5b9e6db2b2e5a554b55fd280914f516" category="list-text">ホストで、 /etc/nvme/hostnqn に示されたホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。例：</block>
   <block id="e842da2108d28a3593f8615a854fc699" category="admonition">ホストのNQN文字列が一致しない場合は、「vserver modify」コマンドを使用して、対応するONTAP サブシステム上のホストのNQN文字列を、ホストの「/etc/nvme/hostnqn」のホストNQN文字列と一致するように更新します。</block>
-  <block id="bad5d213c95812779e8e7d73fa0f92a4" category="list-text">サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="2a8380564c8c0b5cd202773abd4f94d3" category="list-text">推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="f3eaa9e3e89c370c17729852377aed2f" category="list-text">lpfc_enable_fc4_type'が'3'に設定されていることを確認します</block>
   <block id="055436915aa042f3fdf8045e013acbb5" category="list-text">イニシエータポートが、サポートされているNVMe/FC LIF経由で検出ログページデータを読み込めたかどうかを確認します。</block>
   <block id="351f4726c12d45250df101c8bd9578d6" category="list-text">同様に、もう一方のNVMe/FCイニシエータターゲットLIFのコンボファイルが検出ログページのデータを正常に取得できることを確認します。例：</block>
   <block id="dc53dad0b533fb8bfe7d6c60ef1fa91e" category="list-text">各ONTAP ネームスペースの適切なNVMf設定（たとえば、「NetApp ONTAP Controller」に設定されたモデルとロードバランシング「iopolicy」を「ラウンドロビン」に設定）がホストに正しく反映されていることを確認します。</block>
-  <block id="85d648e4cde5d10dc52f7133eae3a296" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。例（A）、</block>
   <block id="cebb9dfdc378481f9e93e7b505fe4f1d" category="paragraph">例（b）：</block>
-  <block id="cdb0ca847e914e0c124768ae14142869" category="list-text">各パスのコントローラの状態がライブであり、適切なANAステータスであることを確認します。例（A）、</block>
-  <block id="86a8f02d0c1226cbab77460737c32b26" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例（A）、</block>
   <block id="e3f05e6b08d377aca967243a953ecfb9" category="section-title">一般的なnvme-CLIエラーとその回避策があります</block>
   <block id="e7e8e011c8e0651dc3a6d06305d8279e" category="paragraph">RHEL 8.3に関する既知の問題はありません。</block>
   <block id="6507882f376544268e31289f84d4ee08" category="doc">HP-UX Host Utilities 6.0</block>
@@ -2215,16 +2209,11 @@
   <block id="309cf24349edc5122d2f31c53280bf27" category="doc">ONTAP を使用したOracle Linux 8.5向けのNVMe / FCホスト構成</block>
   <block id="50d880869dbad54df4986a506d8e811c" category="admonition">このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> および <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block>。</block>
   <block id="6f8b8f782bb2e1f5374f4c0c6a78046a" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでAsymmetric Namespace Access（ANA）を使用するRHEL 9.1でサポートされます。このANAは、SF（ストレージフェイルオーバー）が稼働しているために必要です。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.1のANAを使用し、ターゲットとしてONTAP を使用してカーネル内NVMeマルチパスでNVMe-oFを有効化するための詳細が記載されています。</block>
-  <block id="5b567ce58b5a293a4e497c0fd053d9d5" category="list-text">RHEL 9.1では、NVMe / FCに加え、NVMe/FCもサポートされます。ネットアッププラグインが標準でインストールされている<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> パッケージには、NVMe/FCネームスペースとNVMe/FCネームスペースのONTAP の詳細を表示できます。</block>
   <block id="362156721e24ceedbadf34c0abc7e007" category="list-text">RHEL 9.1では、NVMeネームスペース用のカーネル内NVMeマルチパスがデフォルトで有効になっており、明示的な設定は必要ありません。</block>
-  <block id="b08367cf0348d2ac07ce7d94bb17f61f" category="list-text">RHEL 9.1では、明示的ではなく、特定のHBAアダプタ上の同じホストでNVMeとSCSIの共存トラフィックを使用できます<block ref="3c66321496e85b9ce8f7b49be0316b0a" prefix=" " category="inline-code"></block> NVMeネームスペースが要求されないようにする設定。</block>
   <block id="79d6a4c19ab1815ebac474c0cb176558" category="section-title">カーネル内のNVMeマルチパスを有効にします</block>
-  <block id="a2ed8d7465615184444b1bd0263933b1" category="list-text">サーバにRHEL 9.1をインストールします。インストールが完了したら、指定したRHEL 9.1カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
-  <block id="c165a8a0999d73184de84d184b3cfb60" category="list-text">インストールが完了したら、指定したRHEL 9.1カーネルを実行していることを確認します。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
   <block id="2d012da343e217426e95ab334286ee04" category="list-text">確認します<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block> は、次のコマンドでMarvellアダプタをNVMe/FCイニシエータとして機能できるように設定します。</block>
   <block id="4b74cb8caf9869d9c39202f5a7c8cd4d" category="list-text">もう一方のNVMe/FCイニシエータターゲットLIFのコンボファイルが検出ログページデータを正常に取得できることを確認します。例：</block>
   <block id="7912d4b61044915bf839431d678f055d" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）を実行しているとき<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> コマンドの実行時に、パス障害が発生した場合に再試行を長時間化するようにします。例：</block>
-  <block id="8820bbf46f22897008878290f6060725" category="paragraph">例（b）</block>
   <block id="0929df0c2d7b307ae019137c488669a8" category="cell">1503468</block>
   <block id="2f8adf6e51ddcf7b0618dad0e63a4144" category="cell"><block ref="f3d48156832e70ac41335c007fa76798" prefix="" category="inline-code"></block> コマンドは、指定したサブシステムに対して繰り返し実行されているNVMeコントローラのリストを返します</block>
   <block id="95a3009a54be763a347295539b3b924d" category="cell">。<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、特定のサブシステムに関連付けられているNVMeコントローラの一意のリストを返す必要があります。RHEL 9.1では、<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> コマンドは、特定のサブシステムに属するすべてのネームスペースについて、NVMeコントローラのANA状態をそれぞれ返します。ただし、ANA状態はネームスペース単位の属性であるため、特定のネームスペースについてsubsystemコマンドの構文を表示すると、パスの状態にある一意のNVMeコントローラエントリを表示するのが理想的です。</block>
@@ -3409,4 +3398,15 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="7012889cc926d9aed72cc4dc0fd4e057" category="doc">ONTAPを使用したRHEL 8.6向けのNVMe-oFホストの設定</block>
   <block id="6a7cb6a9e050e971cb54222db7ae4540" category="paragraph">Red Hat Enterprise Linux（RHEL）8.6（Asymmetric Namespace Access）では、NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他のトランスポートを含む）がサポートされます。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。この手順では、RHEL 8.6上のANAをONTAPターゲットとして使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にします。</block>
   <block id="7d2f5cc21497b0cde87934fbd84c0694" category="paragraph">NVMeとSCSIの両方のトラフィックを同じホストで実行する場合はNetApp、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには、enable_foreign設定をに追加します<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイル：</block>
+  <block id="6a19313e8113ac2c1e15410e39bf21fb" category="paragraph">ONTAPを使用したRHEL 9.1のNVMe-oFホスト構成では、次のサポートが提供されます。</block>
+  <block id="584f126497a11dd74bf631779fe0f1dd" category="paragraph">を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
+  <block id="05df89d060e2fb1042048336db58af01" category="list-text">サーバにRHEL 9.1をインストールします。</block>
+  <block id="318827c3fa6f890e8dcb7aef7e4f58c8" category="list-text">インストールが完了したら、指定したRHEL 9.1カーネルが実行されていることを確認します。を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block> サポートされるバージョンの最新のリストについては、を参照してください。</block>
+  <block id="6ba8f2fd9b26537c1f509d73b5b3c3e8" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。</block>
+  <block id="55475dcd5bcfa96d71d74b2d692fe800" category="list-text">RHEL 9.0以降では、NVMe/TCPはテクノロジプレビュー機能ではなく（RHEL 8とは異なり）、エンタープライズ機能自体が完全にサポートされます。</block>
+  <block id="450353fa421bb4ae9174f35ab8787934" category="list-text">RHEL 9.0以降では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になり、明示的に設定する必要はありません（RHEL 8とは異なり）。</block>
+  <block id="55b8ad94911cefce229b352b5dcdb193" category="list-text">サポートされているアダプタを使用していることを確認します。サポートされているアダプタの詳細については、を参照してください。 <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>。</block>
+  <block id="f881ebad820aa982c82a8b50a1b39070" category="list-text">ONTAP ネームスペースがホストに正しく反映されていることを確認します。</block>
+  <block id="e35ada62930c3b590684fb1ae4386cac" category="list-text">各パスのコントローラの状態がライブであり、適切なANAステータスであることを確認します。</block>
+  <block id="051ff3071e673676a5e48635fa7f872b" category="list-text">ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。</block>
 </blocks>

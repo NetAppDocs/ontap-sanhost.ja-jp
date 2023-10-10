@@ -22,16 +22,19 @@ summary: ONTAP でRHEL 8.7用のNVMe-oFホストを設定する方法
 [role="lead"]
 NVMe over FabricsまたはNVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでAsymmetric Namespace Access（ANA）を使用するRHEL 9.1でサポートされます。このANAは、SF（ストレージフェイルオーバー）が稼働しているために必要です。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.1のANAを使用し、ターゲットとしてONTAP を使用してカーネル内NVMeマルチパスでNVMe-oFを有効化するための詳細が記載されています。
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
+ONTAPを使用したRHEL 9.1のNVMe-oFホスト構成では、次のサポートが提供されます。
+
+* NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
+* 特定のHost Bus Adapter（HBA；ホストバスアダプタ）の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。
+
+
+を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされている構成に関する正確な情報については、を参照
 
 
 
 == の機能
 
-* RHEL 9.1では、NVMe / FCに加え、NVMe/FCもサポートされます。ネットアッププラグインが標準でインストールされている `nvme-cli` パッケージには、NVMe/FCネームスペースとNVMe/FCネームスペースのONTAP の詳細を表示できます。
-* RHEL 9.1では、NVMeネームスペース用のカーネル内NVMeマルチパスがデフォルトで有効になっており、明示的な設定は必要ありません。
-* RHEL 9.1では、明示的ではなく、特定のHBAアダプタ上の同じホストでNVMeとSCSIの共存トラフィックを使用できます `dm-multipath` NVMeネームスペースが要求されないようにする設定。
-
+RHEL 9.1では、NVMeネームスペース用のカーネル内NVMeマルチパスがデフォルトで有効になっており、明示的な設定は必要ありません。
 
 
 
@@ -43,9 +46,11 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 
 == カーネル内のNVMeマルチパスを有効にします
 
+カーネル内NVMeマルチパスを有効にするには、次の手順を使用します。
+
 .手順
-. サーバにRHEL 9.1をインストールします。インストールが完了したら、指定したRHEL 9.1カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
-. インストールが完了したら、指定したRHEL 9.1カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. サーバにRHEL 9.1をインストールします。
+. インストールが完了したら、指定したRHEL 9.1カーネルが実行されていることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされるバージョンの最新のリストについては、を参照してください。
 +
 例
 
@@ -91,13 +96,14 @@ NOTE: ホストの NQN 文字列が一致しない場合は、「 vserver modify
 
 == NVMe/FC を設定
 
+NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設定できます。
+
 [role="tabbed-block"]
 ====
 .Broadcom / Emulex
 --
-
---
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+.手順
+. サポートされているアダプタを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされているアダプタの最新のリストについては、を参照してください。
 +
 [listing]
 ----
@@ -111,7 +117,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 
 ----
-. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください。
+. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください。
 +
 [listing]
 ----
@@ -182,7 +188,7 @@ FCP CMPL: xb 00000000 Err 00000004
 
 
 --
-
+.NVMe/FC用Marvell/QLogic FCアダプタ
 --
 ネイティブ受信ボックス `qla2xxx` RHEL 9.1カーネルに含まれるドライバには、ONTAPのサポートに不可欠な最新の修正が含まれています。
 
@@ -203,8 +209,6 @@ QLE2772 FW:v9.08.02 DVR:v10.02.07.400-k-debug
 1
 ----
 
-
---
 
 --
 ====
@@ -373,7 +377,10 @@ nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.bf0691a7c74411ec8187d039ea14107d:su
  +- nvme3 tcp traddr=192.168.167.21,trsvcid=4420,host_traddr=192.168.167.5 live non-optimized
  +- nvme4 tcp traddr=192.168.167.20,trsvcid=4420,host_traddr=192.168.167.5 live optimized
 ----
-. ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。例：
+. ネットアッププラグインに ONTAP ネームスペースデバイスごとに適切な値が表示されていることを確認します。
++
+例（A）：
+
 +
 [listing]
 ----
@@ -408,7 +415,7 @@ NSID  UUID                                   Size
 }
 ----
 +
-例（b）
+例（b）：
 
 +
 [listing]
