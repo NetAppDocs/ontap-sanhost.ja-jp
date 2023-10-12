@@ -18,11 +18,14 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてSolaris 11.4を設定できます。
+
 
 
 == Solaris Host Utilitiesのインストール
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^]。ファイルを入手したら、Host Utilitiesのインストールに必要なソフトウェアパッケージを入手するためにファイルを解凍する必要があります。
+Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^]。ファイルをダウンロードしたら、zipファイルを展開して、Host Utilitiesのインストールに必要なソフトウェアパッケージを入手する必要があります。
 
 .手順
 . から Host Utilities が含まれている圧縮ファイルのコピーをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^] をホスト上のディレクトリに移動します。
@@ -34,11 +37,11 @@ Host Utilities ソフトウェアパッケージが格納された圧縮ファ�
 +
 「 gunzip NetApp_solaris_host_utilities_6_2N20170913_0304_sparc.tar.gz
 
-. tar xvf コマンドを使用して ' ファイルを解凍します
+. を使用します `tar xvf` コマンドを使用してファイルを展開します。
 +
 tar xvf NetApp_solaris_host_utilities_6_2N20170913_0304_sparc.tar
 
-. tar ファイルから抽出したパッケージをホストに追加します。
+. .tarファイルから展開したパッケージをホストに追加します。
 +
 pkgadd -d NTAPSANTool.pkg
 
@@ -46,7 +49,7 @@ pkgadd -d NTAPSANTool.pkg
 パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます
 
 +
-インストールを完了するには、を使用して環境のホストパラメータ（この場合はMPxIO）を設定する必要があります `host_config` コマンドを実行します
+インストールを完了するには、を使用して環境のホストパラメータ（この場合はOracle Solaris I/OマルチパスまたはMPxIO）を設定する必要があります。 `host_config` コマンドを実行します
 
 +
 「 host_config 」コマンドの形式は次のとおりです。
@@ -58,11 +61,11 @@ pkgadd -d NTAPSANTool.pkg
 「 host_config 」コマンドでは、次の処理が行われます。
 
 +
-** x86およびSPARCシステムのファイバチャネルおよびSCSIドライバの設定を変更します
-** 両方の MPxIO 構成の SCSI タイムアウト設定を提供します
+** x86およびSPARCシステムのFCおよびSCSIドライバ設定を変更します。
+** 両方のMPxIO構成でSCSIタイムアウトを設定
 ** VID / PID 情報を設定します
 ** ALUA を有効または無効にします
-** x86 システムと SPARC システムの両方で、 MPxIO および SCSI ドライバで使用される ALUA 設定を構成します。
+** MPxIOおよびSCSIドライバで使用されるALUAをx86システムとSPARCシステムの両方で設定します。
 
 
 . ホストをリブートします。
@@ -96,13 +99,13 @@ SAN ブートを使用する場合は、構成でサポートされている必�
 
 SAN ブートとは、 Solaris ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。
 
-FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください https://docs.netapp.com/us-en/ontap-sanhost/hu_solaris_62.html["Solaris Host Utilitiesをインストールします"] Solaris MPIO環境でのSANブートLUNの詳細については、を参照してください。
+Solaris MPxIO環境で動作するようにSANブートLUNをセットアップするには、FCプロトコルを使用し、Solaris Host Utilitiesを実行します。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください link:hu_solaris_62.html["Solaris Host Utilitiesをインストールします"] Solaris MPIO（マルチパスI/O）環境でのSANブートLUNの詳細については、を参照してください。
 
 
 
 == マルチパス
 
-マルチパスを使用すると、ホストとストレージシステム間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Solaris 11.4 では、 Oracle Solaris I/O マルチパス（ MPxIO ）がデフォルトで有効になっています。デフォルト設定は '/kernel/drv/fp.conf で MPxIO disable="no" に変更されます
+マルチパスを使用すると、ホストとストレージシステムの間に複数のネットワークパスを設定できます。1 つのパスで障害が発生すると、トラフィックは残りのパスで継続されます。Solaris 11.4では、Oracle Solaris I/OマルチパスまたはMPxIOがデフォルトで有効になっています。テフオルトセツテイ `/kernel/drv/fp.conf` mpxio-disable="no"を変更します。
 
 
 
@@ -141,13 +144,13 @@ ASA構成では、特定のLUNへのすべてのパスがアクティブで最�
               Multipath Policy: Native
 ----
 
-NOTE: オールSANアレイ（ASA ）構成は、Solarisホスト用のONTAP 9.8以降でサポートされます。
+NOTE: オールSANアレイ（ASA）構成は、SolarisホストでONTAP 9.8以降でサポートされます。
 
 
 
 == 推奨設定
 
-以下に、 NetApp ONTAP LUN を使用する Solaris 11.4 SPARC および x86_64 で推奨されるパラメータ設定の一部を示します。これらのパラメータの値は Host Utilities で設定します。Solaris 11.4 システムのその他の設定については、 Oracle DOC ID: 2595926.1 を参照してください
+NetAppでは、NetApp ONTAP LUNを使用するSolaris 11.4 SPARCおよびx86_64では、次のパラメータ設定を使用することを推奨しています。これらのパラメータの値は Host Utilities で設定します。Solaris 11.4のその他のシステム設定については、OracleのDOC ID：2595926.1を参照してください。
 
 [cols="2*"]
 |===
@@ -174,38 +177,70 @@ NOTE: オールSANアレイ（ASA ）構成は、Solarisホスト用のONTAP 9.8
 
 | physical_block_size です | 4096 
 |===
+Solaris OSのすべてのバージョン(Solaris 10.xおよびSolaris 11.xを含む)は'Solaris HUK 6.2をサポートします
+
+* Solaris 11.4では、FCドライバのバインドが `ssd` 終了： `sd`。次の構成ファイルは、HUK 6.2のインストールプロセス中に部分的に更新されます。
++
+** `/kernel/drv/sd.conf`
+** `/etc/driver/drv/scsi_vhci.conf`
+
+
+* Solaris 11.3の場合、FCドライババインドでは次のように使用されます。 `ssd`。次の構成ファイルは、HUK 6.2のインストールプロセス中に部分的に更新されます。
++
+** `/kernel/drv/ssd.conf`
+** `/etc/driver/drv/scsi_vhci.conf`
+
+
+* Solaris 10.xの場合、次の構成ファイルはHUK 6.2のインストールプロセスで完全に更新されます。
++
+** `/kernel/drv/sd.conf`
+** `/kernel/drv/ssd.conf`
+** `/kernel/drv/scsi_vhci.conf`
+
+
+
+
+設定の問題を解決するには、ナレッジベースの記事を参照してください。 link:https://kb.netapp.com/onprem/ontap/da/SAN/What_are_the_Solaris_Host_recommendations_for_Supporting_HUK_6.2["HUK 6.2をサポートするためのSolarisホストの推奨事項"^]。
+
+NetAppでは、NetApp LUNを使用してzpoolで4KBのアライメントされたI/Oを成功させるために、次のことを推奨しています。
+
+* 最新のSolaris OSを実行していることを確認し、4KBのI/OサイズのアライメントをサポートするすべてのSolaris機能が利用可能であることを確認します。
+* Solaris 10 Update 11に最新のカーネルパッチがインストールされ、Solaris 11.4に最新のSupport Repository Update (SRU)がインストールされていることを確認します。
+* NetApp論理ユニットには、次のものが必要です。 `lun/host-type` として `Solaris` LUNのサイズに関係なく。
+
+
 
 
 === MetroCluster の推奨設定
 
-デフォルトでは、 LUN へのすべてのパスが失われると、 20 秒後に Solaris オペレーティングシステムは I/O に失敗します。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成ではの値です `fcp_offline_delay` 計画外フェイルオーバーを含む処理の実行中にI/Oが早期にタイムアウトしないように、* 120S *に増やす必要があります。デフォルト設定の追加情報と推奨される変更については、ナレッジベースの記事を参照してください https://kb.netapp.com/onprem/ontap/metrocluster/Solaris_host_support_considerations_in_a_MetroCluster_configuration["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
+デフォルトでは、LUNへのすべてのパスが失われると、Solaris OSは* 20s *以降でI/O処理を実行できません。これはによって制御されます `fcp_offline_delay` パラメータのデフォルト値 `fcp_offline_delay` は、標準のONTAP クラスタに適しています。ただし、MetroCluster 構成ではの値です `fcp_offline_delay` 計画外のフェイルオーバーを含む処理中にI/Oがタイムアウトしないように、* 120S *に増やす必要があります。追加情報 およびデフォルト設定の推奨される変更については、ナレッジベースの記事を参照してください https://kb.netapp.com/onprem/ontap/metrocluster/Solaris_host_support_considerations_in_a_MetroCluster_configuration["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^]。
 
 
 
-== Oracle Solaris 仮想化
+== Oracle Solarisの仮想化
 
 * Solaris の仮想化オプションには 'Solaris 論理ドメイン (LDoms または Oracle VM Server for SPARC) 'Solaris 動的ドメイン 'Solaris ゾーン 'Solaris コンテナなどがありますこれらのテクノロジは、さまざまなアーキテクチャをベースにしているにもかかわらず、一般的に「Oracle仮想マシン」というブランド名に変更されています。
 * 場合によっては ' 特定の Solaris 論理ドメイン内の Solaris コンテナなど ' 複数のオプションを同時に使用できます
-* ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^] サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。
-* vdsk などの仮想ストレージリソースのみを使用するパーティションや仮想マシンについては、 NetApp LUN に直接アクセスできないため、特定の認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^]。
+* ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^] サポートされている構成。これには、ルートコンテナ、LDOM I/Oドメイン、NPIVを使用してLUNにアクセスするLDOMが含まれます。
+* 仮想化されたストレージリソースのみを使用するパーティションまたは仮想マシン（ `vdsk`では、NetApp LUNに直接アクセスできないため、特定の条件は必要ありません。基盤となるLUN（LDOM I/Oドメインなど）に直接アクセスできるパーティションまたは仮想マシンのみが、 link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^]。
 
 
 
 
 === 仮想化の推奨設定
 
-LDOM 内で LUN が仮想ディスクデバイスとして使用されている場合、 LUN のソースは仮想化によってマスクされ、 LDOM はブロックサイズを適切に検出しません。この問題 を回避するには、_Oracleのバグ15824910_およびに対してLDOMオペレーティングシステムにパッチを適用する必要があります `vdc.conf` 仮想ディスクのブロックサイズを4096に設定するファイルを作成する必要があります。詳細については、 Oracle Doc 2157669.1 を参照してください。
+LDOM 内で LUN が仮想ディスクデバイスとして使用されている場合、 LUN のソースは仮想化によってマスクされ、 LDOM はブロックサイズを適切に検出しません。この問題を回避するには、_oracleバグ15824910_および `vdc.conf` 仮想ディスクのブロックサイズをに設定するファイルを作成する必要があります。 `4096`。詳細については、Oracle DOC:2157669.1を参照してください。
 
 パッチを確認するには、次の手順を実行します。
 
 .手順
 . zpool を作成します。
-. ZDB-C を zpool に対して実行し、 * ashift * の値が 12 であることを確認します。
+. を実行します `zdb -C` zpoolに対して実行し、* ashift *の値が `12`。
 +
-値 *ashift * が 12 でない場合は、正しいパッチがインストールされていることを確認し、「 vdc.conf 」の内容を再確認します。
+* ashift *の値が次の値でない場合 `12`正しいパッチがインストールされていることを確認し、 `vdc.conf`。
 
 +
-「 ashift 」の値が 12 になるまで次の手順に進まないでください。
+「* ashift *」に値が表示されるまで先に進まないでください。 `12`。
 
 
 
@@ -223,6 +258,7 @@ NOTE: ONTAP 9.9.9..1以降では'Solaris 11.4ホストでSM-BC設定がサポー
 
 指示に従って、オーバーライドパラメータを設定します。
 
+.手順
 . 構成ファイルを作成します `/etc/driver/drv/scsi_vhci.conf` ネットアップストレージタイプがホストに接続されている場合は、次のようなエントリが表示されます。
 +
 [listing]
@@ -243,25 +279,27 @@ svl_fops_name = 0xa00298d69e0 "conf f_tpgs"
 
 
 
-NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name` 。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
+NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name`。追加情報およびデフォルト設定の推奨変更については、NetAppナレッジベースの記事を参照してください。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
 
 
 
-== 既知の問題および制限
+== 既知の問題
+
+Solaris 11.4 with ONTAPリリースには、次の既知の問題があります。
 
 [cols="4*"]
 |===
 | NetApp バグ ID | タイトル | 説明 | Oracle ID 
 
 
-| 1362435 | HUK 6.2 および Solaris_11.4 FC ドライババインディングの変更 | Solaris 11.4およびHUKの推奨事項に従います。FC ドライバのバインドが SSD （ 4D ）から SD （ 4D ）に変更されました。の構成を移動します `ssd.conf` 終了： `sd.conf` 詳細については、 Oracle （ドキュメント ID 2595926.1 ）を参照してください。この動作は、新しくインストールされた Solaris 11.4 システムによって異なり、 11.3 以下のバージョンからアップグレードされます。 | （ドキュメント ID 2595926.1 ） 
+| 1362435 | HUK 6.2 および Solaris_11.4 FC ドライババインディングの変更 | Solaris 11.4およびHUKの推奨事項を参照してください。FCドライバのバインドが `ssd (4D)` 終了： `sd (4D)`。既存の構成を `ssd.conf` 終了： `sd.conf` Oracle DOC:2595926.1に記載されています）。この動作は'新しくインストールされたSolaris 11.4システムと'Solaris 11.3以前のバージョンからアップグレードされたシステムによって異なります | （ドキュメント ID 2595926.1 ） 
 
 
-| 1366780 | x86 アーキテクチャ上の Emulex 32G HBA で GB 中に Solaris LIF の問題が発生しました | x86_64 プラットフォームに Emulex ファームウェアバージョン 12.6.x 以上がインストールされています | SR 3-24746803021 
+| 1366780 | x86 ArchでEmulex 32G Host Bus Adapter（HBA；ホストバスアダプタ）を使用している場合、Storage Failover（SFO；ストレージフェイルオーバー）ギブバック処理中にSolaris LIF問題が検出されました | x86_64プラットフォームでは、Emulexファームウェアバージョン12.6.x以降でSolaris LIF問題が検出されました。 | SR 3-24746803021 
 
 
-| 1368957 | Solaris 11.x `cfgadm -c configure` エンドツーエンドのEmulex構成でI/Oエラーが発生する | Emulex エンドツーエンド構成で cfgadm -c configure を実行すると ' I/O エラーが発生しますこれは 9.5P17 、 9.6P14 、 9.7P13 、 9.8P2 で修正されています | 該当なし 
+| 1368957 | Solaris 11.x `cfgadm -c configure` エンドツーエンドのEmulex構成でI/Oエラーが発生する | 実行中です `cfgadm -c configure` Emulexのエンドツーエンド構成でI/Oエラーが発生する。これは、ONTAP 9.5P17、9.6P14、9.7P13、および9.8P2で修正されています。 | 該当なし 
 
 
-| 1345622 | OS ネイティブコマンドを使用した ASA/pports を持つ Solaris ホストでの異常パスレポート | ASA を使用した Solaris 11.4 で、パスが断続的に報告される問題 | 該当なし 
+| 1345622 | OSネイティブコマンドを使用したASA / pportを使用したSolarisホストでの異常パスレポート | オールSANアレイ（ASA）を搭載したSolaris 11.4では、パスが断続的に報告される問題が発生することがあります。 | 該当なし 
 |===
