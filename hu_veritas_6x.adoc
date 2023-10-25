@@ -267,6 +267,6 @@ Veritas Infoscale 、 Linux Native Device Mapper 、 LVM ボリュームマネ�
 
 
 
-== 既知の問題および制限
+== 既知の問題
 
-既知の問題や制限はありません。
+Veritas Storage Foundation 6 for Linux with ONTAPリリースでは、既知の問題はありません。

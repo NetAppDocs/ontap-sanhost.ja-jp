@@ -329,7 +329,7 @@ naa.600a098038304731783f506670553355
 
 == 既知の問題
 
-既知の問題はありません。
+ONTAPリリースのVMware vSphere 7.xに関する既知の問題はありません。
 
 .関連情報
 * link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^]

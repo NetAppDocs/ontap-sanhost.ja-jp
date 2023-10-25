@@ -18,6 +18,9 @@ summary: ONTAP で Oracle Linux 7.2 を使用する方法について説明し�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 7.2を設定できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -272,6 +275,6 @@ NOTE: Oracle Linux 7.2 Red Hat Enterprise Kernel （ RHCK ）を設定するに�
 
 
 
-== 既知の問題および制限
+== 既知の問題
 
-Oracle Linux 7.2 では既知の問題はありません。
+ONTAPリリースがインストールされたOracle Linux 7.2では、既知の問題はありません。

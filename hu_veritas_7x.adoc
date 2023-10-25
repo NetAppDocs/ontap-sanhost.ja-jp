@@ -282,4 +282,4 @@ Veritas Infoscale 、 Linux Native Device Mapper 、 LVM ボリュームマネ�
 
 == 既知の問題
 
-既知の問題はありません。
+Veritas Infoscale 7 for Linux with ONTAPリリースには既知の問題はありません。

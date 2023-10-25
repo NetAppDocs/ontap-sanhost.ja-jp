@@ -18,6 +18,9 @@ summary: SUSE Linux Enterprise Server 12 SP2 with ONTAP の使用方法につい
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPを搭載したSUSE Linux Enterprise Server 12 SP2をターゲットとして設定できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -282,6 +285,6 @@ devices {
 ----
 
 
-== 既知の問題および制限
+== 既知の問題
 
-SUSE Linux Enterprise Server 12 SP2 には既知の問題はありません。
+SUSE Linux Enterprise Server 12 SP2 with ONTAPリリースには既知の問題はありません。

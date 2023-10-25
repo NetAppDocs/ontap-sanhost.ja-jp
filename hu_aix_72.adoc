@@ -18,6 +18,9 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの構成設定を使用して、ONTAPをターゲットとしてIBM AIX 7.2またはPowerVM（VIOS 3.1）を構成できます。
+
 
 
 == AIX/VIOS Host Utilitiesのインストール
@@ -226,7 +229,9 @@ AIX for SM-BCを設定する方法については、ナレッジベースの記�
 
 
 
-== 既知の問題および制限
+== 既知の問題
+
+ONTAPリリースを搭載したIBM AIX 7.2またはPowerVM（VIOS 3.1）には、次の既知の問題があります。
 
 [cols="4*"]
 |===

@@ -18,6 +18,9 @@ summary: ONTAPでRed Hat Enterprise Linux 8.8を使用する方法について�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 8.8を設定できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -293,4 +296,4 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 == 既知の問題
 
-RHEL 8.8に関する既知の問題はありません。
+ONTAPリリースのRHEL 8.8に関する既知の問題はありません。

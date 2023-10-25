@@ -18,6 +18,9 @@ summary: ONTAP で IBM AIX 7.1 を使用する方法について説明します
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてIBM AIX 7.1を設定できます。
+
 
 
 == AIX Host Utilitiesのインストール
@@ -223,6 +226,6 @@ AIX for SM-BCを設定する方法については、ナレッジベースの記�
 
 
 
-== 既知の問題および制限
+== 既知の問題
 
-既知の問題や制限はありません。
+既知の問題はありません。

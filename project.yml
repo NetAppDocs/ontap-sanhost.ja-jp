@@ -33,7 +33,7 @@ sidebar:
         url: "/hu_hpux_60.html"
       - title: コマンド・リファレンスの例
         url: "/hu_hpux_60_cmd.html"
-    - title: Linux Unified Host Utilities
+    - title: Linux Unified Host Utilities のこと
       entries:
       - title: リリースノート
         url: "/hu_luhu_71_rn.html"
@@ -41,7 +41,7 @@ sidebar:
         url: "/hu_luhu_71.html"
       - title: コマンド・リファレンスの例
         url: "/hu_luhu_71_cmd.html"
-    - title: Solarisホストユーティリティ
+    - title: Solaris Host Utilities のことです
       entries:
       - title: リリースノート
         url: "/hu_solaris_62_rn.html"

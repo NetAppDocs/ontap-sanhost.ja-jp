@@ -18,6 +18,9 @@ summary: SUSE Linux Enterprise Server 15 SP1 と ONTAP の使用方法につい�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホスト構成設定を使用して、ONTAPをターゲットとしてSUSE Linux Enterprise Server 15 SP1を構成できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -286,7 +289,9 @@ devices {
 ----
 
 
-== 既知の問題および制限
+== 既知の問題
+
+SLES 15 SP1 with ONTAPリリースには、次の既知の問題があります。
 
 [cols="4"]
 |===

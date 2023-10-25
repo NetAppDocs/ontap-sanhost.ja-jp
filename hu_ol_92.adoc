@@ -18,6 +18,9 @@ summary: ONTAPでOracle Linux 9.2を使用する方法について説明しま�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 9.2を設定できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -295,7 +298,7 @@ NOTE: Oracle Linux 9.2 RedHat Enterprise Kernel（RHCK）を設定するには�
 
 == 既知の問題
 
-Oracle Linux 9.2 with ONTAPには、次の既知の問題があります。
+Oracle Linux 9.2 with ONTAPリリースには、次の既知の問題があります。
 
 [cols="10,30,30,10"]
 |===

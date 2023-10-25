@@ -18,9 +18,9 @@ summary: ONTAP で2022にWindows Serverを使用する
 :toc-position: content
 
 
-
-
-== OS のブート中です
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてWindows Server 2022を構成できます。
+== OSの起動
 
 オペレーティングシステムを起動するには、ローカルブートまたは SAN ブートのいずれかを使用するという 2 つのオプションがあります。ローカルブートの場合は、ローカルハードディスク（ SSD 、 SATA 、 RAID など）に OS をインストールします。SAN ブートについては、次の手順を参照してください。
 
@@ -142,6 +142,6 @@ NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨
 
 
 
-== 既知の制限
+== 既知の問題
 
-Windows Server 2022に既知の問題はありません。
+ONTAPリリースのWindows Server 2022での既知の問題はありません。

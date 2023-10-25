@@ -18,6 +18,9 @@ summary: ONTAP で Oracle Linux 8.0 を使用する方法について説明し�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 8.0を設定できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -260,9 +263,9 @@ NOTE: Oracle Linux 8.0 RedHat Enterprise Kernel (RHCCK) を設定するには、
 
 
 
-== 既知の問題および制限
+== 既知の問題
 
-Oracle Linux 8.0 に関する既知の問題はありません。
+ONTAPリリースのOracle Linux 8.0に関する既知の問題はありません。
 
 
 NOTE: Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください link:hu_rhel_80.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux （ RHEL ） 8.0 の場合。

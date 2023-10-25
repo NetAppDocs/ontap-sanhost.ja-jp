@@ -18,6 +18,9 @@ summary: ONTAP で CentOS 7.2 を使用する方法について説明します
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてCentOS 7.2を設定できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -291,6 +294,6 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 
 
-== 既知の問題および制限
+== 既知の問題
 
-CentOS 7.2の既知の問題はありません。
+ONTAPリリースのCentOS 7.2の既知の問題はありません。

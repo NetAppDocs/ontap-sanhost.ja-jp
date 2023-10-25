@@ -247,6 +247,6 @@ NOTE: Citrix XenServer では、サポート対象の構成で、 Linux およ�
 
 
 
-== 既知の問題および制限
+== 既知の問題
 
-既知の問題や制限はありません。
+Citrix XenServer with ONTAPリリースに関する既知の問題はありません。

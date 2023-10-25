@@ -18,6 +18,9 @@ summary: SUSE Linux Enterprise Server 12 SP5 と ONTAP の使用方法につい�
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、SUSE Linux Enterprise Server 12 SP5とONTAPをターゲットとして設定できます。
+
 
 
 == Linux Unified Host Utilities をインストールします
@@ -285,7 +288,9 @@ devices {
 ----
 
 
-== 既知の問題および制限
+== 既知の問題
+
+SLES 12 SP5 with ONTAPリリースには、次の既知の問題があります。
 
 [cols="4*"]
 |===

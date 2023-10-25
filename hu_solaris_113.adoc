@@ -18,6 +18,9 @@ summary: Solaris Host Utilities のインストール方法について説明し
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてSolaris 11.3を設定できます。
+
 
 
 == Solaris Host Utilitiesのインストール
@@ -248,7 +251,9 @@ NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf`
 
 
 
-== 既知の問題および制限
+== 既知の問題
+
+ONTAPリリースを搭載したSolaris 11.3では'次の既知の問題が発生しています
 
 [cols="4*"]
 |===

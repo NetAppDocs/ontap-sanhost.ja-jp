@@ -235,7 +235,9 @@ NOTE: Citrix ハイパーバイザーでは、 Linux および Windows ベース
 
 
 
-== 既知の問題および制限
+== 既知の問題
+
+Citrix Hypervisor with ONTAPリリースには、次の既知の問題があります。
 
 [cols="4*"]
 |===

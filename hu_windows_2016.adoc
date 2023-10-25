@@ -18,6 +18,9 @@ summary: ONTAP で Windows Server 2016 を使用する
 :toc-position: content
 
 
+[role="lead"]
+ONTAP SANホストの構成設定を使用して、ONTAPをターゲットとしてWindows Server 2016を構成できます。
+
 
 
 == OS のブート中です
@@ -145,6 +148,6 @@ NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨
 
 
 
-== 既知の制限
+== 既知の問題
 
-Windows Server 2016 には既知の問題はありません。
+ONTAPリリースのWindows Server 2016では、既知の問題はありません。
