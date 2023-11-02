@@ -1885,20 +1885,10 @@
   <block id="2813f127dc58929fb553bc32684c2e46" category="section-title">既知の問題および制限</block>
   <block id="8b777dc32f2f743eb513fca0bfd52348" category="cell">1457017</block>
   <block id="0078173d6c66e3e11217e80e4ecc1d1b" category="cell">「sanlun」インストールでは、「libdevmapper-so」および「libnl.so」ライブラリに関連する警告メッセージが表示されます。これらの警告は、「sanlun」キットの機能には影響しません。</block>
-  <block id="7431f7a183aa9cfe2910bb761205485d" category="section-title">製品マニュアルとその他の情報の参照先</block>
-  <block id="c5079a4f9245d0085178c5ad194bac89" category="paragraph">ネットアップのすべての製品のマニュアルにアクセスし、ネットアップ社内サイトの製品ドキュメントページで、テクニカルレポートやホワイトペーパーなど、製品に関するその他の情報を参照できます。</block>
-  <block id="3ff27b1e3325a6e4ca7c06c3dec9d13c" category="paragraph">* ONTAP ストレージ・システムの構成と管理*</block>
-  <block id="86236b49ff131485c2b4de4baab79770" category="inline-link-macro">『ONTAP ソフトウェアセットアップガイド』</block>
-  <block id="5bfadca807c3aa6dc047b074d813aff4" category="list-text">。 <block ref="eb97e344065e5b8076466213afb4528b" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
   <block id="e14a95309ebbad9203e12ea129172d1e" category="inline-link-macro">『ONTAP SANアドミニストレーションガイド』</block>
   <block id="0088ffe866af761d6d172abf73c2504c" category="list-text">。 <block ref="dcbc5977eb4eae232288be25155552fa" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
   <block id="626a7cbe056796bcb1c158b143866230" category="inline-link-macro">ONTAP リリースノート</block>
   <block id="a60d936499718f3c1e7b5ddddae45c91" category="list-text">。 <block ref="6991a2ee8a93b15fb816a46b15ea0677" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
-  <block id="77fcedc082e9efc45f62c54e77698ccc" category="paragraph">* Eシリーズストレージシステムの構成と管理*</block>
-  <block id="027a98b335c07e30bf607b1f1bca9a1f" category="list-text">使用するプロトコルに適した『SANtricity Storage Manager Configuration and Provisioning for Windows Express Guide』を参照してください</block>
-  <block id="1dd312da5024844045e50a58abaf9db6" category="list-text">使用しているオペレーティングシステム、プロトコル、およびバージョンのSANtricity に対応した『SANtricity Storage Manager構成およびプロビジョニングエクスプレスガイド』</block>
-  <block id="353be7c67f0bea9221f8808465816d0c" category="list-text">使用しているSANtricity のバージョンに固有のSANtricity Storage Managerソフトウェアインストールリファレンス。</block>
-  <block id="eb6dfbdfc2c6cfdacfb27a9630c40334" category="list-text">使用しているSANtricity のバージョンに対応した『SANtricity ストレージマネージャリリースノート』。</block>
   <block id="5f93f381aa8df330451fa5b834f54def" category="inline-link-macro">E シリーズのドキュメント</block>
   <block id="2c0074fce84282581b2b52e56eacf78e" category="sidebar">Luhu 7.1をインストールします</block>
   <block id="3e88abad927ef9520e50cf89d3f1ddf7" category="paragraph">デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください</block>
@@ -2087,26 +2077,12 @@
   <block id="125c89a36748abb41fb38e89f5009ec9" category="inline-link-macro">ONTAP で2022にWindowsサーバを使用する</block>
   <block id="eff83cf87307f9f0c4cf876914031ade" category="inline-link-macro">Windowsホットフィックスのインストール</block>
   <block id="74c96d3ba2305a0f126dc2494f4cd977" category="admonition"><block ref="c6686e038b760393cddd662d474b7627" category="inline-link-macro-rx"></block> に、の手順を示します <block ref="9dcc96c7a1b888cfbb8ae39c864be341" category="inline-link-macro-rx"></block> Windowsサーバ2022の場合：以前のバージョンのWindowsサーバに関連する修正プログラム情報については、ホスト構成カテゴリのWindowsのドキュメントを参照してください。</block>
-  <block id="34eb6bacd27b9f225e7ca9de29f4668b" category="paragraph">Windows Unified Host Utilitiesを使用すると、Windowsホストコンピュータをネットアップストレージシステムに接続できます。Windows Unified Host Utilitiesには、必要なWindowsレジストリとHBA値を設定するインストールプログラムが含まれています。</block>
-  <block id="8e81245b7f02b8484320ddb3e4b13c18" category="list-text">Windows Server 2012</block>
-  <block id="1347f9ce905795bee095e16712f81913" category="list-text">Windows Server 2012 R2の場合</block>
-  <block id="4083fee85864d55c66d5e0b21a7928b3" category="list-text">Windows * 2016</block>
-  <block id="0a412bceaa4a8d671231ab04d2e0296e" category="list-text">Windows Server 2019</block>
-  <block id="3ffd22c07b48a1c76b76f941ad1cad96" category="list-text">Windows 2022</block>
-  <block id="f30ac79774ac72cad690c3f814efd2fa" category="admonition">ネットアップでは、Host Utilitiesソフトウェアのリリース間で追加コンポーネントを認定しています。システム要件の最新情報については、を参照してください <block ref="454ffc53fb26d285d765b8fbe8c25a5d" category="inline-link-macro-rx"></block>。</block>
   <block id="ff71b00ca4f59efb041754af8a3c5633" category="paragraph">Windows Unified Host Utilities 7.1では、Eシリーズストレージシステム、ONTAP 9以降のバージョンのサポート、およびiSCSIタイムアウトの強化により、フェイルオーバーの高速化がサポートされます。</block>
-  <block id="2f7c358042ffb7d37991aff648b1cb3d" category="section-title">重要な注意事項</block>
-  <block id="aacc0d256c74ef3a06a601980b807a0e" category="paragraph">最新リリースのWindows Host Utilitiesを導入する前に、システムの運用に影響する可能性がある問題を特定して解決するのに役立つ情報を確認しておく必要があります。</block>
-  <block id="7cd36e8f4d329b5cfafec87711c36cbd" category="paragraph">個々のバグの詳細およびその他のバグ関連ツールについては、を参照してください <block ref="06c8d471f4d0311b3446a94e54fc8a82" category="inline-link-macro-rx"></block>。</block>
-  <block id="14604b92d34df545c8df1df02158a241" category="section-title">必要な修正プログラムをインストールします</block>
-  <block id="f00aa3de5284bd6ffc1c6eb440a68428" category="inline-link-macro">Windows Host Utilitiesのマニュアル</block>
   <block id="95dc0391ce7b396d7dd5622284e8fc3e" category="section-title">既知の問題</block>
   <block id="56659c18435d50a38e076a58b32163a4" category="cell">を実行します<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> スクリプトは、Red Hat Enterprise LinuxまたはSUSE Linux Enterprise Serverを実行するHyper-Vゲストには必要ありません</block>
-  <block id="ea42119311b1ebffaae8c2a3d60d8cfd" category="cell">を実行する必要はなくなりました<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> デフォルトのタイムアウト設定が使用されているため、Red Hat Enterprise Linux 5、Red Hat Enterprise Linux 6、またはSUSE Linux Enterprise Server 11 Hyper-Vゲストでディスクタイムアウトを変更するスクリプト。。<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> 以前のバージョンのHost Utilitiesに含まれていたスクリプトは、Windows Unified Host Utilitiesに含まれなくなりました。Windows Unified Host Utilities 7.1では、デフォルトのディスクタイムアウト設定が使用されています。</block>
   <block id="e91b41f5f9d74fcfaa3733fe1534d7c8" category="cell">IPv4とIPv6が混在したiSCSIセッションは、リブート後に再接続されません</block>
   <block id="03a5ef9a07e32294246c302f24714cba" category="cell">マルチパスI/O（MPIO）構成、またはIPv4とIPv6の両方のエンドポイントを含むセッション（MCS）ごとに複数の接続を設定すると、Windowsホストのリブート後に一部のiSCSIセッションが再接続に失敗することがあります。</block>
   <block id="9ffe40d778f0a3ffe9e1f6de2a49fb40" category="cell">MCSは、iSCSIソフトウェアブートではサポートされません</block>
-  <block id="63f871187249b3071dc36a54982c1e17" category="cell">iSCSIソフトウェアブートを使用して、iSCSI Multiple connections per session（MCS；セッションごとのiSCSI複数接続）を使用している場合、iSCSIブートをリードする接続は保護できません。これにより、ブートLUNとの接続が切断されて、ホストがクラッシュする可能性があります。</block>
   <block id="a77cd68a790d44f2359fe8a4dd45b1dc" category="cell">Microsoftでは、iSCSIソフトウェアブートホストのMCSはサポートしていません。MPIOを高可用性解決策 として使用してください。MPIOとMCSの混在はサポートされていません。</block>
   <block id="05aa4f4bc5b51efef2c52f4fb2ddc55f" category="paragraph"><block ref="06c8d471f4d0311b3446a94e54fc8a82" category="inline-link-macro-rx"></block> 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。</block>
   <block id="748753e893fd2f6b904a298d120af491" category="sidebar">Windows Unified Host Utilities のことです</block>
@@ -2378,18 +2354,8 @@
   <block id="6faca8b2572cd22ef1b619e4be0a8165" category="paragraph">NVMe/TCPには自動接続機能はありません。そのため、パスがダウンしてデフォルトのタイムアウト（10分）内に復元されないと、NVMe/TCPは自動的に再接続できません。タイムアウトを回避するには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。</block>
   <block id="ffb6c4a21213679507c7941f550bd2c7" category="summary">リリースノート（Windows Unified Host Utilities</block>
   <block id="51372fd44786d9688cfe76623106730b" category="doc">『Windows Unified Host Utilities Release Notes』を参照してください</block>
-  <block id="d203490d9623c1e2d75f42f5f678e00f" category="section-title">Windows Unified Host Utilitiesについて</block>
-  <block id="c58bbb489cf9a676efa84ccbf8f2d95f" category="paragraph">Windows Unified Host Utilitiesでは、次のバージョンのWindowsが引き続きサポートされます。</block>
   <block id="d01454be7f3c4cdc6a05c67e9f6dd9a9" category="list-text">Windows Unified Host Utilities 7.2では、NVMe/FCドライバパラメータの設定がサポートされ、新しいベンダーカードに関するバグが修正されています。</block>
-  <block id="187b2c71236e059ed6f664dc1411522d" category="paragraph">Windows Unified Host Utilitiesのインストールまたはアップグレードを適切に行うには、特定のWindowsホットフィックスをインストールする必要があります。一部のホットフィックスは、Windowsの更新プログラムのコンポーネントです。</block>
-  <block id="9644563034c132befaa37ffb45768f62" category="paragraph">を参照してください <block ref="b3cd2c632efe322584e2546723e4258f" category="inline-link-macro-rx"></block> をクリックしてください。</block>
-  <block id="93ce7e3cf1064757d340e99f7eaeb042" category="paragraph">7.1リリースでは、予期しない動作や望ましくない動作、およびこれらの動作を回避するための回避策がいくつか確認されています。</block>
   <block id="6136261711c49bf0e8e1dcb22a2c524f" category="cell">該当なし</block>
-  <block id="644434a661679638ee73920a1fe05471" category="cell">リブート後にすべてのiSCSIパスが戻ることを確認するには、すべてのIPv4エンドポイントまたはすべてのIPv6を使用します。IPv4とIPv6を混在させないでください。</block>
-  <block id="0208bd845202f1393154775e9ceb1968" category="section-title">SANホスト構成のドキュメントについて</block>
-  <block id="dc4ae5e39f966feaee538e0bac3d396d" category="inline-link-macro">ONTAP SANホストの構成に関するドキュメント</block>
-  <block id="fea53c4695433409c2501af776af21c3" category="paragraph">SAN Host Utilitiesのドキュメントは、に記載されています <block ref="83855932909dca92603efe77cb42c173" category="inline-link-macro-rx"></block>。ONTAP SANホスト構成に関するドキュメントは累積的に作成され、現在のすべてのSANホストリリースをカバーしています。リリース間の機能の違いは、コンテキストに基づいて示されます。</block>
-  <block id="b941110e14a54d454e0dea4fa380b5b9" category="list-text">使用しているSANtricity のバージョンに対応したSANtricity ストレージマネージャマルチパスドライバのガイド。</block>
   <block id="54ed56ff6f53cace0a89cfd9c793d498" category="paragraph">推奨設定を使用してKernel-Based Virtual Machine（KVM）を設定することもできます。LUN がハイパーバイザーにマッピングされるため、 KVM の設定を変更する必要はありません。</block>
   <block id="e0a63b6c7b84f763f3ca8d8b86db69b8" category="summary">WindowsユニファイドHost Utilitiesにはインストールプログラムが含まれています。このプログラムでは、WindowsホストがNetApp ONTAP およびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定します。</block>
   <block id="e16334a1a12d2e212a82720b2f25b627" category="doc">Windows Unified Host Utilities 7.2</block>
@@ -2534,7 +2500,6 @@
   <block id="8f4e34dd626d27db6da17b83e4d7f329" category="cell">Solaris 11.x 'cfgadm -c configure'でエンドツーエンドのEmulex構成でI/Oエラーが発生する</block>
   <block id="a387e31363493fb3c0fbdcc0d7458c52" category="list-text">ファイルを解凍します。</block>
   <block id="8fe0dc9943c3dbce8070a7613545cb91" category="paragraph">次の例は 'SPARC システムのファイルを解凍しますx86-64プラットフォームの場合は、を使用します<block ref="2dea9af09f7e80915b8298deb9ca9b8a" prefix=" " category="inline-code"></block> パッケージ。</block>
-  <block id="a15ed55b009e93df31791bff39016875" category="paragraph">を参照してください <block ref="a39850964251401babb6e797f9dd15c1" category="inline-link-macro-rx"></block> をクリックして、SANtricity 関連ドキュメントを参照してください</block>
   <block id="ec1f030f0caddb932644a46761f74630" category="list-text"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block></block>
   <block id="e0ace13bee28a678ec04ad1b076b4b00" category="admonition">VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツールを導入する必要があります。すべてのigroup設定はVASA Providerによって管理されるため、VVOL環境でigroupを作成または管理する必要はありません。</block>
   <block id="a2093eec2c1b326b4a76efce454cc95a" category="paragraph">VVOL のプロビジョニングと管理の詳細については、 VMware vSphere 用の ONTAP ツールのドキュメントも参照してください<block ref="fc9815e7b1405959c49ad47e9a23e3a5" category="inline-link-rx"></block> および <block ref="a74613d919ef64732e37564f6282a452" category="inline-link-macro-rx"></block></block>
@@ -3124,7 +3089,6 @@
   <block id="2ad9563dae62baefb397a0b93e22f08a" category="list-text">Red Hat Enterprise Linux（RHEL）6およびRHEL 7ホストでは、サーバプロファイルを設定するためのチューニング済みパッケージがサポートされるようになりました。を使用できます<block ref="44559c6617511944fd997c63b107ee6b" prefix=" " category="inline-code"></block> 環境に応じて異なるプロファイルを設定するコマンド。たとえば、仮想ゲストプロファイルをゲスト仮想マシンとして使用したり、エンタープライズストレージプロファイルを使用して、エンタープライズストレージアレイのLUNを使用する構成を行うこともできます。これらの調整済みパッケージを使用すると、ONTAPのスループットとレイテンシが向上します。</block>
   <block id="b91c8d257cb2ab1f821c4201c4d98d12" category="list-text">Broadcom EmulexおよびMarvell Qlogicから32Gb FCアダプタのサポートが追加されました。</block>
   <block id="a26aa7b42e8c5d7d2a6c295dc3421eb4" category="paragraph">最適なパフォーマンスと正常なフェイルオーバーを実現するには、正しい設定が重要です。</block>
-  <block id="8b98a90c0f8d947a6126ce4314f1d147" category="paragraph">このリリースノートには、Windows Unified Host Utilities 7.2および7.1リリースの最新情報（新機能、拡張機能、既知の問題に関する更新情報など）が記載されています。このドキュメントは、Windows Host Utilitiesの使用に関する新しい情報が入手可能になると更新されます。</block>
   <block id="d183f649aa9dd1befe9fbbbebb9ce6f3" category="paragraph">この例では、デバイスのWWIDを特定し、<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ファイル。</block>
   <block id="9befbb0a2a211b5683af5265f22799fb" category="paragraph"><block ref="59b466fd93164953e56bdd1358dc0044" prefix="" category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
   <block id="8f832cd06827c0d578f135a31564e7cf" category="summary">SUSE Linux Enterprise Server 15 SP5とONTAPの使用方法について説明します。</block>
@@ -3580,4 +3544,9 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="f0602fb611da233f60bc957edbba1033" category="sidebar">SAN Host Utilitiesのインストール</block>
   <block id="a4d5754af636a6318ee2ffcd80c52e27" category="sidebar">Linux Unified Host Utilities のこと</block>
   <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
+  <block id="9338e945bac01c9e32a8c2af440cac72" category="paragraph">このリリースノートでは、新機能と拡張機能、現在のリリースで解決された問題、既知の問題と制限事項、およびONTAPストレージシステムで特定のWindowsホストを設定および管理する際の重要な注意事項について説明します。</block>
+  <block id="d2fedb92befc8dc2e258f7e604f48c11" category="paragraph">特定のホストのパフォーマンスに影響する可能性がある次の既知の問題および制限事項に注意してください。Windows Unified Host Utilities 7.1リリースで、予期しない動作や望ましくない動作、およびそれらの動作を回避するための対処方法がいくつか確認されています。</block>
+  <block id="4f87354ce94dcb67a9c01f1fd7b4ea2c" category="cell">を実行する必要はなくなりました<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> デフォルトのタイムアウト設定が使用されているため、Red Hat Enterprise Linux 5、Red Hat Enterprise Linux 6、またはSUSE Linux Enterprise Server 11 Hyper-Vゲストでディスクタイムアウトを変更するスクリプト。。<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> 以前のバージョンのHost Utilitiesに含まれていたスクリプトは、Windows Unified Host Utilities 7.1バージョンには含まれなくなりました。Windows Unified Host Utilities 7.1では、デフォルトのディスクタイムアウト設定が使用されています。</block>
+  <block id="58bd1409abe12b095d09bb31094aafa1" category="cell">すべてのIPv4エンドポイントまたはIPv6エンドポイントのいずれかを使用します。IPv4とIPv6を混在させないでください。</block>
+  <block id="3efca860156d5ad3cdf93f3fcef9b74c" category="cell">iSCSIソフトウェアブートをiSCSI Multiple Connections per Session（MCS；セッションごとの複数接続）で使用する場合、iSCSIブート先行接続は保護できません。その結果、ブートLUNからの接続が切断され、ホストシステムが停止する可能性があります。</block>
 </blocks>
