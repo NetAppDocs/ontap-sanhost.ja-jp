@@ -362,7 +362,6 @@
   <block id="32ef1514a118a90d123d7385cc9d865f" category="paragraph">「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。</block>
   <block id="481485305bd44028530f59a9a9614451" category="paragraph">RHEL 6.9 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方ですべての構成パラメータを自動的に正しく設定します。</block>
   <block id="639757de418f2423907f2b63fbc1458b" category="paragraph">このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。</block>
-  <block id="6e7eef95f0e9ee9b717340ce72d65e5b" category="paragraph">マルチパスで管理しないデバイスや、デフォルトを上書きする既存の設定がある場合を除き、「 multipath.conf 」ファイルに直接何も追加する必要はありません。</block>
   <block id="36da0e0b56843a1256e96e81029390fa" category="paragraph">不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。</block>
   <block id="ff73d7e0f0c6051bbd80575105bb1cb1" category="list-text">/etc/multipath.conf 内のブラックリストスタンザに、次の WWID を追加します。</block>
   <block id="e652073cb2a43641b24496c09164f62a" category="paragraph">次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合 ' マルチパス .conf ファイルは 'path_checker' および ONTAP LUN と互換性のない 'no-path_retry' の値を定義しますホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</block>
@@ -1635,9 +1634,6 @@
   <block id="01e99a43df9a9e103daa49144d80325a" category="list-text">次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。</block>
   <block id="996bc8c555f8b2265c43a9a361d7bcd2" category="list-text">次のコマンドを使用して、 Marvell アダプタを NVMe/FC イニシエータとして機能できるように、「 ql2xnvmeenable 」が設定されていることを確認します。</block>
   <block id="0199c49af15b1997cf6d2ddd0ea8adf4" category="list-text">対応する「 m odprobe qla2xxx conf 」ファイルに「 ql2xextended_error_logging=0x1e400000 」の値を追加します。</block>
-  <block id="5d14823339a99ad173c461c5934c7795" category="list-text">「 d racut-f 」コマンドを実行して「 initramfs 」を再作成し、ホストを再起動します。</block>
-  <block id="18c1ce7cd10cb855d9571af493e60d2f" category="list-text">リブート後、次のように詳細ログが適用されていることを確認します。</block>
-  <block id="bd578ecd5b4e2ae0680ca3e17e20ed2a" category="cell">エラーは 'nvme-cli' によって表示されます</block>
   <block id="e8a5a7214d896558232c2e63f40a05c2" category="cell">原因と考えられます</block>
   <block id="7aebfa1e2291377e040de92d7f7f335f" category="cell">回避策</block>
   <block id="37ea58a1ef8410b6d6bf6ec383fdb9bb" category="cell">'/dev/nvme-Fabrics への書き込みに失敗しました : 引数が無効です</block>
@@ -1891,7 +1887,6 @@
   <block id="a60d936499718f3c1e7b5ddddae45c91" category="list-text">。 <block ref="6991a2ee8a93b15fb816a46b15ea0677" category="inline-link-macro-rx"></block> ONTAP のバージョンに応じて更新します</block>
   <block id="5f93f381aa8df330451fa5b834f54def" category="inline-link-macro">E シリーズのドキュメント</block>
   <block id="2c0074fce84282581b2b52e56eacf78e" category="sidebar">Luhu 7.1をインストールします</block>
-  <block id="3e88abad927ef9520e50cf89d3f1ddf7" category="paragraph">デフォルト設定を上書きする可能性のあるレガシー設定については '/etc/multipath.conf ファイルを必ず確認してください</block>
   <block id="51f210eb8bfa53321744e9dca7258c87" category="paragraph">Oracle Linux 8.1 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="60f09d4774647857c92f5a51f6de2354" category="paragraph">Oracle Linux 8.0 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="ffe5b32185032e3b293e94d4a0232f34" category="paragraph">Oracle Linux 8.2 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
@@ -2010,31 +2005,9 @@
   <block id="75d2257ae841105f67aa7e6940b3fccb" category="list-text">NVMeネームスペースへのパスの数を表示するには、次のコマンドを使用します。</block>
   <block id="aaf285a33d84d021ddb3cf7d93395617" category="paragraph">SUSE Linux Enterprise Server 15 SP4の場合は、/etc/multipath.confファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 15 SP4は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
   <block id="3dfda629d29a9eff997fc21c726b36da" category="paragraph">SUSE Linux Enterprise Server 15 SP4 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。</block>
-  <block id="bdb5443c5dd9643367f9496b5fb35d08" category="paragraph">マルチパス・デーモンを開始するには'multipath.confファイルが存在している必要がありますが'次のコマンドを使用して空の0バイトのファイルを作成できます'touch /etc/multipath.conf</block>
-  <block id="a96d8f77801154cf5d51080e06fa3215" category="paragraph">「&lt;DevId&gt;」を、除外するデバイスの「WWID」文字列に置き換えます。次のコマンドを使用して'wwidを決定します</block>
   <block id="9d29c9f01ddee621ba147e8ccc4bc7b0" category="list-text">次のコマンドを実行して'wwidを決定します</block>
-  <block id="e97b2c87e2a473e6975fd85e7af8bc02" category="list-text">/etc/multipath.conf内のブラックリストスタンザに'wwidを追加します</block>
-  <block id="588664bdfe3aca23316ad7f26a08e2a5" category="paragraph">次の表に、ONTAP LUNのmultipathdパラメータと必要な値を示します。ホストが他のベンダーの LUN に接続されていて、これらのパラメータのいずれかが上書きされた場合は、 ONTAP LUN に特に適用される「マルチパス .conf 」の後の行で修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
   <block id="cf79be42f6c9a2f2225f202bfec080c2" category="sidebar">15 SP4</block>
   <block id="8da61845fa1ac07e5d54097fe9d2a4cb" category="summary">ONTAP を搭載したSUSE Linux Enterprise Server 15 SP4でNVMe/FCを設定する方法について説明します</block>
-  <block id="8eb74debb51b4f25feba23cb4c810b37" category="doc">ONTAP 搭載SUSE Linux Enterprise Server 15 SP4のNVMe-oFホスト構成</block>
-  <block id="c75db19ac5a0dcb194a365e12ad2a6df" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他の転送を含む）は、SUSE Linux Enterprise Server 15 SP4（SLES15 SP4）およびANA（非対称ネームスペースアクセス）でサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在インカーネル NVMe マルチパスで実装されています。SLES15 SP4およびONTAP でANAをターゲットとして使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について、ここで詳しく説明します。</block>
-  <block id="6bf6f26e72e1a43152386a3d529598cb" category="list-text">SLES15 SP4では、NVMe/FCおよびその他の転送がサポートされます。</block>
-  <block id="142ea2bd2623f2c2d64d9ef53c347b24" category="list-text">NVMe-oFには「sanlun」のサポートはありません。そのため、SLES15 SP4では、NVMe-oFはLuhuでサポートされていません。代わりに、ネイティブの「nvme-cli」に含まれているNetAppプラグインを使用してもかまいません。これはすべての NVMe-oF 転送で機能します。</block>
-  <block id="10bc893eed35189e5092c4f181aedb5e" category="list-text">NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。実際、これは一般的に導入されるホスト構成であると想定されています。したがって、SCSIの場合、SCSI LUNでは通常どおり「dm-multipath」を設定してから、mpathデバイスを作成できますが、NVMeマルチパスを使用してホストでNVMe-oFマルチパスデバイスを設定することもできます。</block>
-  <block id="4b148e1d7f44cff075101f1edbc6a9fe" category="paragraph">を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
-  <block id="b545ab3ca975cd0517fdd21a1729e795" category="paragraph">SLES15 SP4などのSLESホストでは、カーネル内NVMeマルチパスはデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
-  <block id="4933033127862860b194cbe455635310" category="list-text">SLES15 SP4 MUホストに、必要なカーネルおよび「nvme-cli」メンテナンスアップデート(MU)パッケージがインストールされていることを確認します。</block>
-  <block id="c5887937b5b23714e6333cc2805b4864" category="list-text">ホストの/etc/nvme/hostnqn'でhostnqn'文字列を確認し、ONTAP アレイの対応するサブシステムのhostnqn'文字列と適切に一致していることを確認します例：</block>
-  <block id="d9f4f7d9a9eb182e8b8863d6c183e841" category="paragraph">ホストで使用しているFCアダプタに応じて、次の手順を実行します。</block>
-  <block id="75870a630c07f219a37133dad55f104f" category="paragraph">新しいlpfcドライバ（受信トレイと送信ボックスの両方）には'lpfc_enable_fc4_type`のデフォルトが3に設定されているため'/etc/modprobe.d/lpfc.confでこれを明示的に設定しなくても'initrd'を再作成できますlpfc nvme のサポートは ' デフォルトですでに有効になっています</block>
-  <block id="32ecb9890aed827558c7cd1a318fda14" category="paragraph">既存のネイティブインボックス lpfc ドライバは、 NVMe / FC に対応した最新のバージョンです。したがって、lpfc Out of Box（OOB）ドライバをインストールする必要はありません。</block>
-  <block id="ce48d43c1e6c7a418733e722925a43b8" category="list-text">NVMe/FC イニシエータポートが有効になっていることと、ターゲットポートが認識され、すべて稼働していることを確認してください。次の例では、の出力からわかるように、有効になっているイニシエータポートが1つだけあり、2つのターゲットLIFで接続されています。</block>
-  <block id="bc1eafdc5546c34f6a9034570437fcc0" category="list-text">dracut -fコマンドを実行し、ホストをリブートします。</block>
-  <block id="61efa8d63e1b266809e1e79422fed58f" category="paragraph">新しいSLES15 SP4 MUカーネルに含まれているネイティブインボックスqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。</block>
-  <block id="859c1dcdb0decd8fe22f184abe2b92f7" category="list-text">パスが復活したあとの自動再接続が行われないNVMe/FCは'パスがダウンしてから10分経過したデフォルトのCtrl-loss -TMO'タイマーを超えたパスに自動的に再接続することはできません</block>
-  <block id="1077e8ad3542ff8af32bed26b6b21ee8" category="list-text">ホストのブート時に自動接続を行わないNVMe/FCは、ホストのブート時にも自動的に接続できません。</block>
-  <block id="b2edbac4a48e893081ffbe4cda9a7dec" category="list-text">該当するONTAP ネームスペースの該当するNVMe-oF設定（NetApp ONTAP コントローラに設定したモデル、ラウンドロビンに設定したロードバランシングポリシーなど）がホストに正しく反映されていることを確認します。</block>
   <block id="0882578f9915da36a8ab5c612728ad30" category="paragraph">例（A）：</block>
   <block id="806707e47ee8fe684a6d5e5b0898539a" category="sidebar">NVMeネームスペース</block>
   <block id="0b6a095cb9010243600ae8c7163d4eab" category="summary">Windows Server 2022 with ONTAP のNVMe/FCホスト構成</block>
@@ -2082,7 +2055,6 @@
   <block id="56659c18435d50a38e076a58b32163a4" category="cell">を実行します<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> スクリプトは、Red Hat Enterprise LinuxまたはSUSE Linux Enterprise Serverを実行するHyper-Vゲストには必要ありません</block>
   <block id="e91b41f5f9d74fcfaa3733fe1534d7c8" category="cell">IPv4とIPv6が混在したiSCSIセッションは、リブート後に再接続されません</block>
   <block id="03a5ef9a07e32294246c302f24714cba" category="cell">マルチパスI/O（MPIO）構成、またはIPv4とIPv6の両方のエンドポイントを含むセッション（MCS）ごとに複数の接続を設定すると、Windowsホストのリブート後に一部のiSCSIセッションが再接続に失敗することがあります。</block>
-  <block id="9ffe40d778f0a3ffe9e1f6de2a49fb40" category="cell">MCSは、iSCSIソフトウェアブートではサポートされません</block>
   <block id="a77cd68a790d44f2359fe8a4dd45b1dc" category="cell">Microsoftでは、iSCSIソフトウェアブートホストのMCSはサポートしていません。MPIOを高可用性解決策 として使用してください。MPIOとMCSの混在はサポートされていません。</block>
   <block id="05aa4f4bc5b51efef2c52f4fb2ddc55f" category="paragraph"><block ref="06c8d471f4d0311b3446a94e54fc8a82" category="inline-link-macro-rx"></block> 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。</block>
   <block id="748753e893fd2f6b904a298d120af491" category="sidebar">Windows Unified Host Utilities のことです</block>
@@ -2103,7 +2075,6 @@
   <block id="3972a4868b0682bd7aa086e3f90df6a5" category="paragraph">この例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
   <block id="b23eda8b5a2eb7f788559c0df550f0fa" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）connect-all中に、パス損失が発生した場合に長期間再試行されるようにします。例：</block>
   <block id="ed53d9bb40cf906cb73ab578cb3adb1d" category="paragraph">タイムアウトを防ぐには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。Ctrl_loss _TMOタイマーの値を大きくすると、再試行期間を延長できます。詳細は次のとおりです。</block>
-  <block id="9ac1e2761e536d1b08b677a24976cad9" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> の実行中のタイマー再試行期間（30分、-l 1800で設定可能）<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> これにより、パス障害が発生した場合に再試行を長時間にわたって行うことができます。例：</block>
   <block id="1272c37c0c38bd618d6d76d763f54041" category="paragraph">次のCitrixハイパーバイザー8.xの例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
   <block id="1de6caecfe16b961f2f1c858579203f0" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）connect-allの実行中に、パス損失が発生した場合に、長時間にわたって再試行されます。例：</block>
   <block id="557c4124a10a18982aa7103d5c4f8b02" category="paragraph">このCitrix XenServer 7.xの例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
@@ -3548,5 +3519,74 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="d2fedb92befc8dc2e258f7e604f48c11" category="paragraph">特定のホストのパフォーマンスに影響する可能性がある次の既知の問題および制限事項に注意してください。Windows Unified Host Utilities 7.1リリースで、予期しない動作や望ましくない動作、およびそれらの動作を回避するための対処方法がいくつか確認されています。</block>
   <block id="4f87354ce94dcb67a9c01f1fd7b4ea2c" category="cell">を実行する必要はなくなりました<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> デフォルトのタイムアウト設定が使用されているため、Red Hat Enterprise Linux 5、Red Hat Enterprise Linux 6、またはSUSE Linux Enterprise Server 11 Hyper-Vゲストでディスクタイムアウトを変更するスクリプト。。<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> 以前のバージョンのHost Utilitiesに含まれていたスクリプトは、Windows Unified Host Utilities 7.1バージョンには含まれなくなりました。Windows Unified Host Utilities 7.1では、デフォルトのディスクタイムアウト設定が使用されています。</block>
   <block id="58bd1409abe12b095d09bb31094aafa1" category="cell">すべてのIPv4エンドポイントまたはIPv6エンドポイントのいずれかを使用します。IPv4とIPv6を混在させないでください。</block>
-  <block id="3efca860156d5ad3cdf93f3fcef9b74c" category="cell">iSCSIソフトウェアブートをiSCSI Multiple Connections per Session（MCS；セッションごとの複数接続）で使用する場合、iSCSIブート先行接続は保護できません。その結果、ブートLUNからの接続が切断され、ホストシステムが停止する可能性があります。</block>
+  <block id="194918718b492bb08c4ceb2c1063575c" category="paragraph">。<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block>。</block>
+  <block id="80b3dcca095ff047032f5421282d56f0" category="paragraph">交換してください<block ref="2f7ac3c5a9070e3fa18615d7bf03ce76" prefix=" " category="inline-code"></block> を使用<block ref="7f82ca1acc93bec0dcd43c7f37ce4512" prefix=" " category="inline-code"></block> 除外するデバイスの文字列。次のコマンドを使用して、<block ref="7f82ca1acc93bec0dcd43c7f37ce4512" prefix=" " category="inline-code"></block>：</block>
+  <block id="b76bbd9898d442ee1f504e1dbfcd8bb1" category="list-text">を追加します<block ref="7f82ca1acc93bec0dcd43c7f37ce4512" prefix=" " category="inline-code"></block> のブラックリストスタンザの値<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイル：</block>
+  <block id="3b839ec0f9be7e06670afc4a1a40f03f" category="paragraph">次の表に、ONTAP LUNのmultipathdパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無効になっている場合は、の以降のスタンザで修正する必要があります。<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> これはONTAP LUNに特に適用されます。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定は、影響を十分に理解したうえで、ネットアップや OS のベンダーに相談して無視してください。</block>
+  <block id="b257f5893979fe648d54dcf693a4e4cb" category="paragraph">次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合は、を参照してください<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ファイルはの値を定義します<block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix=" " category="inline-code"></block> および<block ref="9434de34302b4f40887a7277cf35a8fc" prefix=" " category="inline-code"></block> ONTAP LUNと互換性がありません。他のSANアレイがまだホストに接続されているためにこれらのパラメータを削除できない場合は、代わりにデバイススタンザが設定されたONTAP LUN専用に修正できます。</block>
+  <block id="11bc52330473c77af7c9af92d91670d8" category="doc">SUSE Linux Enterprise Server 15 SP4 with ONTAP向けのNVMe-oFホスト構成</block>
+  <block id="1e0824a41921c35ae75109745c612112" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたSUSE Linux Enterprise Server（SLES）15 SP4でサポートされます。NVMe-oF環境では、ANAはiSCSIおよびFCP環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="4cf7fe92c394fa4fc2b1bf18982c0e2a" category="paragraph">ONTAPを備えたSLES 15 SP4のNVMe-oFホスト構成では、次のサポートが提供されます。</block>
+  <block id="6a3b837c447567576db8a7b274129d75" category="list-text">NVMeセキュア、インバンド認証のサポート</block>
+  <block id="9a92ce4e989d773249e020a05ba01fda" category="list-text">一意の検出NQNを使用した永続的検出コントローラ（PDC）のサポート</block>
+  <block id="23a3dd6969f2fd3146cb091b83b4ac09" category="list-text">NVMe-oFはsanlunではサポートされていません。そのため、SLES15 SP5ホストのNVMe-oFではホストユーティリティはサポートされません。すべてのNVMe-oF転送では、標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。</block>
+  <block id="77539abf8642dd04b00f6fdcfa4b1b88" category="paragraph">NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタに設定できます。</block>
+  <block id="8a747e40f001b558841e011caff1be9d" category="list-text">推奨されるアダプタモデルを使用していることを確認します。</block>
+  <block id="98e60d5165e4e32dd13ecc867cd3fe85" category="list-text">アダプタモデル概要を確認します。</block>
+  <block id="77f11940400c51d3757e984a0832fa8c" category="list-text">推奨されるバージョンのEmulex Host Bus Adapter（HBA；ホストバスアダプタ）ファームウェアを使用していることを確認します。</block>
+  <block id="e316d8e318452be8fb3f411a5b75740a" category="list-text">推奨バージョンのlpfcドライバを使用していることを確認します。</block>
+  <block id="4cd8a0ed1af264c4d308453d188bf895" category="list-text">イニシエータポートを表示できることを確認します。</block>
+  <block id="ed1d503af7b244498872a4e8f68ad0ea" category="list-text">イニシエータポートがオンラインであることを確認します。</block>
+  <block id="ff477f85b2409de7be48c00555d051c9" category="list-text">NVMe/FCイニシエータポートが有効になっており、ターゲットポートが認識されることを確認します。</block>
+  <block id="7e0cbf28ccc89995c1daf32f5daedd02" category="paragraph">この例では、1つのイニシエータポートが有効になっており、2つのターゲットLIFで接続されています。</block>
+  <block id="e86acb5227ff2edf84308d3a10d6883d" category="list-text">SLES 15 SP4カーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新の修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="77c96566e3c78688f34abe91700ea32c" category="list-text">を確認します<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block> パラメータは1に設定されています。</block>
+  <block id="0c1b72e395c1933da2da0ebb8f7fe9a0" category="section-title">NVMeサービスを有効にする</block>
+  <block id="59888b5268cc13974726c98a3d894d8d" category="paragraph">次の手順を使用してNVMeサービスを有効にできます。</block>
+  <block id="f409d4c6497d1c2cec5c498fdcdaf32f" category="paragraph">には2つのNVMe/FCブートサービスが含まれています。<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> パッケージ（_only_）<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block> システム起動中に起動できるようになっています。 <block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> が有効になっていません。そのため、手動で有効にする必要があります。<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> システム起動中に起動します。</block>
+  <block id="404c9db3810293328aa6b6e3e3d75b2f" category="list-text">-- 有効にします<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>：</block>
+  <block id="46bb931cbfa3a27a99c1f1877eeee986" category="list-text">確認します<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> および<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block> システムの起動後に実行されています。</block>
+  <block id="baada05b728885e319c5403cda805aab" category="paragraph">NVMe/TCPの設定には、次の手順を使用できます。</block>
+  <block id="5f4f678aad12f1e93623021404b1cd76" category="list-text">NVMe/TCPイニシエータとターゲットLIFの他のすべての組み合わせで、検出ログページのデータを正常に取得できることを確認します。</block>
+  <block id="99c66119d6b08daedeeade4ea3314f28" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象としたコマンド：</block>
+  <block id="8b1603b35e6819621dc1f0cc444c575f" category="admonition">NetAppでは、<block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block> オプションをに設定します<block ref="6bb61e3b7bce0931da574d19d1d82c88" prefix=" " category="inline-code"></block> これにより、パスが失われた場合にNVMe/TCPイニシエータが無期限に再接続を試行できるようになります。</block>
+  <block id="06de15d425458e9e7eaf5908bf68638b" category="list-text">ホストのコントローラモデルがONTAP NVMeネームスペースに対応していることを確認します。</block>
+  <block id="f82da621d58f05378174a2c3b797cc33" category="list-text">それぞれのONTAP NVMe I/OコントローラのNVMe I/Oポリシーを確認します。</block>
+  <block id="fcb5bee63d6460f40e0f810d9b88ff19" category="list-text">ONTAPネームスペースがホストから認識されることを確認します。</block>
+  <block id="051e7c8fe85493aa4fca34ecb724d7f5" category="paragraph"><block ref="7ee98ee108f160c92a9c1dd2307ab6a5" prefix="" category="inline-code"></block></block>
+  <block id="462943f55eaa51bdddde8bbb7361ad5a" category="paragraph"><block ref="bef03e474ce211e47fcb917ac4b0601e" prefix="" category="inline-code"></block></block>
+  <block id="80782d927009a28ba6444564924d02eb" category="section-title">検出の機能拡張</block>
+  <block id="859f68c87f883fa78618600b15339105" category="paragraph">ONTAP 9.11.1以降では、次の手順を使用してSLES 15 SP4ホスト用の永続的検出コントローラ（PDC）を作成できます。NVMeサブシステムの追加や削除のシナリオや検出ログページのデータに対する変更を自動的に検出するには、PDCが必要です。</block>
+  <block id="d48ddf14c1b8a3a92106ad1a14d18258" category="list-text">検出ログページのデータが使用可能で、イニシエータポートとターゲットLIFの組み合わせから取得できることを確認します。</block>
+  <block id="4b251899b86291ee2ea3a4ec31bd27d2" category="list-text">検出サブシステムのPDCを作成します。</block>
+  <block id="cc9b331553f2bcc4120c4d935ac45124" category="list-text">ONTAPコントローラから、PDCが作成されたことを確認します。</block>
+  <block id="808ef0d960a275630df5320d10b4e17a" category="section-title">セキュアなインバンド認証のセットアップ</block>
+  <block id="e2c8ace04a879a9e25c44c01e276ca44" category="paragraph">ONTAP 9.12.1以降では、SLES 15 SP4ホストとONTAPコントローラの間でNVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。</block>
+  <block id="73fd59b3c9a3572b90f709cc5c917c78" category="paragraph">セキュアな認証を設定するには、各ホストまたはコントローラを<block ref="f4ec72363eeda8a3e6391c779684b2be" prefix=" " category="inline-code"></block> キー。NVMeホストまたはコントローラのNQNと管理者が設定した認証シークレットを組み合わせたものです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。</block>
+  <block id="563237c884bab6356a13da886807f1d9" category="paragraph">CLIまたは設定JSONファイルを使用して、セキュアなインバンド認証を設定できます。サブシステムごとに異なるDHCHAPキーを指定する必要がある場合は、config JSONファイルを使用する必要があります。</block>
+  <block id="91af5705f16502125e8b2187e64202c0" category="open-title">CLI の使用</block>
+  <block id="130ea6273a6f2f8dd4847cd415a8dce1" category="list-text">ホストNQNを取得します。</block>
+  <block id="ba350b7d92692b61c2a6def18ee16927" category="list-text">SLES15 SP4ホストのDHCHAPキーを生成します。</block>
+  <block id="23edd95065130b4cb5f75361f442edd0" category="paragraph">[+]
+次の例では、HMACが3に設定されたランダムDHCHAPキー（SHA-512）が生成されます。</block>
+  <block id="be970af96a2d347df16aa0902707d220" category="list-text">ONTAPコントローラで、ホストを追加し、両方のDHCHAPキーを指定します。</block>
+  <block id="6250c5a6dfbdfa6456828e5c1fe8d570" category="list-text">ホストは、単方向と双方向の2種類の認証方式をサポートします。ホストで、ONTAPコントローラに接続し、選択した認証方式に基づいてDHCHAPキーを指定します。</block>
+  <block id="fc4c8739f30c2752c3c17a6352aa09b4" category="list-text">検証する<block ref="696f58758da9e4474854ee0c48e9a3ec" prefix=" " category="inline-code"></block> ホストとコントローラのDHCHAPキーを確認してコマンドを実行します。</block>
+  <block id="fce0c40fc78df8eaae6a5d537031d2e9" category="list-text">ホストDHCHAPキーを確認します。</block>
+  <block id="96bd6c4f8486135e67ea7768ebfd660b" category="paragraph">*単方向設定の出力例：*</block>
+  <block id="053fe6a5806392c2d3f3d0b9560aef43" category="list-text">コントローラのDHCHAPキーを確認します。</block>
+  <block id="84ea3979460de46128b29ddab7d89cd0" category="paragraph">*双方向コンフィグレーションの出力例：*</block>
+  <block id="a6c9e3a7671c1fd9d7328c3be5d107b5" category="open-title">JSON ファイル</block>
+  <block id="e8bdd625277829c32849608bfaaf1041" category="paragraph">を使用できます<block ref="2be2042afe5d55c4305aa3ff91b1ff5f" prefix=" " category="inline-code"></block> を含むファイル<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ONTAPコントローラ構成で複数のNVMeサブシステムを使用できる場合のコマンド。</block>
+  <block id="be0bd4d71e13a5ad44e756862b63fb17" category="inline-link-macro">ONTAP のマニュアルページ</block>
+  <block id="32c203213cf44e803bc3c227bd240164" category="paragraph">JSONファイルは次のコマンドを使用して生成できます。<block ref="b2ed43620b7fff2689035f1e99c24ded" prefix=" " category="inline-code"></block> オプションを参照してください <block ref="4d8de0f1b018ca27a073061938808cb9" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="7be934ce8b58f4891a1f5bec99cfea5f" category="list-text">JSON ファイルを設定します。</block>
+  <block id="76dfba31c261b7600a97b27a404095b4" category="list-text">config jsonファイルを使用してONTAPコントローラに接続します。</block>
+  <block id="fbcde6a9a9bc69bb6785a0b0a3403428" category="list-text">各サブシステムの各コントローラでDHCHAPシークレットが有効になっていることを確認します。</block>
+  <block id="8b298a30ff335320eb3dc5fa82948392" category="paragraph">ONTAPリリースのSLES 15 SP4に既知の問題はありません。</block>
+  <block id="e20cbb947afcf84cf58de1358ee1068d" category="cell">エラーメッセージです</block>
+  <block id="8cfe2b11255c36622bc84e4bd2dfb53c" category="list-text">を実行します<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block> コマンドを実行してホストをリブートします。</block>
+  <block id="9688ec84efd5b1cb7c885e598b6ebf4a" category="list-text">リブート後、詳細ログが有効になっていることを確認します。</block>
+  <block id="684c45496e08c180fd6b056747c6d7e6" category="cell">iSCSIソフトウェアブートではMultiple Connections per Second（MCS；1秒あたりの複数接続）はサポートされません。</block>
+  <block id="a22d253913fa8deba78982e6393df807" category="cell">iSCSI MCSでiSCSIソフトウェアブートを使用する場合、iSCSIブートリーディング接続は保護できません。その結果、ブートLUNとの接続が切断され、原因ホストシステムが停止する可能性があります。</block>
 </blocks>

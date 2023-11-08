@@ -53,11 +53,9 @@ NVMe/FC用のLPFCドライバを設定します。
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
-options lpfc lpfc_log_verbose=0xf00083
+# cat /etc/modprobe.d/lpfc.conf options lpfc lpfc_log_verbose=0xf00083
 
-# cat /sys/module/lpfc/parameters/lpfc_log_verbose
-15728771
+# cat /sys/module/lpfc/parameters/lpfc_log_verbose 15728771
 ----
 
 
@@ -68,12 +66,19 @@ NVMe/FCについては、のようなqla2xxxのロギングはありません。
 
 .手順
 . 対応する「 m odprobe qla2xxx conf 」ファイルに「 ql2xextended_error_logging=0x1e400000 」の値を追加します。
-. 「 d racut-f 」コマンドを実行して「 initramfs 」を再作成し、ホストを再起動します。
-. リブート後、次のように詳細ログが適用されていることを確認します。
+. を実行します `dracut -f` コマンドを実行してホストをリブートします。
+. リブート後、詳細ログが有効になっていることを確認します。
 +
 [listing]
 ----
 # cat /etc/modprobe.d/qla2xxx.conf
+----
++
+出力例：
+
++
+[listing]
+----
 options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 # cat /sys/module/qla2xxx/parameters/ql2xextended_error_logging
 507510784
@@ -90,7 +95,7 @@ options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 
 [cols="20, 20, 50"]
 |===
-| エラーは 'nvme-cli' によって表示されます | 原因と考えられます | 回避策 
+| エラーメッセージです | 原因と考えられます | 回避策 
 
 
 | '/dev/nvme-Fabrics への書き込みに失敗しました : 引数が無効です | 構文が正しくありません | の正しい構文を使用していることを確認します `nvme discover`、 `nvme connect`および `nvme connect-all` コマンド 
