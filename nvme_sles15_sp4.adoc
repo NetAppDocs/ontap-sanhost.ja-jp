@@ -906,7 +906,7 @@ DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsE
 --
 を使用できます `/etc/nvme/config.json` を含むファイル `nvme connect-all` ONTAPコントローラ構成で複数のNVMeサブシステムを使用できる場合のコマンド。
 
-JSONファイルは次のコマンドを使用して生成できます。 `-o` オプションを参照してください link:https://docs.netapp.com/us-en/ontap/concepts/manual-pages.html["ONTAP のマニュアルページ"^] を参照してください。
+JSONファイルは次のコマンドを使用して生成できます。 `-o` オプション構文オプションの詳細については、nvme connect-allのマニュアルページを参照してください。
 
 .手順
 . JSON ファイルを設定します。
