@@ -29,4 +29,4 @@ QLogic ファイバチャネル HBA の場合：
 | PortDownRetryCount のように指定します | 10. 
 |===
 
-NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください link:https://library.netapp.com/ecmdocs/ECMLP2789202/html/index.html["『 Windows 7.1 Host Utilities Installation Guide 』"^]。
+NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"] をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。

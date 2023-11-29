@@ -20,7 +20,10 @@ summary: ONTAP で2022にWindows Serverを使用する
 
 [role="lead"]
 ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてWindows Server 2022を構成できます。
-== OSの起動
+
+
+
+== OS のブート中です
 
 オペレーティングシステムを起動するには、ローカルブートまたは SAN ブートのいずれかを使用するという 2 つのオプションがあります。ローカルブートの場合は、ローカルハードディスク（ SSD 、 SATA 、 RAID など）に OS をインストールします。SAN ブートについては、次の手順を参照してください。
 
@@ -38,7 +41,7 @@ SAN ブートを使用する場合は、構成でサポートされている必�
 
 
 
-== Windows ホットフィックスのインストール
+== Windowsホットフィックスのインストール
 
 サーバにインストールする最新の累積更新プログラム * を使用することをお勧めします。
 
@@ -59,9 +62,9 @@ TIP: 多くの修正プログラムでは Windows ホストのリブートが必
 
 
 
-== Windows Unified Host Utilities のインストール
+== Windows Unified Host Utilitiesのインストール
 
-Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhu の構成情報と手順については、を参照してください link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71.html["WUHU 7.1 のドキュメント"]。
+Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。NetAppでは、最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhuの設定情報と手順については、を参照してください。 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Unified Host Utilitiesのドキュメント"] をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。
 
 
 
@@ -138,7 +141,7 @@ QLogic ファイバチャネル HBA の場合：
 | PortDownRetryCount のように指定します | 10. 
 |===
 
-NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください link:https://library.netapp.com/ecmdocs/ECMLP2789202/html/index.html["『 Windows 7.1 Host Utilities Installation Guide 』"^]。
+NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"] をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。
 
 
 
