@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: nvme_rhel_91.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
-summary: ONTAP でRHEL 8.7用のNVMe-oFホストを設定する方法 
+summary: ONTAPを使用したRHEL 9.1用のNVMe-oFホストの設定方法 
 ---
 = ONTAPを使用したRHEL 9.1のNVMe-oFホストの設定
 :toc: macro

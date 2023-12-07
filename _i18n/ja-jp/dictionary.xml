@@ -255,7 +255,6 @@
   <block id="7fbd0449d14b878cf9b9ba9434075a41" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。NetApp Interoperability Matrix Tool を使用して、お使いの OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされているかどうかを確認できます。</block>
   <block id="e6b99fad9f3e47e4b52f44d0b0dac069" category="list-text">複数のパスが使用可能であることを確認する。複数のパスを使用できるのは、ホスト OS が稼働していて、パス上でのみです。</block>
   <block id="03ed98061513afaf0a716e8d7756931a" category="list-text">SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。</block>
-  <block id="c812232f894e468682a433753368a4f5" category="paragraph">サーバにインストールする最新の累積更新プログラム * を使用することをお勧めします。</block>
   <block id="880b9ba9933b6e3ce087d9412e66470b" category="inline-link-macro">Microsoft Update Catalog 2012 R2 』を参照してください</block>
   <block id="0732474ba551155a9a0983a068b65a4e" category="admonition">にアクセスします <block ref="c91fa8395bb99838be8ab4e7b48666cc" category="inline-link-macro-rx"></block> Web サイトで、使用している Windows のバージョンに必要な Windows 修正プログラムを入手してインストールします。</block>
   <block id="b9ae3f85c9e860efac72637c24ed529b" category="list-text">Microsoft サポートサイトからホットフィックスをダウンロードします。</block>
@@ -2610,7 +2609,6 @@
   <block id="f2e04893e244d58e7312b018d7c330cd" category="admonition">ホストOSが起動してパスで実行されると、複数のパスが使用可能になります。</block>
   <block id="159e1cf7b9f0c43c83e2d3d06cfe2786" category="list-text">ホストをリブートしてブートが成功したことを確認します。</block>
   <block id="ddd1090ee13f345d376753ed7188e15e" category="section-title">オールSANアレイ構成</block>
-  <block id="a8b4b0587b094d82b6d3386124d9175b" category="paragraph">ASA構成では、特定のLUNへのすべてのパスがアクティブで最適化されています。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。</block>
   <block id="e7110b576f4777e8b343b6406c8d4267" category="paragraph">ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
   <block id="8f9d6e3424d24a4eceeb55656ad594c9" category="paragraph">Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください <block ref="85b4e48fbc653b43bc1d23927e9a43d3" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="b8aace167dae62ec049916430a97c733" category="paragraph">NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。</block>
@@ -3581,10 +3579,36 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="0ecfee1e5b63a34e0c870ad349ab2d79" category="section-title">Windowsホットフィックスのインストール</block>
   <block id="fa5be5c2e2b86b59c46b48b7021f967f" category="section-title">Windows Unified Host Utilitiesのインストール</block>
   <block id="7f0107becb6328e412aa5e8712724378" category="inline-link-macro">Windows Unified Host Utilitiesのドキュメント</block>
-  <block id="b4c9abb2b32b490ded389f27627f9510" category="paragraph">Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。NetAppでは、最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhuの設定情報と手順については、を参照してください。 <block ref="b25c56f0835abca42f2574922a5bff40" category="inline-link-macro-rx"></block> をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。</block>
   <block id="f00aa3de5284bd6ffc1c6eb440a68428" category="inline-link-macro">Windows Host Utilitiesのマニュアル</block>
   <block id="fc51d3fbe5dd41d133c1f25388a68493" category="admonition">Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください <block ref="1035103116c48a69520d80b6269bd2d8" category="inline-link-macro-rx"></block> をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。</block>
   <block id="cffc00678708e63d08b03d05ada52624" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてWindows Server 2022を構成できます。</block>
   <block id="6f49a4f8a77775eb655aad7d40795d50" category="section-title">PowerShell ToolkitでMBRアライメントを修正したあとにLinuxゲスト用のGRUBを再インストールする</block>
   <block id="29bdde7506503e06e915420031c09cbf" category="cell">iSCSIソフトウェアブートでは、セッションあたりの複数接続（MCS）はサポートされません。</block>
+  <block id="54ad52b5df3732f47860c7a90de604ee" category="paragraph">オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスがアクティブで最適化されています。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。</block>
+  <block id="f27074de856fd7a4a667b8e75fcdfbec" category="paragraph">NetAppでは、サーバに*最新の累積更新プログラム*をインストールすることを推奨しています。</block>
+  <block id="023ddc072704b8577d3a1995f95da01a" category="paragraph">Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。NetAppでは、最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhuの設定情報と手順については、 <block ref="b25c56f0835abca42f2574922a5bff40" category="inline-link-macro-rx"></block> をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。</block>
+  <block id="3a891098b79eaa53ca214516fa78a5e6" category="summary">ONTAPを使用したRHEL 9.1用のNVMe-oFホストの設定方法</block>
+  <block id="5464d39105cc61c77c01f61a6c049eae" category="summary">ONTAPを使用したRHEL 9.2用のNVMe-oFホストの設定方法</block>
+  <block id="a5b8980d9b2b30a00ffe7dac19c43d5d" category="summary">Red Hat Enterprise Linux 9.3とONTAPの併用方法について説明します。</block>
+  <block id="e220bc30f436cfd7ed1ad2fa29b77016" category="doc">Red Hat Enterprise Linux 9.3とONTAPの併用</block>
+  <block id="55c6c04ab1e74d4f888bffdb9eadb982" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 9.3を設定できます。</block>
+  <block id="54672e6edf11ac3f47cd65851485ed75" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="e902c52a637fd9b5e253806bf7aafa95" category="inline-link-macro-rx"></block> 使用しているOS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認します。</block>
+  <block id="76810b2b6b720475d6af795ed8a9ae08" category="paragraph">Red Hat Enterprise Linux（RHEL）9.3の場合、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 9.3は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="3168dc7483c9ec2f5a78cb4a5aa2d3b7" category="paragraph">RHEL 9.3 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="dd0349280970fded4c7b0c07431f162d" category="paragraph">RHEL 9.3 with ONTAPリリースには、次の既知の問題があります。</block>
+  <block id="13aa98a5d20992675bbf7111d4bcf7cc" category="cell">NetApp Linux Host Utilities CLIでは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）アダプタの検出をサポートするために、ライブラリパッケージの依存関係を追加する必要があります。</block>
+  <block id="818bb7ee3fe4c47c57de7ff54cbec4b7" category="cell">RHEL 9.xでは、NetApp Linux SAN Host UtilitiesのCLI<block ref="621925cc88c3305079fc7287b11ebf60" prefix=" " category="inline-code"></block> が失敗するのは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）検出をサポートするためのライブラリパッケージの依存関係が見つからないためです。</block>
+  <block id="447d82560b23d134af7247622d397daf" category="summary">ONTAPを使用したRHEL 9.3用のNVMe-oFホストの設定方法</block>
+  <block id="73e91cc996ce2d039530485f96ea07bb" category="doc">ONTAPヲシヨウシタRHEL 9.3ノNVMe-oFホストノセツテイ</block>
+  <block id="d825b944ff2e130a26d9c4f866191cb5" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Red Hat Enterprise Linux（RHEL）9.3とAsymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="17e6fca095916e663e6874f461b7cd2b" category="paragraph">ONTAPを使用するRHEL 9.3では、NVMe-oFホスト構成が次のようにサポートされます。</block>
+  <block id="42edbb6b2787a5246d32929c778d04e1" category="list-text">特定のHost Bus Adapter（HBA；ホストバスアダプタ）上の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。</block>
+  <block id="53b33721fef6f8bedb109eed881ea6a5" category="paragraph">RHEL 9.3では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。</block>
+  <block id="23ef7f4e50c0c07c0f66e08c60163597" category="paragraph">次の手順を使用して、サポートされているRHEL 9.3ソフトウェアの最小バージョンを検証できます。</block>
+  <block id="cd78954dacd072b75b2c79c3cecedcd3" category="list-text">サーバにRHEL 9.3をインストールします。インストールが完了したら、指定したRHEL 9.3カーネルが実行されていることを確認します。</block>
+  <block id="f0df503d34398fb211cacbbacc8824b9" category="list-text">RHEL 9.3ホストで、hostnqnという文字列を<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
+  <block id="de959e2062252433b5a9534a6512b4e1" category="list-text">RHEL 9.3 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPのサポートに不可欠な最新の修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="af1363e13388a6153d5ee5e31361b059" category="list-text">NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで検出ログページのデータを正常に取得できることを確認します。</block>
+  <block id="4d2ccda8ed0dd9cdf2d1d56f266ef18c" category="paragraph">ONTAPリリースを使用するRHEL 9.3のNVMe-oFホスト構成に関する既知の問題はありません。</block>
+  <block id="7391a7cd9aaad0e97cd0084d95a4c0fd" category="sidebar">9.3</block>
 </blocks>
