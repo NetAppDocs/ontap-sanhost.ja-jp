@@ -3611,4 +3611,11 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="af1363e13388a6153d5ee5e31361b059" category="list-text">NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで検出ログページのデータを正常に取得できることを確認します。</block>
   <block id="4d2ccda8ed0dd9cdf2d1d56f266ef18c" category="paragraph">ONTAPリリースを使用するRHEL 9.3のNVMe-oFホスト構成に関する既知の問題はありません。</block>
   <block id="7391a7cd9aaad0e97cd0084d95a4c0fd" category="sidebar">9.3</block>
+  <block id="9bc6d3e09829b4f5254ca05574123571" category="summary">Red Hat Enterprise Linux 8.9とONTAPの併用方法について説明します。</block>
+  <block id="07401b9dd6cd70fd46911f32946adf00" category="doc">Red Hat Enterprise Linux 8.9とONTAPの併用</block>
+  <block id="e501d2dbdb42de58f02c1f3abfe2b8a1" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 8.9を設定できます。</block>
+  <block id="ae6778e372ba1bd8a8b15c0befa78706" category="paragraph">Red Hat Enterprise Linux（RHEL）8.9の場合、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.9は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="b0ba321d68fcbee6d08cb969c6dee835" category="paragraph">RHEL 8.9 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="51856bc21ee60e0edd3d375bda86c100" category="paragraph">RHEL 8.9に関する既知の問題はありません。</block>
+  <block id="4407c95e5daa7102b34d0879e4eb12ed" category="sidebar">8.9</block>
 </blocks>
