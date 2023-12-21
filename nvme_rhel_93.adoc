@@ -5,18 +5,15 @@ keywords: nvme, linux, rhel, red hat, enterprise
 summary: ONTAPを使用したRHEL 9.3用のNVMe-oFホストの設定方法 
 ---
 = ONTAPヲシヨウシタRHEL 9.3ノNVMe-oFホストノセツテイ
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
 :source-highlighter: highlighter.js
-:toc-position: content
 
 
 [role="lead"]

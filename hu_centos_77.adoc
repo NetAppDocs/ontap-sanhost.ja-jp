@@ -5,17 +5,14 @@ keywords: host utilities, centos, linux, 7.7, netapp, ontap, netapp
 summary: ONTAP で CentOS 7.7 を使用する方法について説明します 
 ---
 = ONTAPでCentOS 7.7を使用
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

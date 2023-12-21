@@ -5,17 +5,14 @@ keywords: host utilities, citrix, hypervisor, 8.0, 8.1, 8.2, netapp, ontap, sanh
 summary: ONTAP で Citrix Hypervisor 8.x を使用する方法について説明します 
 ---
 = ONTAPでCitrix Hypervisorを使用する
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

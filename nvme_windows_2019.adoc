@@ -5,17 +5,14 @@ keywords: nvme, windows, enterprise
 summary: ONTAP 搭載の Windows Server 2019 向け NVMe/FC ホスト構成 
 ---
 = ONTAP 搭載の Windows Server 2019 向け NVMe/FC ホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

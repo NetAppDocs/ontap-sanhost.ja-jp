@@ -5,17 +5,14 @@ keywords: nvme, linux, oracle,
 summary:  
 ---
 = ONTAP を使用したOracle Linux 8.5向けのNVMe / FCホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 

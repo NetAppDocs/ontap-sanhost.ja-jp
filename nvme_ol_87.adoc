@@ -5,17 +5,14 @@ keywords:
 summary:  
 ---
 = NVMe-oFホスト構成（Oracle Linux 8.7 with ONTAP
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

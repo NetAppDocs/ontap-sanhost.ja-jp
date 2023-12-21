@@ -5,17 +5,14 @@ keywords:
 summary:  
 ---
 = 概要
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 SANホストユーティリティのリリースに関する最新情報を確認し、ホスト構成に対応するインストール手順にアクセスします。

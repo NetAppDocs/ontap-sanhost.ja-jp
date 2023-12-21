@@ -5,17 +5,14 @@ keywords: nvme, linux, rhel, red hat, enterprise, aix, ontap
 summary: ONTAPを使用するAIX用のNVMe/FCホストの設定方法 
 ---
 = ONTAPを使用したAIXのNVMe/FCホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

@@ -5,17 +5,14 @@ keywords: host utilities, oracle, linux, 6.7, netapp, ontap
 summary: ONTAP で Oracle Linux 6.7 を使用する方法について説明します 
 ---
 = Oracle Linux 6.7とONTAPの併用
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

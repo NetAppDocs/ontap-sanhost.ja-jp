@@ -5,17 +5,14 @@ keywords: host utilities, suse linux enterprise server 15, suse, linux, 15, neta
 summary: SUSE Linux Enterprise Server 15 を ONTAP で使用する方法について説明します 
 ---
 = SUSE Linux Enterprise Server 15とONTAPの併用
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

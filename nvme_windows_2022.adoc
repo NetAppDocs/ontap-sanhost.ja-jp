@@ -5,17 +5,14 @@ keywords: nvme, windows, enterprise
 summary: Windows Server 2022 with ONTAP のNVMe/FCホスト構成 
 ---
 = Windows Server 2022 with ONTAP のNVMe/FCホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

@@ -5,17 +5,14 @@ keywords: nvme, san, host, aix, linux, vsphere, windows
 summary: 特定のSANホストをNVMe over Fabrics（NVMe-oF）プロトコル用に設定できます。 
 ---
 = 概要
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 ONTAPをターゲットとして、NVMe over Fabrics（NVMe-oF）プロトコル（NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP））用に特定のSANホストを設定できます。ホストオペレーティングシステムとONTAPのバージョンに応じて、ホストでNVMe/FCプロトコル、NVMe/TCPプロトコル、またはその両方を設定して検証します。

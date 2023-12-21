@@ -5,17 +5,14 @@ keywords: nvme, linux, oracle, 8.1
 summary: 例を使用して、 ONTAP を使用した Oracle Linux 8.1 用の VME/FC ホスト構成をセットアップする 
 ---
 = ONTAP を使用した Oracle Linux 8.1 向け NVMe / FC ホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 

@@ -5,17 +5,14 @@ keywords: host utilities, cent, os, 6.9, netapp, ontap, linux
 summary: ONTAP で CentOS 6.9 を使用する方法について説明します 
 ---
 = CentOS 6.9をONTAPで使用
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

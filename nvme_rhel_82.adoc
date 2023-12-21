@@ -5,17 +5,14 @@ keywords: nvme, linux, rhel, red hat, enterprise
 summary: ONTAP を使用して RHEL 8.2 用に NVMe/FC ホストを設定する方法 
 ---
 = ONTAPヲシヨウシタRHEL 8.2ノNVMe/FCホストノセツテイ
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

@@ -5,17 +5,14 @@ keywords: nvme, linux, oracle, 7.7
 summary: ONTAP を使用して Oracle Linux 7.7 用に NVMe/FC を設定する方法について説明します 
 ---
 = ONTAP を使用した Oracle Linux 7.7 の NVMe/FC ホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 

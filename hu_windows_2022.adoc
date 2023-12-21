@@ -5,17 +5,14 @@ keywords: windows, enterprise
 summary: ONTAP で2022にWindows Serverを使用する 
 ---
 = ONTAP で2022にWindows Serverを使用する
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

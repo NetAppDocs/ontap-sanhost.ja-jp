@@ -5,17 +5,14 @@ keywords: nvme, linux, suse, sles, 15, sp3, server, enterprise
 summary: SUSE Linux Enterprise Server 15 SP3 （ ONTAP ）用に NVMe/FC を設定する方法について説明します 
 ---
 = ONTAP を搭載した SUSE Linux Enterprise Server 15 SP3 用 NVMe-oF ホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

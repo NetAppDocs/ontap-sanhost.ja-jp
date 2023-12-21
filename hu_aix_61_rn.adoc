@@ -5,17 +5,14 @@ keywords: host utilities, aix, 6.1 netapp, ontap, powervm
 summary: 『Release Notes for AIX Host Utilities 6.1』 
 ---
 = 『AIX Host Utilities 6.1 Release Notes』
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

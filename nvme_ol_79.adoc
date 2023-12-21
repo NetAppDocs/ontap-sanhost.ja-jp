@@ -5,17 +5,14 @@ keywords: nvme, linux, oracle, 7.9
 summary: 例を使用した、 Oracle Linux 7.9 用の VME/FC ホスト構成のセットアップ ONTAP 
 ---
 = ONTAP を使用した Oracle Linux 7.9 用の NVMe/FC ホスト構成
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 

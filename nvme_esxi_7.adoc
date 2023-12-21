@@ -5,17 +5,14 @@ keywords: nvme, esxi, ontap, nvme/fc, hypervisor
 summary: ONTAP で ESXi 7.x の NVMe-oF を設定する方法について説明します 
 ---
 = ONTAP を使用した ESXi 7.x の NVMe-oF ホストの設定
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 

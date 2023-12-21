@@ -5,17 +5,14 @@ keywords: host utilities, veritas, infoscale, 6.5. 6.7, netapp, ontap
 summary: ONTAP で VERITAS Infosscale 6.5 および 6.7 for Linux を使用する方法について説明します 
 ---
 = ONTAPでVMware vSphere 6.5および6.7を使用
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

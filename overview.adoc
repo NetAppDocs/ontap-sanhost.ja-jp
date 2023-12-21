@@ -5,17 +5,14 @@ keywords: ontap, san, host, rhel, red, hat, linux, sles, suse, esxi, nvme, oracl
 summary: このコンテンツでは、オンプレミスのONTAP ストレージに接続されたONTAP ホストとSANホストについて、Cloud Volumes ONTAP とAmazon FSXに接続されたクラウドクライアントを設定する方法について、配布に固有のガイダンスを提供します。 
 ---
 = SANホストの構成の概要
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 このコンテンツでは、ONTAP ストレージに接続されたSANホストを簡単に構成するための、ホストとバージョンに固有のベストプラクティスを紹介します。
