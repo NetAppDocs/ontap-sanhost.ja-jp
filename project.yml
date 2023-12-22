@@ -57,6 +57,14 @@ sidebar:
         url: "/hu_wuhu_72.html"
       - title: Wuhu 7.1をインストールします
         url: "/hu_wuhu_71.html"
+      - title: ウーフーアップグレード
+        url: "/hu_wuhu_upgrade.html"
+      - title: Wuhuを修理して取り外します。
+        url: "/hu_wuhu_repair_remove.html"
+      - title: レジストリ設定の構成
+        url: "/hu_wuhu_hba_settings.html"
+      - title: トラブルシューティングを行う
+        url: "/hu_wuhu_troubleshoot.html"
   - title: FCPとiSCSIを使用したホストの設定
     entries:
     - title: 概要

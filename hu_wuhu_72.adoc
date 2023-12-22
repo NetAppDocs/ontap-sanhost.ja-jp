@@ -4,7 +4,7 @@ permalink: hu_wuhu_72.html
 keywords: wuhu, 7.2, host utilities, SAN, windows, unified 
 summary: WindowsユニファイドHost Utilitiesにはインストールプログラムが含まれています。このプログラムでは、WindowsホストがNetApp ONTAP およびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定します。 
 ---
-= Windows Unified Host Utilities 7.2
+= Windows Unified Host Utilities 7.2のインストール
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -13,11 +13,19 @@ summary: WindowsユニファイドHost Utilitiesにはインストールプロ�
 :imagesdir: ./media/
 
 
+[role="lead"]
+Windows Unified Host Utilities（Wuhu）を使用すると、WindowsホストコンピュータをNetAppストレージシステムに接続できます。
+
+Windows Unified Host Utilitiesでは、次のバージョンのWindowsがサポートされます。
+
+* Windows 2022
+* Windows 2019
+* Windows * 2016
+* Windows Server 2012 R2の場合
+* Windows Server 2012
 
 
-== Windows Host Utilitiesについて
-
-WindowsユニファイドHost Utilitiesにはインストールプログラムが含まれています。このプログラムでは、WindowsホストがNetApp ONTAP およびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定します。
+Windows Unified Host Utilitiesには、WindowsホストがNetApp ONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHost Bus Adapter（HBA；ホストバスアダプタ）パラメータを設定するインストールプログラムが含まれています。
 
 Host Utilitiesソフトウェアをインストールすると、必要なWindowsレジストリとHBAパラメータがインストーラによって設定されます。
 
@@ -41,10 +49,6 @@ Windows ホストコンピュータには、次のプログラムとファイル
 
 | 'a_version.exe' | Host UtilitiesとFC HBAのバージョンが表示されます。 
 |===
-
-
-== Host Utilitiesでサポートされる構成
-
 Host Utilitiesでは、さまざまなWindowsホスト構成、プロトコル、マルチパスオプションがサポートされます。詳細については、を参照してください https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
 
 
@@ -58,15 +62,16 @@ Host Utilitiesをインストールする前に、Host Utilitiesのバージョ�
 . で、該当するホストに必要なホットフィックスを確認します link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["SANホストのWindowsに関するドキュメント"]。
 +
 
-NOTE: link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["ONTAP で2022にWindowsサーバを使用する"] に、の手順を示します link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Windowsホットフィックスのインストール"] Windowsサーバ2022の場合：以前のバージョンのWindowsサーバに関連する修正プログラムの情報については、ホスト構成カテゴリのWindowsドキュメントを参照してください。
+NOTE: 。 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["ONTAP で2022にWindowsサーバを使用する"] ドキュメントでは、 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Windowsホットフィックスのインストール"] Windowsサーバ2022の場合：以前のバージョンのWindowsサーバに関連する修正プログラムの情報については、ホスト構成カテゴリのWindowsドキュメントを参照してください。
 
 . iSCSI、FCP、またはNVMe-oFライセンスを追加し、ターゲットサービスを開始します。
 +
-SANtricity Storage Managerを使用するEシリーズストレージシステムでは、FCプロトコルとiSCSIプロトコルのライセンスは必要ありません。
+
+NOTE: SANtricityストレージマネージャを使用するEシリーズストレージシステムでは、FCプロトコルとiSCSIプロトコルのライセンスは必要ありません。
 
 . ケーブル接続を確認します。
 +
-を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["『 SAN 構成ガイド』"^] を参照してくださいONTAP https://mysupport.netapp.com/ecm/ecm_get_file/ECMLP2773533["『 E-Series Hardware Cabling Guide 』を参照してください"^] ケーブル接続と構成の詳細については、を参照してください。
+を参照してください https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^] 使用しているバージョンのONTAPまたは https://docs.netapp.com/us-en/e-series/install-hw-cabling/index.html["Eシリーズハードウェアケーブル接続"^] ケーブル接続と構成の詳細については、を参照してください。
 
 
 
@@ -86,12 +91,12 @@ CAUTION: HBA設定を手動で変更しないでください。
 . サポートされている HBA ドライバと管理ユーティリティを入手し、 HBA ベンダーの指示に従ってインストールします。
 . HBAをFCスイッチに接続するか、またはストレージシステムに直接接続します。
 . FCスイッチのドキュメントに従って、FCスイッチにゾーンを作成します。
-. ONTAP の場合は、WWPNでスイッチをゾーニングします。必ず、ストレージコントローラの物理ポートのWWPNではなく、論理インターフェイス（LIF）のWWPNを使用してください。詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["『 SAN 構成ガイド』"^]。
+. ONTAP の場合は、WWPNでスイッチをゾーニングします。必ず、ストレージコントローラの物理ポートのWWPNではなく、論理インターフェイス（LIF）のWWPNを使用してください。を参照してください https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^] 詳細については、ドキュメントを参照してください。
 
 
 
 
-== Host Utilitiesをインストールします
+== Host Utilities をインストールする
 
 インストールプログラムによってHost Utilitiesパッケージがインストールされ、WindowsレジストリとHBAが設定されます。
 
@@ -104,25 +109,25 @@ Windows Unified Host Utilities ソフトウェアパッケージのインスト�
 
 MPIO の選択は、 Windows XP および Windows Vista システムでは使用できません。マルチパス I/O は、これらのゲスト OS ではサポートされていません。Hyper-V ゲストでマルチパスのサポートを選択した場合、 raw （パススルー）ディスクはゲスト OS に表示されません。raw ディスクを使用することも、 MPIO を使用することもできますが、ゲスト OS で両方を使用することはできません。
 
+Host Utilitiesは対話型モードでインストールすることも、コマンドラインを使用してインストールすることもできます。新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilitiesを対話的にインストールするか、Windowsコマンドラインからインストールする手順に従います。
+
 [role="tabbed-block"]
 ====
-.Host Utilitiesを対話型モードでインストールします
+.対話型インストール
 --
-Host Utilitiesソフトウェアパッケージを対話的にインストールするには、Host Utilitiesのインストールプログラムを実行してプロンプトの指示に従う必要があります。
+Host Utilitiesソフトウェアパッケージを対話的にインストールするには、Host Utilitiesのインストールプログラムを実行してプロンプトに従う必要があります。
 
 .手順
-. から実行可能ファイルをダウンロードします https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。
+. から実行可能ファイルをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["ネットアップサポートサイト"^]。
 . 実行ファイルをダウンロードしたディレクトリに移動します。
 . を実行します `netapp_windows_host_utilities_7.2_x64` ファイルを作成し、画面の指示に従います。
 . プロンプトが表示されたら、 Windows ホストをリブートします。
 
 
 --
-.コマンドラインからHost Utilitiesをインストールします
+.コマンドラインからのインストール
 --
-Windowsコマンドプロンプトで該当するコマンドを入力すると、Host Utilitiesのサイレント（無人）インストールを実行できます。Host Utilitiesのインストールパッケージは、Windowsホストからアクセスできるパスに格納する必要があります。
-
-Host Utilitiesの対話型インストール手順に従ってインストールパッケージを入手します。インストールが完了すると、システムが自動的にリブートします。
+Windowsコマンドプロンプトで該当するコマンドを入力すると、Host Utilitiesのサイレント（無人）インストールを実行できます。インストールが完了すると、システムが自動的にリブートします。
 
 .手順
 . Windowsコマンドプロンプトで、次のコマンドを入力します。
@@ -139,393 +144,6 @@ Host Utilitiesの対話型インストール手順に従ってインストール
 
 
 NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer（MSI）オプションを表示するには、と入力します `msiexec /help` をクリックします。たとえば、などです `msiexec /i install.msi /quiet /l*v <install.log> LOGVERBOSE=1` コマンドはロギング情報を表示します。
-
---
-====
-
-
-== Host Utilitiesをアップグレードします
-
-新しいHost Utilitiesのインストールパッケージは、Windowsホストからアクセス可能なパスに配置する必要があります。Host Utilitiesの対話型インストール手順に従ってインストールパッケージをアップグレードします。
-
-[role="tabbed-block"]
-====
-.Host Utilitiesを対話的にアップグレードします
---
-Host Utilitiesソフトウェアパッケージを対話的にアップグレードするには、Host Utilitiesのインストールプログラムを実行し、画面の指示に従う必要があります。
-
-.手順
-. 実行ファイルをダウンロードしたディレクトリに移動します。
-. 実行ファイルを実行し、画面の指示に従います。
-. プロンプトが表示されたら、 Windows ホストをリブートします。
-. リブートが完了したら、ホストユーティリティのバージョンを確認します。
-+
-.. コントロールパネル * を開きます。
-.. 「 * Program and features* 」に移動して、ホストユーティリティのバージョンを確認します。
-
-
-
-
---
-.コマンドラインからHost Utilitiesをアップグレードする
---
-Windowsのコマンドプロンプトで該当するコマンドを入力すると、新しいHost Utilitiesのサイレント（無人）アップグレードを実行できます。
-
-新しいHost Utilitiesのインストールパッケージは、Windowsホストからアクセス可能なパスに配置する必要があります。Host Utilitiesの対話型インストール手順に従って、インストールパッケージをアップグレードします。
-
-.手順
-. Windowsコマンドプロンプトで、次のコマンドを入力します。
-+
-`m siexec/i installer.msi /quiet multipath={0}[INSTALLDIR=inst_path ]`
-
-+
-** `installer` は、の名前です `.msi` 使用しているCPUアーキテクチャ用のファイル。
-** マルチパスでは、 MPIO サポートがインストールされているかどうかが指定指定できる値は、noの場合は「0」、yesの場合は「1」です。
-** `inst_path` は、Host Utilitiesファイルがインストールされているパスです。デフォルトパスはです `C:\Program Files\NetApp\Windows Host Utilities\`。
-
-
-
-
-
-NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer（MSI）オプションを表示するには、と入力します `msiexec /help` をクリックします。たとえば、などです `msiexec /i install.msi /quiet /l*v <install.log> LOGVERBOSE=1` コマンドはロギング情報を表示します。
-
-インストールが完了すると、システムが自動的にリブートします。
-
---
-====
-
-
-== Windows Host Utilitiesを修復して削除します
-
-Host Utilitiesのインストールプログラムの* Repair *オプションを使用して、HBAとWindowsのレジストリ設定を更新できます。Host Utilitiesは、対話的に削除することも、Windowsのコマンドラインから削除することもできます。
-
-[role="tabbed-block"]
-====
-.Windows Host Utilities を対話的に修復または削除します
---
-*修復*オプションは、WindowsレジストリとFC HBAを必要な設定で更新します。Host Utilitiesを完全に削除することもできます。
-
-.手順
-. Windows *のプログラムと機能*（Windows Server 2012 R2、Windows Server 2016、Windows Server 2019、Windows 2022）を開きます。
-. NetApp Windows Unified Host Utilities * を選択します。
-. [変更]*を選択します。
-. 必要に応じて*修復*または*削除*を選択します。
-. 画面の指示に従います。
-
-
---
-.コマンドラインから Windows Host Utilities を修復または削除します
---
-*修復*オプションは、WindowsレジストリとFC HBAを必要な設定で更新します。WindowsのコマンドラインからHost Utilitiesを完全に削除することもできます。
-
-.手順
-. Windows コマンドラインで次のコマンドを入力して、 Windows Host Utilities を修復します。
-+
-`msiexec /f installer.msi [/quiet]`
-
-+
-** 「 /f 」を指定すると、インストールが修復されます。
-** 「 installer.msi 」は、システム上の Windows Host Utilities インストールプログラムの名前です。
-** 「 /quiet 」はすべてのフィードバックを抑制し、コマンドの完了時にプロンプトを表示せずにシステムを自動的に再起動します。
-
-
-
-
---
-====
-
-
-== Host Utilitiesで使用される設定の概要
-
-Host Utilitiesでは、Windowsホストがストレージシステムの動作を正しく処理するかどうかを確認するために、特定のレジストリとパラメータの設定が必要になります。
-
-Windows Host Utilitiesは、データの遅延や損失に対するWindowsホストの対応に影響するパラメータを設定します。ここでは、ストレージシステム内の一方のコントローラのパートナーコントローラへのフェイルオーバーなどのイベントがWindowsホストで正しく処理されるかどうかを確認するために、特定の値を選択しています。
-
-すべての値がSANtricity ストレージマネージャのDSMに適用されるわけではありませんが、Host Utilitiesで設定された値とSANtricity ストレージマネージャのDSMで設定された値が重複しても競合は発生しません。
-
-FC、NVMe/FC、およびiSCSI HBAには、最高のパフォーマンスを確保し、ストレージシステムイベントを正常に処理するために設定する必要のあるパラメータもあります。
-
-Windows Unified Host Utilitiesに付属のインストールプログラムでは、Windows、FC、およびNVMe/FC HBAのパラメータがサポートされる値に設定されます。
-
-iSCSI HBAパラメータは手動で設定する必要があります。
-
-インストールプログラムの実行時にMultipath I/O（MPIO；マルチパスI/O）サポートを指定するかどうかによって、インストーラが設定する値は異なります。
-
-テクニカルサポートから指示されないかぎり、これらの値は変更しないでください。
-
-
-
-== Windows Unified Host Utilities で設定されるレジストリ値
-
-Windows Unified Host Utilitiesインストーラでは、インストール時に選択したレジストリ値に基づいてレジストリ値が自動的に設定されます。これらのレジストリ値とオペレーティングシステムのバージョンを確認しておく必要があります。
-
-Windows Unified Host Utilities のインストーラでは、次の値が設定されます。特に記載がない限り、すべての値は10進数です。
-
-
-NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
-
-[cols="20,20,30"]
-|===
-| レジストリキー | 価値 | 設定時 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumRetryTimeDuringStateTransition | 120 | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016およびWindows 2019、またはWindows Server 2022の場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumStateTransitionTime | 120 | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows 2019、またはWindows Server 2022の場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\LinkDownTime | 10. | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\Clusdisk\Parameters\ManageDisksOnSystemBuses | 1. | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 120 | MPIO サポートが選択されていない場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 30 | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\MPDEV\MPIOSupportedDeviceList | 「NetApp LUN」、「NetApp LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathRecoveryInterval | 30 | サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathVerifyEnabled | 1. | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\PathVerifyEnabled | 1. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\PathVerifyEnabled | 0 | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\PDORemovePeriod | 130 | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\RetryCount | 6. | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\RetryCount | 6. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\RetryInterval | 1. | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\RetryInterval | 1. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\RetryInterval | 1. | MPIO サポートが指定されている場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\disk\TimeOutValue | 120 | MPIO サポートが選択されていない場合 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval | 1. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
-|===
-.関連情報
-レジストリパラメータの詳細については、Microsoftのドキュメントを参照してください。
-
-
-
-== NVMeパラメータ
-
-Wuhu 7.2をインストールすると、次のNVMe Emulexドライバパラメータが更新されます。
-
-* EnableNVMe = 1
-* NVMEMode = 0
-* 転送サイズ = 1
-
-
-
-
-== Windows Host Utilities で設定される FC HBA の値
-
-FCを使用するシステムでは、Host UtilitiesのインストーラによってEmulex HBAおよびQLogic FC HBAに必要なタイムアウト値が設定されます。
-
-Emulex FC HBAの場合、インストーラは次のパラメータを設定します。
-
-[role="tabbed-block"]
-====
-.MPIOが選択されている場合
---
-|===
-| プロパティタイプ | プロパティ値 
-
-
-| LinkTimeOut | 1. 
-
-
-| ノードタイムアウト | 10. 
-|===
---
-.MPIOが選択されていない場合
---
-|===
-| プロパティタイプ | プロパティ値 
-
-
-| LinkTimeOut | 30 
-
-
-| ノードタイムアウト | 120 
-|===
---
-====
-QLogic FC HBAの場合、インストーラは次のパラメータを設定します。
-
-[role="tabbed-block"]
-====
-.MPIOが選択されている場合
---
-|===
-| プロパティタイプ | プロパティ値 
-
-
-| LinkDownTimeOut の 2 つのリンクがあり | 1. 
-
-
-| PortDownRetryCount のように指定します | 10. 
-|===
---
-.MPIOが選択されていない場合
---
-|===
-| プロパティタイプ | プロパティ値 
-
-
-| LinkDownTimeOut の 2 つのリンクがあり | 30 
-
-
-| PortDownRetryCount のように指定します | 120 
-|===
---
-====
-
-NOTE: パラメータの名前は、プログラムによって多少異なる場合があります。たとえば、QLogic QConvergeConsoleプログラムでは、パラメータはと表示されます `Link Down Timeout`。Host Utilitiesの略 `fcconfig.ini` Fileには、このパラメータがどちらかと表示されます `LinkDownTimeOut` または `MpioLinkDownTimeOut`（MPIOが指定されているかどうかによって異なります）。ただし、これらの名前はすべて同じ HBA パラメータを表します。
-
-.関連情報
-タイムアウトパラメータの詳細については、EmulexまたはQLogicのサイトを参照してください。
-
-
-
-== トラブルシューティング
-
-Windows Host Utilitiesの一般的なトラブルシューティングテクニックを使用できます。既知の問題と解決策については、最新のリリースノートを確認してください。
-
-
-
-=== 可能性のある相互運用性の問題を特定するためのさまざまな領域
-
-* 潜在的な相互運用性の問題を特定するには、ホストオペレーティングシステムソフトウェア、ホストハードウェア、ONTAP ソフトウェア、およびストレージシステムハードウェアの組み合わせがHost Utilitiesでサポートされていることを確認する必要があります。
-* を確認する必要があります http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]。
-* 正しい iSCSI 構成を使用していることを確認する必要があります。
-* リブート後にiSCSI LUNを使用できない場合は、Microsoft iSCSIイニシエータGUIの* Persistent Targets *タブで、ターゲットがpersistentと表示されていることを確認する必要があります。
-* LUN を使用するアプリケーションの起動時にエラーが表示される場合は、そのアプリケーションが iSCSI サービスに依存するように設定されていることを確認する必要があります。
-* ONTAP を実行するストレージコントローラへのFCパスでは、ノードの物理ポートのWWPNではなく、ターゲットLIFのWWPNを使用してFCスイッチがゾーニングされていることを確認する必要があります。
-* を確認しておく必要があります link:hu_wuhu_71_rn.html["リリースノート"] Windows Host Utilitiesを使用して既知の問題を確認します。このリリースノートには、既知の問題と制限事項が記載されています。
-* 使用しているONTAP のバージョンに対応したSANアドミニストレーションガイドのトラブルシューティング情報を確認してください。
-* 検索する必要があります https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] を参照してください。
-+
-** [Advanced Search]の[Bug Type]フィールドで、* iSCSI - Windows *を選択し、*[Go]*を選択します。Bug Type * FCP-Windows *の検索を再度実行する必要があります。
-
-
-* システムに関する情報を収集する必要があります。
-* ホストまたはストレージシステムのコンソールに表示されるエラーメッセージをすべて記録します。
-* ホストとストレージシステムのログファイルを収集
-* 問題の兆候や、問題が発生する直前にホストまたはストレージシステムに加えた変更を記録します。
-* 問題を解決できない場合は、ネットアップのテクニカルサポートにお問い合わせください。
-
-
-
-
-=== Host UtilitiesのFC HBAドライバ設定に対する変更点について理解する
-
-必要なEmulex HBAドライバまたはQLogic HBAドライバをFCシステムにインストールする際に、いくつかのパラメータがチェックされ、場合によっては変更されます。
-
-Host Utilitiesでは、次のパラメータの値が設定されます。
-
-* LinkTimeOut–物理リンクがダウンした後、ホストポートがI/O処理を再開するまでの待機時間（秒）を定義します。
-* NodeTimeout–ホストポートがターゲットデバイスへの接続の停止を認識するまでの時間（秒）を定義します。
-
-
-HBAの問題をトラブルシューティングするときは、これらの設定に正しい値が設定されていることを確認してください。正しい値は次の 2 つの要因によって異なります。
-
-* HBA ベンダー
-* MPIOを使用しているかどうか
-
-
-HBAの設定を修正するには、Windows Host Utilitiesインストーラの* Repair *オプションを実行します。
-
-[role="tabbed-block"]
-====
-.FC システムで Emulex HBA ドライバの設定を確認します
---
-FCシステムを使用している場合は、Emulex HBAドライバの設定を確認する必要があります。これらの設定は HBA のポートごとに行う必要があります。
-
-.手順
-. OnCommand Manager を開きます。
-. リストから適切なHBAを選択し、*ドライバーパラメータ*タブを選択します。
-+
-ドライバパラメータが表示されます。
-
-. MPIOソフトウェアを使用している場合は、次のドライバ設定があることを確認します。
-+
-** LinkTimeOut-1
-** NodeTimeout-10
-
-
-. MPIOソフトウェアを使用していない場合は、次のドライバ設定があることを確認します。
-+
-** LinkTimeOut-30
-** NodeTimeout-120
-
-
-
-
---
-.FC システムで QLogic HBA ドライバの設定を確認します
---
-FCシステムでは、QLogic HBAドライバの設定を確認する必要があります。これらの設定は HBA のポートごとに行う必要があります。
-
-.手順
-. QConvergeConsoleを開き、ツールバーの* Connect *を選択します。
-+
-[ホストに接続]*ダイアログボックスが表示されます。
-
-. リストから適切なホストを選択し、*[接続]*を選択します。
-+
-[FC HBA]ペインにHBAのリストが表示されます。
-
-. リストから適切なHBAポートを選択し、*[設定]*タブを選択します。
-. [ 設定の選択 ] セクションで '[* HBA ポートの詳細設定 * ] を選択します
-. MPIOソフトウェアを使用している場合は、次のドライバ設定があることを確認します。
-+
-** リンクダウンタイムアウト（ linkdwnto ） -1
-** ポートダウン再試行回数 (portdwnrc)-10
-
-
-. MPIOソフトウェアを使用していない場合は、次のドライバ設定があることを確認します。
-+
-** リンクダウンタイムアウト（ linkdwnto ） -30
-** Port Down Retry Count （ portdwnrc ）： 120
-
-
-
 
 --
 ====

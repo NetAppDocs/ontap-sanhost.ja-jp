@@ -16,7 +16,7 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 
 
 [role="lead"]
-Linux Unified Host Utilitiesは、Linuxホストに接続されているNetApp ONTAPストレージの管理に役立ちます。NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+Linux Unified Host Utilities（Luhu）は、Linuxホストに接続されているNetApp ONTAPストレージの管理に役立ちます。NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 次のLinuxディストリビューションがサポートされています。
 

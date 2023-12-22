@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: hu_wuhu_repair_remove.html 
+keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
+summary: Windows Unified Host Utilities には、ネットアップの ONTAP および E シリーズのプラットフォームにおけるストレージシステムの動作を Windows ホストが正しく処理できるように、必要な Windows のレジストリパラメータと HBA パラメータを設定するインストールプログラムが含まれています。 
+---
+= Windows Unified Host Utilitiesを修復して削除する
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Host Utilitiesのインストールプログラムの* Repair *オプションを使用して、Host Bus Adapter（HBA；ホストバスアダプタ）とWindowsのレジストリ設定を更新できます。対話的に、またはWindowsコマンドラインから、Host Utilities全体を削除することもできます。
+
+[role="tabbed-block"]
+====
+.対話式に修復または削除
+--
+*修復*オプションは、WindowsレジストリとFC HBAを必要な設定で更新します。Host Utilities は完全に削除することもできます。
+
+.手順
+. Windows *のプログラムと機能*（Windows Server 2012 R2、Windows Server 2016、Windows Server 2019、Windows 2022）を開きます。
+. NetApp Windows Unified Host Utilities * を選択します。
+. [変更]*を選択します。
+. 必要に応じて*修復*または*削除*を選択します。
+. 画面の指示に従います。
+
+
+--
+.コマンドラインから修復または削除
+--
+*修復*オプションは、WindowsレジストリとFC HBAを必要な設定で更新します。Windows のコマンドラインから Host Utilities を完全に削除することもできます。
+
+.手順
+. Windows コマンドラインで次のコマンドを入力して、 Windows Host Utilities を修復します。
++
+`msiexec /f installer.msi [/quiet]`
+
++
+** 「 /f 」を指定すると、インストールが修復されます。
+** 「 installer.msi 」は、システム上の Windows Host Utilities インストールプログラムの名前です。
+** 「 /quiet 」はすべてのフィードバックを抑制し、コマンドの完了時にプロンプトを表示せずにシステムを自動的に再起動します。
+
+
+
+
+--
+====

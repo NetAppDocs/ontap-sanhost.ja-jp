@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: hu_wuhu_upgrade.html 
+keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
+summary: Windows Unified Host Utilities には、ネットアップの ONTAP および E シリーズのプラットフォームにおけるストレージシステムの動作を Windows ホストが正しく処理できるように、必要な Windows のレジストリパラメータと HBA パラメータを設定するインストールプログラムが含まれています。 
+---
+= Windows Unified Host Utilitiesのアップグレード
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilitiesの対話型インストールまたはWindowsコマンドラインからインストールする手順に従って、インストールパッケージをアップグレードします。
+
+[role="tabbed-block"]
+====
+.対話型アップグレード
+--
+Host Utilitiesソフトウェアパッケージを対話的にアップグレードするには、Host Utilitiesのインストールプログラムを実行し、プロンプトに従う必要があります。
+
+.手順
+. 実行ファイルをダウンロードしたディレクトリに移動します。
+. 実行ファイルを実行し、画面の指示に従います。
+. プロンプトが表示されたら、 Windows ホストをリブートします。
+. リブートが完了したら、ホストユーティリティのバージョンを確認します。
++
+.. コントロールパネル * を開きます。
+.. 「 * Program and features* 」に移動して、ホストユーティリティのバージョンを確認します。
+
+
+
+
+--
+.コマンドラインからのアップグレード
+--
+Windowsコマンドプロンプトで該当するコマンドを入力すると、新しいHost Utilitiesのサイレント（無人）アップグレードを実行できます。
+
+.手順
+. Windowsコマンドプロンプトで、次のコマンドを入力します。
++
+`m siexec/i installer.msi /quiet multipath={0}[INSTALLDIR=inst_path ]`
+
++
+** `installer` は、の名前です `.msi` 使用しているCPUアーキテクチャ用のファイル。
+** マルチパスでは、 MPIO サポートがインストールされているかどうかが指定指定できる値は、noの場合は「0」、yesの場合は「1」です。
+** 「 inst_path 」は、 Host Utilities ファイルがインストールされているパスです。デフォルトパスは「 C ： \Program Files\NetApp\Virtual Host Utilities\` 」です。
+
+
+
+
+
+NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer（MSI）オプションを表示するには、と入力します `msiexec /help` をクリックします。たとえば、などです `msiexec /i install.msi /quiet /l*v <install.log> LOGVERBOSE=1` コマンドはロギング情報を表示します。
+
+インストールが完了すると、システムが自動的にリブートします。
+
+--
+====

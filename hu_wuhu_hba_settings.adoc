@@ -1,0 +1,393 @@
+---
+sidebar: sidebar 
+permalink: hu_wuhu_hba_settings.html 
+keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
+summary: Windows Unified Host Utilities には、ネットアップの ONTAP および E シリーズのプラットフォームにおけるストレージシステムの動作を Windows ホストが正しく処理できるように、必要な Windows のレジストリパラメータと HBA パラメータを設定するインストールプログラムが含まれています。 
+---
+= レジストリ設定の構成
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Host Utilitiesで、Windowsホストがストレージシステムの動作を正しく処理するかどうかを確認するために、特定のレジストリとパラメータの設定が必要になります。
+
+Windows Host Utilitiesは、データの遅延や損失に対するWindowsホストの対応に影響するパラメータを設定します。ここでは、ストレージシステム内の一方のコントローラのパートナーコントローラへのフェイルオーバーなどのイベントがWindowsホストで正しく処理されるかどうかを確認するために、特定の値を選択しています。
+
+すべての値がSANtricityストレージマネージャのDevice-Specific Module（DSM；デバイス固有モジュール）に適用されるわけではありませんが、Host Utilitiesで設定された値とSANtricityストレージマネージャで設定された値が重複しても競合は発生しません。
+
+FC、NVMe/FC、およびiSCSI HBAには、最高のパフォーマンスを確保し、ストレージシステムイベントを正常に処理するために設定する必要のあるパラメータもあります。
+
+Windows Unified Host Utilitiesに付属のインストールプログラムでは、Windows、FC、およびNVMe/FC HBAのパラメータがサポートされる値に設定されます。
+
+iSCSI HBAパラメータは手動で設定する必要があります。
+
+インストールプログラムの実行時にMultipath I/O（MPIO；マルチパスI/O）サポートを指定するかどうかによって、インストーラが設定する値は異なります。
+
+
+NOTE: これらの値は、NetAppテクニカルサポートから指示がないかぎり変更しないでください。
+
+
+
+== Windows Unified Host Utilities 7.2で設定されるレジストリ値
+
+Windows Unified Host Utilitiesインストーラでは、インストール時に選択したレジストリ値に基づいてレジストリ値が自動的に設定されます。これらのレジストリ値とオペレーティングシステムのバージョンを確認しておく必要があります。
+
+Windows Unified Host Utilities のインストーラでは、次の値が設定されます。特に記載がない限り、すべての値は10進数です。
+
+
+NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
+
+[cols="20,20,30"]
+|===
+| レジストリキー | 価値 | 設定時 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumRetryTimeDuringStateTransition | 120 | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016およびWindows 2019、またはWindows Server 2022の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumStateTransitionTime | 120 | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows 2019、またはWindows Server 2022の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\LinkDownTime | 10. | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\Clusdisk\Parameters\ManageDisksOnSystemBuses | 1. | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 120 | MPIO サポートが選択されていない場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 30 | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\MPDEV\MPIOSupportedDeviceList | 「NetApp LUN」、「NetApp LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathRecoveryInterval | 30 | サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathVerifyEnabled | 1. | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\PathVerifyEnabled | 1. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\PathVerifyEnabled | 0 | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\PDORemovePeriod | 130 | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\RetryCount | 6. | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\RetryCount | 6. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\RetryInterval | 1. | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\RetryInterval | 1. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\RetryInterval | 1. | MPIO サポートが指定されている場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\disk\TimeOutValue | 120 | MPIO サポートが選択されていない場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval | 1. | MPIOサポートが指定されており、サーバがWindows Server 2012 R2、Windows Server 2016、Windows Server 2019、またはWindows Server 2022の場合 
+|===
+
+
+=== NVMeパラメータ
+
+Windows Unified Host Utilities 7.2をインストールすると、NVMe Emulexの次のドライバパラメータが更新されます。
+
+* EnableNVMe = 1
+* NVMEMode = 0
+* 転送サイズ = 1
+
+
+
+
+== Windows Unified Host Utilities 7.1で設定されるレジストリ値
+
+Windows Unified Host Utilities インストーラは、インストール時に選択した内容に基づいて、レジストリ値を自動的に設定します。レジストリ値であるオペレーティングシステムのバージョンを確認しておく必要があります。
+
+Windows Unified Host Utilities のインストーラでは、次の値が設定されます。特に記載がない限り、すべての値は10進数です。
+
+
+NOTE: `HKLM` は、の略語です。 `HKEY_LOCAL_MACHINE`。
+
+[cols="~, 10, ~"]
+|===
+| レジストリキー | 価値 | 設定時 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumRetryTimeDuringStateTransition | 120 | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumStateTransitionTime | 120 | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 の場合 
+
+
+.2+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | "NETAPPLUN" | MPIO サポートが指定されている場合 
+
+
+| 「 NetApp LUN 」、「 NetApp LUN C-Mode 」 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iscsi_driver_GUID}\instance_ID\Parameters\IPSecConfigTimeout | 60 | Data ONTAP DSM が検出された場合を除き、常に実行されます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iscsi_driver_GUID}\instance_ID\Parameters\LinkDownTime | 10. | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\Clusdisk\Parameters\ManageDisksOnSystemBuses | 1. | Data ONTAP DSM が検出された場合を除き、常に実行されます 
+
+
+.2+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iscsi_driver_GUID}\instance_ID\Parameters\MaxRequestHoldTime | 120 | MPIO サポートが選択されていない場合 
+
+
+| 30 | Data ONTAP DSM が検出された場合を除き、常に実行されます 
+
+
+.2+| HKLM\SYSTEM\CurrentControlSet\Control\MPDEV\MPIOSupportedDeviceList | 「 NetApp LUN 」 | MPIO サポートが指定されている場合 
+
+
+| 「 NetApp LUN 」、「 NetApp LUN C-Mode 」 | MPIO がサポートされている場合に指定します。ただし、 Data ONTAP DSM が検出された場合は除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathRecoveryInterval | 40 | サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 のみの場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathVerifyEnabled | 0 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\PathVerifyEnabled | 0 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\PathVerifyEnabled | 0 | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msiscdsm\Parameters\PathVerifyEnabled | 0 | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2003 である場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\PathVerifyEnabled | 0 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msiscdsm\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2003 である場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\PDORemovePeriod | 130 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\RetryCount | 6. | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\RetryCount | 6. | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msiscdsm\Parameters\RetryCount | 6. | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2003 である場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\RetryCount | 6. | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\RetryInterval | 1. | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\RetryInterval | 1. | MPIO サポートが指定されていて、 Data ONTAP DSM が検出された場合を除き、サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 の場合 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp\Parameters\RetryInterval | 1. | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+.2+| HKLM\SYSTEM\CurrentControlSet\Services\Disk\TimeOutValue | 120 | MPIO サポートが選択されていない場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| 60 | MPIO サポートが指定されている場合、 Data ONTAP DSM が検出された場合を除きます 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval | 1. | サーバが Windows Server 2008 、 Windows Server 2008 R2 、 Windows Server 2012 、 Windows Server 2012 R2 、または Windows Server 2016 のみの場合 
+|===
+を参照してください https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users["Microsoft のドキュメント"^] を参照してください。
+
+
+
+== Windows Host Utilities で設定される FC HBA の値
+
+FCを使用するシステムでは、Host UtilitiesのインストーラによってEmulex HBAおよびQLogic FC HBAに必要なタイムアウト値が設定されます。
+
+Emulex FC HBAの場合、インストーラは次のパラメータを設定します。
+
+[role="tabbed-block"]
+====
+.MPIOが選択されている場合
+--
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkTimeOut | 1. 
+
+
+| ノードタイムアウト | 10. 
+|===
+--
+.MPIOが選択されていない場合
+--
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkTimeOut | 30 
+
+
+| ノードタイムアウト | 120 
+|===
+--
+====
+QLogicファイバチャネルHBAの場合、インストーラは次のパラメータを設定します。
+
+[role="tabbed-block"]
+====
+.MPIOが選択されている場合
+--
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkDownTimeOut の 2 つのリンクがあり | 1. 
+
+
+| PortDownRetryCount のように指定します | 10. 
+|===
+--
+.MPIOが選択されていない場合
+--
+|===
+| プロパティタイプ | プロパティ値 
+
+
+| LinkDownTimeOut の 2 つのリンクがあり | 30 
+
+
+| PortDownRetryCount のように指定します | 120 
+|===
+--
+====
+
+NOTE: パラメータの名前は、プログラムによって多少異なる場合があります。
+たとえば、QLogic QConvergeConsoleプログラムでは、パラメータはと表示されます `Link Down Timeout`。
+Host Utilities `fcconfig.ini` Fileには、このパラメータがどちらかと表示されます `LinkDownTimeOut` または `MpioLinkDownTimeOut`（MPIOが指定されているかどうかによって異なります）。ただし、これらの名前はすべて同じ HBA パラメータを表します。を参照してください https://www.broadcom.com/support/download-search["Emulex 社"^] または https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx["QLogic"^] タイムアウトパラメータの詳細については、を参照してください。
+
+
+
+=== Host Utilities の変更内容を FC HBA ドライバの設定に把握します
+
+FC システムへの必要な Emulex または QLogic HBA ドライバのインストール中に、いくつかのパラメータがチェックされ、場合によっては変更されます。
+
+MS DSM for Windows MPIO が検出された場合、 Host Utilities は次のパラメータに値を設定します。
+
+* LinkTimeOut –物理リンクがダウンした後、ホストポートが I/O を再開するまでの待機時間を秒単位で定義します。
+* NodeTimeout –ホストポートがターゲットデバイスへの接続がダウンしていることを認識するまでの秒数を定義します。
+
+
+HBA の問題のトラブルシューティングを行うときは、これらの設定が正しい値であることを確認してください。正しい値は次の 2 つの要因によって異なります。
+
+* HBA ベンダー
+* マルチパスソフトウェア（ MPIO ）の使用状況
+
+
+HBA 設定を修正するには、 Windows Host Utilities インストーラの Repair オプションを実行します。
+
+[role="tabbed-block"]
+====
+.Emulex HBAドライバ
+--
+FCシステムを使用している場合は、Emulex HBAドライバの設定を確認する必要があります。これらの設定は HBA のポートごとに行う必要があります。
+
+.手順
+. OnCommand Manager を開きます。
+. リストから適切な HBA を選択し、 [* Driver Parameters * （ドライバパラメータ * ） ] タブをクリックします。
++
+ドライバパラメータが表示されます。
+
++
+.. MPIO ソフトウェアを使用している場合は、次のドライバ設定があることを確認してください。
++
+*** LinkTimeOut-1
+*** NodeTimeout-10
+
+
+.. MPIO ソフトウェアを使用していない場合は、次のドライバ設定を使用していることを確認してください。
++
+*** LinkTimeOut-30
+*** NodeTimeout-120
+
+
+
+
+
+
+--
+.QLogic HBAドライバ
+--
+FCシステムでは、QLogic HBAドライバの設定を確認する必要があります。これらの設定は HBA のポートごとに行う必要があります。
+
+.手順
+. QConvergeConsole を開き、ツールバーの * Connect * をクリックします。
++
+[ホストに接続]*ダイアログボックスが表示されます。
+
+. リストから適切なホストを選択し、*[接続]*を選択します。
++
+HBA のリストが FC HBA ペインに表示されます。
+
+. リストから適切なHBAポートを選択し、*[設定]*タブを選択します。
+. [ 設定の選択 ] セクションで '[* HBA ポートの詳細設定 * ] を選択します
+. MPIOソフトウェアを使用している場合は、次のドライバ設定があることを確認します。
++
+** リンクダウンタイムアウト（ linkdwnto ） -1
+** ポートダウン再試行回数 (portdwnrc)-10
+
+
+. MPIOソフトウェアを使用していない場合は、次のドライバ設定があることを確認します。
++
+** リンクダウンタイムアウト（ linkdwnto ） -30
+** Port Down Retry Count （ portdwnrc ）： 120
+
+
+
+
+--
+====
