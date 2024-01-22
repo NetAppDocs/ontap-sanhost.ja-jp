@@ -1,28 +1,31 @@
 ---
 sidebar: sidebar 
 permalink: nvme_sles15_sp5.html 
-keywords: nvme, NVMe-oF, Host, SUSE Linux Enterprise Server 15 SP5, ONTAP 
-summary: SUSE Linux Enterprise Server 15 SP5 with ONTAP向けNVMe-oFホスト構成 
+keywords: nvme, linux, suse, sles, 15, SP5, server, enterprise 
+summary: SUSE Linux Enterprise Server 15 SP5 with ONTAP用のNVMe/FCの設定方法について説明します。 
 ---
-= SUSE Linux Enterprise Server 15 SP5 with ONTAP向けNVMe-oFホスト構成
+= SUSE Linux Enterprise Server 15 SP5 with ONTAP向けのNVMe-oFホスト構成
+:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
+:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
+:source-highlighter: highlighter.js
+:toc-position: content
 
 
 [role="lead"]
-NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたSUSE Linux Enterprise Server（SLES）15 SP5でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
+NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたSUSE Linux Enterprise Server（SLES）15 SP5でサポートされます。NVMe-oF環境では、ANAはiSCSIおよびFCP環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
 
 ONTAPを備えたSLES 15 SP5のNVMe-oFホスト構成では、次のサポートが提供されます。
 
-* NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。
-* sanlun にも対応していません。そのため、SLES15 SP5ホストではNVMe-oFのホストユーティリティはサポートされません。すべてのNVMe-oF転送では、標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。
-* NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNの場合はSCSI mpathデバイスにdm-multipathを設定できますが、NVMeマルチパスを使用してホストのNVMe-oFネームスペースデバイスを設定できます。
+* NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNの場合はSCSI mpathデバイスにdm-multipathを設定できますが、NVMeマルチパスを使用してホスト上のNVMe-oFネームスペースデバイスを設定することができます。
+* NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。NetAppプラグインをネイティブにインストールします `nvme-cli` [パッケージ]には、NVMe/FCとNVMe/TCPの両方のネームスペースのONTAPの詳細が表示されます。
 
 
 サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
@@ -31,175 +34,52 @@ ONTAPを備えたSLES 15 SP5のNVMe-oFホスト構成では、次のサポート
 
 == の機能
 
-SLES 15 SP5では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。したがって、明示的な設定は必要ありません。
+* NVMeセキュア、インバンド認証のサポート
+* 一意の検出NQNを使用した永続的検出コントローラ（PDC）のサポート
+
 
 
 
 == 既知の制限
 
-NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
-
-
-
-== ソフトウェアのバージョンを確認します
-
-次の手順を使用して、サポートされているSLES 15 SP5ソフトウェアの最小バージョンを検証できます。
-
-.手順
-. 必要なカーネルパッケージとnvme-cliメンテナンスアップデートパッケージがSLES15 SP5メンテナンスアップデートホストにインストールされていることを確認します。
-+
-[listing]
-----
-# uname -r
-----
-+
-*出力例：*
-
-+
-[listing]
-----
-5.14.21-150500.55.7-default
-----
-. 「 nvme-cli 」パッケージをインストールします。
-+
-[listing]
-----
-# rpm -qa|grep nvme-cli
-----
-+
-*出力例：*
-
-+
-[listing]
-----
-nvme-cli-2.2.1+3.gd028407-150500.2.4.x86_64
-----
-+
-。 `nvme-cli` メンテナンスアップデートパッケージには次のものが含まれています。
-
-+
-** * NVMe/FC自動接続スクリプト*-ネームスペースへの基盤となるパスがリストアされた場合、およびホストのリブート時にNVMe/FCの自動再接続に自動接続スクリプトが必要です。
-+
-[listing]
-----
-# rpm -ql nvme-cli-2.2.1+3.gd028407-150500.2.3.x86_64
-/etc/nvme
-/etc/nvme/discovery.conf
-/etc/nvme/hostid
-/etc/nvme/hostnqn
-/usr/lib/systemd/system/nvmefc-boot-connections.service
-/usr/lib/systemd/system/nvmf-autoconnect.service
-/usr/lib/systemd/system/nvmf-connect.target
-...
-
-----
-** * ONTAP udevルール*-新規 `udev` NVMeマルチパスラウンドロビンロードバランサ環境All ONTAPネームスペースがデフォルトで設定されていることを確認するルール：
-+
-[listing]
-----
-# rpm -ql nvme-cli-1.13-3.3.1.x86_64
-/etc/nvme
-/etc/nvme/discovery.conf
-/etc/nvme/hostid
-/etc/nvme/hostnqn
-/usr/lib/systemd/system/nvmefc-boot-connections.service
-/usr/lib/systemd/system/nvmf-autoconnect.service
-/usr/lib/systemd/system/nvmf-connect.target
-/usr/lib/systemd/system/nvmf-connect@.service
-/usr/lib/udev/rules.d/70-nvmf-autoconnect.rules
-/usr/lib/udev/rules.d/71-nvmf-iopolicy-netapp.rules
-...
-# cat /usr/lib/udev/rules.d/71-nvmf-iopolicy-netapp.rules
-# Enable round-robin for NetApp ONTAP and NetApp E-Series
-ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="round-robin"
-ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{model}=="NetApp E-Series", ATTR{iopolicy}="round-robin"
-----
-** * ONTAPデバイス用NetAppプラグイン*- ONTAPネームスペースを含めるように既存のNetAppプラグインを変更します。
-
-
-. をインストールします `libnvme` パッケージ：
-+
-[listing]
-----
-# rpm -qa|grep libnvme
-----
-+
-*出力例：*
-
-+
-[listing]
-----
-libnvme1-1.2+1.g41e1016-150500.2.5.x86_64
-----
-. を確認します `hostnqn` 文字列 `/etc/nvme/hostnqn`：
-+
-[listing]
-----
-# cat /etc/nvme/hostnqn
-----
-+
-*出力例：*
-
-+
-[listing]
-----
-nqn.2014-08.org.nvmexpress:uuid:ef34f6b7-74eb-1413-a64a-4c5262484877
-----
-. を確認します `hostnqn` 文字列はに一致します `hostnqn` ONTAP アレイ上の対応するサブシステムの文字列。
-+
-[listing]
-----
-::> vserver nvme subsystem host show -vserver vs_nvme_43
-----
-+
-*出力例：*
-
-+
-[listing]
-----
-Vserver     Subsystem          Host NQN
------------ --------------- ----------------------------------------------------------
-vs_nvme_43   sles_nvme_43    nqn.2014-08.org.nvmexpress:uuid:ef34f6b7-74eb-1413-a64a-4c5262484877
-----
-+
-
-NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合はを使用できます `vserver modify` コマンドを使用してを更新します `hostnqn` 対応するONTAP アレイサブシステムで、に一致する文字列を指定します `hostnqn` から文字列 `/etc/nvme/hostnqn` ホスト。
-
+* NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
+* ありません `sanlun` NVMe-oFのサポート。そのため、SLES 15 SP5ホストのNVMe-oFではホストユーティリティはサポートされません。すべてのNVMe-oF転送では、標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。
 
 
 
 
 == NVMe/FC を設定
 
-NVMe/FCは、Broadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設定できます。
+NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタに設定できます。
 
 [role="tabbed-block"]
 ====
 .Broadcom / Emulex
 --
 .手順
-. サポートされているアダプタモデルを使用していることを確認します。
+. 推奨されるアダプタモデルを使用していることを確認します。
 +
 [listing]
 ----
-# cat /sys/class/scsi_host/host*/modelname
+cat /sys/class/scsi_host/host*/modelname
 ----
 +
-*出力例：*
+*出力例*：
 
 +
 [listing]
 ----
-LPe32002-M2
+LPe32002 M2
 LPe32002-M2
 ----
+. アダプタモデル概要を確認します。
 +
 [listing]
 ----
-# cat /sys/class/scsi_host/host*/modeldesc
+cat /sys/class/scsi_host/host*/modeldesc
 ----
 +
-*出力例：*
+*出力例*：
 
 +
 [listing]
@@ -207,102 +87,142 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアおよび受信トレイドライバ：
+. 推奨されるバージョンのEmulex Host Bus Adapter（HBA；ホストバスアダプタ）ファームウェアを使用していることを確認します。
 +
 [listing]
 ----
-# cat /sys/class/scsi_host/host*/fwrev
-14.2.455.11, sli-4:2:c
-14.2.455.11, sli-4:2:c
+cat /sys/class/scsi_host/host*/fwrev
 ----
 +
-既存のネイティブ受信トレイ `lpfc` ドライバは最新のもので、NVMe/FCと互換性があります。したがって、lpfc out-of-box（OOB）ドライバをインストールする必要はありません。ドライバのバージョンを確認します。
+*出力例*：
 
 +
 [listing]
 ----
-# cat /sys/module/lpfc/version
-0:14.2.0.9
+14.0.639.20, sli-4:2:c
+14.0.639.20, sli-4:2:c
+----
+. 推奨バージョンのlpfcドライバを使用していることを確認します。
++
+[listing]
+----
+cat /sys/module/lpfc/version
 ----
 +
-。 `lpfc nvme` サポートはデフォルトで有効になっています。新しいlpfcドライバ（受信トレイと送信トレイの両方）には、 `lpfc_enable_fc4_type` パラメータが3に設定されているため、 `/etc/modprobe.d/lpfc.conf` ファイル、再作成 `initrd`。次のことを確認できます。 `lpfc_enable_fc4_type` がに設定されます `3`：
+*出力例*：
 
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
-3
+0:14.2.0.13
 ----
-+
-サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
-
-. イニシエータポートが動作していること、およびターゲットLIFが表示されていることを確認します。
+. イニシエータポートを表示できることを確認します。
 +
 [listing]
 ----
-# cat /sys/class/fc_host/host*/port_name
+cat /sys/class/fc_host/host*/port_name
+----
++
+*出力例*：
+
++
+[listing]
+----
 0x100000109b579d5e
 0x100000109b579d5f
 
 ----
+. イニシエータポートがオンラインであることを確認します。
 +
 [listing]
 ----
+cat /sys/class/fc_host/host*/port_state
+----
++
+*出力例*：
 
-# cat /sys/class/fc_host/host*/port_state
-Online
-Online
-----
 +
 [listing]
 ----
-# cat /sys/class/scsi_host/host*/nvme_info NVME Initiator Enabled
+Online
+Online
+----
+. NVMe/FCイニシエータポートが有効になっており、ターゲットポートが認識されることを確認します。
++
+[listing]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
++
+*出力例*：
+
++
+この例では、1つのイニシエータポートが有効になっており、2つのターゲットLIFで接続されています。
+
++
+[listing, subs="+quotes"]
+----
+NVME Initiator Enabled
 XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
-NVME LPORT lpfc0 WWPN x10000090fac7fe48 WWNN x20000090fac7fe48 DID x022700 ONLINE
-NVME RPORT	WWPN x209dd039ea16c28f WWNN x209cd039ea16c28f DID x020f0e TARGET DISCSRVC ONLINE
+NVME LPORT lpfc0 WWPN x100000109b579d5e WWNN x200000109b579d5e DID x011c00 *ONLINE*
+NVME RPORT WWPN x208400a098dfdd91 WWNN x208100a098dfdd91 DID x011503
+*TARGET DISCSRVC ONLINE*
+NVME RPORT WWPN x208500a098dfdd91 WWNN x208100a098dfdd91 DID x010003
+*TARGET DISCSRVC *ONLINE*
 
 NVME Statistics
-LS: Xmt 00000003e2 Cmpl 00000003e2 Abort 00000000
-LS XMIT: Err 00000000	CMPL: xb 00000000 Err 00000000
-Total FCP Cmpl 00000000000f36cd Issue 00000000000f36ce OutIO 0000000000000001
-abort 00000000 noxri 00000000 nondlp 00000000 qdepth 00000000
-wqerr 00000000 err 00000000
-FCP CMPL: xb 000000bc Err 000001d8
+LS: Xmt 0000000e49 Cmpl 0000000e49 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000003ceb594f Issue 000000003ce65dbe OutIO fffffffffffb046f
+abort 00000bd2 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr
+00000000 err 00000000
+FCP CMPL: xb 000014f4 Err 00012abd
 
 NVME Initiator Enabled
 XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
-NVME LPORT lpfc1 WWPN x10000090fac7fe49 WWNN x20000090fac7fe49 DID x022d00 ONLINE
-NVME RPORT	WWPN x20a0d039ea16c28f WWNN x209cd039ea16c28f DID x02010f TARGET DISCSRVC ONLINE
-NVME RPORT	WWPN x209ed039ea16c28f WWNN x209cd039ea16c28f DID x020d0f TARGET DISCSRVC ONLINE
+NVME LPORT lpfc1 WWPN x100000109b579d5f WWNN x200000109b579d5f DID x011b00 *ONLINE*
+NVME RPORT WWPN x208300a098dfdd91 WWNN x208100a098dfdd91 DID x010c03
+*TARGET DISCSRVC ONLINE*
+NVME RPORT WWPN x208200a098dfdd91 WWNN x208100a098dfdd91 DID x012a03
+*TARGET DISCSRVC ONLINE*
 
 NVME Statistics
-LS: Xmt 000000056a Cmpl 000000056a Abort 00000000
-LS XMIT: Err 00000000	CMPL: xb 00000000 Err 00000000
-Total FCP Cmpl 000000000010af3e Issue 000000000010af40 OutIO 0000000000000002
-abort 00000000 noxri 00000000 nondlp 00000000 qdepth 00000000
-wqerr 00000000 err 00000000
-FCP CMPL: xb 00000102 Err 0000028e 3
+LS: Xmt 0000000e50 Cmpl 0000000e50 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000003c9859ca Issue 000000003c93515e OutIO fffffffffffaf794
+abort 00000b73 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr
+00000000 err 00000000
+FCP CMPL: xb 0000159d Err 000135c3
 
 ----
+. ホストをリブートします。
 
 
 --
-.NVMe / FC向けMarvell/QLogic FCアダプタ
+.Marvell/QLogic
 --
 .手順
-. SLES 15 SP5カーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
+. SLES 15 SP5カーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新の修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [listing]
 ----
-# cat /sys/class/fc_host/host*/symbolic_name
-QLE2742 FW:v9.08.02 DVR:v10.02.07.800-k
-QLE2742 FW:v9.08.02 DVR:v10.02.07.800-k
+cat /sys/class/fc_host/host*/symbolic_name
 ----
-. 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
++
+*出力例*：
+
 +
 [listing]
 ----
-# cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+QLE2742 FW:v9.12.01 DVR: v10.02.08.300-k
+QLE2742 FW:v9.12.01 DVR: v10.02.08.300-k
+
+----
+. を確認します `ql2xnvmeenable` パラメータは1に設定されています。
++
+[listing]
+----
+cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 1
 ----
 
@@ -338,16 +258,134 @@ NOTE: これはQlogic NVMe/FCホストには該当しません。
 
 
 
+=== NVMeサービスを有効にする
+
+には2つのNVMe/FCブートサービスが含まれています。 `nvme-cli` パッケージ（_only_） `nvmefc-boot-connections.service` システム起動中に起動できるようになっています。  `nvmf-autoconnect.service` が有効になっていません。そのため、手動で有効にする必要があります。 `nvmf-autoconnect.service` システム起動中に起動します。
+
+.手順
+. -- 有効にします `nvmf-autoconnect.service`：
++
+[listing]
+----
+# systemctl enable nvmf-autoconnect.service
+Created symlink /etc/systemd/system/default.target.wants/nvmf- autoconnect.service → /usr/lib/systemd/system/nvmf-autoconnect.service.
+
+----
+. ホストをリブートします。
+. 確認します `nvmf-autoconnect.service` および `nvmefc-boot-connections.service` システムの起動後に実行されています。
++
+*出力例：*
+
++
+[listing]
+----
+# systemctl status nvmf-autoconnect.service
+nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot
+Loaded: loaded (/usr/lib/systemd/system/nvmf-autoconnect.service; enabled; vendor preset: disabled)
+Active: inactive (dead) since Thu 2023-05-25 14:55:00 IST; 11min
+ago
+Process: 2108 ExecStartPre=/sbin/modprobe nvme-fabrics (code=exited,
+status=0/SUCCESS)
+Process: 2114 ExecStart=/usr/sbin/nvme connect-all (code=exited, status=0/SUCCESS)
+Main PID: 2114 (code=exited, status=0/SUCCESS)
+
+systemd[1]: Starting Connect NVMe-oF subsystems automatically during boot...
+nvme[2114]: traddr=nn-0x201700a098fd4ca6:pn-0x201800a098fd4ca6 is already connected
+systemd[1]: nvmf-autoconnect.service: Deactivated successfully. systemd[1]: Finished Connect NVMe-oF subsystems automatically during
+boot.
+
+# systemctl status nvmefc-boot-connections.service
+nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found during boot
+Loaded: loaded (/usr/lib/systemd/system/nvmefc-boot- connections.service; enabled; vendor preset: enabled)
+Active: inactive (dead) since Thu 2023-05-25 14:55:00 IST; 11min ago Main PID: 1647 (code=exited, status=0/SUCCESS)
+
+systemd[1]: Starting Auto-connect to subsystems on FC-NVME devices found during boot...
+systemd[1]: nvmefc-boot-connections.service: Succeeded.
+systemd[1]: Finished Auto-connect to subsystems on FC-NVME devices found during boot.
+
+----
+
+
+
+
 == NVMe/FC を設定
 
-NVMe/TCPには自動接続機能はありません。そのため、パスがダウンしてデフォルトのタイムアウト（10分）内に復元されないと、NVMe/TCPは自動的に再接続できません。タイムアウトを回避するには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。
+NVMe/TCPの設定には、次の手順を使用できます。
 
 .手順
 . イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
 +
 [listing]
 ----
-nvme discover -t tcp -w host-traddr -a traddr
+nvme discover -t tcp -w <host-traddr> -a <traddr>
+----
++
+*出力例*：
+
++
+[listing, subs="+quotes"]
+----
+# nvme discover -t tcp -w 192.168.1.4 -a 192.168.1.31
+
+Discovery Log Number of Records 8, Generation counter 18
+=====Discovery Log Entry 0====== trtype: tcp
+adrfam: ipv4
+subtype: *current discovery subsystem* treq: not specified
+portid: 0
+trsvcid: 8009 subnqn: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:discovery traddr: 192.168.2.117
+eflags: *explicit discovery connections, duplicate discovery information sectype: none*
+=====Discovery Log Entry 1====== trtype: tcp
+adrfam: ipv4
+subtype: *current discovery subsystem* treq: not specified
+portid: 1
+trsvcid: 8009 subnqn: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:discovery traddr: 192.168.1.117
+eflags: *explicit discovery connections, duplicate discovery information sectype: none*
+=====Discovery Log Entry 2====== trtype: tcp
+adrfam: ipv4
+subtype: *current discovery subsystem* treq: not specified
+portid: 2
+trsvcid: 8009 subnqn: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:discovery traddr: 192.168.2.116
+eflags: *explicit discovery connections, duplicate discovery information sectype: none*
+=====Discovery Log Entry 3====== trtype: tcp
+adrfam: ipv4
+subtype: *current discovery subsystem* treq: not specified
+portid: 3
+trsvcid: 8009 subnqn: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:discovery traddr: 192.168.1.116
+eflags: *explicit discovery connections, duplicate discovery information sectype: none*
+=====Discovery Log Entry 4====== trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem treq: not specified portid: 0
+trsvcid: 4420 subnqn: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:subsystem.subsys_CLIEN T116
+traddr: 192.168.2.117 eflags: not specified sectype: none
+=====Discovery Log Entry 5====== trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem treq: not specified portid: 1
+trsvcid: 4420 subnqn: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:subsystem.subsys_CLIEN T116
+traddr: 192.168.1.117 eflags: not specified sectype: none
+=====Discovery Log Entry 6====== trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem treq: not specified portid: 2
+trsvcid: 4420
+subnqn: nqn.1992- 08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:subsystem.subsys_CLIEN T116
+traddr: 192.168.2.116 eflags: not specified sectype: none
+=====Discovery Log Entry 7====== trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem treq: not specified portid: 3
+trsvcid: 4420 subnqn: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:subsystem.subsys_CLIEN T116
+traddr: 192.168.1.116 eflags: not specified sectype: none
+----
+. NVMe/TCPイニシエータとターゲットLIFの他のすべての組み合わせで、検出ログページのデータを正常に取得できることを確認します。
++
+[listing]
+----
+nvme discover -t tcp -w <host-traddr> -a <traddr>
 ----
 +
 *出力例：*
@@ -355,49 +393,15 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 [listing]
 ----
-# nvme discover -t tcp -w 192.168.6.5 -a 192.168.6.35 Discovery Log Number of Records 8, Generation counter 18
-=====Discovery Log Entry 0======
-trtype:  tcp
-adrfam:  ipv4
-subtype: current discovery subsystem
-treq:    not specified
-portid:  0
-trsvcid: 8009
-subnqn:  nqn.1992-08.com.netapp:sn.f7f9730b664711eda32dd039ea16c290:discovery
-traddr:  192.168.7.35
-eflags:  explicit discovery connections, duplicate discovery information
-sectype: none
-=====Discovery Log Entry 1======
-trtype:  tcp
-adrfam:  ipv4
-subtype: current discovery subsystem
-treq:    not specified
-portid:  1
-trsvcid: 8009
-subnqn:  nqn.1992-08.com.netapp:sn.f7f9730b664711eda32dd039ea16c290:discovery
-traddr:  192.168.7.34
-eflags:  explicit discovery connections, duplicate discovery information
-sectype: none
-=====Discovery Log Entry 2======
-trtype:  tcp
-adrfam:  ipv4
-subtype: current discovery subsystem
-treq:    not specified
-portid:  2
-trsvcid: 8009
-subnqn:  nqn.1992-08.com.netapp:sn.f7f9730b664711eda32dd039ea16c290:discovery
-traddr:  192.168.6.35
-eflags:  explicit discovery connections, duplicate discovery information
-sectype: none
-...
-..........
-
+# nvme discover -t tcp -w 192.168.1.4 -a 192.168.1.32
+# nvme discover -t tcp -w 192.168.2.5 -a 192.168.2.36
+# nvme discover -t tcp -w 192.168.2.5 -a 192.168.2.37
 ----
-. NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで、検出ログページのデータを正常に取得できることを確認します。
+. を実行します `nvme connect-all` ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象としたコマンド：
 +
 [listing]
 ----
-nvme discover -t tcp -w host-traddr -a traddr
+nvme connect-all -t tcp -w host-traddr -a traddr -l <ctrl_loss_timeout_in_seconds>
 ----
 +
 *出力例：*
@@ -405,29 +409,15 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 [listing]
 ----
-# nvme discover -t tcp -w 192.168.6.5 -a 192.168.6.34
-# nvme discover -t tcp -w 192.168.6.5 -a 192.168.6.35
-# nvme discover -t tcp -w 192.168.7.5 -a 192.168.7.34
-# nvme discover -t tcp -w 192.168.7.5 -a 192.168.7.35
-----
-. を実行します `nvme connect-all` ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象にコマンドを実行し、コントローラ損失のタイムアウト時間を30分または1、800秒以上に設定します。
-+
-[listing]
-----
-nvme connect-all -t tcp -w host-traddr -a traddr -l 1800
+# nvme connect-all -t tcp -w 192.168.1.4 -a 192.168.1.31 -l -1
+# nvme connect-all -t tcp -w 192.168.1.4 -a 192.168.1.32 -l -1
+# nvme connect-all -t tcp -w 192.168.2.5 -a 192.168.1.36 -l -1
+# nvme connect-all -t tcp -w 192.168.2.5 -a 192.168.1.37 -l -1
 ----
 +
-*出力例：*
 
-+
-[listing]
-----
-#nvme	connect-all -t	tcp -w	192.168.6.5 -a	192.168.6.34	-l	1800
-#nvme	connect-all -t	tcp -w	192.168.6.5 -a	192.168.6.35	-l	1800
-#nvme	connect-all -t	tcp -w	192.168.7.5 -a	192.168.7.34	-l	1800
-#nvme	connect-all -t	tcp -w	192.168.7.5 -a	192.168.7.35	-l	1800
+NOTE: NetAppでは、 `ctrl-loss-tmo` オプションをに設定します `-1` これにより、パスが失われた場合にNVMe/TCPイニシエータが無期限に再接続を試行できるようになります。
 
-----
 
 
 
@@ -437,32 +427,18 @@ nvme connect-all -t tcp -w host-traddr -a traddr -l 1800
 NVMe-oFの検証には、次の手順を使用できます。
 
 .手順
-. SLES 15 SP5ホストで次のNVMe/FC設定を確認します。
+. カーネル内の NVMe マルチパスが有効になっていることを確認します。
 +
 [listing]
 ----
-# cat /sys/module/nvme_core/parameters/multipath
+cat /sys/module/nvme_core/parameters/multipath
 Y
 ----
+. ホストのコントローラモデルがONTAP NVMeネームスペースに対応していることを確認します。
 +
 [listing]
 ----
-# cat /sys/class/nvme-subsystem/nvme-subsys*/model
-NetApp ONTAP Controller
-NetApp ONTAP Controller
-----
-+
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
-round-robin
-round-robin
-----
-. ネームスペースが作成され、ホストで正しく検出されたことを確認します。
-+
-[listing]
-----
-# nvme list
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
 ----
 +
 *出力例：*
@@ -470,57 +446,93 @@ round-robin
 +
 [listing]
 ----
-Node         SN                   Model
----------------------------------------------------------
-/dev/nvme0n1 81CZ5BQuUNfGAAAAAAAB  NetApp ONTAP Controller
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
+. それぞれのONTAP NVMe I/OコントローラのNVMe I/Oポリシーを確認します。
++
+[listing]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+*出力例：*
+
++
+[listing]
+----
+round-robin
+round-robin
+----
+. ONTAPネームスペースがホストから認識されることを確認します。
++
+[listing]
+----
+nvme list -v
+----
++
+*出力例：*
+
++
+[listing]
+----
+Subsystem        Subsystem-NQN                                                                         Controllers
+---------------- ------------------------------------------------------------------------------------ -----------------------
+nvme-subsys0     nqn.1992- 08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_dhcha p	nvme0, nvme1, nvme2, nvme3
 
 
+Device   SN                   MN                                       FR       TxPort Asdress        Subsystem    Namespaces
+-------- -------------------- ---------------------------------------- -------- ---------------------------------------------
+nvme0    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.2.214,trsvcid=4420,host_traddr=192.168.2.14 nvme-subsys0 nvme0n1
+nvme1    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.2.215,trsvcid=4420,host_traddr=192.168.2.14 nvme-subsys0 nvme0n1
+nvme2    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.1.214,trsvcid=4420,host_traddr=192.168.1.14 nvme-subsys0 nvme0n1
+nvme3    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.1.215,trsvcid=4420,host_traddr=192.168.1.14 nvme-subsys0 nvme0n1
 
-Namespace Usage    Format             FW             Rev
------------------------------------------------------------
-1                 85.90 GB / 85.90 GB	4 KiB + 0 B  FFFFFFFF
+
+Device       Generic      NSID       Usage                 Format         Controllers
+------------ ------------ ---------- -------------------------------------------------------------
+/dev/nvme0n1 /dev/ng0n1   0x1     1.07  GB /   1.07  GB    4 KiB +  0 B   nvme0, nvme1, nvme2, nvme3
 
 ----
 . 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
 +
+[listing]
+----
+nvme list-subsys /dev/<subsystem_name>
+----
++
 [role="tabbed-block"]
 ====
 .NVMe/FC
+*出力例*
+
 --
-[listing]
+[listing, subs="+quotes"]
 ----
 # nvme list-subsys /dev/nvme1n1
-----
-*出力例：*
-
-[listing]
-----
-nvme-subsys1 - NQN=nqn.1992-
-08.com.netapp:sn.04ba0732530911ea8e8300a098dfdd91:subsystem.nvme_145_1
+nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.04ba0732530911ea8e8300a098dfdd91:subsystem.nvme_145_1
 \
-+- nvme2 fc traddr=nn-0x208100a098dfdd91:pn-0x208200a098dfdd91 host_traddr=nn-0x200000109b579d5f:pn-0x100000109b579d5f live non- optimized
-+- nvme3 fc traddr=nn-0x208100a098dfdd91:pn-0x208500a098dfdd91 host_traddr=nn-0x200000109b579d5e:pn-0x100000109b579d5e live non- optimized
-+- nvme4 fc traddr=nn-0x208100a098dfdd91:pn-0x208400a098dfdd91 host_traddr=nn-0x200000109b579d5e:pn-0x100000109b579d5e live optimized
-+- nvme6 fc traddr=nn-0x208100a098dfdd91:pn-0x208300a098dfdd91 host_traddr=nn-0x200000109b579d5f:pn-0x100000109b579d5f live optimized
++- nvme2 *fc* traddr=nn-0x208100a098dfdd91:pn- 0x208200a098dfdd91,host_traddr=nn-0x200000109b579d5f:pn-0x100000109b579d5f *live optimized*
++- nvme3 *fc* traddr=nn-0x208100a098dfdd91:pn- 0x208500a098dfdd91,host_traddr=nn-0x200000109b579d5e:pn-0x100000109b579d5e *live optimized*
++- nvme4 *fc* traddr=nn-0x208100a098dfdd91:pn- 0x208400a098dfdd91,host_traddr=nn-0x200000109b579d5e:pn-0x100000109b579d5e *live non-optimized*
++- nvme6 *fc* traddr=nn-0x208100a098dfdd91:pn- 0x208300a098dfdd91,host_traddr=nn-0x200000109b579d5f:pn-0x100000109b579d5f *live non-optimized*
 ----
 --
 .NVMe/FC
 --
-[listing]
-----
-nvme list-subsys /dev/nvme1n1
-----
 *出力例*
 
-[listing]
+[listing, subs="+quotes"]
 ----
-nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.f7f9730b664711eda32dd039ea16c290:subsystem.tcpnvme_sles15sp5
-\
- +- nvme5 tcp traddr=192.168.7.34,trsvcid=4420,host_traddr=192.168.7.5 live
- +- nvme4 tcp traddr=192.168.7.35,trsvcid=4420,host_traddr=192.168.7.5 live
- +- nvme3 tcp traddr=192.168.6.34,trsvcid=4420,host_traddr=192.168.6.5 live
- +- nvme2 tcp traddr=192.168.6.35,trsvcid=4420,host_traddr=192.168.6.5 live
+# nvme list-subsys
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_dhchap
+hostnqn=nqn.2014-08.org.nvmexpress:uuid:e58eca24-faff-11ea-8fee-3a68dd3b5c5f
+iopolicy=round-robin
 
+ +- nvme0 *tcp* traddr=192.168.2.214,trsvcid=4420,host_traddr=192.168.2.14 *live*
+ +- nvme1 *tcp* traddr=192.168.2.215,trsvcid=4420,host_traddr=192.168.2.14 *live*
+ +- nvme2 *tcp* traddr=192.168.1.214,trsvcid=4420,host_traddr=192.168.1.14 *live*
+ +- nvme3 *tcp* traddr=192.168.1.215,trsvcid=4420,host_traddr=192.168.1.14 *live*
 ----
 --
 ====
@@ -530,50 +542,40 @@ nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.f7f9730b664711eda32dd039ea16c290:su
 ====
 .列（ Column ）
 --
-[listing]
-----
-# nvme netapp ontapdevices -o column
-----
-*出力例：*
+`nvme netapp ontapdevices -o column`
+
+*出力例*：
 
 [listing]
 ----
-Device        Vserver   Namespace Path
------------------------ ------------------------------
-/dev/nvme1n11   vs_tcp_129   /vol/tcpnvme_129_1/ns1
 
-
-
-NSID       UUID                                   Size
-------------------------------------------------------------
-1          a6aee036-e12f-4b07-8e79-4d38a9165686   32.90GB
+Device           Vserver                   Namespace Path                               NSID UUID                                   Size
+---------------- ------------------------- -----------------------------------------------------------------------------------------------
+/dev/nvme0n1     vs_CLIENT114              /vol/CLIENT114_vol_0_10/CLIENT114_ns10       1    c6586535-da8a-40fa-8c20-759ea0d69d33   1.07GB
 
 ----
 --
 .JSON
 --
-[listing]
-----
-# nvme netapp ontapdevices -o json
-----
-*出力例*
+`nvme netapp ontapdevices -o json`
+
+*出力例*：
 
 [listing]
 ----
 {
-"ONTAPdevices" : [
+"ONTAPdevices":[
 {
-"Device":"/dev/nvme1n11",
-      "Vserver":"vs_tcp_129",
-      "Namespace_Path":"/vol/tcpnvme_129_1/ns1",
-      "NSID":1,
-      "UUID":"919c602d-f080-4dd8-8b15-e83e6f247714",
-      "Size":"32.21GB",
-      "LBA_Data_Size":4096,
-      "Namespace_Size":7864320
+"Device":"/dev/nvme0n1",
+"Vserver":"vs_CLIENT114",
+"Namespace_Path":"/vol/CLIENT114_vol_0_10/CLIENT114_ns10",
+"NSID":1,
+"UUID":"c6586535-da8a-40fa-8c20-759ea0d69d33",
+"Size":"1.07GB",
+"LBA_Data_Size":4096,
+"Namespace_Size":262144
 }
 ]
-
 }
 
 ----
@@ -583,6 +585,462 @@ NSID       UUID                                   Size
 
 
 
+== 永続的検出コントローラの作成
+
+ONTAP 9.11.1以降では、次の手順を使用してSLES 15 SP5ホスト用の永続的検出コントローラ（PDC）を作成できます。NVMeサブシステムの追加や削除のシナリオや検出ログページのデータに対する変更を自動的に検出するには、PDCが必要です。
+
+.手順
+. 検出ログページのデータが使用可能で、イニシエータポートとターゲットLIFの組み合わせから取得できることを確認します。
++
+[listing]
+----
+nvme discover -t <trtype> -w <host-traddr> -a <traddr>
+----
++
+.出力例：
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+Discovery Log Number of Records 16, Generation counter 14
+=====Discovery Log Entry 0======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  0
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:discovery
+traddr:  192.168.1.214
+eflags:  *explicit discovery connections, duplicate discovery information sectype: none*
+=====Discovery Log Entry 1======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  0
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:discovery
+traddr:  192.168.1.215
+eflags:  *explicit discovery connections, duplicate discovery information
+sectype: none*
+=====Discovery Log Entry 2======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  0
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:discovery
+traddr:  192.168.2.215
+eflags:  *explicit discovery connections, duplicate discovery information sectype: none*
+=====Discovery Log Entry 3======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  0
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:discovery
+traddr:  192.168.2.214
+eflags:  *explicit discovery connections, duplicate discovery information sectype: none*
+=====Discovery Log Entry 4======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_none
+traddr:  192.168.1.214
+eflags:  none
+sectype: none
+=====Discovery Log Entry 5======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_none
+traddr:  192.168.1.215
+eflags:  none
+sectype: none
+=====Discovery Log Entry 6======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_none
+traddr:  192.168.2.215
+eflags:  none
+sectype: none
+=====Discovery Log Entry 7======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_none
+traddr:  192.168.2.214
+eflags:  none
+sectype: none
+=====Discovery Log Entry 8======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.subsys_CLIENT114
+traddr:  192.168.1.214
+eflags:  none
+sectype: none
+=====Discovery Log Entry 9======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.subsys_CLIENT114
+traddr:  192.168.1.215
+eflags:  none
+sectype: none
+=====Discovery Log Entry 10======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.subsys_CLIENT114
+traddr:  192.168.2.215
+eflags:  none
+sectype: none
+=====Discovery Log Entry 11======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.subsys_CLIENT114
+traddr:  192.168.2.214
+eflags:  none
+sectype: none
+=====Discovery Log Entry 12======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_dhchap
+traddr:  192.168.1.214
+eflags:  none
+sectype: none
+=====Discovery Log Entry 13======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_dhchap
+traddr:  192.168.1.215
+eflags:  none
+sectype: none
+=====Discovery Log Entry 14======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_dhchap
+traddr:  192.168.2.215
+eflags:  none
+sectype: none
+=====Discovery Log Entry 15======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_dhchap
+traddr:  192.168.2.214
+eflags:  none
+sectype: none
+----
+====
+. 検出サブシステムのPDCを作成します。
++
+[listing]
+----
+nvme discover -t <trtype> -w <host-traddr> -a <traddr> -p
+----
++
+*出力例：*
+
++
+[listing]
+----
+nvme discover -t tcp -w 192.168.1.16 -a 192.168.1.116 -p
+----
+. ONTAPコントローラから、PDCが作成されたことを確認します。
++
+[listing]
+----
+vserver nvme show-discovery-controller -instance -vserver vserver_name
+----
++
+*出力例：*
+
++
+[listing, subs="+quotes"]
+----
+vserver nvme show-discovery-controller -instance -vserver vs_nvme175
+Vserver Name: vs_CLIENT116 Controller ID: 00C0h
+Discovery Subsystem NQN: *nqn.1992- 08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:discovery* Logical Interface UUID: d23cbb0a-c0a6-11ec-9731-d039ea165abc Logical Interface: CLIENT116_lif_4a_1
+Node: A400-14-124
+Host NQN: nqn.2014-08.org.nvmexpress:uuid:12372496-59c4-4d1b-be09- 74362c0c1afc
+Transport Protocol: nvme-tcp
+Initiator Transport Address: 192.168.1.16
+Host Identifier: 59de25be738348f08a79df4bce9573f3 Admin Queue Depth: 32
+Header Digest Enabled: false Data Digest Enabled: false
+Vserver UUID: 48391d66-c0a6-11ec-aaa5-d039ea165514
+----
+
+
+
+
+== セキュアなインバンド認証のセットアップ
+
+ONTAP 9.12.1以降では、SLES 15 SP5ホストとONTAPコントローラの間でNVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。
+
+セキュアな認証を設定するには、各ホストまたはコントローラを `DH-HMAC-CHAP` キー。NVMeホストまたはコントローラのNQNと管理者が設定した認証シークレットを組み合わせたものです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。
+
+CLIまたは設定JSONファイルを使用して、セキュアなインバンド認証を設定できます。サブシステムごとに異なるDHCHAPキーを指定する必要がある場合は、config JSONファイルを使用する必要があります。
+
+[role="tabbed-block"]
+====
+.CLI の使用
+--
+.手順
+. ホストNQNを取得します。
++
+[listing]
+----
+cat /etc/nvme/hostnqn
+----
+. SLES15 SP5ホストのDHCHAPキーを生成します。
++
+[listing]
+----
+nvme gen-dhchap-key -s optional_secret -l key_length {32|48|64} -m HMAC_function {0|1|2|3} -n host_nqn
+
+•	-s secret key in hexadecimal characters to be used to initialize the host key
+•	-l length of the resulting key in bytes
+•	-m HMAC function to use for key transformation
+0 = none, 1- SHA-256, 2 = SHA-384, 3=SHA-512
+•	-n host NQN to use for key transformation
+----
++
+次の例では、HMACが3に設定されたランダムDHCHAPキー（SHA-512）が生成されます。
+
++
+[listing]
+----
+# nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:d3ca725a- ac8d-4d88-b46a-174ac235139b
+DHHC-1:03:J2UJQfj9f0pLnpF/ASDJRTyILKJRr5CougGpGdQSysPrLu6RW1fGl5VSjbeDF1n1DEh3nVBe19nQ/LxreSBeH/bx/pU=:
+----
+. ONTAPコントローラで、ホストを追加し、両方のDHCHAPキーを指定します。
++
+[listing]
+----
+vserver nvme subsystem host add -vserver <svm_name> -subsystem <subsystem> -host-nqn <host_nqn> -dhchap-host-secret <authentication_host_secret> -dhchap-controller-secret <authentication_controller_secret> -dhchap-hash-function {sha-256|sha-512} -dhchap-group {none|2048-bit|3072-bit|4096-bit|6144-bit|8192-bit}
+----
+. ホストは、単方向と双方向の2種類の認証方式をサポートします。ホストで、ONTAPコントローラに接続し、選択した認証方式に基づいてDHCHAPキーを指定します。
++
+[listing]
+----
+nvme connect -t tcp -w <host-traddr> -a <tr-addr> -n <host_nqn> -S <authentication_host_secret> -C <authentication_controller_secret>
+----
+. 検証する `nvme connect authentication` ホストとコントローラのDHCHAPキーを確認してコマンドを実行します。
++
+.. ホストDHCHAPキーを確認します。
++
+[listing]
+----
+$cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_secret
+----
++
+*単方向設定の出力例：*
+
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys1/nvme*/dhchap_secret
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+----
+.. コントローラのDHCHAPキーを確認します。
++
+[listing]
+----
+$cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_ctrl_secret
+----
++
+*双方向コンフィグレーションの出力例：*
+
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys6/nvme*/dhchap_ctrl_secret
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+----
+
+
+
+
+--
+.JSON ファイル
+--
+を使用できます `/etc/nvme/config.json` を含むファイル `nvme connect-all` ONTAPコントローラ構成で複数のNVMeサブシステムを使用できる場合のコマンド。
+
+JSONファイルは次のコマンドを使用して生成できます。 `-o` オプション構文オプションの詳細については、nvme connect-allのマニュアルページを参照してください。
+
+.手順
+. JSON ファイルを設定します。
++
+[listing]
+----
+# cat /etc/nvme/config.json
+[
+ {
+    "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:12372496-59c4-4d1b-be09-74362c0c1afc",
+    "hostid":"3ae10b42-21af-48ce-a40b-cfb5bad81839",
+    "dhchap_key":"DHHC-1:03:Cu3ZZfIz1WMlqZFnCMqpAgn/T6EVOcIFHez215U+Pow8jTgBF2UbNk3DK4wfk2EptWpna1rpwG5CndpOgxpRxh9m41w=:"
+ },
+
+ {
+    "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:12372496-59c4-4d1b-be09-74362c0c1afc",
+    "subsystems":[
+        {
+            "nqn":"nqn.1992-08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:subsystem.subsys_CLIENT116",
+            "ports":[
+               {
+                    "transport":"tcp",
+                    "traddr":"192.168.1.117",
+                    "host_traddr":"192.168.1.16",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               },
+               {
+                    "transport":"tcp",
+                    "traddr":"192.168.1.116",
+                    "host_traddr":"192.168.1.16",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               },
+               {
+                    "transport":"tcp",
+                    "traddr":"192.168.2.117",
+                    "host_traddr":"192.168.2.16",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               },
+               {
+                    "transport":"tcp",
+                    "traddr":"192.168.2.116",
+                    "host_traddr":"192.168.2.16",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               }
+           ]
+       }
+   ]
+ }
+]
+
+[NOTE]
+In the preceding example, `dhchap_key` corresponds to `dhchap_secret` and `dhchap_ctrl_key` corresponds to `dhchap_ctrl_secret`.
+----
+. config jsonファイルを使用してONTAPコントローラに接続します。
++
+[listing]
+----
+nvme connect-all -J /etc/nvme/config.json
+----
++
+*出力例*：
+
++
+[listing]
+----
+traddr=192.168.2.116 is already connected
+traddr=192.168.1.116 is already connected
+traddr=192.168.2.117 is already connected
+traddr=192.168.1.117 is already connected
+traddr=192.168.2.117 is already connected
+traddr=192.168.1.117 is already connected
+traddr=192.168.2.116 is already connected
+traddr=192.168.1.116 is already connected
+traddr=192.168.2.116 is already connected
+traddr=192.168.1.116 is already connected
+traddr=192.168.2.117 is already connected
+traddr=192.168.1.117 is already connected
+----
+. 各サブシステムの各コントローラでDHCHAPシークレットが有効になっていることを確認します。
++
+.. ホストDHCHAPキーを確認します。
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_secret
+----
++
+*出力例：*
+
++
+[listing]
+----
+DHHC-1:01:NunEWY7AZlXqxITGheByarwZdQvU4ebZg9HOjIr6nOHEkxJg:
+----
+.. コントローラのDHCHAPキーを確認します。
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_ctrl_secret
+----
++
+*出力例：*
+
++
+[listing]
+----
+DHHC-
+1:03:2YJinsxa2v3+m8qqCiTnmgBZoH6mIT6G/6f0aGO8viVZB4VLNLH4z8CvK7pV YxN6S5fOAtaU3DNi12rieRMfdbg3704=:
+
+----
+
+
+
+
+--
+====
+
+
 == 既知の問題
 
-既知の問題はありません。
+ONTAPリリースのSLES 15 SP5に既知の問題はありません。

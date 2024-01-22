@@ -249,8 +249,6 @@ NOTE: これはQlogic NVMe/FCホストには該当しません。
 
 === NVMeサービスを有効にする
 
-次の手順を使用してNVMeサービスを有効にできます。
-
 には2つのNVMe/FCブートサービスが含まれています。 `nvme-cli` パッケージ（_only_） `nvmefc-boot-connections.service` システム起動中に起動できるようになっています。  `nvmf-autoconnect.service` が有効になっていません。そのため、手動で有効にする必要があります。 `nvmf-autoconnect.service` システム起動中に起動します。
 
 .手順
@@ -568,7 +566,7 @@ Device           Vserver                   Namespace Path                       
 
 
 
-== 検出の機能拡張
+== 永続的検出コントローラの作成
 
 ONTAP 9.11.1以降では、次の手順を使用してSLES 15 SP4ホスト用の永続的検出コントローラ（PDC）を作成できます。NVMeサブシステムの追加や削除のシナリオや検出ログページのデータに対する変更を自動的に検出するには、PDCが必要です。
 
