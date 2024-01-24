@@ -3548,4 +3548,14 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="6a96fe80380b5c7c7a686cbebfad76d9" category="list-text">SLES15 SP5ホストのDHCHAPキーを生成します。</block>
   <block id="d3e220182499e43aeadc8bda16bcb3db" category="paragraph">次の例では、HMACが3に設定されたランダムDHCHAPキー（SHA-512）が生成されます。</block>
   <block id="bd8e8f9aa877bbf46ba78e30655f8fcb" category="paragraph">ONTAPリリースのSLES 15 SP5に既知の問題はありません。</block>
+  <block id="4ac1d0cb33ca920ad318b5108ad35c83" category="summary">ONTAPでUbuntu 20.04を使用する方法について説明します。</block>
+  <block id="884709522224b2e2f9861c09fe418c9f" category="doc">ONTAPでUbuntu 20.04を使用する</block>
+  <block id="c47bdeb8aa6e7dfdadec0c481e4a21ce" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてUbuntu 20.04を設定できます。</block>
+  <block id="b93c5ef5e73d23bb7f86e491eeee988e" category="admonition">NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、Ubuntu 20.04 OSでは使用できません。</block>
+  <block id="17ce72ad1f5e6eaa8a603ac974a06f2d" category="paragraph">Ubuntu 20.04の場合、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Ubuntu 20.04は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="cb22bc47f0f8e662ab604bbcbf236866" category="paragraph">Ubuntu 20.04 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての構成パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="47310b4ac9536318d7bb35ce155bbc39" category="paragraph">ONTAPリリースのUbuntu 20.04に関する既知の問題はありません。</block>
+  <block id="3d945423f8e9496c429a5d8c65b4604f" category="sidebar">Ubuntu</block>
+  <block id="4ecf3c9493d36f3a582a25b68e645741" category="sidebar">Ubuntu - FCP</block>
+  <block id="7cd95c816f8a04ff858a857e3e5a484d" category="sidebar">20.04</block>
 </blocks>
