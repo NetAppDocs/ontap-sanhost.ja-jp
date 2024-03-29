@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_rhel_93.html 
-keywords: host utilities, red hat, rhel, linux, 9.3, netapp, ontap, rhel 
-summary: Red Hat Enterprise Linux 9.3とONTAPの併用方法について説明します。 
+permalink: hu_ubuntu_2204.html 
+keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
+summary: ONTAPでUbuntu 22.04を使用する方法について説明します。 
 ---
-= Red Hat Enterprise Linux 9.3とONTAPの併用
+= ONTAPでUbuntu 22.04を使用
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,57 +16,17 @@ summary: Red Hat Enterprise Linux 9.3とONTAPの併用方法について説明�
 
 
 [role="lead"]
-ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 9.3を設定できます。
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてUbuntu 22.04を設定できます。
 
 
+NOTE: Ubuntu 22.04 OSでは、NetApp Linux Unified Host Utilitiesソフトウェアパッケージは使用できません。
 
-== Linux Unified Host Utilities をインストールします
-
-NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
-
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
-
-.必要なもの
-Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、そのバージョンをアップグレードまたは削除してから、次の手順に従って最新バージョンをインストールする必要があります。
-
-.手順
-. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
-. ソフトウェアパッケージをインストールします。
-+
-「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
-
-
-
-
-
-== SANツールキット
-
-このツールキットは、NetApp Host Utilitiesパッケージをインストールすると自動的にインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNとHBAの管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
-
-次の例では 'lun lun lun show コマンドは LUN 情報を返します
-
-[source, cli]
-----
-# sanlun lun show all
-----
-*出力例：*
-
-[listing]
-----
-controller(7mode/E-Series)/            device     host               lun
-vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
-------------------------------------------------------------------------------------
-vs_147_32glpe	         /vol/vol1/lun	 /dev/sdb	Host11  FCP        10g	cDOT
-vs_147_32glpe	         /vol/vol1/lun	 /dev/sdx	Host11  FCP        10g	cDOT
-vs_147_32glpe	         /vol/vol2/lun	 /dev/sdbt  host12 FCP        10g	cDOT
-vs_147_32glpe	         /vol/vol2/lun	 /dev/sdax	host12  FCP        10g	cDOT
-----
 
 
 == SAN ブート中です
 
 .必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用しているOS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認します。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -86,7 +46,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-Red Hat Enterprise Linux（RHEL）9.3の場合、 `/etc/multipath.conf` ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 9.3は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。
+Ubuntu 22.04の場合、 `/etc/multipath.conf` ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Ubuntu 22.04は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。
 
 「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
 
@@ -102,13 +62,14 @@ Red Hat Enterprise Linux（RHEL）9.3の場合、 `/etc/multipath.conf` ファ�
 [listing]
 ----
 # multipath -ll
-3600a098038314359725d516c69733471 dm-22 NETAPP,LUN C-Mode
-size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+3600a098038314559533f524d6c652f62 dm-24 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:3:0  sdau 66:224 active ready running
-  |- 12:0:4:0  sdco 69:192 active ready running
-  |- 12:0:0:0  sdav 66:240 active ready running
-  `- 11:0:2:0  sdat 66:208 active ready running
+  |- 11:0:1:13 sdm  8:192  active ready running
+  |- 11:0:3:13 sdah 66:16  active ready running
+  |- 12:0:1:13 sdbc 67:96  active ready running
+  `- 12:0:3:13 sdbx 68:176 active ready running
+
 ----
 
 NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
@@ -125,14 +86,14 @@ ASA以外の構成では、優先度が異なる2つのパスグループが必�
 [listing]
 ----
 # multipath -ll
-3600a0980383149783224544d334a644d dm-10 NETAPP,LUN C-Mode
+3600a098038314c4c715d5732674e6141 dm-0 NETAPP,LUN C-Mode
 size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
-| |- 12:0:0:18 sdbj 67:208 active ready running
-| `- 11:0:1:18 sdan 66:112 active ready running
+| |- 11:0:1:0 sda 8:0  active ready running
+| `- 12:0:2:0 sdd 8:48 active ready running
 `-+- policy='service-time 0' prio=10 status=enabled
-  |- 11:0:0:18 sdt  65:48  active ready running
-  `- 12:0:3:18 sdcf 69:48  active ready running
+  |- 11:0:2:0 sdb 8:16 active ready running
+  `- 12:0:1:0 sdc 8:32 active ready running
 
 ----
 
@@ -142,7 +103,7 @@ NOTE: 1 つの LUN へのパスを余分に使用しないでください。必�
 
 == 推奨設定
 
-RHEL 9.3 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。
+Ubuntu 22.04 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての構成パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。
 
 。 `multipath.conf` マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。
 
@@ -292,15 +253,4 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 == 既知の問題
 
-RHEL 9.3 with ONTAPリリースには、次の既知の問題があります。
-
-[cols="20, 20, 50,20"]
-|===
-| NetApp バグ ID | タイトル | 説明 | JIRA iD 
-
-
-| 1508554. | NetApp Linux Host Utilities CLIでは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）アダプタの検出をサポートするために、ライブラリパッケージの依存関係を追加する必要があります。 | RHEL 9.xでは、NetApp Linux SAN Host UtilitiesのCLI `sanlun fcp show adapter -v` が失敗するのは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）検出をサポートするためのライブラリパッケージの依存関係が見つからないためです。 | 該当なし 
-
-
-| 1593771 | Red Hat Enterprise Linux 9.3 QLogic SANホストで、ストレージ移動の処理中に部分的なマルチパスが失われることがある | ONTAPストレージコントローラのテイクオーバー処理では、マルチパスの半分が停止するかフェイルオーバーモードに切り替わり、ギブバックワークフローの実行中にフルパス数に回復します。ただし、Red Hat Enterprise Linux（RHEL）9.3 QLogicホストでは、ストレージフェイルオーバーのギブバック処理後にリカバリされるのは部分的なマルチパスのみです。 | RHEL 17811 
-|===
+ONTAPリリースのUbuntu 22.04に関する既知の問題はありません。

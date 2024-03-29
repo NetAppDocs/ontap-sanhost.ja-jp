@@ -3558,4 +3558,31 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="3d945423f8e9496c429a5d8c65b4604f" category="sidebar">Ubuntu</block>
   <block id="4ecf3c9493d36f3a582a25b68e645741" category="sidebar">Ubuntu - FCP</block>
   <block id="7cd95c816f8a04ff858a857e3e5a484d" category="sidebar">20.04</block>
+  <block id="61b07fd83e5960959693b88b1afdfcbe" category="summary">ONTAPでUbuntu 22.04を使用する方法について説明します。</block>
+  <block id="d2142f1d82ab3f8920c5e47446631d4b" category="doc">ONTAPでUbuntu 22.04を使用</block>
+  <block id="4fbbd56106aac3814f8ddd0f05db140b" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてUbuntu 22.04を設定できます。</block>
+  <block id="7c1e8635bc3420ecd446913f429d9ea8" category="admonition">Ubuntu 22.04 OSでは、NetApp Linux Unified Host Utilitiesソフトウェアパッケージは使用できません。</block>
+  <block id="aa9b36be0bfd178660104314442edd58" category="paragraph">Ubuntu 22.04の場合、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Ubuntu 22.04は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="918af3e81e1488cf1519a1f43482b774" category="paragraph">Ubuntu 22.04 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての構成パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="268d764f10521ffc4e0f9dfd03765bd6" category="paragraph">ONTAPリリースのUbuntu 22.04に関する既知の問題はありません。</block>
+  <block id="78550e91fbb2b5810210b43b287b7c4e" category="summary">Ubuntu 22.04 with ONTAP用のNVMe-oFホストの設定方法</block>
+  <block id="be09412791a80b1e99189d1da97f513c" category="doc">Ubuntu 22.04（ONTAP）向けのNVMe-oFホストの設定</block>
+  <block id="c6846e0213409c96ad77f710fa307642" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Ubuntu 22.04とAsymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="71251761db71d74ce129581af51deea0" category="paragraph">ONTAPを搭載したUbuntu 22.04では、NVMe-oFホスト構成が次のようにサポートされます。</block>
+  <block id="c7b8b08d4869ac84fdd57c23e53885a4" category="list-text">標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCネームスペースのONTAPの詳細が表示されます。</block>
+  <block id="ee255f2b3c440f68a5bcc9252dfbbd03" category="paragraph">Ubuntu 22.04では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。したがって、明示的な設定は必要ありません。</block>
+  <block id="3621191bce4af482b56d942fb4c692d3" category="paragraph">次の手順を使用して、サポートされているUbuntu 22.04ソフトウェアの最小バージョンを検証できます。</block>
+  <block id="daeaa7aff0b3adc4e01d754047800447" category="list-text">Ubuntu 22.04をサーバにインストールします。インストールが完了したら、指定したUbuntu 22.04カーネルを実行していることを確認します。</block>
+  <block id="8f3ce7816b499a01a35c5c583a9b91a5" category="list-text">Ubuntu 22.04ホストで、hostnqn文字列を<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
+  <block id="c720f9a8702e2d5947dcfd0b4d0f2744" category="list-text">Ubuntu 22.04 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="9b581488b49c5ac223f72f44dce46098" category="list-text">ノード全体でサポートされているすべてのNVMe/TCPイニシエータとターゲットLIFでnvme connect-allコマンドを実行し、コントローラ損失のタイムアウト時間を30分または1、800秒以上設定します。</block>
+  <block id="2d737bddc26fec4760722ea17aae3833" category="open-title">NVMe / TCP</block>
+  <block id="b410fbf5a06284dbc3bed26b9ccd2094" category="paragraph">ONTAPリリースを使用するUbuntu 22.04でのNVMe-oFホスト構成に関する既知の問題はありません。</block>
+  <block id="90fc24312f4ab09ff404f0abfb26b105" category="cell">JIRA iD</block>
+  <block id="fb99255f11e8a5c23d9e98c28ef9997d" category="cell">1593771</block>
+  <block id="970c941050f97a801dd7266734957b39" category="cell">Red Hat Enterprise Linux 9.3 QLogic SANホストで、ストレージ移動の処理中に部分的なマルチパスが失われることがある</block>
+  <block id="a33a041bd9f15b20d1f9f0d86a594262" category="cell">ONTAPストレージコントローラのテイクオーバー処理では、マルチパスの半分が停止するかフェイルオーバーモードに切り替わり、ギブバックワークフローの実行中にフルパス数に回復します。ただし、Red Hat Enterprise Linux（RHEL）9.3 QLogicホストでは、ストレージフェイルオーバーのギブバック処理後にリカバリされるのは部分的なマルチパスのみです。</block>
+  <block id="a98f12afd377cfff4657909446bff74a" category="cell">RHEL 17811</block>
+  <block id="e764fe6b8f8825a307a87cedbef45678" category="sidebar">22.04</block>
+  <block id="829d28d8727a4d458f1c35bda30f5ad7" category="sidebar">NVMeoF Ubuntu</block>
 </blocks>
