@@ -1961,9 +1961,7 @@
   <block id="eae76491b6011f6e80494775aea500b6" category="paragraph">オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ/最適化されており、コントローラによって処理され、すべてのアクティブパスでI/Oが送信されます。</block>
   <block id="3012ce3908219f8e726469f86858ac26" category="paragraph">AIX の場合、 Path Control Module （ PCM ；パス制御モジュール）が複数のパスを制御します。PCMは、パス管理を処理するストレージベンダーが提供するコードです。これは、 Host Utilities のインストール時にインストールして有効にします。</block>
   <block id="f5188f0db18a0455b279280c37baccd9" category="list-text">ファイルを解凍します。を使用できます<block ref="310cb972d0a51b72a4a64dd98fcc2fb1" prefix=" " category="inline-code"></block> コマンドを実行します。</block>
-  <block id="488ee7d410bfc05042cf79417f62b731" category="paragraph">このコンテンツでは、ONTAP ストレージに接続されたSANホストを簡単に構成するための、ホストとバージョンに固有のベストプラクティスを紹介します。</block>
   <block id="bb80358d422ec918cde74cab08e90d5c" category="admonition">クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるホスト固有のすべての情報は、環境 クラウドクライアントにも該当します。</block>
-  <block id="7dac0335f353ff4aea15e7349355818e" category="paragraph">たとえば、オンプレミスのONTAP ストレージを設定して、オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。を設定することもできます <block ref="5671724540e4dc98b668b1507167bffb" category="inline-link-macro-rx"></block> または <block ref="e817674c4b959088a38fc0d01ba3d16d" category="inline-link-macro-rx"></block> オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。</block>
   <block id="94ed2eb93c1ea841359ebf631638ec66" category="paragraph">優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスは「アクティブ/最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
   <block id="3972a4868b0682bd7aa086e3f90df6a5" category="paragraph">この例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
   <block id="b23eda8b5a2eb7f788559c0df550f0fa" category="list-text">を実行します<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> ノード間でサポートされるすべてのNVMe/FCイニシエータターゲットLIFに対して実行するコマンド。設定時間が長いことを確認してください<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイマー再試行期間（30分など、から設定できます）<block ref="31d4084d03582af5cedde443232aa924" prefix=" " category="inline-code"></block>）connect-all中に、パス損失が発生した場合に長期間再試行されるようにします。例：</block>
@@ -2799,12 +2797,9 @@
   <block id="1bbb67631847a06bbd9b2e9dafec2134" category="section-title">Solaris Host Utilitiesのインストール</block>
   <block id="3f20da7f97c0948dba60855f74d8feb3" category="paragraph">NVMe over Fibre Channel（NVMe/FC）は、SUSE Linux Enterprise Server 15 SP1およびONTAPを実行するホストにターゲットとして設定できます。</block>
   <block id="c783ac9d690ea6f6744d8edf596a145a" category="list-text">NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SLES15 SP1 では、ネイティブの inbox lpfc ドライバを使用できます。</block>
-  <block id="c5572eca1bd94cf7d7a382167c292395" category="paragraph">==既知の問題</block>
   <block id="04e8d5a4c40a30787e3a35e62dfd0c1e" category="paragraph">NVMe/FC用のLPFCドライバを設定します。</block>
   <block id="9f988f6d1200dcd570b84c8116f6eecd" category="paragraph">FC、FCoE、およびiSCSIプロトコルを使用するCitrix Hypervisor 8シリーズOSリリースのONTAP SANホスト構成設定を構成できます。</block>
   <block id="e62de6043f25aae2915aa8c10fbaec9d" category="cell"><block ref="e62de6043f25aae2915aa8c10fbaec9d" category="inline-link-macro-rx"></block></block>
-  <block id="fad1bada1216764738043e879ec198a9" category="paragraph">==既知の問題
-既知の問題はありません。</block>
   <block id="0ea1561176c96894fb977d38bd38f871" category="section-title">Broadcom NVMe/FCテノ1MBノI/Oサイスノユウコウカ</block>
   <block id="624e2520b17b79e6e7312aaab546e064" category="section-title">Broadcom NVMe/FC用に1MBのI/Oサイズを有効にする</block>
   <block id="a597507af40f2b893bf64299ba506a89" category="doc">ONTAPでVeritas Storage Foundation 6 for Linuxを使用</block>
@@ -2893,7 +2888,6 @@
   <block id="1e1ac2f92ca06b1f068f6aa6c61883c0" category="paragraph">このリリースノートでは、ONTAPストレージシステムを使用する特定のホストの設定と管理に関する新機能と拡張機能、既知の問題と制限事項、および重要な注意事項について説明します。</block>
   <block id="2ad9563dae62baefb397a0b93e22f08a" category="list-text">Red Hat Enterprise Linux（RHEL）6およびRHEL 7ホストでは、サーバプロファイルを設定するためのチューニング済みパッケージがサポートされるようになりました。を使用できます<block ref="44559c6617511944fd997c63b107ee6b" prefix=" " category="inline-code"></block> 環境に応じて異なるプロファイルを設定するコマンド。たとえば、仮想ゲストプロファイルをゲスト仮想マシンとして使用したり、エンタープライズストレージプロファイルを使用して、エンタープライズストレージアレイのLUNを使用する構成を行うこともできます。これらの調整済みパッケージを使用すると、ONTAPのスループットとレイテンシが向上します。</block>
   <block id="b91c8d257cb2ab1f821c4201c4d98d12" category="list-text">Broadcom EmulexおよびMarvell Qlogicから32Gb FCアダプタのサポートが追加されました。</block>
-  <block id="a26aa7b42e8c5d7d2a6c295dc3421eb4" category="paragraph">最適なパフォーマンスと正常なフェイルオーバーを実現するには、正しい設定が重要です。</block>
   <block id="d183f649aa9dd1befe9fbbbebb9ce6f3" category="paragraph">この例では、デバイスのWWIDを特定し、<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> ファイル。</block>
   <block id="9befbb0a2a211b5683af5265f22799fb" category="paragraph"><block ref="59b466fd93164953e56bdd1358dc0044" prefix="" category="inline-code"></block> は、ブラックリストに追加する必要があるローカルSCSIディスクです。</block>
   <block id="8f832cd06827c0d578f135a31564e7cf" category="summary">SUSE Linux Enterprise Server 15 SP5とONTAPの使用方法について説明します。</block>
@@ -3585,4 +3579,10 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="a98f12afd377cfff4657909446bff74a" category="cell">RHEL 17811</block>
   <block id="e764fe6b8f8825a307a87cedbef45678" category="sidebar">22.04</block>
   <block id="829d28d8727a4d458f1c35bda30f5ad7" category="sidebar">NVMeoF Ubuntu</block>
+  <block id="d501883fc1a9d1cf58d8ed37251b1790" category="paragraph">SANホストは、マルチパスに対応し、ONTAP LUNで適切に動作するために重要な特定のパラメータと設定を使用して構成する必要があります。  ホストの構成は、ホストのオペレーティングシステムとプロトコルによって異なります。  最適なパフォーマンスと正常なフェイルオーバーを実現するには、正しい設定が重要です。</block>
+  <block id="4bf5914eea4e83599fedc33e6b112c24" category="paragraph">NetApp SAN Host Utilitiesを使用するようにSANホストを設定する必要があります。SAN Host Utilitiesは、LUNとHost Bus Adapter（HBA；ホストバスアダプタ）の管理と監視に役立ちます。たとえば、SAN Host Utilitiesを使用すると、ホストにマッピングされているすべてのLUNのリストを取得したり、ホストにマッピングされている特定のLUNのすべての属性のリストを表示したりできます。サポートが必要な問題がある場合は、NetAppカスタマーサポートでSAN Host Utilitiesを使用して構成に関する情報を収集することもできます。</block>
+  <block id="4606950536e67c2685627ee972feac57" category="paragraph">NetAppでは、SANホストにSAN Host Utilitiesソフトウェアがある場合、その使用を推奨しています。</block>
+  <block id="f76b486098082341b739c343f962d5d9" category="paragraph">SAN構成でサポートされている場合は、SANブートを使用するようにホストを設定して導入を簡易化し、拡張性を向上させることもできます。SANブートを使用すると、複数の新しいサーバをSANに接続して適切なブート設定を構成することで、複数の新しいサーバを導入できます。これにより、各サーバにオペレーティングシステムを個別にインストールする必要がなくなるため、時間を節約できます。</block>
+  <block id="4d82a1ec1af02725042c8c785564ee7a" category="inline-link-macro">NetApp ONTAP 対応の Amazon FSX</block>
+  <block id="cbd5bf3ac18c40540e157027878d3965" category="paragraph">たとえば、オンプレミスのSANホストやSANクラウドクライアントに接続するように、オンプレミスのONTAPストレージを構成できます。次のようなクラウド環境で実行されるストレージサービスを設定することもできます。 <block ref="54a9edfbbcc641d603aea65a27251f05" category="inline-link-macro-rx"></block> または <block ref="32496c00ec9be403fcfaf96fbaeed4b1" category="inline-link-macro-rx"></block> オンプレミスのSANホストまたはSANクラウドクライアントに接続するため。</block>
 </blocks>

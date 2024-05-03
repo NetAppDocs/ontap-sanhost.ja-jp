@@ -15,16 +15,21 @@ summary: このコンテンツでは、オンプレミスのONTAP ストレー�
 :imagesdir: ./media/
 
 
-このコンテンツでは、ONTAP ストレージに接続されたSANホストを簡単に構成するための、ホストとバージョンに固有のベストプラクティスを紹介します。
+[role="lead"]
+SANホストは、マルチパスに対応し、ONTAP LUNで適切に動作するために重要な特定のパラメータと設定を使用して構成する必要があります。  ホストの構成は、ホストのオペレーティングシステムとプロトコルによって異なります。  最適なパフォーマンスと正常なフェイルオーバーを実現するには、正しい設定が重要です。
+
+NetApp SAN Host Utilitiesを使用するようにSANホストを設定する必要があります。SAN Host Utilitiesは、LUNとHost Bus Adapter（HBA；ホストバスアダプタ）の管理と監視に役立ちます。たとえば、SAN Host Utilitiesを使用すると、ホストにマッピングされているすべてのLUNのリストを取得したり、ホストにマッピングされている特定のLUNのすべての属性のリストを表示したりできます。サポートが必要な問題がある場合は、NetAppカスタマーサポートでSAN Host Utilitiesを使用して構成に関する情報を収集することもできます。
+
+NetAppでは、SANホストにSAN Host Utilitiesソフトウェアがある場合、その使用を推奨しています。
+
+SAN構成でサポートされている場合は、SANブートを使用するようにホストを設定して導入を簡易化し、拡張性を向上させることもできます。SANブートを使用すると、複数の新しいサーバをSANに接続して適切なブート設定を構成することで、複数の新しいサーバを導入できます。これにより、各サーバにオペレーティングシステムを個別にインストールする必要がなくなるため、時間を節約できます。
 
 SANホストとONTAP ストレージは、オンプレミス、クラウド、またはその両方に配置できます。
 
 
 NOTE: クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるホスト固有のすべての情報は、環境 クラウドクライアントにも該当します。
 
-たとえば、オンプレミスのONTAP ストレージを設定して、オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。を設定することもできます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストに接続したり、SANクラウドクライアントに接続したりできます。
-
-最適なパフォーマンスと正常なフェイルオーバーを実現するには、正しい設定が重要です。
+たとえば、オンプレミスのSANホストやSANクラウドクライアントに接続するように、オンプレミスのONTAPストレージを構成できます。次のようなクラウド環境で実行されるストレージサービスを設定することもできます。 link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/bluexp-fsx-ontap/index.html["NetApp ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストまたはSANクラウドクライアントに接続するため。
 
 .関連情報
 * 。 link:https://docs.netapp.com/us-en/ontap/san-config/index.html["ONTAP SANの構成"^] ONTAP のバージョンに応じて更新します

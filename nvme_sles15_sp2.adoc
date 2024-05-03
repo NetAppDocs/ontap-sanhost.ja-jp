@@ -227,11 +227,13 @@ Device Vserver Namespace Path NSID UUID Size
   ]
 }
 ----
-+
-==既知の問題
+
+
+
+
+== 既知の問題
+
 既知の問題はありません。
-
-
 
 
 
