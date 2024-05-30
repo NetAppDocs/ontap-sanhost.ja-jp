@@ -3585,4 +3585,25 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="f76b486098082341b739c343f962d5d9" category="paragraph">SAN構成でサポートされている場合は、SANブートを使用するようにホストを設定して導入を簡易化し、拡張性を向上させることもできます。SANブートを使用すると、複数の新しいサーバをSANに接続して適切なブート設定を構成することで、複数の新しいサーバを導入できます。これにより、各サーバにオペレーティングシステムを個別にインストールする必要がなくなるため、時間を節約できます。</block>
   <block id="4d82a1ec1af02725042c8c785564ee7a" category="inline-link-macro">NetApp ONTAP 対応の Amazon FSX</block>
   <block id="cbd5bf3ac18c40540e157027878d3965" category="paragraph">たとえば、オンプレミスのSANホストやSANクラウドクライアントに接続するように、オンプレミスのONTAPストレージを構成できます。次のようなクラウド環境で実行されるストレージサービスを設定することもできます。 <block ref="54a9edfbbcc641d603aea65a27251f05" category="inline-link-macro-rx"></block> または <block ref="32496c00ec9be403fcfaf96fbaeed4b1" category="inline-link-macro-rx"></block> オンプレミスのSANホストまたはSANクラウドクライアントに接続するため。</block>
+  <block id="99fc62da3c4063c517d61da1e5cb3ea3" category="summary">ONTAPを使用したRHEL 9.4用のNVMe-oFホストの設定方法</block>
+  <block id="0f57fe9eb655baeaa1793e610b42c2f4" category="doc">ONTAPを使用したRHEL 9.4向けのNVMe-oFホストの設定</block>
+  <block id="d6b5282a090c91c3f085ec6086ba3812" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Red Hat Enterprise Linux（RHEL）9.4とAsymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="90cb969c9c4cfedd40361241a5d9c71b" category="paragraph">ONTAPを使用したRHEL 9.4のNVMe-oFホスト構成では、次の機能がサポートされます。</block>
+  <block id="7e625f4c4c9c1ccd710847cc4037c2c5" category="list-text">RHEL 9.4では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。</block>
+  <block id="f3dc69e0cba8d4237a37a786c899f4c3" category="list-text">NVMe/FCプロトコルを使用したSANブートがサポートされます。</block>
+  <block id="1733de5a596dfd8c9179b7f061fe9051" category="paragraph">既知の制限事項はありません。</block>
+  <block id="ad9672840bc0ef8e354ab95610d4aad0" category="paragraph">サポートされるRHEL 9.4ソフトウェアの最小バージョンは、次の手順を使用して検証できます。</block>
+  <block id="1fc43ef5bbf00643a63f0cb17e89513c" category="list-text">サーバにRHEL 9.4をインストールします。インストールが完了したら、指定したRHEL 9.4カーネルが実行されていることを確認します。</block>
+  <block id="a64e6eb6496dd553f89b6df74f0198bd" category="list-text">RHEL 9.4ホストで、hostnqnという文字列を<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
+  <block id="877a23b250be27d69c46a42ea66ce372" category="list-text">RHEL 9.4 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新の修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="8f222056258c7ab02f5add2e3dcea705" category="paragraph">NVMe/TCPには自動接続機能はありません。そのため、NVMe/TCPの接続または接続-すべての機能を手動で実行して、NVMe/TCPサブシステムとネームスペースを検出する必要があります。</block>
+  <block id="6cac16b75ec7c1c0cf3fdcb09bb8b510" category="admonition">RHEL 9.4以降では、NVMe/TCPのデフォルト設定<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイムアウトがオフになっているため、再試行回数に制限はありません（無期限の再試行）。そのため、特定の<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> nvme connectコマンドまたはnvme connect-allコマンドを使用した場合のタイムアウト時間（オプション-l）。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。</block>
+  <block id="93955aae7b33676909e1f1724f699b74" category="paragraph">ONTAPリリースを使用するRHEL 9.4でのNVMe-oFホスト構成に関する既知の問題はありません。</block>
+  <block id="c78033326da0dc85293c84954e3b3012" category="summary">Red Hat Enterprise Linux 9.4とONTAPの併用方法について説明します。</block>
+  <block id="4b56958d28f3694a2adfefd32d8705e7" category="doc">Red Hat Enterprise Linux 9.4とONTAPの併用</block>
+  <block id="788e0ec94e64fbc7dd232fb1cecd4052" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 9.4を設定できます。</block>
+  <block id="3ce1443ad7e3181c19eca5a21a312153" category="paragraph">Red Hat Enterprise Linux（RHEL）9.4の場合、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 9.4は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="aec8d85637dcc004808d5ebb83597d99" category="paragraph">RHEL 9.4 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="d0416aff963666e337ccc38e2c8cf339" category="paragraph">ONTAPリリースを使用するRHEL 9.4のFCホスト構成に関する既知の問題はありません。</block>
+  <block id="b68de8f1f938e0330acdf64c63b08b9a" category="sidebar">9.4</block>
 </blocks>
