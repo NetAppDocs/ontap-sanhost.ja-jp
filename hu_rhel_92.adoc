@@ -301,8 +301,8 @@ RHEL 9.2 with ONTAPリリースには、次の既知の問題があります。
 | NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
 
-| 1508554. | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.2では、NetApp Linux SAN Host Utilities CLIです `sanlun fcp show adapter -v` は、HBA検出をサポートするライブラリパッケージの依存関係が見つからないために失敗します。 | 該当なし 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.2では、NetApp Linux SAN Host Utilities CLIです `sanlun fcp show adapter -v` は、HBA検出をサポートするライブラリパッケージの依存関係が見つからないために失敗します。 | 該当なし 
 
 
-| 1537359 | Emulex HBAを搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します | ストレージフェイルオーバーのギブバック処理で、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）を搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します。カーネルが中断されると、オペレーティングシステムが再起動します `kdump` が設定されると、が生成されます `vmcore` の下にあるファイル `/var/crash/` ディレクトリ。問題をでトリアージしています `lpfc` ドライバーですが、一貫して再現することはできません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=2173947["2173947"^] 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1537359["1537359"^] | Emulex HBAを搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します | ストレージフェイルオーバーのギブバック処理で、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）を搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します。カーネルが中断されると、オペレーティングシステムが再起動します `kdump` が設定されると、が生成されます `vmcore` の下にあるファイル `/var/crash/` ディレクトリ。問題をでトリアージしています `lpfc` ドライバーですが、一貫して再現することはできません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=2173947["2173947"^] 
 |===

@@ -66,9 +66,13 @@ nvme-cli-1.16-5.el8.x86_64
 ----
 . カーネル内の NVMe マルチパスを有効にします。
 +
+* 例 *
+
++
 [listing]
 ----
-# grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-425.3.1.el8.x86_64
+# grubby --args=nvme_core.multipath=Y --update-kernel
+/boot/vmlinuz-4.18.0-425.3.1.el8.x86_64
 ----
 . ホストで、 /etc/nvme/hostnqn に示されたホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。例
 +

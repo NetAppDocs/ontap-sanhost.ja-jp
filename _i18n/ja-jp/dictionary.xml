@@ -1356,7 +1356,6 @@
   <block id="784c795c066fdf3c4713aae58af639ff" category="paragraph">既知の問題はありません。</block>
   <block id="c2e11c6f1a87d8cf2bf465e9c2562bdb" category="inline-link-macro">TR-4597 ：『 VMware vSphere with ONTAP 』</block>
   <block id="52f50d0f0ab285059648c7da67b4b07f" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
-  <block id="929c9a7053ca6d930b0835cb93342235" category="inline-link-macro">NetApp ONTAP と NetApp SnapMirror によるビジネス継続性（ SM-BC ）と VMware vSphere Metro Storage Cluster （ vMSC ）</block>
   <block id="51a78203e5d6aa30e5bcafd469a2d2be" category="summary">SUSE Linux Enterprise Server 12 SP5 と ONTAP の使用方法について説明します</block>
   <block id="9a6a6fde9dc0b6c6cf58bb4752be3433" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="84c7846e7158b0d270be911eb58ad456" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="3622b9af63906c6b9ad79d33b1f46e2e" category="paragraph">SUSE Linux Enterprise Server 12 SP5 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP5 は、 ONTAP LUN を認識して適切に管理するために必要なすべての設定でコンパイルされます。</block>
@@ -1613,7 +1612,6 @@
   <block id="095f17ad6c7f706c5fa881fa28d2b0e2" category="sidebar">XenServer 7</block>
   <block id="025006946b1c53786cbb29eef3d30229" category="paragraph">指示に従って、オーバーライドパラメータを設定します。</block>
   <block id="570f5761e2e0bfb396196b06d19e21b0" category="paragraph">`root@host-a:~# devprop-v-n /scsi_vhci -failover-override scsi-vhci -failover-override= NetApp LUN + f_tpgs root@host -a :~# echo "* scsi_vhci_dibling :print-x struct dev_info deive_vdive_vacuct | vdc_info vibl_sig_ info vstruct</block>
-  <block id="5492ce934067a932652b5c7aa5dd991b" category="inline-link">Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます</block>
   <block id="1da730d18c28f088385f1eaca3cb2f71" category="summary">ONTAP で ESXi 7.x の NVMe-oF を設定する方法について説明します</block>
   <block id="38a445b35a68bb2b838316376b083c19" category="doc">ONTAP を使用した ESXi 7.x の NVMe-oF ホストの設定</block>
   <block id="1149b7a7ae9be623a3a7a3f347ff721f" category="list-text">ONTAP 9.9.1 P3 以降では、 ESXi 7.0 Update 3 で NVMe/FC 機能がサポートされます。</block>
@@ -1631,7 +1629,6 @@
   <block id="a4e09728b21e07eb8de92849a3239079" category="admonition">ONTAP 9.7 では、 NVMe/FC ネームスペースのデフォルトのブロックサイズは 4K です。このデフォルトサイズは ESXi に対応していません。したがって、 ESXi のネームスペースを作成する場合は、ネームスペースのブロックサイズを 512b に設定する必要があります。これを行うには、「 vserver nvme namespace create 」コマンドを使用します。</block>
   <block id="b19cff5a6d037faf5ffa796506cf839f" category="inline-link-macro">ONTAP 9 コマンドのマニュアルページ</block>
   <block id="471e82326ed5017bfdb518b5d33377cc" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
-  <block id="0a7c052037789d22811592a15b7a2e17" category="inline-link-macro">NetApp ® SnapMirror ® ビジネス継続性（ SM-BC ）による VMware vSphere 6.x および 7.x のサポート</block>
   <block id="ff09581cb2c13d8ad132e71c1320dc7e" category="cell"><block ref="108e2d22c5beb633cb3cfe03baa4f66f" category="inline-link-macro-rx"></block></block>
   <block id="8286a7d77eb7d53445229f3c12d8c18f" category="cell"><block ref="8286a7d77eb7d53445229f3c12d8c18f" category="inline-link-macro-rx"></block></block>
   <block id="109d2ee1c560df7a2148394570cdbc69" category="cell"><block ref="109d2ee1c560df7a2148394570cdbc69" category="inline-link-macro-rx"></block></block>
@@ -1644,9 +1641,6 @@
   <block id="b0a76d3d3c0c115749b76b173897a127" category="list-text">を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="3c5ff01a1cadf5679b57603dbc59e554" category="list-text">を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="9a85ce7daf00cd97d2ba489c461c944f" category="paragraph">を参照してください <block ref="6bc1436da9f0920d54a0f738830d902f" category="inline-link-macro-rx"></block> を参照してください。</block>
-  <block id="d1456688e4d9e6236e75dfb01f3ed2ec" category="paragraph"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block>
-<block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block>
-<block ref="feedbf2928c5a2b3814dd0d36cd7d240" category="inline-link-macro-rx"></block></block>
   <block id="ab29bda450e857b3672661ee0b1f2ec3" category="paragraph">を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされている構成およびバージョンの最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="2d3e43ea7c8c91fc0a78b6056554ec91" category="paragraph">ONTAP 9.6 以降では、 Oracle Linux 7.9 に対して NVMe/FC がサポートされます。Oracle Linux 7.9 ホストでは、 NVMe トラフィックと SCSI トラフィックの両方を、同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="fe11a5d007b30b19387669fa13d0bc9d" category="paragraph">を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block> サポートされている構成に関する正確な情報については、を参照</block>
@@ -1660,7 +1654,6 @@
   <block id="2a0a4348e3cfffb7106ae13ae6827b6d" category="paragraph">NVMe/FC は、 ONTAP Linux 8.2 では 9.6 以降でサポートされます。Oracle Linux 8.2 ホストでは、 NVMe/FC と FCP の両方のトラフィックを、同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポート経由で実行できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="24b832a3c490bb4e76193c9ae615cd2b" category="admonition">UNMAP が機能するために、 VMware vSphere にマッピングされているすべての LUN で space-allocation 設定を有効にします。詳細については、を参照してください<block ref="ecbbd19c2959ac5708c6c4723def4492" category="inline-link-rx"></block>。</block>
   <block id="8a515fe16331b7269862c5871e55c7e4" category="list-text"><block ref="8a515fe16331b7269862c5871e55c7e4" category="inline-link-macro-rx"></block></block>
-  <block id="5306229c164cfe6b066f8442f64d8268" category="list-text"><block ref="5306229c164cfe6b066f8442f64d8268" category="inline-link-macro-rx"></block></block>
   <block id="ffc3e17a9258b28dbcb840e63a4da4d4" category="list-text">ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます<block ref="0a2387641ef9263b02d75ca03cdebda2" category="inline-link-rx"></block> サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。</block>
   <block id="ce5e3ba4f12b670c7cec88d808b05d5b" category="list-text">仮想化ストレージ・リソース（ vdsk など）のみを使用するパーティションや仮想マシンは、 NetApp LUN に直接アクセスできないため、特別な認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります<block ref="0a2387641ef9263b02d75ca03cdebda2" category="inline-link-rx"></block>。</block>
   <block id="806bc64df06f53e39492ea141c1547ac" category="paragraph">NVMe/FC は、 ONTAP Linux 7.8 に対して、 9.6 以降でサポートされています。Oracle Linux 7.8 ホストは、 NVMe と SCSI の両方のトラフィックを、同じ Fibre Channel （ FC ）イニシエータアダプタポート経由で実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
@@ -1734,8 +1727,6 @@
   <block id="685ee6c581bc2df3a8910672a2af1ac3" category="paragraph">RHEL 8.5 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
   <block id="845e85fa64a2d6037055beba19fe0bd8" category="sidebar">8.5</block>
   <block id="c22c65685ac3f8701da1a00c478b1333" category="cell">1447287</block>
-  <block id="778fd215ce10bd514de565e6df2b1758" category="cell">SM-BC 構成の独立したマスタークラスタで AUFO イベントが発生すると、 HP-UX ホストが一時的に停止します</block>
-  <block id="6f80f2e204ff92f2e954367d70413775" category="cell">この問題は、 SnapMirror の Business Continuity （ SM-BC ）構成の分離されたマスタークラスタで Automatic Unplanned Failover （ AUFO ）イベントが発生したときに発生します。HP-UX ホストで I/O が再開されるまでに 120 秒以上かかることがありますが、原因で I/O の中断やエラーメッセージが表示されない可能性があります。この問題では、プライマリクラスタとセカンダリクラスタの間の接続が失われ、プライマリクラスタとメディエーターの間の接続も失われるため、二重イベント障害が発生します。これは、他の AUFO イベントとは異なり、まれなイベントとみなされます。</block>
   <block id="dd0ef0f389a16b505e475797a7b752ac" category="list-text">から HP-UX Host Utilities ファイル netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` をダウンロードします <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> を HP-UX ホストにインストールします。</block>
   <block id="93b6e09e96afb8006209af84f438ca2b" category="paragraph">#gunzip netapp_hpux_host_utilities_6.0_ia_pa.depot.gz`</block>
   <block id="2d903390e509c4d2f6da1a4d0787b5b6" category="paragraph">「 #swinstall-s/depot_path 」</block>
@@ -1828,11 +1819,7 @@
   <block id="ea11e68a3ea4e3736ee4012985057991" category="paragraph">Oracle Linux 8.6 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定します。</block>
   <block id="805a476dee7a3e2c96d744778fabadf2" category="admonition">Oracle Linux 8.6 Red Hat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.6の場合。</block>
   <block id="5ebe49302359fb6e4d762fdceb288864" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="10ee08d1b3d909bc389f3b317276174b" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
-  <block id="c0555368ec9919ce9b1c9712c00dbb76" category="section-title">SM-BCによるAIXサポート</block>
-  <block id="a87c560166b76536072b61a847b883d2" category="paragraph">ONTAP 9.11.1以降では、SM-BCでAIXがサポートされます。AIX構成では、プライマリクラスタが「アクティブ」クラスタになります。</block>
   <block id="244c37afdc307098d90d497c08f88069" category="paragraph">AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーが発生するたびに、ホストで再スキャンを実行してI/O処理を再開する必要があります。</block>
-  <block id="ba865279c8bb1f9a639935e3cb2406b0" category="inline-link-macro">SnapMirrorのビジネス継続性を実現するためのAIXホストの構成方法（SM-BC）</block>
-  <block id="ce41c78a17a5925101abf561eb152ad3" category="paragraph">AIX for SM-BCを設定する方法については、ナレッジベースの記事を参照してください <block ref="bfd553e439e8f0adcfe76e0cf010b4a4" category="inline-link-macro-rx"></block>。</block>
   <block id="ea1335497ead6bd540f2e523154123a0" category="paragraph">Red Hat Enterprise Linux (RHEL) 9.0では'/etc/multipath.confファイルが存在している必要がありますが'ファイルに特定の変更を加える必要はありませんRHEL 9.0がコンパイルされ、ONTAP LUNを認識して正しく管理するために必要なすべての設定が適用されます。</block>
   <block id="40aa2a6195f4abccde9c89cc1ad6965b" category="paragraph">RHEL 9.0 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
   <block id="587384a32d909bff27b8405e18d9d7cf" category="summary">ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方法</block>
@@ -2041,17 +2028,11 @@
   <block id="c25aa2a919e3a63ca18f5d2ba0d93494" category="paragraph">が正確であることを確認します<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> 文字列がネットアップアレイの対応するサブシステムに追加されます（を使用して確認してください）<block ref="0e04d4bf4054a77eef58ff3d9b9e59ae" prefix=" " category="inline-code"></block> コマンド）。</block>
   <block id="d517a34201e69d7cbd98e82863cbb016" category="paragraph">コントローラの関連付けまたは指定された操作がすでに作成されている場合、または作成中に発生した場合に表示されます。これは、上記にインストールされている自動接続スクリプトの一部として発生する可能性があります。</block>
   <block id="ed88a4dfde1eda848d0cd0880569e29d" category="paragraph">なしを実行してみてください<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> しばらくしてからもう一度コマンドを実行してください。の場合<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block> および<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block>を実行します<block ref="b0f1705bbfcfb10368af21a019072318" prefix=" " category="inline-code"></block> コマンドを使用して、ネームスペースデバイスが作成済みで、ホストに表示されていることを確認します。</block>
-  <block id="23013fc45b1e28aeba8b4521f80156eb" category="section-title">SnapMirrorのBusiness Continuityの推奨設定です</block>
   <block id="7682043e346a0976ad107c7cb3989145" category="list-text">構成ファイルを作成します<block ref="2c50293ac08c6ad6b30ce2ba7a8fcd9c" prefix=" " category="inline-code"></block> ネットアップストレージタイプがホストに接続されている場合は、次のようなエントリが表示されます。</block>
-  <block id="976902513d73f70373bf832d81070379" category="admonition">ONTAP 9.9.9..1以降では'Solaris 11.4ホストでSM-BC設定がサポートされています</block>
   <block id="e49ccc598a2a177291bac4be5c852c5f" category="cell"><block ref="e49ccc598a2a177291bac4be5c852c5f" category="inline-link-macro-rx"></block></block>
   <block id="edd08258c3c5f3718f84028ff5971d1d" category="section-title">Oracle Solarisの仮想化</block>
   <block id="fd515dc1fb4215f1d4f9c5a754b19cab" category="section-title">仮想化の推奨設定</block>
-  <block id="c25aaa60cb981e43df9a60c24d76e170" category="paragraph">SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションがシステムを停止しないことを確認するには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
-  <block id="a581ca8b747415e1f36b69571ad2cd82" category="admonition">ONTAP 9.9..1以降では'Solaris 11.3ホストでSM-BC設定がサポートされています</block>
   <block id="e246c6fa1d97174589605e1deac30e48" category="list-text">を使用します<block ref="01fe732856e5259c0c505f9054c784ba" prefix=" " category="inline-code"></block> および<block ref="801693b1d56b19d77272b3c6db46a751" prefix=" " category="inline-code"></block> 上書きパラメータが正常に適用されたことを確認するコマンド。</block>
-  <block id="206258ae3de99b2eff4c714432cf5621" category="admonition">実行後<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。<block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix=" " category="inline-code"></block> がに追加されました<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block>。追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください<block ref="0b0122d84e6b5077349fe91550e086e2" category="inline-link-rx"></block>。</block>
-  <block id="ce9171caa524742973555de6b74fd04b" category="paragraph">SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションが無停止であることを確認するには、Solaris 11.4ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
   <block id="d1b191cbd6f86528470b91fa5f92dac0" category="paragraph">NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびNVMe/TCPを含む）は、ONTAP アレイで稼働しているストレージフェイルオーバー（SFO）に必要な非対称ネームスペースアクセス（ANA）を備えたOracle Linux 8.6でサポートされています。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントでは、Oracle Linux 8.6およびONTAP でANAを使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について詳しく説明します。</block>
   <block id="ec06aef1c4fa2ded8e780a551fa4da6b" category="list-text">Oracle Linux 8.6では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。</block>
   <block id="3d2513530d064dd18ec62aadb74704e2" category="list-text">Oracle Linux 8.6では、<block ref="dafde1b5ed9f22cccd76aeeb9844345b" prefix=" " category="inline-code"></block> スクリプトはネイティブに含まれています<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> パッケージ。外部ベンダーが提供するアウトボックス自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。</block>
@@ -2438,7 +2419,6 @@
   <block id="0139c4257b602afedfc14532f6e3bb7f" category="list-text">ONTAP 9.13.1以降では、IBM AIX 7.2 TL5 SP6、AIX 7.3 TL1 SP2、およびVIOS 3.1.4.21リリースでNVMe/FCのサポートが追加され、物理スタックと仮想スタックの両方でSANブートがサポートされるようになりました。SANブートサポートの設定の詳細については、IBMのドキュメントを参照してください。</block>
   <block id="a4ade56204fe77a5b8d5d68b727936f2" category="list-text">NVMe/FCは、POWER9およびPower10 IBMサーバでサポートされます。</block>
   <block id="5e8f203d5d8eb8937b5474cdb4d3286d" category="list-text">NVMeデバイスには、Host Utilities for AIX SCSI Multipath I/O（MPIO）のサポートなど、個別のPCM（Path Control Module）は必要ありません。</block>
-  <block id="30c37d249753c00e3fd1f47b490ef907" category="list-text">MetroCluster構成を使用している場合は、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントがサポートされるように、AIX NVMe/FCのデフォルトのAPD（All Path Down）時間を変更することを推奨します。追加情報および推奨されるデフォルト設定の変更については、パブリックレポート1553249を参照してください。</block>
   <block id="8fe6fdeeaabeb226f9ccb84c20ce5acd" category="list-text">デフォルトでは、AIXホストOSのAsymmetric Namespace Access Transition Timeout（ANATT）の値は30秒です。IBMは、ANATT値を60秒に制限するInterim Fix（IFIX）を提供しています。すべてのONTAPワークフローが無停止であることを確認するには、IBMのWebサイトからIFIXをインストールする必要があります。</block>
   <block id="01f38bfb1f565f2f3109ceb671a58dff" category="admonition">NVMe/FC AIXをサポートするには、GAバージョンのAIX OSにIFIXをインストールする必要があります。これは、VIOS/PowerVM OSでは必要ありません。</block>
   <block id="3438c3bd2528bd32664a6b6c3c8e7c73" category="paragraph">次の表に、AIX LPAR（AIX論理パーティション）または物理スタックに割り当てられたHBAを示します。</block>
@@ -2829,13 +2809,6 @@
   <block id="7636f503a3339c628c780594076ebb17" category="section-title">コノリリースデカイケツ</block>
   <block id="977dc544e187df2c36b93ee4767972aa" category="paragraph">を実行しているときに断続的に発生するホストOS障害問題<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> SLES12SP1、OL7.2、RHEL7.2、およびRHEL 6.8のコマンドは、このリリースで修正されています。</block>
   <block id="d2eefe458609a5477d08446697ea1261" category="paragraph">Linux Host Utilities 7.1リリースには、次の既知の問題および制限事項があります。</block>
-  <block id="bb49904ee226b5b028402a9c2c228bf2" category="cell">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、Host Bus Adapter（HBA；ホストバスアダプタ）検出に必要なライブラリの依存関係を次のように設定できないことを示すエラーメッセージが表示されます。
-場所：
-
-[root@hostname ~]# sanlun fcp show adapter -v
-/usr/lib64/libHBAAPI.soライブラリが見つかりません
-ライブラリをインストールするパッケージがインストールされ、ロードされていることを確認します。
-パブリックレポート1508554を参照してください。</block>
   <block id="7d21aae7a58430ed491d0dcc91fdc835" category="paragraph">ONTAPを使用したOL 8.4のNVMe-oFホスト構成には、次の既知の問題があります。</block>
   <block id="9de20e72ce939c2312bbc9e7045ded44" category="paragraph">ONTAPをターゲットとして使用し、Windows Server 2012 R2を実行しているホストにNVMe over Fibre Channel（NVMe/FC）を設定できます。</block>
   <block id="e7183ec32fe608cc18cd79de6aab8c7f" category="inline-link-macro">ONTAP SANの構成</block>
@@ -3118,7 +3091,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="25bf44f4015fc028f21a62c878e44061" category="list-text">を実行します<block ref="1615297782a0dff59b20451e2ca97ea7" prefix=" " category="inline-code"></block> zpoolに対して実行し、* ashift *の値が<block ref="c20ad4d76fe97759aa27a0c99bff6710" prefix=" " category="inline-code"></block>。</block>
   <block id="83b7acfdc97d935459ec53ae7ab7bf2b" category="paragraph">* ashift *の値が次の値でない場合<block ref="c20ad4d76fe97759aa27a0c99bff6710" prefix=" " category="inline-code"></block>正しいパッチがインストールされていることを確認し、<block ref="3328fba80b08b36663ffae0684f6c578" prefix=" " category="inline-code"></block>。</block>
   <block id="22e4e094e328e606ba04a7acfe2e4b3b" category="paragraph">「* ashift *」に値が表示されるまで先に進まないでください。<block ref="c20ad4d76fe97759aa27a0c99bff6710" prefix=" " category="inline-code"></block>。</block>
-  <block id="ca1d91e2d1ade577213cc4880d92b088" category="admonition">実行後<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。<block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix=" " category="inline-code"></block> がに追加されました<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block>。追加情報およびデフォルト設定の推奨変更については、NetAppナレッジベースの記事を参照してください。<block ref="0b0122d84e6b5077349fe91550e086e2" category="inline-link-rx"></block>。</block>
   <block id="1abf5d50c59892ce0d08917cc4119e38" category="paragraph">Solaris 11.4 with ONTAPリリースには、次の既知の問題があります。</block>
   <block id="ea97d5c2ead91159f0f6b9bb0c5482a0" category="cell">Solaris 11.4およびHUKの推奨事項を参照してください。FCドライバのバインドが<block ref="4ac64d4c80a809df47ac078b5c56d623" prefix=" " category="inline-code"></block> 終了：<block ref="0d1e6498671862209810e5029cd1e779" prefix=" " category="inline-code"></block>。既存の構成を<block ref="d5ef7f69fa74e42b54d8244ee447ab2b" prefix=" " category="inline-code"></block> 終了：<block ref="88cafedaeae385b0e8278ab1804829cd" prefix=" " category="inline-code"></block> Oracle DOC:2595926.1に記載されています）。この動作は'新しくインストールされたSolaris 11.4システムと'Solaris 11.3以前のバージョンからアップグレードされたシステムによって異なります</block>
   <block id="65afcaea10e26dc5c66de4f6bf0ade99" category="cell">x86 ArchでEmulex 32G Host Bus Adapter（HBA；ホストバスアダプタ）を使用している場合、Storage Failover（SFO；ストレージフェイルオーバー）ギブバック処理中にSolaris LIF問題が検出されました</block>
@@ -3596,8 +3568,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="1fc43ef5bbf00643a63f0cb17e89513c" category="list-text">サーバにRHEL 9.4をインストールします。インストールが完了したら、指定したRHEL 9.4カーネルが実行されていることを確認します。</block>
   <block id="a64e6eb6496dd553f89b6df74f0198bd" category="list-text">RHEL 9.4ホストで、hostnqnという文字列を<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>：</block>
   <block id="877a23b250be27d69c46a42ea66ce372" category="list-text">RHEL 9.4 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新の修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
-  <block id="8f222056258c7ab02f5add2e3dcea705" category="paragraph">NVMe/TCPには自動接続機能はありません。そのため、NVMe/TCPの接続または接続-すべての機能を手動で実行して、NVMe/TCPサブシステムとネームスペースを検出する必要があります。</block>
-  <block id="6cac16b75ec7c1c0cf3fdcb09bb8b510" category="admonition">RHEL 9.4以降では、NVMe/TCPのデフォルト設定<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイムアウトがオフになっているため、再試行回数に制限はありません（無期限の再試行）。そのため、特定の<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> nvme connectコマンドまたはnvme connect-allコマンドを使用した場合のタイムアウト時間（オプション-l）。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。</block>
   <block id="93955aae7b33676909e1f1724f699b74" category="paragraph">ONTAPリリースを使用するRHEL 9.4でのNVMe-oFホスト構成に関する既知の問題はありません。</block>
   <block id="c78033326da0dc85293c84954e3b3012" category="summary">Red Hat Enterprise Linux 9.4とONTAPの併用方法について説明します。</block>
   <block id="4b56958d28f3694a2adfefd32d8705e7" category="doc">Red Hat Enterprise Linux 9.4とONTAPの併用</block>
@@ -3606,4 +3576,76 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="aec8d85637dcc004808d5ebb83597d99" category="paragraph">RHEL 9.4 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
   <block id="d0416aff963666e337ccc38e2c8cf339" category="paragraph">ONTAPリリースを使用するRHEL 9.4のFCホスト構成に関する既知の問題はありません。</block>
   <block id="b68de8f1f938e0330acdf64c63b08b9a" category="sidebar">9.4</block>
+  <block id="2458556d35196c49f0dbc83fec025e84" category="section-title">SnapMirrorアクティブ同期によるAIXのサポート</block>
+  <block id="c3553449ebe9e4dbb55bf9f614e9683b" category="paragraph">ONTAP 9.11.1以降では、SnapMirrorアクティブ同期でAIXがサポートされます。AIX構成では、プライマリクラスタが「アクティブ」クラスタになります。</block>
+  <block id="b6758eb9c7ac57209dfad7db602a24d4" category="inline-link-macro">AIXホストでSnapMirrorアクティブ同期を設定する方法</block>
+  <block id="1114b50a7a661e33f53cee05da42b09f" category="paragraph">AIXでSnapMirrorのアクティブな同期を設定する方法については、技術情報アーティクルを参照してください。 <block ref="61477c15fb0eb0fa0cb713009db4ee54" category="inline-link-macro-rx"></block>。</block>
+  <block id="a9e760f9ba2dad33870cce967a12f75a" category="cell"><block ref="a9e760f9ba2dad33870cce967a12f75a" category="inline-link-macro-rx"></block></block>
+  <block id="8a0e59d557c48debea02376efc489435" category="cell"><block ref="8a0e59d557c48debea02376efc489435" category="inline-link-macro-rx"></block></block>
+  <block id="0d2b4c4b2840eab7bfae167b812970ef" category="cell"><block ref="0d2b4c4b2840eab7bfae167b812970ef" category="inline-link-macro-rx"></block></block>
+  <block id="af3b3cf0d6ceafbe31919aa407157743" category="cell"><block ref="af3b3cf0d6ceafbe31919aa407157743" category="inline-link-macro-rx"></block></block>
+  <block id="bc2c3049c0f4d679fb14b74cd64723c8" category="cell"><block ref="bc2c3049c0f4d679fb14b74cd64723c8" category="inline-link-macro-rx"></block></block>
+  <block id="9dc0fe6bf4f1ba89590a2f6796e0ffe4" category="paragraph">AIX for SM-BCを設定する方法については、ナレッジベースの記事を参照してください <block ref="61477c15fb0eb0fa0cb713009db4ee54" category="inline-link-macro-rx"></block>。</block>
+  <block id="e3fc51a32f8d53fd1edcd8a7ba414fd5" category="list-text">特定のHost Bus Adapter（HBA；ホストバスアダプタ）上の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。</block>
+  <block id="7c124572f4bca997fbffe6d57ed1dbd0" category="paragraph">NVMe/TCPには自動接続機能はありません。そのため、NVMe/TCPの接続または接続-すべての機能を手動で実行して、NVMe/TCPサブシステムとネームスペースを検出する必要があります。</block>
+  <block id="b6143632d17dd26c84f31a8c6ac3d645" category="admonition">RHEL 9.4以降では、NVMe/TCPのデフォルト設定<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> タイムアウトがオフになっているため、再試行回数に制限はありません（無期限の再試行）。そのため、特定の<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block> 使用時のタイムアウト時間<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block> または<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> コマンド（オプション-l）。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。</block>
+  <block id="c96b4702a07478185cc851585d0055b6" category="inline-link-macro">NetApp ONTAPとNetApp SnapMirrorのアクティブな同期とVMware vSphere Metro Storage Cluster（vMSC）</block>
+  <block id="8b3f58063486fce853bcbb473e73c56f" category="list-text"><block ref="8b3f58063486fce853bcbb473e73c56f" category="inline-link-macro-rx"></block></block>
+  <block id="7ce2c81c828f2a1b54c1127149fe015e" category="summary">ONTAPを使用したRHEL 8.10用のNVMe-oFホストの設定方法</block>
+  <block id="f10d0e37a588d1f07d49d4a8fcea4752" category="doc">ONTAPを搭載したRHEL 8.10向けのNVMe-oFホストの設定</block>
+  <block id="b4c08aaedf475ce47e6623660aaa00df" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Red Hat Enterprise Linux（RHEL）8.10およびAsymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="5a5bc5602fe9f931767405aaaef0de37" category="paragraph">ONTAPを搭載したRHEL 8.10のNVMe-oFホスト構成では、次の機能がサポートされます。</block>
+  <block id="25faad39893d37d8787d5e2b02fb8ea6" category="list-text">RHEL 8.10 NVMe-oFホストでは、カーネル内NVMeマルチパスはデフォルトで無効になっています。そのため、手動で有効にする必要があります。</block>
+  <block id="d66635253b6aaf6f2db675ed35185ba0" category="list-text">RHEL 8.10ホストでは、未解決の問題によりNVMe/TCPがテクノロジプレビュー機能になります。</block>
+  <block id="f98bcccbb710d0c88303ee4bb4c26d7a" category="list-text">ホストサーバにRHEL 8.10をインストールします。</block>
+  <block id="559ebd58b1ddd945caa1b9c033782855" category="list-text">インストールが完了したら、指定したRHEL 8.10カーネルが実行されていることを確認します。</block>
+  <block id="52e529d58370b4d027a9d97cac867e36" category="list-text">RHEL 8.10 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="54d5fbe39d4349a06e6a2dc7b7d5b917" category="paragraph">ONTAPを備えたRHEL 8.10のNVMe-oFホスト構成には、次の既知の問題があります。</block>
+  <block id="18afb8a9c90d10fa4944c5e77101cab1" category="cell">RHEL 8.10 NVMe-oFホストで重複する永続的検出コントローラが作成される</block>
+  <block id="45e7643ebc2b41741a8515e9d1730a76" category="cell">NVMe over Fabrics（NVMe-oF）ホストでは、「nvme discover -p」コマンドを使用して、Persistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。  ただし、NVMe-oFホストでRed Hat Enterprise Linux（RHEL）8.10を実行している場合は、「nvme discover -p」を実行するたびに重複するPDCが作成されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。</block>
+  <block id="23c3f6b1dc0958b81d21563a91eecfa6" category="cell"><block ref="23c3f6b1dc0958b81d21563a91eecfa6" category="inline-link-macro-rx"></block></block>
+  <block id="e59f05c9149caf590d63da27c24797cb" category="inline-link-macro">NetApp®SnapMirror Active SyncによるVMware vSphere 6.xおよび7.xのサポート</block>
+  <block id="6fc38196f3941bcd7083730d812df39a" category="paragraph"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block>
+<block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block>
+<block ref="d28f7a65afd9b0a0129dadbafa84555d" category="inline-link-macro-rx"></block></block>
+  <block id="2a41c03d949869222b758867aff845ff" category="inline-link-macro">NetApp SnapMirror Active SyncによるVMware vSphere 6.xおよび7.xのサポート</block>
+  <block id="c8dc0bfd6733fa8c798fed363e1469e3" category="paragraph"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block>
+<block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block>
+<block ref="5f61a87054f37a4d758972ec77cfdf5e" category="inline-link-macro-rx"></block></block>
+  <block id="33bd005b46fadc3ac5ff4dc797b52e07" category="list-text">MetroCluster構成を使用している場合はNetApp、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントをサポートするために、AIX NVMe/FCのデフォルトAPD（All Path Down）時間を変更することを推奨します。追加情報およびデフォルト設定の推奨される変更については、『NetApp Bugs Online - <block ref="31191f9686b6d08dd8653718c76edbf6" category="inline-link-macro-rx"></block>。</block>
+  <block id="4d580b4b5071142b4be038164aad8343" category="cell"><block ref="4d580b4b5071142b4be038164aad8343" category="inline-link-macro-rx"></block></block>
+  <block id="0122bdec62d25017bba3ae0743d2526e" category="cell"><block ref="0122bdec62d25017bba3ae0743d2526e" category="inline-link-macro-rx"></block></block>
+  <block id="65bd7ad27ce676ed0cf60efc3d837fec" category="cell"><block ref="65bd7ad27ce676ed0cf60efc3d837fec" category="inline-link-macro-rx"></block></block>
+  <block id="54ca397a82c26d7a2bd0c2727b4056ac" category="cell"><block ref="54ca397a82c26d7a2bd0c2727b4056ac" category="inline-link-macro-rx"></block></block>
+  <block id="b93bfb624076fdeba743428e46605535" category="section-title">SnapMirrorアクティブな同期の推奨設定</block>
+  <block id="c1d268f2b4a0ec1baaab1ca12f936c74" category="paragraph">SnapMirrorアクティブ同期環境で計画外サイトフェイルオーバースイッチオーバーが発生した場合にSolarisクライアントアプリケーションが無停止であることを確認するには、Solaris 11.4ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
+  <block id="75df81bfa5a2f39d6cb2556e1fd59367" category="admonition">ONTAP 9.9.1以降では、Solaris 11.4ホストでSnapMirrorのアクティブな同期設定がサポートされます。</block>
+  <block id="2b9f901eb077ef55bfa374239724dab6" category="inline-link">SnapMirrorアクティブ同期構成でのSolarisホストサポートの推奨設定</block>
+  <block id="0c01679208616cb3891299503241a9d1" category="admonition">実行後<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。<block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix=" " category="inline-code"></block> がに追加されました<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block>。追加情報およびデフォルト設定の推奨変更については、NetAppナレッジベースの記事を参照してください。<block ref="38eefb55aea51664f737ddbdc6c85594" category="inline-link-rx"></block>。</block>
+  <block id="15c955d1a65ba68c954ff38dc3c7a06d" category="cell"><block ref="15c955d1a65ba68c954ff38dc3c7a06d" category="inline-link-macro-rx"></block></block>
+  <block id="72dce086d3753af675540f6ccf3eca26" category="cell"><block ref="72dce086d3753af675540f6ccf3eca26" category="inline-link-macro-rx"></block></block>
+  <block id="c7328d059b13a8945ca960e2518c53f9" category="cell"><block ref="c7328d059b13a8945ca960e2518c53f9" category="inline-link-macro-rx"></block></block>
+  <block id="b5f9d2f440544d4a434475338d9ac946" category="cell"><block ref="b5f9d2f440544d4a434475338d9ac946" category="inline-link-macro-rx"></block></block>
+  <block id="f7ecd2eaa0c3e12b7825947252116185" category="cell"><block ref="f7ecd2eaa0c3e12b7825947252116185" category="inline-link-macro-rx"></block></block>
+  <block id="d569e2e2e36f96bb452e054f6bc87080" category="cell">SnapMirrorのアクティブな同期構成の分離されたマスタークラスタでAUFOイベントが発生すると、HP-UXホストで一時的に停止する</block>
+  <block id="fd4b7aa4410ba62613ac655e982dfa85" category="cell">この問題は、SnapMirrorアクティブ同期構成の分離されたマスタークラスタでAutomatic Unplanned Failover（AUFO；自動計画外フェイルオーバー）イベントが発生した場合に発生します。HP-UX ホストで I/O が再開されるまでに 120 秒以上かかることがありますが、原因で I/O の中断やエラーメッセージが表示されない可能性があります。この問題では、プライマリクラスタとセカンダリクラスタの間の接続が失われ、プライマリクラスタとメディエーターの間の接続も失われるため、二重イベント障害が発生します。これは、他の AUFO イベントとは異なり、まれなイベントとみなされます。</block>
+  <block id="7311e6a0230a8f28266c6a6cdcb069ca" category="summary">Red Hat Enterprise Linux 8.10とONTAPの併用方法について説明します。</block>
+  <block id="7c242222a8c1a8509a2288212dc2df22" category="doc">Red Hat Enterprise Linux 8.10とONTAPの併用</block>
+  <block id="4bd2cfb10fe3b79990b45f4312a0ce11" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux（RHEL）8.10を設定できます。</block>
+  <block id="8eb2b72539757ff9ba21219da7bfacec" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="d122f411fa737dc5e80c66639f091aea" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
+  <block id="a3eda5fd57294144e255aab216fb69c9" category="paragraph">RHEL 8.10の場合、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.10は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="605bf278704a07487c0859e4f4804b0a" category="paragraph">RHEL 8.10 OSはONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定します。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="207db3a5fa43fa362d879afbe86c2774" category="paragraph">RHEL 8.10に関する既知の問題はありません。</block>
+  <block id="af0c3a60d1e34dd093fb89cacd5f4e14" category="cell">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、Host Bus Adapter（HBA；ホストバスアダプタ）検出に必要なライブラリの依存関係を次のように設定できないことを示すエラーメッセージが表示されます。
+場所：
+
+[root@hostname ~]# sanlun fcp show adapter -v
+/usr/lib64/libHBAAPI.soライブラリが見つかりません
+ライブラリをインストールするパッケージがインストールされ、ロードされていることを確認します。
+『NetApp Bugs Online - <block ref="af3b3cf0d6ceafbe31919aa407157743" category="inline-link-macro-rx"></block>。</block>
+  <block id="d0dba2146745b50f092ff7e9479ffe78" category="paragraph">SnapMirrorアクティブ同期環境で計画外サイトフェイルオーバースイッチオーバーが発生した場合にSolarisクライアントアプリケーションが無停止であることを確認するには、Solaris 11.3ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます<block ref="e66960c74638cf8300fb234ed66fcdb7" prefix=" " category="inline-code"></block> 矛盾を検出するコードパスが実行されないようにします。</block>
+  <block id="16c88309c173f2a1b5a9c5127f8b3bbe" category="admonition">ONTAP 9.9.1以降では、Solaris 11.3ホストでSnapMirrorのアクティブな同期設定がサポートされます。</block>
+  <block id="0705687e23a55c98a49a67821189d6b8" category="admonition">実行後<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。<block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix=" " category="inline-code"></block> がに追加されました<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block>。
+追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください<block ref="38eefb55aea51664f737ddbdc6c85594" category="inline-link-rx"></block>。</block>
+  <block id="24ae7542f38ef52be0ec1f780221fd23" category="sidebar">8.10で</block>
 </blocks>

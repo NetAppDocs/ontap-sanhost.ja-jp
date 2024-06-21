@@ -21,7 +21,7 @@ NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含�
 
 ONTAPを使用したRHEL 9.4のNVMe-oFホスト構成では、次の機能がサポートされます。
 
-* NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
+* NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。NetAppプラグインをネイティブにインストールします `nvme-cli` [パッケージ]には、NVMe/FCとNVMe/TCPの両方のネームスペースのONTAPの詳細が表示されます。
 * 特定のHost Bus Adapter（HBA；ホストバスアダプタ）上の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。
 
 
@@ -446,7 +446,7 @@ nvme connect-all -t tcp -w host-traddr -a traddr
 
 
 
-NOTE: RHEL 9.4以降では、NVMe/TCPのデフォルト設定 `ctrl_loss_tmo` タイムアウトがオフになっているため、再試行回数に制限はありません（無期限の再試行）。そのため、特定の `ctrl_loss_tmo` nvme connectコマンドまたはnvme connect-allコマンドを使用した場合のタイムアウト時間（オプション-l）。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
+NOTE: RHEL 9.4以降では、NVMe/TCPのデフォルト設定 `ctrl_loss_tmo` タイムアウトがオフになっているため、再試行回数に制限はありません（無期限の再試行）。そのため、特定の `ctrl_loss_tmo` 使用時のタイムアウト時間 `nvme connect` または `nvme connect-all` コマンド（オプション-l）。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
 
 
 

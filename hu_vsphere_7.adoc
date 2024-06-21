@@ -331,5 +331,5 @@ ONTAPリリースのVMware vSphere 7.xに関する既知の問題はありませ
 .関連情報
 * link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^]
 * link:https://kb.vmware.com/s/article/2031038["NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）"^]
-* link:https://kb.vmware.com/s/article/83370["NetApp ONTAP と NetApp SnapMirror によるビジネス継続性（ SM-BC ）と VMware vSphere Metro Storage Cluster （ vMSC ）"^]
+* link:https://kb.vmware.com/s/article/83370["NetApp ONTAPとNetApp SnapMirrorのアクティブな同期とVMware vSphere Metro Storage Cluster（vMSC）"^]
 

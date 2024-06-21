@@ -299,8 +299,8 @@ RHEL 9.3 with ONTAPリリースには、次の既知の問題があります。
 | NetApp バグ ID | タイトル | 説明 | JIRA iD 
 
 
-| 1508554. | NetApp Linux Host Utilities CLIでは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）アダプタの検出をサポートするために、ライブラリパッケージの依存関係を追加する必要があります。 | RHEL 9.xでは、NetApp Linux SAN Host UtilitiesのCLI `sanlun fcp show adapter -v` が失敗するのは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）検出をサポートするためのライブラリパッケージの依存関係が見つからないためです。 | 該当なし 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）アダプタの検出をサポートするために、ライブラリパッケージの依存関係を追加する必要があります。 | RHEL 9.xでは、NetApp Linux SAN Host UtilitiesのCLI `sanlun fcp show adapter -v` が失敗するのは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）検出をサポートするためのライブラリパッケージの依存関係が見つからないためです。 | 該当なし 
 
 
-| 1593771 | Red Hat Enterprise Linux 9.3 QLogic SANホストで、ストレージ移動の処理中に部分的なマルチパスが失われることがある | ONTAPストレージコントローラのテイクオーバー処理では、マルチパスの半分が停止するかフェイルオーバーモードに切り替わり、ギブバックワークフローの実行中にフルパス数に回復します。ただし、Red Hat Enterprise Linux（RHEL）9.3 QLogicホストでは、ストレージフェイルオーバーのギブバック処理後にリカバリされるのは部分的なマルチパスのみです。 | RHEL 17811 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1593771["1593771"^] | Red Hat Enterprise Linux 9.3 QLogic SANホストで、ストレージ移動の処理中に部分的なマルチパスが失われることがある | ONTAPストレージコントローラのテイクオーバー処理では、マルチパスの半分が停止するかフェイルオーバーモードに切り替わり、ギブバックワークフローの実行中にフルパス数に回復します。ただし、Red Hat Enterprise Linux（RHEL）9.3 QLogicホストでは、ストレージフェイルオーバーのギブバック処理後にリカバリされるのは部分的なマルチパスのみです。 | RHEL 17811 
 |===

@@ -246,12 +246,12 @@ NOTE: Oracle バグ 15824910 の各種バージョンの Solaris に対するパ
 
 
 
-== SnapMirrorのBusiness Continuityの推奨設定です
+== SnapMirrorアクティブな同期の推奨設定
 
-SnapMirror Business Continuity（SM-BC）環境で計画外のサイトフェイルオーバースイッチオーバーが発生したときにSolarisクライアントアプリケーションが無停止であることを確認するには、Solaris 11.4ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます `f_tpgs` 矛盾を検出するコードパスが実行されないようにします。
+SnapMirrorアクティブ同期環境で計画外サイトフェイルオーバースイッチオーバーが発生した場合にSolarisクライアントアプリケーションが無停止であることを確認するには、Solaris 11.4ホストで次の設定を行う必要があります。この設定は、フェールオーバーモジュールよりも優先されます `f_tpgs` 矛盾を検出するコードパスが実行されないようにします。
 
 
-NOTE: ONTAP 9.9.9..1以降では'Solaris 11.4ホストでSM-BC設定がサポートされています
+NOTE: ONTAP 9.9.1以降では、Solaris 11.4ホストでSnapMirrorのアクティブな同期設定がサポートされます。
 
 指示に従って、オーバーライドパラメータを設定します。
 
@@ -276,7 +276,7 @@ svl_fops_name = 0xa00298d69e0 "conf f_tpgs"
 
 
 
-NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name`。追加情報およびデフォルト設定の推奨変更については、NetAppナレッジベースの記事を参照してください。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Solaris ホストでは、 SnapMirror Business Continuity （ SM-BC ）構成での推奨設定がサポートされます"^]。
+NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf` がに追加されました `svl_fops_name`。追加情報およびデフォルト設定の推奨変更については、NetAppナレッジベースの記事を参照してください。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["SnapMirrorアクティブ同期構成でのSolarisホストサポートの推奨設定"^]。
 
 
 
@@ -289,14 +289,14 @@ Solaris 11.4 with ONTAPリリースには、次の既知の問題があります
 | NetApp バグ ID | タイトル | 説明 | Oracle ID 
 
 
-| 1362435 | HUK 6.2 および Solaris_11.4 FC ドライババインディングの変更 | Solaris 11.4およびHUKの推奨事項を参照してください。FCドライバのバインドが `ssd (4D)` 終了： `sd (4D)`。既存の構成を `ssd.conf` 終了： `sd.conf` Oracle DOC:2595926.1に記載されています）。この動作は'新しくインストールされたSolaris 11.4システムと'Solaris 11.3以前のバージョンからアップグレードされたシステムによって異なります | （ドキュメント ID 2595926.1 ） 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1362435["1362435"^] | HUK 6.2 および Solaris_11.4 FC ドライババインディングの変更 | Solaris 11.4およびHUKの推奨事項を参照してください。FCドライバのバインドが `ssd (4D)` 終了： `sd (4D)`。既存の構成を `ssd.conf` 終了： `sd.conf` Oracle DOC:2595926.1に記載されています）。この動作は'新しくインストールされたSolaris 11.4システムと'Solaris 11.3以前のバージョンからアップグレードされたシステムによって異なります | （ドキュメント ID 2595926.1 ） 
 
 
-| 1366780 | x86 ArchでEmulex 32G Host Bus Adapter（HBA；ホストバスアダプタ）を使用している場合、Storage Failover（SFO；ストレージフェイルオーバー）ギブバック処理中にSolaris LIF問題が検出されました | x86_64プラットフォームでは、Emulexファームウェアバージョン12.6.x以降でSolaris LIF問題が検出されました。 | SR 3-24746803021 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1366780["1366780"^] | x86 ArchでEmulex 32G Host Bus Adapter（HBA；ホストバスアダプタ）を使用している場合、Storage Failover（SFO；ストレージフェイルオーバー）ギブバック処理中にSolaris LIF問題が検出されました | x86_64プラットフォームでは、Emulexファームウェアバージョン12.6.x以降でSolaris LIF問題が検出されました。 | SR 3-24746803021 
 
 
-| 1368957 | Solaris 11.x `cfgadm -c configure` エンドツーエンドのEmulex構成でI/Oエラーが発生する | 実行中です `cfgadm -c configure` Emulexのエンドツーエンド構成でI/Oエラーが発生する。これは、ONTAP 9.5P17、9.6P14、9.7P13、および9.8P2で修正されています。 | 該当なし 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1368957["1368957"^] | Solaris 11.x `cfgadm -c configure` エンドツーエンドのEmulex構成でI/Oエラーが発生する | 実行中です `cfgadm -c configure` Emulexのエンドツーエンド構成でI/Oエラーが発生する。これは、ONTAP 9.5P17、9.6P14、9.7P13、および9.8P2で修正されています。 | 該当なし 
 
 
-| 1345622 | OSネイティブコマンドを使用したASA / pportを使用したSolarisホストでの異常パスレポート | オールSANアレイ（ASA）を搭載したSolaris 11.4では、パスが断続的に報告される問題が発生することがあります。 | 該当なし 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1345622["1345622"^] | OSネイティブコマンドを使用したASA / pportを使用したSolarisホストでの異常パスレポート | オールSANアレイ（ASA）を搭載したSolaris 11.4では、パスが断続的に報告される問題が発生することがあります。 | 該当なし 
 |===

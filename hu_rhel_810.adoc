@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_rhel_91.html 
-keywords: host utilities, red hat, rhel, linux, 9.1, netapp, ontap, rhel 
-summary: ONTAP でRed Hat Enterprise Linux 9.1を使用する方法について説明します 
+permalink: hu_rhel_810.html 
+keywords: host utilities, red hat, rhel, linux, 8.10, netapp, ontap, rhel 
+summary: Red Hat Enterprise Linux 8.10とONTAPの併用方法について説明します。 
 ---
-= ONTAPでRed Hat Enterprise Linux 9.1を使用
+= Red Hat Enterprise Linux 8.10とONTAPの併用
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,38 +16,37 @@ summary: ONTAP でRed Hat Enterprise Linux 9.1を使用する方法について�
 
 
 [role="lead"]
-ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 9.1を設定できます。
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux（RHEL）8.10を設定できます。
 
 
 
 == Linux Unified Host Utilities をインストールします
 
-NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
+NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
 
 NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 .必要なもの
-現在インストールされているLinux Unified Host Utilitiesのバージョンがある場合、このユーティリティをアップグレードまたは削除し、次の手順に従って最新バージョンをインストールする必要があります。
+Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、そのバージョンをアップグレードまたは削除してから、次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
-. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/downloads["ネットアップサポートサイト"] ホストに接続します。
+. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
 . ソフトウェアパッケージをインストールします。
-`rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
++
+「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
 
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
 
 
+== SANツールキット
 
-== SAN ツールキット
-
-このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+このツールキットは、NetApp Host Utilitiesパッケージをインストールすると自動的にインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
 .例
 次の例では 'lun lun lun show コマンドは LUN 情報を返します
 
-[source, cli]
+[listing]
 ----
 # sanlun lun show all
 ----
@@ -55,20 +54,21 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 
 [listing]
 ----
-controller(7mode/E-Series)/            device     host               lun
-vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
--------------------------------------------------------------------------
-data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+controller(7mode/E-Series)/                               device       host                  lun
+vserver(cDOT/FlashRay)     lun-pathname                   filename     adapter    protocol   size    product
+---------------------------------------------------------------------------------------------------------------
+vs_25_2742                 /vol/fc_vol_1_0/dynamic_lun   /dev/sdh      host9      FCP        10g     cDOT
+vs_25_2742                 /vol/fc_vol_1_1/dynamic_lun   /dev/sdb      host9      FCP        10g     cDOT
+vs_25_2742                 /vol/fc_vol_1_3/dynamic_lun   /dev/sdg      host9      FCP        10g     cDOT
+vs_25_2742                 /vol/fc_vol_1_4/dynamic_lun   /dev/sdt      host9      FCP        10g     cDOT
+
 ----
 
 
 == SAN ブート中です
 
 .必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -88,7 +88,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-Red Hat Enterprise Linux（RHEL）9.1の場合 `/etc/multipath.conf` ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 9.1がコンパイルされ、ONTAP LUNを認識して正しく管理するために必要なすべての設定が適用されます。
+RHEL 8.10の場合、 `/etc/multipath.conf` ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.10は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。
 
 「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
 
@@ -104,14 +104,13 @@ Red Hat Enterprise Linux（RHEL）9.1の場合 `/etc/multipath.conf` ファイ�
 [listing]
 ----
 # multipath -ll
-3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
-size=80G  features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+3600a098038314778375d53694b536e53 dm-16 NETAPP, LUN C-Mode
+size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:7:1    sdfi   130:64   active ready running
-  |- 11:0:9:1    sdiy  8:288     active ready running
-  |- 11:0:10:1  sdml 69:464   active ready running
-  |- 11:0:11:1  sdpt  131:304  active ready running
-
+  |- 14:0:0:0   sda  8:0    active ready running
+  |- 15:0:8:0   sdcf 69:48  active ready running
+  |- 15:0:0:0   sdaq 66:160 active ready running
+  `- 14:0:9:0   sdv  65:80  active ready running
 ----
 
 NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
@@ -128,15 +127,14 @@ ASA以外の構成では、優先度が異なる2つのパスグループが必�
 [listing]
 ----
 # multipath -ll
-3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
-size=80G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+3600a098038314837352453694b542f4a dm-0 NETAPP,LUN C-Mode
+size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
-| |- 11:0:1:0 sdj 8:144 active ready running
-| |- 11:0:2:0 sdr 65:16 active ready running
+| |- 14:0:3:0 sdbk 67:224 active ready running
+| `- 15:0:2:0 sdbl 67:240 active ready running
 `-+- policy='service-time 0' prio=10 status=enabled
-|- 11:0:0:0 sdb 8:i6 active ready running
-|- 12:0:0:0 sdz 65:144 active ready running
-
+  |- 14:0:0:0 sda  8:0    active ready running
+  `- 15:0:1:0 sdv  65:80  active ready running
 ----
 
 NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
@@ -145,7 +143,7 @@ NOTE: 1 つの LUN へのパスを余分に使用しないでください。必�
 
 == 推奨設定
 
-RHEL 9.1 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。
+RHEL 8.10 OSはONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定します。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。
 
 。 `multipath.conf` マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。
 
@@ -273,15 +271,15 @@ blacklist {
 ----
 defaults {
    path_checker      readsector0
-   no_path_retry      fail
+   no_path_retry     fail
 }
 
 devices {
    device {
       vendor         "NETAPP  "
       product         "LUN.*"
-      no_path_retry     queue
-      path_checker      tur
+      no_path_retry    queue
+      path_checker     tur
    }
 }
 ----
@@ -295,12 +293,4 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 == 既知の問題
 
-RHEL 9.1 with ONTAPリリースには、次の既知の問題があります。
-
-[cols="20, 20, 50,20"]
-|===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.1では、NetApp Linux SAN Host Utilities CLIを使用します `sanlun fcp show adapter -v` は、HBA検出をサポートするライブラリパッケージの依存関係が見つからないために失敗します。 | 該当なし 
-|===
+RHEL 8.10に関する既知の問題はありません。

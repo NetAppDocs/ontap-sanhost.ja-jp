@@ -72,6 +72,6 @@ Linux Host Utilities 7.1リリースには、次の既知の問題および制�
 [root@hostname ~]# sanlun fcp show adapter -v
 /usr/lib64/libHBAAPI.soライブラリが見つかりません
 ライブラリをインストールするパッケージがインストールされ、ロードされていることを確認します。
-パブリックレポート1508554を参照してください。 
+『NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^]。 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。

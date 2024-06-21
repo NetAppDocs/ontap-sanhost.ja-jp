@@ -355,12 +355,12 @@ VMware vSphere 8.x with ONTAPリリースには、次の既知の問題があり
 | NetApp バグ ID | タイトル | 説明 
 
 
-| 1543660 | vNVMeアダプタを使用するLinux VMで[All Paths Down（APD；すべてのパスが停止）]ウィンドウが長くなると、I/Oエラーが発生します  a| 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1543660["1543660"^] | vNVMeアダプタを使用するLinux VMで[All Paths Down（APD；すべてのパスが停止）]ウィンドウが長くなると、I/Oエラーが発生します  a| 
 vSphere 8.x以降を実行していて、仮想NVMe（vNVME）アダプタを使用しているLinux VMでは、vNVMeの再試行処理がデフォルトで無効になっているため、I/Oエラーが発生します。オールパスダウン（APD）時や大量のI/O負荷時に古いカーネルを実行しているLinux VMでの停止を回避するために、VMwareでは、vNVMeの再試行処理を無効にするための調整可能な「VSCSIDisableNvmeRetry」を導入しました。
 
 |===
 .関連情報
 * link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^]
 * link:https://kb.vmware.com/s/article/2031038["NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）"^]
-* link:https://kb.vmware.com/s/article/83370["NetApp ONTAP と NetApp SnapMirror によるビジネス継続性（ SM-BC ）と VMware vSphere Metro Storage Cluster （ vMSC ）"^]
+* link:https://kb.vmware.com/s/article/83370["NetApp ONTAPとNetApp SnapMirrorのアクティブな同期とVMware vSphere Metro Storage Cluster（vMSC）"^]
 

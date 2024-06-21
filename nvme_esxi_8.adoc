@@ -289,4 +289,4 @@ vSphere 8.x以降を実行していて、仮想NVMe（vNVME）アダプタを使
 .関連情報
 link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^]
 link:https://kb.vmware.com/s/article/2031038["NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）"^]
-link:https://kb.vmware.com/s/article/83370["NetApp ® SnapMirror ® ビジネス継続性（ SM-BC ）による VMware vSphere 6.x および 7.x のサポート"^]
+link:https://kb.vmware.com/s/article/83370["NetApp SnapMirror Active SyncによるVMware vSphere 6.xおよび7.xのサポート"^]

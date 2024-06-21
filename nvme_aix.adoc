@@ -28,7 +28,7 @@ ONTAPを備えたAIXホストでは、NVMe/FCホスト構成が次のように�
 
 .必要なもの
 * アダプタファームウェア12.4.257.30以降のバージョンの32Gb FC Emulexアダプタ（EN1A、EN1B、EN1L、EN1M）または64Gb FCアダプタ（EN1N、EN1P）があることを確認します。
-* MetroCluster構成を使用している場合は、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントがサポートされるように、AIX NVMe/FCのデフォルトのAPD（All Path Down）時間を変更することを推奨します。追加情報および推奨されるデフォルト設定の変更については、パブリックレポート1553249を参照してください。
+* MetroCluster構成を使用している場合はNetApp、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントをサポートするために、AIX NVMe/FCのデフォルトAPD（All Path Down）時間を変更することを推奨します。追加情報およびデフォルト設定の推奨される変更については、『NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1553249["1553249"^]。
 * デフォルトでは、AIXホストOSのAsymmetric Namespace Access Transition Timeout（ANATT）の値は30秒です。IBMは、ANATT値を60秒に制限するInterim Fix（IFIX）を提供しています。すべてのONTAPワークフローが無停止であることを確認するには、IBMのWebサイトからIFIXをインストールする必要があります。
 +
 
@@ -323,16 +323,16 @@ ONTAPを備えたAIXのNVMe/FCホスト設定には、次の既知の問題が�
 | BURT ID | タイトル | 説明 
 
 
-| 1553249 | MCC計画外スイッチオーバーイベントをサポートするために変更されるAIX NVMe/FCのデフォルトAPD時間 | AIXオペレーティングシステムでは、NVMe/FCにデフォルトで20秒のオールパスダウン（APD）タイムアウト値が使用されます。  ただし、ONTAP MetroClusterの自動計画外スイッチオーバー（AUSO）とTiebreakerで開始されるスイッチオーバーのワークフローには、APDのタイムアウト時間よりも少し時間がかかり、I/Oエラーが発生することがあります。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1553249["1553249"^] | MCC計画外スイッチオーバーイベントをサポートするために変更されるAIX NVMe/FCのデフォルトAPD時間 | AIXオペレーティングシステムでは、NVMe/FCにデフォルトで20秒のオールパスダウン（APD）タイムアウト値が使用されます。  ただし、ONTAP MetroClusterの自動計画外スイッチオーバー（AUSO）とTiebreakerで開始されるスイッチオーバーのワークフローには、APDのタイムアウト時間よりも少し時間がかかり、I/Oエラーが発生することがあります。 
 
 
-| 1546017だ | AIX NVMe/FCではANATTの上限が60秒に設定されていますが、ONTAPでは120秒に設定されています | ONTAPは、120秒のコントローラ識別でANA（非対称ネームスペースアクセス）移行タイムアウトをアドバタイズします。現在、IFIXでは、AIXはコントローラ識別からANA移行タイムアウトを読み取りますが、その制限を超えている場合は実質的に60秒にクランプします。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1546017["1546017だ"^] | AIX NVMe/FCではANATTの上限が60秒に設定されていますが、ONTAPでは120秒に設定されています | ONTAPは、120秒のコントローラ識別でANA（非対称ネームスペースアクセス）移行タイムアウトをアドバタイズします。現在、IFIXでは、AIXはコントローラ識別からANA移行タイムアウトを読み取りますが、その制限を超えている場合は実質的に60秒にクランプします。 
 
 
-| 1541386年 | AIX NVMe/FCがANATTの有効期限後にEIOにヒットしました | Storage Failover（SFO；ストレージフェイルオーバー）イベントが発生した場合、特定のパスでANA（非対称ネームスペースアクセス）移行がタイムアウトの上限を超えると、ネームスペースへの正常な代替パスがあるにもかかわらず、AIX NVMe/FCホストがI/Oエラーで失敗します。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1541386["1541386年"^] | AIX NVMe/FCがANATTの有効期限後にEIOにヒットしました | Storage Failover（SFO；ストレージフェイルオーバー）イベントが発生した場合、特定のパスでANA（非対称ネームスペースアクセス）移行がタイムアウトの上限を超えると、ネームスペースへの正常な代替パスがあるにもかかわらず、AIX NVMe/FCホストがI/Oエラーで失敗します。 
 
 
-| 1541380 | AIX NVMe/FCは、ANATTのハーフ/フルの有効期限が切れるまで待機してから、ANA AENのあとにI/Oを再開します | IBM AIX NVMe/FCでは、ONTAPで公開されるAsynchronous Notification（AEN；非同期通知）の一部がサポートされません。このように最適化されていないANA処理は、SFO処理中に最適化されていません。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1541380["1541380"^] | AIX NVMe/FCは、ANATTのハーフ/フルの有効期限が切れるまで待機してから、ANA AENのあとにI/Oを再開します | IBM AIX NVMe/FCでは、ONTAPで公開されるAsynchronous Notification（AEN；非同期通知）の一部がサポートされません。このように最適化されていないANA処理は、SFO処理中に最適化されていません。 
 |===
 
 

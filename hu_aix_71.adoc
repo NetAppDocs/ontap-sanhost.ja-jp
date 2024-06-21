@@ -213,13 +213,13 @@ up     primary  path3  fcs1    fc_aix_4     1
 
 
 
-== SM-BCによるAIXサポート
+== SnapMirrorアクティブ同期によるAIXのサポート
 
-ONTAP 9.11.1以降では、SM-BCでAIXがサポートされます。AIX構成では、プライマリクラスタが「アクティブ」クラスタになります。
+ONTAP 9.11.1以降では、SnapMirrorアクティブ同期でAIXがサポートされます。AIX構成では、プライマリクラスタが「アクティブ」クラスタになります。
 
 AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーが発生するたびに、ホストで再スキャンを実行してI/O処理を再開する必要があります。
 
-AIX for SM-BCを設定する方法については、ナレッジベースの記事を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)["SnapMirrorのビジネス継続性を実現するためのAIXホストの構成方法（SM-BC）"^]。
+AIX for SM-BCを設定する方法については、ナレッジベースの記事を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)["AIXホストでSnapMirrorアクティブ同期を設定する方法"^]。
 
 
 
