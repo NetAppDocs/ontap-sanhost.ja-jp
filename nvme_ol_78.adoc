@@ -15,6 +15,9 @@ summary: 例を使用して、 Oracle Linux 7.8 用 VME/FC ホスト構成を ON
 :imagesdir: ./media/
 
 
+[role="lead"]
+Oracle Linux 7.8およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。
+
 
 
 == サポート性

@@ -13,7 +13,6 @@ summary: How to Configure NVMe-oF Host for RHEL 8.8 with<xmt-block0> ONTAP</xmt-
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:source-highlighter: highlighter.js
 
 
 [role="lead"]

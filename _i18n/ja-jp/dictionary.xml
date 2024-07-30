@@ -271,10 +271,7 @@
   <block id="502fbd3ccf57633c65ae1692b6d1a9e4" category="paragraph">優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。</block>
   <block id="9a5314b1a306337a06216b7efd89d414" category="admonition">最適化されていないパスは、使用可能な最適化されたパスがない場合にのみ使用されます。</block>
   <block id="098ea71f2042c61bc1f4527ee7d06503" category="paragraph">次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。</block>
-  <block id="8f2eee8da6df59eb11ac9371e3b986f6" category="image-alt">笠ではありません</block>
   <block id="7a0a3a29c4e371b5125adb49cae3a738" category="section-title">すべての SAN アレイ構成</block>
-  <block id="e1c9ad969fa62c5a5a7b128c39c401d9" category="paragraph">オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ / 最適化されており、コントローラによって処理され、すべてのアクティブパスで I/O が送信されます。</block>
-  <block id="457391c9c82bfdcbb4947278c0401e41" category="image-alt">ASA</block>
   <block id="6aa0ace12fc074a16fce7ea7a0a32c67" category="admonition">1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。</block>
   <block id="c9bbd6792eac761da84ef7d035e5b41c" category="section-title">Hyper-V VHD では、パフォーマンスを最大限に高めるためにアライメントが必要です</block>
   <block id="b5db8e140c9b8a986547e3b2766d1acf" category="paragraph">ディスクパーティションのデータブロック境界が基盤となる LUN のブロック境界とアライメントされていないと、多くの場合、ストレージシステムは、オペレーティングシステムのブロックの読み取りまたは書き込みごとに 2 つのブロックの読み取りまたは書き込みを完了する必要があります。ミスアライメントが原因で追加のブロック読み取り / 書き込みが発生すると、深刻なパフォーマンスの問題が生じる可能性があります。</block>
@@ -1200,7 +1197,6 @@
   <block id="7adcaa4e5a35b413a61f9652b9b8e6bd" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="2e3100a5f55723fd5f208c30b3d4a68b" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="72f35134635c6ac882f97d9681c93120" category="paragraph">SUSE Linux Enterprise Server 12 SP3 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP3 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
   <block id="faa333743d9719ffabaef492f9d3addf" category="inline-link-macro">1089555</block>
-  <block id="6d83a402d5f48246e4a8aa47a51d84af" category="cell"><block ref="09d0a792ca32715872125a5125deab57" category="inline-link-macro-rx"></block></block>
   <block id="0474958a1d6d3dac5a2d4f89aa906f00" category="cell">ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC 搭載の SLES12 SP3 でカーネル停止が発生しました</block>
   <block id="e473d01bdff0fd380180c07445efe5f1" category="cell">Emulex LPe16002 HBA 搭載の SLES12 SP3 では、ストレージフェイルオーバー処理中にカーネルが停止することがあります。カーネルの中断により、オペレーティングシステムのリブートが求められ、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルで障害の原因を調査できます。例：観察された場合、カーネルの中断はモジュール「 lpfc_sLI_ringtxcmpl_put+51 」で確認され、 vmcore ファイルに記録されます。例外 RIP ： lpfc_sLI_ringtxcmpl_put+51 。ホストオペレーティングシステムをリブートし、アプリケーションを再起動して、カーネルの停止後にオペレーティングシステムをリカバリします。</block>
   <block id="2355ee326a65b78534c760ffc28282b3" category="inline-link-macro">1042847</block>
@@ -2692,7 +2688,6 @@
   <block id="2018120e064c044d2251a465311b51c2" category="doc">SUSE Linux Enterprise Server 15 SP4とONTAPの併用</block>
   <block id="4acb27c024b3567bf9590979213b7333" category="doc">Red Hat Enterprise Linux 8.6とONTAPの併用</block>
   <block id="3efbcda09300e864ffdf03f9735d8517" category="doc">Red Hat Enterprise Linux 8.7とONTAPの併用</block>
-  <block id="1a9652dbabd1fe583283db59098e884a" category="paragraph">ONTAPをターゲットとして、特定のSANホストをFCPまたはiSCSI用に設定できます。まず、関連するオペレーティングシステムホストユーティリティパッケージ（SANツールキットが含まれています）をインストールしてから、NetApp ONTAP LUNのマルチパス設定を確認します。</block>
   <block id="b70f79f7541968cba061dec5df01b8ba" category="doc">ONTAPでCentOS 8.4を使用</block>
   <block id="1f7d8244b764d5a7c149c4cbfad4c873" category="paragraph">ONTAPをターゲットとして、NVMe over Fabrics（NVMe-oF）プロトコル（NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP））用に特定のSANホストを設定できます。ホストオペレーティングシステムとONTAPのバージョンに応じて、ホストでNVMe/FCプロトコル、NVMe/TCPプロトコル、またはその両方を設定して検証します。</block>
   <block id="2b6cce58629e8dff15245e88ef1d8db6" category="doc">SUSE Linux Enterprise Server 12 SP4とONTAPの併用</block>
@@ -2791,7 +2786,6 @@
   <block id="0659d428df833a806e29e65e632d380a" category="inline-link-macro">ネットアップサポート</block>
   <block id="b3303f1e3e1d5672f6b839c968637989" category="paragraph">問題が解決しない場合は、次のファイルとコマンド出力を収集し、 <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> さらなるトリアージ：</block>
   <block id="8e2fe53ccb05734b777fbcc2363d25ab" category="paragraph">vSphere 7.xリリースでは、FC、FCoE、およびiSCSIプロトコルでONTAP SANホストの構成設定を使用できます。</block>
-  <block id="d9a42f0deac96b98dbebf2e560cd7f5c" category="paragraph">NVMe/FCの障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してください。問題が解決しない場合は、 <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> さらなるトリアージのために。</block>
   <block id="3a4b11723a00030809010d89daf7ebe2" category="paragraph">FC、FCoE、およびiSCSIの各プロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム用のVeritas Infoscale Storage Foundation 8シリーズリリースでは、ONTAP SANホストの構成設定を使用できます。</block>
   <block id="4a09c73fa303eedb14779e29343fb862" category="paragraph">Citrix XenServer 7シリーズOSリリースでは、FC、FCoE、およびiSCSIプロトコルを使用するONTAP SANホストの設定を行うことができます。</block>
   <block id="0dfb15ad6e48119187bdf68b2798b551" category="paragraph">Host Utilitiesツールを使用したNetAppストレージ構成のエンドツーエンドの検証については、Solaris Host Utilities 6.2のサンプルコマンドリファレンスを参照してください。</block>
@@ -3648,4 +3642,20 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="0705687e23a55c98a49a67821189d6b8" category="admonition">実行後<block ref="ce0493257bc72d9f3741350d87a14b7d" prefix=" " category="inline-code"></block> が適用されました。<block ref="3a8e4c06e471595f6eb262bb9b5582d9" prefix=" " category="inline-code"></block> がに追加されました<block ref="552db9f221945d76c9e04206b850f3bc" prefix=" " category="inline-code"></block>。
 追加情報 およびデフォルト設定への推奨される変更については、ネットアップの技術情報アーティクルを参照してください<block ref="38eefb55aea51664f737ddbdc6c85594" category="inline-link-rx"></block>。</block>
   <block id="24ae7542f38ef52be0ec1f780221fd23" category="sidebar">8.10で</block>
+  <block id="116d55b793d97066c1d9e8d10b5f4cf9" category="paragraph">オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ / 最適化されており、コントローラによって処理され、すべてのアクティブパスで I/O が送信されます。</block>
+  <block id="e0838e6ee58912186f2b21f886daa80d" category="image-alt">アクティブ/最適パスが表示されたONTAP LUNのスクリーンショット</block>
+  <block id="d485a78eda6522675d5ac87291b0f93b" category="image-alt">2つのアクティブ/最適パスと2つのアクティブ/非最適パスを含むONTAP LUNのスクリーンショット</block>
+  <block id="c562be7af2a3a19ec7e17ebb8a3eeb49" category="paragraph">ONTAPをターゲットとして、特定のSANホストをFCPまたはiSCSI用に設定できます。まず、関連するオペレーティングシステムホストユーティリティパッケージ（SANツールキットを含む）をインストールします。次に、NetApp ONTAP LUNのマルチパス設定を確認します。</block>
+  <block id="2c88ec62d1d721428e4602e651219de8" category="cell"><block ref="70d91751d74c1680862a2be7b819ad17" category="inline-link-macro-rx"></block></block>
+  <block id="064b7e55844a47b2141de66819277d1d" category="paragraph">NVMe/FCの障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してください。問題が解決しない場合は、に連絡してトリアージを依頼 <block ref="ea2f4052f3eaf8e0d09bdf7668185025" category="inline-link-macro-rx"></block> してください。</block>
+  <block id="efc0d0203167a4accd82de64fa1b2a96" category="paragraph">ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe over Fabrics（NVMe-oF）をターゲットとして設定できます。</block>
+  <block id="c4da6ff30732307baf77258e8de32da5" category="paragraph">Oracle Linux 7.7およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="9de6120ac9f396086f7930cb4e65e361" category="paragraph">Oracle Linux 7.8およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="2141c16de580bae376b1049a6457379b" category="paragraph">Oracle Linux 7.9およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="9533c57da615314e9588d7a35f505896" category="paragraph">Oracle Linux 8.1およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="0a5ca905765e1a02ca40ef37c84a9154" category="paragraph">Oracle Linux 8.2およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="07e593b59695dd79c5c59a654408d2b1" category="paragraph">Oracle Linux 8.3およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="3524a0cbde7d5a506bfeb1822866a92b" category="paragraph">Oracle Linux 8.4およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="a8927346ef72516041053a51c124299c" category="paragraph">Oracle Linux 8.5およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
+  <block id="02c6431ec6bbc359f494834894f54864" category="paragraph">Oracle Linux 8.6およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
 </blocks>

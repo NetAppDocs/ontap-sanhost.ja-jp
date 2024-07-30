@@ -15,6 +15,9 @@ summary: ONTAP で ESXi 7.x の NVMe-oF を設定する方法について説明�
 :imagesdir: ./media/
 
 
+[role="lead"]
+ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe over Fabrics（NVMe-oF）をターゲットとして設定できます。
+
 
 
 == サポート性

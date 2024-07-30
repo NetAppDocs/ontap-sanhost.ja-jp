@@ -293,6 +293,3 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 == 既知の問題
 
 ONTAPリリースを使用するRHEL 9.4のFCホスト構成に関する既知の問題はありません。
-
-|===
-|===

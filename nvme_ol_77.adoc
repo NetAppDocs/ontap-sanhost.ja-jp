@@ -15,6 +15,9 @@ summary: ONTAP を使用して Oracle Linux 7.7 用に NVMe/FC を設定する�
 :imagesdir: ./media/
 
 
+[role="lead"]
+Oracle Linux 7.7およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。
+
 
 
 == サポート性

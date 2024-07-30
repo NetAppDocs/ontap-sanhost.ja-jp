@@ -15,7 +15,6 @@ summary: SUSE Linux Enterprise Server 15 SP5 with ONTAP用のNVMe/FCの設定方
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:source-highlighter: highlighter.js
 :toc-position: content
 
 

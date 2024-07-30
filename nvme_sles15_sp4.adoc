@@ -13,7 +13,6 @@ summary: ONTAP を搭載したSUSE Linux Enterprise Server 15 SP4でNVMe/FCを�
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:source-highlighter: highlighter.js
 
 
 [role="lead"]

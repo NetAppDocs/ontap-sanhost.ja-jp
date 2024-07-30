@@ -338,4 +338,4 @@ ONTAPを備えたAIXのNVMe/FCホスト設定には、次の既知の問題が�
 
 == トラブルシューティングを行う
 
-NVMe/FCの障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してください。問題が解決しない場合は、 link:mysupport.netapp.com["ネットアップサポート"^] さらなるトリアージのために。
+NVMe/FCの障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してください。問題が解決しない場合は、に連絡してトリアージを依頼 link:https://mysupport.netapp.com["ネットアップサポート"^] してください。

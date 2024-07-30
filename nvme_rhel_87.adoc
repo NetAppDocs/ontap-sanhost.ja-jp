@@ -13,7 +13,6 @@ summary: ONTAP でRHEL 8.7用のNVMe-oFホストを設定する方法
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:source-highlighter: highlighter.js
 
 
 [role="lead"]

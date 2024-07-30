@@ -13,7 +13,6 @@ summary: ONTAP でRHEL 8.6を使用するためのNVMe-oFホストの設定方�
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:source-highlighter: highlighter.js
 
 
 [role="lead"]

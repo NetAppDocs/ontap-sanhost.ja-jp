@@ -1,5 +1,11 @@
 ---
 indexpage:
+  title: SANホストとクラウドクライアント
+  summary: このコンテンツでは、ONTAP ストレージに接続するSANクライアントの設定方法について、配信ごとのガイダンスを提供します。
+  keywords: ontap, san, host, rhel, red, hat, linux, sles, suse, esxi, nvme, oracle,
+    linux, windows, enterprise, fc, fcp, isci, aix, powervm, vios, centos, citrix,
+    hp-ux, solaris, veritas, cvo, cloud, volume, ontap, clients, configuration, FSx,
+    instance, netapp
   lead: このコンテンツでは、ONTAP ストレージに接続するSANクライアントの設定方法について、配信ごとのガイダンスを提供します。SANクライアントとONTAP
     ストレージは、オンプレミスとクラウドのどちらにも配置できます。
   tiles:

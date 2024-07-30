@@ -13,7 +13,6 @@ summary: ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方�
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:source-highlighter: highlighter.js
 
 
 [role="lead"]

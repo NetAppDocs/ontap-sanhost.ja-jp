@@ -15,6 +15,9 @@ summary: ONTAP を使用したOracle Linux 8.4向けVME / FCホスト構成の�
 :imagesdir: ./media/
 
 
+[role="lead"]
+Oracle Linux 8.4およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。
+
 
 
 == サポート性
