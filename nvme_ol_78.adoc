@@ -22,7 +22,7 @@ Oracle Linux 7.8およびONTAPを実行するイニシエータホストでは�
 
 == サポート性
 
-NVMe/FC は、 ONTAP Linux 7.8 に対して、 9.6 以降でサポートされています。Oracle Linux 7.8 ホストは、 NVMe と SCSI の両方のトラフィックを、同じ Fibre Channel （ FC ）イニシエータアダプタポート経由で実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+NVMe/FCは、ONTAP Linux 7.8では9.6以降でサポートされます。Oracle Linux 7.8ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
 
 NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
