@@ -261,7 +261,7 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 6.9 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します link:hu_rhel_69.html#recommended-settings["推奨設定"] Red Hat Enterprise Linux （ RHEL ） 6.9 の場合
+NOTE: Oracle Linux 6.9 Red Hat Enterprise Kernel（RHCK）を設定するには、link:hu_rhel_69.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）6.9を使用します。
 
 
 

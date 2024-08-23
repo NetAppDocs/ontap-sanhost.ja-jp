@@ -285,7 +285,7 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 8.2 RedHat Enterprise Kernel （ RHCK ）を設定するには、を使用してください link:hu_rhel_82.html#recommended-settings["推奨設定"] Red Hat Enterprise Linux （ RHEL ） 8.2 の場合：
+NOTE: Oracle Linux 8.2 Red Hat Enterprise Kernel（RHCK）を設定するには、link:hu_rhel_82.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）8.2を使用します。
 
 
 

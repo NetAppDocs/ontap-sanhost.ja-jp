@@ -64,7 +64,6 @@
   <block id="971c047750d8e3b03c71d24020b3816f" category="cell">ネットアップ</block>
   <block id="97bfb8bbe6415581f3c953b6daabb241" category="paragraph">次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合、「 multipath.conf 」ファイルは「 path_checker 」および「 detect_prio 」の値を定義しますが、 ONTAP LUN と互換性はありません。ホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</block>
   <block id="0ab1d58d11afaa3c04cf66282eb98ab3" category="inline-link-macro">推奨設定</block>
-  <block id="1bb315bd19c80a6c214d6eae6e6c8a99" category="admonition">Oracle Linux 6.9 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="e6290e19ce3858749b0edbfa1565d904" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.9 の場合</block>
   <block id="8e164918c56328c6560a73785d09e24f" category="cell">NetApp バグ ID</block>
   <block id="b78a3223503896721cca1303f776159b" category="cell">タイトル</block>
   <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">説明</block>
@@ -312,13 +311,11 @@
   <block id="7a10fec24c048df32aa9daca418df81a" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="b5abfd2250ee315cd6ad25de3df45edd" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="7c7b1ac412755c409b674d6d1d5261c8" category="paragraph">Oracle Linux 6.7 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 6.7 では、 ONTAP LUN を認識して正しく管理するために必要なすべての設定を使用してコンパイルします。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="30551084db41b5a626c643ea028e9abc" category="paragraph">Oracle Linux 6.7 OS は、 ONTAP LUN を認識し、すべての設定パラメータを自動的に正しく設定するようにコンパイルされます。</block>
-  <block id="efdd9d35dd70bc0d26752d2b48b4d556" category="admonition">Oracle Linux 6.7 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="8889d65b7bf0d43fb28eb69a57d4d394" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.7 の場合</block>
   <block id="ffc40f78b93020104da2125464f60645" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="fd679b4991af24edfd6d66f5cbc5db76" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.7 の場合</block>
   <block id="894e4bdfe9d6da54721793a917a39e41" category="summary">ONTAP で Oracle Linux 6.4 を使用する方法について説明します</block>
   <block id="fc705c5393a2e9aef173ed40205014bb" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="77ab0bbf377853176c70e55d32dcb81a" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="acc24e9cf246ca31a5b0a8efe708e78a" category="paragraph">Oracle Linux 6.4 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 6.4 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="07cbee168940977c800471bc6700728e" category="paragraph">Oracle Linux 6.4 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされています。</block>
-  <block id="508728c2aac56abccb2b3721d56d9ecb" category="admonition">Oracle Linux 6.4 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="a06e2728aa3780c72bf0b5a9e2b2f14f" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.4 の場合：</block>
   <block id="1974e1837127ea7adab8a19f52272924" category="inline-link-macro">713555</block>
   <block id="0cd135086668eba9ddaef37e78d77f1e" category="cell"><block ref="f16938549e28826d7c8dd807dbea5e81" category="inline-link-macro-rx"></block></block>
   <block id="79f201b7fe80e54927437e15bc553fda" category="cell">QLogic アダプタのリセットは、 UEK2/Giveback や reboot などのコントローラ障害時に OL6.4 および OL5.9 で発生します</block>
@@ -373,7 +370,6 @@
   <block id="31df1b3be5d57ead2772d8f24d7f3661" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="0c6007e6b6b7d891a61a3130a6b08c13" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="3b3051e9028e74cd5ada27ca8f32e352" category="paragraph">Oracle Linux 6.10 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 6.10 では、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が組み込まれています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="00d1a8ad09df702e5b164c26cbd1bc1a" category="paragraph">Oracle Linux 6.10 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
-  <block id="e56af6b270edfc4a1dd8c5ee0e1144e1" category="admonition">Oracle Linux 6.10 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="a294cf4df5bbbd1673f2ccf0dacf7b03" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.10 の場合：</block>
   <block id="e2fadd98203b659772427cfe42d4a39e" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="9a91dd1025c16135359284037044a8d3" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.10 の場合：</block>
   <block id="e16f67a9f3c6e6f9fd2a71ca2c71b042" category="summary">ONTAP で Oracle Linux 7.0 を使用する方法について説明します</block>
   <block id="a8dc135d317a36a2ccd92726f9e0e598" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="33a1f2b8cd02575a35b77c10ba65d8f8" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
@@ -381,7 +377,6 @@
   <block id="40c5d9e1e896025a107a6c97b22c1167" category="list-text">「 racut-f 」コマンドを使用して initrd-image を再作成します。</block>
   <block id="ed1146f14c5bbbbb36046ba06da1cd88" category="paragraph">Oracle Linux 7.0 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
   <block id="a071ebe8686e61a0aa4fe307a3225ad9" category="cell">"service-time 0"</block>
-  <block id="833392375a19e092bb249773aab90ae7" category="admonition">Oracle Linux 7.0 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="95c92cba905c8a4ca7d7698440b6011a" category="inline-link-macro-rx"></block> （ Red Hat Enterprise Linux （ RHEL ） 7.0 の場合）</block>
   <block id="141ad1ff5cf1058b78e7b327d5363940" category="inline-link-macro">901558</block>
   <block id="36449de1465a8388d5bd6898a3ae93a1" category="cell"><block ref="7ace244e7f60745da9174ac22c242ea9" category="inline-link-macro-rx"></block></block>
   <block id="f7f82c29a44c5277ce27b17a6e4a45c0" category="cell">OL7.0 ： Emulex 8G （ LPe12002 ）ホストの OL 7.0 UEK r3U5 ベータ版で「 RSCN timeout 」エラーが発生すると、ホストは LUN へのすべてのパスを失い、ハングします</block>
@@ -429,7 +424,6 @@
   <block id="66cd34e86ff7d645147b1d5d5a6c9f10" category="paragraph">Oracle Linux 7.1 UEK R3 では、空の multipath.conf ファイルを作成します。ALUA の更新が有効な場合と無効な場合、 Oracle Linux 7.1 UEK の設定はデフォルトで自動的に更新されます。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="f4d88f38762443125e864f0e0bf3dc56" category="list-text">「 dracut-f 」コマンドを使用して initrd-image を再作成します。</block>
   <block id="6ff43f8d58cf03692931460affd888be" category="paragraph">Oracle Linux 7.1 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
-  <block id="de50d87828d6c062d5ee3ed42e95ae42" category="admonition">Oracle Linux 7.1 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="ac06888ec4e3e5a4526108ac1f8520b7" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.1 の場合：</block>
   <block id="8d1d1e53a5b8a67ed06ee929fcb68093" category="summary">ONTAP で Linux Unified Host Utilities 7.1 を使用する方法について説明します</block>
   <block id="ffdedbe1187a1ddb0d5c60a0ac382630" category="paragraph">Linux Unified Host Utilities は、 Linux ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。</block>
   <block id="7f239a97a66cea4e3bb767698099b430" category="admonition">SAN ツールキットは、 Citrix XenServer 、 Oracle VM 、および Red Hat Enterprise Virtualization Hypervisor ではサポートされていません。</block>
@@ -491,7 +485,6 @@
   <block id="6dc52e1e053dff71affc3d2bba0668d4" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="e5d3b515d8d9f71d6ecc6d12f04876c6" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="150ce233c309a7f628f109b1bf8bd7f6" category="paragraph">Oracle Linux （ OL ） 7.9 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、ファイルに特定の変更を加える必要はありません。OL 7.9 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれます。</block>
   <block id="89d8b4fe15405a87af2ec65fc634abbc" category="paragraph">次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合、「 multipath.conf 」ファイルは「 path_checker 」および「 detect_prio 」の値を定義しますが、 ONTAP LUN と互換性はありません。ホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。</block>
-  <block id="4872a64c8bfb39aee94e3643229c1575" category="admonition">Oracle Linux 7.9 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="44610b841747038fd655ebbf0a88f02e" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.9 の場合。</block>
   <block id="f87d076eb7d3558e4df3a472ec88d6f2" category="summary">ONTAP で Red Hat Enterprise Linux 6.6 を使用する方法について説明します</block>
   <block id="be07fd5a515d15ddc2960a66b75da141" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="5d0c5cfb6f99c570837d3b798f48dd99" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="aaa84a008bcbd7b13ea49132c73d1afa" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 6.6 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 6.6 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が反映されています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
@@ -605,7 +598,6 @@
   <block id="880612d7054085e9af1cd3802ce4127d" category="summary">ONTAP で Oracle Linux 7.4 を使用する方法について説明します</block>
   <block id="8e9958756ea0631069f36b8e89a2d608" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="8d9c8de6f4b2e448cb81a405a9d25d82" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="491bbe882aaf63711fd558642fdb4958" category="paragraph">Oracle Linux 7.4 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.4 は ONTAP LUN を認識して適切に管理するために必要なすべての設定で構成されています</block>
-  <block id="2eb61a48a1fac76dc294d58129d11e72" category="admonition">Oracle Linux 7.4 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="0f891679fa4536a4e919969e65b85526" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.4 の場合</block>
   <block id="f6a519893db9e6c1633112ee90905e2a" category="inline-link-macro">1109468.</block>
   <block id="7079c64a5b24cdd32462fc31603b1135" category="cell"><block ref="db94b7133d12176606a6a4461fe651e0" category="inline-link-macro-rx"></block></block>
   <block id="82acca8af52f5f8d8536c7d62c245815" category="cell">QLE8362 カードを搭載した OL7.4 ハイパーバイザーでファームウェアダンプが確認される</block>
@@ -613,7 +605,6 @@
   <block id="345708c99f04fb1a4ad3efd34001b3f3" category="summary">ONTAP で Oracle Linux 7.6 を使用する方法について説明します</block>
   <block id="5bd115055ddcf306cb31af8a3af1a92f" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="f109c5b6a89675687df14f8180af7396" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="73844c9e711a64b7c0cb09b929c5368f" category="paragraph">Oracle Linux 7.6 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、特定の変更をファイルに加える必要はありません。Oracle Linux 7.6 をコンパイルし、 ONTAP LUN を認識して正しく管理するために必要なすべての設定を適用します。</block>
-  <block id="02cfb45c5eca5d228b8fdc27610724b9" category="admonition">Oracle Linux 7.6 RedHat Enterprise カーネル（ RHCK ）を設定するには、を使用します <block ref="01c1a2a180a79aab210cc480d73c73eb" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.6 の場合：</block>
   <block id="9f1d7307449f2a1971a05bc6e54a02e9" category="inline-link-macro">1202736</block>
   <block id="3b8a92ff3e01668248ad17ab6e44808a" category="cell">QLogic QLE2742 アダプタを搭載した OL7U6 ホストにリモートポートの「 Not Present 」状態であるため、ホストの検出中に LUN を使用できない可能性があります</block>
   <block id="266caf48844d8cdb3bb559a8663357b3" category="cell">ホストの検出中に、 QLogic QLE2742 アダプタを搭載した OL7U6 ホストの Fibre Channel （ FC ）リモートポートのステータスが「 Not Present 」になることがあります。「存在しない」状態のリモートポートでは、 LUN への原因パスが使用できなくなる可能性があります。ストレージフェイルオーバー時に、パスの冗長性が低下して I/O が停止する可能性があります。リモートポートのステータスを確認するには、次のコマンドを入力します。 # cat /sys/class/fc_remote_ports/rport-*/port_state 表示される出力の例は、 Online not present Online です</block>
@@ -650,7 +641,6 @@
   <block id="879a2e4d18651bb7cc6629fafa11ad2c" category="paragraph">Oracle Linux 7.2 は、 Unbreakable Enterprise Kernel （ UEK ） R3 および UEK R4 をサポートしています。OS はデフォルトで UEK R3 カーネルで起動します。</block>
   <block id="5325d7d76c5577b461889cc0a50b355e" category="paragraph">Oracle Linux 7.2 UEK R3 では、空の multipath.conf ファイルを作成します。ALUA の更新が有効な場合と無効な場合、 Oracle Linux 7.2 UEK の設定はデフォルトで自動的に更新されます。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="f33003e6d8c615a78b0ba29f1a147520" category="paragraph">Oracle Linux 7.2 UEK R4 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.2 には、 ONTAP LUN を認識して正しく管理するために必要な設定がすべて含まれています。</block>
-  <block id="31cf8046288558f6d4e1ae6619a70d13" category="admonition">Oracle Linux 7.2 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用してください <block ref="b6341682387f7873fba9fb1f6f4c5842" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.2 の場合：</block>
   <block id="43b1876560748141954ab34c38e01ac0" category="summary">ONTAP を使用して RHEL 8.1 用に NVMe/FC を設定する方法について説明します</block>
   <block id="1f66f3a5a69d2cce3c5a6e2c4cee2b1a" category="list-text">サーバに Red Hat Enterprise Linux 8.1 をインストールします。</block>
   <block id="f17e2682405234dfca14c2a2181e2cd1" category="list-text">lpfc_enable_fc4_type が 3 に設定されていることを確認します</block>
@@ -760,7 +750,6 @@
   <block id="a9ba4dc88fa11d44cc7c0c918d174778" category="cell">ONTAP</block>
   <block id="a489ffed938ef1b9e86889bc413501ee" category="cell">均一（ Uniform ）</block>
   <block id="0a52730597fb4ffa01fc117d9e71e3a9" category="paragraph">例</block>
-  <block id="7ba6633ca0b968c950d64584fba1ce6c" category="admonition">Oracle Linux 8.2 RedHat Enterprise Kernel （ RHCK ）を設定するには、を使用してください <block ref="4fa0e58c0abf395a1bcef392b352f5ab" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.2 の場合：</block>
   <block id="64017e4fce264fae779ea6ffb9022691" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="840d5abfe44b15b4222ea5c534ce82a9" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.2 の場合：</block>
   <block id="9e1d6710e38a86bc7fd6db9a2a96438a" category="summary">SUSE Linux Enterprise Server 15 SP1 と ONTAP の使用方法について説明します</block>
   <block id="0d6b5d3df8b9a42aafd9fa98a9641d82" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="4b97f5ca007d612f607bd68ef2a0c253" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
@@ -817,7 +806,6 @@
   <block id="a7612c1b52cef63443272a841e63f053" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="3b4b1f1818c7805cf81dfa92e64600a8" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="33d395db2629e42725961d07de66379b" category="paragraph">Oracle Linux 6.5 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 6.5 では、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が組み込まれています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="b027f2cb101039990e34b69dadd64cc9" category="paragraph">Oracle Linux 6.5 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
-  <block id="ccda5c6e00d9467a80e095e0a00e92d1" category="admonition">Oracle Linux 6.5 RedHat Enterprise カーネル (RHCCK) を設定するには、を使用します <block ref="d9929df24012e2c19b3258bd0a117bc4" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.5 の場合：</block>
   <block id="834597fc454ac7d366bc8af44fcf5609" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="0158dc1052dab85818a92b1a427c95b7" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.5 の場合：</block>
   <block id="6a94c5eba3910f79e55ae69f947dc541" category="summary">ONTAP で Red Hat Enterprise Linux 8.0 を使用する方法について説明します</block>
   <block id="1e56b264d1c8b79d8067436bfdda0ea2" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 8.0 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.0 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
@@ -928,7 +916,6 @@
   <block id="c2c3cb3deab4f22710adbed9c6148ed1" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="0da8e8d8e04d92cff39dc5df78f41efc" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="f554c70908c90cf2ddb8539029693dc9" category="paragraph">Oracle Linux 6.8 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 6.8 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされます。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="6485c78f22d3f3aa24bf7cbcea864cb3" category="paragraph">Oracle Linux 6.8 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
-  <block id="63d592aa66febad03a4811111b338916" category="admonition">Oracle Linux 6.8 RedHat Enterprise Kernel (RHCCK) を設定するには、を使用します <block ref="1d07883740b2178a6c8bf634ff911c00" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.8 の場合。</block>
   <block id="cd78cb35643e7fcdb41ef3474518e9b9" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="7703b3b38de881e061b6dbcbbcaf9f81" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.8 の場合。</block>
   <block id="952f921f0c7f4028f0bd8e1a05cade7b" category="summary">SUSE Linux Enterprise Server 15 を ONTAP で使用する方法について説明します</block>
   <block id="4b1a408f9163a3e5b5c1815fd26b6b6e" category="paragraph">SUSE Linux Enterprise Server 15 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 15 は、 ONTAP LUN を認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
@@ -1118,7 +1105,6 @@
   <block id="cdaab392c5ef9c222bc95dc907be230b" category="paragraph">CentOS （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="3c7f0100e93cbb394731ee7d8982c161" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.3 の場合：</block>
   <block id="d469d8f0f0ea6195efacf51226ff8db4" category="summary">ONTAP で Oracle Linux 7.7 を使用する方法について説明します</block>
   <block id="83c8070e0465c3b76698f556c407a97a" category="paragraph">Oracle Linux 7.7 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.7 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
-  <block id="5796236b218639aa54b317a2653fe843" category="admonition">Oracle Linux 7.7 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="d03bd5ac8fbc60aafcf4f05cb4079c96" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.7 の場合。</block>
   <block id="1b61a7a3856fdbc478513136a65d30e6" category="inline-link-macro">1311575</block>
   <block id="a30ebc25935788a02b62f5c31dd68ff4" category="cell"><block ref="267c5dd990c8ab56721888f5900e0ee0" category="inline-link-macro-rx"></block></block>
   <block id="7256202799e1cc52fa1bfe78899975cf" category="cell">Qlogic QLE2672 （ 16G ）を使用してストレージをフェイルオーバーする際に、読み取り / 書き込み処理でセカンダリパスを経由できなかったために I/O の遅延が発生する</block>
@@ -1159,7 +1145,6 @@
   <block id="120d1efb0373e4924670fa06d0e23b7d" category="summary">ONTAP で Oracle Linux 7.3 を使用する方法について説明します</block>
   <block id="7be357df47dca653c69405dcffc9660e" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="7a0a4f9043c30954806605608d921df8" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="a62a1c6a3f1f4dcff8f3cfc9b1ff6c53" category="paragraph">Oracle Linux 7.3 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.3 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
-  <block id="f554f8ae0fcea497dc4db54ed18e2e5b" category="admonition">Oracle Linux 7.3 RedHat Enterprise カーネル (RHCCK) を設定するには、を使用します <block ref="afd18201682c20761a139e3ba1b44320" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.3 の場合</block>
   <block id="6f7f69f453663da32b05f6e1d898fb8e" category="summary">ONTAP で Red Hat Enterprise Linux 7.7 を使用する方法について説明します</block>
   <block id="a1bdb7a660f71ebcfb10fb395252c57a" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 7.7 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 7.7 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされます。</block>
   <block id="5ca5c69afcb4693dcca07eea3efbf3f2" category="paragraph">RHEL 7.7 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての構成パラメータが自動的に正しく設定されます。</block>
@@ -1253,7 +1238,6 @@
   <block id="cc04a552b7bd63c26430fa93dd280a82" category="summary">ONTAP で Oracle Linux 7.8 を使用する方法について説明します</block>
   <block id="16a3fbe78a74d2c0274fa4740e085eed" category="paragraph">Oracle Linux （ OL ） 7.8 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 7.8 は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定を使用してコンパイルされています。</block>
   <block id="8499ac147d02c58a3d85f2d4f6752557" category="paragraph">「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、マッピングされた非 ASA ペルソナのマルチパス出力の例を示します。</block>
-  <block id="0abc977b99b5f67c94ba5221df34ff03" category="admonition">Oracle Linux 7.8 RedHat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="f258b7d81a3180e673755835c6a903ac" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.8 に対応しています。</block>
   <block id="33fb3916b5bbccadc7502b97d2b47e0a" category="summary">ONTAP で Citrix XenServer 7.x を使用する方法について説明します</block>
   <block id="a51e3210f96458fa393e6f4bf88caabc" category="paragraph">Citrix XenServer でのマルチパスのサポートは、 Device Mapper multipathd コンポーネントに基づいています。Device Mapper ノードは、 XenServer に提供されるすべての LUN に対して自動的には作成されず、 Storage Management Layer （ API ）で LUN がアクティブに使用されている場合にのみプロビジョニングされます。Citrix XenServer Storage Manager API プラグインは、マルチパスノードのアクティブ化と非アクティブ化を自動的に処理します。</block>
   <block id="614673c0b1eeb91e8ffc86cde6faa93b" category="paragraph">Integrated Multipath Management のアーキテクチャとの互換性がないため、 Citrix XenCenter アプリケーションを使用してストレージ構成を管理することを推奨します。Device Mapper テーブルのステータスを手動で照会したり、システム上のアクティブな Device Mapper マルチパスノードのリストを表示したりする必要がある場合は、 /usr/sbin/mpathutil status コマンドを使用して ONTAP LUN の設定を確認できます。詳細については、 Citrix XenServer の標準的なベンダー提供のドキュメントを参照してください。</block>
@@ -1279,7 +1263,6 @@
   <block id="3e6c084e49fee07ccce9fb194055ad83" category="summary">ONTAP で Oracle Linux 7.5 を使用する方法について説明します</block>
   <block id="76090bbd3d36f6477a117f8815c55e34" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="44639981c8da89276a1df8d2ee193418" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="6c54367f89a8101fb18321adda6331eb" category="paragraph">Oracle Linux 7.5 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.5 は、 ONTAP LUN を認識して正しく管理するために必要なすべての設定でコンパイルされます。</block>
-  <block id="813c36b15553267f324cd6908101a332" category="admonition">Oracle Linux 7.5 RedHat Enterprise カーネル (RHCCK) を設定するには、を使用します <block ref="bd5476eff85991b1a8eb2197c27bdbeb" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 7.5 の場合。</block>
   <block id="3c146e54f2928af3c6df39922419b24f" category="inline-link-macro">1177239</block>
   <block id="9104aa498f971a4f36b36c41f445ce30" category="cell"><block ref="a8f52c228282c2c6ed4c049cc277ae5a" category="inline-link-macro-rx"></block></block>
   <block id="7d937b6efb504d37a46095c07e7716cd" category="cell">ストレージフェイルオーバー処理中に、 Qlogic QLE2672 16G FC を使用して OL7.5 でカーネルが停止することが確認されました</block>
@@ -1363,7 +1346,6 @@
   <block id="f25e7d0c2e23e28b5e2fcc826eab9d89" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます<block ref="20a6fac93934f3cd0fc46716c10ade14" category="inline-link-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="b17be161e93154b1a8e4c9e17fc3b190" category="paragraph">Oracle Linux 6.6 の場合は、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 6.6 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="3c92bea3eb2289a6ec3282c1090533ba" category="paragraph">Oracle Linux 6.6 OS は、 ONTAP LUN を認識するようにコンパイルされ、すべての構成パラメータが自動的に正しく設定されます。</block>
-  <block id="41e185c135ae2833eb96571ac238a3f6" category="admonition">Oracle Linux 6.6 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用します <block ref="206a39f130bf92080cb56256dd2c28f9" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.6 の場合。</block>
   <block id="cdab1722faf4570592f09483d692f9a3" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="aad294b0550f33ea846ebc2598292576" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 6.6 の場合。</block>
   <block id="70b7cc349994a5289908b02781aee538" category="paragraph">/opt/NTAP-SANToolkit/bin/host_config &lt;-setup &gt;&lt;-protocol fcp|iscsi|mixed&gt;&lt;-multipath MPxIO | DMP | non&gt;[-noalua] [-MCC 60|90|120]</block>
   <block id="90fbed0fe328b6c16dbe12568b1cb193" category="paragraph">パッチを確認するには、次の手順を実行します。</block>
@@ -1382,7 +1364,6 @@
   <block id="157584ac811d45f102c8c688e0c7c7a4" category="summary">ONTAP で Oracle Linux 8.0 を使用する方法について説明します</block>
   <block id="66ea9cf358437f905712380440a8eddd" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます <block ref="8c7533773fc489aa5fe9c5ca6e019e25" category="inline-link-macro-rx"></block> 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。</block>
   <block id="05b3b7ebfe3f9b8f7b7fa7d073f86fcd" category="paragraph">Oracle Linux 8.0 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 8.0 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
-  <block id="e43b7887a27711ba5e2bd52d8cbffd65" category="admonition">Oracle Linux 8.0 RedHat Enterprise Kernel (RHCCK) を設定するには、を使用します <block ref="dd019c9be944c1791639aca9ec9dceb1" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.0 の場合。</block>
   <block id="f32d48cf755668783343d18d81af5662" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="13be8945161aaeca52d4e4a694080916" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.0 の場合。</block>
   <block id="ce33fe68519e0e2d14428572a71c7569" category="summary">例を使用して、 ONTAP を使用した Oracle Linux 8.2 用の VME / FC ホスト構成をセットアップします</block>
   <block id="89d62bb3e0891fdc6a601122dddc0440" category="doc">ONTAP を使用した Oracle Linux 8.2 の NVMe/FC ホスト構成</block>
@@ -1392,7 +1373,6 @@
   <block id="8c14192b8816f047aeb8cd691b0dcee5" category="paragraph">上記の例では、 2 つのネームスペースが Oracle Linux 8.2 ANA ホストにマッピングされています。これらの LIF は、ローカルノード LIF 2 つとパートナー / リモートノード LIF 2 つの 4 つのターゲット LIF を通して認識されます。このセットアップでは、ホスト上の各ネームスペースについて、 2 つの ANA 最適化パスと 2 つの ANA アクセス不能パスが表示されます。</block>
   <block id="1007b7632045ad8e75cf3589b6d28f94" category="summary">ONTAP で Oracle Linux 8.1 を使用する方法について説明します</block>
   <block id="3adfaacb5236083e12561cfda09586f4" category="paragraph">Oracle Linux 8.1 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 8.1 は、 ONTAP LUN を認識して適切に管理するために必要な設定をすべて備えています。</block>
-  <block id="80b15714c0bcc6206a8342b0b67b57a7" category="admonition">Oracle Linux 8.1 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用してください <block ref="ba385beac84ef95968bf8513eda510a6" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.1 の場合：</block>
   <block id="04727b6e26d6c60a42231cfea7028876" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="028e50bd59e6088e4c25abc993c5b456" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.1 の場合：</block>
   <block id="8eee884db44f521f0d19cac36bf258cc" category="summary">ONTAP で Windows Server 2016 を使用する</block>
   <block id="f5cba97c30a47867e3649fd136cca68c" category="inline-link-macro">Microsoft Update Catalog 2016 』を参照してください</block>
@@ -1593,7 +1573,6 @@
   <block id="1af1d134f1d2df0e60d3d26a745e9a9c" category="summary">ONTAP で Oracle Linux 8.4 を使用する方法について説明します</block>
   <block id="3f3097c34940e47c43cc1e2aaf144513" category="paragraph">Oracle Linux （ OL ） 8.4 では、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 8.4 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
   <block id="938f1047c15f00fdd0cbfc8e4cfa15e1" category="paragraph">* 例 *</block>
-  <block id="306a27cab6be29f525fedb01d2a9a56e" category="admonition">Oracle Linux 8.4 Red Hat Enterprise Kernel （ RHCK ）を設定するには、を使用してください <block ref="2a5bf462d4974235d181075f07ec40ac" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux （ RHEL ） 8.4 の場合：</block>
   <block id="4447162ab1e53ae3a7c371586690d068" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="1cf241ba8c9adec487a38ecfba1ee9ce" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
   <block id="fcd0175f66a20efc7cd1c6567f9a5578" category="paragraph">次の例では 'lun lun lun show コマンドは LUN 情報を返します</block>
   <block id="df806afef9dae5d43f20297c99fb14ca" category="admonition">このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。</block>
@@ -1737,7 +1716,6 @@
   <block id="a335fa6e5bef06439b229f8adabc7dfe" category="section-title">特定の SVM / リストからホストにマッピングされているすべての LUN をリストします。ホストにマッピングされている特定の LUN のすべての属性をリストします</block>
   <block id="072bbeb072deda2033d37a6e9af67b96" category="summary">ONTAP でOracle Linux 8.5を使用する方法について説明します</block>
   <block id="5afff738a58f6889eebdd3efb2f2c405" category="paragraph">Oracle Linux（OL）8.5の場合、/etc/multipath.confファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 8.5は、ONTAP LUNを認識して正しく管理するために必要なすべての設定を組み込んでコンパイルされます。</block>
-  <block id="2e4318e2eccbd53d66a800f6dabff27f" category="admonition">Oracle Linux 8.5 Red Hat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="7e47a54075763937d25ec51fa82726e1" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.5の場合。</block>
   <block id="5d90071a09878a695a26d84f9a4f073b" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="b5087b96e856dc400373808e0f627382" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
   <block id="870d3ab5f8bca6f13651e1aa38ee6783" category="summary">Linux Unified Host Utilities 7.1のリリースノート</block>
   <block id="7a14880cd1144b4db863930b81a2f16e" category="doc">『Linux Unified Host Utilities 7.1 Release Notes』</block>
@@ -1805,7 +1783,6 @@
   <block id="c1326fec4f12ec093296d507d6b6e33a" category="summary">ONTAP でOracle Linux 8.6を使用する方法について説明します</block>
   <block id="fa491ee178ddf6e96992dad027671112" category="paragraph">Oracle Linux (OL) 8.6の場合は'/etc/multipath.conf'ファイルが存在している必要がありますが'ファイルに特定の変更を加える必要はありませんOL 8.6は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされます。</block>
   <block id="ea11e68a3ea4e3736ee4012985057991" category="paragraph">Oracle Linux 8.6 OSは、ONTAP LUNを認識するようにコンパイルされ、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定します。</block>
-  <block id="805a476dee7a3e2c96d744778fabadf2" category="admonition">Oracle Linux 8.6 Red Hat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.6の場合。</block>
   <block id="5ebe49302359fb6e4d762fdceb288864" category="admonition">Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください <block ref="10ee08d1b3d909bc389f3b317276174b" category="inline-link-macro-rx"></block> 該当する Red Hat Enterprise Linux リリースのドキュメントのセクションを参照してください。</block>
   <block id="244c37afdc307098d90d497c08f88069" category="paragraph">AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーが発生するたびに、ホストで再スキャンを実行してI/O処理を再開する必要があります。</block>
   <block id="ea1335497ead6bd540f2e523154123a0" category="paragraph">Red Hat Enterprise Linux (RHEL) 9.0では'/etc/multipath.confファイルが存在している必要がありますが'ファイルに特定の変更を加える必要はありませんRHEL 9.0がコンパイルされ、ONTAP LUNを認識して正しく管理するために必要なすべての設定が適用されます。</block>
@@ -2161,7 +2138,6 @@
   <block id="ae8e81252a704349cea5f061e9fb652e" category="paragraph">Oracle Linux（OL）9.0の場合<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 9.0は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
   <block id="5e51169d33c14ff0aaa1bdcad247d216" category="paragraph">次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。</block>
   <block id="2722dd408e2c6dddce120893d4c5c0a7" category="paragraph">Oracle Linux 9.0 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。</block>
-  <block id="834ccc84967581d1336062ada79c9a0e" category="admonition">Oracle Linux 9.0 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）9.0の場合</block>
   <block id="2de4eb9b3af281c4790a039cf2f92eb7" category="section-title">KVM設定</block>
   <block id="678b361384466d6bf28f930dd514a9a8" category="doc">NVMe/FCホスト構成（Oracle Linux 9.0 with ONTAP</block>
   <block id="2cbaf680f82c54fd6fb7778f0101ab88" category="paragraph">サポートされる構成の詳細については、を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>。</block>
@@ -2435,7 +2411,6 @@
   <block id="f02ddfd1ea8ae7239f534d1963d46c47" category="paragraph">以降のセクションでは、オールSANアレイ（ASA）構成および非ASA構成にマッピングされたLUNのマルチパス出力の例を示します。</block>
   <block id="6987a1bad074cdd087026411bcd73daf" category="admonition">1 つの LUN へのパスを余分に使用しないでください。パスは4つまでにする必要があります。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。</block>
   <block id="0064eaa73c470581d9f79567a5552a2c" category="paragraph">Oracle Linux 8.7 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。</block>
-  <block id="7558802010b056df08332b675440eea8" category="admonition">Oracle Linux 8.7 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="2799389175d462b609c459275109bc99" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.7の場合。</block>
   <block id="73ba9729c9740db82f51a4f8954414ff" category="paragraph">推奨設定を使用してKernel-Based Virtual Machine（KVM）を設定することもできます。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。</block>
   <block id="1918c14015c19cfe7ab5da89745a137f" category="doc">NVMe-oFホスト構成（Oracle Linux 8.7 with ONTAP</block>
   <block id="24aa52aa9699b501c3a8bed92978c144" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Asymmetric Namespace Access（ANA）対応のOracle Linux（OL）8.7でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
@@ -2585,7 +2560,6 @@
   <block id="86d73f9a9eafbf2a1bc89961929ab3e0" category="inline-link-macro">18196年</block>
   <block id="84ccd25799ec2ea76f7f5faab8db9837" category="cell"><block ref="84ccd25799ec2ea76f7f5faab8db9837" category="inline-link-macro-rx"></block></block>
   <block id="533f5c2e4bcf35d9cefe9c97046f7654" category="summary">ONTAPでOracle Linux 9.1を使用する方法について説明します</block>
-  <block id="c6951501d0b58604dc509284a2398484" category="admonition">Oracle Linux 9.1 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> （Red Hat Enterprise Linux（RHEL）9.1の場合）</block>
   <block id="da80aa62fc6cf6b66539a5a3933874a8" category="cell"><block ref="da80aa62fc6cf6b66539a5a3933874a8" category="inline-link-rx"></block></block>
   <block id="20e1c7fed64a39ad5334f26be4f4d8c7" category="paragraph">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、ホストバスアダプタ（HBA）検出に必要なライブラリの依存関係が見つからないというエラーメッセージが表示されます。</block>
   <block id="945ae6ecd5de8145a44bcea8e9d26556" category="summary">ONTAPでRed Hat Enterprise Linux 8.8を使用する方法について説明します</block>
@@ -2633,7 +2607,6 @@
   <block id="5ca07756ac4e8650b2d00a4453c23b6c" category="summary">ONTAPでOracle Linux 9.2を使用する方法について説明します</block>
   <block id="a55c64674e30e11be44367361a197b70" category="paragraph">OL 9.2の場合は<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 9.2は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。</block>
   <block id="beb55dba3ba1d2be4056c146cb0bf458" category="paragraph">Oracle Linux 9.2 OSは、ONTAP LUNを認識し、ASA構成と非ASA構成の両方についてすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
-  <block id="a706283e3f8c7062e0c4c4b423b93965" category="admonition">Oracle Linux 9.2 RedHat Enterprise Kernel（RHCK）を設定するには、を使用します <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）9.2の場合。</block>
   <block id="02b2bcdfe73b2cce057d7b84806fa6ed" category="paragraph">Oracle Linux 9.1 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
   <block id="5890aebb0489382354458498eb36394e" category="paragraph">SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show adapter -v」を実行すると、コマンドが失敗し、ホストバスアダプタ（HBA）検出に必要なライブラリの依存関係が見つからないというエラーメッセージが表示されます。</block>
   <block id="cc40ed991073c638cc114ee18ad15d8c" category="paragraph">Oracle Linux 9.0 with NetApp ONTAPリリースには、次の既知の問題があります。</block>
@@ -2887,7 +2860,6 @@
   <block id="bba935ec6b4a409a039f2c174658a92b" category="list-text">から Host Utilities が含まれている圧縮ファイルのコピーをダウンロードします<block ref="64a98ab9b930adade338f7896c6bf819" category="inline-link-rx"></block> をホスト上のディレクトリに移動します。</block>
   <block id="203f51559c2ba23f9c255fff4a3d1a69" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます <block ref="211aeebd084ff2a0f2d3a6667de35200" category="inline-link-macro-rx"></block>。ファイルを展開して、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得する必要があります。</block>
   <block id="d93f4eaa8e066c5ee8f2b24ebc969b6b" category="paragraph">以降のセクションでは、ASA構成および非ASA構成にマッピングされたLUNのマルチパス出力の例を示します。</block>
-  <block id="7acaa68e7aca1f42b54325f5c982b0ff" category="admonition">Oracle Linux 8.8 RedHat Enterprise Kernelを設定するには、 <block ref="690c11dea402b4d6119bf0c00175eedb" category="inline-link-macro-rx"></block> Red Hat Enterprise Linux（RHEL）8.8の場合。</block>
   <block id="01b8600fd938010d5f121c919a853516" category="paragraph">推奨設定を使用してKernel-Based Virtual Machine（KVM）を構成することもできます。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。</block>
   <block id="068e34bda638fda5123bf851072fe10d" category="paragraph">Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます <block ref="47b65262ba52aec6a3b66c8c933e9234" category="inline-link-macro-rx"></block>。ファイルを作成したら、 Host Utilities のインストールに必要なソフトウェアパッケージを取得するために、ファイルの圧縮を解除する必要があります。</block>
   <block id="aa22d4ac7993fa542c414f5e9723529f" category="list-text">から Host Utilities が含まれている圧縮ファイルのコピーをダウンロードします <block ref="47b65262ba52aec6a3b66c8c933e9234" category="inline-link-macro-rx"></block> をホスト上のディレクトリに移動します。</block>
@@ -3650,9 +3622,57 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="3524a0cbde7d5a506bfeb1822866a92b" category="paragraph">Oracle Linux 8.4およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
   <block id="a8927346ef72516041053a51c124299c" category="paragraph">Oracle Linux 8.5およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
   <block id="02c6431ec6bbc359f494834894f54864" category="paragraph">Oracle Linux 8.6およびONTAPを実行するイニシエータホストでは、NVMe over Fibre Channel（NVMe/FC）をターゲットとして設定できます。</block>
-  <block id="e0f444df4d09ca4bac7740b334576417" category="paragraph">NVMe/FCは、ONTAP Linux 7.7では9.6以降でサポートされます。OL 7.7ホストでは、同じファイバチャネルイニシエータアダプタポートを介してNVMeトラフィックとSCSIトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="63db33459f77eb2c95a1561fe621056d" category="paragraph">NVMe/FCは、ONTAP Linux 7.8では9.6以降でサポートされます。Oracle Linux 7.8ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="0287d772e7f840b433f088e2f28bd6f8" category="paragraph">NVMe/FCは、ONTAP Linux 7.9では9.6以降でサポートされます。Oracle Linux 7.9ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="3d5c89a6c37ed7f3e12ef6c9b1698314" category="paragraph">NVMe/FCは、ONTAP Linux 8.1では9.6以降でサポートされます。Oracle Linux 8.1ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポート経由で実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
   <block id="f8f5ef83021f80cd31f5163ddb8f3cd7" category="paragraph">NVMe/FCは、ONTAP Linux 8.2では9.6以降でサポートされます。Oracle Linux 8.2ホストでは、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートを介してNVMe/FCとFCPの両方のトラフィックを実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
+  <block id="74c148265ea4a8961ebb3420adde5e84" category="admonition">Oracle Linux 6.10 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="a294cf4df5bbbd1673f2ccf0dacf7b03" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）6.10を使用します。</block>
+  <block id="2c666792527b6b3680c82973cba01c3b" category="admonition">Oracle Linux 6.4 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="a06e2728aa3780c72bf0b5a9e2b2f14f" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）6.4を使用します。</block>
+  <block id="65ed1b727fe88e2a69e47c82d4310acd" category="admonition">Oracle Linux 6.5 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="d9929df24012e2c19b3258bd0a117bc4" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）6.5を使用します。</block>
+  <block id="c072ebb84605f0b92a244cb3777bb151" category="admonition">Oracle Linux 6.6 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="206a39f130bf92080cb56256dd2c28f9" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）6.6を使用します。</block>
+  <block id="054957356c253064b2320e9d4c9db125" category="admonition">Oracle Linux 6.7 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="8889d65b7bf0d43fb28eb69a57d4d394" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）6.7を使用します。</block>
+  <block id="507b23533892ab96b02be4f8b5a8edb2" category="admonition">Oracle Linux 6.8 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="1d07883740b2178a6c8bf634ff911c00" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）6.8を使用します。</block>
+  <block id="07d1214e34c544030ee4241cb0582c35" category="admonition">Oracle Linux 6.9 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="e6290e19ce3858749b0edbfa1565d904" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）6.9を使用します。</block>
+  <block id="58dc5490e7551dc8532694e6c1891c35" category="admonition">Oracle Linux 7.0 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="95c92cba905c8a4ca7d7698440b6011a" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.0を使用します。</block>
+  <block id="5665ff399a1bf0bb1955be6b42e7f7b2" category="admonition">Oracle Linux 7.1 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="ac06888ec4e3e5a4526108ac1f8520b7" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.1を使用します。</block>
+  <block id="8a5c5bd5d7d2cf00b6f9f428ae6077d8" category="admonition">Oracle Linux 7.2 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="b6341682387f7873fba9fb1f6f4c5842" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.2を使用します。</block>
+  <block id="cf14c642d83317aeeb4b66dfccaf0748" category="admonition">Oracle Linux 7.3 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="afd18201682c20761a139e3ba1b44320" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.3を使用します。</block>
+  <block id="8545ef0e74f9a7e959b7fdf91f7e42bf" category="admonition">Oracle Linux 7.4 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="0f891679fa4536a4e919969e65b85526" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.4を使用します。</block>
+  <block id="f1b1c741cf490c9ed0d147815f318e8e" category="admonition">Oracle Linux 7.5 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="bd5476eff85991b1a8eb2197c27bdbeb" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.5を使用します。</block>
+  <block id="6b2e7f1954c5ca07454ba050537bfc97" category="admonition">Oracle Linux 7.6 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="01c1a2a180a79aab210cc480d73c73eb" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.6を使用します。</block>
+  <block id="63d16eafcc1543dfb24ba7b199c989fe" category="admonition">Oracle Linux 7.7 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="d03bd5ac8fbc60aafcf4f05cb4079c96" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.7を使用します。</block>
+  <block id="72b09ff66539cda97d7c0438a667a52e" category="admonition">Oracle Linux 7.8 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="f258b7d81a3180e673755835c6a903ac" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.8を使用します。</block>
+  <block id="3b142e0394d092f040e5f91fbe307885" category="admonition">Oracle Linux 7.9 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="44610b841747038fd655ebbf0a88f02e" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）7.9を使用します。</block>
+  <block id="cf9bf895ad4ca7687a9d6f3107e8bc7d" category="admonition">Oracle Linux 8.0 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="dd019c9be944c1791639aca9ec9dceb1" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.0を使用します。</block>
+  <block id="7360ec09f843020e3cdedadf07f9c6eb" category="admonition">Oracle Linux 8.1 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="ba385beac84ef95968bf8513eda510a6" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.1を使用します。</block>
+  <block id="243b0430cd7bcb315e3ddad5eeee3d9e" category="admonition">Oracle Linux 8.2 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="4fa0e58c0abf395a1bcef392b352f5ab" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.2を使用します。</block>
+  <block id="2e70e755dfc045a7907c2a353ffc7a3d" category="admonition">Oracle Linux 8.4 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="2a5bf462d4974235d181075f07ec40ac" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.4を使用します。</block>
+  <block id="83f959a424c03531fb16c92bd0aa57a4" category="admonition">Oracle Linux 8.5 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="7e47a54075763937d25ec51fa82726e1" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.5を使用します。</block>
+  <block id="6ed1f472cda2679cdeae66607f09c936" category="admonition">Oracle Linux 8.6 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.6を使用します。</block>
+  <block id="61bc992261a6530c122ec5f5e732d7ee" category="admonition">Oracle Linux 8.7 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="2799389175d462b609c459275109bc99" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.7を使用します。</block>
+  <block id="2026d2310fc2424795c036d93b9ede10" category="admonition">Oracle Linux 8.8 Red Hat Enterprise Kernelを設定するには、<block ref="690c11dea402b4d6119bf0c00175eedb" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.8を使用します。</block>
+  <block id="d95c2403b93ac14ffcf47c8e500ca18b" category="admonition">Oracle Linux 9.0 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）9.0を使用します。</block>
+  <block id="189ec3cd54035d4865dbc8a0c4501bad" category="admonition">Oracle Linux 9.1 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）9.1を使用します。</block>
+  <block id="7c6866a085937d8df414ddef9a2dc72d" category="admonition">Oracle Linux 9.2 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）9.2を使用します。</block>
+  <block id="a83d1438dc3047a6938e3c9a7a2eea6b" category="summary">ONTAPでOracle Linux 9.3を使用する方法について説明します。</block>
+  <block id="3fca70163c38ce3aeaad83b1acb54703" category="doc">ONTAPでOracle Linux 9.3を使用</block>
+  <block id="a210d69f837ecbdbf71f84e8f39fc01b" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 9.3を設定できます。</block>
+  <block id="209ea84b7e9da962ac8d3949bbfc88d4" category="paragraph">OL 9.3では<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。OL 9.3は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。</block>
+  <block id="cb9ab58d378e13ff5ba784ea2111ac56" category="paragraph">Oracle Linux 9.3 OSでは、ONTAP LUNが認識され、ASA構成とASA以外の構成の両方について、すべての設定パラメータが自動的に正しく設定されます。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。</block>
+  <block id="3d446a4b508a9ee5d15723930e489fe7" category="admonition">Oracle Linux 9.3 Red Hat Enterprise Kernel（RHCK）を設定するには、<block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block>Red Hat Enterprise Linux（RHEL）9.3用を使用します。</block>
+  <block id="553920b0052a46c8b10be33add5e61aa" category="paragraph">Oracle Linux 9.3 with ONTAPリリースには、次の既知の問題があります。</block>
+  <block id="3cdcb189cf0f4cfba9e074ca26cec233" category="paragraph">NVMe/FCは、ONTAP Linux 7.7では9.6以降でサポートされます。Oracle Linux 7.7ホストでは、同じファイバチャネルイニシエータアダプタポートを介してNVMeトラフィックとSCSIトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。サポートされる構成の最新のリストについては、を参照してください <block ref="5b880de3118511ac9479bd0428b63139" category="inline-link-macro-rx"></block>。</block>
+  <block id="0e02571623de208737c8c59f0ee774bb" category="summary">NVMe-oFホスト構成（Oracle Linux 9.3 with ONTAP</block>
+  <block id="e18a35316367cdfc0401a22bf6352eb8" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、Asymmetric Namespace Access（ANA）対応のOracle Linux（OL）9.3でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
+  <block id="f56bffa62df90c114a147cf7e606fc87" category="paragraph">ONTAPを使用したOL 9.3のNVMe-oFホスト構成では、次のサポートが提供されます。</block>
+  <block id="770301b23185d6485f2ebbe498b13e16" category="paragraph">Oracle Linux 9.3では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっているため、明示的に設定する必要はありません。</block>
+  <block id="0d90e078a8e3924ec76ed97acfb286ec" category="paragraph">サポートされるOL 9.3ソフトウェアの最小バージョンは、次の手順を使用して検証できます。</block>
+  <block id="a55f3a70fb7b89ba6eb2d26e831bccb7" category="list-text">サーバーにOL 9.3 GAをインストールします。インストールが完了したら、指定したOL 9.3 GAカーネルを実行していることを確認します。</block>
+  <block id="29933064b218cb6017964b27b096a314" category="list-text">Oracle Linux 9.3ホストで、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block><block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>次の場所の文字列を確認します。</block>
+  <block id="0815968d94c1d10c54227de24659397e" category="example-title">出力例を表示します。</block>
+  <block id="ecac309a907ef5455847a4d15ecf3aa3" category="list-text">OL 9.3 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新のアップストリーム修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。</block>
+  <block id="facd9e09885531dd24236fb79f1f6938" category="paragraph">NVMe/TCPには自動接続機能はありません。そのため、NVMe/TCPの接続または接続-すべての機能を手動で実行して、NVMe/TCPサブシステムとネームスペースを検出する必要があります。NVMe/TCPの設定には、次の手順を使用できます。</block>
+  <block id="6015ee0c3c4dbc37f534783a65239e72" category="example-title">例を示します</block>
+  <block id="84b0dce03a1f0b594addcb101eab6c2c" category="list-text">OL 9.3ホストで次のNVMe/FC設定を確認します。</block>
+  <block id="0f184640fa014a23c70b94529da4bca4" category="paragraph">ONTAPリリースのOracle Linux 9.3では、既知の問題はありません。</block>
 </blocks>

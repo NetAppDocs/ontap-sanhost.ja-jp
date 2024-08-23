@@ -283,7 +283,7 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 8.8 RedHat Enterprise Kernelを設定するには、 link:hu_rhel_88.html#recommended-settings["推奨設定"] Red Hat Enterprise Linux（RHEL）8.8の場合。
+NOTE: Oracle Linux 8.8 Red Hat Enterprise Kernelを設定するには、link:hu_rhel_88.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）8.8を使用します。
 
 
 
