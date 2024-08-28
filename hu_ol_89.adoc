@@ -274,7 +274,7 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 8.9 RedHat Enterprise Kernelを設定するには、link:hu_rhel_88.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）8.9を使用します。
+NOTE: Oracle Linux 8.9 RedHat Enterprise Kernelを設定するには、link:hu_rhel_89.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）8.9を使用します。
 
 
 
