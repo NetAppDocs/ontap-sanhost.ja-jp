@@ -190,18 +190,18 @@ FCP CMPL: xb 00000002 Err 00000004
 
 === 1MBのI/Oサイズを有効にしています
 
-ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）を8と報告します。つまり、I/O要求の最大サイズは1MBまでです。ただし、Broadcom NVMe/FCホストに対する1MBの問題I/O要求には、を増やす必要があります `lpfc` の値 `lpfc_sg_seg_cnt` パラメータを256に設定します（デフォルト値の64から）。
+ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには `lpfc` `lpfc_sg_seg_cnt`、パラメータの値をデフォルト値の64から256に増やす必要があります。
 
 .手順
-. lpfc_sg_seg_cnt パラメータを 256 に設定します
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
 +
 [listing]
 ----
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. 「 racut-f 」コマンドを実行し、ホストを再起動します。
-. lpfc_sg_seg_cnt' が 256 であることを確認します
+.  `dracut -f`コマンドを実行し、ホストをリブートします。
+.  `lpfc_sg_seg_cnt`が256であることを確認します。
 +
 [listing]
 ----

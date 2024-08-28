@@ -268,18 +268,18 @@ QLE2742 FW:v9.10.11 DVR:v10.02.06.200-k
 
 === 1MB I/Oを有効にする（オプション）
 
-ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）を8と報告します。つまり、I/O要求の最大サイズは1MBまでです。ただし、Broadcom NVMe/FCホストに対する1MBの問題I/O要求には、を増やす必要があります `lpfc` の値 `lpfc_sg_seg_cnt` パラメータを256に設定します（デフォルト値の64から）。
+ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには `lpfc` `lpfc_sg_seg_cnt`、パラメータの値をデフォルト値の64から256に増やす必要があります。
 
 .手順
-. lpfc_sg_seg_cnt パラメータを 256 に設定します
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
 +
 [listing]
 ----
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. 「 racut-f 」コマンドを実行し、ホストを再起動します。
-. lpfc_sg_seg_cnt' が 256 であることを確認します
+.  `dracut -f`コマンドを実行し、ホストをリブートします。
+.  `lpfc_sg_seg_cnt`が256であることを確認します。
 +
 [listing]
 ----
@@ -575,5 +575,5 @@ ONTAPリリースを使用したOL 8.7のNVMe-oFホスト設定には、次の�
 | NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
 
 
-| 1517321年 | Oracle Linux 8.7 NVMe-oFホストは重複する永続的検出コントローラを作成します | OL 8.7 NVMe-oFホストでは、を渡すことでPersistent Discovery Controller（PDC；永続的検出コントローラ）が作成されます `-p` オプションをに設定します `nvme discover` コマンドを実行します特定のイニシエータとターゲットの組み合わせでは、の呼び出しごとにPDCが1つだけ作成される必要があります `nvme discover` コマンドを実行しますただし、OL 8.x以降では、NVMe-oFホストがを呼び出すたびにPDCが重複して作成されます `nvme discover` コマンドにを指定します `-p` オプションこれにより、ホストとターゲットの両方のリソースが無駄になります。 | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118年"^] 
+| 1517321年 | Oracle Linux 8.7 NVMe-oFホストは重複する永続的検出コントローラを作成します | OL 8.7 NVMe-oFホストでは `-p`、オプションを `nvme discover`コマンドに渡してPersistent Discovery Controller（PDC；永続的検出コントローラ）が作成されます。イニシエータとターゲットの組み合わせでは、 `nvme discover`コマンドを実行するたびに1つのPDCが作成されます。ただし、OL 8.x以降では、NVMe-oFホストによってPDCが重複して作成されます。これにより、ホストとターゲットの両方のリソースが無駄になります。 | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118年"^] 
 |===
