@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_aix_61.html 
-keywords: host utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
-summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法について説明します 
+permalink: hu-aix-70.html 
+keywords: host utilities, aix, powervm, vios, 3.1, 7.0, netapp, ontap 
+summary: AIX Unified Host Utilitiesは、AIXホストに接続されているNetApp ONTAPストレージの管理に役立ちます。 
 ---
-= AIX Host Utilities 6.1のインストール
+= AIX Host Utilities 7.0のインストール
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -34,7 +34,7 @@ PowerVMの詳細については、『IBM PowerVM Live Partition Mobility Red Boo
 
 
 
-.必要なもの
+.開始する前に
 * 安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。
 +
 を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
@@ -43,7 +43,7 @@ PowerVMの詳細については、『IBM PowerVM Live Partition Mobility Red Boo
 
 
 
-NOTE: NetApp AIX Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^] 圧縮された tar.gz ファイル。AIX MPIOとNetApp ONTAPストレージを使用する際には、AIX Host Utilitiesキットをインストールする必要があります。
+NOTE: NetApp AIX Host Utilitiesソフトウェアパッケージは、にあるlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^]圧縮されたtar.gzファイルで入手できます。AIX MPIOとNetApp ONTAPストレージを使用する際には、AIX Host Utilitiesキットをインストールする必要があります。
 
 .手順
 . ホストにログインします。
@@ -52,29 +52,75 @@ NOTE: NetApp AIX Host Utilities ソフトウェアパッケージは、にあり
 ** PowerVMホストで、* padmin *としてログインし、 `oem_setup_env`コマンドを入力してrootユーザに切り替えます。
 
 
-. にアクセスします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^] を実行し、Host Utilitiesを含む圧縮ファイルをホストのディレクトリにダウンロードします。
+. に移動し https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^]、Host Utilitiesが含まれている圧縮ファイルをホストのディレクトリにダウンロードします。
 . ダウンロードを格納しているディレクトリに移動します。
 . ファイルを解凍し、SAN Toolkitソフトウェアパッケージを展開します。
 +
-`# tar -xvf ntap_aix_host_utilities_6.1.tar.gz`
+`# tar -xvf ntap_aix_host_utilities_7.0.tar.gz`
 
 +
-ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります
+ファイルを解凍すると、次のディレクトリが作成されます `ntap_aix_host_utilities_7.0`。このディレクトリには、MPIO、NON_MPIO、SAN_Tool_Kitのいずれかのサブディレクトリが含まれています。
 
 . AIX MPIO をインストールします。
 +
-`# installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.MPIO_Host_Utilities_Kit`
+`# installp -aXYd /var/tmp/ntap_aix_host_utilities_7.0/MPIO NetApp.MPIO_Host_Utilities_Kit`
 
 . SANツールキットをインストールします。
 +
-`# installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit`
+`# installp -aXYd /var/tmp/ntap_aix_host_utilities_7.0/SAN_Tool_Kit/NetApp.SAN_toolkit`
 
 . ホストをリブートします。
 . インストールを確認します。
 +
+`# lslpp -l |grep -i netapp`
+
++
 [listing]
 ----
-# sanlun version
+NetApp.MPIO_Host_Utilities_Kit.config
+                             7.0.0.0  COMMITTED  NetApp MPIO PCM Host Utilities
+  NetApp.MPIO_Host_Utilities_Kit.fcp
+                             7.0.0.0  COMMITTED  NetApp MPIO PCM Host Utilities
+  NetApp.MPIO_Host_Utilities_Kit.iscsi
+                             7.0.0.0  COMMITTED  NetApp MPIO PCM Host Utilities
+  NetApp.MPIO_Host_Utilities_Kit.pcmodm
+                             7.0.0.0  COMMITTED  NetApp MPIO PCM Host Utilities
+NetApp.SAN_toolkit.sanlun  7.0.0.0  COMMITTED  NetApp SAN Toolkit sanlun
+----
+. ソフトウェアのバージョンを確認します。
++
+`# sanlun version`
+
++
+[listing]
+----
+7.0.725.3521
+----
+.  `lbp_enabled`次のコマンドを実行して、SCSI UNMAPパラメータがODMに追加されたことを確認します。
++
+`# odmget -q "uniquetype=disk/fcp/NetAppMPIO" PdAt |grep  "lbp_enabled"`
+
++
+[listing]
+----
+attribute = "lbp_enabled"
+----
++
+`# odmget -q "uniquetype=disk/fcp/NetAppMPIO and attribute=lbp_enabled" PdAt`
+
++
+[listing]
+----
+PdAt:
+        uniquetype = "disk/fcp/NetAppMPIO"
+        attribute = "lbp_enabled"
+        deflt = "true"
+        values = "true,false"
+        width = ""
+        type = "R"
+        generic = ""
+        rep = "s"
+        nls_index = 18
 ----
 
 

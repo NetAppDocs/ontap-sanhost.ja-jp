@@ -14,7 +14,7 @@ indexpage:
     - title: 製品の概要
       url: "/overview.html"
     - title: AIX Host Utilitiesリリースノート
-      url: "/hu_aix_61_rn.html"
+      url: "/hu_aix_rn.html"
     - title: HP-UX Host Utilitiesリリースノート
       url: "/hu_hpux_60_rn.html"
     - title: Linux Host Utilitiesリリースノート

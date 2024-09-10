@@ -20,7 +20,9 @@ sidebar:
     - title: AIX Host Utilities の略語
       entries:
       - title: リリースノート
-        url: "/hu_aix_61_rn.html"
+        url: "/hu_aix_rn.html"
+      - title: AIX HU 7.0をインストールします
+        url: "/hu-aix-70.html"
       - title: AIX HU 6.1をインストールします
         url: "/hu_aix_61.html"
       - title: コマンド・リファレンスの例
