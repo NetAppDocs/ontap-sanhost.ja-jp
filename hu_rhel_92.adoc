@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -197,7 +197,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -288,13 +288,13 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 RHEL 9.2 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="20, 20, 50,20"]
+[cols="20,40,40"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.2では、NetApp Linux SAN Host Utilities CLIです `sanlun fcp show adapter -v` は、HBA検出をサポートするライブラリパッケージの依存関係が見つからないために失敗します。 | 該当なし 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.2では、NetApp Linux SAN Host Utilities CLIです `sanlun fcp show adapter -v` は、HBA検出をサポートするライブラリパッケージの依存関係が見つからないために失敗します。 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1537359["1537359"^] | Emulex HBAを搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します | ストレージフェイルオーバーのギブバック処理で、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）を搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します。カーネルが中断されると、オペレーティングシステムが再起動します `kdump` が設定されると、が生成されます `vmcore` の下にあるファイル `/var/crash/` ディレクトリ。問題をでトリアージしています `lpfc` ドライバーですが、一貫して再現することはできません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=2173947["2173947"^] 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1537359["1537359"^] | Emulex HBAを搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します | ストレージフェイルオーバーのギブバック処理で、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）を搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します。カーネルが中断されると、オペレーティングシステムが再起動します `kdump` が設定されると、が生成されます `vmcore` の下にあるファイル `/var/crash/` ディレクトリ。問題をでトリアージしています `lpfc` ドライバーですが、一貫して再現することはできません。 
 |===

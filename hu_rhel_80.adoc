@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -197,7 +197,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -288,25 +288,25 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 RHEL 8.0 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="4*"]
+[cols="3*"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1238719["1238719"^] | ストレージフェイルオーバー処理中に、 QLogic QLE2672 16Gb FC を搭載した RHEL8 でカーネルが停止する | QLogic QLE2672 ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux （ RHEL ） 8 カーネルでストレージフェイルオーバー処理を実行すると、カーネルが停止することがあります。カーネルが停止すると、オペレーティングシステムがリブートします。kdump が設定されている場合は、リブートによってアプリケーションが停止し、 /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を特定します。この場合、「 kmem_cache_alloc+160 」モジュールで中断が発生します。vmcore ファイルには、「 [ 例外 RIP ： kmem_cache_alloc+160 」という文字列で記録されます。ホスト OS をリブートしてオペレーティングシステムをリカバリし、アプリケーションを再起動します。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1710009["1710009."^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1238719["1238719"^] | ストレージフェイルオーバー処理中に、 QLogic QLE2672 16Gb FC を搭載した RHEL8 でカーネルが停止する | QLogic QLE2672 ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux （ RHEL ） 8 カーネルでストレージフェイルオーバー処理を実行すると、カーネルが停止することがあります。カーネルが停止すると、オペレーティングシステムがリブートします。kdump が設定されている場合は、リブートによってアプリケーションが停止し、 /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を特定します。この場合、「 kmem_cache_alloc+160 」モジュールで中断が発生します。vmcore ファイルには、「 [ 例外 RIP ： kmem_cache_alloc+160 」という文字列で記録されます。ホスト OS をリブートしてオペレーティングシステムをリカバリし、アプリケーションを再起動します。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1226783["1226783"^] | すべてのファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）に 204 を超える SCSI デバイスがマッピングされている場合、 RHEL8 の OS が「緊急モード」でブートする | オペレーティングシステムのリブートプロセスで 204 を超える SCSI デバイスがホストにマッピングされている場合、 RHEL8 OS が「通常モード」でブートできず、「緊急モード」になります。その結果、ほとんどのホストサービスが使用できなくなります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1690356["1690356"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1226783["1226783"^] | すべてのファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）に 204 を超える SCSI デバイスがマッピングされている場合、 RHEL8 の OS が「緊急モード」でブートする | オペレーティングシステムのリブートプロセスで 204 を超える SCSI デバイスがホストにマッピングされている場合、 RHEL8 OS が「通常モード」でブートできず、「緊急モード」になります。その結果、ほとんどのホストサービスが使用できなくなります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1230882["1230882"^] | RHEL8 のインストール中に、 iSCSI マルチパスデバイスにパーティションを作成することはできません。 | RHEL 8 のインストール中、 iSCSI SAN LUN マルチパスデバイスはディスクの選択に表示されません。そのため、 SAN ブートデバイスでマルチパスサービスが有効になっていません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1709995["1709995"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1230882["1230882"^] | RHEL8 のインストール中に、 iSCSI マルチパスデバイスにパーティションを作成することはできません。 | RHEL 8 のインストール中、 iSCSI SAN LUN マルチパスデバイスはディスクの選択に表示されません。そのため、 SAN ブートデバイスでマルチパスサービスが有効になっていません。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1235998["1235998"^] | 「 rescan-scsi-bus.sh a 」コマンドでは、 328 を超えるデバイスをスキャンできません | 328 個を超える SCSI デバイスを持つ Red Hat Enterprise Linux 8 ホストマップの場合、ホスト OS コマンド「 rescan-scsi-bus.sh - A 」は 328 個のデバイスのみをスキャンします。ホストは残りのマッピングされたデバイスを検出しません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1709995["1709995"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1235998["1235998"^] | 「 rescan-scsi-bus.sh a 」コマンドでは、 328 を超えるデバイスをスキャンできません | 328 個を超える SCSI デバイスを持つ Red Hat Enterprise Linux 8 ホストマップの場合、ホスト OS コマンド「 rescan-scsi-bus.sh - A 」は 328 個のデバイスのみをスキャンします。ホストは残りのマッピングされたデバイスを検出しません。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231087["1231087"^] | ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC を搭載した RHEL8 で、リモートポートがブロック状態になっています | ストレージフェイルオーバー処理中、リモートポートは Emulex LPe16002 16Gb ファイバチャネル（ FC ）を搭載した RHEL8 でブロック状態に移行しています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります | link:https://bugzilla.redhat.com/show_bug.cgi?id=1702005["1702005"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231087["1231087"^] | ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC を搭載した RHEL8 で、リモートポートがブロック状態になっています | ストレージフェイルオーバー処理中、リモートポートは Emulex LPe16002 16Gb ファイバチャネル（ FC ）を搭載した RHEL8 でブロック状態に移行しています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GB FC を搭載した RHEL8 のリモートポートがブロック状態に移行しています | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GBFibre Channel （ FC ）を搭載した RHEL8 で、リモートポートがブロック状態になっています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1705573["1705573"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GB FC を搭載した RHEL8 のリモートポートがブロック状態に移行しています | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GBFibre Channel （ FC ）を搭載した RHEL8 で、リモートポートがブロック状態になっています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります。 
 |===

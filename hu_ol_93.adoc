@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -197,7 +197,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -290,9 +290,9 @@ NOTE: Oracle Linux 9.3 Red Hat Enterprise Kernel（RHCK）を設定するには�
 
 Oracle Linux 9.3 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="10,30,30,10"]
+[cols="20,40,40"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
 | https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1508554["1508554."^] | Emulex HBAを搭載したSAN LUNユーティリティには、ライブラリパッケージからのシンボリックリンクが必要です  a| 
@@ -303,5 +303,5 @@ SANホストでLinux Unified Host Utilities CLIコマンド「sanlun fcp show ad
 [root@hostname ~]# sanlun fcp show adapter -v
 Unable to locate /usr/lib64/libHBAAPI.so library
 Make sure the package installing the library is installed & loaded
-----| 該当なし 
+----
 |===

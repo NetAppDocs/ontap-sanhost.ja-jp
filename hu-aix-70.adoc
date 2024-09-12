@@ -43,7 +43,7 @@ PowerVMの詳細については、『IBM PowerVM Live Partition Mobility Red Boo
 
 
 
-NOTE: NetApp AIX Host Utilitiesソフトウェアパッケージは、にあるlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^]圧縮されたtar.gzファイルで入手できます。AIX MPIOとNetApp ONTAPストレージを使用する際には、AIX Host Utilitiesキットをインストールする必要があります。
+NOTE: NetApp AIX Host Utilitiesソフトウェアパッケージは、にあるlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["ネットアップサポートサイト"^]圧縮されたtar.gzファイルで入手できます。AIX MPIOとNetApp ONTAPストレージを使用する際には、AIX Host Utilitiesキットをインストールする必要があります。
 
 .手順
 . ホストにログインします。
@@ -52,7 +52,7 @@ NOTE: NetApp AIX Host Utilitiesソフトウェアパッケージは、にあるl
 ** PowerVMホストで、* padmin *としてログインし、 `oem_setup_env`コマンドを入力してrootユーザに切り替えます。
 
 
-. に移動し https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["ネットアップサポートサイト"^]、Host Utilitiesが含まれている圧縮ファイルをホストのディレクトリにダウンロードします。
+. に移動し https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["ネットアップサポートサイト"^]、Host Utilitiesが含まれている圧縮ファイルをホストのディレクトリにダウンロードします。
 . ダウンロードを格納しているディレクトリに移動します。
 . ファイルを解凍し、SAN Toolkitソフトウェアパッケージを展開します。
 +

@@ -170,7 +170,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -198,7 +198,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -289,16 +289,16 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 RHEL 8.1 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="4*"]
+[cols="3*"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1275843["1275843"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2672 16Gb FC HBA を搭載した Red Hat Enterprise Linux 8.1 でカーネルが停止することがあります | QLogic QLE2672 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux 8.1 カーネルでストレージのフェイルオーバー処理を実行すると、カーネルが停止することがあります。カーネルが停止すると Red Hat Enterprise Linux 8.1 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、システム停止の原因を確認できます。 QLogic QLEkmem_cache_alloc+131 モジュールには、 QLogic QLE2672 HBA イベントによるストレージフェイルオーバーが影響します。カーネルの停止後、ホスト OS をリブートし、オペレーティングシステムをリカバリすると、「 [exception RIP ： kmem_cache_alloc+131] 」という文字列が表示されます。次に、アプリケーションを再起動します | link:https://bugzilla.redhat.com/show_bug.cgi?id=1760819["1760819"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1275843["1275843"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2672 16Gb FC HBA を搭載した Red Hat Enterprise Linux 8.1 でカーネルが停止することがあります | QLogic QLE2672 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux 8.1 カーネルでストレージのフェイルオーバー処理を実行すると、カーネルが停止することがあります。カーネルが停止すると Red Hat Enterprise Linux 8.1 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、システム停止の原因を確認できます。 QLogic QLEkmem_cache_alloc+131 モジュールには、 QLogic QLE2672 HBA イベントによるストレージフェイルオーバーが影響します。カーネルの停止後、ホスト OS をリブートし、オペレーティングシステムをリカバリすると、「 [exception RIP ： kmem_cache_alloc+131] 」という文字列が表示されます。次に、アプリケーションを再起動します 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1275838["1275838"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC HBA を搭載した Red Hat Enterprise Linux 8.1 でカーネルが停止します | QLogic QLE2742 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux 8.1 カーネルで、ストレージフェイルオーバー処理の実行中にカーネルが停止します。カーネルが停止すると Red Hat Enterprise Linux 8.1 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、停止の原因を特定できます。QLogic QLE2742 HBA イベントによるストレージフェイルオーバーは、「 kmem_cache_alloc+131 」モジュールに影響します。カーネルの停止後、ホスト OS をリブートし、オペレーティングシステムをリカバリすると、「 [exception RIP ： kmem_cache_alloc+131] 」という文字列が表示されます。次に、アプリケーションを再起動します。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1744082["1744082"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1275838["1275838"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC HBA を搭載した Red Hat Enterprise Linux 8.1 でカーネルが停止します | QLogic QLE2742 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux 8.1 カーネルで、ストレージフェイルオーバー処理の実行中にカーネルが停止します。カーネルが停止すると Red Hat Enterprise Linux 8.1 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、停止の原因を特定できます。QLogic QLE2742 HBA イベントによるストレージフェイルオーバーは、「 kmem_cache_alloc+131 」モジュールに影響します。カーネルの停止後、ホスト OS をリブートし、オペレーティングシステムをリカバリすると、「 [exception RIP ： kmem_cache_alloc+131] 」という文字列が表示されます。次に、アプリケーションを再起動します。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1266250["1266250"^] | iSCSI SAN LUN への Red Hat Enterprise Linux 8.1 のインストール中に、複数のパスへのログインが失敗します | iSCSI SAN LUN マルチパスデバイスへの Red Hat Enterprise Linux 8.1 のインストール中は、複数のパスにログインできません。マルチパス iSCSI デバイスへのインストールは実行できず、 SAN ブートデバイスでマルチパスサービスが有効になっていません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1758504["1758504"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1266250["1266250"^] | iSCSI SAN LUN への Red Hat Enterprise Linux 8.1 のインストール中に、複数のパスへのログインが失敗します | iSCSI SAN LUN マルチパスデバイスへの Red Hat Enterprise Linux 8.1 のインストール中は、複数のパスにログインできません。マルチパス iSCSI デバイスへのインストールは実行できず、 SAN ブートデバイスでマルチパスサービスが有効になっていません。 
 |===

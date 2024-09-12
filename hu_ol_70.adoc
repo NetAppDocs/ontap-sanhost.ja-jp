@@ -151,7 +151,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -179,7 +179,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -263,25 +263,25 @@ NOTE: Oracle Linux 7.0 Red Hat Enterprise Kernel（RHCK）を設定するには�
 
 Oracle Linux 7.0 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="4*"]
+[cols="3*"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901558["901558"^] | OL7.0 ： Emulex 8G （ LPe12002 ）ホストの OL 7.0 UEK r3U5 ベータ版で「 RSCN timeout 」エラーが発生すると、ホストは LUN へのすべてのパスを失い、ハングします | Emulex 8G （ LPe12002 ）ホストは停止し、 I/O でストレージフェイルオーバー処理を実行中に高い I/O 障害が発生する可能性がありますリカバリされないパスは RSCN タイムアウトによって失われ、ホストはすべてのパスとハングするため、その結果として認識されます。この問題に達する可能性は高くなります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=14898["14898"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901558["901558"^] | OL7.0 ： Emulex 8G （ LPe12002 ）ホストの OL 7.0 UEK r3U5 ベータ版で「 RSCN timeout 」エラーが発生すると、ホストは LUN へのすべてのパスを失い、ハングします | Emulex 8G （ LPe12002 ）ホストは停止し、 I/O でストレージフェイルオーバー処理を実行中に高い I/O 障害が発生する可能性がありますリカバリされないパスは RSCN タイムアウトによって失われ、ホストはすべてのパスとハングするため、その結果として認識されます。この問題に達する可能性は高くなります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7.0 ： IO を使用したストレージフェイルオーバー処理中に、 QLogic 8G FC （ QLE2562 ） SAN ホストで IO が停止することが確認されました | IO を使用したストレージフェイルオーバー処理で、 QLogic 8G FC （ QLE2562 ）ホストの I/O が高くなることがあります。ホストで IO 停止が発生すると、中止とデバイスのリセットが通知されます。この I/O 停止が発生する可能性は高いです。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=14894["14894"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7.0 ： IO を使用したストレージフェイルオーバー処理中に、 QLogic 8G FC （ QLE2562 ） SAN ホストで IO が停止することが確認されました | IO を使用したストレージフェイルオーバー処理で、 QLogic 8G FC （ QLE2562 ）ホストの I/O が高くなることがあります。ホストで IO 停止が発生すると、中止とデバイスのリセットが通知されます。この I/O 停止が発生する可能性は高いです。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894766["894766"^] | OL7.0 ： UEKR3U5 α の initramfs に SCSI_dh_aluf.ko モジュールを dracut に含めることができません | カーネルコマンドラインにパラメータ「 rdloaddriver=scsi_dh_alua 」を追加して dracut を作成したあとでも、 scsi_dh_alua モジュールがロードされないことがあります。そのため、ネットアップ LUN に対しては ALUA の有効化は推奨されません。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=14860["14860"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894766["894766"^] | OL7.0 ： UEKR3U5 α の initramfs に SCSI_dh_aluf.ko モジュールを dracut に含めることができません | カーネルコマンドラインにパラメータ「 rdloaddriver=scsi_dh_alua 」を追加して dracut を作成したあとでも、 scsi_dh_alua モジュールがロードされないことがあります。そのため、ネットアップ LUN に対しては ALUA の有効化は推奨されません。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894796["894796"^] | anaconda は、 OL 7.0 OS のインストール中にログインが成功したにもかかわらず、 iSCSI ログインエラーメッセージを表示します | OL 7.0 をインストールするとき、 anaconda のインストール画面に、 iSCSI ログインが成功したにもかかわらず、複数のターゲット IP への iSCSI ログインに失敗したことが表示されます。anaconda で次のエラーメッセージが表示されます。 "Node Login Failed" iSCSI ログインに複数のターゲット IP を選択した場合にのみ、このエラーが表示されます。[OK] ボタンをクリックすると、 OS のインストールを続行できます。このバグは、 iSCSI または OL 7.0 OS のインストールを阻害するものではありません。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=14870["14870"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894796["894796"^] | anaconda は、 OL 7.0 OS のインストール中にログインが成功したにもかかわらず、 iSCSI ログインエラーメッセージを表示します | OL 7.0 をインストールするとき、 anaconda のインストール画面に、 iSCSI ログインが成功したにもかかわらず、複数のターゲット IP への iSCSI ログインに失敗したことが表示されます。anaconda で次のエラーメッセージが表示されます。 "Node Login Failed" iSCSI ログインに複数のターゲット IP を選択した場合にのみ、このエラーが表示されます。[OK] ボタンをクリックすると、 OS のインストールを続行できます。このバグは、 iSCSI または OL 7.0 OS のインストールを阻害するものではありません。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894771["894771"^] | OL7.0: Anaconda は、カーネル cmd 行に bootdev 引数を追加して、 iSCSI SANboot OS インストールの IP アドレスを設定しません | anaconda は、カーネルコマンドラインに bootdev 引数を追加しません。このコマンドラインでは、 iSCSI マルチパス LUN での OL 7.0 OS のインストール時に IPv4 アドレスを設定します。これにより、 OL 7.0 のブート中にストレージサブシステムとの iSCSI セッションを確立するように設定されたイーサネットインターフェイスに IP アドレスを割り当てることはできません。iSCSI セッションが確立されていないため、 OS のブート時にルート LUN が検出されないため、 OS のブートに失敗します。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=14871["14871"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894771["894771"^] | OL7.0: Anaconda は、カーネル cmd 行に bootdev 引数を追加して、 iSCSI SANboot OS インストールの IP アドレスを設定しません | anaconda は、カーネルコマンドラインに bootdev 引数を追加しません。このコマンドラインでは、 iSCSI マルチパス LUN での OL 7.0 OS のインストール時に IPv4 アドレスを設定します。これにより、 OL 7.0 のブート中にストレージサブシステムとの iSCSI セッションを確立するように設定されたイーサネットインターフェイスに IP アドレスを割り当てることはできません。iSCSI セッションが確立されていないため、 OS のブート時にルート LUN が検出されないため、 OS のブートに失敗します。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | IO を使用したストレージフェイルオーバー処理で、 QLogic 10G FCoE （ QLE8152 ）ホストカーネルのクラッシュが確認されました | 10G FCoE Qlogic （ QLE8152 ）ホスト上の Qlogic ドライバモジュールでカーネルクラッシュが発生する可能性があります。IO を使用したストレージフェイルオーバー処理の実行中にクラッシュが発生します。このクラッシュが発生する可能性が高いため、ホストでの IO 停止が長くなります。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=15019["15019"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | IO を使用したストレージフェイルオーバー処理で、 QLogic 10G FCoE （ QLE8152 ）ホストカーネルのクラッシュが確認されました | 10G FCoE Qlogic （ QLE8152 ）ホスト上の Qlogic ドライバモジュールでカーネルクラッシュが発生する可能性があります。IO を使用したストレージフェイルオーバー処理の実行中にクラッシュが発生します。このクラッシュが発生する可能性が高いため、ホストでの IO 停止が長くなります。 
 |===

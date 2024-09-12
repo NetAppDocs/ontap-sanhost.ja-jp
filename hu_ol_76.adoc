@@ -138,7 +138,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -166,7 +166,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -250,28 +250,28 @@ NOTE: Oracle Linux 7.6 Red Hat Enterprise Kernel（RHCK）を設定するには�
 
 Oracle Linux 7.6 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="4*"]
+[cols="3*"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 | 該当なし 
+| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1202736["1202736"^] | QLogic QLE2742 アダプタを搭載した OL7U6 ホストにリモートポートの「 Not Present 」状態であるため、ホストの検出中に LUN を使用できない可能性があります | ホストの検出中に、 QLogic QLE2742 アダプタを搭載した OL7U6 ホストの Fibre Channel （ FC ）リモートポートのステータスが「 Not Present 」になることがあります。「存在しない」状態のリモートポートでは、 LUN への原因パスが使用できなくなる可能性があります。ストレージフェイルオーバー時に、パスの冗長性が低下して I/O が停止する可能性があります。リモートポートのステータスを確認するには、次のコマンドを入力します。 # cat /sys/class/fc_remote_ports/rport-*/port_state 表示される出力の例は、 Online not present Online です | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16613["16613"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1202736["1202736"^] | QLogic QLE2742 アダプタを搭載した OL7U6 ホストにリモートポートの「 Not Present 」状態であるため、ホストの検出中に LUN を使用できない可能性があります | ホストの検出中に、 QLogic QLE2742 アダプタを搭載した OL7U6 ホストの Fibre Channel （ FC ）リモートポートのステータスが「 Not Present 」になることがあります。「存在しない」状態のリモートポートでは、 LUN への原因パスが使用できなくなる可能性があります。ストレージフェイルオーバー時に、パスの冗長性が低下して I/O が停止する可能性があります。リモートポートのステータスを確認するには、次のコマンドを入力します。 # cat /sys/class/fc_remote_ports/rport-*/port_state 表示される出力の例は、 Online not present Online です 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1204078["1204078"^] | ストレージフェイルオーバー処理中に、 Qlogic （ QLE2672 ） 16GB FC HBA を使用している Oracle Linux 7.6 でカーネルが停止する | Qlogic QLE2672 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を使用する Oracle Linux 7.6 でストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニックすると Oracle Linux 7.6 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。カーネルが停止したら、ホスト OS をリブートしてオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16606["16606"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1204078["1204078"^] | ストレージフェイルオーバー処理中に、 Qlogic （ QLE2672 ） 16GB FC HBA を使用している Oracle Linux 7.6 でカーネルが停止する | Qlogic QLE2672 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を使用する Oracle Linux 7.6 でストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニックすると Oracle Linux 7.6 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。カーネルが停止したら、ホスト OS をリブートしてオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1204351["1204351"^] | ストレージフェイルオーバー処理を実行する際に、 Qlogic （ QLE2742 ） 32GB FC HBA を使用している Oracle Linux 7.6 でカーネルが停止する可能性があります | Qlogic QLE2742 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を使用する Oracle Linux 7.6 でストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止することがあります。カーネルがパニックすると Oracle Linux 7.6 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。カーネルが停止したら、ホスト OS をリブートしてオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16605["16605"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1204351["1204351"^] | ストレージフェイルオーバー処理を実行する際に、 Qlogic （ QLE2742 ） 32GB FC HBA を使用している Oracle Linux 7.6 でカーネルが停止する可能性があります | Qlogic QLE2742 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を使用する Oracle Linux 7.6 でストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止することがあります。カーネルがパニックすると Oracle Linux 7.6 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。カーネルが停止したら、ホスト OS をリブートしてオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1204352["1204352"^] | ストレージフェイルオーバー処理で、 Emulex （ LPe32002-M2 ） 32GB FC HBA を使用する Oracle Linux 7.6 でカーネルが停止する可能性があります | Emulex LPe32002-M2 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Oracle Linux 7.6 でストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止することがあります。カーネルがパニックすると Oracle Linux 7.6 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。カーネルが停止したら、ホスト OS をリブートしてオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16607["16607"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1204352["1204352"^] | ストレージフェイルオーバー処理で、 Emulex （ LPe32002-M2 ） 32GB FC HBA を使用する Oracle Linux 7.6 でカーネルが停止する可能性があります | Emulex LPe32002-M2 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Oracle Linux 7.6 でストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止することがあります。カーネルがパニックすると Oracle Linux 7.6 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。カーネルが停止したら、ホスト OS をリブートしてオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246134["11246134"^] | ストレージフェイルオーバー処理中に Emulex LPe16002B-M6 16G FC HBA で実行されている、 UEK5U2 カーネルを搭載した Oracle Linux 7.6 では I/O が進行しません | Emulex LPe16002B-M6 16G FC ホストバスアダプタ（ HBA ）を使用して UEK5U2 カーネルを実行している Oracle Linux 7.6 でストレージフェイルオーバー処理を実行している場合、レポートがブロックされると I/O の進捗が停止することがあります。ストレージフェイルオーバー処理では、「オンライン」状態から「ブロック」状態に変化するため、読み取りおよび書き込み処理に遅延が生じます。処理が正常に完了すると、レポートは「オンライン」状態に戻り、引き続き「ブロック」状態のままになります。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16852["16852"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246134["11246134"^] | ストレージフェイルオーバー処理中に Emulex LPe16002B-M6 16G FC HBA で実行されている、 UEK5U2 カーネルを搭載した Oracle Linux 7.6 では I/O が進行しません | Emulex LPe16002B-M6 16G FC ホストバスアダプタ（ HBA ）を使用して UEK5U2 カーネルを実行している Oracle Linux 7.6 でストレージフェイルオーバー処理を実行している場合、レポートがブロックされると I/O の進捗が停止することがあります。ストレージフェイルオーバー処理では、「オンライン」状態から「ブロック」状態に変化するため、読み取りおよび書き込み処理に遅延が生じます。処理が正常に完了すると、レポートは「オンライン」状態に戻り、引き続き「ブロック」状態のままになります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246327["1246327"^] | ストレージフェイルオーバー処理中に QLogic QLE2672 16G ホストのリモートポートステータスがブロックされました | ストレージフェイルオーバー処理中に、 Fibre Channel （ FC ）リモートポートが Red Hat Enterprise Linux （ RHEL ） 7.6 で QLogic QLE2672 16G ホストでブロックされることがあります。ストレージノードが停止すると論理インターフェイスが停止するため、リモートポートでストレージノードのステータスがブロック済みに設定されます。QLogic QLE2672 16G ホストと QLE2742 32GB Fibre Channel （ FC ）ホストバスアダプタ（ HBA ）の両方を実行している場合、ブロックされたポートが原因で IO の進捗が停止することがあります。ストレージノードが最適状態に戻ると、論理インターフェイスも稼働し、リモートポートがオンラインになります。ただし、リモートポートは引き続きブロックされる場合があります。このブロック状態は、マルチパスレイヤで LUN に障害が発生したと登録されます。リモートポートの状態は、次のコマンドで確認できます。 # cat /sys/class/fc_remote_ports/rport-*/port_stat Blocked Blocked Online Online | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16853["16853"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246327["1246327"^] | ストレージフェイルオーバー処理中に QLogic QLE2672 16G ホストのリモートポートステータスがブロックされました | ストレージフェイルオーバー処理中に、 Fibre Channel （ FC ）リモートポートが Red Hat Enterprise Linux （ RHEL ） 7.6 で QLogic QLE2672 16G ホストでブロックされることがあります。ストレージノードが停止すると論理インターフェイスが停止するため、リモートポートでストレージノードのステータスがブロック済みに設定されます。QLogic QLE2672 16G ホストと QLE2742 32GB Fibre Channel （ FC ）ホストバスアダプタ（ HBA ）の両方を実行している場合、ブロックされたポートが原因で IO の進捗が停止することがあります。ストレージノードが最適状態に戻ると、論理インターフェイスも稼働し、リモートポートがオンラインになります。ただし、リモートポートは引き続きブロックされる場合があります。このブロック状態は、マルチパスレイヤで LUN に障害が発生したと登録されます。リモートポートの状態は、次のコマンドで確認できます。 # cat /sys/class/fc_remote_ports/rport-*/port_stat Blocked Blocked Online Online 
 |===

@@ -554,11 +554,11 @@ ONTAPリリースを使用したOL 9.1のNVMe-oFホスト構成には、次の�
 
 [cols=""20"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| 1536937 | `nvme list-subsys` コマンドを実行すると、サブシステムについて繰り返しNVMeコントローラが出力されます | 。 `nvme list-subsys` コマンドは、指定したサブシステムに関連付けられているNVMeコントローラの一意のリストを返す必要があります。Oracle Linux 9.1の場合は、 `nvme list-subsys` コマンドは、指定したサブシステムに属するすべてのネームスペースについて、それぞれのAsymmetric Namespace Access（ANA）状態のNVMeコントローラを返します。ただし、ANAの状態はネームスペースごとの属性であるため、特定のネームスペースのサブシステムコマンド構文をリストすると、パスの状態を含む一意のNVMeコントローラエントリを表示すると便利です。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=17998["17998年"^] 
+| 1536937 | `nvme list-subsys` コマンドを実行すると、サブシステムについて繰り返しNVMeコントローラが出力されます | 。 `nvme list-subsys` コマンドは、指定したサブシステムに関連付けられているNVMeコントローラの一意のリストを返す必要があります。Oracle Linux 9.1の場合は、 `nvme list-subsys` コマンドは、指定したサブシステムに属するすべてのネームスペースについて、それぞれのAsymmetric Namespace Access（ANA）状態のNVMeコントローラを返します。ただし、ANAの状態はネームスペースごとの属性であるため、特定のネームスペースのサブシステムコマンド構文をリストすると、パスの状態を含む一意のNVMeコントローラエントリを表示すると便利です。 
 
 
-| 1539101 | Oracle Linux 9.1 NVMe-oFホストで永続的検出コントローラを作成できない | Oracle Linux 9.1のNVMe-oFホストでは、を使用できます `nvme discover -p` 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとに1つのPDCを作成する必要があります。ただし、NVMe-oFホストでOracle Linux 9.1を実行している場合は、の実行時にPDCの作成が失敗します `nvme discover -p` コマンドが実行されます。 | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18196["18196年"^] 
+| 1539101 | Oracle Linux 9.1 NVMe-oFホストで永続的検出コントローラを作成できない | Oracle Linux 9.1のNVMe-oFホストでは、を使用できます `nvme discover -p` 永続的検出コントローラ（PDC）を作成するコマンド。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとに1つのPDCを作成する必要があります。ただし、NVMe-oFホストでOracle Linux 9.1を実行している場合は、の実行時にPDCの作成が失敗します `nvme discover -p` コマンドが実行されます。 
 |===

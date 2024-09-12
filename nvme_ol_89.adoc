@@ -579,7 +579,7 @@ NSID     UUID                                   Size
 
 Oracle Linux 8.9（ONTAPリリース）でのNVMe-oFホスト設定には、次の既知の問題があります。
 
-[cols="1a, 2a, 6a, 1a, options="]
+[cols="1a,4a,4a, options="]
 |===
 
 
@@ -589,8 +589,6 @@ NetApp バグ ID
 タイトル
  a| 
 説明
- a| 
-Bugzilla ID
 
 
 
@@ -600,7 +598,5 @@ link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1517321["1
 Oracle Linux 8.9 NVMe-oFホストでPDCが重複して作成される
  a| 
 Oracle Linux 8.9 NVMe-oFホストでは `-p`、 `nvme discover`コマンドにオプションを指定することで永続的検出コントローラ（PDC）が作成されます。イニシエータとターゲットの組み合わせでは、 `nvme discover`コマンドを実行するたびに1つのPDCが作成されます。ただし、Oracle Linux 8.x以降では、NVMe-oFホストは重複して作成されます。これにより、ホストとターゲットの両方のリソースが無駄になります。
- a| 
-https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118年"^]
 
 |===

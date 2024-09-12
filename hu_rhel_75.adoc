@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -197,7 +197,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -288,22 +288,22 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 RHEL 7.5 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="4*"]
+[cols="3*"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 | 該当なし 
+| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1139053["1139053"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2672 16Gb FC を搭載した RHEL7.5 でカーネルが停止する | QLogic QLE2672 16Gb ファイバチャネルホストバスアダプタを搭載した RHEL7U5 カーネルでストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニック状態になると RHEL 7.5 がリブートし、アプリケーションが停止します。kdump が設定されている場合、カーネルパニックにより /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。vmcore ファイルは、障害の原因を理解するために使用します。この場合、カーネルの中断後、ホストオペレーティングシステムを再起動し、必要に応じてアプリケーションを再起動することで、オペレーティングシステムを回復できます。この場合、「 Get_NEXT_TIME_INTERRUPT + 440 」モジュールは、 vmcore ファイルに記録された「 Get_NEXT_TIMER +440 」モジュールにパニックが発生します。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1542564["1542564"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1139053["1139053"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2672 16Gb FC を搭載した RHEL7.5 でカーネルが停止する | QLogic QLE2672 16Gb ファイバチャネルホストバスアダプタを搭載した RHEL7U5 カーネルでストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニック状態になると RHEL 7.5 がリブートし、アプリケーションが停止します。kdump が設定されている場合、カーネルパニックにより /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。vmcore ファイルは、障害の原因を理解するために使用します。この場合、カーネルの中断後、ホストオペレーティングシステムを再起動し、必要に応じてアプリケーションを再起動することで、オペレーティングシステムを回復できます。この場合、「 Get_NEXT_TIME_INTERRUPT + 440 」モジュールは、 vmcore ファイルに記録された「 Get_NEXT_TIMER +440 」モジュールにパニックが発生します。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1138536["1138536"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC を搭載した RHEL7U5 でカーネルが停止する | Red Hat Enterprise Linux （ RHEL ） RHEL7U5 カーネルで QLogic QLE2742 HBA を使用してストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニックすると、オペレーティングシステムがリブートし、アプリケーションが停止します。kdump が設定されている場合、カーネルパニックにより /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。カーネルパニックが発生した場合は、 vmcore ファイルを使用して障害の原因を調査できます。次の例は、 bget_next_timer_interrupt+440b モジュールでパニック状態を示しています。パニックは vmcore ファイルに次の文字列で記録されます。 "[exception RIP: Get_next_timer_interrupt+440]" ホスト OS を再起動し、必要に応じてアプリケーションを再起動することで、オペレーティングシステムを回復できます。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1541972["1541972 年"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1138536["1138536"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC を搭載した RHEL7U5 でカーネルが停止する | Red Hat Enterprise Linux （ RHEL ） RHEL7U5 カーネルで QLogic QLE2742 HBA を使用してストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニックすると、オペレーティングシステムがリブートし、アプリケーションが停止します。kdump が設定されている場合、カーネルパニックにより /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。カーネルパニックが発生した場合は、 vmcore ファイルを使用して障害の原因を調査できます。次の例は、 bget_next_timer_interrupt+440b モジュールでパニック状態を示しています。パニックは vmcore ファイルに次の文字列で記録されます。 "[exception RIP: Get_next_timer_interrupt+440]" ホスト OS を再起動し、必要に応じてアプリケーションを再起動することで、オペレーティングシステムを回復できます。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1148090["1148090"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC HBA を搭載した RHEL 7.5 でカーネルが停止します | QLogic QLE2742 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux （ RHEL ） 7.5 カーネルでストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニック状態になると RHEL 7.5 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。この例では、 QLogic QLE2742 HBA イベントによるストレージフェイルオーバーが発生すると、「 native_queued _spin_lock_slowpath + 464 」モジュールが影響を受けます。イベントは vmcore ファイルで次の文字列を見つけることができます。 "[exception RIP: native_queued _spin_lock_slowpath+464]" カーネルの停止後、ホスト OS を再起動してオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1559050["1559050"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1148090["1148090"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC HBA を搭載した RHEL 7.5 でカーネルが停止します | QLogic QLE2742 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux （ RHEL ） 7.5 カーネルでストレージフェイルオーバー処理を実行しているときに、カーネルがパニック状態になるとカーネルが停止します。カーネルがパニック状態になると RHEL 7.5 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルパニックは /var/crash/ ディレクトリにある vmcore ファイルを生成します。vmcore ファイルを分析して、パニックの原因を特定できます。この例では、 QLogic QLE2742 HBA イベントによるストレージフェイルオーバーが発生すると、「 native_queued _spin_lock_slowpath + 464 」モジュールが影響を受けます。イベントは vmcore ファイルで次の文字列を見つけることができます。 "[exception RIP: native_queued _spin_lock_slowpath+464]" カーネルの停止後、ホスト OS を再起動してオペレーティングシステムをリカバリし、必要に応じてアプリケーションを再起動できます。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1146898["1146898"^] | ストレージフェイルオーバー処理の実行中に、 Emulex HBA を搭載した RHEL 7.5 でカーネルが停止します | Emulex LPe32002-M2 32GB FC Host Bus Adapter （ HBA ；ホストバスアダプタ）を搭載した Red Hat Enterprise Linux （ RHEL ） 7.5 システムでストレージフェイルオーバー処理を実行すると、カーネルが停止します。カーネルが中断するとオペレーティングシステムが再起動し、アプリケーションが停止します。kdump を設定した場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を特定できます。次の例では、「 lpfc_hba_clean_txcmplq+368 」モジュールで中断された内容を確認します。この中断は、 vmcore ファイルに次の文字列で記録されます。 "[exception RIP ： lpfc_hba_clean_txcmplq+368]" カーネルの停止後、ホスト OS をリブートしてオペレーティングシステムをリカバリします。必要に応じてアプリケーションを再起動します。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1554777["155477"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1146898["1146898"^] | ストレージフェイルオーバー処理の実行中に、 Emulex HBA を搭載した RHEL 7.5 でカーネルが停止します | Emulex LPe32002-M2 32GB FC Host Bus Adapter （ HBA ；ホストバスアダプタ）を搭載した Red Hat Enterprise Linux （ RHEL ） 7.5 システムでストレージフェイルオーバー処理を実行すると、カーネルが停止します。カーネルが中断するとオペレーティングシステムが再起動し、アプリケーションが停止します。kdump を設定した場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を特定できます。次の例では、「 lpfc_hba_clean_txcmplq+368 」モジュールで中断された内容を確認します。この中断は、 vmcore ファイルに次の文字列で記録されます。 "[exception RIP ： lpfc_hba_clean_txcmplq+368]" カーネルの停止後、ホスト OS をリブートしてオペレーティングシステムをリカバリします。必要に応じてアプリケーションを再起動します。 
 |===

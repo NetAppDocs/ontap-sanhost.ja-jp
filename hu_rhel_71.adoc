@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -197,7 +197,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -288,13 +288,13 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 RHEL 7.1 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="4*"]
+[cols="3*"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799323["799323"^] | ストレージフェイルオーバー処理を使用した I/O で、 Emulex FCoE （ OCe10102-FX-D ）ホストがハングしたり、パス障害が発生したりしました | ストレージフェイルオーバー処理を使用した I/O で、 Emulex 10G FCoE ホスト（ OCe10102-FX-D ）でホストの停止やパスの障害が発生することがあります。このような場合は、「 driver's buffer pool is empty 、 IO busied and SCSI Layer I/O Abort Request Status 」というメッセージが表示されます。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1061755["1061755"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799323["799323"^] | ストレージフェイルオーバー処理を使用した I/O で、 Emulex FCoE （ OCe10102-FX-D ）ホストがハングしたり、パス障害が発生したりしました | ストレージフェイルオーバー処理を使用した I/O で、 Emulex 10G FCoE ホスト（ OCe10102-FX-D ）でホストの停止やパスの障害が発生することがあります。このような場合は、「 driver's buffer pool is empty 、 IO busied and SCSI Layer I/O Abort Request Status 」というメッセージが表示されます。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836875["836875"^] | iSCSI マルチパスの LUN にインストールされた RHEL 7.0 OS のブート時に、 IP アドレスが常に割り当てられるとは限りません | iSCSI マルチパスの LUN にルート (/) をインストールすると、 Ethernet インタフェースの IP アドレスがカーネルコマンドラインで指定され、 iSCSI サービスが開始される前に IP アドレスが割り当てられるようになります。ただし、 iSCSI サービスが開始される前に、ブート中にすべてのイーサネットポートに IP アドレスを割り当てることはできません。これにより、 IP アドレスのないインターフェイスで iSCSI ログインが失敗します。iSCSI サービスのログイン試行が何度も表示され、 OS のブート時間に原因が遅れます。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1114966["1114966"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836875["836875"^] | iSCSI マルチパスの LUN にインストールされた RHEL 7.0 OS のブート時に、 IP アドレスが常に割り当てられるとは限りません | iSCSI マルチパスの LUN にルート (/) をインストールすると、 Ethernet インタフェースの IP アドレスがカーネルコマンドラインで指定され、 iSCSI サービスが開始される前に IP アドレスが割り当てられるようになります。ただし、 iSCSI サービスが開始される前に、ブート中にすべてのイーサネットポートに IP アドレスを割り当てることはできません。これにより、 IP アドレスのないインターフェイスで iSCSI ログインが失敗します。iSCSI サービスのログイン試行が何度も表示され、 OS のブート時間に原因が遅れます。 
 |===

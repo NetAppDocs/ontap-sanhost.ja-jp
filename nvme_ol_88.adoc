@@ -581,8 +581,8 @@ ONTAPリリースを使用したOL 8.8のNVMe-oFホスト設定には、次の�
 
 [cols=""20"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| 1517321年 | Oracle Linux 8.8 NVMe-oFホストでPDCが重複して作成される | OL 8.8 NVMe-oFホストでは `-p`、オプションを `nvme discover`コマンドに渡してPersistent Discovery Controller（PDC；永続的検出コントローラ）が作成されます。イニシエータとターゲットの組み合わせでは、 `nvme discover`コマンドを実行するたびに1つのPDCが作成されます。ただし、OL 8.x以降では、NVMe-oFホストによってPDCが重複して作成されます。これにより、ホストとターゲットの両方のリソースが無駄になります。 | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118年"^] 
+| 1517321年 | Oracle Linux 8.8 NVMe-oFホストでPDCが重複して作成される | OL 8.8 NVMe-oFホストでは `-p`、オプションを `nvme discover`コマンドに渡してPersistent Discovery Controller（PDC；永続的検出コントローラ）が作成されます。イニシエータとターゲットの組み合わせでは、 `nvme discover`コマンドを実行するたびに1つのPDCが作成されます。ただし、OL 8.x以降では、NVMe-oFホストによってPDCが重複して作成されます。これにより、ホストとターゲットの両方のリソースが無駄になります。 
 |===

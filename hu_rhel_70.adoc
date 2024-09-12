@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .例
-この例では、デバイスのWWIDを特定し、 `multipath.conf` ファイル。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
 . 次のコマンドを実行して WWID を特定します。
@@ -197,7 +197,7 @@ blacklist {
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===
@@ -288,34 +288,34 @@ Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用で�
 
 RHEL 7.0 with ONTAPリリースには、次の既知の問題があります。
 
-[cols="4*"]
+[cols="3*"]
 |===
-| NetApp バグ ID | タイトル | 説明 | Bugzilla ID 
+| NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=844417["844417"^] | ストレージフェイルオーバー処理を使用した I/O 中に Emulex 16G FC （ LPe16002B-M6 ）ホストがクラッシュする | ストレージフェイルオーバー処理を使用した I/O で 16G FC Emulex （ LPe16002B-M6 ）ホストがクラッシュすることがあります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1131393["1131393"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=844417["844417"^] | ストレージフェイルオーバー処理を使用した I/O 中に Emulex 16G FC （ LPe16002B-M6 ）ホストがクラッシュする | ストレージフェイルオーバー処理を使用した I/O で 16G FC Emulex （ LPe16002B-M6 ）ホストがクラッシュすることがあります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=811587["811587"^] | ストレージフェイルオーバー処理を使用した I/O 中に Emulex 16G FC （ LPe16002B-M6 ）ホストがクラッシュする | ストレージフェイルオーバー処理を使用した I/O で 16G FC Emulex （ LPe16002B-M6 ）ホストがクラッシュすることがあります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1079735["1079735"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=811587["811587"^] | ストレージフェイルオーバー処理を使用した I/O 中に Emulex 16G FC （ LPe16002B-M6 ）ホストがクラッシュする | ストレージフェイルオーバー処理を使用した I/O で 16G FC Emulex （ LPe16002B-M6 ）ホストがクラッシュすることがあります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=803071["803071"^] | ストレージフェイルオーバー処理を使用した I/O 中に Emulex 16G FC （ LPe16002B-M6 ）ホストがクラッシュする | ストレージフェイルオーバー処理を使用した I/O で 16G FC Emulex （ LPe16002B-M6 ）ホストがクラッシュすることがあります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1067895["1067895"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=803071["803071"^] | ストレージフェイルオーバー処理を使用した I/O 中に Emulex 16G FC （ LPe16002B-M6 ）ホストがクラッシュする | ストレージフェイルオーバー処理を使用した I/O で 16G FC Emulex （ LPe16002B-M6 ）ホストがクラッシュすることがあります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=820163["820163"^] | ストレージフェイルオーバー処理を使用した I/O で、 QLogic ホストがハングしたりパス障害が発生したりしました | ストレージフェイルオーバー処理を使用した I/O で、 QLogic ホストのホストハングやパス障害が発生することがあります。この場合、「 Mailbox cmd timeout occurred 、 cmd=0x54 、 MB[0]=0x54 、 Firmware dump saved to temp buffer 」というメッセージが表示され、ホストがハング / パス障害につながることがあります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1090378["1090378"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=820163["820163"^] | ストレージフェイルオーバー処理を使用した I/O で、 QLogic ホストがハングしたりパス障害が発生したりしました | ストレージフェイルオーバー処理を使用した I/O で、 QLogic ホストのホストハングやパス障害が発生することがあります。この場合、「 Mailbox cmd timeout occurred 、 cmd=0x54 、 MB[0]=0x54 、 Firmware dump saved to temp buffer 」というメッセージが表示され、ホストがハング / パス障害につながることがあります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799323["799323"^] | ストレージフェイルオーバー処理を使用した I/O で、 Emulex FCoE （ OCe10102-FX-D ）ホストがハングしたり、パス障害が発生したりしました | ストレージフェイルオーバー処理を使用した I/O で、 Emulex 10G FCoE ホスト（ OCe10102-FX-D ）でホストの停止やパスの障害が発生することがあります。このような場合は、「 driver's buffer pool is empty 、 IO busied and SCSI Layer I/O Abort Request Status 」というメッセージが表示され、ホストのハング / パス障害につながります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1061755["1061755"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799323["799323"^] | ストレージフェイルオーバー処理を使用した I/O で、 Emulex FCoE （ OCe10102-FX-D ）ホストがハングしたり、パス障害が発生したりしました | ストレージフェイルオーバー処理を使用した I/O で、 Emulex 10G FCoE ホスト（ OCe10102-FX-D ）でホストの停止やパスの障害が発生することがあります。このような場合は、「 driver's buffer pool is empty 、 IO busied and SCSI Layer I/O Abort Request Status 」というメッセージが表示され、ホストのハング / パス障害につながります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=849212["849212"^] | ストレージフェイルオーバー処理を使用した I/O では、 Emulex 16G FC （ LPe16002B-M6 ）ホストのハングやパスの障害が発生することがあります | ストレージフェイルオーバー処理を使用した I/O では、 Emulex 16G FC （ 16002B-M6 ）ホストでホストのハングやパスの障害が発生することがあります。このような場合は、「 RSCN timeout Data and iootag x1301 is out of range ： max iootag 」というメッセージが表示され、ホストのハング / パス障害につながります。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1109274["1109274"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=849212["849212"^] | ストレージフェイルオーバー処理を使用した I/O では、 Emulex 16G FC （ LPe16002B-M6 ）ホストのハングやパスの障害が発生することがあります | ストレージフェイルオーバー処理を使用した I/O では、 Emulex 16G FC （ 16002B-M6 ）ホストでホストのハングやパスの障害が発生することがあります。このような場合は、「 RSCN timeout Data and iootag x1301 is out of range ： max iootag 」というメッセージが表示され、ホストのハング / パス障害につながります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836800["836800"^] | anaconda は、 RHEL 7.0 OS のインストール中にログインが成功したにもかかわらず、 iSCSI ログインエラーメッセージを表示します | iSCSI マルチパスの LUN にルート (/) をインストールすると、 Ethernet インタフェースの IP アドレスがカーネルコマンドラインで指定され、 iSCSI サービスが開始される前に IP アドレスが割り当てられるようになります。ただし、 iSCSI サービスが開始される前に、ブート中にすべてのイーサネットポートに IP アドレスを割り当てることはできません。これにより、 IP アドレスのないインターフェイスで iSCSI ログインが失敗します。iSCSI サービスのログイン試行が何度も表示され、 OS のブート時間に原因が遅れます。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1114966["1114966"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836800["836800"^] | anaconda は、 RHEL 7.0 OS のインストール中にログインが成功したにもかかわらず、 iSCSI ログインエラーメッセージを表示します | iSCSI マルチパスの LUN にルート (/) をインストールすると、 Ethernet インタフェースの IP アドレスがカーネルコマンドラインで指定され、 iSCSI サービスが開始される前に IP アドレスが割り当てられるようになります。ただし、 iSCSI サービスが開始される前に、ブート中にすべてのイーサネットポートに IP アドレスを割り当てることはできません。これにより、 IP アドレスのないインターフェイスで iSCSI ログインが失敗します。iSCSI サービスのログイン試行が何度も表示され、 OS のブート時間に原因が遅れます。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836875["836875"^] | iSCSI マルチパスの LUN にインストールされた RHEL 7.0 OS のブート時に、 IP アドレスが常に割り当てられるとは限りません | RHEL 7.0 をインストールするとき、 anaconda のインストール画面に、 iSCSI ログインが成功したにもかかわらず、複数のターゲット IP への iSCSI ログインに失敗したことが表示されます。anaconda は、「 Node Login Failed 」というエラーメッセージを表示します。このエラーは、 iSCSI ログインに複数のターゲット IP を選択した場合にのみ発生します。[OK] ボタンをクリックすると、 OS のインストールを続行できます。このバグは、 iSCSI または RHEL 7.0 OS のインストールによる影響を受けません。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1114820["1114820"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836875["836875"^] | iSCSI マルチパスの LUN にインストールされた RHEL 7.0 OS のブート時に、 IP アドレスが常に割り当てられるとは限りません | RHEL 7.0 をインストールするとき、 anaconda のインストール画面に、 iSCSI ログインが成功したにもかかわらず、複数のターゲット IP への iSCSI ログインに失敗したことが表示されます。anaconda は、「 Node Login Failed 」というエラーメッセージを表示します。このエラーは、 iSCSI ログインに複数のターゲット IP を選択した場合にのみ発生します。[OK] ボタンをクリックすると、 OS のインストールを続行できます。このバグは、 iSCSI または RHEL 7.0 OS のインストールによる影響を受けません。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836657["836657."^] | anaconda は、カーネル cmd 行に bootdev 引数を追加して、 iSCSI マルチパスの LUN にインストールされた RHEL 7.0 OS の IP アドレスを設定しません | anaconda は、カーネルコマンドラインに bootdev 引数を追加しません。このコマンドラインでは、 iSCSI マルチパス LUN での RHEL 7.0 OS のインストール時に IPv4 アドレスを設定します。これにより、 RHEL 7.0 のブート時にストレージサブシステムとの iSCSI セッションを確立するように設定されたイーサネットインターフェイスに IP アドレスを割り当てることができなくなります。iSCSI セッションが確立されていないため、 OS のブート時にルート LUN が検出されないため、 OS のブートに失敗します。 | link:https://bugzilla.redhat.com/show_bug.cgi?id=1114464["114464"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836657["836657."^] | anaconda は、カーネル cmd 行に bootdev 引数を追加して、 iSCSI マルチパスの LUN にインストールされた RHEL 7.0 OS の IP アドレスを設定しません | anaconda は、カーネルコマンドラインに bootdev 引数を追加しません。このコマンドラインでは、 iSCSI マルチパス LUN での RHEL 7.0 OS のインストール時に IPv4 アドレスを設定します。これにより、 RHEL 7.0 のブート時にストレージサブシステムとの iSCSI セッションを確立するように設定されたイーサネットインターフェイスに IP アドレスを割り当てることができなくなります。iSCSI セッションが確立されていないため、 OS のブート時にルート LUN が検出されないため、 OS のブートに失敗します。 
 |===
