@@ -507,4 +507,9 @@ NSID       UUID                                   Size
 
 == 既知の問題
 
-ONTAPリリースを使用するUbuntu 22.04でのNVMe-oFホスト構成に関する既知の問題はありません。
+Ubuntu 22.04（ONTAPリリース）のNVMe-oFホスト構成には、次の既知の問題があります。
+
+[cols="15,20,50,15"]
+|===
+| NetApp バグ ID | タイトル | 説明 | CONTAPEXT-2037 
+|===
