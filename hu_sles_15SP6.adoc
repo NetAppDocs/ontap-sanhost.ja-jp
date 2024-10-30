@@ -1,0 +1,284 @@
+---
+sidebar: sidebar 
+permalink: hu_sles_15SP6.html 
+keywords: host utilities, suse linux enterprise server 15 sp6, suse, linux, 15 sp6, netapp, ontap 
+summary: SUSE Linux Enterprise Server 15 SP6とONTAPの使用方法について説明します。 
+---
+= SUSE Linux Enterprise Server 15 SP6とONTAPの併用
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP SANホストの設定を使用して、SUSE Linux Enterprise Server 15 SP6とONTAPをターゲットとして設定できます。
+
+
+
+== Linux Unified Host Utilities をインストールします
+
+NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 32 ビットおよび 64 ビットの .rpm ファイル。構成に適したファイルがわからない場合は、を使用してください link:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^] 必要なものを確認します。
+
+NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+
+Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
+
+.手順
+. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] サイトからホスト。
+. 次のコマンドを使用して、ソフトウェアパッケージをインストールします。
++
+「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
+
+
+
+
+NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+
+
+
+== SANツールキット
+
+このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+
+.例
+次の例では 'lun lun lun show コマンドは LUN 情報を返します
+
+[source, cli]
+----
+# sanlun lun show all
+----
+出力例：
+
+[listing]
+----
+controller(7mode/E-Series)/            device     host               lun
+vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
+------------------------------------------------------------------------------------
+data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+----
+
+
+== SAN ブート中です
+
+.必要なもの
+ご使用の構成でSANブートがサポートされているlink:https://mysupport.netapp.com/matrix/imt.jsp?components=84067;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^]OS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがサポートされていることを確認するには、を参照してください。
+
+.手順
+. SAN ブート LUN をホストにマッピングします。
+. 複数のパスが使用可能であることを確認します。
++
+
+NOTE: ホストOSが起動してパスで実行されると、複数のパスが使用可能になります。
+
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. ホストをリブートして、ブートが正常に完了したことを確認します。
+
+
+
+
+== マルチパス
+
+SUSE Linux Enterprise Server 15 SP6の場合は、 `/etc/multipath.conf`ファイルが存在している必要があります。SUSE Linux Enterprise Server 15 SP6は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされているため、このファイルを変更する必要はありません。
+
+「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。
+
+以降のセクションでは、ASAおよびASA以外のペルソナにマッピングされたLUNのマルチパス出力の例を示します。
+
+
+
+=== オールSANアレイ構成
+
+オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスがアクティブで最適化されています。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+
+.例
+次の例は、 ONTAP LUN の正しい出力を表示します。
+
+[listing]
+----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 3:0:7:9    sdco 69:192  active ready running
+  |- 3:0:8:9    sddi 71:0    active ready running
+  |- 14:0:8:9   sdjq 65:320  active ready running
+  `- 14:0:7:9   sdiw 8:256   active ready running
+----
+
+NOTE: 1つのLUNに必要なパスは4つまでです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
+
+
+
+=== ASAイカイノコウセイ
+
+ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度が高いパスはアクティブ/最適化されます。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+.例
+次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
+
+[listing]
+----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 3:0:3:0    sdd  8:48    active ready running
+| |- 3:0:4:0    sdx  65:112  active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:2:0   sdfk 130:96  active ready running
+  `- 14:0:5:0   sdgz 132:240 active ready running
+----
+
+NOTE: 1つのLUNに必要なパスは4つまでです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
+
+
+
+== 推奨設定
+
+SUSE Linux Enterprise Server 15 SP6 OSはONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定します。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。
+
+ `multipath.conf`マルチパスデーモンを起動するには、ファイルが存在している必要があります。このファイルが存在しない場合は、次のコマンドを使用して空のゼロバイトファイルを作成できます。
+
+`touch /etc/multipath.conf`
+
+ `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
+
+[listing]
+----
+# systemctl enable multipathd
+# systemctl start multipathd
+----
+マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、デバイスをファイルに直接追加する必要はあり `multipath.conf`ません。不要なデバイスを除外するには、次の構文をファイルに追加し `multipath.conf`、<DevId>を除外するデバイスのWWID文字列に置き換えます。
+
+[listing]
+----
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+.例
+次の例では、デバイスのWWIDを特定し、ファイルにを追加します `multipath.conf`。
+
+.手順
+. WWIDを確認します。
++
+[listing]
+----
+# /lib/udev/scsi_id -gud /dev/sda
+360030057024d0730239134810c0cb833
+----
++
+`sda`は、ブラックリストに追加するローカルSCSIディスクです。
+
+. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
++
+[listing]
+----
+blacklist {
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+----
+
+
+常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
+
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定を無効にする場合は、影響を十分に理解してから、NetAppやOSベンダーに相談してください。
+
+[cols="2"]
+|===
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | " 無限 " 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | "2 pg_init_retries 50" 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| パスの再試行なし | キュー 
+
+
+| path_checker です | " tur " 
+
+
+| path_grouping_policy | 「 group_by_prio 」 
+
+
+| path_selector | "service-time 0" 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN. * 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | " 均一 " 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
+|===
+.例
+次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合 ' マルチパス .conf ファイルは 'path_checker' および ONTAP LUN と互換性のない 'no-path_retry' の値を定義しますホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。
+
+[listing]
+----
+defaults {
+   path_checker      readsector0
+   no_path_retry      fail
+}
+devices {
+   device {
+      vendor         "NETAPP  "
+      product         "LUN.*"
+      no_path_retry     queue
+      path_checker      tur
+   }
+}
+----
+
+
+== 既知の問題
+
+SUSE Linux Enterprise Server 15 SP6 with ONTAPリリースには既知の問題はありません。
