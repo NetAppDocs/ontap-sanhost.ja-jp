@@ -16,7 +16,7 @@ summary: SUSE Linux Enterprise Server 15 SP3 （ ONTAP ）用に NVMe/FC を設�
 
 
 [role="lead"]
-NVMe over Fabrics または NVMe-oF （ NVMe/FC およびその他の転送を含む）は、 ANA （非対称ネームスペースアクセス）を使用した SUSE Linux Enterprise Server 15 SP3 （ SLES15 SP3 ）でサポートされています。ANA は、 NVMe-oF 環境では ALUA に相当し、現在インカーネル NVMe マルチパスで実装されています。SLES15 SP3 および ONTAP で ANA を使用してカーネル内 NVMe マルチパスで NVMe-oF を有効にする方法について、ここで詳しく説明します。
+SUSE Linux Enterprise Server 15 SP3 with ANA（Asymmetric Namespace Access）では、NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他のトランスポートを含む）がサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在インカーネル NVMe マルチパスで実装されています。この手順を使用すると、SUSE Linux Enterprise Server 15 SP3およびONTAP上のANAをターゲットとして使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
 
 を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
 
@@ -24,8 +24,8 @@ NVMe over Fabrics または NVMe-oF （ NVMe/FC およびその他の転送を�
 
 == の機能
 
-* SLES15 SP3 は、 NVMe/FC およびその他の転送をサポートしています。
-* sanlun にも対応していません。そのため、 SLES15 SP3 では、 NVMe-oF はサポートされていません。代わりに、ネイティブの nvme-CLI に含まれているネットアッププラグインを使用してもかまいません。これはすべての NVMe-oF 転送で機能します。
+* SUSE Linux Enterprise Server 15 SP3は、NVMe/FCおよびその他のトランスポートをサポートしています。
+* sanlun にも対応していません。そのため、SUSE Linux Enterprise Server 15 SP3ではNuhuはNVMe-oFをサポートしていません。NVMe-oFの標準のNVMe-CLIパッケージに含まれているNetAppプラグインを使用できます。すべてのNVMe-oF転送がサポートされている必要があります。
 * NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。したがって、 SCSI の場合、 SCSI LUN では「 d-mmultipath 」を通常どおりに設定しても mpath デバイスになることがありますが、 NVMe マルチパスを使用してホスト上で NVMe-oF マルチパスデバイスを設定することもできます。
 
 
@@ -39,7 +39,7 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 
 == カーネル内の NVMe マルチパスを有効にします
 
-SLES15 SP3 などの SLES ホストでは、カーネル内 NVMe マルチパスはデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
+SUSE Linux Enterprise Server 15 SP3などのSUSE Linux Enterprise Serverホストでは、カーネル内NVMeマルチパスがすでにデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。サポートされている構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
 
 
@@ -47,7 +47,7 @@ SLES15 SP3 などの SLES ホストでは、カーネル内 NVMe マルチパス
 
 を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
 
-. 必要なカーネルおよび nvme-cli MU パッケージが SLES15 SP3 MU ホストにインストールされていることを確認します。
+. 必要なカーネルおよびnvme-cli MUパッケージがSUSE Linux Enterprise Server 15 SP3 MUホストにインストールされていることを確認します。
 +
 例
 
@@ -173,7 +173,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Online
 Online
 ----
-. NVMe/FC イニシエータポートが有効になっていることと、ターゲットポートが認識され、すべて稼働していることを確認してください。次の例では、の出力からわかるように、有効になっているイニシエータポートが 1 つだけあり、 2 つのターゲット LIF で接続されています。
+. NVMe/FCイニシエータポートが有効になっていること、ターゲットポートが表示されていること、およびすべてのポートが稼働していることを確認します。+次の例では、イニシエータポートが1つだけ有効になっており、2つのターゲットLIFで接続されています。
 +
 [listing, subs="+quotes"]
 ----
@@ -233,7 +233,7 @@ options lpfc lpfc_sg_seg_cnt=256
 
 === Marvell/QLogic
 
-新しい SLES15 SP3 MU カーネルに含まれているネイティブインボックス qla2xxx ドライバには、 ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。
+新しいSUSE Linux Enterprise Server 15 SP3 MUカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が適用されています。これらの修正は、ONTAPのサポートに不可欠です。
 
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。次に例を示します。
 +

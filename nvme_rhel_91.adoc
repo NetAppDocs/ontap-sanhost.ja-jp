@@ -16,7 +16,7 @@ summary: ONTAPを使用したRHEL 9.1用のNVMe-oFホストの設定方法
 
 
 [role="lead"]
-NVMe over FabricsまたはNVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでAsymmetric Namespace Access（ANA）を使用するRHEL 9.1でサポートされます。このANAは、SF（ストレージフェイルオーバー）が稼働しているために必要です。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントには、RHEL 9.1のANAを使用し、ターゲットとしてONTAP を使用してカーネル内NVMeマルチパスでNVMe-oFを有効化するための詳細が記載されています。
+NVMe over FabricsまたはNVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでAsymmetric Namespace Access（ANA）を使用するRHEL 9.1でサポートされます。このANAは、SF（ストレージフェイルオーバー）が稼働しているために必要です。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。この手順を使用すると、RHEL 9.1およびONTAPのANAをターゲットとして使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
 
 ONTAPを使用したRHEL 9.1のNVMe-oFホスト構成では、次のサポートが提供されます。
 
@@ -186,7 +186,7 @@ FCP CMPL: xb 00000000 Err 00000004
 --
 .NVMe/FC用Marvell/QLogic FCアダプタ
 --
-ネイティブ受信ボックス `qla2xxx` RHEL 9.1カーネルに含まれるドライバには、ONTAPのサポートに不可欠な最新の修正が含まれています。
+RHEL 9.1カーネルに含まれる標準の受信トレイ `qla2xxx`ドライバには、次の最新の修正が適用されています。これらの修正は、ONTAPのサポートに不可欠です。
 
 .手順
 . 次のコマンドを使用して、サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。

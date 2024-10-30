@@ -16,7 +16,7 @@ summary: FC、FCoE、およびiSCSIの各プロトコルを使用するVMware vS
 
 
 [role="lead"]
-RHEL、OL、およびSLESホストのNVMe-oF障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してから、次の手順に進み、ホスト側の問題をデバッグします。
+RHEL、OL、およびSUSE Linux Enterprise ServerホストのNVMe-oF障害をトラブルシューティングする前に、Interoperability Matrix Tool（IMT）の仕様に準拠した構成を実行していることを確認してから、次の手順に進み、ホスト側の問題をデバッグします。
 
 
 NOTE: AIX、Windows、ESXiホストにはトラブルシューティング手順は適用されません。

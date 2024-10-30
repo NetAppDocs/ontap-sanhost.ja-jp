@@ -18,16 +18,16 @@ summary: SUSE Linux Enterprise Server 15 SP1 with ONTAP の NVMe/FC を設定す
 [role="lead"]
 NVMe over Fibre Channel（NVMe/FC）は、SUSE Linux Enterprise Server 15 SP1およびONTAPを実行するホストにターゲットとして設定できます。
 
-ONTAP 9.6 以降では、次のバージョンの SLES で NVMe/FC がサポートされます。
+NVMe/FCは、次のバージョンのSUSE Linux Enterprise ServerでONTAP 9 .6以降でサポートされます。
 
-* SLES15 SP1
+* SUSE Linux Enterprise Server 15 SP1
 +
-SLES15 SP1 ホストは、 NVMe/FC トラフィックと FCP トラフィックの両方を、同じファイバチャネルイニシエータアダプタポートを介して実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
+SUSE Linux Enterprise Server 15 SP1ホストは、同じファイバチャネルイニシエータアダプタポートを介してNVMe/FCトラフィックとFCPトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。
 
 +
 サポートされている構成およびバージョンの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
-* NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SLES15 SP1 では、ネイティブの inbox lpfc ドライバを使用できます。
+* NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SUSE Linux Enterprise Server 15 SP1では、ネイティブの受信トレイlpfcドライバを使用できます。
 
 
 
@@ -38,12 +38,12 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 
 
 
-== SLES15 SP1 で NVMe/FC を有効にします
+== SUSE Linux Enterprise Server 15 SP1でのNVMe/FCの有効化
 
-. 推奨される SLES15 SP2 MU カーネルにアップグレードします
+. 推奨されるSUSE Linux Enterprise Server 15 SP2 MUカーネルへのアップグレード
 . 推奨される nvme-CLI MU バージョンにアップグレードします。
 +
-この nvme-cli パッケージには、ネイティブの NVMe/FC 自動接続スクリプトが含まれているため、 SLES15 SP1 ホストに Broadcom から提供された外部 NVMe/FC 自動接続スクリプトをインストールする必要はありません。このパッケージには、 ONTAP の udev ルールも含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP デバイス用ネットアッププラグインが有効になります。
+このNVMe-CLIパッケージにはNVMe/FC自動接続スクリプトが標準で含まれているため、Broadcomが提供する外部NVMe/FC自動接続スクリプトをSUSE Linux Enterprise Server 15 SP1ホストにインストールする必要はありません。このパッケージには、 ONTAP の udev ルールも含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP デバイス用ネットアッププラグインが有効になります。
 
 +
 [listing]
@@ -51,7 +51,7 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 # rpm -qa | grep nvme-cli
 nvme-cli-1.8.1-6.9.1.x86_64
 ----
-. SLES15 SP1 ホストで、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列と一致していることを確認します。例：
+. SUSE Linux Enterprise Server 15 SP1ホストで、のホストNQN文字列を確認し `/etc/nvme/hostnqn`、ONTAPアレイの対応するサブシステムのホストNQN文字列と一致することを確認します。例：
 +
 [listing]
 ----

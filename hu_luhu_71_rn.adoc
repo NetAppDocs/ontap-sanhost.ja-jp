@@ -53,7 +53,7 @@ NOTE: ネットアップは、最初のリリース後も引き続きHost Utilit
 
 == コノリリースデカイケツ
 
-を実行しているときに断続的に発生するホストOS障害問題 `sanlun lun show -p` SLES12SP1、OL7.2、RHEL7.2、およびRHEL 6.8のコマンドは、このリリースで修正されています。
+SUSE Linux Enterprise Server 12 SP1、OL 7.2、RHEL 7.2、およびRHEL 6.8でコマンドを実行すると一時的に発生するホストOSエラーの問題 `sanlun lun show -p`は、このリリースで修正されています。
 
 
 

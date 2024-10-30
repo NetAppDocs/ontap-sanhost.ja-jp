@@ -6,8 +6,7 @@ NetApp Linux Unified Host Utilities ソフトウェアパッケージは、に�
 
 NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
-.必要なもの
-Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、そのバージョンをアップグレードまたは削除してから、次の手順に従って最新バージョンをインストールする必要があります。
+Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
 . から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。

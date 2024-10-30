@@ -26,9 +26,9 @@ NetApp Linux Unified Host Utilities ソフトウェアパッケージは、に�
 
 NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
-.必要なもの
-現在インストールされているバージョンの Linux Unified Host Utilities を使用している場合、このユーティリティをアップグレードするか、削除してから次の手順に従って最新バージョンをインストールしてください。
+Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
 
+.手順
 . から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] サイトからホスト。
 . 次のコマンドを使用して、ソフトウェアパッケージをインストールします。
 +
@@ -58,7 +58,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 ----
 controller(7mode/E-Series)/            device     host               lun
 vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
--------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
 data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
 data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
@@ -82,7 +82,7 @@ NOTE: ホストOSが起動してパスで実行されると、複数のパスが
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
 
-. ホストをリブートしてブートが成功したことを確認します。
+. ホストをリブートして、ブートが正常に完了したことを確認します。
 
 
 
@@ -91,7 +91,9 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 SUSE Linux Enterprise Server 15 SP4の場合は、/etc/multipath.confファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 15 SP4は、ONTAP LUNを認識して正しく管理するために必要なすべての設定でコンパイルされています。
 
-「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。次のセクションでは、 ASA および非 ASA ペルソナにマッピングされた LUN のマルチパス出力の例を示します。
+「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。
+
+以降のセクションでは、ASAおよびASA以外のペルソナにマッピングされたLUNのマルチパス出力の例を示します。
 
 
 
@@ -114,13 +116,13 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 14:0:7:9   sdiw 8:256   active ready running
 ----
 
-NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
+NOTE: 1つのLUNに必要なパスは4つまでです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
 
 
 
 === ASAイカイノコウセイ
 
-ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度が高いパスは「アクティブ / 最適化」です。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度が低いパスはアクティブですが、別のコントローラから提供されるため最適化されません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度が高いパスはアクティブ/最適化されます。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
 
 .例
 次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
@@ -138,51 +140,66 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 14:0:5:0   sdgz 132:240 active ready running
 ----
 
-NOTE: 1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
+NOTE: 1つのLUNに必要なパスは4つまでです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
 
 
 
 == 推奨設定
 
-SUSE Linux Enterprise Server 15 SP4 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。
+SUSE Linux Enterprise Server 15 SP4 OSは、ONTAP LUNを認識し、ASA 構成と非ASA構成の両方に対してすべての設定パラメータを自動的に正しく設定するようにコンパイルされています。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。
 
-。 `multipath.conf` マルチパスデーモンを起動するにはファイルが存在している必要がありますが、次のコマンドを使用して空のゼロバイトファイルを作成できます。
-`touch /etc/multipath.conf`。
+ `multipath.conf`マルチパスデーモンを起動するには、ファイルが存在している必要があります。このファイルが存在しない場合は、次のコマンドを使用して空のゼロバイトファイルを作成できます。
 
-このファイルを初めて作成するときに、マルチパスサービスの有効化と開始が必要になる場合があります。
+`touch /etc/multipath.conf`
 
- `multipath.conf`マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、ファイルに直接追加する必要はありません。
+ `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
 
-不要なデバイスを除外するには、「 multipath.conf 」ファイルに次の構文を追加します。
+[listing]
+----
+# chkconfig multipathd on
+# /etc/init.d/multipathd start
+----
+マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、ファイルに直接追加する必要はあり `multipath.conf`ません。不要なデバイスを除外するには、 `multipath.conf`ファイルに次の構文を追加し、<DevId>を除外するデバイスのWWID文字列に置き換えます。
 
-交換してください `<DevId>` を使用 `WWID` 除外するデバイスの文字列。次のコマンドを使用して、 `WWID`：
-
+[listing]
+----
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
 .例
-この例では、 `sda` は、ブラックリストに追加する必要があるローカルSCSIディスクです。
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
 
 .手順
-. 次のコマンドを実行して'wwidを決定します
+. WWIDを確認します。
 +
 [listing]
 ----
-# /usr/lib/udev/scsi_id -gud /dev/sda
+# /lib/udev/scsi_id -gud /dev/sda
 360030057024d0730239134810c0cb833
 ----
-. を追加します `WWID` のブラックリストスタンザの値 `/etc/multipath.conf` ファイル：
++
+`sda`は、ブラックリストに追加するローカルSCSIディスクです。
+
+. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
 +
 [listing]
 ----
 blacklist {
-wwid	360030057024d0730239134810c0cb833
-devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*" devnode "^hd[a-z]"
-devnode "^cciss.*"
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
 }
 ----
 
 
 常にを確認する必要があります `/etc/multipath.conf` レガシー設定用のファイル（特にデフォルトセクション）。デフォルト設定が上書きされる可能性があります。
 
-次の表に、ONTAP LUNのmultipathdパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに該当する以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2"]
 |===

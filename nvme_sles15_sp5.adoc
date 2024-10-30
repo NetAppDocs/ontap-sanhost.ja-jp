@@ -19,9 +19,9 @@ summary: SUSE Linux Enterprise Server 15 SP5 with ONTAP用のNVMe/FCの設定方
 
 
 [role="lead"]
-NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたSUSE Linux Enterprise Server（SLES）15 SP5でサポートされます。NVMe-oF環境では、ANAはiSCSIおよびFCP環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
+NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、SUSE Linux Enterprise Server 15 SP5 with Asymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFCP環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
 
-ONTAPを備えたSLES 15 SP5のNVMe-oFホスト構成では、次のサポートが提供されます。
+SUSE Linux Enterprise Server 15 SP5 with ONTAPのNVMe-oFホスト構成では、次のサポートが利用できます。
 
 * NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNの場合はSCSI mpathデバイスにdm-multipathを設定できますが、NVMeマルチパスを使用してホスト上のNVMe-oFネームスペースデバイスを設定することができます。
 * NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。NetAppプラグインをネイティブにインストールします `nvme-cli` [パッケージ]には、NVMe/FCとNVMe/TCPの両方のネームスペースのONTAPの詳細が表示されます。
@@ -42,7 +42,7 @@ ONTAPを備えたSLES 15 SP5のNVMe-oFホスト構成では、次のサポート
 == 既知の制限
 
 * NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
-* ありません `sanlun` NVMe-oFのサポート。そのため、SLES 15 SP5ホストのNVMe-oFではホストユーティリティはサポートされません。すべてのNVMe-oF転送では、標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。
+*  `sanlun`NVMe-oFはサポートされていません。そのため、SUSE Linux Enterprise Server 15 SP5ホストのNVMe-oFではホストユーティリティのサポートを利用できません。すべてのNVMe-oF転送で、標準のNVMe-CLIパッケージに含まれているNetAppプラグインを使用できます。
 
 
 
@@ -156,7 +156,7 @@ cat /sys/class/scsi_host/host*/nvme_info
 *出力例*：
 
 +
-この例では、1つのイニシエータポートが有効になっており、2つのターゲットLIFで接続されています。
+次の例では、1つのイニシエータポートが有効になっており、2つのターゲットLIFで接続されています。
 
 +
 [listing, subs="+quotes"]
@@ -200,8 +200,10 @@ FCP CMPL: xb 0000159d Err 000135c3
 --
 .Marvell/QLogic
 --
+SUSE Linux Enterprise Server 15 SP5カーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
+
 .手順
-. SLES 15 SP5カーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAPサポートに不可欠な最新の修正が含まれています。サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
+. サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [listing]
 ----
@@ -586,7 +588,7 @@ Device           Vserver                   Namespace Path                       
 
 == 永続的検出コントローラの作成
 
-ONTAP 9.11.1以降では、次の手順を使用してSLES 15 SP5ホスト用の永続的検出コントローラ（PDC）を作成できます。NVMeサブシステムの追加や削除のシナリオや検出ログページのデータに対する変更を自動的に検出するには、PDCが必要です。
+ONTAP 9 .11.1以降では、SUSE Linux Enterprise Server 15 SP5ホスト用の永続的検出コントローラ（PDC）を作成できます。NVMeサブシステムの追加または削除のシナリオと検出ログページのデータに対する変更を自動的に検出するには、PDCが必要です。
 
 .手順
 . 検出ログページのデータが使用可能で、イニシエータポートとターゲットLIFの組み合わせから取得できることを確認します。
@@ -820,7 +822,7 @@ Vserver UUID: 48391d66-c0a6-11ec-aaa5-d039ea165514
 
 == セキュアなインバンド認証のセットアップ
 
-ONTAP 9.12.1以降では、SLES 15 SP5ホストとONTAPコントローラの間でNVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。
+ONTAP 9 12.1以降では、SUSE Linux Enterprise Server 15 SP5ホストとONTAPコントローラの間で、NVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。
 
 セキュアな認証を設定するには、各ホストまたはコントローラを `DH-HMAC-CHAP` キー。NVMeホストまたはコントローラのNQNと管理者が設定した認証シークレットを組み合わせたものです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。
 
@@ -837,7 +839,7 @@ CLIまたは設定JSONファイルを使用して、セキュアなインバン�
 ----
 cat /etc/nvme/hostnqn
 ----
-. SLES15 SP5ホストのDHCHAPキーを生成します。
+. SUSE Linux Enterprise Server 15 SP5ホストのDHCHAPキーを生成します。
 +
 [listing]
 ----
@@ -1042,4 +1044,4 @@ DHHC-
 
 == 既知の問題
 
-ONTAPリリースのSLES 15 SP5に既知の問題はありません。
+SUSE Linux Enterprise Server 15 SP5 with ONTAPリリースには既知の問題はありません。

@@ -22,7 +22,7 @@ Oracle Linux 8.6およびONTAPを実行するイニシエータホストでは�
 
 == サポート性
 
-NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびNVMe/TCPを含む）は、ONTAP アレイで稼働しているストレージフェイルオーバー（SFO）に必要な非対称ネームスペースアクセス（ANA）を備えたOracle Linux 8.6でサポートされています。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。このドキュメントでは、Oracle Linux 8.6およびONTAP でANAを使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にする方法について詳しく説明します。
+NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびNVMe/TCPを含む）は、ONTAP アレイで稼働しているストレージフェイルオーバー（SFO）に必要な非対称ネームスペースアクセス（ANA）を備えたOracle Linux 8.6でサポートされています。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。この手順では、Oracle Linux 8.6上のANAおよびONTAPをターゲットとして使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
 
 
 NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
@@ -32,7 +32,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 == の機能
 
 * Oracle Linux 8.6では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。
-* Oracle Linux 8.6では、 `nvme-fc auto-connect` スクリプトはネイティブに含まれています `nvme-cli` パッケージ。外部ベンダーが提供するアウトボックス自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
+* Oracle Linux 8.6では、 `nvme-fc auto-connect`スクリプトがネイティブパッケージに含まれ `nvme-cli`ています。外部ベンダーが提供するアウトボックス自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
 * Oracle Linux 8.6（ネイティブ）を使用しています `udev` ルールはの一部として提供されます `nvme-cli` NVMeマルチパスのラウンドロビンによるロードバランシングを可能にするパッケージ。したがって、このルールを手動で作成する必要はありません。
 * Oracle Linux 8.6を使用すると、NVMeとSCSIの両方のトラフィックを、同じ新規のホストで実行できます。実際、これは一般的に導入されるホスト構成であると想定されています。したがって、SCSI LUNでは通常どおりdm-multipathを設定できます。その結果、mpathデバイスが作成されますが、NVMeマルチパスを使用してNVMe-oFマルチパスデバイスを設定できます（例： `/dev/nvmeXnY`）を実行します。
 * Oracle Linux 8.6では、ネットアッププラグインが標準搭載されています `nvme-cli` パッケージでは、ONTAP の詳細とONTAP ネームスペースを表示できます。
@@ -203,8 +203,10 @@ NOTE: これはQlogic NVMe/FCホストには該当しません。
 
 == Marvell / QLogic FCアダプタをNVMe/FC用に設定します
 
+OL 8.6 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
+
 .手順
-. サポートされているアダプタドライバとファームウェアのバージョンを実行していることを確認します。OL 8.6 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、ONTAP サポートに不可欠な最新のアップストリーム修正が含まれています。
+. サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [listing]
 ----

@@ -16,7 +16,7 @@ summary: SUSE Linux Enterprise Server 15 SP2 （ ONTAP ）用に NVMe/FC を設�
 
 
 [role="lead"]
-SLES15 SP2 では、 ONTAP 9.6 以降で NVMe/FC がサポートされます。SLES15 SP2 ホストでは、同じファイバチャネルイニシエータアダプタポートを介して NVMe/FC および FCP の両方のトラフィックを実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
+NVMe/FCは、SUSE Linux Enterprise Server 15 SP2でONTAP 9 .6以上でサポートされています。SUSE Linux Enterprise Server 15 SP2ホストでは、同じファイバチャネルイニシエータアダプタポートを介してNVMe/FCトラフィックとFCPトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。
 
 サポートされている構成およびバージョンの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
 
@@ -31,9 +31,9 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 
 
 
-== SLES15 SP2 で NVMe/FC を有効にします
+== SUSE Linux Enterprise Server 15 SP2でNVMe/FCを有効にする
 
-. 推奨される SLES15 SP2 MU カーネルバージョンにアップグレードします。
+. 推奨されるSUSE Linux Enterprise Server 15 SP2 MUカーネルバージョンにアップグレードします。
 . ネイティブの nvme-CLI パッケージをアップグレードします。
 +
 このネイティブの nvme-CLI パッケージには、 NVMe/FC 自動接続スクリプト、 ONTAP udev ルールが含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP ネームスペース用のネットアッププラグインが有効になります。
@@ -44,7 +44,7 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 # rpm -qa|grep nvme-cli
 nvme-cli-1.10-2.38.x86_64
 ----
-. SLES15 SP2 ホストでは、 /etc/nvme/hostnqn' でホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。例：
+. SUSE Linux Enterprise Server 15 SP2ホストで、のホストNQN文字列を確認し `/etc/nvme/hostnqn`、ONTAPアレイの対応するサブシステムのホストNQN文字列と一致することを確認します。例：
 +
 [listing]
 ----
