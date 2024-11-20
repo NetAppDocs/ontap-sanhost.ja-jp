@@ -274,26 +274,33 @@ QLE2772 FW:v9.10.11 DVR:v10.02.07.900-k-debug
 
 ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには `lpfc` `lpfc_sg_seg_cnt`、パラメータの値をデフォルト値の64から256に増やす必要があります。
 
+
+NOTE: 次の手順は、Qlogic NVMe/FCホストには適用されません。
+
 .手順
 .  `lpfc_sg_seg_cnt`パラメータを256に設定します。
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.出力例
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-.  `dracut -f`コマンドを実行し、ホストをリブートします。
+. コマンドを実行し `dracut -f`、ホストをリブートします。
 .  `lpfc_sg_seg_cnt`が256であることを確認します。
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+想定される値は256です。
 
 
-
-NOTE: これはQlogic NVMe/FCホストには該当しません。
 
 
 

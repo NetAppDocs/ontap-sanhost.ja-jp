@@ -22,7 +22,7 @@ ONTAPを使用したOracle Linux 8.9では、NVMe-oFホスト構成が次のよ�
 
 * NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準 `nvme-cli`パッケージのNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
 * NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNのSCSI mpathデバイスにはdm-multipathを設定できますが、NVMeマルチパスを使用してホストでNVMe-oFネームスペースデバイスを設定することができます。
-* sanlun にも対応していません。そのため、Oracle Linux 8.9ホストではNVMe-oFのホストユーティリティはサポートされません。標準パッケージに含まれているNetAppプラグインは、すべてのNVMe-oF転送に使用できます `nvme-cli`。
+* sanlun にも対応していません。そのため、Oracle Linux 8.9ホストではNVMe-oFのホストユーティリティはサポートされません。標準 `nvme-cli`パッケージに含まれているNetAppプラグインは、すべてのNVMe-oF転送に対応しています。
 
 
 サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
@@ -271,26 +271,33 @@ QLE2742 FW:v9.12.00 DVR:v10.02.08.100-k
 
 ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには `lpfc` `lpfc_sg_seg_cnt`、パラメータの値をデフォルト値の64から256に増やす必要があります。
 
+
+NOTE: 次の手順は、Qlogic NVMe/FCホストには適用されません。
+
 .手順
 .  `lpfc_sg_seg_cnt`パラメータを256に設定します。
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.出力例
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-.  `dracut -f`コマンドを実行し、ホストをリブートします。
+. コマンドを実行し `dracut -f`、ホストをリブートします。
 .  `lpfc_sg_seg_cnt`が256であることを確認します。
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+想定される値は256です。
 
 
-
-NOTE: これはQlogic NVMe/FCホストには該当しません。
 
 
 

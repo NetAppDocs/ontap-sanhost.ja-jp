@@ -19,7 +19,7 @@ summary: SUSE Linux Enterprise Server 15 SP5 with ONTAP用のNVMe/FCの設定方
 
 
 [role="lead"]
-NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、SUSE Linux Enterprise Server 15 SP5 with Asymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFCP環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
+NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたSUSE Linux Enterprise Server 15 SP5でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFCP環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
 
 SUSE Linux Enterprise Server 15 SP5 with ONTAPのNVMe-oFホスト構成では、次のサポートが利用できます。
 
@@ -236,26 +236,33 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには `lpfc` `lpfc_sg_seg_cnt`、パラメータの値をデフォルト値の64から256に増やす必要があります。
 
+
+NOTE: 次の手順は、Qlogic NVMe/FCホストには適用されません。
+
 .手順
 .  `lpfc_sg_seg_cnt`パラメータを256に設定します。
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.出力例
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-.  `dracut -f`コマンドを実行し、ホストをリブートします。
+. コマンドを実行し `dracut -f`、ホストをリブートします。
 .  `lpfc_sg_seg_cnt`が256であることを確認します。
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+想定される値は256です。
 
 
-
-NOTE: これはQlogic NVMe/FCホストには該当しません。
 
 
 
@@ -273,7 +280,7 @@ Created symlink /etc/systemd/system/default.target.wants/nvmf- autoconnect.servi
 
 ----
 . ホストをリブートします。
-. 確認します `nvmf-autoconnect.service` および `nvmefc-boot-connections.service` システムの起動後に実行されています。
+. システムのブート後にと `nvmefc-boot-connections.service`が実行されていることを確認し `nvmf-autoconnect.service`ます。
 +
 *出力例：*
 

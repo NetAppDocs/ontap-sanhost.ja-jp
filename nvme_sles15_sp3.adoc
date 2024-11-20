@@ -16,7 +16,7 @@ summary: SUSE Linux Enterprise Server 15 SP3 （ ONTAP ）用に NVMe/FC を設�
 
 
 [role="lead"]
-SUSE Linux Enterprise Server 15 SP3 with ANA（Asymmetric Namespace Access）では、NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他のトランスポートを含む）がサポートされます。ANA は、 NVMe-oF 環境では ALUA に相当し、現在インカーネル NVMe マルチパスで実装されています。この手順を使用すると、SUSE Linux Enterprise Server 15 SP3およびONTAP上のANAをターゲットとして使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
+SUSE Linux Enterprise Server 15 SP3 with ANA（Asymmetric Namespace Access）では、NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他のトランスポートを含む）がサポートされます。ANAはNVMe-oF環境におけるALUAに相当し、現在はカーネル内NVMeマルチパスで実装されています。この手順を使用すると、SUSE Linux Enterprise Server 15 SP3およびONTAP上のANAをターゲットとして使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
 
 を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
 
@@ -25,7 +25,7 @@ SUSE Linux Enterprise Server 15 SP3 with ANA（Asymmetric Namespace Access）で
 == の機能
 
 * SUSE Linux Enterprise Server 15 SP3は、NVMe/FCおよびその他のトランスポートをサポートしています。
-* sanlun にも対応していません。そのため、SUSE Linux Enterprise Server 15 SP3ではNuhuはNVMe-oFをサポートしていません。NVMe-oFの標準のNVMe-CLIパッケージに含まれているNetAppプラグインを使用できます。すべてのNVMe-oF転送がサポートされている必要があります。
+* sanlun にも対応していません。そのため、SUSE Linux Enterprise Server 15 SP3ではNuhuはNVMe-oFをサポートしていません。NVMe-oFの標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。すべてのNVMe-oF転送がサポートされている必要があります。
 * NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。したがって、 SCSI の場合、 SCSI LUN では「 d-mmultipath 」を通常どおりに設定しても mpath デバイスになることがありますが、 NVMe マルチパスを使用してホスト上で NVMe-oF マルチパスデバイスを設定することもできます。
 
 
