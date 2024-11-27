@@ -61,7 +61,7 @@ lpfc ドライバから問題 I/O 要求へのサイズが最大 1 MB になる�
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. 「 racut-f 」コマンドを実行してからホストを再起動します。
+. コマンドを実行し `dracut -f`、ホストをリブートします。
 . ホストの起動後 'lpfc_sg_sg_cnt が 256 に設定されていることを確認します
 +
 [listing]

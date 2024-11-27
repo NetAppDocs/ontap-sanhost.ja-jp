@@ -1,0 +1,591 @@
+---
+sidebar: sidebar 
+permalink: nvme_ubuntu_2404.html 
+keywords: nvme, linux, rhel, red hat, enterprise 
+summary: Ubuntu 24.04 with ONTAP用のNVMe-oFホストの設定方法 
+---
+= Ubuntu 24.04（ONTAP）向けのNVMe-oFホストの設定
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Ubuntu 24.04およびAsymmetric Namespace Access（ANA）では、NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）がサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
+
+ONTAPを搭載したUbuntu 24.04では、NVMe-oFホスト構成が次のようにサポートされます。
+
+* 標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCネームスペースのONTAPの詳細が表示されます。
+* 特定のHost Bus Adapter（HBA；ホストバスアダプタ）の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。
+
+
+サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+
+
+
+== の機能
+
+Ubuntu 24.04では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。これは、明示的な設定が必要ないことを意味します。
+
+
+
+== 既知の制限
+
+NVMe-oFプロトコルを使用したSANブートは、ONTAPを搭載したUbuntu 24.04では現在サポートされていません。
+
+
+
+== ソフトウェアのバージョンを確認します
+
+次の手順を使用して、サポートされているUbuntu 24.04ソフトウェアの最小バージョンを検証できます。
+
+.手順
+. Ubuntu 24.04をサーバにインストールします。インストールが完了したら、指定したUbuntu 24.04カーネルを実行していることを確認します。
++
+[listing]
+----
+uname -r
+----
++
+[listing]
+----
+6.8.0-31-generic
+----
+. 「 nvme-cli 」パッケージをインストールします。
++
+[listing]
+----
+apt list | grep nvme
+----
++
+[listing]
+----
+nvme-cli/noble-updates 2.8-1ubuntu0.1 amd64
+----
+. Ubuntu 24.04ホストで、hostnqn文字列を確認し `/etc/nvme/hostnqn`ます。
++
+[listing]
+----
+cat /etc/nvme/hostnqn
+----
++
+[listing]
+----
+nqn.2014-08.org.nvmexpress:uuid:ace18dd8-1f5a-11ec-b0c3-3a68dd61a6ff
+----
+. の文字列 `/etc/nvme/hostnqn`がONTAPアレイの対応するサブシステムの文字列と一致する `hostnqn`ことを確認し `hostnqn`ます。
++
+[listing]
+----
+vserver nvme subsystem host show -vserver vs_106_fc_nvme
+----
++
+[listing]
+----
+Vserver     Subsystem          Host NQN
+----------- --------------- ----------------------------------------------------------
+vs_106_fc_nvme ub_106 nqn.2014-08.org.nvmexpress:uuid:c04702c8-e91e-4353-9995-ba4536214631
+----
++
+
+NOTE: 文字列が一致しない場合 `hostnqn`は、コマンドを使用し `vserver modify`て、対応するONTAPアレイサブシステムの文字列をホストののの文字列 `/etc/nvme/hostnqn`と一致するように `hostnqn`更新し `hostnqn`ます。
+
+
+
+
+
+== NVMe/FC を設定
+
+NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設定できます。
+
+[role="tabbed-block"]
+====
+.Broadcom / Emulex
+--
+Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
+
+.手順
+. サポートされているアダプタモデルを使用していることを確認します。
++
+.. `cat /sys/class/scsi_host/host*/modelname`
++
+[listing]
+----
+LPe36002-M64
+LPe36002-M64
+
+----
+.. `cat /sys/class/scsi_host/host*/modeldesc`
++
+[listing]
+----
+Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
+Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
+
+----
+
+
+. 推奨されるBroadcomファームウェアおよび受信トレイドライバを使用していることを確認します `lpfc`。
++
+.. `cat /sys/class/scsi_host/host*/fwrev`
++
+[listing]
+----
+14.4.317.10, sli-4:6:d
+14.4.317.10, sli-4:6:d
+----
+.. `cat /sys/module/lpfc/version`
++
+[listing]
+----
+0:14.2.0.17
+----
++
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+
+
+
+. 確認します `lpfc_enable_fc4_type` がに設定されます `3`：
++
+[listing]
+----
+cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+----
++
+想定される出力は3です。
+
+. イニシエータポートが動作していること、およびターゲットLIFが表示されていることを確認します。
++
+.. `cat /sys/class/fc_host/host*/port_name`
++
+[listing]
+----
+0x100000109bf0447b
+0x100000109bf0447c
+----
+.. `cat /sys/class/fc_host/host*/port_state`
++
+[listing]
+----
+Online
+Online
+----
+.. `cat /sys/class/scsi_host/host*/nvme_info`
++
+.出力例を表示します。
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109bf0447b WWNN x200000109bf0447b DID x022600 *ONLINE*
+NVME RPORT       WWPN x200fd039eaa8138b WWNN x200ad039eaa8138b DID x021006 *TARGET DISCSRVC ONLINE*
+
+NVME Statistics
+LS: Xmt 0000000187 Cmpl 0000000187 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000014096514 Issue 000000001407fcd6 OutIO fffffffffffe97c2
+        abort 00000048 noxri 00000000 nondlp 0000001c qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00000048 Err 00000077
+
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109bf0447c WWNN x200000109bf0447c DID x022300 *ONLINE*
+NVME RPORT       WWPN x2010d039eaa8138b WWNN x200ad039eaa8138b DID x021106 *TARGET DISCSRVC ONLINE*
+
+NVME Statistics
+LS: Xmt 0000000187 Cmpl 0000000187 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 00000000140970ed Issue 00000000140813da OutIO fffffffffffea2ed
+        abort 00000047 noxri 00000000 nondlp 0000002b qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00000047 Err 00000075
+----
+=====
+
+
+
+
+--
+.NVMe / FC向けMarvell/QLogic FCアダプタ
+--
+Ubuntu 24.04 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
+
+.手順
+. サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
++
+[listing]
+----
+cat /sys/class/fc_host/host*/symbolic_name
+----
++
+[listing]
+----
+QLE2872 FW: v9.15.00 DVR: v10.02.09.100-k
+QLE2872 FW: v9.15.00 DVR: v10.02.09.100-k
+----
+. 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
++
+[listing]
+----
+cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+----
++
+期待される出力は1です。
+
+
+
+--
+====
+
+
+=== 1MB I/Oを有効にする（オプション）
+
+ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには `lpfc` `lpfc_sg_seg_cnt`、パラメータの値をデフォルト値の64から256に増やす必要があります。
+
+
+NOTE: 次の手順は、Qlogic NVMe/FCホストには適用されません。
+
+.手順
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
++
+[listing]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.出力例
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. コマンドを実行し `dracut -f`、ホストをリブートします。
+.  `lpfc_sg_seg_cnt`が256であることを確認します。
++
+[listing]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
++
+想定される値は256です。
+
+
+
+
+
+== NVMe/FC を設定
+
+NVMe/TCPでは自動接続機能はサポートされません。代わりに、コマンドまたは `connect-all`コマンドを使用して、NVMe/TCPサブシステムとネームスペースを手動で検出できます `connect`。
+
+.手順
+. イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
++
+[listing]
+----
+nvme discover -t tcp -w <host-traddr> -a <traddr>
+----
++
+.例を示します
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+# nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.155
+Discovery Log Number of Records 8, Generation counter 10
+=====Discovery Log Entry 0======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  4
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.167.156
+eflags:  *explicit discovery connections, duplicate discovery information*
+sectype: *none*
+=====Discovery Log Entry 1======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  2
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.166.156
+eflags:  *explicit discovery connections, duplicate discovery information*
+sectype: *none*
+=====Discovery Log Entry 2======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  3
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.167.155
+eflags:  *explicit discovery connections, duplicate discovery information*
+sectype: *none*
+=====Discovery Log Entry 3======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  1
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.166.155
+eflags:  *explicit discovery connections, duplicate discovery information*
+sectype: *none*
+=====Discovery Log Entry 4======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  4
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.167.156
+eflags:  none
+sectype: none
+=====Discovery Log Entry 5======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  2
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.166.156
+eflags:  none
+sectype: none
+=====Discovery Log Entry 6======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  3
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.167.155
+eflags:  none
+sectype: none
+=====Discovery Log Entry 7======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  1
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.166.155
+eflags:  none
+sectype: none
+----
+====
+. NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで検出ログページのデータを読み込めることを確認します。
++
+[listing]
+----
+nvme discover -t tcp -w <host-traddr> -a <traddr>
+----
++
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+#nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.155
+#nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.156
+#nvme discover -t tcp -w 192.168.166.150 -a 192.168.166.155
+#nvme discover -t tcp -w 192.168.166.150 -a 192.168.166.156
+----
+====
+. を実行します `nvme connect-all` ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象としたコマンド：
++
+[listing]
+----
+nvme connect-all -t tcp -w <host-traddr> -a <traddr>
+----
++
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+#nvme connect-all -t tcp -w 192.168.167.150 -a 192.168.167.155
+#nvme connect-all -t tcp -w 192.168.167.150 -a 192.168.167.156
+#nvme connect-all -t tcp -w 192.168.166.150 -a 192.168.166.155
+#nvme connect-all -t tcp -w 192.168.166.150 -a 192.168.166.156
+----
+====
++
+
+NOTE: Ubuntu 24.04以降では、NVMe/TCPのctrl_loss_tmoタイムアウトのデフォルト設定がオフになっています。つまり、再試行回数に制限はなく（無期限の再試行）、コマンドまたは `nvme connect-all`コマンド（オプション-l）を使用するときに、特定のCtrl_LOSS_TMOタイムアウト期間を手動で設定する必要はありません `nvme connect`。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
+
+
+
+
+
+== NVMe-oF を検証します
+
+NVMe-oFの検証には、次の手順を使用できます。
+
+.手順
+. カーネル内NVMeマルチパスが有効になっていることを確認します。
++
+[listing]
+----
+cat /sys/module/nvme_core/parameters/multipath
+----
++
+想定される出力は「Y」です。
+
+. 該当するONTAPネームスペースの適切なNVMe-oF設定（「NetApp ONTAPコントローラ」に設定されたモデル、「ラウンドロビン」に設定されたロードバランシングポリシーなど）がホストに正しく表示されていることを確認します。
++
+.. `cat /sys/class/nvme-subsystem/nvme-subsys*/model`
++
+[listing]
+----
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
+.. `cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy`
++
+[listing]
+----
+round-robin
+round-robin
+----
+
+
+. ネームスペースが作成され、ホストで正しく検出されたことを確認します。
++
+[listing]
+----
+nvme list
+----
++
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+Node         SN                         Model
+---------------------------------------------------------
+/dev/nvme0n1 81CZ5BQuUNfGAAAAAAAB	NetApp ONTAP Controller
+
+
+Namespace Usage   Format                FW            Rev
+-----------------------------------------------------------
+1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
+----
+====
+. 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
++
+[role="tabbed-block"]
+====
+.NVMe/FC
+--
+[listing]
+----
+nvme list-subsys /dev/nvme0n1
+----
+.出力例を表示します。
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.8763d311b2ac11ed950ed039ea951c46:subsystem. ubuntu_24.04 \
++- nvme1 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20a7d039ea954d17,host_traddr=nn-0x200000109b1b95ef:pn-0x100000109b1b95ef *live optimized*
++- nvme2 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20a8d039ea954d17,host_traddr=nn-0x200000109b1b95f0:pn-0x100000109b1b95f0 *live optimized*
++- nvme3 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20aad039ea954d17,host_traddr=nn-0x200000109b1b95f0:pn-0x100000109b1b95f0 *live non-optimized*
++- nvme5 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20a9d039ea954d17,host_traddr=nn-0x200000109b1b95ef:pn-0x100000109b1b95ef *live non-optimized*
+----
+=====
+--
+.NVMe/FC
+--
+[listing]
+----
+nvme list-subsys /dev/nvme1n1
+----
+.出力例を表示します。
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+               hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0050-3410-8035-c3c04f4a5933
+               iopolicy=round-robin
+ +- nvme0 *tcp* traddr=192.168.166.155,trsvcid=4420,host_traddr=192.168.166.150,src_addr=192.168.166.150 *live optimized*
+ +- nvme1 *tcp* traddr=192.168.167.155,trsvcid=4420,host_traddr=192.168.167.150,src_addr=192.168.167.150 *live optimized*
+ +- nvme2 *tcp* traddr=192.168.166.156,trsvcid=4420,host_traddr=192.168.166.150,src_addr=192.168.166.150 *live non-optimized*
+ +- nvme3 *tcp* traddr=192.168.167.156,trsvcid=4420,host_traddr=192.168.167.150,src_addr=192.168.167.150 *live non-optimized*
+----
+=====
+--
+====
+. ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
++
+[role="tabbed-block"]
+====
+.列（ Column ）
+--
+[listing]
+----
+nvme netapp ontapdevices -o column
+----
+.出力例を表示します。
+[%collapsible]
+=====
+[listing]
+----
+Device        Vserver        Namespace Path          NSID UUID                                   Size
+------------- -------------  ----------------------- ---- -------------------------------------- ---------
+/dev/nvme0n1   vs_211_tcp    /vol/tcpvol1/ns1        1    1cc7bc78-8d7b-4d8e-a3c4-750f9461a6e9   21.47GB
+----
+=====
+--
+.JSON
+--
+[listing]
+----
+nvme netapp ontapdevices -o json
+----
+.出力例を表示します。
+[%collapsible]
+=====
+[listing]
+----
+{
+
+"ONTAPdevices" : [
+{
+      "Device":"/dev/nvme0n9",
+      "Vserver":"vs_211_tcp",
+      "Namespace_Path":"/vol/tcpvol9/ns9",
+      "NSID":9,
+      "UUID":"99640dd9-8463-4c12-8282-b525b39fc10b",
+      "Size":"21.47GB",
+      "LBA_Data_Size":4096,
+      "Namespace_Size":5242880
+    }
+  ]
+}
+
+----
+=====
+--
+====
+
+
+
+
+== 既知の問題
+
+ONTAPリリースのUbuntu 24.04でのNVMe-oFホスト構成に関する既知の問題はありません。

@@ -217,7 +217,7 @@ ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイ�
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. 「 racut-f 」コマンドを実行し、ホストを再起動します。
+. コマンドを実行し `dracut -f`、ホストをリブートします。
 . 再起動後、対応する sysfs 値を確認して、上記の設定が適用されていることを確認します。
 +
 [listing]
