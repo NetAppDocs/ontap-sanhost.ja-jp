@@ -212,9 +212,11 @@ FCP CMPL: xb 00000047 Err 00000075
 
 
 --
-.NVMe / FC向けMarvell/QLogic FCアダプタ
+.Marvell/QLogic
 --
 Ubuntu 24.04 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
+
+Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
 .手順
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
@@ -259,7 +261,6 @@ NOTE: 次の手順は、Qlogic NVMe/FCホストには適用されません。
 cat /etc/modprobe.d/lpfc.conf
 ----
 +
-.出力例
 [listing]
 ----
 options lpfc lpfc_sg_seg_cnt=256
