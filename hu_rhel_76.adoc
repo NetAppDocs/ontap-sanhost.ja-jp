@@ -22,15 +22,15 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed
 
 == Linux Unified Host Utilities をインストールします
 
-NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 32 ビットおよび 64 ビットの .rpm ファイル。構成に適したファイルがわからない場合は、を使用してください link:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^] 必要なものを確認します。
+NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイルとして用意されていますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^]確認してください。
 
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
-Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
+Linux Unified Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか削除して次の手順に従って最新バージョンをインストールします。
 
 .手順
-. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] サイトからホスト。
-. 次のコマンドを使用して、ソフトウェアパッケージをインストールします。
+. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
 
@@ -128,7 +128,7 @@ NOTE: 1つのLUNに必要なパスは4つまでです。パスが4つ以上あ�
 
 RHEL 7.6 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。
 
- `multipath.conf`マルチパスデーモンを起動するには、ファイルが存在している必要があります。このファイルが存在しない場合は、コマンドを使用して空のゼロバイトファイルを作成できます。 `touch /etc/multipath.conf`
+ `multipath.conf`マルチパスデーモンを起動するには、ファイルが存在している必要があります。このファイルが存在しない場合は、コマンドを使用して空のゼロバイトファイルを作成できます `touch /etc/multipath.conf`。
 
  `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
 
@@ -174,7 +174,7 @@ blacklist {
 
 、デフォルト設定をオーバーライドする可能性のあるレガシー設定については常にチェックする必要があります `/etc/multipath.conf`特にdefaultsセクションでファイルを。
 
-次の表に、ONTAP LUNの重要なパラメータと必要な設定を示し `multipathd`ます。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
 [cols="2*"]
 |===

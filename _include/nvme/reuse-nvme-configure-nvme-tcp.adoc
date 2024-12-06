@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+NVMe/TCPプロトコルでこの処理がサポートされてい `auto-connect`ません。代わりに、NVMe/TCPまたは `connect-all`の処理を手動で実行することで、NVMe/TCPサブシステムとネームスペースを検出できます `connect`。

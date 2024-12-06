@@ -190,7 +190,7 @@ FCP CMPL: xb 00000002 Err 00000004
 
 === 1MBのI/Oサイズを有効にしています
 
-ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには `lpfc` `lpfc_sg_seg_cnt`、パラメータの値をデフォルト値の64から256に増やす必要があります。
+ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには、パラメータの値を `lpfc_sg_seg_cnt`デフォルト値の64から256に増やす必要があります `lpfc`。
 
 
 NOTE: 次の手順は、Qlogic NVMe/FCホストには適用されません。

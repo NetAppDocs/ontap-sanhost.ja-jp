@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+NVMe-oFはONTAP LUNで使用できます。NVMe-oF環境では、ANAはiSCSI環境およびFCP環境におけるALUAマルチパスに相当し、カーネル内NVMeマルチパス機能で実装されます。

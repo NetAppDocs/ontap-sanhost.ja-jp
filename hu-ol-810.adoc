@@ -1,0 +1,275 @@
+---
+sidebar: sidebar 
+permalink: hu-ol-810.html 
+keywords: host utilities, oracle, linux, 8.10, netapp, ontap 
+summary: ONTAPでOracle Linux 8.10を使用する方法について説明します。 
+---
+= ONTAPでOracle Linux 8.10を使用
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 8.10を設定できます。
+
+
+
+== Linux Unified Host Utilities をインストールします
+
+NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
+
+NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+
+Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
+
+.手順
+. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. ソフトウェアパッケージをインストールします。
++
+「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
+
+
+
+
+
+== SANツールキット
+
+このツールキットは、NetApp Host Utilitiesパッケージをインストールすると自動的にインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+
+次の例では 'lun lun lun show コマンドは LUN 情報を返します
+
+[listing]
+----
+# sanlun lun show all
+----
+.出力例：
+[listing]
+----
+controller(7mode/E-Series)/              device     host               lun
+vserver(cDOT/FlashRay)  lun-pathname     filename   adapter  protocol  size   Product
+-------------------------------------------------------------------------------------
+data_vserver            /vol/vol1/lun1   /dev/sdb   host16   FCP       80.0g  cDOT
+data_vserver            /vol/vol1/lun1   /dev/sdc   host15   FCP       80.0g  cDOT
+data_vserver            /vol/vol2/lun2   /dev/sdd   host16   FCP       80.0g  cDOT
+data_vserver            /vol/vol2/lun2   /dev/sde   host15   FCP       80.0g  cDOT
+----
+
+
+== SANブートを有効にする
+
+SAN ブートを使用する場合は、構成でサポートされている必要があります。
+
+.開始する前に
+を使用しlink:https://mysupport.netapp.com/matrix/imt.jsp?components=91863;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^]て、OS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認します。
+
+.手順
+. SAN ブート LUN をホストにマッピングします。
+. 複数のパスが使用可能であることを確認します。
++
+
+NOTE: ホストオペレーティングシステムが起動し、パスで実行されると、複数のパスが使用可能になります。
+
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. ホストをリブートして、ブートが正常に完了したことを確認します。
+
+
+
+
+== マルチパス
+
+Oracle Linux 8.10の場合は、 `/etc/multipath.conf`ファイルが存在している必要があります。Oracle Linux 8.10は、ONTAP LUNを認識して正しく管理するために必要な設定でコンパイルされているため、このファイルを変更する必要はありません。
+
+オールSANアレイ（ASA）構成と非ASA構成の場合は、次の例に示すように、コマンドを使用してONTAP LUNの設定を確認できます `multipath -ll`。
+
+
+NOTE: 1つのLUNに必要なパスは4つまでです。8 個を超えるパスがストレージ障害時に原因パスの問題になる可能性があります。
+
+
+
+=== ASAコウセイ
+
+ASA構成では、特定のLUNへのすべてのパスがアクティブで最適化されています。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+
+次の例は、ASA PersonaにマッピングされたONTAP LUNの正しい出力を示しています。
+
+[listing]
+----
+# multipath -ll
+3600a098038314d79492b58306a727a6a dm-0 NETAPP,LUN C-Mode
+size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:7:6  sdbz 68:208  active ready running
+  |- 11:0:11:6 sddn 71:80   active ready running
+  |- 11:0:15:6 sdfb 129:208 active ready running
+  |- 12:0:1:6  sdgp 132:80  active ready running
+----
+
+
+=== ASAイカイノコウセイ
+
+ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度が高いパスはアクティブ/最適化されます。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+次の例は、2つのアクティブ/最適化パスと2つのアクティブ/最適化されていないパスがASA以外のPersonaにマッピングされているONTAP LUNの正しい出力を示しています。
+
+[listing]
+----
+# multipath -ll
+3600a0980383036347ffb4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 16:0:6:35 sdwb	69:624	active ready running
+| |- 16:0:5:35 sdun	66:752	active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+|- 15:0:0:35 sdaj	66:48	active ready running
+|- 15:0:1:35 sdbx	68:176	active ready running
+----
+
+
+== 推奨設定
+
+Oracle Linux 8.10オペレーティングシステムは、ONTAP LUNを認識し、ASA構成とASA以外の構成の両方に対して正しい構成パラメータを自動的に設定するようにコンパイルされています。また、次の推奨事項を使用して、ホスト構成のパフォーマンスをさらに最適化することもできます。
+
+ `multipath.conf`マルチパスデーモンを起動するには、ファイルが存在している必要があります。このファイルが存在しない場合は、コマンドを使用して空のゼロバイトファイルを作成できます `touch /etc/multipath.conf`。
+
+ `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
+
+`# chkconfig multipathd on`
+`# /etc/init.d/multipathd start`
+
+マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、 `multipath.conf`ファイルに次の構文を追加し、<DevId>を除外するデバイスのWWID文字列に置き換えます。
+
+[listing]
+----
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
+
+.手順
+. WWIDを確認します。
++
+[listing]
+----
+# /lib/udev/scsi_id -gud /dev/sda
+360030057024d0730239134810c0cb833
+----
++
+`sda`は、ブラックリストに追加するローカルSCSIディスクです。
+
+. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
++
+[listing]
+----
+blacklist {
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+----
+
+
+、デフォルト設定をオーバーライドする可能性のあるレガシー設定については常にチェックする必要があります `/etc/multipath.conf`特にdefaultsセクションでファイルを。
+
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+
+[cols="2*"]
+|===
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | 無限大 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | 2 pg_init_retries 50 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| パスの再試行なし | キュー 
+
+
+| path_checker です | ツール 
+
+
+| path_grouping_policy | group_by_prio 
+
+
+| path_selector | サービス時間 0 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN. * 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | 均一（ Uniform ） 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
+|===
+次の例は、上書きされたデフォルトを修正する方法を示しています。この場合 `multipath.conf`、ファイルにはONTAP LUNと互換性のないとの `no_path_retry`値が定義されて `path_checker`います。他のSANアレイがまだホストに接続されているためにこれらのパラメータを削除できない場合は、デバイススタンザを使用してONTAP LUN専用にこれらのパラメータを修正できます。
+
+[listing]
+----
+defaults {
+ path_checker readsector0
+ no_path_retry fail
+ }
+devices {
+ device {
+ vendor "NETAPP "
+ product "LUN.*"
+ no_path_retry queue
+ path_checker tur
+ }
+}
+----
+
+NOTE: Oracle Linux 8.10 RedHat Enterprise Kernelを設定するには、link:hu_rhel_810.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）8.10を使用します。
+
+
+
+== KVM設定
+
+を使用してKernel-Based Virtual Machine（KVM）を設定することもできます<<recommended_settings_ol_810,推奨設定>>。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。
+
+
+
+== 既知の問題
+
+ONTAPリリースのOracle Linux 8.10では、既知の問題はありません。
