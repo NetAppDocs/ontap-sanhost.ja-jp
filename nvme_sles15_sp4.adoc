@@ -226,7 +226,7 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには、パラメータの値を `lpfc_sg_seg_cnt`デフォルト値の64から256に増やす必要があります `lpfc`。
 
 
-NOTE: 次の手順は、Qlogic NVMe/FCホストには適用されません。
+NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
 
 .手順
 .  `lpfc_sg_seg_cnt`パラメータを256に設定します。
@@ -241,15 +241,12 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-.  `lpfc_sg_seg_cnt`が256であることを確認します。
+. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----
 cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
-+
-想定される値は256です。
-
 
 
 

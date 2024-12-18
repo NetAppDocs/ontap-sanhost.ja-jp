@@ -6,10 +6,12 @@
 
  `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、 `multipath.conf`ファイルに次の構文を追加し、<DevId>を除外するデバイスのWWID文字列に置き換えます。
+[listing]
+----
+chkconfig multipathd on
+/etc/init.d/multipathd start
+----
+マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、ファイルに次の構文を追加し `multipath.conf`、<DevId>を除外するデバイスのWorldwide Identifier（WWID）文字列に置き換えます。
 
 [listing]
 ----
@@ -27,25 +29,37 @@ blacklist {
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
-360030057024d0730239134810c0cb833
+/lib/udev/scsi_id -gud /dev/sda
 ----
-+
-`sda`は、ブラックリストに追加するローカルSCSIディスクです。
-
-. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
 +
 [listing]
 ----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
+3600a098038314c4a433f5774717a3046
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+360030057024d0730239134810c0cb833
+
+
+
+[listing]
+----
++
+`sda` is the local SCSI disk that you want to add to the blacklist.
+
+. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
+[source,cli]
++
+----
+ブラックリスト｛WWID 3600a0980314c4a433f5774717a3046 devnode "^（ram|raw|loop|fd|md|dm-|sr|scd|st）[0-9]*"devnode"^hd[a-z]"devnode"^ cciss.*"}
+
+[listing]
 ----
 
+Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-、デフォルト設定をオーバーライドする可能性のあるレガシー設定については常にチェックする必要があります `/etc/multipath.conf`特にdefaultsセクションでファイルを。
+The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+//ONTAPDOC-2578 9-Dec-2024
+//ONTAPDOC-2561 25-Nov-202
+----

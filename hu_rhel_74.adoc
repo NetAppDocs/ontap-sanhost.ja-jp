@@ -99,10 +99,10 @@ Red Hat Enterprise Linux （ RHEL ） 7.4 の場合は、 /etc/multipath.conf �
 
 === オールSANアレイ構成
 
-オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスがアクティブで最適化されています。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
 .例
-次の例は、 ONTAP LUN の正しい出力を表示します。
+次の例は、ONTAP LUNの正しい出力を示しています。
 
 [listing]
 ----
@@ -152,10 +152,12 @@ RHEL 7.4 OS は ONTAP LUN を認識するようにコンパイルされ、 ASA �
 
  `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、 `multipath.conf`ファイルに次の構文を追加し、<DevId>を除外するデバイスのWWID文字列に置き換えます。
+[listing]
+----
+chkconfig multipathd on
+/etc/init.d/multipathd start
+----
+マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、ファイルに次の構文を追加し `multipath.conf`、<DevId>を除外するデバイスのWorldwide Identifier（WWID）文字列に置き換えます。
 
 [listing]
 ----
@@ -173,122 +175,91 @@ blacklist {
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
+3600a098038314c4a433f5774717a3046
+/lib/udev/scsi_id -gud /dev/sda
+----
++
 360030057024d0730239134810c0cb833
-----
-+
-`sda`は、ブラックリストに追加するローカルSCSIディスクです。
-
-. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
-+
-[listing]
-----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
-----
 
 
-、デフォルト設定をオーバーライドする可能性のあるレガシー設定については常にチェックする必要があります `/etc/multipath.conf`特にdefaultsセクションでファイルを。
-
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
-
-[cols="2*"]
-|===
-| パラメータ | 設定 
-
-
-| detect_prio | はい。 
-
-
-| DEV_DETION_TMO | " 無限 " 
-
-
-| フェイルバック | 即時 
-
-
-| fast_io_fail_TMO | 5. 
-
-
-| の機能 | "3 queue_if_no_path pg_init_retries 50" 
-
-
-| flush_on_last_del | はい。 
-
-
-| hardware_handler | 0 
-
-
-| パスの再試行なし | キュー 
-
-
-| path_checker です | " tur " 
-
-
-| path_grouping_policy | 「 group_by_prio 」 
-
-
-| path_selector | "service-time 0" 
-
-
-| polling _interval （ポーリング間隔） | 5. 
-
-
-| Prio | ONTAP 
-
-
-| プロダクト | LUN. * 
-
-
-| retain_attached _hw_handler | はい。 
-
-
-| RR_weight を指定します | " 均一 " 
-
-
-| ユーザーフレンドリ名 | いいえ 
-
-
-| ベンダー | ネットアップ 
-|===
-.例
-次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合 ' マルチパス .conf ファイルは 'path_checker' および ONTAP LUN と互換性のない 'no-path_retry' の値を定義しますホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。
 
 [listing]
 ----
-defaults {
-   path_checker      readsector0
-   no_path_retry      fail
-}
++
+`sda` is the local SCSI disk that you want to add to the blacklist.
 
-devices {
-   device {
-      vendor         "NETAPP  "
-      product         "LUN.*"
-      no_path_retry     queue
-      path_checker      tur
-   }
-}
+. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
+[source,cli]
++
+----
+ブラックリスト｛WWID 3600a0980314c4a433f5774717a3046 devnode "^（ram|raw|loop|fd|md|dm-|sr|scd|st）[0-9]*"devnode"^hd[a-z]"devnode"^ cciss.*"}
+
+[listing]
 ----
 
+Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-=== KVM設定
+The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
 
-Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用できます。LUN がハイパーバイザーにマッピングされるため、 KVM の設定を変更する必要はありません。
+//ONTAPDOC-2578 9-Dec-2024
+//ONTAPDOC-2561 25-Nov-202
 
-
-
-== 既知の問題
-
-RHEL 7.4 with ONTAPリリースには、次の既知の問題があります。
-
-[cols="3*"]
+[cols=2*,options="header"]
 |===
-| NetApp バグ ID | タイトル | 説明 
-
-
-| 1440718 | SCSI再スキャンを実行せずにLUNのマッピングまたはマッピングを解除すると、ホストでデータが破損する可能性があります。 | 「可_変更後_ WWID」のマルチパス設定パラメータを「YES」に設定すると、WWIDが変更された場合にパスデバイスへのアクセスが無効になります。パスのWWIDがマルチパスデバイスのWWIDにリストアされるまで、マルチパスはパスデバイスへのアクセスを無効にします。詳細については、を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["ネットアップのナレッジベース：Oracle Linux 7上のiSCSI LUNでファイルシステムが破損している"^]。 
+| Parameter
+| Setting
+| detect_prio | yes
+| dev_loss_tmo | "infinity"
+| failback | immediate
+| fast_io_fail_tmo | 5
+| features | "3 queue_if_no_path pg_init_retries 50"
+| flush_on_last_del | "yes"
+| hardware_handler | "0"
+| no_path_retry | queue
+| path_checker | "tur"
+| path_grouping_policy | "group_by_prio"
+| path_selector | "service-time 0"
+| polling_interval | 5
+| prio | "ontap"
+| product | LUN.*
+| retain_attached_hw_handler | yes
+| rr_weight | "uniform"
+| user_friendly_names | no
+| vendor | NETAPP
 |===
+
+.Example
+
+The following example shows how to correct an overridden default. In this case, the `multipath.conf` file defines values for `path_checker` and `no_path_retry` that are not compatible with ONTAP LUNs. If they cannot be removed because of other SAN arrays still attached to the host, these parameters can be corrected specifically for ONTAP LUNs with a device stanza.
+
+----
+defaults｛path_checker readsector0 no_path_retry fail｝
+
+デバイス｛device｛vendor "lun" NetApp product" lun.*"no_path_retry queue path_checker tur｝｝
+
+[listing]
+----
+
+=== Configure KVM settings
+
+You can use the recommended settings to configure Kernel-based Virtual Machine (KVM) as well. There are no changes required to configure KVM because the LUN is mapped to the hypervisor.
+
+//ONTAPDOC-2561 5-Dec-2024
+
+== Known issues
+
+The RHEL 7.4 with ONTAP release has the following known issues:
+
+[cols=3*,options="header"]
+|===
+| NetApp Bug ID
+| Title
+| Description
+| 1440718 | If you unmap or map a LUN without performing a SCSI rescan, it might lead to data corruption on the host. | When you set the 'disable_changed_wwids' multipath configuration parameter to YES, it disables access to the path device in the event of a WWID change. Multipath will disable access to the path device until the WWID of the path is restored to the WWID of the multipath device. To learn more, see  link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7[NetApp Knowledge Base: The filesystem corruption on iSCSI LUN on the Oracle Linux 7^].
+|===
+----

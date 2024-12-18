@@ -22,11 +22,9 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOra
 
 == Linux Unified Host Utilities をインストールします
 
-NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
+NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 
 NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
-
-Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
 . から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
@@ -96,10 +94,10 @@ OL 9.3では `/etc/multipath.conf`ファイルが存在している必要があ�
 
 === オールSANアレイ構成
 
-オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスがアクティブで最適化されています。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
 .例
-次の例は、 ONTAP LUN の正しい出力を表示します。
+次の例は、ONTAP LUNの正しい出力を示しています。
 
 [listing]
 ----
@@ -149,10 +147,12 @@ Oracle Linux 9.3 OSでは、ONTAP LUNが認識され、ASA構成とASA以外の�
 
  `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、 `multipath.conf`ファイルに次の構文を追加し、<DevId>を除外するデバイスのWWID文字列に置き換えます。
+[listing]
+----
+# systemctl enable multipathd
+# systemctl start multipathd
+----
+マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、デバイスをファイルに直接追加する必要はあり `multipath.conf`ません。不要なデバイスを除外するには、次の構文をファイルに追加し `multipath.conf`、<DevId>を除外するデバイスのWWID文字列に置き換えます。
 
 [listing]
 ----
@@ -163,14 +163,18 @@ blacklist {
         devnode "^cciss.*"
 }
 ----
-次の例では、デバイスのWWIDを特定して `multipath.conf`ファイルに追加します。
+次の例では、デバイスのWWIDを特定し、そのデバイスをファイルに追加し `multipath.conf`ます。
 
 .手順
 . WWIDを確認します。
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
 360030057024d0730239134810c0cb833
 ----
 +
@@ -189,9 +193,9 @@ blacklist {
 ----
 
 
-、デフォルト設定をオーバーライドする可能性のあるレガシー設定については常にチェックする必要があります `/etc/multipath.conf`特にdefaultsセクションでファイルを。
+デフォルト設定を上書きする可能性のあるレガシー設定については、特にdefaultsセクションでファイルを常にチェックする必要があります `/etc/multipath.conf`。
 
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定を無効にする場合は、影響を十分に理解してから、NetAppやOSベンダーに相談してください。
 
 [cols="2*"]
 |===

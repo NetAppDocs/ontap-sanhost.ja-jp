@@ -1,9 +1,9 @@
-= KVM設定
+= KVMの設定
 :allow-uri-read: 
 
 
 
 
-=== KVM設定
+=== KVMの設定
 
-Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用できます。LUN がハイパーバイザーにマッピングされるため、 KVM の設定を変更する必要はありません。
+Kernel-based Virtual Machine （ KVM ）の設定にも推奨設定を使用できます。LUNはハイパーバイザーにマッピングされているため、KVMの設定に必要な変更はありません。

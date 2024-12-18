@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-NVMe-oFはONTAP LUNで使用できます。NVMe-oF環境では、ANAはiSCSI環境およびFCP環境におけるALUAマルチパスに相当し、カーネル内NVMeマルチパス機能で実装されます。
+NetApp SANホスト構成では、非対称ネームスペースアクセス（ANA）でNVMe over Fabrics（NVMe-oF）プロトコルがサポートされます。NVMe-oF環境のANAは、iSCSI環境およびFCP環境におけるAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）マルチパスに相当します。ANAはカーネル内NVMeマルチパス機能を使用して実装されます。

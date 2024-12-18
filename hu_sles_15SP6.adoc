@@ -99,10 +99,10 @@ SUSE Linux Enterprise Server 15 SP6の場合は、 `/etc/multipath.conf`ファ�
 
 === オールSANアレイ構成
 
-オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスがアクティブで最適化されています。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
 .例
-次の例は、 ONTAP LUN の正しい出力を表示します。
+次の例は、ONTAP LUNの正しい出力を示しています。
 
 [listing]
 ----
@@ -168,15 +168,18 @@ blacklist {
         devnode "^cciss.*"
 }
 ----
-.例
-次の例では、デバイスのWWIDを特定し、ファイルにを追加します `multipath.conf`。
+次の例では、デバイスのWWIDを特定し、そのデバイスをファイルに追加し `multipath.conf`ます。
 
 .手順
 . WWIDを確認します。
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
 360030057024d0730239134810c0cb833
 ----
 +

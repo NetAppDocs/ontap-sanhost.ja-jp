@@ -22,11 +22,9 @@ FC、FCoE、およびiSCSIプロトコルを使用するRed Hat Enterprise Linux
 
 == Linux Unified Host Utilities をインストールします
 
-NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
+NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 
 NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
-
-Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
 . から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
@@ -40,7 +38,7 @@ Linux Unified Host Utilitiesのバージョンが現在インストールされ�
 
 == SAN ツールキット
 
-このツールキットは、NetApp Host Utilitiesパッケージをインストールすると自動的にインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNとHBAの管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+NetApp Host Utilitiesパッケージをインストールすると、ツールキットが自動的にインストールされます。このキットには、LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティが用意されて `sanlun`います。 `sanlun`show volumeGroupコマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
 .例
 次の図では 'lun show コマンドは LUN 情報を返します

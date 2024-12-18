@@ -20,11 +20,9 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOra
 
 == Linux Unified Host Utilities をインストールします
 
-NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 64 ビットの .rpm ファイル。
+NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 
 NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
-
-Linux Unified Host Utilitiesのバージョンが現在インストールされている場合は、アップグレードするか削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
 . から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
@@ -140,10 +138,12 @@ Oracle Linux 8.10オペレーティングシステムは、ONTAP LUNを認識し
 
  `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、 `multipath.conf`ファイルに次の構文を追加し、<DevId>を除外するデバイスのWWID文字列に置き換えます。
+[listing]
+----
+chkconfig multipathd on
+/etc/init.d/multipathd start
+----
+マルチパスで管理したくないデバイスがある場合や、デフォルトよりも優先される既存の設定がある場合を除き、ファイルに直接何も追加する必要はありません `multipath.conf`。不要なデバイスを除外するには、ファイルに次の構文を追加し `multipath.conf`、<DevId>を除外するデバイスのWorldwide Identifier（WWID）文字列に置き換えます。
 
 [listing]
 ----
@@ -161,115 +161,77 @@ blacklist {
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
+3600a098038314c4a433f5774717a3046
+/lib/udev/scsi_id -gud /dev/sda
+----
++
 360030057024d0730239134810c0cb833
-----
-+
-`sda`は、ブラックリストに追加するローカルSCSIディスクです。
-
-. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
-+
-[listing]
-----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
-----
 
 
-、デフォルト設定をオーバーライドする可能性のあるレガシー設定については常にチェックする必要があります `/etc/multipath.conf`特にdefaultsセクションでファイルを。
-
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
-
-[cols="2*"]
-|===
-| パラメータ | 設定 
-
-
-| detect_prio | はい。 
-
-
-| DEV_DETION_TMO | 無限大 
-
-
-| フェイルバック | 即時 
-
-
-| fast_io_fail_TMO | 5. 
-
-
-| の機能 | 2 pg_init_retries 50 
-
-
-| flush_on_last_del | はい。 
-
-
-| hardware_handler | 0 
-
-
-| パスの再試行なし | キュー 
-
-
-| path_checker です | ツール 
-
-
-| path_grouping_policy | group_by_prio 
-
-
-| path_selector | サービス時間 0 
-
-
-| polling _interval （ポーリング間隔） | 5. 
-
-
-| Prio | ONTAP 
-
-
-| プロダクト | LUN. * 
-
-
-| retain_attached _hw_handler | はい。 
-
-
-| RR_weight を指定します | 均一（ Uniform ） 
-
-
-| ユーザーフレンドリ名 | いいえ 
-
-
-| ベンダー | ネットアップ 
-|===
-次の例は、上書きされたデフォルトを修正する方法を示しています。この場合 `multipath.conf`、ファイルにはONTAP LUNと互換性のないとの `no_path_retry`値が定義されて `path_checker`います。他のSANアレイがまだホストに接続されているためにこれらのパラメータを削除できない場合は、デバイススタンザを使用してONTAP LUN専用にこれらのパラメータを修正できます。
 
 [listing]
 ----
-defaults {
- path_checker readsector0
- no_path_retry fail
- }
-devices {
- device {
- vendor "NETAPP "
- product "LUN.*"
- no_path_retry queue
- path_checker tur
- }
-}
++
+`sda` is the local SCSI disk that you want to add to the blacklist.
+
+. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
+[source,cli]
++
+----
+ブラックリスト｛WWID 3600a0980314c4a433f5774717a3046 devnode "^（ram|raw|loop|fd|md|dm-|sr|scd|st）[0-9]*"devnode"^hd[a-z]"devnode"^ cciss.*"}
+
+[listing]
 ----
 
-NOTE: Oracle Linux 8.10 RedHat Enterprise Kernelを設定するには、link:hu_rhel_810.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）8.10を使用します。
+Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
+The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
 
+//ONTAPDOC-2578 9-Dec-2024
+//ONTAPDOC-2561 25-Nov-202
 
-== KVM設定
+[cols=2*,options="header"]
+|===
+| Parameter
+| Setting
+| detect_prio | yes
+| dev_loss_tmo | infinity
+| failback | immediate
+| fast_io_fail_tmo | 5
+| features | 2 pg_init_retries 50
+| flush_on_last_del | yes
+| hardware_handler | 0
+| no_path_retry | queue
+| path_checker | tur
+| path_grouping_policy | group_by_prio
+| path_selector | service-time 0
+| polling_interval | 5
+| prio | ontap
+| product | LUN.*
+| retain_attached_hw_handler | yes
+| rr_weight | uniform
+| user_friendly_names | no
+| vendor | NETAPP
+|===
 
-を使用してKernel-Based Virtual Machine（KVM）を設定することもできます<<recommended_settings_ol_810,推奨設定>>。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。
+The following example demonstrates how to correct an overridden default. In this case, the `multipath.conf` file defines values for `path_checker` and `no_path_retry` that aren't compatible with ONTAP LUNs. If they cannot be removed because other SAN arrays are still attached to the host, these parameters can be corrected specifically for ONTAP LUNs with a device stanza.
 
+----
+defaults｛path_checker readsector0 no_path_retry fail｝デバイス｛device｛vendor "product" NetApp lun.*"no_path_retry queue path_checker tur｝｝
 
+[listing]
+----
 
-== 既知の問題
+NOTE: To configure Oracle Linux 8.10 RedHat Enterprise Kernel, use the link:hu_rhel_810.html#recommended-settings[recommended settings] for Red Hat Enterprise Linux (RHEL) 8.10.
 
-ONTAPリリースのOracle Linux 8.10では、既知の問題はありません。
+== KVM settings
+You can also use the <<recommended_settings_ol_810,recommended settings>> to configure a Kernel-based Virtual Machine (KVM). There are no changes required to configure a KVM because the LUN is mapped to the hypervisor.
+
+== Known issues
+There are no known issues for the Oracle Linux 8.10 with ONTAP release.
+----
