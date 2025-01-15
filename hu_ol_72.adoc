@@ -165,72 +165,105 @@ blacklist {
 [listing]
 ----
 3600a098038314c4a433f5774717a3046
-/lib/udev/scsi_id -gud /dev/sda
 ----
 +
-360030057024d0730239134810c0cb833
+`sda`は、ブラックリストに追加するローカルSCSIディスクです。
 
-
-
-[listing]
-----
+. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
 +
-`sda` is the local SCSI disk that you want to add to the blacklist.
-
-. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
-[source,cli]
-+
+[source, cli]
 ----
-ブラックリスト｛WWID 3600a0980314c4a433f5774717a3046 devnode "^（ram|raw|loop|fd|md|dm-|sr|scd|st）[0-9]*"devnode"^hd[a-z]"devnode"^ cciss.*"}
-
-[listing]
+blacklist {
+     wwid   3600a098038314c4a433f5774717a3046
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
 ----
 
-Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
+常にチェックして `/etc/multipath.conf`デフォルト設定をオーバーライドしている可能性のあるレガシー設定がないか、特にdefaultsセクションでファイルをください。
 
-//ONTAPDOC-2578 9-Dec-2024
-//ONTAPDOC-2561 25-Nov-202
+次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視される場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザによって修正する必要があります。この修正を行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。これらのデフォルト値を無効にする場合は、影響を十分に理解したうえで、NetApp、OSベンダー、またはその両方に相談してください。
 
-
-[cols=2*,options="header"]
+[cols="2*"]
 |===
-| Parameter
-| Setting
-| detect_prio | yes
-| dev_loss_tmo | "infinity"
-| failback | immediate
-| fast_io_fail_tmo | 5
-| features | "3 queue_if_no_path pg_init_retries 50"
-| flush_on_last_del | "yes"
-| hardware_handler | "0"
-| path_checker | "tur"
-| path_grouping_policy | "group_by_prio"
-| path_selector | "service-time 0"
-| polling_interval | 5
-| prio | "ontap"
-| product | LUN.*
-| retain_attached_hw_handler | yes
-| rr_weight | "uniform"
-| user_friendly_names | no
-| vendor | NETAPP
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | " 無限 " 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| path_checker です | " tur " 
+
+
+| path_grouping_policy | 「 group_by_prio 」 
+
+
+| path_selector | "service-time 0" 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN. * 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | " 均一 " 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
 |===
-
-.Example
-
-The following example shows how to correct an overridden default. In this case, the `multipath.conf` file defines values for `path_checker` and `detect_prio` that are not compatible with ONTAP LUNs.
-If they cannot be removed because of other SAN arrays still attached to the host, these parameters can be corrected specifically for ONTAP LUNs with a device stanza.
-
-----
-defaults｛path_checker readsector0 detect_prio no｝個のデバイス｛device｛vendor "product" NetApp lun.*"path_checker tur detect_prio yes｝｝
+.例
+次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合、「 multipath.conf 」ファイルは「 path_checker 」および「 detect_prio 」の値を定義しますが、 ONTAP LUN と互換性はありません。ホストに接続された他の SAN アレイが原因でアレイを削除できない場合は、デバイススタンザを使用して ONTAP LUN 専用にパラメータを修正できます。
 
 [listing]
 ----
-
-NOTE: To configure Oracle Linux 7.2 Red Hat Enterprise Kernel (RHCK), use the link:hu_rhel_72.html#recommended-settings[recommended settings] for Red Hat Enterprise Linux (RHEL) 7.2.
-
-== Known issues
-
-There are no known issues for the Oracle Linux 7.2 with ONTAP release.
+defaults {
+ path_checker readsector0
+ detect_prio no
+ }
+devices {
+ device {
+ vendor "NETAPP "
+ product "LUN.*"
+ path_checker tur
+ detect_prio yes
+ }
+}
 ----
+
+NOTE: Oracle Linux 7.2 Red Hat Enterprise Kernel（RHCK）を設定するには、for Red Hat Enterprise Linux（RHEL）7.2を使用しlink:hu_rhel_72.html#recommended-settings["推奨設定"]ます。
+
+
+
+== 既知の問題
+
+ONTAPリリースのOracle Linux 7.2では、既知の問題はありません。
