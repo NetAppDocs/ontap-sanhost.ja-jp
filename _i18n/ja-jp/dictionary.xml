@@ -3440,7 +3440,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="e78866ae0ff845eed770c2b938efee3b" category="paragraph">常にチェックして<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>デフォルト設定をオーバーライドしている可能性のあるレガシー設定がないか、特にdefaultsセクションでファイルをください。</block>
   <block id="0addb4faeee17f16535b967fa12087f4" category="paragraph">次の例は、上書きされたデフォルトを修正する方法を示しています。この場合<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>、ファイルにはONTAP LUNと互換性のないとの<block ref="9434de34302b4f40887a7277cf35a8fc" prefix=" " category="inline-code"></block>値が定義されて<block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix=" " category="inline-code"></block>います。他のSANアレイがまだホストに接続されているためにこれらのパラメータを削除できない場合は、デバイススタンザを使用してONTAP LUN専用にこれらのパラメータを修正できます。</block>
   <block id="1cf74d5a15225e81daff79d7ccb11382" category="admonition">Oracle Linux 8.10 RedHat Enterprise Kernelを設定するには、<block ref="8fd6ca76e28de543c48473a969597840" category="inline-link-macro-rx"></block>for Red Hat Enterprise Linux（RHEL）8.10を使用します。</block>
-  <block id="6bb89cc49fca8628d227dd847602703b" category="paragraph">を使用してKernel-Based Virtual Machine（KVM）を設定することもできます<block ref="4bba837a8ebd28cc5db475b23d73ca01" category="inline-xref-macro-rx"></block>。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。</block>
   <block id="3e1ec4fdd93153b353d57238402daa53" category="paragraph">ONTAPリリースのOracle Linux 8.10では、既知の問題はありません。</block>
   <block id="fa82877b3beb26d7d7bc882389d60aca" category="paragraph">CentOS（Red Hat互換カーネル）の既知の問題については、for Red Hat Enterprise Linux（RHEL）6.10を参照してください<block ref="9a91dd1025c16135359284037044a8d3" category="inline-link-macro-rx"></block>。</block>
   <block id="38e584f52f25fb096dead8f8866657b0" category="paragraph">CentOS（Red Hat互換カーネル）の既知の問題については、for Red Hat Enterprise Linux（RHEL）6.4を参照してください<block ref="f736929b1834226891236b2c0b0b218e" category="inline-link-macro-rx"></block>。</block>
@@ -3764,4 +3763,5 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="1e45eb414e878e896ff6c8568d44aaed" category="cell"><block ref="409bdf20edf896ce4497acd46087929e" category="inline-link-macro-rx"></block></block>
   <block id="4ccdcef8fc98cb6452f9ba7aa1df1c0c" category="cell">20 個を超える LUN がマッピングされている SLES 15 ホストは、リブート後に保守モードになる場合があります</block>
   <block id="c6bc802c921069bf472f1e8359672c59" category="cell">20 個を超える LUN がマッピングされている SLES 15 ホストは、リブート後に保守モードになる場合があります。次のメッセージが表示され、メンテナンスモードがシングルユーザモードになります。<block ref="3e4fc983295eaca22de2d8651a4d47f0" prefix=" " category="inline-code"></block></block>
+  <block id="a563fbe9dc21252c94fb2aac9ee8aceb" category="paragraph">LUNはハイパーバイザーにマッピングされるため、Oracle Linux 8.10ではカーネルベースの仮想マシンを設定する必要はありません。</block>
 </blocks>

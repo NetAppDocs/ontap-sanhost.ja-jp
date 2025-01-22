@@ -270,7 +270,7 @@ NOTE: Oracle Linux 8.10 RedHat Enterprise Kernelを設定するには、link:hu_
 
 == KVM設定
 
-を使用してKernel-Based Virtual Machine（KVM）を設定することもできます<<recommended_settings_ol_810,推奨設定>>。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。
+LUNはハイパーバイザーにマッピングされるため、Oracle Linux 8.10ではカーネルベースの仮想マシンを設定する必要はありません。
 
 
 
