@@ -243,7 +243,7 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 7.4 Red Hat Enterprise Kernel（RHCK）を設定するには、for Red Hat Enterprise Linux（RHEL）7.4を使用しlink:hu_rhel_74.html#recommended-settings["推奨設定"]ます。
+NOTE: Oracle Linux 7.4 Red Hat Compatible Kernel（RHCK）を設定するには、for Red Hat Enterprise Linux（RHEL）7.4を使用しますlink:hu_rhel_74.html#recommended-settings["推奨設定"]。
 
 
 

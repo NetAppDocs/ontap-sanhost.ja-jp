@@ -272,13 +272,13 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 8.9 RedHat Enterprise Kernelを設定するには、link:hu_rhel_89.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）8.9を使用します。
+NOTE: Oracle Linux 8.9 Red Hat Compatible Kernel（RHCK）を設定するには、for Red Hat Enterprise Linux（RHEL）8.9を使用しますlink:hu_rhel_89.html#recommended-settings["推奨設定"]。
 
 
 
-== KVM設定
+== KVMの設定
 
-推奨設定を使用してKernel-Based Virtual Machine（KVM）を構成することもできます。LUNはハイパーバイザーにマッピングされるため、KVMの設定に必要な変更はありません。
+LUNはハイパーバイザーにマッピングされるため、カーネルベースの仮想マシンの設定は必要ありません。
 
 
 

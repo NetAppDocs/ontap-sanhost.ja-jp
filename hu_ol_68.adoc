@@ -252,7 +252,7 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 6.8 Red Hat Enterprise Kernel（RHCK）を設定するには、link:hu_rhel_68.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）6.8を使用します。
+NOTE: Oracle Linux 6.8 Red Hat Compatible Kernel（RHCK）を設定するには、for Red Hat Enterprise Linux（RHEL）6.8を使用しlink:hu_rhel_68.html#recommended-settings["推奨設定"]ます。
 
 
 
@@ -261,4 +261,4 @@ NOTE: Oracle Linux 6.8 Red Hat Enterprise Kernel（RHCK）を設定するには�
 ONTAPリリースのOracle Linux 6.8に関する既知の問題はありません。
 
 
-NOTE: Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください link:hu_rhel_68.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux （ RHEL ） 6.8 の場合。
+NOTE: Oracle Linux RHCKの既知の問題については、（RHEL 6.8）を参照してくださいlink:hu_rhel_68.html#known-problems-and-limitations["既知の問題"]。

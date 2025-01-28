@@ -252,7 +252,7 @@ devices {
 }
 ----
 
-NOTE: Oracle Linux 6.4 Red Hat Enterprise Kernel（RHCK）を設定するには、link:hu_rhel_64.html#recommended-settings["推奨設定"]for Red Hat Enterprise Linux（RHEL）6.4を使用します。
+NOTE: Oracle Linux 6.4 Red Hat Compatible Kernel（RHCK）を設定するには、for Red Hat Enterprise Linux（RHEL）6.4を使用しますlink:hu_rhel_64.html#recommended-settings["推奨設定"]。
 
 
 
@@ -277,4 +277,4 @@ Oracle Linux 6.4 with ONTAPリリースには、次の既知の問題があり�
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=739909["739909"^] | OL6.x で FC 障害が発生し、 UEK2 を使用している OL5.x ホストでは OL5.x ホストで SG_IO ioctl システムコールが失敗します | UEK2 カーネルを持つ Oracle Linux 6.x ホストと UEK2 カーネルを搭載した Oracle Linux 5.x ホストでは、問題が発生します。マルチパスデバイスの sg_ * コマンドは、アクティブなパスグループ内のすべてのパスをダウンにするファブリック障害の後、 EAGAIN エラーコード（ errno ）で失敗します。この問題は、マルチパスデバイスで I/O が発生していない場合にのみ発生します。以下の例は以下のとおりです。 #sg_inq -v /dev/mapper/3600a098041764937303f436c75324370 inquiry cdb ： 12 00 24 00 ioctl （ SG_IO v3 ） failed with OS_err （ errno ） = 11 inquiry ： Resource temporarily unavailable HDIO_GET ： リソースを一時的に使用できない [11] /dev/mapper/3600a098041764937303f436c75324370# で SCSI 情報の取得に失敗しました。この問題は、 DM-Multipath デバイスで I/O が発生していないときに、他のアクティブなグループへのパスグループのスイッチオーバーがアクティブにならないために発生します。この問題は、 kernel-uek パッケージと device-mapper-multipath パッケージの次のバージョンで確認されています。 OL6.4 バージョン： kernel-uek-2.6.39-400.17.1.el6uek device-mapper-multipath-0.4.9.9-64.0.1.el6 OL5.9 バージョン： kernel-uek-2.6.39-400.1el7.1.el1.el5.0.7.1-device-1.el6.5.7.4-device- 
 |===
 
-NOTE: Oracle Linux （ Red Hat 互換カーネル）の既知の問題については、を参照してください link:hu_rhel_64.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux （ RHEL ） 6.4 の場合：
+NOTE: Oracle Linux RHCKの既知の問題については、RHEL 6.4のを参照してくださいlink:hu_rhel_64.html#known-problems-and-limitations["既知の問題"]。
