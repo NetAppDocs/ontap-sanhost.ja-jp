@@ -16,9 +16,9 @@ summary: ONTAP を使用して RHEL 8.2 用に NVMe/FC ホストを設定する�
 
 
 [role="lead"]
-NVMe/FCはRed Hat Enterprise Linux（RHEL）8.2でONTAP 9.6以降でサポートされます。RHEL 8.2 ホストは、 NVMe と SCSI の両方のトラフィックを同じ Fibre Channel （ FC ；ファイバチャネル）イニシエータアダプタポートで実行します。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。
+ONTAP 9.6以降では、Red Hat Enterprise Linux（RHEL）8.2でNVMe/FCがサポートされます。RHEL 8.2 ホストは、 NVMe トラフィックと SCSI トラフィックの両方を同じ Fibre Channel （ FC ）イニシエータアダプタポートで実行します。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] を参照してください。
+サポートされる構成の最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -26,7 +26,7 @@ NVMe/FCはRed Hat Enterprise Linux（RHEL）8.2でONTAP 9.6以降でサポート
 
 * RHEL 8.2以降では `nvme-fc auto-connect`、スクリプトが標準パッケージに含まれ `nvme-cli`ています。外部ベンダーが提供するアウトボックス自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
 * RHEL 8.2以降の標準 `udev` ルールは、 `nvme-cli` NVMeマルチパスのラウンドロビンによるロードバランシングを可能にするパッケージ。（ RHEL 8.1 の場合と同様に）これ以上このルールを手動で作成する必要はありません。
-* RHEL 8.2以降では、同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行できます。実際、これは想定される導入済みホスト構成です。したがって、SCSIの場合は、 `dm-multipath` 通常のSCSI LUNの場合と同様に実行される `mpath` デバイス。NVMeマルチパスを使用してホストにNVMe-oFマルチパスデバイスを設定できます。
+* RHEL 8.2以降では、NVMeトラフィックとSCSIトラフィックの両方を同じホストで実行できます。実際、これは想定される導入済みホスト構成です。そのため、SCSIの場合はSCSI LUNを通常どおりに設定してデバイスを作成 `mpath`できます `dm-multipath`が、NVMeマルチパスを使用してホストでNVMe-oFマルチパスデバイスを設定できます。
 * RHEL 8.2以降の標準のNetAppプラグイン `nvme-cli` パッケージでは、ONTAPネームスペースのONTAPの詳細を表示できます。
 
 
@@ -79,7 +79,7 @@ yum install nvmecli
 4.18.0-193.el8.x86_64
 ----
 +
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされるバージョンの最新のリストについては、を参照してください。
+サポートされているバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 . nvme-CLI パッケージをインストールします。
 +
@@ -115,7 +115,7 @@ Vserver      Subsystem        Host           NQN
 . ホストをリブートします。
 . 'enable_foreign' Setting_( オプション )_ を更新します
 +
-NetAppでは、同じRHEL 8.2に共存したホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨しています。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、 `enable_foreign` に設定します `/etc/multipath.conf`を参照してください。
+同じRHEL 8.2ホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合はNetApp、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。dm-multipath で ONTAP ネームスペースをブラックリストに登録して、これらのネームスペースデバイスが dm-multipath で要求されないようにする必要もあります。これを行うには、次のように設定をに `/etc/multipath.conf`追加し `enable_foreign`ます。
 
 +
 [listing]
@@ -134,7 +134,7 @@ defaults {
 
 Broadcom FCアダプタを設定するには、次の手順を使用します。
 
-サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされているアダプタの現在のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 .手順
 . サポートされているアダプタを使用していることを確認します。
@@ -203,7 +203,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 ----
 . 1MB の I/O サイズを有効にします（オプション） _ 。
 +
-lpfc ドライバから問題 I/O 要求へのサイズが最大 1 MB になるように 'lpfc_sg_seg_cnt' パラメータを 256 に設定する必要があります
+lpfcドライバが最大1MBのI/O要求を発行するには、 `lpfc_sg_seg_cnt`パラメータを256に設定する必要があります。
 
 +
 [listing]
@@ -284,7 +284,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 ----
 . 1MB の I/O サイズを有効にします（オプション） _ 。
 +
-lpfc ドライバから問題 I/O 要求へのサイズが最大 1 MB になるように 'lpfc_sg_seg_cnt' パラメータを 256 に設定する必要があります
+lpfcドライバが最大1MBのI/O要求を発行するには、 `lpfc_sg_seg_cnt`パラメータを256に設定する必要があります。
 
 +
 [listing]

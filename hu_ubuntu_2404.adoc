@@ -22,7 +22,7 @@ summary: ONTAPでUbuntu 24.04を使用する方法について説明します。
 ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてUbuntu 24.04を設定できます。
 
 
-NOTE: Ubuntu 24.04 OSでは、NetApp Linux Unified Host Utilitiesソフトウェアパッケージは使用できません。
+NOTE: NetApp Linux Host Utilitiesソフトウェアパッケージは、Ubuntu 24.04 OSでは使用できません。
 
 
 
@@ -31,7 +31,7 @@ NOTE: Ubuntu 24.04 OSでは、NetApp Linux Unified Host Utilitiesソフトウェ
 SAN ブートを使用する場合は、構成でサポートされている必要があります。
 
 .開始する前に
-を使用しlink:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^]て、OS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認します。
+を使用しlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]て、OS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認します。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。

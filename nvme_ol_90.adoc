@@ -18,7 +18,7 @@ summary:
 [role="lead"]
 NVMe/FCやその他の転送を含むNVMe over Fabrics（NVMe-oF）は、Oracle Linux（OL）9.0とAsymmetric Namespace Access（ANA）でサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
 
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -156,7 +156,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 0:12.8.0.11
 ----
 +
-サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 . 確認します `lpfc_enable_fc4_type` がに設定されます `3`：
 +
@@ -248,7 +248,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_wuhu_72.html 
-keywords: wuhu, 7.2, host utilities, SAN, windows, unified 
-summary: WindowsユニファイドHost Utilitiesにはインストールプログラムが含まれています。このプログラムでは、WindowsホストがNetApp ONTAP およびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定します。 
+keywords: windows, 7.2, host utilities, SAN, windows 
+summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= Windows Unified Host Utilities 7.2のインストール
+= Windows Host Utilities 7.2をインストールする
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,9 +14,9 @@ summary: WindowsユニファイドHost Utilitiesにはインストールプロ�
 
 
 [role="lead"]
-Windows Unified Host Utilities（Wuhu）を使用すると、WindowsホストコンピュータをNetAppストレージシステムに接続できます。
+Windows Host Utilitiesを使用すると、WindowsホストコンピュータをNetAppストレージシステムに接続できます。
 
-Windows Unified Host Utilitiesでは、次のバージョンのWindowsがサポートされます。
+Windows Host Utilitiesは、次のバージョンのWindowsをサポートします。
 
 * Windows 2022
 * Windows 2019
@@ -25,7 +25,7 @@ Windows Unified Host Utilitiesでは、次のバージョンのWindowsがサポ�
 * Windows Server 2012
 
 
-Windows Unified Host Utilitiesには、WindowsホストがNetApp ONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHost Bus Adapter（HBA；ホストバスアダプタ）パラメータを設定するインストールプログラムが含まれています。
+Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHost Bus Adapter（HBA；ホストバスアダプタ）パラメータを設定するインストールプログラムが含まれています。
 
 Host Utilitiesソフトウェアをインストールすると、必要なWindowsレジストリとHBAパラメータがインストーラによって設定されます。
 
@@ -49,16 +49,16 @@ Windows ホストコンピュータには、次のプログラムとファイル
 
 | 'a_version.exe' | Host UtilitiesとFC HBAのバージョンが表示されます。 
 |===
-Host Utilitiesでは、さまざまなWindowsホスト構成、プロトコル、マルチパスオプションがサポートされます。詳細については、を参照してください https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+Host Utilitiesは、さまざまなWindowsホスト構成、プロトコル、マルチパスオプションをサポートします。詳細については、を参照して https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]ください。
 
 
 
 == ホストとストレージシステムの構成を確認します
 
-Host Utilitiesをインストールする前に、Host Utilitiesのバージョンがホストとストレージシステムの構成をサポートしていることを確認して、ソフトウェアを正しくインストールする必要があります。
+Host Utilities をインストールする前に、 Host Utilities のバージョンがホストおよびストレージシステムの構成に対応していることを確認し、ソフトウェアが正しくインストールされるようにする必要があります。
 
 .手順
-. でサポートされている構成を確認します http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]。
+. でサポートされる構成を確認します http://mysupport.netapp.com/matrix["Interoperability Matrix Tool"^]。
 . で、該当するホストに必要なホットフィックスを確認します link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["SANホストのWindowsに関するドキュメント"]。
 +
 
@@ -98,24 +98,24 @@ CAUTION: HBA設定を手動で変更しないでください。
 
 == Host Utilities をインストールする
 
-インストールプログラムによってHost Utilitiesパッケージがインストールされ、WindowsレジストリとHBAが設定されます。
+インストールプログラムを実行すると、 Host Utilities パッケージがインストールされ、 Windows のレジストリと HBA が設定されます。
 
-Windows Unified Host Utilities ソフトウェアパッケージのインストール時に、マルチパスのサポートを含めるかどうかを指定する必要があります。次のオプションの入力を求められます。Windows のコマンドプロンプトからサイレントインストール（無人インストール）を実行することもできます。
+Windows Host Utilitiesソフトウェアパッケージをインストールするときに、マルチパスのサポートを含めるかどうかを指定する必要があります。次のオプションの入力を求められます。Windows のコマンドプロンプトからサイレントインストール（無人インストール）を実行することもできます。
 
 .マルチパスのサポート
 * を選択します `MPIO` Windowsホストまたは仮想マシンからストレージシステムへのパスが複数ある場合。
 * を選択します `no MPIO` ストレージシステムへの単一のパスを使用している場合のみ。
 
 
-MPIO の選択は、 Windows XP および Windows Vista システムでは使用できません。マルチパス I/O は、これらのゲスト OS ではサポートされていません。Hyper-V ゲストでマルチパスのサポートを選択した場合、 raw （パススルー）ディスクはゲスト OS に表示されません。raw ディスクを使用することも、 MPIO を使用することもできますが、ゲスト OS で両方を使用することはできません。
+Microsoft Multipath I/O（MPIO）は、Windows XPおよびWindows Vistaシステムでは選択できません。これらのゲストオペレーティングシステムではマルチパスI/Oはサポートされていません。Hyper-Vゲストでマルチパスのサポートを選択した場合、raw（パススルー）ディスクはゲストOSに表示されません。ゲストOSではrawディスクまたはMPIOのどちらかを使用できますが、両方を使用することはできません。
 
-Host Utilitiesは対話型モードでインストールすることも、コマンドラインを使用してインストールすることもできます。新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilitiesを対話的にインストールするか、Windowsコマンドラインからインストールする手順に従います。
+Host Utilitiesは対話的にインストールすることも、コマンドラインを使用してインストールすることもできます。新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilitiesを対話的にインストールするか、Windowsコマンドラインからインストールする手順に従います。
 
 [role="tabbed-block"]
 ====
 .対話型インストール
 --
-Host Utilitiesソフトウェアパッケージを対話的にインストールするには、Host Utilitiesのインストールプログラムを実行してプロンプトに従う必要があります。
+Host Utilities ソフトウェアパッケージを対話的にインストールするには、 Host Utilities のインストールプログラムを実行し、プロンプトに従ってインストールする必要があります。
 
 .手順
 . から実行可能ファイルをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["ネットアップサポートサイト"^]。
@@ -137,7 +137,7 @@ Windowsコマンドプロンプトで該当するコマンドを入力すると�
 +
 ** `installer` は、の名前です `.msi` 使用しているCPUアーキテクチャ用のファイル。
 ** マルチパスでは、 MPIO サポートがインストールされているかどうかが指定指定できる値は、noの場合は「0」、yesの場合は「1」です。
-** `inst_path` は、Host Utilitiesファイルがインストールされているパスです。デフォルトパスはです `C:\Program Files\NetApp\Windows Host Utilities\`。
+** 「 inst_path 」は、 Host Utilities ファイルがインストールされているパスです。デフォルトパスは「 C ： \Program Files\NetApp\Virtual Host Utilities\` 」です。
 
 
 

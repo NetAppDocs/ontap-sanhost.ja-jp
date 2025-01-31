@@ -18,7 +18,7 @@ summary: ONTAP を使用してRHEL 8.5用のNVMe-oFホストを設定する方�
 [role="lead"]
 Red Hat Enterprise Linux（RHEL）8.5とANA（非対称ネームスペースアクセス）では、NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他のトランスポートを含む）がサポートされます。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。この手順では、RHEL 8.5のANAとONTAPをターゲットとして使用し、カーネル内NVMeマルチパスでNVMe-oFを有効にします。
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされている構成に関する正確な情報については、を参照
+サポートされる構成の正確な詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -42,7 +42,7 @@ RHEL 8.5では、NVMe / FCに加え、NVMe / TCP（テクノロジプレビュ�
 カーネル内NVMeマルチパスを有効にするには、次の手順を使用します。
 
 .手順
-. RHEL 8.5 GAをサーバにインストールします。インストールが完了したら、指定したRHEL 8.5 GAカーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. サーバーにRHEL 8.5 GAをインストールします。インストールが完了したら、指定したRHEL 8.5 GAカーネルを実行していることを確認します。サポートされているバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 例
 
@@ -114,7 +114,7 @@ NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設�
 .Broadcom / Emulex
 --
 .手順
-. サポートされているアダプタを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされているアダプタの最新のリストについては、を参照してください。
+. サポートされているアダプタを使用していることを確認します。現在サポートされているアダプタのリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -125,7 +125,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください。
+. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -231,7 +231,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

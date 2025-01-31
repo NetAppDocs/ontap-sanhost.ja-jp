@@ -18,14 +18,14 @@ summary: SUSE Linux Enterprise Server 15 SP1 with ONTAP の NVMe/FC を設定す
 [role="lead"]
 NVMe over Fibre Channel（NVMe/FC）は、SUSE Linux Enterprise Server 15 SP1およびONTAPを実行するホストにターゲットとして設定できます。
 
-NVMe/FCは、次のバージョンのSUSE Linux Enterprise ServerでONTAP 9 .6以降でサポートされます。
+ONTAP 9.6以降では、次のバージョンのSUSE Linux Enterprise ServerでNVMe/FCがサポートされます。
 
 * SUSE Linux Enterprise Server 15 SP1
 +
 SUSE Linux Enterprise Server 15 SP1ホストは、同じファイバチャネルイニシエータアダプタポートを介してNVMe/FCトラフィックとFCPトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。
 
 +
-サポートされている構成およびバージョンの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+サポートされる構成とバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 * NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SUSE Linux Enterprise Server 15 SP1では、ネイティブの受信トレイlpfcドライバを使用できます。
 
@@ -74,7 +74,7 @@ nqn.2014-08.org.nvmexpress:uuid:75953f3b-77fe-4e03-bf3c-09d5a156fbcd
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの現在のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -240,7 +240,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

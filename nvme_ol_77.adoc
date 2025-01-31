@@ -22,7 +22,7 @@ Oracle Linux 7.7およびONTAPを実行するイニシエータホストでは�
 
 == サポート性
 
-NVMe/FCは、ONTAP Linux 7.7では9.6以降でサポートされます。Oracle Linux 7.7ホストでは、同じファイバチャネルイニシエータアダプタポートを介してNVMeトラフィックとSCSIトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+ONTAP 9.6以降では、Oracle Linux 7.7でNVMe/FCがサポートされます。Oracle Linux 7.7ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じファイバチャネルイニシエータアダプタポート経由で実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
@@ -90,7 +90,7 @@ NOTE: ホストの NQN 文字列が一致しない場合は、 vserver modify �
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの現在のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -112,7 +112,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 # rpm -ivh nvmefc-connect-12.4.65.0-1.noarch.rpm
 ----
 . ホストをリブートします。
-. 推奨される Broadcom lpfc ファームウェア、ネイティブインボックスドライバ、および outbox 自動接続パッケージバージョンを使用していることを確認します。サポートされているバージョンの一覧については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. 推奨されるBroadcom LPFCファームウェア、標準受信トレイドライバ、および送信トレイ自動接続パッケージバージョンを使用していることを確認します。サポートされているバージョンの一覧については、を参照してlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]ください。
 +
 [listing]
 ----
@@ -251,7 +251,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

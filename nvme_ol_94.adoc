@@ -26,7 +26,7 @@ ONTAPストレージを使用するOracle Linux 9.4向けのNVMe-oFホスト構�
 ** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
 ** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
 +
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -173,7 +173,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 0:14.2.0.13
 ----
 +
-サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -303,7 +303,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

@@ -30,7 +30,7 @@ cfgdev コマンドの原因は次のとおりです。
 +
 ** ファブリックにログインするイニシエータ。
 ** 新しいデバイスを確認するシステム。
-** 新しい LUN がデフォルト PCM を使用して MPIO デバイスとしてマッピングされる新しいデバイスエントリを作成するシステム。
+** システムによって新しいデバイスエントリが作成され、新しいLUNがデフォルトのPCMを使用してMicrosoftマルチパスI/O（MPIO）デバイスとしてマッピングされます。
 
 
 . hdisk MPIO デバイスが作成されたことを確認するには、次のコマンドを入力します。
@@ -59,7 +59,7 @@ hdisk4   Available   MPIO NetApp FCP Default PCM Disk
 hdisk5   Available   MPIO NetApp FCP Default PCM Disk
 hdisk6   Available   MPIO NetApp FCP Default PCM Disk
 ----
-. セットアップに関する情報を取得するには、次のコマンドを入力します。
+. セットアップに関する情報を取得します。
 +
 lsdev -dev hdisk_name -attr
 
@@ -97,7 +97,7 @@ scsi_id         0xd10001                         SCSI ID                        
 start_timeout   60                               START unit time out value               True
 ww_name         0x500a0984994ae0e0               FC World Wide Name                      False
 ----
-. ALUA をサポートしない構成の場合は、 dotpaths ユーティリティを実行してパス優先度を設定する必要があります。dotpaths ユーティリティは、 Host Utilities のインストール時にインストールします。ALUA が有効になっている場合は、 dotpaths ユーティリティを使用しないでください。次のコマンドを入力して 'oem_setup_env' モードに切り替えて dotpaths を実行します
+. 使用している構成でALUAがサポートされない場合は、dotpathsユーティリティを使用してパス優先順位を設定する必要があります。dotpaths ユーティリティは、 Host Utilities のインストール時にインストールします。ALUA が有効になっている場合は、 dotpaths ユーティリティを使用しないでください。次のコマンドを入力してモードに切り替え、 `oem_setup_env`dotpathを実行します。
 +
 `oem_setup_env`
 
@@ -119,9 +119,9 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 
 
 
-. ALUA をサポートしない構成の場合は、 dotpaths ユーティリティを実行してパス優先度を設定する必要があります。dotpaths ユーティリティは、 Host Utilities のインストール時にインストールします。ALUA が有効になっている場合は、 dotpaths ユーティリティを使用しないでください。
+. 使用している構成でALUAがサポートされない場合は、dotpathsユーティリティを使用してパス優先順位を設定する必要があります。dotpaths ユーティリティは、 Host Utilities のインストール時にインストールします。ALUA が有効になっている場合は、 dotpaths ユーティリティを使用しないでください。
 +
-.. すべての Data ONTAP LUN に優先度を設定するには、次のように入力します。
+.. すべてのONTAP LUNの優先度を設定するには、次のように入力します。
 +
 「パス」
 

@@ -21,11 +21,11 @@ Oracle Linux 8.9 with Asymmetric Namespace Access（ANA）では、NVMe over Fib
 ONTAPを使用したOracle Linux 8.9では、NVMe-oFホスト構成が次のようにサポートされます。
 
 * NVMe/FCに加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準 `nvme-cli`パッケージのNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
-* NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。そのため、SCSI LUNのSCSI mpathデバイスにはdm-multipathを設定できますが、NVMeマルチパスを使用してホストでNVMe-oFネームスペースデバイスを設定することができます。
+* NVMeとSCSIの両方のトラフィックを同じホストで実行できます。そのため、SCSI LUNのSCSI mpathデバイスにはdm-multipathを設定できますが、NVMeマルチパスを使用してホストでNVMe-oFネームスペースデバイスを設定することができます。
 * sanlun にも対応していません。そのため、Oracle Linux 8.9ホストではNVMe-oFのホストユーティリティはサポートされません。標準 `nvme-cli`パッケージに含まれているNetAppプラグインは、すべてのNVMe-oF転送に対応しています。
 
 
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -182,7 +182,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 0:14.2.0.5
 ----
 +
-サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 . 確認します `lpfc_enable_fc4_type` がに設定されます `3`：
 +
@@ -287,7 +287,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

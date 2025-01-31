@@ -24,7 +24,7 @@ ONTAPを使用したOL 9.3のNVMe-oFホスト構成では、次のサポート�
 * 特定のHost Bus Adapter（HBA；ホストバスアダプタ）の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。
 
 
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -178,7 +178,7 @@ Emulex LightPulse LPe36002-M2 2-Port 64Gb Fibre Channel Adapter
 0:14.2.0.13
 ----
 +
-サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 . 確認します `lpfc_enable_fc4_type` がに設定されます `3`：
 +
@@ -287,7 +287,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

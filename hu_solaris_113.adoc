@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_solaris_113.html 
 keywords: host utilities, solaris, 113, netapp, ontap 
-summary: Solaris Host Utilities のインストール方法について説明します 
+summary: Solaris Host Utilitiesのインストール方法について説明します。 
 ---
 = Solaris 11.3とONTAPの併用
 :hardbreaks:
@@ -70,7 +70,7 @@ pkgadd -d NTAPSANTool.pkg
 
 
 
-== SANツールキット
+== SAN ツールキット
 
 NetApp Host Utilitiesパッケージをインストールすると、ツールキットが自動的にインストールされます。このキットには、LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティが用意されて `sanlun`います。 `sanlun`show volumeGroupコマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
@@ -91,12 +91,12 @@ data_vserver       /vol/vol2/lun2  /dev/rdsk/c0t600A098038314362705D51465A626475
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 SAN ブートとは、 Solaris ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。
 
-FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。を参照してください https://docs.netapp.com/us-en/ontap-sanhost/hu_solaris_62.html["Solaris Host Utilitiesをインストールします"^] Solaris MPIO環境でのSANブートLUNの詳細については、を参照してください。
+FC プロトコルを使用して Solaris MPxIO 環境で動作するように SAN ブート LUN をセットアップし、 Solaris Host Utilities を実行できます。SAN ブート LUN のセットアップ方法は、ボリュームマネージャとファイルシステムによって異なります。Solaris MicrosoftマルチパスI/O（MPIO）環境でのSANブートLUNの詳細については、を参照してください https://docs.netapp.com/us-en/ontap-sanhost/hu_solaris_62.html["Solaris Host Utilitiesをインストールします"^]。
 
 
 
@@ -147,7 +147,7 @@ NOTE: ONTAP 9.8 以降では、すべての SAN アレイ（ ASA ）構成がサ
 
 == 推奨設定
 
-以下に、 NetApp ONTAP LUN を使用する Solaris 11.3 SPARC および x86_64 で推奨されるパラメータ設定の一部を示します。これらのパラメータの値は Host Utilities で設定します。
+ONTAP LUNを使用するSolaris 11.3 SPARCおよびx86_64で推奨されるパラメータ設定を次に示します。これらのパラメータの値は Host Utilities で設定します。
 
 [cols="2*"]
 |===
@@ -186,8 +186,8 @@ NOTE: ONTAP 9.8 以降では、すべての SAN アレイ（ ASA ）構成がサ
 
 * Solaris の仮想化オプションには 'Solaris 論理ドメイン (LDoms または Oracle VM Server for SPARC) 'Solaris 動的ドメイン 'Solaris ゾーン 'Solaris コンテナなどがありますこれらのテクノロジは、アーキテクチャがまったく異なるにもかかわらず、一般に「 Oracle 仮想マシン」としてブランド変更されています。
 * 場合によっては ' 特定の Solaris 論理ドメイン内の Solaris コンテナなど ' 複数のオプションを同時に使用できます
-* ネットアップでは、一般にこれらの仮想化テクノロジの使用をサポートしています。この仮想化テクノロジでは、 Oracle で全体的な構成がサポートされ、 LUN に直接アクセスできるパーティションがに一覧表示されます https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^] サポートされている構成。これには、ルートコンテナ、 LDOM IO ドメイン、および NPIV を使用した LDOM から LUN にアクセスする処理が含まれます。
-* 仮想化ストレージ・リソース（ vdsk など）のみを使用するパーティションや仮想マシンは、 NetApp LUN に直接アクセスできないため、特別な認定は必要ありません。LDOM IO ドメインなど、基盤となる LUN に直接アクセスできるパーティション /VM だけがに存在する必要があります https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix を参照してください"^]。
+* NetAppでは通常、これらの仮想化テクノロジの使用がサポートされます。この場合、構成全体がOracleでサポートされ、LUNに直接アクセスできるパーティションがサポートされる構成のに記載されています。 https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]これには、ルートコンテナ、LDOM I/Oドメイン、NPIVを使用してLUNにアクセスするLDOMが含まれます。
+* などの仮想化ストレージリソースのみを使用するパーティションや仮想マシンは `vdsk`、NetApp LUNに直接アクセスできないため、特定の認定は必要ありません。基盤となるLUN（LDOM IOドメインなど）に直接アクセスできるパーティション/ VMのみをに配置する必要があります https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 
 

@@ -22,7 +22,7 @@ Oracle Linux 8.2およびONTAPを実行するイニシエータホストでは�
 
 == サポート性
 
-NVMe/FCは、ONTAP Linux 8.2では9.6以降でサポートされます。Oracle Linux 8.2ホストでは、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートを介してNVMe/FCとFCPの両方のトラフィックを実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+ONTAP 9.6以降では、Oracle Linux 8.2でNVMe/FCがサポートされます。Oracle Linux 8.2ホストでは、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートを介してNVMe/FCとFCPの両方のトラフィックを実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
@@ -38,7 +38,7 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 == NVMe/FC を有効にします
 
 . サーバに Oracle Linux 8.2 をインストールします。
-. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -78,7 +78,7 @@ vs_ol_nvme
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの現在のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -262,7 +262,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

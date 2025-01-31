@@ -16,18 +16,18 @@ summary: VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト�
 
 
 [role="lead"]
-FC、FCoE、およびiSCSIプロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（RHCKベース）プラットフォーム向けのVeritas Infoscale Storage Foundation 7シリーズリリースでは、ONTAP SANホストの設定を使用できます。
+FC、FCoE、iSCSIの各プロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（Red Hat互換カーネルベース）プラットフォーム用のVeritas Infoscale Storage Foundation 7シリーズリリースでは、ONTAP SANホストの設定を使用できます。
 
 
 
-== Linux Unified Host Utilities をインストールします
+== Linux Host Utilitiesのインストール
 
-NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
+NetApp Linux Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 .手順
-. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. からホストに64ビットLinux Host Utilitiesソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
@@ -67,8 +67,8 @@ enabled     up      active/non-optimized sdas   13:0:1:0   lif_9      66:192
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 Veritas Support Portal （ Product Matrix 、 Platform Lookup 、 HCL Matrix ）を参照して、 SAN ブート構成がサポートされていること、および既知の警告を確認してください。
 
@@ -90,7 +90,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == マルチパス
 
-構成がシステム要件を満たしていることを確認する必要があります。詳細については、ネットアップのInteroperability Matrix ToolとVeritas HCL Matrixを参照してください。
+構成がシステム要件を満たしていることを確認する必要があります。詳細については、Interoperability Matrix ToolおよびVeritas HCL Matrixを参照してください。
 
 .例
 この例では 'vxdmpadm コマンドを使用して 'VxDMP マルチパスに ONTAP ターゲットアレイが接続されていることを確認します
@@ -180,7 +180,7 @@ NOTE: 1つのLUNに必要なパスは4つまでです。パスが4つ以上あ�
 
 ==== Veritas Multipath の設定
 
-ストレージフェイルオーバー処理でシステム構成を最適化するために、ネットアップでは次の Veritas VxDMP チューニング可能なオプションを推奨します。
+NetAppでは、ストレージフェイルオーバー処理でシステム構成を最適化するために、次のVeritas VxDMP調整可能なオプションを推奨しています。
 
 [cols="2*"]
 |===
@@ -270,7 +270,7 @@ NOTE: VERITAS 固有のその他の設定については ' 標準の VERITAS Inf
 
 == マルチパス共存
 
-Veritas Infoscale 、 Linux Native Device Mapper 、 LVM ボリュームマネージャなどの異種マルチパス環境がある場合は、構成設定について Veritas Product Administration ガイドを参照してください。
+Veritas Infoscale、Linux Native Device Mapper、LVM Volume Managerなど、異機種混在のマルチパス環境を使用している場合の構成設定については、Veritas Product Administrationのドキュメントを参照してください。
 
 
 

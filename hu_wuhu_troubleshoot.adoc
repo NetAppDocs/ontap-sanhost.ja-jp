@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_wuhu_troubleshoot.html 
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
-summary: Windows Unified Host Utilities には、ネットアップの ONTAP および E シリーズのプラットフォームにおけるストレージシステムの動作を Windows ホストが正しく処理できるように、必要な Windows のレジストリパラメータと HBA パラメータを設定するインストールプログラムが含まれています。 
+summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
 = トラブルシューティングを行う
 :toc: macro
@@ -23,13 +23,13 @@ Windows Host Utilitiesの一般的なトラブルシューティングテクニ�
 
 相互運用性の潜在的な問題について調査できるさまざまな領域を次に示します。
 
-* 潜在的な相互運用性の問題を特定するには、ホストオペレーティングシステムソフトウェア、ホストハードウェア、ONTAPソフトウェア、ストレージシステムハードウェアの組み合わせがHost Utilitiesでサポートされていることを確認します。を参照してください http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^] を参照してください。
+* 潜在的な相互運用性の問題を特定するには、ホストオペレーティングシステムソフトウェア、ホストハードウェア、ONTAPソフトウェア、ストレージシステムハードウェアの組み合わせがHost Utilitiesでサポートされていることを確認します。詳細については、を参照してください http://mysupport.netapp.com/matrix["Interoperability Matrix Tool"^]。
 * iSCSI構成が正しいことを確認します。
 * 再起動後にiSCSI LUNを使用できない場合は、Microsoft iSCSIイニシエータGUIの* Persistent Targets *タブで、ターゲットがpersistentと表示されていることを確認します。
 * LUNを使用するアプリケーションの起動時にエラーが表示される場合は、アプリケーションがiSCSIサービスに依存するように設定されていることを確認します。
 * ONTAPを実行するストレージコントローラへのFCパスでは、ノードの物理ポートのWWPNではなく、ターゲットLIFのWWPNを使用してFCスイッチがゾーニングされていることを確認します。
 * を確認します link:hu_wuhu_71_rn.html["リリースノート"] Windows Host Utilitiesを使用して既知の問題を確認します。このリリースノートには、既知の問題と制限事項が記載されています。
-* 使用しているONTAPのバージョンに対応したSANアドミニストレーションガイドのトラブルシューティング情報を確認します。
+* ドキュメントのトラブルシューティング情報を確認します https://docs.netapp.com/us-en/ontap/san-admin/index.html["ONTAP SANの管理"^]。
 * 検索 https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] を参照してください。
 +
 ** [Advanced Search]の[Bug Type]フィールドで、* iSCSI - Windows *を選択し、* Go *を選択します。Bug Type * FCP-Windows *の検索を再度実行する必要があります。

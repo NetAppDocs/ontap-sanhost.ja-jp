@@ -22,8 +22,8 @@ FC、FCoE、およびiSCSIプロトコルを使用するCitrix Hypervisor 8シ�
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。

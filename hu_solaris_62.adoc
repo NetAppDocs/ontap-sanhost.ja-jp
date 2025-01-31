@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_solaris_62.html 
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
-summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法について説明します 
+summary: Solaris Host Utilities 6.2とONTAPの使用方法について説明します。 
 ---
-= Solaris Host Utilities 6.2のインストール
+= ONTAPストレージ用のSolaris Host Utilities 6.2のインストール
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,25 +16,25 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 
 
 [role="lead"]
-Solaris Unified Host Utilitiesは、Solarisホストに接続されているNetApp ONTAPストレージの管理に役立ちます。
+Solaris Host Utilitiesは、Solarisホストに接続されているONTAPストレージの管理に役立ちます。
 
-Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。Host Utilitiesの主な環境は次のとおりです。
+Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。主な Host Utilities 環境は次のとおりです。
 
 * SPARC プロセッサまたは x86-64 プロセッサを使用するシステムで、ファイバチャネル（ FC ）または iSCSI プロトコルを持つ MPxIO を搭載したネイティブ OS 。
 * SPARCプロセッサを使用するシステムではFCプロトコルまたはiSCSIプロトコルを使用するVeritas Dynamic Multipathing（DMP）、x86/64プロセッサを使用するシステムではiSCSIプロトコルを使用します。
 
 
-Solaris Unified Host Utilities 6.2は、引き続き次のバージョンのSolarisをサポートしています。
+Solaris Host Utilities 6.2では、引き続き次のバージョンのSolarisがサポートされます。
 
 * Solaris 11.xシリーズ
 * Solaris 10.xシリーズ
 
 
-.必要なもの
+.開始する前に
 * 安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。
 
 
-を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
+を使用して構成を確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 
 NOTE: NetApp Solaris Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^] お使いのプロセッサ用の圧縮ファイル形式です。環境に対応した Host Utilities ソフトウェアパッケージは、サポートサイトからダウンロードできます。
@@ -55,13 +55,16 @@ NOTE: NetApp Solaris Host Utilities ソフトウェアパッケージは、に�
 +
 #gunzip NetApp_solaris_host_utilities_6_2_sparc.tar.gz
 
-. ファイルを解凍します。を使用できます `tar xvf` コマンドを実行します。
+. 次のコマンドを使用してファイルを解凍し `tar xvf`ます。
 +
 tar xvf NetApp _Solaris_host_utilities_6_2_sparc.tar
 
-. tar ファイルから抽出したパッケージをホストに追加します。これを行うには 'pkgadd コマンドを使用します
+. コマンドを使用して、tarファイルから展開したパッケージをホストに追加します `pkgadd`。
 +
-パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます次の例では 'pkgadd コマンドを使用して Solaris インストールパッケージをインストールします
+パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます
+
++
+次の例では、コマンドを使用し `pkgadd`てSolarisインストールパッケージをインストールします。
 
 +
 #pkgadd -d ./NTAPSANTool.pkg
@@ -126,4 +129,4 @@ data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A09803830443
 
 ----
 
-NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。そのため、ツールキットの内容によっては、ある構成には適用されても別の構成には適用されない場合があります。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。
+NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。そのため、すべてのコンポーネントがすべての構成に適用されるわけではありません。使用していないコンポーネントは、システムのパフォーマンスに影響しません。SAN Toolkitは、AIXおよびPowerVM / VIOS OSバージョンでサポートされます。

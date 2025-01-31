@@ -23,11 +23,11 @@ NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含�
 
 SUSE Linux Enterprise Server 15 SP6 with ONTAPのNVMe-oFホスト構成では、次のサポートが利用できます。
 
-* 同じホストでNVMeトラフィックとSCSIトラフィックを実行している。たとえば、SCSI LUN用のSCSIデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストでNVMe-oFネームスペースデバイスを設定できます `mpath`。
+* NVMeトラフィックとSCSIトラフィックを同じホストで実行している。たとえば、SCSI LUN用のSCSIデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストでNVMe-oFネームスペースデバイスを設定できます `mpath`。
 * NVMe over TCP（NVMe/TCP）とNVMe/FCがサポートされます。これにより、標準パッケージのNetAppプラグイン `nvme-cli`で、NVMe/FCとNVMe/TCPの両方のネームスペースのONTAPの詳細を表示することができます。
 
 
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -233,7 +233,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

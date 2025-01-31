@@ -20,16 +20,16 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOra
 
 
 
-== Linux Unified Host Utilities をインストールします
+== Linux Host Utilitiesのインストール
 
-NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイルとして用意されていますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^]確認してください。
+NetApp Linux Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイル形式で提供されていlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]ます。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]確認してください。
 
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
-Linux Unified Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか削除して次の手順に従って最新バージョンをインストールします。
+Linux Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか、または削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
-. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. からホストに32ビットまたは64ビットのLinux Host Utilitiesソフトウェアパッケージをダウンロードしますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
@@ -68,8 +68,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=86309;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -274,5 +274,5 @@ Oracle Linux 7.6 with ONTAPリリースには、次の既知の問題があり�
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246134["11246134"^] | ストレージフェイルオーバー処理中に Emulex LPe16002B-M6 16G FC HBA で実行されている、 UEK5U2 カーネルを搭載した Oracle Linux 7.6 では I/O が進行しません | Emulex LPe16002B-M6 16G FC ホストバスアダプタ（ HBA ）を使用して UEK5U2 カーネルを実行している Oracle Linux 7.6 でストレージフェイルオーバー処理を実行している場合、レポートがブロックされると I/O の進捗が停止することがあります。ストレージフェイルオーバー処理では、「オンライン」状態から「ブロック」状態に変化するため、読み取りおよび書き込み処理に遅延が生じます。処理が正常に完了すると、レポートは「オンライン」状態に戻り、引き続き「ブロック」状態のままになります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246327["1246327"^] | ストレージフェイルオーバー処理中に QLogic QLE2672 16G ホストのリモートポートステータスがブロックされました | ストレージフェイルオーバー処理中に、 Fibre Channel （ FC ）リモートポートが Red Hat Enterprise Linux （ RHEL ） 7.6 で QLogic QLE2672 16G ホストでブロックされることがあります。ストレージノードが停止すると論理インターフェイスが停止するため、リモートポートでストレージノードのステータスがブロック済みに設定されます。QLogic QLE2672 16G ホストと QLE2742 32GB Fibre Channel （ FC ）ホストバスアダプタ（ HBA ）の両方を実行している場合、ブロックされたポートが原因で IO の進捗が停止することがあります。ストレージノードが最適状態に戻ると、論理インターフェイスも稼働し、リモートポートがオンラインになります。ただし、リモートポートは引き続きブロックされる場合があります。このブロック状態は、マルチパスレイヤで LUN に障害が発生したと登録されます。リモートポートの状態は、次のコマンドで確認できます。 # cat /sys/class/fc_remote_ports/rport-*/port_stat Blocked Blocked Online Online 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246327["1246327"^] | ストレージフェイルオーバー処理中に QLogic QLE2672 16G ホストのリモートポートステータスがブロックされました | ストレージフェイルオーバー処理中に、 Fibre Channel （ FC ）リモートポートが Red Hat Enterprise Linux （ RHEL ） 7.6 で QLogic QLE2672 16G ホストでブロックされることがあります。ストレージノードが停止すると論理インターフェイスが停止するため、リモートポートでストレージノードのステータスがブロック済みに設定されます。QLogic QLE2672 16GホストとQLE2742 32Gbファイバチャネル（FC）ホストバスアダプタ（HBA）の両方を実行している場合、ポートのブロックが原因でI/Oの進行が停止することがあります。ストレージノードが最適状態に戻ると、論理インターフェイスも稼働し、リモートポートがオンラインになります。ただし、リモートポートは引き続きブロックされる場合があります。このブロック状態は、マルチパスレイヤで LUN に障害が発生したと登録されます。リモートポートの状態は、次のコマンドで確認できます。 # cat /sys/class/fc_remote_ports/rport-*/port_stat Blocked Blocked Online Online 
 |===

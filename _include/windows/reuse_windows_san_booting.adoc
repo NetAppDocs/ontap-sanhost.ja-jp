@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-SAN ブートを使用する場合は、構成でサポートされている必要があります。NetApp Interoperability Matrix Tool を使用して、お使いの OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされているかどうかを確認できます。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。Interoperability Matrix Toolを使用して、お使いのOS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できます。
 
 . SAN ブート LUN をホストにマッピングします。
 . 複数のパスが使用可能であることを確認します。

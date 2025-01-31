@@ -41,7 +41,7 @@ Red Hat Enterprise Linux（RHEL）8.4 with ANA（Asymmetric Namespace Access）�
 
 .手順
 . サーバに RHEL 8.4 GA をインストールします。
-. インストールが完了したら、指定した RHEL 8.4 カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. インストールが完了したら、指定した RHEL 8.4 カーネルを実行していることを確認します。サポートされているバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 例
 
@@ -88,7 +88,7 @@ NOTE: ホストの NQN 文字列が一致しない場合は、「 vserver modify
 +
 [NOTE]
 ====
-NVMe と SCSI の両方のトラフィックを同じホストで同時に実行する場合は、 ONTAP ネームスペースにはカーネル内の NVMe マルチパスを、 ONTAP LUN にはそれぞれ dm-multipath を使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには 'enable_foreign 設定を /etc/multipath.conf ファイルに追加します
+NVMeとSCSIの両方のトラフィックを同じホストで同時に実行する場合は、ONTAP ネームスペースにはカーネル内のNVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。つまり、 dm-multipath がこれらのネームスペースデバイスを要求しないように、 ONTAP ネームスペースを dm-multipath から除外する必要があります。これを行うには、ファイルにenable_foreign設定を追加し `/etc/multipath.conf`ます。
 
 [listing]
 ----
@@ -113,7 +113,7 @@ NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設�
 .Broadcom / Emulex
 --
 .手順
-. サポートされているアダプタを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされているアダプタの最新のリストについては、を参照してください。
+. サポートされているアダプタを使用していることを確認します。現在サポートされているアダプタのリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -124,7 +124,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください。
+. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -224,7 +224,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

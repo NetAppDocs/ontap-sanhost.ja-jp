@@ -34,7 +34,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 * Oracle Linux 8.3では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。
 * Oracle Linux 8.3では、スクリプトが標準のNVMe-CLIパッケージに含まれています `nvme-fc auto-connect`。外部ベンダーが提供するアウトボックス自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
 * Oracle Linux 8.3を標準搭載しています `udev` ルールはの一部として提供されます `nvme-cli` NVMeマルチパスのラウンドロビンによるロードバランシングを可能にするパッケージ。したがって、このルールを手動で作成する必要はありません。
-* Oracle Linux 8.3では、NVMeとSCSIの両方のトラフィックを同じホストで実行できます。実際、これは一般的に導入されるホスト構成であると想定されています。そのため、SCSIの場合は、SCSI LUNに対して通常どおりdm-multipathを設定できます。その結果、mpathデバイスが作成されますが、NVMeマルチパスを使用してNVMe-oFマルチパスデバイスを設定できます（例： `/dev/nvmeXnY`）を実行します。
+* Oracle Linux 8.3では、NVMeトラフィックとSCSIトラフィックの両方を同じホストで実行できます。これは、一般的に導入されるホスト構成です。SCSI LUNでは通常どおりdm-multipathを設定できます。これによりmpathデバイスが作成されます。また、NVMeマルチパスを使用してホストでNVMe-oFマルチパスデバイス（など）を設定することもできます `/dev/nvmeXnY`。
 * Oracle Linux 8.3では、ネットアップのプラグインがネイティブに含まれています `nvme-cli` パッケージでは、ONTAP の詳細とONTAP ネームスペースを表示できます。
 
 
@@ -48,14 +48,14 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 
 == 設定要件
 
-を参照してください http://mysupport.netapp.com/matrix3["ネットアップの Interoperability Matrix Tool （ IMT ）"^] を参照してください。
+サポートされる構成の最新のリストについては、を参照してください http://mysupport.netapp.com/matrix3["Interoperability Matrix Tool（IMT）"^]。
 
 
 
 == Oracle Linux 8.3でNVMe/FCを有効にします
 
 .手順
-. Oracle Linux 8.3 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 8.3 GAカーネルを実行していることを確認します。を参照してください https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. Oracle Linux 8.3 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 8.3 GAカーネルを実行していることを確認します。サポートされているバージョンの最新のリストについては、を参照してください https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -90,7 +90,7 @@ NOTE: hostnqn文字列が一致しない場合は、を使用する必要があ�
 +
 [NOTE]
 ====
-NVMeトラフィックとSCSIトラフィックの両方を同じOracle Linux 8.3に共存するホストで実行する場合は、ONTAP ネームスペースとにカーネル内のNVMeマルチパスを使用することを推奨します `dm-multipath` （ONTAP LUNの場合）。これは、ONTAP ネームスペースをにブラックリストに登録する必要があることも意味します `dm-multipath` 予防するために `dm-multipath` ネームスペースデバイスの要求から解放されます。そのためには、に_enable_foreign_settingを追加します `/etc/multipath.conf` ファイル：
+同じOracle Linux 8.3ホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合はNetApp、ONTAPネームスペースにはカーネル内のNVMeマルチパスを使用し、ONTAP LUNにはそれぞれ使用することを推奨します `dm-multipath`。これは、これらのネームスペースデバイスが要求されないようにするために、 `dm-multipath`にONTAPネームスペースをブラックリストに登録する必要があることも意味し `dm-multipath`ます。そのためには、_enable_foreign_settingをファイルに追加し `/etc/multipath.conf`ます。
 
 [listing]
 ----
@@ -109,7 +109,7 @@ _systemctl restart multipathd_コマンドを実行してmultipathdデーモン�
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
 .手順
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの現在のリストについては、を参照してください https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -124,7 +124,7 @@ LPe36002-M2
 Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 ----
-. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してください https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してください https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -215,7 +215,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

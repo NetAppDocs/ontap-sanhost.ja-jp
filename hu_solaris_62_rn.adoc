@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: hu_solaris_62_rn.html 
-keywords: host utilities, solaris, 6.2 netapp, ontap 
+keywords: Host Utilities, solaris, 6.2 netapp, ontap 
 summary: Solaris Host Utilities 6.2リリースノート 
 ---
 = Solaris Host Utilities 6.2リリースノート
@@ -18,7 +18,7 @@ summary: Solaris Host Utilities 6.2リリースノート
 [role="lead"]
 このリリースノートでは、新機能と拡張機能、現在のリリースで解決されている問題、既知の問題と制限事項、およびONTAPストレージシステムでの特定のSolarisホストの設定と管理に関する重要な注意事項について説明します。
 
-オペレーティングシステムのバージョンおよびHost Utilitiesがサポートする更新については、を参照してください link:https://mysupport.netapp.com/matrix/imt.jsp?components=85803;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^]。
+Host Utilitiesでサポートされるオペレーティングシステムのバージョンと更新の具体的な情報については、を参照してlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]ください。
 
 
 

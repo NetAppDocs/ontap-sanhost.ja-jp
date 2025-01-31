@@ -16,7 +16,7 @@ summary: ONTAPを使用するAIX用のNVMe/FCホストの設定方法
 
 
 [role="lead"]
-ONTAPストレージをターゲットとして使用するIBM AIXホストおよびVIOS/PowerVMホストで、NVMe over Fibre Channel（NVMe/FC）を有効にすることができます。サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+ONTAPストレージをターゲットとして使用するIBM AIXホストおよびVIOS/PowerVMホストで、NVMe over Fibre Channel（NVMe/FC）を有効にすることができます。サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 ONTAPを備えたAIXホストでは、NVMe/FCホスト構成が次のようにサポートされます。
 

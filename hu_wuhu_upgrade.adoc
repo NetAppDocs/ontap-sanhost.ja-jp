@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_wuhu_upgrade.html 
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
-summary: Windows Unified Host Utilities には、ネットアップの ONTAP および E シリーズのプラットフォームにおけるストレージシステムの動作を Windows ホストが正しく処理できるように、必要な Windows のレジストリパラメータと HBA パラメータを設定するインストールプログラムが含まれています。 
+summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= Windows Unified Host Utilitiesのアップグレード
+= Windows Host Utilitiesのアップグレード
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -51,7 +51,7 @@ Windowsコマンドプロンプトで該当するコマンドを入力すると�
 
 +
 ** `installer` は、の名前です `.msi` 使用しているCPUアーキテクチャ用のファイル。
-** マルチパスでは、 MPIO サポートがインストールされているかどうかが指定指定できる値は、noの場合は「0」、yesの場合は「1」です。
+** マルチパスは、MicrosoftマルチパスI/O（MPIO）サポートがインストールされているかどうかを示します。指定できる値は、noの場合は「0」、yesの場合は「1」です。
 ** 「 inst_path 」は、 Host Utilities ファイルがインストールされているパスです。デフォルトパスは「 C ： \Program Files\NetApp\Virtual Host Utilities\` 」です。
 
 

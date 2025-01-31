@@ -63,8 +63,8 @@ sanboot_unix      /vol/hpux_215_boot_en_0/goot_hpux_215_lun /dev/rdsk/c12t0d0 fc
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 SAN ブートとは、 HP-UX ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。Host Utilities は、 HP-UX 環境での FC および FCoE プロトコルを使用した SAN ブートをサポートしています。
 

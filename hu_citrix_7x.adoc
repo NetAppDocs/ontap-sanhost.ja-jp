@@ -22,8 +22,8 @@ Citrix XenServer 7シリーズOSリリースでは、FC、FCoE、およびiSCSI�
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -45,7 +45,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 Citrix XenServer でのマルチパスのサポートは、 Device Mapper multipathd コンポーネントに基づいています。Device Mapper ノードは、 XenServer に提供されるすべての LUN に対して自動的には作成されず、 Storage Management Layer （ API ）で LUN がアクティブに使用されている場合にのみプロビジョニングされます。Citrix XenServer Storage Manager API プラグインは、マルチパスノードのアクティブ化と非アクティブ化を自動的に処理します。
 
-Integrated Multipath Management のアーキテクチャとの互換性がないため、 Citrix XenCenter アプリケーションを使用してストレージ構成を管理することを推奨します。Device Mapper テーブルのステータスを手動で照会したり、システム上のアクティブな Device Mapper マルチパスノードのリストを表示したりする必要がある場合は、 /usr/sbin/mpathutil status コマンドを使用して ONTAP LUN の設定を確認できます。詳細については、 Citrix XenServer の標準的なベンダー提供のドキュメントを参照してください。
+Integrated Multipath Management のアーキテクチャとの互換性がないため、 Citrix XenCenter アプリケーションを使用してストレージ構成を管理することを推奨します。Device Mapperテーブルのステータスを手動で照会したり、システムのアクティブなデバイスマッパーマルチパスノードをリストしたりする必要がある場合は、コマンドを使用してONTAP LUNの設定を確認できます `/sbin/mpathutil status`。詳細については、 Citrix XenServer の標準的なベンダー提供のドキュメントを参照してください。
 
 
 

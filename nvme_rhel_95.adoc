@@ -18,10 +18,7 @@ summary: ONTAPを使用したRHEL 9.5用のNVMe-oFホストの設定方法
 [role="lead"]
 NetApp SANホスト構成では、非対称ネームスペースアクセス（ANA）でNVMe over Fabrics（NVMe-oF）プロトコルがサポートされます。NVMe-oF環境のANAは、iSCSI環境およびFCP環境におけるAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）マルチパスに相当します。ANAはカーネル内NVMeマルチパス機能を使用して実装されます。
 
-
-
-== このタスクについて
-
+.このタスクについて
 Red Hat Enterprise Linux（RHEL）9.5のNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
 
 * 利用可能なサポート：
@@ -29,7 +26,7 @@ Red Hat Enterprise Linux（RHEL）9.5のNVMe-oFホスト構成では、次のサ
 ** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準パッケージのNetAppプラグイン `nvme-cli`には、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
 ** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
 +
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -177,7 +174,7 @@ Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 
 
 +
-サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 . の想定される出力がに設定されている `3`ことを確認し `lpfc_enable_fc4_type`ます。
 +
@@ -303,7 +300,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

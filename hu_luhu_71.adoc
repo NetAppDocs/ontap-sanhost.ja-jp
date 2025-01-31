@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_luhu_71.html 
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
-summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法について説明します 
+summary: Linux Host Utilities 7.1とONTAPの使用方法について説明します。 
 ---
-= Linux Unified Host Utilities 7.1のインストール
+= Linux Host Utilities 7.1のインストール
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: ONTAP で Linux Unified Host Utilities 7.1 を使用する方法につ�
 
 
 [role="lead"]
-Linux Unified Host Utilities（Luhu）は、Linuxホストに接続されているNetApp ONTAPストレージの管理に役立ちます。NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+Linux Host Utilitiesは、Linuxホストに接続されているONTAPストレージの管理に役立ちます。NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 次のLinuxディストリビューションがサポートされています。
 
@@ -27,16 +27,16 @@ Linux Unified Host Utilities（Luhu）は、Linuxホストに接続されてい�
 * Citrix XenServer
 
 
-.必要なもの
-NetApp Linux Unified Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] 32 ビットまたは 64 ビットの .rpm ファイル。
+.開始する前に
+NetApp Linux Host Utilitiesソフトウェアパッケージは、に32ビットまたは64ビットの.rpmファイル形式で提供されていlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]ます。
 
 * 安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。
 +
-を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
+を使用して構成を確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 * ベンダーのサポートサイトで入手可能なホストバスアダプタ（HBA）管理パッケージをインストールする必要があります。
 +
-管理ソフトウェアを使用すると、SANツールキットのコマンドでFC HBAに関する情報（WWPNなど）を収集できます。をクリックします `sanlun fcp show adapter` コマンドを実行するには、次のパッケージが正しくインストールされていることを確認します。
+管理ソフトウェアを使用すると、SAN ToolkitコマンドでFC HBAに関する情報（WWPNなど）を収集できます。コマンドが機能するためには `sanlun fcp show adapter`、次のパッケージが正しくインストールされていることを確認します。
 
 +
 ** Marvell QLogic HBA–QConvergeConsole CLI
@@ -48,28 +48,25 @@ NetApp Linux Unified Host Utilities ソフトウェアパッケージは、に�
 
 
 
-NOTE: Linux Unified Host Utilitiesソフトウェアでは、NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）のホストプロトコルはサポートされません。
+NOTE: Linux Host Utilitiesソフトウェアは、NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）のホストプロトコルをサポートしていません。
 
 .手順
-. 現在インストールされている Linux Unified Host Utilities のバージョンがある場合、次のコマンドを使用してそのバージョンを削除します。
+. Linux Host Utilitiesのバージョンが現在インストールされている場合は、次のコマンドを使用して削除します。
 +
 [source, cli]
 ----
 rpm -e netapp_linux_unified_host_utilities-7-1
 ----
 +
-古いバージョンのLinux Host Utilitiesの場合は、ホストユーティリティソフトウェアがインストールされているディレクトリに移動し、uninstallコマンドを入力してインストールされているパッケージを削除します。
+以前のバージョンのLinux Host Utilitiesの場合は、ホストユーティリティソフトウェアがインストールされているディレクトリに移動し、uninstallコマンドを入力してインストールされているパッケージを削除します。
 
-. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. からホストに32ビットまたは64ビットのLinux Host Utilitiesソフトウェアパッケージをダウンロードしますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . ソフトウェアパッケージをダウンロードしたディレクトリに移動し、次のコマンドを使用してインストールします。
 +
 [source, cli]
 ----
 rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_xx.rpm
 ----
-+
-*出力例*
-
 +
 [listing]
 ----
@@ -84,9 +81,6 @@ Updating / installing...
 ----
 sanlun version
 ----
-+
-*出力例*
-
 +
 [listing]
 ----
@@ -104,7 +98,7 @@ Linuxカーネルにバンドルされている標準の受信トレイドライ
 
 == SAN ツールキット
 
-Linux Unified Host Utilities は、 Linux ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。
+Linux Host Utilitiesは、Linuxホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
@@ -130,7 +124,7 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 [NOTE]
 ====
 * このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。
-* SAN ツールキットは、 Citrix XenServer 、 Oracle VM 、および Red Hat Enterprise Virtualization Hypervisor ではサポートされていません。
+* SAN Toolkitは、Citrix XenServer、Oracle VM、およびRed Hat Enterprise Virtualization Hypervisorではサポートされていません。
 
 
 ====

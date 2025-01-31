@@ -22,7 +22,7 @@ Oracle Linux 7.8およびONTAPを実行するイニシエータホストでは�
 
 == サポート性
 
-NVMe/FCは、ONTAP Linux 7.8では9.6以降でサポートされます。Oracle Linux 7.8ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+ONTAP 9.6以降では、Oracle Linux 7.8でNVMe/FCがサポートされます。Oracle Linux 7.8ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。Broadcom イニシエータは、同じ FC アダプタポートを介して NVMe/FC トラフィックと FCP トラフィックの両方を処理できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
@@ -33,7 +33,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 
 * NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージでは使用できません。HBA ベンダーが提供する外部自動接続スクリプトを使用します。
 * デフォルトでは、 NVMe マルチパスでラウンドロビンロードバランシングは有効になっていません。この機能を有効にするには、 udev ルールを記述する必要があります。手順については、 Oracle Linux 7.8 で NVMe / FC を有効にするセクションを参照してください。
-* sanlun に対してもサポートされていません。そのため、 Oracle Linux 7.8 では、 Linux Unified Host Utilities （ Luhu ）の NVMe/FC がサポートされていません。ネイティブの nvme-CLI に含まれているネットアッププラグインに含まれている ONTAP コマンド出力を使用します。
+* NVMe/FCはsanlunではサポートされないため、Oracle Linux 7.8ではLinux Host UtilitiesでNVMe/FCがサポートされません。ネイティブの nvme-CLI に含まれているネットアッププラグインに含まれている ONTAP コマンド出力を使用します。
 * NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
@@ -42,7 +42,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 == NVMe/FC の有効化
 
 . Oracle Linux 7.8 をサーバーにインストールします。
-. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. インストールが完了したら、サポートされている Unbreakable Enterprise カーネルを実行していることを確認します。を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -90,7 +90,7 @@ nqn.2014-08.org.nvmexpress:uuid:75953f3b-77fe-4e03-bf3c-09d5a156fbcd
 
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの現在のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -251,7 +251,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

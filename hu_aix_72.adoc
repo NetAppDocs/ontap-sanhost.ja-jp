@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: hu_aix_72.html 
-keywords: host utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
+keywords: Host Utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
 summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法について説明します 
 ---
 = ONTAPでIBM AIX 7.2またはPowerVM（VIOS 3.1）を使用する
@@ -22,11 +22,11 @@ ONTAP SANホストの構成設定を使用して、ONTAPをターゲットとし
 
 == AIX/VIOS Host Utilitiesのインストール
 
-AIX MPIOとNetApp ONTAP ストレージを使用する場合、AIX Host Utilities Kitをインストールする必要があります。
+AIX Host Utilities Kitは、AIX MicrosoftマルチパスI/O（MPIO）とONTAPストレージを使用しているときにインストールする必要があります。
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^]。ファイルを展開したら、Host Utilitiesのインストールに必要な2つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。
+Host Utilitiesソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^]。ファイルを展開したら、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得するために、ファイルを解凍する必要があります。
 
-NetApp AIX Host Utilities 6.1 は最新リリースです。このリリースでは、以前のリリースで報告されたメモリリーク問題について説明しています。追加情報のリリースノートのセクションを参照してください。
+AIX Host Utilities 6.1リリースでは、以前のリリースで報告されていたメモリリークの問題が解決されています。詳細については、を参照してlink:hu_aix_rn.html["リリースノート"]ください。
 
 .手順
 . ホストにログインします。
@@ -54,7 +54,7 @@ tar -xvf ntap_aix_host_utilities_6.1.tar.gz
 
 
 
-== SANツールキット
+== SAN ツールキット
 
 NetApp Host Utilitiesパッケージをインストールすると、ツールキットが自動的にインストールされます。このキットには、LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティが用意されて `sanlun`います。 `sanlun`show volumeGroupコマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
@@ -78,8 +78,8 @@ data_vserver      /vol/vol4/lun4    hdisk14     fcs0       FCP       20g    C
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 SAN ブートとは、 AIX / PowerVM ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスのことです。SAN ブート LUN は、 FC プロトコルまたは FCoE プロトコルで AIX Host Utilities を実行する AIX MPIO 環境で動作するようにセットアップできます。SAN ブート LUN を作成し、その LUN に新しい OS イメージをインストールする方法は、使用するプロトコルによって異なります。
 
@@ -157,7 +157,7 @@ up     primary  path3  fcs1    fc_aix_4     1
 
 == 推奨設定
 
-次に、ONTAP LUNの推奨されるパラメータ設定を示します。  ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
+次に、ONTAP LUNの推奨されるパラメータ設定を示します。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
 
 [cols="4*"]
 |===
@@ -241,5 +241,5 @@ ONTAPリリースを搭載したIBM AIX 7.2またはPowerVM（VIOS 3.1）には�
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1414700["1414700"^] | ストレージフェイルオーバー中に、 AIX 7.2 TL04 で仮想 iSCSI ディスク（ VIOS 3.1.x ）で I/O の停止が発生しました | VIOS 3.1.x を介してマッピングされた仮想 iSCSI ディスク上の AIX 7.2 TL4 ホストで、ストレージフェイルオーバー処理中に I/O が中断することがありますデフォルトでは、 VIOC 上の vSCSI アダプタの「 rw_timeout 」値は 45 秒です。ストレージのフェイルオーバー時に 45 秒以上の I/O 遅延が発生すると、 I/O 障害が発生する可能性があります。この状況を回避するには、 BURT に記載されている回避策を参照してください。 | 該当なし 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1307653["1307653"^] | SFO の障害およびストレート I/O 中に VIOS 3.1.1.10 で I/O の問題を確認する | VIOS 3.1.1 IO エラーは、 16 / 32GB FC アダプタでバックアップされた NPIV クライアントディスクに表示されることがあります。また 'vfchost' ドライバが ' クライアントからの I/O 要求の処理を停止する状態になることもありますIBM APAR IJ22290 IBM APAR IJ23222 を適用すると、問題が修正されます | 該当なし 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1307653["1307653"^] | VIOS 3.1.1.10では、SFO障害時およびストレートI/O時にI/Oの問題が発生する | VIOS 3.1.1では、16 GBまたは32 GB FCアダプタによってバックアップされたNPIVクライアントディスクでI/O障害が発生することがあります。また、 `vfchost`ドライバはクライアントからのI/O要求の処理を停止することがあります。IBM APAR IJ22290を適用するIBM APAR IJ23222は、この問題を修正します。 | 該当なし 
 |===

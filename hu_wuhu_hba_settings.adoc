@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_wuhu_hba_settings.html 
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
-summary: Windows Unified Host Utilities には、ネットアップの ONTAP および E シリーズのプラットフォームにおけるストレージシステムの動作を Windows ホストが正しく処理できるように、必要な Windows のレジストリパラメータと HBA パラメータを設定するインストールプログラムが含まれています。 
+summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
 = レジストリ設定の構成
 :toc: macro
@@ -27,22 +27,22 @@ Windows Host Utilitiesは、データの遅延や損失に対するWindowsホス
 
 FC、NVMe/FC、およびiSCSI HBAには、最高のパフォーマンスを確保し、ストレージシステムイベントを正常に処理するために設定する必要のあるパラメータもあります。
 
-Windows Unified Host Utilitiesに付属のインストールプログラムでは、Windows、FC、およびNVMe/FC HBAのパラメータがサポートされる値に設定されます。
+Windows Host Utilitiesに付属のインストールプログラムを使用すると、Windows、FC、およびNVMe/FCのHBAパラメータがサポートされる値に設定されます。
 
 iSCSI HBAパラメータは手動で設定する必要があります。
 
-インストールプログラムの実行時にMultipath I/O（MPIO；マルチパスI/O）サポートを指定するかどうかによって、インストーラが設定する値は異なります。
+インストールプログラムの実行時にMicrosoft Multipath I/O（MPIO；マルチパスI/O）サポートを指定するかどうかに応じて、インストーラによって設定される値が異なります。
 
 
 NOTE: これらの値は、NetAppテクニカルサポートから指示がないかぎり変更しないでください。
 
 
 
-== Windows Unified Host Utilities 7.2で設定されるレジストリ値
+== Windows Host Utilities 7.2で設定されるレジストリ値
 
-Windows Unified Host Utilitiesインストーラでは、インストール時に選択したレジストリ値に基づいてレジストリ値が自動的に設定されます。これらのレジストリ値とオペレーティングシステムのバージョンを確認しておく必要があります。
+Windows Host Utilitiesインストーラでは、インストール時に選択したレジストリ値に基づいてレジストリ値が自動的に設定されます。これらのレジストリ値とオペレーティングシステムのバージョンを確認しておく必要があります。
 
-Windows Unified Host Utilities のインストーラでは、次の値が設定されます。特に記載がない限り、すべての値は10進数です。
+Windows Host Utilitiesのインストーラで設定される値は次のとおりです。特に記載がない限り、すべての値は10進数です。
 
 
 NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
@@ -124,7 +124,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 
 === NVMeパラメータ
 
-Windows Unified Host Utilities 7.2をインストールすると、NVMe Emulexの次のドライバパラメータが更新されます。
+Windows Host Utilities 7.2をインストールすると、次のNVMe Emulexドライバパラメータが更新されます。
 
 * EnableNVMe = 1
 * NVMEMode = 0
@@ -133,11 +133,11 @@ Windows Unified Host Utilities 7.2をインストールすると、NVMe Emulex�
 
 
 
-== Windows Unified Host Utilities 7.1で設定されるレジストリ値
+== Windows Host Utilities 7.1で設定されるレジストリ値
 
-Windows Unified Host Utilities インストーラは、インストール時に選択した内容に基づいて、レジストリ値を自動的に設定します。レジストリ値であるオペレーティングシステムのバージョンを確認しておく必要があります。
+Windows Host Utilitiesインストーラでは、インストール時に選択したレジストリ値に基づいてレジストリ値が自動的に設定されます。レジストリ値であるオペレーティングシステムのバージョンを確認しておく必要があります。
 
-Windows Unified Host Utilities のインストーラでは、次の値が設定されます。特に記載がない限り、すべての値は10進数です。
+Windows Host Utilitiesのインストーラで設定される値は次のとおりです。特に記載がない限り、すべての値は10進数です。
 
 
 NOTE: `HKLM` は、の略語です。 `HKEY_LOCAL_MACHINE`。

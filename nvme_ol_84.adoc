@@ -34,7 +34,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 * Oracle Linux 8.4では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になっています。
 * Oracle Linux 8.4では、 `nvme-fc auto-connect`スクリプトがネイティブパッケージに含まれ `nvme-cli`ています。外部ベンダーが提供するアウトボックス自動接続スクリプトをインストールする代わりに、これらのネイティブ自動接続スクリプトを使用できます。
 * Oracle Linux 8.4（ネイティブ）を使用しています `udev` ルールはの一部として提供されます `nvme-cli` NVMeマルチパスのラウンドロビンによるロードバランシングを可能にするパッケージ。したがって、このルールを手動で作成する必要はありません。
-* Oracle Linux 8.4では、NVMeとSCSIの両方のトラフィックを同じホストで実行できます。実際、これは一般的に導入されるホスト構成であると想定されています。したがって、SCSI LUNでは通常どおりdm-multipathを設定できます。その結果、mpathデバイスが作成されますが、NVMeマルチパスを使用してNVMe-oFマルチパスデバイスを設定できます（例： `/dev/nvmeXnY`）を実行します。
+* Oracle Linux 8.4では、NVMeトラフィックとSCSIトラフィックの両方を同じホストで実行できます。これは、一般的に導入されるホスト構成です。SCSI LUNでは通常どおりdm-multipathを設定できます。これによりmpathデバイスが作成されます。また、NVMeマルチパスを使用してホストでNVMe-oFマルチパスデバイス（など）を設定することもできます `/dev/nvmeXnY`。
 * Oracle Linux 8.4では、ネットアップのプラグインがネイティブに含まれています `nvme-cli` パッケージでは、ONTAP の詳細とONTAP ネームスペースを表示できます。
 
 
@@ -55,7 +55,7 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 == NVMe/FC を有効にします
 
 .手順
-. Oracle Linux 8.4 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 8.4 GAカーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. Oracle Linux 8.4 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 8.4 GAカーネルを実行していることを確認します。サポートされているバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -89,7 +89,7 @@ NOTE: hostnqn文字列が一致しない場合は、を使用する必要があ�
 +
 [NOTE]
 ====
-NVMeトラフィックとSCSIトラフィックの両方を同じOracle Linux 8.4に共存するホストで実行する場合は、ONTAP ネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。つまり、dm-multipathがこれらのネームスペースデバイスを要求しないように、ONTAP ネームスペースはdm-multipathでブラックリストに登録する必要があります。これを行うには、を追加します `enable_foreign` に設定します `/etc/multipath.conf` ファイル：
+同じOracle Linux 8.4ホストでNVMeトラフィックとSCSIトラフィックの両方を実行する場合はNetApp、ONTAPネームスペースにはカーネル内NVMeマルチパスを、ONTAP LUNにはdm-multipathをそれぞれ使用することを推奨します。つまり、dm-multipathがこれらのネームスペースデバイスを要求しないように、ONTAP ネームスペースはdm-multipathでブラックリストに登録する必要があります。これを行うには、ファイルに設定を `/etc/multipath.conf`追加し `enable_foreign`ます。
 
 [listing]
 ----
@@ -108,7 +108,7 @@ defaults {
 == Broadcom FC アダプタを NVMe/FC 用に設定します
 
 .手順
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの現在のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -123,7 +123,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -208,7 +208,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_sanhost_index.html 
-keywords:  
-summary:  
+keywords: san, host, utility, software, netapp 
+summary: SAN Host Utilityのリリースに関する最新情報と、ホスト構成に対応したインストール手順について説明します。 
 ---
-= 概要
+= SAN Host Utilitiesの詳細
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,13 @@ summary:
 
 
 [role="lead"]
-SANホストユーティリティのリリースに関する最新情報を確認し、ホスト構成に対応するインストール手順にアクセスします。
+SAN Host Utilityのリリースに関する最新情報と、ホスト構成に対応したインストール手順について説明します。
+
+NetAppサポートサイトでは、複数のSAN Host Utilitiesソフトウェアパッケージを提供しています。NetAppでは、SANホストにSAN Host Utilitiesソフトウェアがある場合、そのソフトウェアを使用することを推奨しています。
+
+AIX、HP-UX、Linux、およびSolaris Host Utilitiesソフトウェアには、コマンドラインツールキットが用意されています。このツールキットは、ONTAP LUNとHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立ちます。サポートが必要な問題が発生した場合は、NetAppカスタマーサポートでSAN Host Utilitiesを使用して構成に関する情報を収集することもできます。このツールキットは、Host Utilitiesソフトウェアパッケージをインストールすると自動的にインストールされます。
+
+Windows Host Utilitiesを使用すると、WindowsホストコンピュータをNetAppストレージシステムに接続できます。ソフトウェアには、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。これにより、WindowsホストがONTAPおよびEシリーズプラットフォームに対するストレージシステムの動作を正しく処理できるようになります。
 
 
-NOTE: インストール後に信頼性の高い操作を行うには、 https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] ホストがNVMe over Fabrics（NVMe over TCPおよびNVMe over Fibre Channelを含む）、iSCSI、FC、またはFCoE構成全体をサポートしていることを確認するため。
+NOTE: インストール後の安定した運用を実現するために、を使用してlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]、NVMe over Fabrics（NVMe over TCPおよびNVMe over Fibre Channelを含む）、iSCSI、FC、またはFCoEの構成がホストで完全にサポートされていることを確認します。

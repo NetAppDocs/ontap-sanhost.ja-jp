@@ -20,16 +20,16 @@ ONTAP SANホストの設定を使用して、SUSE Linux Enterprise Server 15 SP6
 
 
 
-== Linux Unified Host Utilities をインストールします
+== Linux Host Utilitiesのインストール
 
-NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイルとして用意されていますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^]確認してください。
+NetApp Linux Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイル形式で提供されていlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]ます。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]確認してください。
 
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
-Linux Unified Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか削除して次の手順に従って最新バージョンをインストールします。
+Linux Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか、または削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
-. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. からホストに32ビットまたは64ビットのLinux Host Utilitiesソフトウェアパッケージをダウンロードしますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
@@ -41,7 +41,7 @@ NOTE: このドキュメントの設定を使用して、に接続するクラ�
 
 
 
-== SANツールキット
+== SAN ツールキット
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
@@ -68,8 +68,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-.必要なもの
-ご使用の構成でSANブートがサポートされているlink:https://mysupport.netapp.com/matrix/imt.jsp?components=84067;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^]OS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがサポートされていることを確認するには、を参照してください。
+.開始する前に
+ご使用の構成でSANブートがサポートされているlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]OS、HBA、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがサポートされていることを確認するには、を参照してください。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。

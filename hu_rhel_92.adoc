@@ -20,14 +20,14 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed
 
 
 
-== Linux Unified Host Utilities をインストールします
+== Linux Host Utilitiesのインストール
 
-NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
+NetApp Linux Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
 .手順
-. から 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. からホストに64ビットLinux Host Utilitiesソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
@@ -36,7 +36,7 @@ NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨�
 
 
 
-== SANツールキット
+== SAN ツールキット
 
 このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
@@ -63,8 +63,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -293,7 +293,7 @@ RHEL 9.2 with ONTAPリリースには、次の既知の問題があります。
 | NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.2では、NetApp Linux SAN Host Utilities CLIです `sanlun fcp show adapter -v` は、HBA検出をサポートするライブラリパッケージの依存関係が見つからないために失敗します。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.2では、HBA検出をサポートするためのライブラリパッケージの依存関係が見つからないため、NetApp Linux SAN Host Utilities CLIが `sanlun fcp show adapter -v`失敗します。 
 
 
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1537359["1537359"^] | Emulex HBAを搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します | ストレージフェイルオーバーのギブバック処理で、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）を搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します。カーネルが中断されると、オペレーティングシステムが再起動します `kdump` が設定されると、が生成されます `vmcore` の下にあるファイル `/var/crash/` ディレクトリ。問題をでトリアージしています `lpfc` ドライバーですが、一貫して再現することはできません。 

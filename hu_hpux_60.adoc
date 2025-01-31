@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_hpux_60.html 
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
-summary: HP-UX Unified Host Utilities 6.0とONTAPの使用方法について説明します。 
+summary: HP-UX Host Utilities 6.0とONTAPストレージの使用方法について説明します。 
 ---
-= HP-UX Host Utilities 6.0
+= HP-UX Host Utilities 6.0（ONTAPストレージ用）
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,22 +16,22 @@ summary: HP-UX Unified Host Utilities 6.0とONTAPの使用方法について説�
 
 
 [role="lead"]
-HP-UX Host Utilitiesを使用すると、HP-UXホストをNetAppストレージに接続できます。
+NetApp HP-UX Host Utilitiesを使用すると、HP-UXホストをONTAPストレージに接続できます。
 
 HP-UX Host Utilitiesは、複数のプロトコルと次の環境をサポートします。
 
-* ネイティブMPIO
+* ネイティブのMicrosoftマルチパスI/O（MPIO）
 * Veritas Dynamic Multipathing（DMP；動的マルチパス）
 
 
 
 NOTE: このドキュメントでは、使用している環境を示すために、Veritas DMP環境には「DMP」、HP-UXネイティブ環境には「MPIO」と指定することがあります。使用するコマンドは、使用するドライバによって異なる場合があります。このような場合は、環境とドライバの両方のタイプを指定します。
 
-.必要なもの
+.開始する前に
 * 安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。
 
 
-を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 構成を確認します。
+を使用して構成を確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 .このタスクについて
 NetApp HP-UX Host Utilitiesソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.0/downloads["ネットアップサポートサイト"^] 圧縮されたファイル。ファイルをダウンロードしたら、インストール前に解凍する必要があります。
@@ -66,7 +66,7 @@ swinstall コマンドは 'HP-UX セットアップの状態を確認するイ�
 
 == SAN ツールキット
 
-HP-UX Host Utilitiesは、HP-UXホスト上にコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します `sanlun` LUNおよびホストバスアダプタの管理に役立つユーティリティ。（HBA）。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+HP-UX Host Utilitiesは、HP-UXホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、LUNおよびホストバスアダプタの管理に役立つユーティリティが用意されて `sanlun`います。（HBA）。 `sanlun`show volumeGroupコマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 
 .例
 次の例では 'lun lun lun show コマンドは LUN 情報を返します
@@ -85,4 +85,4 @@ sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c81t0d0  fclp0 
 
 ----
 
-NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。
+NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。そのため、すべてのコンポーネントがすべての構成に適用されるわけではありません。使用していないコンポーネントは、システムのパフォーマンスに影響しません。SAN Toolkitは、AIXおよびPowerVM / VIOS OSバージョンでサポートされます。

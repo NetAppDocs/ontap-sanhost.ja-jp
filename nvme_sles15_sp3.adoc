@@ -18,15 +18,15 @@ summary: SUSE Linux Enterprise Server 15 SP3 （ ONTAP ）用に NVMe/FC を設�
 [role="lead"]
 SUSE Linux Enterprise Server 15 SP3 with ANA（Asymmetric Namespace Access）では、NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびその他のトランスポートを含む）がサポートされます。ANAはNVMe-oF環境におけるALUAに相当し、現在はカーネル内NVMeマルチパスで実装されています。この手順を使用すると、SUSE Linux Enterprise Server 15 SP3およびONTAP上のANAをターゲットとして使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
+サポートされている構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
 == の機能
 
 * SUSE Linux Enterprise Server 15 SP3は、NVMe/FCおよびその他のトランスポートをサポートしています。
-* sanlun にも対応していません。そのため、SUSE Linux Enterprise Server 15 SP3ではNuhuはNVMe-oFをサポートしていません。NVMe-oFの標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。すべてのNVMe-oF転送がサポートされている必要があります。
-* NVMe と SCSI の両方のトラフィックを、同じ新規のホストで実行することができます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。したがって、 SCSI の場合、 SCSI LUN では「 d-mmultipath 」を通常どおりに設定しても mpath デバイスになることがありますが、 NVMe マルチパスを使用してホスト上で NVMe-oF マルチパスデバイスを設定することもできます。
+* sanlun にも対応していません。そのため、SUSE Linux Enterprise Server 15 SP3では、Linux Host UtilitiesでNVMe-oFがサポートされません。NVMe-oFの標準のNVMe-CLIパッケージに含まれているNetAppプラグインを利用できます。すべてのNVMe-oF転送がサポートされている必要があります。
+* NVMeとSCSIの両方のトラフィックを同じホストで実行できます。実際、これは、お客様に一般的に導入されるホスト構成であると想定されています。そのため、SCSIの場合はSCSI LUNを通常どおりに設定し `dm-multipath`てmpathデバイスを構成できますが、NVMeマルチパスを使用してホストでNVMe-oFマルチパスデバイスを構成できます。
 
 
 
@@ -39,15 +39,15 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 
 == カーネル内の NVMe マルチパスを有効にします
 
-SUSE Linux Enterprise Server 15 SP3などのSUSE Linux Enterprise Serverホストでは、カーネル内NVMeマルチパスがすでにデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。サポートされている構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+SUSE Linux Enterprise Server 15 SP3などのSUSE Linux Enterprise Serverホストでは、カーネル内NVMeマルチパスがすでにデフォルトで有効になっています。そのため、ここでは追加の設定は必要ありません。サポートされている構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
 == NVMe-oF イニシエータパッケージ
 
-を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされている構成に関する正確な情報については、を参照
+サポートされている構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
-. 必要なカーネルおよびnvme-cli MUパッケージがSUSE Linux Enterprise Server 15 SP3 MUホストにインストールされていることを確認します。
+. 必要なカーネルとnvme-cli MUパッケージがSUSE Linux Enterprise Server 15 SP3 MUホストにインストールされていることを確認します。
 +
 例
 
@@ -208,7 +208,7 @@ FCP CMPL: xb 0000159d Err 000135c3
 
 ==== 1MB I/O サイズを有効にする（オプション）
 
-ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイズ） 8 を報告します。つまり、最大 I/O 要求サイズは最大 1 MB でなければなりません。ただし 'Broadcom NVMe/FC ホストのサイズが 1 MB の問題 I/O 要求の場合 'lpfc パラメータ 'lpfc_sg_seg_cnt' もデフォルト値の 64 から 256 までバンピングする必要があります次の手順を使用して実行します。
+ONTAP は Identify コントローラデータに MDT （ MAX Data 転送サイズ） 8 を報告します。つまり、最大 I/O 要求サイズは最大 1 MB でなければなりません。ただし、Broadcom NVMe/FCホストにサイズ1MBのI/O要求を発行するには、lpfcパラメータを `lpfc_sg_seg_cnt`デフォルト値の64から256まで増やす必要があります。次の手順を使用して実行します。
 
 . それぞれの「 m odprobe lpfc.conf 」ファイルに値 256 を追加します。
 +

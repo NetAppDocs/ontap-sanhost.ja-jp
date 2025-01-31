@@ -20,16 +20,16 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed
 
 
 
-== Linux Unified Host Utilities をインストールします
+== Linux Host Utilitiesのインストール
 
-NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイルとして用意されていますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^]確認してください。
+NetApp Linux Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイル形式で提供されていlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]ます。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]確認してください。
 
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
-Linux Unified Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか削除して次の手順に従って最新バージョンをインストールします。
+Linux Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか、または削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
-. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. からホストに32ビットまたは64ビットのLinux Host Utilitiesソフトウェアパッケージをダウンロードしますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
@@ -68,8 +68,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=68653;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -311,7 +311,7 @@ RHEL 6.6 with ONTAPリリースには、次の既知の問題があります。
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=863878["863878"^] | ストレージ障害時に RHEL 6U6 ホストでカーネルがクラッシュする | ストレージ / ファブリック中に RHEL 6U6 ホストでカーネルクラッシュが発生することがある。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=852674["1076584"^] | RHEL 6U4 でストレージ障害が発生すると、 QLogic 16G FC （ QLE2672 ）ホストで IO が最大 300 秒停止します | ストレージ / ファブリックの障害時に、 QLogic 16G FC （ QLE2672 ）ホストで IO が最大 300 秒停止することがあります。 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=852674["1076584"^] | RHEL 6U4でのストレージ障害時にQLogic 16G FC（QLE2672）ホストでI/Oが最大300秒停止する | ストレージ/ファブリックの障害時に、QLogic 16G FC（QLE2672）ホストで最大300秒のI/O停止が発生することがあります。 
 
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=795684["795684"^] | RHEL6 U5 で、モジュールおよびストレージフェイルオーバーの障害処理中に、グループ multipathd マルチパスマップが誤って作成されます | LUN に対するパスのグループ化が、ストレージの障害とともにオンデマンドで LUN を移動したときに誤って表示されることがあります。LUN 移動処理の実行中に、マルチパスのパス優先度が変更され、ストレージの障害が原因のデバイス障害が原因でマルチパスがデバイステーブルをリロードできなくなります。これにより、パスのグループ化が正しく行われません。 

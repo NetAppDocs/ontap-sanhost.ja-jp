@@ -24,7 +24,7 @@ ONTAPを搭載したUbuntu 24.04では、NVMe-oFホスト構成が次のよう�
 * 特定のHost Bus Adapter（HBA；ホストバスアダプタ）の同じホストでNVMeとSCSIのトラフィックが共存し、明示的なdm-multipath設定を使用せずにNVMeネームスペースが要求されないようにする。
 
 
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -146,7 +146,7 @@ Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 0:14.2.0.17
 ----
 +
-サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -266,7 +266,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

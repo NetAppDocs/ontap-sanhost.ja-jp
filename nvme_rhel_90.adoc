@@ -18,7 +18,7 @@ summary: ONTAP を使用してRHEL 9.0用のNVMe-oFホストを設定する方�
 [role="lead"]
 NVMe-oF（NVMe/FCとNVMe/TCPを含む）は、ONTAP アレイでのストレージフェイルオーバー（SFO）の実行にANA（Asymmetric Namespace Access）が必要なRHEL 9.0でサポートされます。ANAは、NVM環境でも同じです。現在はカーネル内のNVMeマルチパスで実装されています。この手順を使用すると、RHEL 9.0およびONTAPのANAをターゲットとして使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
 
-サポートされる構成の詳細については、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
 
@@ -42,7 +42,7 @@ NVMe-oFプロトコルを使用したSANブートは現在サポートされて�
 
 .手順
 . サーバにRHEL 9.0をインストールします。
-. インストールが完了したら、指定したRHEL 9.0カーネルを実行していることを確認します。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされるバージョンの最新のリストについては、を参照してください。
+. インストールが完了したら、指定した RHEL 9.0 カーネルを実行していることを確認します。サポートされているバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -89,7 +89,7 @@ NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設�
 .Broadcom / Emulex
 --
 .手順
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの詳細については、を参照してください。 link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
+. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -104,7 +104,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバとファームウェアのバージョンの最新リストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. 推奨される Broadcom lpfc ファームウェアとインボックスドライバを使用していることを確認します。サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 +
 [listing]
 ----
@@ -220,7 +220,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . コマンドを実行し `dracut -f`、ホストをリブートします。
-. の想定値が256であることを確認し `lpfc_sg_seg_cnt`ます。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [listing]
 ----

@@ -20,16 +20,16 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOra
 
 
 
-== Linux Unified Host Utilities をインストールします
+== Linux Host Utilitiesのインストール
 
-NetApp Linux Unified Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイルとして用意されていますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool で確認できます"^]確認してください。
+NetApp Linux Host Utilitiesソフトウェアパッケージは、に32ビットおよび64ビットの.rpmファイル形式で提供されていlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]ます。構成に適したファイルがわからない場合は、を使用して必要なファイルをlink:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]確認してください。
 
-NetAppでは、Linux Unified Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティでは、Linuxホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
 
-Linux Unified Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか削除して次の手順に従って最新バージョンをインストールします。
+Linux Host Utilitiesが現在インストールされている場合は、最新バージョンにアップグレードするか、または削除して次の手順に従って最新バージョンをインストールする必要があります。
 
 .手順
-. から、 32 ビットまたは 64 ビットの Linux Unified Host Utilities ソフトウェアパッケージをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^] ホストに接続します。
+. からホストに32ビットまたは64ビットのLinux Host Utilitiesソフトウェアパッケージをダウンロードしますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . ソフトウェアパッケージをインストールします。
 +
 「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
@@ -68,8 +68,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます https://mysupport.netapp.com/matrix/imt.jsp?components=68625;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 .手順
 . SAN ブート LUN をホストにマッピングします。
@@ -272,7 +272,7 @@ Oracle Linux 7.0 with ONTAPリリースには、次の既知の問題があり�
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901558["901558"^] | OL7.0 ： Emulex 8G （ LPe12002 ）ホストの OL 7.0 UEK r3U5 ベータ版で「 RSCN timeout 」エラーが発生すると、ホストは LUN へのすべてのパスを失い、ハングします | Emulex 8G （ LPe12002 ）ホストは停止し、 I/O でストレージフェイルオーバー処理を実行中に高い I/O 障害が発生する可能性がありますリカバリされないパスは RSCN タイムアウトによって失われ、ホストはすべてのパスとハングするため、その結果として認識されます。この問題に達する可能性は高くなります。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7.0 ： IO を使用したストレージフェイルオーバー処理中に、 QLogic 8G FC （ QLE2562 ） SAN ホストで IO が停止することが確認されました | IO を使用したストレージフェイルオーバー処理で、 QLogic 8G FC （ QLE2562 ）ホストの I/O が高くなることがあります。ホストで IO 停止が発生すると、中止とデバイスのリセットが通知されます。この I/O 停止が発生する可能性は高いです。 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7.0：I/Oを使用したストレージフェイルオーバー処理中に、QLogic 8G FC（QLE2562）SANホストで高いI/O停止が発生 | I/Oを伴うストレージフェイルオーバー処理の実行中、QLogic 8G FC（QLE2562）ホストで大量のI/Oが停止する可能性があります。ホストでI/Oが停止すると、中断およびデバイスのリセットが発生します。このI/O停止が発生する可能性は高くなります。 
 
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894766["894766"^] | OL7.0 ： UEKR3U5 α の initramfs に SCSI_dh_aluf.ko モジュールを dracut に含めることができません | カーネルコマンドラインにパラメータ「 rdloaddriver=scsi_dh_alua 」を追加して dracut を作成したあとでも、 scsi_dh_alua モジュールがロードされないことがあります。そのため、ネットアップ LUN に対しては ALUA の有効化は推奨されません。 
@@ -284,5 +284,5 @@ Oracle Linux 7.0 with ONTAPリリースには、次の既知の問題があり�
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894771["894771"^] | OL7.0: Anaconda は、カーネル cmd 行に bootdev 引数を追加して、 iSCSI SANboot OS インストールの IP アドレスを設定しません | anaconda は、カーネルコマンドラインに bootdev 引数を追加しません。このコマンドラインでは、 iSCSI マルチパス LUN での OL 7.0 OS のインストール時に IPv4 アドレスを設定します。これにより、 OL 7.0 のブート中にストレージサブシステムとの iSCSI セッションを確立するように設定されたイーサネットインターフェイスに IP アドレスを割り当てることはできません。iSCSI セッションが確立されていないため、 OS のブート時にルート LUN が検出されないため、 OS のブートに失敗します。 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | IO を使用したストレージフェイルオーバー処理で、 QLogic 10G FCoE （ QLE8152 ）ホストカーネルのクラッシュが確認されました | 10G FCoE Qlogic （ QLE8152 ）ホスト上の Qlogic ドライバモジュールでカーネルクラッシュが発生する可能性があります。IO を使用したストレージフェイルオーバー処理の実行中にクラッシュが発生します。このクラッシュが発生する可能性が高いため、ホストでの IO 停止が長くなります。 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | I/Oを使用したストレージフェイルオーバー処理中にQLogic 10G FCoE（QLE8152）ホストカーネルのクラッシュが観察される | 10G FCoE Qlogic（QLE8152）ホストのQlogicドライバモジュールでカーネルクラッシュが発生することがあります。このクラッシュは、ストレージフェイルオーバー処理でI/Oが発生したときに発生します。このクラッシュが発生する可能性が高く、ホストでのI/O停止時間が長くなります。 
 |===

@@ -28,7 +28,7 @@ ONTAP SANホストの構成設定を使用して、ONTAPをターゲットとし
 
 === SAN ブート中です
 
-SAN ブートを使用する場合は、構成でサポートされている必要があります。NetApp Interoperability Matrix Tool を使用して、お使いの OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされているかどうかを確認できます。
+SAN ブートを使用する場合は、構成でサポートされている必要があります。Interoperability Matrix Toolを使用して、お使いのOS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できます。
 
 . SAN ブート LUN をホストにマッピングします。
 . 複数のパスが使用可能であることを確認します。
@@ -66,20 +66,20 @@ TIP: 多くの修正プログラムでは Windows ホストのリブートが必
 
 
 
-== Windows Unified Host Utilitiesのインストール
+== Windows Host Utilitiesのインストール
 
-Windows Unified Host Utilities （ Wuhu ）は、 NetApp SAN の仮想ディスク（ LUN ）にホストコンピュータを接続するためのドキュメントを含む一連のソフトウェアプログラムです。NetAppでは、最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhuの設定情報と手順については、 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Unified Host Utilitiesのドキュメント"] をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。
+Windows Host Utilitiesは、ホストコンピュータをNetApp SAN上の仮想ディスク（LUN）に接続するためのドキュメントが含まれた一連のソフトウェアプログラムです。NetAppでは、最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhuの設定情報と手順については、を参照しlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"]、使用しているWindows Host Utilitiesバージョンに対応したインストール手順を選択してください。
 
 
 
 == マルチパス
 
-Windows ホストにストレージシステムへのパスが複数ある場合は、 MPIO ソフトウェアをインストールし、マルチパスをセットアップする必要があります。MPIO ソフトウェアがないと、各パスが別々のディスクとしてオペレーティングシステムに認識され、データの破損を招くことがあります。MPIO ソフトウェアは、すべてのパスに対して単一のディスクをオペレーティングシステムに提供し、デバイス固有モジュール（ DSM ）はパスのフェイルオーバーを管理します。
+Windowsホストからストレージシステムへのパスが複数ある場合は、Microsoft Multipath I/O（MPIO）ソフトウェアをインストールし、マルチパスを設定する必要があります。MPIO ソフトウェアがないと、各パスが別々のディスクとしてオペレーティングシステムに認識され、データの破損を招くことがあります。MPIO ソフトウェアは、すべてのパスに対して単一のディスクをオペレーティングシステムに提供し、デバイス固有モジュール（ DSM ）はパスのフェイルオーバーを管理します。
 
 Windows システムでは、 MPIO 解決策の 2 つの主要コンポーネントは DSM と Windows MPIO です。MPIO は、 Hyper-V 仮想マシンで実行されている Windows XP または Windows Vista ではサポートされていません。
 
 
-NOTE: MPIO サポートを選択すると、 Windows Unified Host Utilities で Windows Server 2019 に含まれている MPIO 機能が有効になります。
+NOTE: MPIOを選択すると、Windows Host UtilitiesでWindows Server 2019に含まれているMPIO機能が有効になります。
 
 
 
@@ -145,7 +145,7 @@ QLogic ファイバチャネル HBA の場合：
 | PortDownRetryCount のように指定します | 10. 
 |===
 
-NOTE: Windows Unified Host Utility はこれらの値を設定します。推奨設定の詳細については、を参照してください link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"] をクリックし、Windows Unified Host Utilitiesのバージョンに対応したインストール手順を選択します。
+NOTE: これらの値は、Windowsホストユーティリティによって設定されます。推奨設定の詳細については、を参照しlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"]、Windows Host Utilitiesのバージョンに応じたインストール手順を選択してください。
 
 
 

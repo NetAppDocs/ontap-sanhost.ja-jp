@@ -16,13 +16,13 @@ summary: このコンテンツでは、オンプレミスのONTAP ストレー�
 
 
 [role="lead"]
-SANホストは、マルチパスに対応し、ONTAP LUNで適切に動作するために重要な特定のパラメータと設定を使用して構成する必要があります。  ホストの構成は、ホストのオペレーティングシステムとプロトコルによって異なります。  最適なパフォーマンスと正常なフェイルオーバーを実現するには、正しい設定が重要です。
+SANホストをマルチパス用に設定し、ONTAP LUNで正しく動作するために重要な特定のパラメータと設定を使用して設定する必要があります。ホストの構成は、ホストのオペレーティングシステムとプロトコルによって異なります。最適なパフォーマンスと正常なフェイルオーバーを実現するには、正しい設定が重要です。
 
-NetApp SAN Host Utilitiesを使用するようにSANホストを設定する必要があります。SAN Host Utilitiesは、LUNとHost Bus Adapter（HBA；ホストバスアダプタ）の管理と監視に役立ちます。たとえば、SAN Host Utilitiesを使用すると、ホストにマッピングされているすべてのLUNのリストを取得したり、ホストにマッピングされている特定のLUNのすべての属性のリストを表示したりできます。サポートが必要な問題がある場合は、NetAppカスタマーサポートでSAN Host Utilitiesを使用して構成に関する情報を収集することもできます。
+NetApp SAN Host Utilitiesを使用するようにSANホストを設定する必要があります。SAN Host Utilitiesは、LUNとHost Bus Adapter（HBA；ホストバスアダプタ）の管理と監視に役立ちます。たとえば、SAN Host Utilitiesを使用して、ホストにマッピングされているすべてのLUNのリストを取得したり、ホストにマッピングされている特定のLUNのすべての属性のリストを表示したりできます。サポートが必要な問題が発生した場合は、NetAppカスタマーサポートでSAN Host Utilitiesを使用して構成に関する情報を収集することもできます。
 
-NetAppでは、SANホストにSAN Host Utilitiesソフトウェアがある場合、その使用を推奨しています。
+NetAppでは、SANホストにSAN Host Utilitiesソフトウェアがある場合、そのソフトウェアを使用することを推奨しています。
 
-SAN構成でサポートされている場合は、SANブートを使用するようにホストを設定して導入を簡易化し、拡張性を向上させることもできます。SANブートを使用すると、複数の新しいサーバをSANに接続して適切なブート設定を構成することで、複数の新しいサーバを導入できます。これにより、各サーバにオペレーティングシステムを個別にインストールする必要がなくなるため、時間を節約できます。
+SAN構成でSANブーティングがサポートされている場合は、SANブーティングを使用するようにホストを設定して、導入を簡易化し、拡張性を向上させることもできます。SANブートを使用すると、複数の新しいサーバをSANに接続して適切なブート設定を構成することで、複数の新しいサーバを導入できます。これにより、各サーバにオペレーティングシステムを個別にインストールする必要がなくなるため、時間を節約できます。
 
 SANホストとONTAP ストレージは、オンプレミス、クラウド、またはその両方に配置できます。
 
@@ -32,8 +32,8 @@ NOTE: クラウド環境では、ホストは一般にクライアントと呼�
 たとえば、オンプレミスのSANホストやSANクラウドクライアントに接続するように、オンプレミスのONTAPストレージを構成できます。次のようなクラウド環境で実行されるストレージサービスを設定することもできます。 link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/bluexp-fsx-ontap/index.html["NetApp ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストまたはSANクラウドクライアントに接続するため。
 
 .関連情報
-* 。 link:https://docs.netapp.com/us-en/ontap/san-config/index.html["ONTAP SANの構成"^] ONTAP のバージョンに応じて更新します
-* 。 link:https://docs.netapp.com/us-en/ontap/san-management/index.html["『ONTAP SANアドミニストレーションガイド』"^] ONTAP のバージョンに応じて更新します
-* 。 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP リリースノート"^] ONTAP のバージョンに応じて更新します
-* 。 link:https://docs.netapp.com/us-en/e-series/index.html["E シリーズのドキュメント"^] をクリックして、SANtricity 関連ドキュメントを参照してください
+* link:https://docs.netapp.com/us-en/ontap/san-config/index.html["ONTAP SAN構成のリファレンス"^]
+* link:https://docs.netapp.com/us-en/ontap/san-management/index.html["ONTAP SANストレージ管理"^]
+* link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP 9 リリース ノート"^]
+* 『』のSANtricity関連ドキュメントlink:https://docs.netapp.com/us-en/e-series/index.html["Eシリーズシステムのドキュメント"^]
 

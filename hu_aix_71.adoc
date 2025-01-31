@@ -22,9 +22,9 @@ ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてIBM
 
 == AIX Host Utilitiesのインストール
 
-AIX MPIOとNetApp ONTAP ストレージを使用する場合、AIX Host Utilities Kitをインストールする必要があります。
+AIX Host Utilities Kitは、AIX MicrosoftマルチパスI/O（MPIO）とONTAPストレージを使用しているときにインストールする必要があります。
 
-Host Utilities ソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできます link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^]。ファイルを展開して、 Host Utilities のインストールに必要な 2 つのソフトウェアパッケージを取得する必要があります。
+Host Utilitiesソフトウェアパッケージが格納された圧縮ファイルは、からダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^]。ファイルをダウンロードしたら、ファイルを展開してHost Utilitiesのインストールに必要な2つのソフトウェアパッケージを入手する必要があります。
 
 .手順
 . ホストにログインします。
@@ -75,8 +75,8 @@ data_vserver      /vol/vol4/lun4    hdisk14     fcs0       FCP       20g    C
 
 == SAN ブート中です
 
-.必要なもの
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用できます link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["NetApp Interoperability Matrix Tool で確認できます"^] 使用している OS 、 HBA 、 HBA ファームウェア、 HBA ブート BIOS 、および ONTAP のバージョンがサポートされていることを確認します。
+.開始する前に
+SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
 SAN ブートとは、 AIX ホストのブートデバイスとして SAN 接続ディスク（ LUN ）をセットアップするプロセスです。SAN ブート LUN は、 FC プロトコルまたは FCoE プロトコルで AIX Host Utilities を実行する AIX MPIO 環境で動作するようにセットアップできます。SAN ブート LUN を作成し、その LUN に新しい OS イメージをインストールする方法は、使用するプロトコルによって異なります。
 
@@ -154,7 +154,7 @@ up     primary  path3  fcs1    fc_aix_4     1
 
 == 推奨設定
 
-次に、ONTAP LUNの推奨されるパラメータ設定を示します。  ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
+NetAppで推奨されるONTAP LUNのパラメータ設定は次のとおりです。ONTAP LUN の重要なパラメータは、 NetApp Host Utilities Kit をインストールしたあとに自動的に設定されます。
 
 [cols="4*"]
 |===

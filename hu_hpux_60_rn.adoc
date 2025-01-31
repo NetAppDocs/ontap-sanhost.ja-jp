@@ -24,4 +24,4 @@ HP-UX Host Utilities 6.0では、引き続き次のバージョンがサポー�
 * HP-UX 11iv3
 
 
-HP-UX Host Utilities 6.0リリースには、新機能、拡張機能、既知の制限事項、および注意事項はありません。
+HP-UX Host Utilities 6.0リリースには、新機能、拡張機能、既知の制限事項、注意事項はありません。

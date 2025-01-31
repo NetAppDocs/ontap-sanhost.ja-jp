@@ -31,7 +31,7 @@ ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 == の機能
 
-* ESXi イニシエータホストは、 NVMe/FC と FCP の両方のトラフィックを同じアダプタポートで実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^] サポートされる構成およびバージョンの最新のリストについては、を参照してください。
+* ESXi イニシエータホストは、 NVMe/FC と FCP の両方のトラフィックを同じアダプタポートで実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成とバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 * ONTAP 9.9.1 P3 以降では、 ESXi 7.0 Update 3 で NVMe/FC 機能がサポートされます。
 * ESXi 7.0 以降のリリースでは、ハイパフォーマンスプラグイン（ HPP ）が NVMe デバイスのデフォルトプラグインです。
 
@@ -68,7 +68,7 @@ Host NQN: nqn.2014-08.com.vmware:nvme:nvme-esx
 
 === Broadcom / Emulex を設定します
 
-. を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. を参照して、設定が必要なドライバ/ファームウェアでサポートされているかどうかを確認しますlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 . lpfc ドライバ・パラメータ lpfc_enable_fc4_type=3 を設定して 'lpfc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します
 
 
@@ -98,7 +98,7 @@ vmhba65   lpfc     link-up     fc.200000109b954570:100000109b954570             
 === Marvell / QLogic を設定します
 
 .手順
-. を参照して、必要なドライバ / ファームウェアで構成がサポートされているかどうかを確認します link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]。
+. を参照して、必要なドライバ/ファームウェアで設定がサポートされているかどうかを確認しますlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 . qlnativefc ドライバ・パラメータ ql2xnvmetupport =1 を設定して 'qlnativefc ドライバで NVMe/FC サポートを有効にし ' ホストを再起動します
 +
 「 #esxcfg-module -s 」 ql2xnvmetupport = 1'qlnativefc
