@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_windows_2022.html 
+permalink: nvme-windows-2025.html 
 keywords: nvme, windows, enterprise 
-summary: Windows Server 2022を実行しているホストでONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。 
+summary: Windows Server 2052 with ONTAP のNVMe/FCホスト構成 
 ---
-= ONTAP向けのNVMe / FCを搭載したWindows Server 2022の構成
+= ONTAP用のNVMe/FCを搭載したWindows Server 2025の設定
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,14 +16,14 @@ summary: Windows Server 2022を実行しているホストでONTAP LUNを使用�
 
 
 [role="lead"]
-Windows Server 2022を実行しているホストでONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。
+Windows Server 2025を実行しているホストでは、ONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。
 
 .このタスクについて
-Windows 2022のNVMe/FCホスト設定では、次のサポートを使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
+Windows 2025用のNVMe/FCホスト構成では、次のサポートを使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
 
 * 利用可能なサポート：
 +
-ONTAP 9.7以降では、Windows Server 2022でNVMe/FCがサポートされます。
+ONTAP 9.10.1以降では、Windows Server 2025でNVMe/FCがサポートされます。
 
 +
 サポートされるFCアダプタとコントローラの一覧については、を参照してくださいlink:https://hwu.netapp.com/Home/Index["Hardware Universe"^]。サポートされる構成とバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
@@ -105,7 +105,7 @@ HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryIn
 
 
 
-== NVMe/FC を検証
+== NVMe/FC構成の検証
 
 NVMeサブシステムが検出され、ONTAPネームスペースがNVMe-oFの設定に対応した正しいことを確認してください。
 

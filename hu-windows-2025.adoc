@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_windows_2016.html 
+permalink: hu-windows-2025.html 
 keywords: windows, enterprise 
-summary: ONTAP で Windows Server 2016 を使用する 
+summary: ONTAP SANホストの構成設定を使用して、ONTAPストレージで動作するようにWindows Server 2025を構成できます。 
 ---
-= ONTAPでWindows Server 2016を使用
+= ONTAPストレージ用のWindows Server 2025の設定
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: ONTAP で Windows Server 2016 を使用する
 
 
 [role="lead"]
-ONTAP SANホストの構成設定を使用して、ONTAPストレージで動作するようにWindows Server 2016を構成できます。
+ONTAP SANホストの構成設定を使用して、ONTAPストレージで動作するようにWindows Server 2025を構成できます。
 
 
 
@@ -34,9 +34,6 @@ Windows OSは、ローカルブートまたはSANブートを使用してブー�
 .SAN ブート
 --
 SANブーティングを使用する場合は、使用している構成でサポートされている必要があります。
-
-
-NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
 
 .開始する前に
 を使用 https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Windows OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
@@ -67,7 +64,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 NetAppでは、Microsoft Updateカタログから入手可能な最新の累積更新プログラム*をホストサーバーにインストールすることをお勧めします。
 
 .手順
-. からホットフィックスをダウンロードしlink:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2016["Microsoft Update Catalog 2016 』を参照してください"^]ます。
+. からホットフィックスをダウンロードしlink:https://www.catalog.update.microsoft.com/Search.aspx?q=update%20%22windows%20server%202025%22["Microsoft Update Catalog 2025"^]ます。
 
 
 
@@ -89,7 +86,7 @@ Windows Host Utilitiesは、ホストコンピュータをNetApp SAN上の仮想
 
 == マルチパス
 
-Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。MPIOのサポートを選択すると、Windows Host UtilitiesでWindows Server 2016のMPIO機能が有効になります。Windows Host Utilitiesを使用しない場合は、マルチパスを手動で有効にする必要があります。
+Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。
 
 MPIOソフトウェアは、すべてのパスについて単一のディスクをWindows OSに提供し、パスのフェイルオーバーはDevice-Specific Module（DSM；デバイス固有モジュール）が管理します。Windowsシステムでは、MPIOソリューションの2つの主要コンポーネントはDSMとWindows MPIOです。
 
@@ -171,4 +168,4 @@ NOTE: 推奨設定の詳細については、を参照してくださいlink:hu_
 
 == 既知の問題
 
-ONTAPリリースのWindows Server 2016では、既知の問題はありません。
+ONTAPリリースのWindows Server 2025での既知の問題はありません。

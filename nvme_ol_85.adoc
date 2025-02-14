@@ -25,7 +25,7 @@ Oracle Linux 8.5およびONTAPを実行するイニシエータホストでは�
 NVMe over FabricsまたはNVMe-oF（NVMe/FCおよびNVMe/TCPを含む）は、ONTAP アレイで稼働しているストレージフェイルオーバー（SFO）に必要な非対称ネームスペースアクセス（ANA）を備えたOracle Linux 8.5でサポートされています。ANAは、NVMe-oF環境で同等のAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）であり、現在はカーネル内のNVMeマルチパスで実装されています。この手順では、Oracle Linux 8.5でANAを使用し、ターゲットとしてONTAPを使用して、カーネル内NVMeマルチパスでNVMe-oFを有効にすることができます。
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
 
 
 

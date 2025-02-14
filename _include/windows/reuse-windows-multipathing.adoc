@@ -1,0 +1,11 @@
+= 
+:allow-uri-read: 
+
+
+MPIOソフトウェアは、すべてのパスについて単一のディスクをWindows OSに提供し、パスのフェイルオーバーはDevice-Specific Module（DSM；デバイス固有モジュール）が管理します。Windowsシステムでは、MPIOソリューションの2つの主要コンポーネントはDSMとWindows MPIOです。
+
+
+CAUTION: MPIOソフトウェアをインストールしない場合、Windows OSは各パスを個別のディスクとして認識する可能性があります。これにより、データが破損する可能性があります。
+
+
+NOTE: Hyper-V仮想マシンで実行されているWindows XPまたはWindows Vistaは、MPIOをサポートしていません。

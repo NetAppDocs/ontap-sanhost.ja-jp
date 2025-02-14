@@ -2,9 +2,13 @@
 :allow-uri-read: 
 
 
-FC を使用するシステムでは、 MPIO が選択されている場合、 Emulex および QLogic FC HBA について次のタイムアウト値が必要です。
+FCを使用するシステムでMPIOを選択すると、EmulexおよびQLogic FC HBAに必要なタイムアウト値がHost Utilitiesインストーラによって設定されます。
 
-Emulex ファイバチャネル HBA の場合：
+[role="tabbed-block"]
+====
+.Emulex FC
+--
+Emulex FC HBAのタイムアウト値：
 
 [cols="2*"]
 |===
@@ -16,7 +20,10 @@ Emulex ファイバチャネル HBA の場合：
 
 | ノードタイムアウト | 10. 
 |===
-QLogic ファイバチャネル HBA の場合：
+--
+.QLogic FC
+--
+QLogic FC HBAのタイムアウト値は次のとおりです。
 
 [cols="2*"]
 |===
@@ -28,5 +35,7 @@ QLogic ファイバチャネル HBA の場合：
 
 | PortDownRetryCount のように指定します | 10. 
 |===
+--
+====
 
-NOTE: これらの値は、Windowsホストユーティリティによって設定されます。推奨設定の詳細については、を参照しlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"]、Windows Host Utilitiesのバージョンに応じたインストール手順を選択してください。
+NOTE: 推奨設定の詳細については、を参照してくださいlink:hu_wuhu_hba_settings.html["Windows Host Utilitiesのレジストリ設定を構成する"]。

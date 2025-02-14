@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Windows Host Utilitiesは、ホストコンピュータをNetApp SAN上の仮想ディスク（LUN）に接続するためのドキュメントが含まれた一連のソフトウェアプログラムです。NetAppでは、最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Wuhuの設定情報と手順については、を参照しlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"]、使用しているWindows Host Utilitiesバージョンに対応したインストール手順を選択してください。
+Windows Host Utilitiesは、ホストコンピュータをNetApp SAN上の仮想ディスク（LUN）に接続するためのドキュメントが含まれた一連のソフトウェアプログラムです。NetAppでは、最新のユーティリティキットをダウンロードしてインストールすることをお勧めします。Windows Host Utilitiesの設定情報と手順については、を参照しlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilitiesのマニュアル"]、使用しているWindows Host Utilitiesのバージョンに応じたインストール手順を選択します。

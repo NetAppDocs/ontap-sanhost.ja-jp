@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Windows イニシエータホストで FC / NVMe を有効にするには、次の手順を実行します。
+WindowsイニシエータホストでFC / NVMeを有効にします。
 
 .手順
 . Windows ホストに OneCommand Manager ユーティリティをインストールします。
@@ -10,7 +10,6 @@ Windows イニシエータホストで FC / NVMe を有効にするには、次�
 +
 ** EnableNVMe = 1
 ** NVMEMode = 0
-** 転送サイズ = 1
 
 
 . ホストをリブートします。

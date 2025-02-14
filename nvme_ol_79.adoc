@@ -25,7 +25,7 @@ Oracle Linux 7.9およびONTAPを実行するイニシエータホストでは�
 ONTAP 9.6以降では、Oracle Linux 7.9でNVMe/FCがサポートされます。Oracle Linux 7.9ホストでは、NVMeトラフィックとSCSIトラフィックの両方を、同じFibre Channel（FC；ファイバチャネル）イニシエータアダプタポートで実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成の最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
 
 
 

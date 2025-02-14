@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: nvme_windows_2012r2.html 
 keywords: nvme, windows, enterprise 
-summary: ONTAP を使用した Windows Server 2012 R2 の NVMe/FC ホスト構成 
+summary: Windows Server 2012 R2を実行しているホストでは、ONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。 
 ---
-= ONTAP を使用した Windows Server 2012 R2 の NVMe/FC ホスト構成
+= ONTAP用のNVMe/FCを搭載したWindows Server 2012 R2の設定
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,31 +16,36 @@ summary: ONTAP を使用した Windows Server 2012 R2 の NVMe/FC ホスト構�
 
 
 [role="lead"]
-ONTAPをターゲットとして使用し、Windows Server 2012 R2を実行しているホストにNVMe over Fibre Channel（NVMe/FC）を設定できます。
+Windows Server 2012 R2を実行しているホストでは、ONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。
 
-ONTAP 9.7 以降では、 Windows Server 2012 の NVMe/FC がサポートされます。
-
-Broadcom イニシエータは、 NVMe/FC と FCP の両方のトラフィックを同じ 32G FC アダプタポートで処理できます。FCP および FC/NVMe の場合は、 Microsoft Multipath I/O （ MPIO ；マルチパス I/O ）オプションとして MSDSM を使用してください。
-
-サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成とバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
+.このタスクについて
+Windows Server 2012 R2のNVMe/FCホスト構成では、次のサポートを使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
+
+* 利用可能なサポート：
++
+ONTAP 9.7以降では、Windows Server 2012 R2でNVMe/FCがサポートされます。
+
++
+サポートされるFCアダプタとコントローラの一覧については、を参照してくださいlink:https://hwu.netapp.com/Home/Index["Hardware Universe"^]。サポートされる構成とバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
+
+* 既知の制限事項：
++
+WindowsフェイルオーバークラスタはNVMe/FCではサポートされていません。これは、ONTAPでは現在NVMe/FCによる永続的予約がサポートされていないためです。
+
++
+
+NOTE: Broadcomには、Windows NVMe/FC用の外部ドライバが付属しています。これは、真のNVMe/FCドライバではありません。トランスレーショナルオーバーヘッドがパフォーマンスに影響するとは限りませんが、NVMe/FCのパフォーマンス上のメリットが失われます。そのため、WindowsサーバではNVMe/FCとFCPのパフォーマンスが同じですが、Linuxなどの他のオペレーティングシステムではNVMe/FCのパフォーマンスがFCPよりも大幅に優れています。
 
 
 
-== 既知の制限
-
-ONTAP NVMe/FC では、 ONTAP は現在 NVMe/FC での永続的予約をサポートしていないため、 Windows Failover Cluster （ WFC ； Windows フェイルオーバークラスタ）はサポートされません。
 
 
-NOTE: Broadcom for Windows NVMe/FC によって出荷された外部ドライバは、真の NVMe/FC ドライバではなく、トランスレーショナル SCSI の一時的な NVMe ドライバです。このトランスレーショナルのオーバーヘッドは必ずしもパフォーマンスに影響するわけではありませんが、 NVMe/FC のパフォーマンス上の利点には影響しません。したがって、 Windows サーバでは、 NVMe/FC と FCP のパフォーマンスは同じです。 Linux などの他のオペレーティングシステムでは、 FCP よりも NVMe/FC のパフォーマンスが大幅に向上します。
+== NVMe/FC を有効にします
 
-
-
-== Windows イニシエータホストで NVMe/FC を有効にします
-
-Windows イニシエータホストで FC / NVMe を有効にするには、次の手順を実行します。
+WindowsイニシエータホストでFC / NVMeを有効にします。
 
 .手順
 . Windows ホストに OneCommand Manager ユーティリティをインストールします。
@@ -48,7 +53,6 @@ Windows イニシエータホストで FC / NVMe を有効にするには、次�
 +
 ** EnableNVMe = 1
 ** NVMEMode = 0
-** 転送サイズ = 1
 
 
 . ホストをリブートします。
@@ -56,9 +60,11 @@ Windows イニシエータホストで FC / NVMe を有効にするには、次�
 
 
 
-== Windows で NVMe/FC 用に Broadcom FC アダプタを設定します
+== Broadcom FCアダプタの設定
 
-Windows 環境の FC/NVMe 用 Broadcom アダプタでは '+hostnqn+' が各 HBA ポートに関連付けられます「 + hostnqn+' 」は次のようにフォーマットされます。
+Broadcomイニシエータは、同じ32G FCアダプタポートでNVMe/FCとFCPの両方のトラフィックに対応できます。FCPおよびFC / NVMeの場合は、Microsft Device-Specific Module（DSM；デバイス固有モジュール）をMicrosoft Multipath I/O（MPIO；マルチパスI/O）オプションとして使用する必要があります。
+
+は、 `+hostnqn+`Windows環境でFC / NVMeを使用するBroadcomアダプタの各ホストバスアダプタ（HBA）ポートに関連付けられています。は、 `+hostnqn+`次の例のようにフォーマットされます。
 
 ....
 nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9765
@@ -66,8 +72,11 @@ nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9766
 ....
 
 
-=== Windows ホストで NVMe デバイスの MPIO を有効にします
+=== NVMeデバイスでMPIOを有効にする
 
+WindowsホストでNVMeの設定を完了するには、NVMeデバイスでMPIOを有効にする必要があります。
+
+.手順
 . をインストールします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Windows Host Utility Kit 7.1"] を使用して、FCとNVMeの両方に共通のドライバパラメータを設定します。
 . MPIO のプロパティを開きます。
 . [* マルチパスの検出 * ] タブで、 NVMe 用にリストされたデバイス ID を追加します。
@@ -75,8 +84,8 @@ nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9766
 MPIO は NVMe デバイスを認識し、 NVMe デバイスはディスク管理の下に表示されます。
 
 . 「 * ディスクの管理」を開き、「 * ディスクのプロパティ * 」に移動します。
-. [*MPIO*] タブで、 [*Details*] をクリックします。
-. 次の MSDSM 設定を設定します。
+. [MPIO]*タブで、*[詳細]*を選択します。
+. 次のMicrosoft DSM設定を行います。
 +
 ** PathVerififiedPeriod ： * 10 *
 ** PathVerifyEnabled ： * Enable *
@@ -95,26 +104,25 @@ HKLM\SYSTEM\CurrentControlSet\Services\mpio\Parameters\PathRecoveryInterval DWOR
 HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryInterval  DWORD-> 1
 ----
 . ホストをリブートします。
-+
-これで、 Windows ホストで NVMe の設定が完了しました。
-
 
 
 
 
 == NVMe/FC を検証
 
-. ポートタイプが FC + NVMe であることを確認します。
+NVMeサブシステムが検出され、ONTAPネームスペースがNVMe-oFの設定に対応した正しいことを確認してください。
+
+.手順
+. [Port Type]が次のとおりであることを確認し `+FC+NVMe+`ます。
 +
-NVMe が有効になったので ' 次のように '+ Port Type+' が +FC+NVMe+' として表示されます
+`listhba`
 
 +
-[listing]
+.例を示します
+[%collapsible]
+====
+[listing, subs="+quotes"]
 ----
-PS C:\Program Files\Emulex\Util\OCManager> .\hbacmd listhba
-
-Manageable HBA List
-
 Port WWN       : 10:00:00:10:9b:1b:97:65
 Node WWN       : 20:00:00:10:9b:1b:97:65
 Fabric Name    : 10:00:c4:f5:7c:a5:32:e0
@@ -126,7 +134,7 @@ Port Number    : 0
 Mode           : Initiator
 PCI Bus Number : 94
 PCI Function   : 0
-Port Type      : FC+NVMe
+*Port Type*      : *FC+NVMe*
 Model          : LPe32002-M2
 
 Port WWN       : 10:00:00:10:9b:1b:97:66
@@ -143,17 +151,16 @@ PCI Function   : 1
 Port Type      : FC+NVMe
 Model          : LPe32002-M2
 ----
-. NVMe/FC サブシステムが検出されたことを確認してください。
+====
+. NVMe/FCサブシステムが検出されたことを確認します。
 +
-「 +nvme-list+` 」コマンドは、 NVMe/FC によって検出されたサブシステムを一覧表示します。
-
+** `+nvme-list+`
 +
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
-PS C:\Program Files\Emulex\Util\OCManager> .\hbacmd nvme-list 10:00:00:10:9b:1b:97:65
-
-Discovered NVMe Subsystems for 10:00:00:10:9b:1b:97:65
-
 NVMe Qualified Name     :  nqn.1992-08.com.netapp:sn.a3b74c32db2911eab229d039ea141105:subsystem.win_nvme_interop-57-159
 Port WWN                :  20:09:d0:39:ea:14:11:04
 Node WWN                :  20:05:d0:39:ea:14:11:04
@@ -175,13 +182,14 @@ Total Capacity          :  Not Available
 Unallocated Capacity    :  Not Available
 Note: At present Namespace Management is not supported by NetApp Arrays.
 ----
+====
+** `nvme-list`
 +
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
-PS C:\Program Files\Emulex\Util\OCManager> .\hbacmd nvme-list 10:00:00:10:9b:1b:97:66
-
-Discovered NVMe Subsystems for 10:00:00:10:9b:1b:97:66
-
 NVMe Qualified Name     :  nqn.1992-08.com.netapp:sn.a3b74c32db2911eab229d039ea141105:subsystem.win_nvme_interop-57-159
 Port WWN                :  20:07:d0:39:ea:14:11:04
 Node WWN                :  20:05:d0:39:ea:14:11:04
@@ -204,17 +212,19 @@ Unallocated Capacity    :  Not Available
 
 Note: At present Namespace Management is not supported by NetApp Arrays.
 ----
-. ネームスペースが作成されていることを確認します。
+====
+
+
+. ネームスペースが作成されたことを確認します。
 +
-「 +nvme-list-ns+` 」コマンドは、ホストに接続されているネームスペースを一覧表示する、指定された NVMe ターゲットのネームスペースを一覧表示します。
+`+nvme-list-ns+`
 
 +
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
-PS C:\Program Files\Emulex\Util\OCManager> .\HbaCmd.exe nvme-list-ns 10:00:00:10:9b:1b:97:66 20:08:d0:39:ea:14:11:04 nq
-.1992-08.com.netapp:sn.a3b74c32db2911eab229d039ea141105:subsystem.win_nvme_interop-57-159 0
-
-
 Active Namespaces (attached to controller 0x0141):
 
                                        SCSI           SCSI           SCSI
@@ -230,4 +240,5 @@ Active Namespaces (attached to controller 0x0141):
 0x00000008   \\.\PHYSICALDRIVE16        0               1              7
 
 ----
+====
 

@@ -67,7 +67,7 @@ Host Utilities をインストールする前に、 Host Utilities のバージ�
 . で、該当するホストに必要な修正プログラムを確認します link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["SANホストのWindowsに関するドキュメント"]。
 +
 
-NOTE: 。 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["ONTAP で2022にWindowsサーバを使用する"] ドキュメントでは、 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Windowsホットフィックスのインストール"] Windowsサーバ2022の場合：以前のバージョンのWindowsサーバに関連する修正プログラムの情報については、ホスト構成カテゴリのWindowsドキュメントを参照してください。
+NOTE: このドキュメントでlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["ONTAPでWindows Server 2022を使用"]は、for Windows Server 2022の手順について説明しlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Windowsホットフィックスのインストール"]ます。以前のバージョンのWindowsサーバに関連する修正プログラムの情報については、ホスト構成カテゴリのWindowsドキュメントを参照してください。
 
 . iSCSI または FCP ライセンスを追加し、ターゲットサービスを開始します。
 +

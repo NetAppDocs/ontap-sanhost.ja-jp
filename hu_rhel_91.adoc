@@ -35,7 +35,7 @@ NetAppでは、Linux Host Utilitiesのインストールを強く推奨してい
 
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
 
 
 
@@ -74,7 +74,7 @@ SAN ブートを使用する場合は、構成でサポートされている必�
 . 複数のパスが使用可能であることを確認します。
 +
 
-NOTE: ホストオペレーティングシステムが起動し、パスで実行されると、複数のパスが使用可能になります。
+NOTE: ホストOSが起動してパスで実行されると、複数のパスが使用可能になります。
 
 . SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
 +
@@ -121,7 +121,7 @@ NOTE: 1つのLUNに必要なパスは4つまでです。パスが4つ以上あ�
 
 === ASAイカイノコウセイ
 
-ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度が高いパスはアクティブ/最適化されます。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
 
 .例
 次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。

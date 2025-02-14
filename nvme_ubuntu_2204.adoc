@@ -4,7 +4,7 @@ permalink: nvme_ubuntu_2204.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Ubuntu 22.04 with ONTAP用のNVMe-oFホストの設定方法 
 ---
-= Ubuntu 22.04（ONTAP）向けのNVMe-oFホストの設定
+= Ubuntu 24.04（ONTAP）向けのNVMe-oFホストの設定
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

@@ -403,7 +403,7 @@ NOTE: Oracle Linux 9.4以降では、NVMe/TCPのデフォルト設定が `ctrl_l
 
 == NVMe-oF を検証します
 
-ONTAP LUNの正しい処理をサポートするには、カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対応していることを確認します。
+カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
 
 .手順
 . Oracle Linix 9.4ホストで次のNVMe/FC設定を確認します。

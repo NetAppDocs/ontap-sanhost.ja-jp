@@ -2,6 +2,9 @@
 :allow-uri-read: 
 
 
+WindowsホストでNVMeの設定を完了するには、NVMeデバイスでMPIOを有効にする必要があります。
+
+.手順
 . をインストールします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Windows Host Utility Kit 7.1"] を使用して、FCとNVMeの両方に共通のドライバパラメータを設定します。
 . MPIO のプロパティを開きます。
 . [* マルチパスの検出 * ] タブで、 NVMe 用にリストされたデバイス ID を追加します。
@@ -9,8 +12,8 @@
 MPIO は NVMe デバイスを認識し、 NVMe デバイスはディスク管理の下に表示されます。
 
 . 「 * ディスクの管理」を開き、「 * ディスクのプロパティ * 」に移動します。
-. [*MPIO*] タブで、 [*Details*] をクリックします。
-. 次の MSDSM 設定を設定します。
+. [MPIO]*タブで、*[詳細]*を選択します。
+. 次のMicrosoft DSM設定を行います。
 +
 ** PathVerififiedPeriod ： * 10 *
 ** PathVerifyEnabled ： * Enable *
@@ -29,7 +32,4 @@ HKLM\SYSTEM\CurrentControlSet\Services\mpio\Parameters\PathRecoveryInterval DWOR
 HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryInterval  DWORD-> 1
 ----
 . ホストをリブートします。
-+
-これで、 Windows ホストで NVMe の設定が完了しました。
-
 

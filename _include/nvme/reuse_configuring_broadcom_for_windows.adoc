@@ -2,7 +2,9 @@
 :allow-uri-read: 
 
 
-Windows 環境の FC/NVMe 用 Broadcom アダプタでは '+hostnqn+' が各 HBA ポートに関連付けられます「 + hostnqn+' 」は次のようにフォーマットされます。
+Broadcomイニシエータは、同じ32G FCアダプタポートでNVMe/FCとFCPの両方のトラフィックに対応できます。FCPおよびFC / NVMeの場合は、Microsft Device-Specific Module（DSM；デバイス固有モジュール）をMicrosoft Multipath I/O（MPIO；マルチパスI/O）オプションとして使用する必要があります。
+
+は、 `+hostnqn+`Windows環境でFC / NVMeを使用するBroadcomアダプタの各ホストバスアダプタ（HBA）ポートに関連付けられています。は、 `+hostnqn+`次の例のようにフォーマットされます。
 
 ....
 nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9765

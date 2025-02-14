@@ -37,7 +37,7 @@ Linux Host Utilitiesが現在インストールされている場合は、最新
 
 
 
-NOTE: このドキュメントの設定を使用して、に接続するクラウドクライアントを設定できます link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] および link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]。
+NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
 
 
 
@@ -76,7 +76,7 @@ SAN ブートを使用する場合は、構成でサポートされている必�
 . 複数のパスが使用可能であることを確認します。
 +
 
-NOTE: ホストオペレーティングシステムが起動し、パスで実行されると、複数のパスが使用可能になります。
+NOTE: ホストOSが起動してパスで実行されると、複数のパスが使用可能になります。
 
 . SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
 +
@@ -106,7 +106,7 @@ kernel /vmlinuz-3.8.13-68.1.2.el6uek.x86_64 ro root=/dev/mapper/vg_ibmx3550m4210
 
 
 .Oracle Linux 7.1 UEK R4の構成
-Oracle Linux 7.1 UEK R4 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.1 は、 ONTAP LUN を認識して適切に管理するために必要な設定をすべて備えています。 `multipath -ll`コマンドを使用して、ONTAP LUNの設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度が高いパスはアクティブ/最適化されます。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+Oracle Linux 7.1 UEK R4 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.1 は、 ONTAP LUN を認識して適切に管理するために必要な設定をすべて備えています。 `multipath -ll`コマンドを使用して、ONTAP LUNの設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
 
 .例
 次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
