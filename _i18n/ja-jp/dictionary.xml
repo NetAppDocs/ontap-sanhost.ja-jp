@@ -69,7 +69,6 @@
   <block id="e7565a20fc615772fc73eed9c1b34d4a" category="inline-link-macro">既知の問題</block>
   <block id="5dd03e8d039863e563e049be198c3fd3" category="section-title">リリースノート</block>
   <block id="f25da2d4ec4aacff4750d97e83acec21" category="section-title">ASM ミラーリング</block>
-  <block id="446548f2b1301893641e29657fc7fe53" category="inline-link-macro">ONTAP を基盤にした Oracle データベース</block>
   <block id="c454d997c91275b70f2f0433fad3fe36" category="list-text">ダウンロードを格納しているディレクトリに移動します。</block>
   <block id="88a1748445927988a69d31c53331a565" category="list-text">ファイルを展開します。</block>
   <block id="f6e9198a006ec354ae70027fd194c6a2" category="paragraph">「 gunzip NetApp_solaris_host_utilities_6_2N20170913_0304_sparc.tar.gz</block>
@@ -786,8 +785,6 @@
   <block id="c54b2333e9300746b11b3bf55a67e01e" category="list-text">必要なすべてのイニシエータが、目的の SVM のターゲット LIF にログインしていることを確認します。</block>
   <block id="5bb6886747089341a129f8d3d74d5308" category="admonition">VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツールを導入する必要があります。VASA Provider ではすべての igroup 設定が管理されるため、 VVOL 環境の igroup を作成したり管理したりする必要はありません。</block>
   <block id="a8958e0b22ed1917f6e4c0c1744d66a7" category="paragraph">現時点では、 VVOL の設定をデフォルトから変更することは推奨されません。</block>
-  <block id="3dffa984dadf9ff0006ee9cebd3b04b9" category="inline-link-macro">TR-4597</block>
-  <block id="7bc192063f45f04afc8d24a8ef003835" category="inline-link-macro">TR-4400</block>
   <block id="2fc5bc49d904cb53f5585cd77321f50e" category="section-title">ATS ロック</block>
   <block id="4218c50587ec231bafd431433feea5e0" category="paragraph">VAAI 対応のストレージやアップグレードされた VMFS5 には ATS ロックが必須 * であり、 ONTAP LUN との適切な相互運用性と最適な VMFS 共有ストレージ I/O パフォーマンスを実現するために必要です。ATS ロックの有効化の詳細については、 VMware のドキュメントを参照してください。</block>
   <block id="f4f70727dc34561dfde1a3c529b6205c" category="cell">設定</block>
@@ -821,7 +818,6 @@
   <block id="32014634f5e91fea92881a76289729e4" category="paragraph">次のコマンドを使用して、 QFullSampleSize を確認します</block>
   <block id="bcf5b4c5647c7c3861431c638d411876" category="paragraph">*esxcli system settings advanced list --option/Disk/QFullSampleSize`*</block>
   <block id="784c795c066fdf3c4713aae58af639ff" category="paragraph">既知の問題はありません。</block>
-  <block id="c2e11c6f1a87d8cf2bf465e9c2562bdb" category="inline-link-macro">TR-4597 ：『 VMware vSphere with ONTAP 』</block>
   <block id="52f50d0f0ab285059648c7da67b4b07f" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
   <block id="51a78203e5d6aa30e5bcafd469a2d2be" category="summary">SUSE Linux Enterprise Server 12 SP5 と ONTAP の使用方法について説明します</block>
   <block id="3622b9af63906c6b9ad79d33b1f46e2e" category="paragraph">SUSE Linux Enterprise Server 12 SP5 の場合、 /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。SUSE Linux Enterprise Server 12 SP5 は、 ONTAP LUN を認識して適切に管理するために必要なすべての設定でコンパイルされます。</block>
@@ -1522,7 +1518,6 @@
   <block id="8f4e34dd626d27db6da17b83e4d7f329" category="cell">Solaris 11.x 'cfgadm -c configure'でエンドツーエンドのEmulex構成でI/Oエラーが発生する</block>
   <block id="a387e31363493fb3c0fbdcc0d7458c52" category="list-text">ファイルを解凍します。</block>
   <block id="8fe0dc9943c3dbce8070a7613545cb91" category="paragraph">次の例は 'SPARC システムのファイルを解凍しますx86-64プラットフォームの場合は、を使用します<block ref="2dea9af09f7e80915b8298deb9ca9b8a" prefix=" " category="inline-code"></block> パッケージ。</block>
-  <block id="ec1f030f0caddb932644a46761f74630" category="list-text"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block></block>
   <block id="e0ace13bee28a678ec04ad1b076b4b00" category="admonition">VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツールを導入する必要があります。すべてのigroup設定はVASA Providerによって管理されるため、VVOL環境でigroupを作成または管理する必要はありません。</block>
   <block id="8b09e18eadcf22c450f1d7d911321716" category="paragraph">インストールを完了するには、を使用して環境のホストパラメータ（この場合はMPxIO）を設定する必要があります<block ref="3062dc928daa4d85f6e34b6dea110a00" prefix=" " category="inline-code"></block> コマンドを実行します</block>
   <block id="a59067c75792ec364887962f5388c9af" category="list-text">x86およびSPARCシステムのファイバチャネルおよびSCSIドライバの設定を変更します</block>
@@ -1560,7 +1555,6 @@
   <block id="5a3b86e99232b3604afe4db20db45884" category="cell">vNVMeアダプタを使用するLinux VMで[All Paths Down（APD；すべてのパスが停止）]ウィンドウが長くなると、I/Oエラーが発生します</block>
   <block id="9c72461f3069d27216e1faab60848be8" category="paragraph">vSphere 8.x以降を実行していて、仮想NVMe（vNVME）アダプタを使用しているLinux VMでは、vNVMeの再試行処理がデフォルトで無効になっているため、I/Oエラーが発生します。オールパスダウン（APD）時や大量のI/O負荷時に古いカーネルを実行しているLinux VMでの停止を回避するために、VMwareでは、vNVMeの再試行処理を無効にするための調整可能な「VSCSIDisableNvmeRetry」を導入しました。</block>
   <block id="03d0e633810a3de10e61ce29a7d4abb0" category="cell">ホストファブリック内のネットワークの問題を確認して修正します。それでも問題が解決しない場合は、この問題 を修正するパッチにアップグレードしてください。</block>
-  <block id="dad160104969c39365dd2cd4c98dd300" category="inline-link-macro">TR-4400</block>
   <block id="ec28bcc44a923317b69c457e0afb81a2" category="summary">FC、FCoE、およびiSCSIの各プロトコルを使用するVMware vSphere 8.xリリース用のONTAP SANホスト設定を行うことができます。</block>
   <block id="826ec041a0aff526181c163b6a4e0c3d" category="section-title">ハイパーバイザーSANブート</block>
   <block id="f97e2682b008f063e93b88b3fd21dec5" category="paragraph">仮想ボリューム（VVOL）は、仮想マシン（VM）ディスク、そのSnapshot、および高速クローンに対応するVMwareオブジェクトタイプです。</block>
@@ -1569,7 +1563,6 @@
   <block id="46ec41b6e978af4bf2bcdae563d90ea4" category="list-text">ホスト接続に必要に応じて、ゾーニング、VLAN、またはその両方を設定します。</block>
   <block id="3fc902961119186032f704ba3435c6b2" category="list-text">必要なすべてのイニシエータが目的のSVMのターゲットLIFにログインしていることを確認します。</block>
   <block id="db234a15624d05512170fa7a780b7283" category="admonition">VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツールを導入する必要があります。すべてのigroup設定はVASA Providerで管理されるため、VVOL環境でigroupを作成または管理する必要はありません。</block>
-  <block id="6961083e089f23fe2e08fee4e11ce67d" category="paragraph">VVOLのプロビジョニングと管理の詳細については、ONTAP tools for VMware vSphereのドキュメントを参照してください。 <block ref="52e81e11040c41825151f9c7710055f2" category="inline-link-macro-rx"></block>および <block ref="bcecf0e9ae9f2444b66065a431138ac6" category="inline-link-macro-rx"></block>。</block>
   <block id="85c20d8ed50da2b685dee6048290bc6b" category="section-title">ATSロック</block>
   <block id="2a25d8db6ac1adf1bf990599279ec725" category="admonition">-- 有効にします<block ref="e855ec75b8d039b41e36e5b06323d66b" prefix=" " category="inline-code"></block> のVMware vSphereにマッピングされたすべてのLUNに対して設定します<block ref="c92fdf55401abf777b4eb053ea6c606b" prefix=" " category="inline-code"></block> 仕事のために。詳細については、ONTAP のドキュメントを参照してください。</block>
   <block id="fc762f7b8978e7422da00476297460a4" category="paragraph">推奨されるゲスト OS の調整を使用して、仮想マシンを手動で設定できます。アップデートを調整したら、アップデートを有効にするためにゲストを再起動する必要があります。</block>
@@ -1657,7 +1650,6 @@
   <block id="e31c4b8d2ef22d8837e50793ada5f2e9" category="cell">AIXオペレーティングシステムでは、NVMe/FCにデフォルトで20秒のオールパスダウン（APD）タイムアウト値が使用されます。  ただし、ONTAP MetroClusterの自動計画外スイッチオーバー（AUSO）とTiebreakerで開始されるスイッチオーバーのワークフローには、APDのタイムアウト時間よりも少し時間がかかり、I/Oエラーが発生することがあります。</block>
   <block id="9e10b0a5aea11686043890a4e7f7d67d" category="list-text">複数のパスが使用可能であることを確認します。</block>
   <block id="ddd1090ee13f345d376753ed7188e15e" category="section-title">オールSANアレイ構成</block>
-  <block id="8f9d6e3424d24a4eceeb55656ad594c9" category="paragraph">Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP 上のほとんどの ASM 構成では、外部冗長性が使用されます。つまり、データ保護は外部アレイによって提供され、 ASM はデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えた ASM を使用して、通常は異なるサイト間で双方向ミラーリングを提供しています。を参照してください <block ref="85b4e48fbc653b43bc1d23927e9a43d3" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="3b8031b77b02d24160100543956f1809" category="list-text">ソフトウェアパッケージをインストールします。</block>
   <block id="6661a67145b2acf190d629ce621384e0" category="summary">ONTAPでOracle Linux 8.7を使用する方法について説明します</block>
   <block id="15d47787709114478b06814b72bcf21a" category="paragraph">このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットは、を提供します<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> ユーティリティ。LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立ちます。。<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。</block>
@@ -2496,13 +2488,7 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="45e7643ebc2b41741a8515e9d1730a76" category="cell">NVMe over Fabrics（NVMe-oF）ホストでは、「nvme discover -p」コマンドを使用して、Persistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。  ただし、NVMe-oFホストでRed Hat Enterprise Linux（RHEL）8.10を実行している場合は、「nvme discover -p」を実行するたびに重複するPDCが作成されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。</block>
   <block id="23c3f6b1dc0958b81d21563a91eecfa6" category="cell"><block ref="23c3f6b1dc0958b81d21563a91eecfa6" category="inline-link-macro-rx"></block></block>
   <block id="e59f05c9149caf590d63da27c24797cb" category="inline-link-macro">NetApp®SnapMirror Active SyncによるVMware vSphere 6.xおよび7.xのサポート</block>
-  <block id="6fc38196f3941bcd7083730d812df39a" category="paragraph"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block>
-<block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block>
-<block ref="d28f7a65afd9b0a0129dadbafa84555d" category="inline-link-macro-rx"></block></block>
   <block id="2a41c03d949869222b758867aff845ff" category="inline-link-macro">NetApp SnapMirror Active SyncによるVMware vSphere 6.xおよび7.xのサポート</block>
-  <block id="c8dc0bfd6733fa8c798fed363e1469e3" category="paragraph"><block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block>
-<block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block>
-<block ref="5f61a87054f37a4d758972ec77cfdf5e" category="inline-link-macro-rx"></block></block>
   <block id="33bd005b46fadc3ac5ff4dc797b52e07" category="list-text">MetroCluster構成を使用している場合はNetApp、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントをサポートするために、AIX NVMe/FCのデフォルトAPD（All Path Down）時間を変更することを推奨します。追加情報およびデフォルト設定の推奨される変更については、『NetApp Bugs Online - <block ref="31191f9686b6d08dd8653718c76edbf6" category="inline-link-macro-rx"></block>。</block>
   <block id="4d580b4b5071142b4be038164aad8343" category="cell"><block ref="4d580b4b5071142b4be038164aad8343" category="inline-link-macro-rx"></block></block>
   <block id="0122bdec62d25017bba3ae0743d2526e" category="cell"><block ref="0122bdec62d25017bba3ae0743d2526e" category="inline-link-macro-rx"></block></block>
@@ -3463,11 +3449,9 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="25b99d4336de9de5432a67adf4e9a119" category="paragraph">vCenter UIを使用してVVOLデータストアを作成すると、そのデータストアのバックアップストレージとしてFlexVolを作成できるようになります。VVOLデータストア内のVVOLには、ESXiホストからプロトコルエンドポイント（PE）を使用してアクセスされます。SAN環境では、PEとして使用するデータストア内のFlexVol volumeボリュームごとに4MBのLUNが1つ作成されます。SAN PE は管理論理ユニット（ ALU ）で、 VVOL は SLU （関連論理ユニット）です。</block>
   <block id="9fd13df839c532fabbd320c7d540648d" category="paragraph">現時点では、NetAppではデフォルトのVVOL設定を変更することは推奨されていません。</block>
   <block id="7a7c9bf21b4ec4b59bb99979083cb87b" category="paragraph">vSphereおよびONTAPの特定のバージョンに対応したONTAP toolsまたは従来のVASA Providerについては、を参照してください<block ref="d4eba3849609aea965d9c09098fd43df" category="inline-link-rx"></block>。</block>
-  <block id="3b136cab265e3022a4e349df72f5c8ec" category="paragraph">VVOLのプロビジョニングと管理の詳細については、ONTAP Tools for VMware vSphereのドキュメント、<block ref="fc9815e7b1405959c49ad47e9a23e3a5" category="inline-link-rx"></block>および<block ref="a74613d919ef64732e37564f6282a452" category="inline-link-macro-rx"></block></block>
   <block id="4cec613c4b9f55cfdc3102cabccae03a" category="section-title">ディスクIOPSの設定を検証する</block>
   <block id="f85caa21956b6307f6eb59cdda24b393" category="paragraph">ONTAPストレージの場合、デフォルトでは「VMW_SATP_ALUA」プラグインが使用され、パス選択ポリシー（PSP）として「VMW_PSP_RR」が使用されます。PSPを確認するには、次のコマンドを実行します。</block>
   <block id="f136180ccf441bafce90cc66945e28d5" category="paragraph">vCenter UIを使用してVVOLデータストアを作成すると、そのデータストアのバックアップストレージとしてFlexVolを作成できるようになります。VVOLデータストア内のVVOLには、ESXiホストからプロトコルエンドポイント（PE）を使用してアクセスされます。SAN 環境では、 PE として使用するために、データストア内の各 FlexVol に 4MB の LUN が 1 つ作成されます。SAN PEは管理論理ユニット（ALU）です。VVOLは子会社の論理ユニット（SLU）です。</block>
-  <block id="0f7f8c870f3e2dae376d0af196f8e723" category="paragraph">VVOLのプロビジョニングと管理の詳細については、ONTAP Tools for VMware vSphereのドキュメント、およびを参照して<block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block><block ref="bcecf0e9ae9f2444b66065a431138ac6" category="inline-link-macro-rx"></block>ください。</block>
   <block id="f8396d6deec4872026f8255ab97b8282" category="paragraph">ESXiには、Native Multipathing Plug-in（NMP）と呼ばれる拡張可能なマルチパスモジュールが用意されており、サブプラグイン、ストレージアレイタイププラグイン（SATP）、パス選択プラグイン（PSP）を管理します。デフォルトでは、これらのSATPルールはESXiで使用できます。</block>
   <block id="d44b14edb7148595e8fd7c39e18a1d82" category="paragraph">vCenter UIを使用してVVOLデータストアを作成すると、そのデータストアのバックアップストレージとしてFlexVolを作成できるようになります。VVOLデータストア内のVVOLには、ESXiホストがプロトコルエンドポイント（PE）を使用してアクセスします。SAN 環境では、 PE として使用するために、データストア内の各 FlexVol に 4MB の LUN が 1 つ作成されます。SAN PEは管理論理ユニット（ALU）です。VVOLは子会社の論理ユニット（SLU）です。</block>
   <block id="18daf84ed810f1c72da54c0484f9c353" category="section-title">Windows Host Utilitiesのインストール</block>
@@ -3728,4 +3712,14 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="d26e08171a5072e33fe155b7ad5a5659" category="doc">SANホスト構成の詳細</block>
   <block id="312351bff07989769097660a56395065" category="sidebar">2025</block>
   <block id="439a17362d8592514caf19c7e8ec2147" category="list-text">WindowsホストにEmulex HBA Managerユーティリティをインストールします。</block>
+  <block id="9eaca569c6f5ca3388f5613da3aa008c" category="inline-link-macro">ONTAP上のOracleデータベース</block>
+  <block id="b47828b7640778a02ca617e91b6361c4" category="paragraph">Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してください<block ref="188684da2e037979155870e39852328b" category="inline-link-macro-rx"></block>。</block>
+  <block id="a6389705a0010980a83767268763aa53" category="inline-link-macro">ONTAP toolsを使用した仮想ボリューム（VVol）10</block>
+  <block id="09b616c445ab7efa8240062532e526e4" category="inline-link">ONTAP を使用した VMware vSphere</block>
+  <block id="e0628d576935b022b30f705de1a3ada6" category="paragraph">VVOLのプロビジョニングと管理の詳細については、ONTAP Tools for VMware vSphereのドキュメント、およびを参照して<block ref="c45840700e4ab6d55371aa3a3251b306" category="inline-link-rx"></block><block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>ください。</block>
+  <block id="11b7981a4bc487d4291cc9a0614db625" category="list-text"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block></block>
+  <block id="b4b4e6e07c554b9d2d403488c8f67c89" category="paragraph">VVOLのプロビジョニングと管理の詳細については、ONTAP Tools for VMware vSphereのドキュメント、およびを参照して<block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block><block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>ください。</block>
+  <block id="fa9300ded0ba1a72e341c019ffef6d03" category="paragraph">VVOLのプロビジョニングと管理の詳細については、ONTAP tools for VMware vSphereのドキュメント、、<block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block>およびを参照して<block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>ください。</block>
+  <block id="18833e14b5b5c7c59e24b7d84a7675c8" category="paragraph"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block> <block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block> <block ref="d28f7a65afd9b0a0129dadbafa84555d" category="inline-link-macro-rx"></block></block>
+  <block id="75bf2e375bd6a6c261100e60951c4331" category="paragraph"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block> <block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block> <block ref="5f61a87054f37a4d758972ec77cfdf5e" category="inline-link-macro-rx"></block></block>
 </blocks>

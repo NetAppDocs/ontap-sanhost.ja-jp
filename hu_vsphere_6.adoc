@@ -189,7 +189,7 @@ NOTE: VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツ�
 
 vSphereおよびONTAPの特定のバージョンに対応したONTAP toolsまたは従来のVASA Providerについては、を参照してください https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
 
-VVOLのプロビジョニングと管理の詳細については、ONTAP Tools for VMware vSphereのドキュメント、 https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597"^]およびlink:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^]
+VVOLのプロビジョニングと管理の詳細については、ONTAP Tools for VMware vSphereのドキュメント、およびを参照して https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html["ONTAP を使用した VMware vSphere"^]link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html["ONTAP toolsを使用した仮想ボリューム（VVol）10"^]ください。
 
 
 
@@ -317,7 +317,7 @@ ONTAPを使用したVMware vSphere 6.5および6.7リリースには、次の既
 | ESXi 6.5.x と ESXi 6.7.x | 1256473 | Emulex アダプタでのテスト中に PLOGI 問題が表示される |  
 |===
 .関連情報
-* link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：『 VMware vSphere with ONTAP 』"^]
+* link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html["ONTAP を使用した VMware vSphere"^]
 * link:https://kb.vmware.com/s/article/2031038["NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）"^]
 * link:https://kb.vmware.com/s/article/83370["NetApp ONTAPとNetApp SnapMirrorのアクティブな同期とVMware vSphere Metro Storage Cluster（vMSC）"^]
 

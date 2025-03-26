@@ -79,8 +79,6 @@ sidebar:
         url: "/hu_aix_71.html"
     - title: CentOS の場合
       entries:
-      - title: リリースノート
-        url: "/hu_centos_asm_release_notes.html"
       - title: CentOS 8
         entries:
         - title: '8.5'
@@ -154,8 +152,6 @@ sidebar:
     - title: Oracle Linux の場合
       pdf-filename: OL-FCP
       entries:
-      - title: リリースノート
-        url: "/hu_ol_asm_release_notes.html"
       - title: OL 9
         entries:
         - title: '9.4'
@@ -235,8 +231,6 @@ sidebar:
           url: "/hu_ol_64.html"
     - title: RHEL
       entries:
-      - title: リリースノート
-        url: "/hu_rhel_asm_release_notes.html"
       - title: RHEL 9
         pdf-filename: RHEL-9-FCPのいずれかです
         entries:
@@ -325,8 +319,6 @@ sidebar:
         url: "/hu_solaris_113.html"
     - title: SUSE Linux Enterprise Server
       entries:
-      - title: リリースノート
-        url: "/hu_sles_asm_release_notes.html"
       - title: SUSE Linux Enterprise Server 15
         pdf-filename: SLES-15-FCPの場合
         entries:
