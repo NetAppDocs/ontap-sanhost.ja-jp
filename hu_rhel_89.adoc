@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_rhel_89.html 
 keywords: host utilities, red hat, rhel, linux, 8.9, netapp, ontap, rhel 
-summary: Red Hat Enterprise Linux 8.9とONTAPの併用方法について説明します。 
+summary: RHEL 8.9ホストにLinux Host Utilitiesをインストールして、ONTAP LUNでFCPおよびiSCSIプロトコルの処理を管理します。 
 ---
-= Red Hat Enterprise Linux 8.9とONTAPの併用
+= ONTAPストレージを使用するFCPおよびiSCSI用RHEL 8.9の設定
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,187 +16,78 @@ summary: Red Hat Enterprise Linux 8.9とONTAPの併用方法について説明�
 
 
 [role="lead"]
-ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux（RHEL）8.9を設定できます。
+Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Red Hat Enterprise Linux（RHEL）8.9ホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでのFCPプロトコルおよびiSCSIプロトコルの処理を管理することができます。
+
+
+NOTE: ONTAP LUNはKVMハイパーバイザーに自動的にマッピングされるため、Kernel-Based Virtual Machine（KVM）を設定する必要はありません。
 
 
 
-== Linux Host Utilitiesのインストール
+== 手順1：必要に応じてSANブートを有効にします。
 
-NetApp Linux Host Utilitiesソフトウェアパッケージは、から64-bit.rpmファイルとしてダウンロードできますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
-
-NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
-
-.手順
-. からホストに64ビットLinux Host Utilitiesソフトウェアパッケージをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
-. ソフトウェアパッケージをインストールします。
-+
-「 rpm -ivh 」 NetApp_linux_unified-connect host_utilities-7-1.x86_64 」を参照してください
-
-
-
-
-
-== SAN ツールキット
-
-このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットは、を提供します `sanlun` ユーティリティ。LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立ちます。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
-
-次の例では 'lun lun lun show コマンドは LUN 情報を返します
-
-[listing]
-----
-# sanlun lun show all
-----
-.出力例：
-[listing]
-----
-controller(7mode/E-Series)/            device     host               lun
-vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
----------------------------------------------------------------------------------------------
-vs_161_32gLpe          /vol/vol19/lun    /dev/sdcd  host15     FCP        10g     cDOT
-vs_161_32gLpe          /vol/vol20/lun    /dev/sdce  host15     FCP        10g     cDOT
-vs_161_32gLpe          /vol/vol18/lun    /dev/sdcc  host15     FCP        10g     cDOT
-vs_161_32gLpe          /vol/vol17/lun    /dev/sdcb  host15     FCP        10g     cDOT
-
-----
-
-
-== SAN ブート中です
+SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
 
 .開始する前に
-SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
+を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
 
 .手順
-. SAN ブート LUN をホストにマッピングします。
-. 複数のパスが使用可能であることを確認します。
+. SANブートLUNを作成してホストにマッピングします。
 +
-
-NOTE: ホストOSが起動してパスで実行されると、複数のパスが使用可能になります。
+を参照してください https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANストレージのプロビジョニング"^]
 
 . SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
 
-. ホストをリブートして、ブートが正常に完了したことを確認します。
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
 
 
 
 
-== マルチパス
+== 手順2：Linux Host Utilitiesをインストールする
 
-RHEL 8.9の場合、 `/etc/multipath.conf` ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 8.9は、ONTAP LUNを認識して適切に管理するために必要なすべての設定でコンパイルされています。
+NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
 
-「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。
-
-以降のセクションでは、ASAおよびASA以外のペルソナにマッピングされたLUNのマルチパス出力の例を示します。
+link:hu_luhu_71.html["Linux Host Utilities 7.1のインストール"]です。
 
 
-
-=== オールSANアレイ構成
-
-オールSANアレイ（ASA）構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
-
-.例
-次の例は、ONTAP LUNの正しい出力を示しています。
-
-[listing]
-----
-# multipath -ll
-3600a098038314778375d53694b536e53 dm-16 NETAPP, LUN C-Mode
-size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-`-+- policy='service-time 0' prio=50 status=active
-  |- 14:0:0:0   sda  8:0    active ready running
-  |- 15:0:8:0   sdcf 69:48  active ready running
-  |- 15:0:0:0   sdaq 66:160 active ready running
-  `- 14:0:9:0   sdv  65:80  active ready running
-----
-
-NOTE: 1つのLUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスの問題が発生する可能性があります。
+NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。
 
 
 
-=== ASAイカイノコウセイ
+== 手順3：ホストのマルチパス構成を確認する
 
-ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+RHEL 8.9でマルチパスを使用してONTAP LUNを管理できます。
 
-.例
-次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
-
-[listing]
-----
-# multipath -ll
-3600a098038314837352453694b542f4a dm-0 NETAPP,LUN C-Mode
-size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-|-+- policy='service-time 0' prio=50 status=active
-| |- 14:0:3:0 sdbk 67:224 active ready running
-| `- 15:0:2:0 sdbl 67:240 active ready running
-`-+- policy='service-time 0' prio=10 status=enabled
-  |- 14:0:0:0 sda  8:0    active ready running
-  `- 15:0:1:0 sdv  65:80  active ready running
-----
-
-NOTE: 1つのLUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスの問題が発生する可能性があります。
-
-
-
-== 推奨設定
-
-RHEL 8.9 OSはONTAP LUNを認識し、ASA構成と非ASA構成の両方について、すべての設定パラメータを自動的に正しく設定します。次の推奨設定を使用して、ホスト構成のパフォーマンスをさらに最適化できます。
-
- `multipath.conf`マルチパスデーモンを起動するには、ファイルが存在している必要があります。このファイルが存在しない場合は、コマンドを使用して空のゼロバイトファイルを作成できます `touch /etc/multipath.conf`。
-
- `multipath.conf`ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。
-
-[listing]
-----
-# systemctl enable multipathd
-# systemctl start multipathd
-----
-マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、デバイスをファイルに直接追加する必要はあり `multipath.conf`ません。不要なデバイスを除外するには、次の構文をファイルに追加し `multipath.conf`、<DevId>を除外するデバイスのWWID文字列に置き換えます。
-
-[listing]
-----
-blacklist {
-        wwid <DevId>
-        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-        devnode "^hd[a-z]"
-        devnode "^cciss.*"
-}
-----
-次の例では、デバイスのWWIDを特定し、そのデバイスをファイルに追加し `multipath.conf`ます。
+ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 
 .手順
-. WWIDを確認します。
+. ファイルが終了することを確認し `/etc/multipath.conf`ます。ファイルが存在しない場合は、空のゼロバイトファイルを作成します。
 +
-[listing]
+[source, cli]
 ----
-/lib/udev/scsi_id -gud /dev/sda
+touch /etc/multipath.conf
+----
+. ファイルの初回作成時には `multipath.conf`、マルチパスサービスを有効にして開始し、推奨設定をロードしなければならない場合があります。
++
+[source, cli]
+----
+systemctl enable multipathd
 ----
 +
-[listing]
+[source, cli]
 ----
-360030057024d0730239134810c0cb833
+systemctl start multipathd
 ----
+. ホストをブートするたびに、空のゼロバイトファイルによって `/etc/multipath.conf`、NetApp推奨のホストマルチパスパラメータがデフォルト設定として自動的にロードされます。オペレーティングシステムは、ONTAP LUNを正しく認識および管理するマルチパスパラメータでコンパイルされているため、ホスト用のファイルを変更する必要はありません `/etc/multipath.conf`。
 +
-`sda`は、ブラックリストに追加するローカルSCSIディスクです。
+次の表に、Linux OS標準でコンパイルされたONTAP LUNのマルチパスパラメータの設定を示します。
 
-. を追加します `WWID` ブラックリストのスタンザに `/etc/multipath.conf`：
 +
-[listing]
-----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
-----
-
-
-デフォルト設定を上書きする可能性のあるレガシー設定については、特にdefaultsセクションでファイルを常にチェックする必要があります `/etc/multipath.conf`。
-
-次の表に、 `multipathd`ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は `multipath.conf`、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定を無効にする場合は、影響を十分に理解してから、NetAppやOSベンダーに相談してください。
-
-[cols="2*"]
+.パラメータ設定の表示
+[%collapsible]
+====
+[cols="2"]
 |===
 | パラメータ | 設定 
 
@@ -240,7 +131,7 @@ blacklist {
 | Prio | ONTAP 
 
 
-| プロダクト | LUN. * 
+| プロダクト | LUN 
 
 
 | retain_attached _hw_handler | はい。 
@@ -254,39 +145,134 @@ blacklist {
 
 | ベンダー | ネットアップ 
 |===
-.例
-次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この場合は、を参照してください `multipath.conf` ファイルはの値を定義します `path_checker` および `no_path_retry` ONTAP LUNと互換性がありません。他のSANアレイがまだホストに接続されているためにこれらのパラメータを削除できない場合は、デバイススタンザを使用してONTAP LUN専用にこれらのパラメータを修正できます。
+====
+. ONTAP LUNのパラメータ設定とパスステータスを確認します。
++
+[source, cli]
+----
+multipath -ll
+----
++
+デフォルトのマルチパスパラメータでは、ASA、AFF、およびFASの構成がサポートされます。このような構成では、1つのONTAP LUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。
+
++
+次の出力例は、ASA、AFF、またはFAS構成のONTAP LUNについて、正しいパラメータ設定とパスステータスを示しています。
+
++
+[role="tabbed-block"]
+====
+.ASA構成
+--
+ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
 [listing]
 ----
+# multipath -ll
+3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode
+size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 14:0:0:0  sdc  8:32   active ready running
+  |- 17:0:0:0  sdas 66:192 active ready running
+  |- 14:0:3:0  sdar 66:176 active ready running
+  `- 17:0:3:0  sdch 69:80  active ready running
+----
+--
+.AFFまたはFASの設定
+--
+AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
+
+[listing]
+----
+# multipath -ll
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
+size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 16:0:3:0  sdcg 69:64  active ready running
+| `- 10:0:0:0  sdb  8:16   active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 10:0:1:0  sdc  8:32   active ready running
+  `- 16:0:2:0  sdcf 69:48  active ready running
+----
+--
+====
+
+
+
+
+== 手順4：必要に応じて、マルチパスからデバイスを除外する
+
+必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
+
+.手順
+. WWIDを確認します。
++
+[source, cli]
+----
+# /lib/udev/scsi_id -gud /dev/sda
+----
++
+sdaは、ブラックリストに追加するローカルSCSIディスクです。
+
++
+WWIDの例はです `360030057024d0730239134810c0cb833`。
+
+. 「blacklist」スタンザにWWIDを追加します。
++
+[listing]
+----
+blacklist {
+	     wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+
+
+
+
+== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
+
+ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
+
+ファイル、特にdefaultsセクションで、をオーバーライドする可能性のある設定を確認します `/etc/multipath.conf`<<multipath-parameter-settings,マルチパスパラメータノデフォルトセッテイ>>。
+
+
+CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないでください。これらの設定は、ホスト構成のパフォーマンスを最適化するために必要です。詳細については、NetAppサポート、OSベンダー、またはその両方にお問い合わせください。
+
+次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
+
+[listing, subs="+quotes"]
+----
 defaults {
-   path_checker      readsector0
-   no_path_retry     fail
+   path_checker      *readsector0*
+   no_path_retry     *fail*
 }
 
 devices {
    device {
-      vendor         "NETAPP  "
-      product         "LUN.*"
-      no_path_retry    queue
-      path_checker     tur
+      vendor          "NETAPP"
+      product         "LUN"
+      no_path_retry   *queue*
+      path_checker    *tur*
    }
 }
 ----
 
 
-== KVMの設定
+== 手順6：既知の問題を確認する
 
-LUNはハイパーバイザーにマッピングされるため、カーネルベースの仮想マシンの設定は必要ありません。
+既知の問題はありません。
 
 
 
-== ASM ミラーリング
+== 次の手順
 
+* link:hu_luhu_71_cmd.html["Linux Host Utilitiesツールの使用方法"]です。
+* ASMミラーリングについて説明します。
++
 Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
 
 
-
-== 既知の問題
-
-RHEL 8.9に関する既知の問題はありません。

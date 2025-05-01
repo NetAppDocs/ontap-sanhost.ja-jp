@@ -1,0 +1,151 @@
+= 
+:allow-uri-read: 
+
+
+ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
+
+.手順
+. ファイルが存在することを確認し `/etc/multipath.conf`ます。
++
+[source, cli]
+----
+ls /etc/multipath.conf
+----
++
+ファイルが存在しない場合は、空のゼロバイトファイルを作成します。
+
++
+[source, cli]
+----
+touch /etc/multipath.conf
+----
+. ファイルの初回作成時には `multipath.conf`、マルチパスサービスを有効にして開始し、推奨設定をロードしなければならない場合があります。
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. ホストをブートするたびに、空のゼロバイトファイルによって `/etc/multipath.conf`、NetApp推奨のホストマルチパスパラメータがデフォルト設定として自動的にロードされます。ホストオペレーティングシステムは、ONTAP LUNを正しく認識および管理するマルチパスパラメータでコンパイルされているため、ホスト用のファイルを変更する必要はありません `/etc/multipath.conf`。
++
+次の表に、Linux OSで標準でコンパイルされたONTAP LUNのマルチパスパラメータの設定を示します。
+
++
+.パラメータ設定の表示
+[%collapsible]
+====
+[cols="2"]
+|===
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | " 無限 " 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| パスの再試行なし | キュー 
+
+
+| path_checker です | " tur " 
+
+
+| path_grouping_policy | 「 group_by_prio 」 
+
+
+| path_selector | "service-time 0" 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN. * 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | " 均一 " 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
+|===
+====
+. ONTAP LUNのパラメータ設定とパスステータスを確認します。
++
+[source, cli]
+----
+multipath -ll
+----
++
+デフォルトのマルチパスパラメータでは、ASA、AFF、およびFASの構成がサポートされます。このような構成では、1つのONTAP LUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。
+
++
+次の出力例は、ASA、AFF、またはFAS構成のONTAP LUNについて、正しいパラメータ設定とパスステータスを示しています。
+
++
+[role="tabbed-block"]
+====
+.ASA構成
+--
+ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+
+[listing]
+----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 3:0:7:9    sdco 69:192  active ready running
+  |- 3:0:8:9    sddi 71:0    active ready running
+  |- 14:0:8:9   sdjq 65:320  active ready running
+  `- 14:0:7:9   sdiw 8:256   active ready running
+----
+--
+.AFFまたはFASの設定
+--
+AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
+
+[listing]
+----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 3:0:3:0    sdd  8:48    active ready running
+| |- 3:0:4:0    sdx  65:112  active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:2:0   sdfk 130:96  active ready running
+  `- 14:0:5:0   sdgz 132:240 active ready running
+----
+--
+====
+
