@@ -60,7 +60,7 @@ Host Utilitiesは、さまざまなWindowsホスト構成、プロトコル、�
 
 == ホストとストレージシステムの構成の確認
 
-Host Utilities をインストールする前に、 Host Utilities のバージョンがホストおよびストレージシステムの構成に対応していることを確認し、ソフトウェアが正しくインストールされるようにする必要があります。
+用のWindows Host Utilitiesをインストールする前に、ホストとストレージシステムの構成がサポートされていることを確認して<<supported-windows-versions-71,サポートされるWindowsのバージョン>>ください。
 
 .手順
 . でサポートされる構成を確認します http://mysupport.netapp.com/matrix["Interoperability Matrix Tool"^]。
