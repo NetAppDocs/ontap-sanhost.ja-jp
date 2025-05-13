@@ -271,28 +271,25 @@ tcp.vmnic2:34:80:0d:30:ca:e0-tcp.192.168.100.167:4420-uuid.f4f14337c3ad4a639edf0
 
 
 
-== スペース割り当てを有効にする
+== NVMeの割り当て解除
 
-スペースの割り当ては、ESXi 8.x以降でサポートされます。
+nvme deallocateコマンドは、ONTAP 9.16.1以降のESXi 8.0u2以降でサポートされます。
 
-スペース割り当てを有効にすると、ネームスペースのスペースが不足すると、ONTAPは書き込み処理に使用できる空きスペースがないことをホストに通知します。ネームスペースはオンラインのままで、読み取り処理は継続されます。追加の空きスペースが使用可能になると、書き込み処理が再開されます。スペース割り当てでは、ホストが処理（「」と呼ばれることもあります `TRIM`）を実行することもでき `UNMAP`ます。マッピング解除処理を使用すると、有効なデータがなくなったために不要になったデータブロックをホストが特定できます。その後、ストレージシステムはこれらのデータブロックの割り当てを解除して、スペースを他の場所で消費できるようにします。
-
-.開始する前に
-link:https://docs.netapp.com/us-en/ontap/san-admin/enable-space-allocation.html["ONTAPストレージシステムでスペース割り当てを有効にする"^]です。その後、ESXiホストで次の手順を実行する必要があります。
+NVMeネームスペースでは、割り当て解除のサポートは常に有効になります。また、割り当てを解除すると、ゲストOSはVMFSデータストアで「マッピング解除」（「トリム」と呼ばれることもあります）処理を実行できます。割り当て解除処理を使用すると、有効なデータがなくなったために不要になったデータブロックをホストが識別できます。その後、ストレージシステムはこれらのデータブロックを削除して、スペースを他の場所で消費できるようにします。
 
 .手順
-. ESXiホストで、DSMが無効になっていることを確認します。
+. ESXiホストで、DSMの割り当て解除とTP4040のサポートの設定を確認します。
 +
 `esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
 
 +
 想定される値は0です。
 
-. NVMe DSMを有効にします。
+. TP4040サポートによるDSM割り当て解除の設定を有効にします。
 +
 `esxcfg-advcfg -s 1 /Scsi/NvmeUseDsmTp4040`
 
-. DSMが有効になっていることを確認します。
+. TP4040サポートによるDSMの割り当て解除の設定が有効になっていることを確認します。
 +
 `esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
 
@@ -300,6 +297,8 @@ link:https://docs.netapp.com/us-en/ontap/san-admin/enable-space-allocation.html[
 想定される値は1です。
 
 
+
+VMware vSphereでのNVMeの割り当て解除の詳細については、を参照してください。 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/storage-provisioning-and-space-reclamation-in-vsphere/storage-space-reclamation-in-vsphere.html["vSphereでのストレージスペースの再生"^]
 
 
 
