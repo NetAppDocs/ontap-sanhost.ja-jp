@@ -1,6 +1,6 @@
 ---
 settings:
-  name: ONTAP SAN hosts and cloud clients
+  name: ONTAP SAN Host Utilities
   internal:
     pdf_enabled: true
   prod:
@@ -9,7 +9,7 @@ settings:
   langs: ja-jp,us-en,de-de,es-es,fr-fr,it-it,pt-br,ko-kr,zh-cn,zh-tw
 sidebar:
   entries:
-  - title: ONTAP SANホストとクラウドクライアントの設定
+  - title: SANホストとクラウドクライアントを設定
     url: "/index.html"
   - title: SANホスト構成の詳細
     url: "/overview.html"
