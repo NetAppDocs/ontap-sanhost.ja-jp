@@ -1,0 +1,12 @@
+= Transport Layer Securityの設定
+:allow-uri-read: 
+
+
+
+
+== Transport Layer Securityの設定
+
+Transport Layer Security（TLS）は、NVMe-oFホストとONTAPアレイの間のNVMe接続をエンドツーエンドでセキュアに暗号化します。.16.1以降では、CLIと設定済みの事前共有キー（PSK）を使用してONTAP 9 1.3を設定できます。
+
+.このタスクについて
+この手順は、ONTAP コントローラで手順を実行するように指定されている場合を除き、SUSE Linux Enterprise Server ホストで実行します。

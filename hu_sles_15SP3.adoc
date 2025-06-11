@@ -19,6 +19,9 @@ summary: SUSE Linux Enterprise Server 15 SP3にLinux Host Utilitiesをインス�
 Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。SUSE Linux Enterprise Server 15 SP3ホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用して、ONTAP LUNでのFCPおよびiSCSIプロトコルの処理を管理できます。
 
 
+NOTE: ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
+
+
 
 == 手順1：必要に応じてSANブートを有効にします。
 

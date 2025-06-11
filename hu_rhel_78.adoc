@@ -19,7 +19,7 @@ summary: Red Hat Enterprise Linux 7.8 と ONTAP の使用方法について説�
 Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Red Hat Enterprise Linux（RHEL）7.8ホストにLinux Host Utilitiesをインストールする場合、Host Utilitiesを使用して、ONTAP LUNでのFCPプロトコルおよびiSCSIプロトコルの処理を管理することができます。
 
 
-NOTE: ONTAP LUNはKVMハイパーバイザーに自動的にマッピングされるため、Kernel-Based Virtual Machine（KVM）を設定する必要はありません。
+NOTE: ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
 
 
 

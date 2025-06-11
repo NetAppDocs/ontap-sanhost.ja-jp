@@ -2498,7 +2498,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="fc471da28a10b288c7becc2d14173bdb" category="paragraph">マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、デバイスをファイルに直接追加する必要はあり<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>ません。不要なデバイスを除外するには、次の構文をファイルに追加し<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>、&lt;DevId&gt;を除外するデバイスのWWID文字列に置き換えます。</block>
   <block id="eaa95f8be0a818bc84d23c1b3fef5725" category="paragraph"><block ref="59b466fd93164953e56bdd1358dc0044" prefix="" category="inline-code"></block>は、ブラックリストに追加するローカルSCSIディスクです。</block>
   <block id="26bbc264025eb640d0a21b5280ca517a" category="paragraph">次の表に、<block ref="8732863da72605a20ed96b4eee87a5fb" prefix=" " category="inline-code"></block>ONTAP LUNの重要なパラメータと必要な値を示します。ホストが他のベンダーのLUNに接続されていて、これらのパラメータのいずれかが無視された場合は<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>、ONTAP LUNに特化して適用されるファイルの以降のスタンザで修正する必要があります。そうしないと、 ONTAP LUN が想定どおりに機能しない可能性があります。これらのデフォルト設定を無効にする場合は、影響を十分に理解してから、NetAppやOSベンダーに相談してください。</block>
-  <block id="7d3d6c9fc8d341eaa26d83545052db7b" category="paragraph">SUSE Linux Enterprise Server 15 SP6 with ONTAPリリースには既知の問題はありません。</block>
   <block id="ddd05bd427ff935c5fc7e7ee226415f1" category="summary">SUSE Linux Enterprise Server 15 SP6 with ONTAP用にNVMe/FCを設定する方法について説明します。</block>
   <block id="d147fb9f4a20a8d22dfe8c5247b12c27" category="doc">SUSE Linux Enterprise Server 15 SP6 with ONTAP向けのNVMe-oFホスト構成</block>
   <block id="dbb7e5b9df8e9f022cb88ee582377faf" category="paragraph">SUSE Linux Enterprise Server 15 SP6 with ONTAPのNVMe-oFホスト構成では、次のサポートが利用できます。</block>
@@ -2527,9 +2526,7 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="604dbd1b7d87647f33f14a4f924b3c93" category="section-title">NVMeサービスの確認</block>
   <block id="82df088f6ba140ed873ee24f8ff5c346" category="paragraph">SUSE Linux Enterprise Server 15 SP6以降では、<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>NVMe/FCパッケージに含まれるブートサービスと<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>ブートサービスが<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>システムブート時に自動的に有効になります。システムブートが完了したら、ブートサービスが有効になっていることを確認する必要があります。</block>
   <block id="5dc1adc63079845f3cac2caf1db0fa6a" category="list-text">が有効であることを確認し<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>ます。</block>
-  <block id="f17577127ab2e84c20f714db959353d3" category="paragraph"><block ref="cee298feeb3e213ee36300180a00bd01" prefix="" category="inline-code"></block></block>
   <block id="a5203704145a9efb5be031a61c0e47e6" category="list-text">が有効であることを確認し<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>ます。</block>
-  <block id="3c853373f44c095457102f92b570173c" category="paragraph"><block ref="69c22354a230572f55564f96ca4f0aeb" prefix="" category="inline-code"></block></block>
   <block id="73adc7de0b8ec5250832fc10c3810522" category="paragraph">NVMe/TCPには自動接続機能はありません。代わりに、NVMe/TCPまたは<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block>の処理を手動で実行することで、NVMe/TCPサブシステムとネームスペースを検出できます<block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block>。</block>
   <block id="6f6e90e999896f87c906fd2a45c1270c" category="admonition">SUSE Linux Enterprise Server 15 SP6以降では、NVMe/TCPタイムアウトのデフォルト設定が<block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block>オフになっています。つまり、再試行回数に制限はなく（無期限の再試行）、コマンドまたは<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション<block ref="269889131ee4793a82191b78a2eb60e3" prefix=" " category="inline-code"></block>）を使用する場合は、特定のタイムアウト期間<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>を手動で設定する必要はありません<block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block>。また、NVMe / TCPコントローラでは、パス障害が発生してもタイムアウトが発生せず、無期限に接続されたままになります。</block>
   <block id="54fa1b935227c60b90bdcd38d49344ef" category="paragraph">SUSE Linux Enterprise Server 15 SP6 with ONTAP構成でNVMe-oFを検証するには、次の手順を実行します。</block>
@@ -2546,7 +2543,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="0cc817fdf178d998506590bcd7f4435a" category="admonition">上記の例では、はに対応し、は<block ref="b4ccff4fcae86dd694df37690970d401" prefix=" " category="inline-code"></block>に対応<block ref="b564e1f3e83c3835c800589da9434401" prefix=" " category="inline-code"></block>し<block ref="7c5692629f37b2fc3b73d10ecb68180e" prefix=" " category="inline-code"></block><block ref="c74aa421e1eeec8a71897cfdbf55b4c4" prefix=" " category="inline-code"></block>ます。</block>
   <block id="cca9751debdb563a025b1255c382b607" category="section-title">Transport Layer Securityの設定</block>
   <block id="6ab36115f46bb64da1b6626f47c3d1a8" category="paragraph">Transport Layer Security（TLS）は、NVMe-oFホストとONTAPアレイの間のNVMe接続をエンドツーエンドでセキュアに暗号化します。.16.1以降では、CLIと設定済みの事前共有キー（PSK）を使用してONTAP 9 1.3を設定できます。</block>
-  <block id="9a8cd16b2c754986b4de5b4a07f17fd0" category="paragraph">この手順の手順は、SUSE Linux Enterprise Server 15 SP6ホストで実行します。ただし、ONTAPコントローラで手順を実行することを指定している場合を除きます。</block>
   <block id="3b86ef6861ab37460f14c7cca5f2ecf9" category="list-text">次のktls-utils、openssl、libopensslパッケージがホストにインストールされていることを確認します。</block>
   <block id="94af47577475b9842466b2cda14bffae" category="list-text"><block ref="eba606d0a45a6acc38e99cfc11f79ff4" prefix="" category="inline-code"></block></block>
   <block id="fa09d1fd67990fa52b192b453ee3f411" category="list-text"><block ref="0349a9de91d8d2777180988686f8a790" prefix="" category="inline-code"></block></block>
@@ -2554,17 +2550,9 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="bb29fc4790c7eaf5ae7a9445a08776bf" category="list-text">システム起動時に起動するように有効にし<block ref="67de54fa2975e1afbfa0e5b44910694e" prefix=" " category="inline-code"></block>ます。</block>
   <block id="edf98b56eb368003a84c3f6e6325bc24" category="list-text">デーモンが実行されていることを確認し<block ref="67de54fa2975e1afbfa0e5b44910694e" prefix=" " category="inline-code"></block>ます。</block>
   <block id="cc03b98609648131cf98c136c9325ae6" category="list-text">を使用してTLS PSKを生成し<block ref="75260898c7ef0a545e10c9413524db08" prefix=" " category="inline-code"></block>ます。</block>
-  <block id="b595664b17c23b9c65800f5f2ee6bd60" category="list-text"><block ref="ff083824b5947cb311fd6336234d2f08" prefix="" category="inline-code"></block></block>
-  <block id="329041f78f097df81a7f8ae854150413" category="list-text"><block ref="f31123afb140e56354d20f4296a62a1a" prefix="" category="inline-code"></block></block>
-  <block id="9a188a453d6f7a4139c805197ffad6d7" category="list-text">ONTAPコントローラで、ONTAPサブシステムにTLS PSKを追加します。</block>
-  <block id="3a6a93137906aeb888c944ff8cd57c5a" category="list-text">TLS PSKをホストカーネルキーリングに挿入します。</block>
   <block id="456655754b0c48b034d1fdf59967c5fb" category="admonition">PSKはTLSハンドシェイクアルゴリズムの「identity v1」を使用するため、「NVMe1R01」と表示されます。Identity v1は、ONTAPがサポートする唯一のバージョンです。</block>
   <block id="ca320bf6c4ad8f767e85d406ee4fde14" category="list-text">TLS PSKが正しく挿入されていることを確認します。</block>
-  <block id="17a9f150c8c2ab60092808d0908e820b" category="list-text">挿入したTLS PSKを使用してONTAPサブシステムに接続します。</block>
-  <block id="532c0a0166f57d64080032345311e992" category="list-text"><block ref="352b5cd6e4380372116548b2c6dab1a5" prefix="" category="inline-code"></block></block>
-  <block id="798926c594ff5920496900e82fc4f8ee" category="list-text"><block ref="b77dfffb05a37f29ed729db166995be8" prefix="" category="inline-code"></block></block>
   <block id="8424d580c7f527bd670292899f979c75" category="list-text">ターゲットを追加し、指定したONTAPサブシステムへのTLS接続を確認します。</block>
-  <block id="750e58d680481d7813150837191657cf" category="paragraph"><block ref="f3772228bbdd61b9e99ef34e7e8724df" prefix="" category="inline-code"></block></block>
   <block id="2ec9c91229d2e2f17a8f17a73a54304b" category="admonition">1つのLUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスの問題が発生する可能性があります。</block>
   <block id="5825e25cd2548b8d4af651b91652e28d" category="paragraph"><block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>マルチパスデーモンを起動するには、ファイルが存在している必要があります。このファイルが存在しない場合は、コマンドを使用して空のゼロバイトファイルを作成できます<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block>。</block>
   <block id="d2151dcee8f5a191a60c2d0cb4823f78" category="list-text">コマンドを実行し<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block>、ホストをリブートします。</block>
@@ -3522,7 +3510,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="de7c28ff0eb95c7790427d99e464cd7d" category="list-text">ファイルが終了することを確認し<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ます。ファイルが存在しない場合は、空のゼロバイトファイルを作成します。</block>
   <block id="4154b2933e2df9573e5568e1cb8b0708" category="list-text">ホストをブートするたびに、空のゼロバイトファイルによって<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>、NetApp推奨のホストマルチパスパラメータがデフォルト設定として自動的にロードされます。オペレーティングシステムは、ONTAP LUNを正しく認識および管理するマルチパスパラメータでコンパイルされているため、ホスト用のファイルを変更する必要はありません<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>。</block>
   <block id="2dc85993483fece6ce86d25200665755" category="paragraph">次の表に、Linux OS標準でコンパイルされたONTAP LUNのマルチパスパラメータの設定を示します。</block>
-  <block id="55e68527d8c164dc338b18da64611305" category="admonition">ONTAP LUNはKVMハイパーバイザーに自動的にマッピングされるため、Kernel-Based Virtual Machine（KVM）を設定する必要はありません。</block>
   <block id="3e69d2b38cbdad51b5f0a5227c5c242e" category="paragraph">ファイル、特にdefaultsセクションで、をオーバーライドする可能性のある設定を確認する必要があります<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block><block ref="3e47c09a7bdcd0377df056ba2567e852" category="inline-xref-macro-rx"></block>。</block>
   <block id="d0cd85ffaeb74cce57bdd7f018a8056d" category="paragraph">たとえば、ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。</block>
   <block id="7d6ed8198fddc97f7e4e07dc8cb965c1" category="inline-link-macro">Linux Host Utilitiesツールの使用方法</block>
@@ -3717,4 +3704,16 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="e2b29f49797a2325ae454b80e6aecf4a" category="paragraph">VMware vSphereでのNVMeの割り当て解除の詳細については、を参照してください。<block ref="c446d1e3b484512e9ba1bbe8eab259bf" category="inline-link-rx"></block></block>
   <block id="e99f28bee3ac5bad6e5414411cd5ffa0" category="sidebar">ONTAP SANホストユーティリティ</block>
   <block id="2275d26c218f9babebe06ed5dcc73dab" category="sidebar">SANホストとクラウドクライアントを設定</block>
+  <block id="d42d49b663d32823894e50123ab762aa" category="admonition">ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。</block>
+  <block id="6c1237c8a63c9432743995a73de4f2ea" category="paragraph">この手順は、ONTAP コントローラで手順を実行するように指定されている場合を除き、SUSE Linux Enterprise Server ホストで実行します。</block>
+  <block id="a06bd7b24c1effd63b064b3a8b11fac4" category="paragraph"><block ref="43e4de7615f2615407bf61dc8bab917d" prefix="" category="inline-code"></block></block>
+  <block id="9717b15229fcf955162bc44c0245c940" category="paragraph"><block ref="e5fc4f0ee1a350182939ab0bca460c98" prefix="" category="inline-code"></block></block>
+  <block id="762c5561f01f01d3a3d6677f3972abe5" category="list-text"><block ref="1c78bed9e35b03f05a58a1b43589b4b2" prefix="" category="inline-code"></block></block>
+  <block id="3b8094306cbf785ab92adf321ddbe00b" category="list-text"><block ref="e428c84f18e3d18bdc6f7a6ad7049ad8" prefix="" category="inline-code"></block></block>
+  <block id="3fe78ae2313cd2a031d60fd3b1908014" category="list-text">ONTAP アレイで、TLS PSK を ONTAP サブシステムに追加します。</block>
+  <block id="82230a22c6ecae257dedcf3b1a20f740" category="list-text">SUSE Linux Enterprise Server ホストで、TLS PSK をホスト カーネル キーリングに挿入します。</block>
+  <block id="3bd434fbafe93a5c609f93354e39f38c" category="list-text">SUSE Linux Enterprise Server ホストで、挿入された TLS PSK を使用して ONTAP サブシステムに接続します。</block>
+  <block id="6f0abeb231f9492f647495d82e71a409" category="list-text"><block ref="784df77e179355f677ae4620639e145e" prefix="" category="inline-code"></block></block>
+  <block id="cd3cfdbbdf68695695503ec99f60b54f" category="list-text"><block ref="f3d48156832e70ac41335c007fa76798" prefix="" category="inline-code"></block></block>
+  <block id="c8ba574e6385bfff25580806e2cfd27d" category="paragraph"><block ref="2c3856aef23f7e774c0fec3948e0a8b5" prefix="" category="inline-code"></block></block>
 </blocks>
