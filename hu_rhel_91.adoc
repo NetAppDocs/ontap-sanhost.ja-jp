@@ -167,7 +167,7 @@ ASA構成では、特定のLUNへのすべてのパスが最適化され、ア�
 
 [listing]
 ----
-# multipath -ll
+multipath -ll
 3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode
 size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
@@ -185,7 +185,7 @@ AFFまたはFAS構成には、優先度の高いパスと低いパスの2つの�
 
 [listing]
 ----
-# multipath -ll
+multipath -ll
 3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
 size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
@@ -210,7 +210,7 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 +
 [source, cli]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
 ----
 +
 sdaは、ブラックリストに追加するローカルSCSIディスクです。

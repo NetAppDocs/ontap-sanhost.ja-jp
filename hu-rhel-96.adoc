@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_rhel_82.html 
-keywords: host utilities, red hat, rhel, linux, 8.2, netapp, ontap 
-summary: RHEL 8.2ホストにLinux Host Utilitiesをインストールして、ONTAP LUNを使用したFCPおよびiSCSIプロトコルの処理を管理します。 
+permalink: hu-rhel-96.html 
+keywords: host utilities, red hat, rhel, linux, 9.6, netapp, ontap, rhel 
+summary: RHEL 9.6ホストにLinux Host Utilitiesをインストールして、ONTAP LUNでFCPおよびiSCSIプロトコルの処理を管理します。 
 ---
-= ONTAPストレージを使用するFCPおよびiSCSI用のRHEL 8.2の設定
+= ONTAPストレージを使用するFCPおよびiSCSI用RHEL 9.6の設定
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: RHEL 8.2ホストにLinux Host Utilitiesをインストールして、O
 
 
 [role="lead"]
-Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Red Hat Enterprise Linux（RHEL）8.2ホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでのFCPプロトコルおよびiSCSIプロトコルの処理を管理することができます。
+Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Red Hat Enterprise Linux（RHEL）9.6ホストにLinux Host Utilitiesをインストールする場合、Host Utilitiesを使用して、ONTAP LUNでのFCPプロトコルおよびiSCSIプロトコルの処理を管理することができます。
 
 
 NOTE: ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
@@ -57,7 +57,7 @@ NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホ�
 
 == 手順3：ホストのマルチパス構成を確認する
 
-RHEL 8.2でマルチパスを使用してONTAP LUNを管理できます。
+RHEL 9.6でマルチパスを使用してONTAP LUNを管理できます。
 
 ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 

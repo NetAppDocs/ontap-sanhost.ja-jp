@@ -3771,4 +3771,22 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="b4da3417a3bbac7760c5f326458d9927" category="sidebar">RHEL 10</block>
   <block id="63da114c28add40c319de84e3a92a8ed" category="sidebar">RHEL-10-FCP</block>
   <block id="43a1437f7f656cd8be7c996c58719e0a" category="sidebar">10.0</block>
+  <block id="282e82c820d3f500a969ebb9a9054584" category="summary">RHEL 9.6ホストにLinux Host Utilitiesをインストールして、ONTAP LUNでFCPおよびiSCSIプロトコルの処理を管理します。</block>
+  <block id="f4e7617d1cef5f8ab23add41d40625fb" category="doc">ONTAPストレージを使用するFCPおよびiSCSI用RHEL 9.6の設定</block>
+  <block id="5cecbf0e006813819e7ea0d92ccca8df" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Red Hat Enterprise Linux（RHEL）9.6ホストにLinux Host Utilitiesをインストールする場合、Host Utilitiesを使用して、ONTAP LUNでのFCPプロトコルおよびiSCSIプロトコルの処理を管理することができます。</block>
+  <block id="c655b9821bde0a911428a133bb7ef67f" category="paragraph">RHEL 9.6でマルチパスを使用してONTAP LUNを管理できます。</block>
+  <block id="6cbcd68038ece1dbafa173add2c90697" category="summary">ONTAPを使用したRHEL 9.6用のNVMe-oFホストの設定方法</block>
+  <block id="3dff0e4b77025c9e0739e3b02b3ff268" category="doc">ONTAPを使用したRHEL 9.6向けのNVMe-oFホストの設定</block>
+  <block id="fdee72360607bede29fc52844f306e62" category="paragraph">Red Hat Enterprise Linux（RHEL）9.6のNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
+  <block id="770bddea589c1a8e5b2541551754b4e4" category="list-text">RHEL 9.6では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になるため、明示的に設定する必要はありません。</block>
+  <block id="e118d7e4742cf0454d407a22991c4f23" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHEL9.6では、NVMe/TCP向けのセキュアなインバンド認証を使用できます。</block>
+  <block id="027d24fe581a1889d6b5752e3886e380" category="list-text">利用できる新しい機能はありません。</block>
+  <block id="3b6f23fb41215bfbde13af4b92268902" category="paragraph">サポートされている最小の RHEL 9.6 ソフトウェア バージョンを検証するには、次の手順に従います。</block>
+  <block id="61e91ca529ce5516397f8af4ff223ab0" category="list-text">サーバにRHEL 9.6をインストールします。インストールが完了したら、指定したRHEL 9.6カーネルが実行されていることを確認します。</block>
+  <block id="deeefe26777fb24a155fd5e2eac9f23b" category="paragraph">次の例は、nvme-cli パッケージのバージョンを示しています。</block>
+  <block id="a33245ebb2f380b62ab218a312110f3a" category="list-text">RHEL 9.6ホストで、hostnqn文字列を確認します<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>。</block>
+  <block id="844df812cde8ebcaf9f2cc35022248c6" category="paragraph">RHEL 9.6では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステム起動時に自動的に起動するように有効化されています。システム起動が完了したら、ブートサービスが有効になっていることを確認してください。</block>
+  <block id="103bbc9741f09ef806d7d9f1ff8e4957" category="paragraph">ONTAP 9.12.1 以降では、RHEL 9.6 ホストと ONTAP コントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。</block>
+  <block id="c76dae5432bc09fa983706505086692e" category="list-text">RHEL 9.6ホストのDHCHAPキーを生成します。</block>
+  <block id="eaf2f97729e8d5e4d205672da8afc9a5" category="sidebar">9.6</block>
 </blocks>
