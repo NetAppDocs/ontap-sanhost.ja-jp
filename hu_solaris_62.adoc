@@ -108,7 +108,7 @@ drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
 
 
 
-== SAN ツールキット
+== SANツールキットを有効にする
 
 Solaris Host Utilities は、 Oracle Solaris ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します `sanlun` LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティ。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
 

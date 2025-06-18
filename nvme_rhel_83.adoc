@@ -36,6 +36,27 @@ ONTAP 9.6以降では、Red Hat Enterprise Linux（RHEL）8.3でNVMe/FCがサポ
 
 
 
+== SANブートを有効にする
+
+SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
+
+.開始する前に
+を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+
+.手順
+. SAN ブート名前空間を作成し、それをホストにマップします。
++
+を参照してください https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["NVMeストレージのプロビジョニング"^]
+
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+
+
+
+
 == RHEL 8.3 で NVMe/FC を有効にします
 
 NVMe/FCを有効にするには、次の手順を使用します。

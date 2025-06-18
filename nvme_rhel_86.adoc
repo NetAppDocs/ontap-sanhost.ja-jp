@@ -38,6 +38,27 @@ Red Hat Enterprise Linux（RHEL）8.6（Asymmetric Namespace Access）では、N
 
 
 
+== SANブートを有効にする
+
+SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
+
+.開始する前に
+を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+
+.手順
+. SAN ブート名前空間を作成し、それをホストにマップします。
++
+を参照してください https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["NVMeストレージのプロビジョニング"^]
+
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+
+
+
+
 == カーネル内の NVMe マルチパスを有効にします
 
 カーネル内NVMeマルチパスを有効にするには、次の手順を使用します。
@@ -220,10 +241,13 @@ NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
 .手順
 .  `lpfc_sg_seg_cnt`パラメータを256に設定します。
 +
-[listing]
+[source, cli]
 ----
 cat /etc/modprobe.d/lpfc.conf
 ----
++
+次の例のような出力が表示されます。
+
 +
 [listing]
 ----
@@ -232,7 +256,7 @@ options lpfc lpfc_sg_seg_cnt=256
 . コマンドを実行し `dracut -f`、ホストをリブートします。
 . の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
