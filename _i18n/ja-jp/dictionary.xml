@@ -803,15 +803,6 @@
   <block id="845baae8777888665cfa3588985a095e" category="paragraph">RHEL 6.10 OS は、 ONTAP LUN を認識するようにコンパイルされ、 ASA 構成と非 ASA 構成の両方に対してすべての設定パラメータが自動的に正しく設定されます。</block>
   <block id="62d54f77039c15fe0a65691e9ff3f4c2" category="summary">ONTAP で CentOS 7.5 を使用する方法について説明します</block>
   <block id="6a2c85eca0b58ae9120cd4aa738a6949" category="paragraph">CentOS 7.5 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、特定の変更をファイルに加える必要はありません。CentOS 7.5 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
-  <block id="a51f869a9a131effa58d99e63266e02d" category="summary">ONTAP で Citrix Hypervisor 8.x を使用する方法について説明します</block>
-  <block id="dfdecabe17f4f61a0c5b353fdc3dfeef" category="paragraph">Citrix Hypervisor 8.x OS は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定でコンパイルされます。Citrix Hypervisor 8.x の場合、空の zerobyte /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。</block>
-  <block id="891983ab249dd51fa02a51e1da92fd57" category="admonition">Citrix ハイパーバイザーでは、 Linux および Windows ベースのすべてのゲスト VM に対して Citrix VM ツールを使用することを推奨しています。</block>
-  <block id="39f11cb747dafe51ae2cd54386744d96" category="cell">Citrix Tracker ID</block>
-  <block id="37a4830e2093543aff3053de0d030043" category="inline-link-macro">1242343</block>
-  <block id="a7a47de2f0347b1becc88121e58feb77" category="cell"><block ref="b4c7cfb9859e61034527798a6a63bef9" category="inline-link-macro-rx"></block></block>
-  <block id="f55b5d03a0416a1f3b022e8726d40ab4" category="cell">ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC を搭載した Citrix ハイパーバイザー 8.0 でカーネルが停止する</block>
-  <block id="4a51081f62917f0c91cd1e1d09bd2d71" category="cell">QLogic QLE2742 32GB HBA を搭載した Citrix ハイパーバイザー 8.0 カーネル（ 4.19.0.0 +1 ）でストレージフェイルオーバー処理を実行すると、カーネルが停止する可能性があります。この問題では、オペレーティングシステムのリブートを求められ、アプリケーションが停止します。kdump が設定されている場合、カーネルが停止すると、 /var/crash/ ディレクトリに vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を把握できます。カーネルの停止後、ホストオペレーティングシステムをリブートし、アプリケーションを再起動することで、オペレーティングシステムをリカバリできます。</block>
-  <block id="b008e43caaecb8f7dd34101d0643e3bf" category="inline-link-macro">ネットアップ 98</block>
   <block id="a6dc6c62ee31196ca4228a01ceaf054f" category="summary">ONTAP で Red Hat Enterprise Linux 7.6 を使用する方法について説明します</block>
   <block id="ba9c5cfb8923c683e175b0343242d5b2" category="summary">ONTAP で CentOS 8.0 を使用する方法について説明します</block>
   <block id="2abffb2205f281bc82ee25fbb0545967" category="paragraph">CentOS 8.0 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、そのファイルに特定の変更を加える必要はありません。CentOS 8.0 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が含まれています。</block>
@@ -851,7 +842,6 @@
   <block id="f884cc5c56f9c9a8d4d61568ff64db9c" category="sidebar">6.5</block>
   <block id="ded681fc154529ebbc7562fb0c73ba47" category="sidebar">6.4</block>
   <block id="44259680bd01002134994d85d023710c" category="sidebar">Citrix</block>
-  <block id="99a5228874b5bc9d6b24fbf9b23fe772" category="sidebar">ハイパーバイザー 8.</block>
   <block id="b0781c18fd091c4f9e79ff11eb4b9fc5" category="sidebar">VMware vSphere 7</block>
   <block id="b1fd823d262032e04291313f72be9452" category="sidebar">HP-UX</block>
   <block id="d5b12213e8526feaa7c520b3b736f9b8" category="sidebar">11i v3</block>
@@ -984,7 +974,6 @@
   <block id="9a85ce7daf00cd97d2ba489c461c944f" category="paragraph">を参照してください <block ref="6bc1436da9f0920d54a0f738830d902f" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="24b832a3c490bb4e76193c9ae615cd2b" category="admonition">UNMAP が機能するために、 VMware vSphere にマッピングされているすべての LUN で space-allocation 設定を有効にします。詳細については、を参照してください<block ref="ecbbd19c2959ac5708c6c4723def4492" category="inline-link-rx"></block>。</block>
   <block id="8a515fe16331b7269862c5871e55c7e4" category="list-text"><block ref="8a515fe16331b7269862c5871e55c7e4" category="inline-link-macro-rx"></block></block>
-  <block id="f74952756a69cdbe7cccca5faf46e6cc" category="cell"><block ref="f74952756a69cdbe7cccca5faf46e6cc" category="inline-link-macro-rx"></block></block>
   <block id="dd31b82b57542d64583398514e1838f4" category="section-title">NVMe/FC を有効にします</block>
   <block id="6d2964de8c046289cdcfaebf91369e08" category="section-title">Broadcom FC アダプタを NVMe/FC 用に設定します</block>
   <block id="30184b2ffcd5459f75061dc63a6b8c62" category="section-title">NVMe/FC を検証</block>
@@ -1014,8 +1003,6 @@
   <block id="f7a582d94c3c08d29da52684240c7e5e" category="section-title">1MB I/O サイズを有効にする（オプション）</block>
   <block id="7988dd645d080901aa85637adea3c152" category="sidebar">NVMeoF ESXi</block>
   <block id="2f9c81bcc0340cf8ca367c73fc2605c3" category="sidebar">NVMeoF SLES</block>
-  <block id="d6001c34c29bb04684b5c07f3b8c9209" category="section-title">オール SAN アレイ（ ASA ）構成</block>
-  <block id="15e8bfaa3c1b932b597dedce3820fa11" category="paragraph">次の例は、 4 つのアクティブな最適パスがある ONTAP LUN に対する正しい出力を表示します。</block>
   <block id="093280d0b1b888a2d2861cdc763f5f54" category="cell">「 detect_prio 」</block>
   <block id="d4f9e6cd04344d6033229cebcf82d8e6" category="cell">dev_los_TMO</block>
   <block id="0b45dcda8325354552a9f3f77a81fb12" category="cell">フェイルバック</block>
@@ -1693,7 +1680,6 @@
   <block id="92434d9005fca09d1be87854a8eba962" category="doc">Red Hat Enterprise Linux 6.4とONTAPの併用</block>
   <block id="fa3e4c48ee82eee0fd39bec2969d50e3" category="doc">CentOS 7.2とONTAPの併用</block>
   <block id="5b1dc80fba1c5b1c02a46a705987abf2" category="doc">ONTAPでOracle Linux 9.1を使用</block>
-  <block id="b594df416eb09c0260d9d96034d385bd" category="doc">ONTAPでCitrix Hypervisorを使用する</block>
   <block id="a7c0c5734c50dba03d00cc462a49e909" category="doc">ONTAPでIBM AIX 7.2またはPowerVM（VIOS 3.1）を使用する</block>
   <block id="7e0b815f73afb730e7ee19f798970799" category="doc">Oracle Linux 6.10とONTAPの併用</block>
   <block id="3944147aca4bcb3598602ba7abb8ecb6" category="doc">Red Hat Enterprise Linux 6.9とONTAPの併用</block>
@@ -1771,7 +1757,6 @@
   <block id="1bbb67631847a06bbd9b2e9dafec2134" category="section-title">Solaris Host Utilitiesのインストール</block>
   <block id="3f20da7f97c0948dba60855f74d8feb3" category="paragraph">NVMe over Fibre Channel（NVMe/FC）は、SUSE Linux Enterprise Server 15 SP1およびONTAPを実行するホストにターゲットとして設定できます。</block>
   <block id="04e8d5a4c40a30787e3a35e62dfd0c1e" category="paragraph">NVMe/FC用のLPFCドライバを設定します。</block>
-  <block id="9f988f6d1200dcd570b84c8116f6eecd" category="paragraph">FC、FCoE、およびiSCSIプロトコルを使用するCitrix Hypervisor 8シリーズOSリリースのONTAP SANホスト構成設定を構成できます。</block>
   <block id="e62de6043f25aae2915aa8c10fbaec9d" category="cell"><block ref="e62de6043f25aae2915aa8c10fbaec9d" category="inline-link-macro-rx"></block></block>
   <block id="0ea1561176c96894fb977d38bd38f871" category="section-title">Broadcom NVMe/FCテノ1MBノI/Oサイスノユウコウカ</block>
   <block id="624e2520b17b79e6e7312aaab546e064" category="section-title">Broadcom NVMe/FC用に1MBのI/Oサイズを有効にする</block>
@@ -2034,7 +2019,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="9accabc78cb81d6e8bcf1d9967acacbf" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてCentOS 7.5を設定できます。</block>
   <block id="b3ee07d53ba0c1669d4fce99f84b1058" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてCentOS 8.4を設定できます。</block>
   <block id="c145abd6fbb348ce5e5f456ac88aabe3" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 8.1を設定できます。</block>
-  <block id="4d55e8f83a49b7ce8dd509bc82409f4e" category="paragraph">Citrix Hypervisor with ONTAPリリースには、次の既知の問題があります。</block>
   <block id="9ce087c89f930ecdafc9ed9c4ed0e415" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 8.5を設定できます。</block>
   <block id="89803e3bc17feeb475170d3dcd320e4e" category="paragraph">ONTAP SANホストの設定を使用して、CentOS 6.10でONTAPをターゲットとして設定できます。</block>
   <block id="9181955b285c10325d97f8ef33d5784c" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてIBM AIX 7.1を設定できます。</block>
@@ -2362,7 +2346,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="26adbe58d014b17e22edee324b7c14d8" category="paragraph"><block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>ファイルを初めて作成するときは、次のコマンドを使用してマルチパスサービスを有効にして開始しなければならない場合があります。</block>
   <block id="524b08ad750352e65f141bb6a45404ad" category="list-text"><block ref="63a7cb7a86eb0c84641936943496afaf" prefix=" " category="inline-code"></block>パラメータを256に設定します。</block>
   <block id="4e6815a5eaf606ab0b37b61763f811c3" category="paragraph"><block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、ファイルにコンテンツを追加する必要はありません。<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>ファイルに次の構文を追加して、不要なデバイスを除外できます。</block>
-  <block id="f2d86a1e1d50cd6070c7ed2e2ac2a324" category="paragraph"><block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、ファイルにコンテンツを追加する必要はありません。multipath.conf ファイルに次の構文を追加して、不要なデバイスを除外できます。</block>
   <block id="8d3d223fd7a6303b1d21d5a6d2ff42cf" category="summary">ONTAPでOracle Linux 8.9を使用する方法について説明します。</block>
   <block id="82ccd7f4292a5fcdb3c91b2dac42a0ee" category="doc">ONTAPでOracle Linux 8.9を使用</block>
   <block id="18b1f91c51b933e6287d49ea6806740e" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 8.9を設定できます。</block>
@@ -2421,8 +2404,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="f7de5451f0d12f9de62cf0d59c9695f2" category="admonition">複数のパスは、ホストOSが起動してそのパスで実行されたあとにのみ使用可能になります。</block>
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph"><block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block>コマンドを実行すると、次のような出力が生成されます。次の例の出力は省略されています。</block>
   <block id="2f4a9005041851e9a64a6509d048aa33" category="paragraph">次のCitrix XenServer 7.xの例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block>がブラックリストに追加するローカルSCSIディスクです。</block>
-  <block id="a43126cc8c2ddd919f3ae99c4cf4c423" category="paragraph">Citrix Hypervisor (CH) 8.xでは、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。CH 8.x は、 ONTAP LUN を認識し、正しく管理するために必要なすべての設定を含めてコンパイルされます。statusコマンドを使用すると、ONTAP LUNの設定を確認できます<block ref="e5268735d39d64bce63bec4d1a023fa2" prefix=" " category="inline-code"></block>。次のセクションでは、ASA PersonaにマッピングされたLUNのマルチパス出力の例を示します。</block>
-  <block id="8f1e95bbd539f4c76614944f8cf01b52" category="paragraph">次のCitrix Hypervisor 8.xの例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block>はブラックリストに追加するローカルSCSIディスクです。</block>
   <block id="fb403c5f670d67ab47637709eb33917d" category="paragraph">SUSE Linux Enterprise Server 12 SP1、OL 7.2、RHEL 7.2、およびRHEL 6.8でコマンドを実行すると一時的に発生するホストOSエラーの問題<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block>は、このリリースで修正されています。</block>
   <block id="e660061f6ca1690f631875aa9b659f5c" category="paragraph">以降のセクションでは、ASA以外のペルソナにマッピングされたLUNのマルチパス出力の例を示します。</block>
   <block id="f2694c4b7724c227a6fd0a9ab3d8a8f9" category="paragraph">以降のセクションでは、オールSANアレイ（ASA）構成および非ASA構成にマッピングされたLUNのマルチパス出力の例を示します。</block>
@@ -3397,7 +3378,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="bcf622355381554644b7b19355170fb1" category="paragraph">Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。</block>
   <block id="4be31bb14f28cd1a1a92b994b241b6e3" category="paragraph">ONTAPリリースのWindows Server 2025での既知の問題はありません。</block>
   <block id="564407f81c68d8b8dba176bafd8d2c07" category="paragraph"><block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block>コマンドを使用して、ONTAP LUNの設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
-  <block id="4fbe6cc46c4e7732ef1cd6a8c08ee6a9" category="paragraph">オール SAN アレイ（ ASA ）構成の場合は、 1 つの優先順位を持つパスのグループが 1 つ必要です。すべてのパスがアクティブ/最適化されています。つまり、コントローラによって処理され、すべてのアクティブパスでI/Oが送信されます。</block>
   <block id="769a40f63534a31b2b123052ac1da6ad" category="list-text"><block ref="76b66d5f379b691153dc22425201f6ae" prefix=" " category="inline-code"></block>コマンドの出力を確認して、設定が完了していることを確認します。<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block>コマンドを使用して、ONTAP LUNの設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
   <block id="39d53198af3fc38b686628c26e87a4f8" category="paragraph">Oracle Linux 7.1 UEK R4 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 7.1 は、 ONTAP LUN を認識して適切に管理するために必要な設定をすべて備えています。<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block>コマンドを使用して、ONTAP LUNの設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
   <block id="47e930d345db593756a39027df077a51" category="paragraph">ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
@@ -3789,4 +3769,15 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="103bbc9741f09ef806d7d9f1ff8e4957" category="paragraph">ONTAP 9.12.1 以降では、RHEL 9.6 ホストと ONTAP コントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。</block>
   <block id="c76dae5432bc09fa983706505086692e" category="list-text">RHEL 9.6ホストのDHCHAPキーを生成します。</block>
   <block id="eaf2f97729e8d5e4d205672da8afc9a5" category="sidebar">9.6</block>
+  <block id="c90e2c8eff8de67c2e01d748085394db" category="list-text">確認するには<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ファイルが存在します。ファイルが存在しない場合は、空のゼロバイトファイルを作成します。</block>
+  <block id="9143f7bbdb93a1e9aa2dc28f3c922fcc" category="summary">Citrix Hypervisor 8.2をONTAPで使用する方法について説明します。</block>
+  <block id="0825e58b251b6f1e1956c9f982c69b3d" category="doc">ONTAPストレージでFCPおよびiSCSI用にCitrix Hypervisor 8.2を構成する</block>
+  <block id="efb6a029c96ca3e81423fa8765c5e1f2" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Citrix Hypervisor 8.2 ホストに Linux ホストユーティリティをインストールすると、ホストユーティリティを使用して ONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
+  <block id="3e2e1ae5727d07e3ee9163e73df8e73f" category="paragraph">Citrix Hypervisor 8.2 のマルチパスを使用して、ONTAP LUN を管理できます。</block>
+  <block id="b335d4f62ea30021bc1fd547fa7ca552" category="summary">Citrix XenServer 8.4をONTAPで使用する方法について説明します。</block>
+  <block id="6d9eef6a4c2617ee0a8dfdc9ae7a468a" category="doc">ONTAPストレージを使用してCitrix Xenserver 8.4をFCPおよびiSCSI用に構成する</block>
+  <block id="a2e2d0fcc9350f73f4294c53a7b2fa53" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Citrix Xenserver 8.4 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用して ONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
+  <block id="405ee507e1b0e20ba609f39dc449664e" category="paragraph">Citrix Xenserver 8.4 のマルチパスを使用して、ONTAP LUN を管理できます。</block>
+  <block id="7ef93303f99987d3f82b96411ca41f0f" category="sidebar">XenServer 8.4</block>
+  <block id="df472899f555ad076c9b90f4bd508f91" category="sidebar">ハイパーバイザー 8.2.</block>
 </blocks>
