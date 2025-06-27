@@ -1,0 +1,195 @@
+= 
+:allow-uri-read: 
+
+
+NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタで構成できます。NVMe/TCP サブシステムと名前空間を手動で検出する必要もあります。
+
+[role="tabbed-block"]
+====
+.Broadcom / Emulex
+--
+.手順
+. サポートされているアダプタモデルを使用していることを確認します。
++
+.. モデル名を表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modelname
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+LPe36002-M64
+LPe36002-M64
+----
+.. モデルの説明を表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modeldesc
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
+Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
+----
+
+
+. 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアおよび受信トレイドライバ：
++
+.. ファームウェアのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/fwrev
+----
++
+次の例はファームウェアのバージョンを示しています。
+
++
+[listing]
+----
+14.4.317.10, sli-4:6:d
+14.4.317.10, sli-4:6:d
+----
+.. 受信トレイのドライバーのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/module/lpfc/version`
+----
++
+次の例は、ドライバーのバージョンを示しています。
+
++
+[listing]
+----
+0:14.4.0.2
+----
+
+
++
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
+
+. の想定される出力がに設定されている `3`ことを確認し `lpfc_enable_fc4_type`ます。
++
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+----
+. イニシエータポートを表示できることを確認します。
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_name
+----
++
+次の例はポート ID を示しています。
+
++
+[listing]
+----
+0x100000109bf044b1
+0x100000109bf044b2
+----
+. イニシエータポートがオンラインであることを確認します。
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_state
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+Online
+Online
+----
+. NVMe/FCイニシエータポートが有効になっており、ターゲットポートが認識されることを確認します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
++
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+NVME Initiator Enabled
+XRI Dist lpfc2 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc2 WWPN x100000109bf044b1 WWNN x200000109bf044b1 DID x022a00 *ONLINE*
+NVME RPORT       WWPN x202fd039eaa7dfc8 WWNN x202cd039eaa7dfc8 DID x021310 *TARGET DISCSRVC ONLINE*
+NVME RPORT       WWPN x202dd039eaa7dfc8 WWNN x202cd039eaa7dfc8 DID x020b10 *TARGET DISCSRVC ONLINE*
+
+NVME Statistics
+LS: Xmt 0000000810 Cmpl 0000000810 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000007b098f07 Issue 000000007aee27c4 OutIO ffffffffffe498bd
+        abort 000013b4 noxri 00000000 nondlp 00000058 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 000013b4 Err 00021443
+
+NVME Initiator Enabled
+XRI Dist lpfc3 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc3 WWPN x100000109bf044b2 WWNN x200000109bf044b2 DID x021b00 *ONLINE*
+NVME RPORT       WWPN x2033d039eaa7dfc8 WWNN x202cd039eaa7dfc8 DID x020110 *TARGET DISCSRVC ONLINE*
+NVME RPORT       WWPN x2032d039eaa7dfc8 WWNN x202cd039eaa7dfc8 DID x022910 *TARGET DISCSRVC ONLINE*
+
+NVME Statistics
+LS: Xmt 0000000840 Cmpl 0000000840 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000007afd4434 Issue 000000007ae31b83 OutIO ffffffffffe5d74f
+        abort 000014a5 noxri 00000000 nondlp 0000006a qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 000014a5 Err 0002149a
+----
+=====
+
+
+--
+.Marvell/QLogic
+--
+Marvell/QLogicアダプタ用にNVMe/FCを設定します。
+
+
+NOTE: Rocky Linux カーネルに含まれるネイティブの受信トレイ qla2xxx ドライバーには最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
+
+.手順
+. サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/symbolic_name
+----
++
+次の例は、ドライバーとファームウェアのバージョンを示しています。
+
++
+[listing]
+----
+QLE2742 FW:v9.14.00 DVR:v10.02.09.200-k
+QLE2742 FW:v9.14.00 DVR:v10.02.09.200-k
+----
+. 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
++
+[source, cli]
+----
+cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+----
++
+想定される出力は1です。
+
+
+
+--
+====

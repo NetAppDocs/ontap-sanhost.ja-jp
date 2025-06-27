@@ -1,0 +1,29 @@
+= 
+:allow-uri-read: 
+
+
+Broadcomアダプタで構成されたNVMe/FCでは、1MBのI/Oリクエストを有効にすることができます。ONTAPは、コントローラ識別データで最大データ転送サイズ（MDTS）を8と報告します。1MBつまり、最大I/O要求サイズは1MBです。のI/Oリクエストを発行するには、lpfcの値を増やす必要があります。  `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
+
+
+NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
+
+.手順
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
++
+[listing]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. コマンドを実行し `dracut -f`、ホストをリブートします。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
++
+[listing]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
+

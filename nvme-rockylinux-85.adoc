@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_rhel_95.html 
-keywords: nvme, linux, rhel, red hat, enterprise 
-summary: ONTAPを使用したRHEL 9.5用のNVMe-oFホストの設定方法 
+permalink: nvme-rockylinux-85.html 
+keywords: nvme, linux, rocky linux, enterprise 
+summary: ONTAP で Rocky Linux 8.5 用の NVMe-oF ホストを構成する方法 
 ---
-= ONTAP ストレージで RHEL 9.5 を NVMe-oF 用に設定する
+= ONTAPストレージ用にNVMe-oFを使用してRocky Linux 8.5を構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,36 +16,31 @@ summary: ONTAPを使用したRHEL 9.5用のNVMe-oFホストの設定方法
 
 
 [role="lead"]
-NetApp SANホスト構成では、非対称ネームスペースアクセス（ANA）でNVMe over Fabrics（NVMe-oF）プロトコルがサポートされます。NVMe-oF環境のANAは、iSCSI環境およびFCP環境におけるAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）マルチパスに相当します。ANAはカーネル内NVMeマルチパス機能を使用して実装されます。
+Rocky Linux 8.5 ホストは、非対称名前空間アクセス (ANA) を備えた NVMe/FC および NVMe/TCP プロトコルをサポートします。ANAは、iSCSI および FCP 環境における非対称論理ユニットアクセス (ALUA) マルチパスに相当し、カーネル内 NVMe マルチパス機能を使用して実装されます。
+
+サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
 .このタスクについて
-Red Hat Enterprise Linux（RHEL）9.5のNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
+Rocky Linux 8.5 の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
 
 * 利用可能なサポート：
 +
 ** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準パッケージのNetAppプラグイン `nvme-cli`には、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
-** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
-+
-サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
-
-
-
-* 利用可能な機能：
-+
-** ONTAP 9.12.1以降では、NVMe-oFにセキュアなインバンド認証がサポートされるようになりました。RHEL 9.5では、NVMe-oFのセキュアなインバンド認証を使用できます。
-** RHEL 9.5では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になるため、明示的に設定する必要はありません。
+** NVMeトラフィックとSCSIトラフィックを同じホストで実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
 
 
 * 既知の制限事項：
 +
-** 既知の制限事項はありません。
+** Rocky Linux 8.5 NVMe-oF ホストでは、カーネル内 NVMe マルチパスはデフォルトで無効になっています。そのため、手動で有効にする必要があります。
+** Rocky Linux 8.5 ホストでは、未解決の問題のため、NVMe/TCP はテクノロジー プレビュー機能です。詳細については、を参照して https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.5_release_notes/index#technology-preview_file-systems-and-storage["Rocky Linux 8.5 リリースノート"^] ください。
+** NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
 
 
 
 
 
 
-== SANブートを有効にする
+== 手順1：必要に応じてSANブートを有効にします。
 
 SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
 
@@ -54,7 +49,7 @@ SANブートを使用するようにホストを設定することで、導入�
 
 .手順
 . https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["SANブート名前空間を作成し、それをホストにマップする"^]です。
-. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
+. SAN ブート名前空間がマップされているポートに対して、サーバー BIOS で SAN ブートを有効にします。
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
 
@@ -63,50 +58,62 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 
 
-== ソフトウェアのバージョンを確認します
+== ステップ2: ソフトウェアのバージョンを検証する
 
-サポートされるRHEL 9.5ソフトウェアの最小バージョンは、次の手順を使用して検証できます。
+サポートされている Rocky Linux 8.5 ソフトウェアの最小バージョンを検証するには、次の手順に従います。
 
 .手順
-. サーバにRHEL 9.5をインストールします。インストールが完了したら、指定したRHEL 9.5カーネルが実行されていることを確認します。
+. サーバーにRocky Linux 8.5をインストールします。インストールが完了したら、指定されたRocky Linux 8.5カーネルが実行されていることを確認します。
 +
-[listing]
+[source, cli]
 ----
 uname -r
 ----
 +
+次の例は、Rocky Linux カーネルのバージョンを示しています。
+
++
 [listing]
 ----
-5.14.0-503.11.1.el9_5.x86_64
+5.14.0-570.12.1.el9_6.x86_64
 ----
 . 「 nvme-cli 」パッケージをインストールします。
 +
-[listing]
+[source, cli]
 ----
 rpm -qa|grep nvme-cli
 ----
 +
+次の例は、nvme-cli パッケージのバージョンを示しています。
+
++
 [listing]
 ----
-nvme-cli-2.9.1-6.el9.x86_64
+nvme-cli-2.11-5.el9.x86_64
 ----
 . をインストールします `libnvme` パッケージ：
 +
-[listing]
+[source, cli]
 ----
 rpm -qa|grep libnvme
 ----
 +
-[listing]
-----
-libnvme-1.9-3.el9.x86_64
-----
-. RHEL 9.5ホストで、hostnqn文字列を確認します `/etc/nvme/hostnqn`。
+次の例は、  `libnvme`パッケージバージョン:
+
 +
 [listing]
 ----
+libnvme-1.11.1-1.el9.x86_64
+----
+. Rocky Linuxホストで、hostnqn文字列を確認します。  `/etc/nvme/hostnqn` ：
++
+[source, cli]
+----
 cat /etc/nvme/hostnqn
 ----
++
+次の例は、  `hostnqn`バージョン:
+
 +
 [listing]
 ----
@@ -114,7 +121,7 @@ nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
 ----
 . を確認します `hostnqn` 文字列はに一致します `hostnqn` ONTAP アレイ上の対応するサブシステムの文字列。
 +
-[listing]
+[source, cli]
 ----
 ::> vserver nvme subsystem host show -vserver vs_coexistence_LPE36002
 ----
@@ -146,9 +153,9 @@ NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合は、を使
 
 
 
-== NVMe/FC を設定
+== ステップ3: NVMe/FCを構成する
 
-NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタで構成できます。Broadcomアダプタを使用して構成されたNVMe/FCでは、1MBのI/O要求を有効にすることができます。
+NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタで構成できます。NVMe/TCP サブシステムと名前空間を手動で検出する必要もあります。
 
 [role="tabbed-block"]
 ====
@@ -157,14 +164,30 @@ NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプ�
 .手順
 . サポートされているアダプタモデルを使用していることを確認します。
 +
-.. `cat /sys/class/scsi_host/host*/modelname`
+.. モデル名を表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modelname
+----
++
+次の出力が表示されます。
+
 +
 [listing]
 ----
 LPe36002-M64
 LPe36002-M64
 ----
-.. `cat /sys/class/scsi_host/host*/modeldesc`
+.. モデルの説明を表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modeldesc
+----
++
+次の例のような出力が表示されます。
+
 +
 [listing]
 ----
@@ -175,14 +198,30 @@ Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 
 . 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアおよび受信トレイドライバ：
 +
-.. `cat /sys/class/scsi_host/host*/fwrev`
+.. ファームウェアのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/fwrev
+----
++
+次の例はファームウェアのバージョンを示しています。
+
 +
 [listing]
 ----
 14.4.317.10, sli-4:6:d
 14.4.317.10, sli-4:6:d
 ----
-.. `cat /sys/module/lpfc/version`
+.. 受信トレイのドライバーのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/module/lpfc/version`
+----
++
+次の例は、ドライバーのバージョンを示しています。
+
 +
 [listing]
 ----
@@ -195,16 +234,18 @@ Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 
 . の想定される出力がに設定されている `3`ことを確認し `lpfc_enable_fc4_type`ます。
 +
-`cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type`
-
-+
-[listing]
+[source, cli]
 ----
-3
+cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 ----
 . イニシエータポートを表示できることを確認します。
 +
-`cat /sys/class/fc_host/host*/port_name`
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_name
+----
++
+次の例はポート ID を示しています。
 
 +
 [listing]
@@ -214,7 +255,12 @@ Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 ----
 . イニシエータポートがオンラインであることを確認します。
 +
-`cat /sys/class/fc_host/host*/port_state`
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_state
+----
++
+次の出力が表示されます。
 
 +
 [listing]
@@ -224,8 +270,10 @@ Online
 ----
 . NVMe/FCイニシエータポートが有効になっており、ターゲットポートが認識されることを確認します。
 +
-`cat /sys/class/scsi_host/host*/nvme_info`
-
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
 +
 .例を示します
 [%collapsible]
@@ -267,15 +315,18 @@ FCP CMPL: xb 000014a5 Err 0002149a
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
 
-NOTE: RHEL 9.5 GAカーネルに含まれている標準の受信トレイqla2xxxドライバには、最新の修正が適用されています。これらの修正は、ONTAPのサポートに不可欠です。
+NOTE: Rocky Linux カーネルに含まれるネイティブの受信トレイ qla2xxx ドライバーには最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
 
 .手順
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
-[listing]
+[source, cli]
 ----
 cat /sys/class/fc_host/host*/symbolic_name
 ----
++
+次の例は、ドライバーとファームウェアのバージョンを示しています。
+
 +
 [listing]
 ----
@@ -284,12 +335,12 @@ QLE2742 FW:v9.14.00 DVR:v10.02.09.200-k
 ----
 . 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 ----
 +
-期待される出力は1です。
+想定される出力は1です。
 
 
 
@@ -297,9 +348,9 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 ====
 
 
-=== 1MB I/Oを有効にする（オプション）
+== ステップ4: オプションで1MBのI/Oを有効にする
 
-ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには、パラメータの値を `lpfc_sg_seg_cnt`デフォルト値の64から256に増やす必要があります `lpfc`。
+Broadcomアダプタで構成されたNVMe/FCでは、1MBのI/Oリクエストを有効にすることができます。ONTAPは、コントローラ識別データで最大データ転送サイズ（MDTS）を8と報告します。1MBつまり、最大I/O要求サイズは1MBです。のI/Oリクエストを発行するには、lpfcの値を増やす必要があります。  `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
 
 
 NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
@@ -307,13 +358,10 @@ NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
 .手順
 .  `lpfc_sg_seg_cnt`パラメータを256に設定します。
 +
-[source, cli]
+[listing]
 ----
 cat /etc/modprobe.d/lpfc.conf
 ----
-+
-次の例のような出力が表示されます。
-
 +
 [listing]
 ----
@@ -322,7 +370,7 @@ options lpfc lpfc_sg_seg_cnt=256
 . コマンドを実行し `dracut -f`、ホストをリブートします。
 . の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
-[source, cli]
+[listing]
 ----
 cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
@@ -330,9 +378,9 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
-== NVMe/FC を設定
+== ステップ5: NVMe/TCPを構成する
 
-NVMe/TCPプロトコルでこの処理がサポートされてい `auto-connect`ません。代わりに、NVMe/TCPまたは `connect-all`の処理を手動で実行することで、NVMe/TCPサブシステムとネームスペースを検出できます `connect`。
+NVMe/TCPプロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCP connectまたはconnect-all操作を手動で実行することで、NVMe/TCPサブシステムと名前空間を検出できます。
 
 .手順
 . イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
@@ -611,21 +659,21 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 
 
 
-NOTE: RHEL 9.5以降では、NVMe/TCPタイムアウトのデフォルト設定 `ctrl_loss_tmo`がオフになっています。これは、再試行回数に制限がないことを意味します（無期限の再試行）。したがって、コマンドまたは `nvme connect-all`コマンド（オプション-l）を使用するときに、特定のタイムアウト期間を `nvme connect`手動で設定する必要はありません `ctrl_loss_tmo`。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
 
-
-
-== NVMe-oF を検証します
+== ステップ6: NVMe-oFを検証する
 
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
 
 .手順
 . カーネル内NVMeマルチパスが有効になっていることを確認します。
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/nvme_core/parameters/multipath
 ----
++
+次の出力が表示されます。
+
 +
 [listing]
 ----
@@ -633,14 +681,30 @@ Y
 ----
 . 該当するONTAPネームスペースの適切なNVMe-oF設定（modelをNetApp ONTAPコントローラに設定し、load balancing iopolicyをラウンドロビンに設定するなど）がホストに正しく反映されていることを確認します。
 +
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/model`
+.. サブシステムを表示します。
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
+----
++
+次の出力が表示されます。
+
 +
 [listing]
 ----
 NetApp ONTAP Controller
 NetApp ONTAP Controller
 ----
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy`
+.. ポリシーを表示します。
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+次の出力が表示されます。
+
 +
 [listing]
 ----
@@ -651,7 +715,7 @@ round-robin
 
 . ネームスペースが作成され、ホストで正しく検出されたことを確認します。
 +
-[listing]
+[source, cli]
 ----
 nvme list
 ----
@@ -677,7 +741,7 @@ Namespace Usage    Format             FW             Rev
 ====
 .NVMe/FC
 --
-[listing]
+[source, cli]
 ----
 nvme list-subsys /dev/nvme4n5
 ----
@@ -699,7 +763,7 @@ iopolicy=round-robin\
 --
 .NVMe/FC
 --
-[listing]
+[source, cli]
 ----
 nvme list-subsys /dev/nvme1n1
 ----
@@ -725,12 +789,13 @@ src_addr=192.168.1.31 *live non-optimized*
 --
 ====
 . ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
-+
+
+
 [role="tabbed-block"]
 ====
 .列（ Column ）
 --
-[listing]
+[source, cli]
 ----
 nvme netapp ontapdevices -o column
 ----
@@ -752,7 +817,7 @@ NSID       UUID                                   Size
 --
 .JSON
 --
-[listing]
+[source, cli]
 ----
 nvme netapp ontapdevices -o json
 ----
@@ -781,233 +846,6 @@ nvme netapp ontapdevices -o json
 ====
 
 
+== 手順7：既知の問題を確認する
 
-
-== セキュアなインバンド認証のセットアップ
-
-ONTAP 9.12.1以降では、RHEL 9.5ホストとONTAPコントローラの間でNVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。
-
-セキュアな認証を設定するには、各ホストまたはコントローラを `DH-HMAC-CHAP` キー。NVMeホストまたはコントローラのNQNと管理者が設定した認証シークレットを組み合わせたものです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。
-
-CLIまたは設定JSONファイルを使用して、セキュアなインバンド認証を設定できます。サブシステムごとに異なるDHCHAPキーを指定する必要がある場合は、config JSONファイルを使用する必要があります。
-
-[role="tabbed-block"]
-====
-.CLI の使用
---
-CLIを使用してセキュアなインバンド認証を設定します。
-
-.手順
-. ホストNQNを取得します。
-+
-[listing]
-----
-cat /etc/nvme/hostnqn
-----
-. RHEL 9.5ホストのDHCHAPキーを生成します。
-+
-コマンドパラメータの出力を次に示し `gen-dhchap-key`ます。
-
-+
-[listing]
-----
-nvme gen-dhchap-key -s optional_secret -l key_length {32|48|64} -m HMAC_function {0|1|2|3} -n host_nqn
-•	-s secret key in hexadecimal characters to be used to initialize the host key
-•	-l length of the resulting key in bytes
-•	-m HMAC function to use for key transformation
-0 = none, 1- SHA-256, 2 = SHA-384, 3=SHA-512
-•	-n host NQN to use for key transformation
-----
-+
-次の例では、HMACが3に設定されたランダムDHCHAPキー（SHA-512）が生成されます。
-
-+
-[listing]
-----
-# nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:e6dade64-216d-11ec-b7bb-7ed30a5482c3
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-----
-. ONTAPコントローラで、ホストを追加し、両方のDHCHAPキーを指定します。
-+
-[listing]
-----
-vserver nvme subsystem host add -vserver <svm_name> -subsystem <subsystem> -host-nqn <host_nqn> -dhchap-host-secret <authentication_host_secret> -dhchap-controller-secret <authentication_controller_secret> -dhchap-hash-function {sha-256|sha-512} -dhchap-group {none|2048-bit|3072-bit|4096-bit|6144-bit|8192-bit}
-----
-. ホストは、単方向と双方向の2種類の認証方式をサポートします。ホストで、ONTAPコントローラに接続し、選択した認証方式に基づいてDHCHAPキーを指定します。
-+
-[listing]
-----
-nvme connect -t tcp -w <host-traddr> -a <tr-addr> -n <host_nqn> -S <authentication_host_secret> -C <authentication_controller_secret>
-----
-. 検証する `nvme connect authentication` ホストとコントローラのDHCHAPキーを確認してコマンドを実行します。
-+
-.. ホストDHCHAPキーを確認します。
-+
-[listing]
-----
-cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_secret
-----
-+
-.に、単方向設定の出力例を示します。
-[%collapsible]
-=====
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys1/nvme*/dhchap_secret
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-----
-=====
-.. コントローラのDHCHAPキーを確認します。
-+
-[listing]
-----
-cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_ctrl_secret
-----
-+
-.に、双方向設定の出力例を示します。
-[%collapsible]
-=====
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys6/nvme*/dhchap_ctrl_secret
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-----
-=====
-
-
-
-
---
-.JSON ファイル
---
-ONTAPコントローラ構成で複数のNVMeサブシステムを使用できる場合は、コマンドでファイルを `nvme connect-all`使用できます `/etc/nvme/config.json`。
-
-JSONファイルを生成するには、オプションを使用し `-o`ます。その他の構文オプションについては、nvme connect - allのマニュアルページを参照してください。
-
-.手順
-. JSON ファイルを設定します。
-+
-.例を示します
-[%collapsible]
-=====
-[listing]
-----
-# cat /etc/nvme/config.json
-[
-{
-  "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:9796c1ec-0d34-11eb-b6b2-3a68dd3bab57",
-  "hostid":"b033cd4fd6db4724adb48655bfb55448",
-  "dhchap_key":"DHHC-1:01:zGlgmRyWbplWfUCPMuaP3mAypX0+GHuSczx5vX4Yod9lMPim:"
-},
-{
-  "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-b5c04f444d33",
-  "subsystems":[
-       {
-          "nqn":"nqn.1992-08.com.netapp:sn.0f4ba1e74eb611ef9f50d039eab6cb6d:subsystem.bidir_DHCP",
-          "ports":[
-              {
-                  "transport":"tcp",
-                   "traddr":" 192.168.1.24 ",
-                  "host_traddr":" 192.168.1.31 ",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              },
-              {
-                  "transport":"tcp",
-                  "traddr":" 192.168.1.24 ",
-                  "host_traddr":" 192.168.1.31",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              },
-              {
-                  "transport":"tcp",
-                 "traddr":" 192.168.1.24 ",
-                  "host_traddr":" 192.168.1.31",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              },
-              {
-                  "transport":"tcp",
-                  "traddr":" 192.168.1.24 ",
-                   "host_traddr":" 192.168.1.31",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              }
-          ]
-      }
-  ]
-}
-]
-----
-=====
-+
-
-NOTE: 上記の例では、はに対応し、は `dhchap_key`に対応 `dhchap_secret`し `dhchap_ctrl_key` `dhchap_ctrl_secret`ます。
-
-. config jsonファイルを使用してONTAPコントローラに接続します。
-+
-[listing]
-----
-# nvme connect-all -J /etc/nvme/config.json
-----
-+
-.例を示します
-[%collapsible]
-=====
-[listing]
-----
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-----
-=====
-. 各サブシステムの各コントローラでDHCHAPシークレットが有効になっていることを確認します。
-+
-.. ホストDHCHAPキーを確認します。
-+
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_secret
-----
-+
-[listing]
-----
-DHHC-1:01:zGlgmRyWbplWfUCPMuaP3mAypX0+GHuSczx5vX4Yod9lMPim:
-----
-.. コントローラのDHCHAPキーを確認します。
-+
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_ctrl_secret
-----
-+
-[listing]
-----
-DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:
-----
-
-
-
-
---
-====
-
-
-== 既知の問題
-
-ONTAPリリースを搭載したRHEL 9.5でのNVMe-oFホスト構成に関する既知の問題はありません。
+ONTAP リリースの Rocky Linux 8.5 上の NVMe-oF ホスト構成には既知の問題はありません。

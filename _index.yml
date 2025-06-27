@@ -11,7 +11,7 @@ indexpage:
   tiles:
   - title: はじめに
     links:
-    - title: 製品の概要
+    - title: SANホスト構成の詳細
       url: "/overview.html"
     - title: AIX Host Utilitiesリリースノート
       url: "/hu_aix_rn.html"
