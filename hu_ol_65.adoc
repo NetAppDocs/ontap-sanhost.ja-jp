@@ -37,9 +37,6 @@ Linux Host Utilitiesが現在インストールされている場合は、最新
 
 
 
-NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
-
-
 
 == SAN ツールキット
 

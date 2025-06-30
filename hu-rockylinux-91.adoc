@@ -225,7 +225,7 @@ WWIDの例はです `360030057024d0730239134810c0cb833`。
 
 . 「blacklist」スタンザにWWIDを追加します。
 +
-[listing]
+[source, cli]
 ----
 blacklist {
 	     wwid   360030057024d0730239134810c0cb833

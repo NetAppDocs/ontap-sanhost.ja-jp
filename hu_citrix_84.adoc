@@ -28,10 +28,7 @@ SANブートを使用するようにホストを設定することで、導入�
 を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
 
 .手順
-. SANブートLUNを作成してホストにマッピングします。
-+
-を参照してください https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANストレージのプロビジョニング"^]
-
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANブートLUNを作成し、ホストにマップする"^]です。
 . SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
@@ -219,7 +216,7 @@ WWIDの例はです `360030057024d0730239134810c0cb833`。
 
 . 「blacklist」スタンザにWWIDを追加します。
 +
-[listing]
+[source, cli]
 ----
 blacklist {
 	     wwid   360030057024d0730239134810c0cb833
