@@ -129,8 +129,7 @@ src_addr=192.168.1.31 *live non-optimized*
 --
 ====
 . ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
-
-
++
 [role="tabbed-block"]
 ====
 .列（ Column ）
@@ -184,3 +183,4 @@ nvme netapp ontapdevices -o json
 =====
 --
 ====
+

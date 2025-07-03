@@ -160,6 +160,8 @@ NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプ�
 [role="tabbed-block"]
 ====
 .Broadcom / Emulex
+Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
+
 --
 .手順
 . サポートされているアダプタモデルを使用していることを確認します。
@@ -789,8 +791,7 @@ src_addr=192.168.1.31 *live non-optimized*
 --
 ====
 . ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
-
-
++
 [role="tabbed-block"]
 ====
 .列（ Column ）
@@ -844,6 +845,8 @@ nvme netapp ontapdevices -o json
 =====
 --
 ====
+
+
 
 
 == 手順7：既知の問題を確認する
