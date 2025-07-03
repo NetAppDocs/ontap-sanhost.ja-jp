@@ -241,6 +241,9 @@ CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないで�
 
 次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
 
+.例を示します
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 defaults {
@@ -257,6 +260,7 @@ devices {
    }
 }
 ----
+====
 
 
 == 手順6：既知の問題を確認する

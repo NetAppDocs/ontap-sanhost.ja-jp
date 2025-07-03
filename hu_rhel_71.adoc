@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_rhel_71.html 
 keywords: host utilities, red hat, rhel, linux, 7.1, netapp, ontap 
-summary: ONTAP で Red Hat Enterprise Linux 7.1 を使用する方法について説明します 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、RHEL 7.1 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージを使用したFCPおよびiSCSI用RHEL 7.1の設定
 :hardbreaks:
@@ -249,6 +249,9 @@ CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないで�
 
 次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
 
+.例を示します
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 defaults {
@@ -265,6 +268,7 @@ devices {
    }
 }
 ----
+====
 
 
 == 手順6：既知の問題を確認する

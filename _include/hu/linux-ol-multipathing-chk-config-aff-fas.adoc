@@ -15,12 +15,12 @@ touch /etc/multipath.conf
 +
 [source, cli]
 ----
-systemctl enable multipathd
+chkconfig multipathd on
 ----
 +
 [source, cli]
 ----
-systemctl start multipathd
+/etc/init.d/multipathd start
 ----
 . ホストをブートするたびに、空のゼロバイトファイルによって `/etc/multipath.conf`、NetApp推奨のホストマルチパスパラメータがデフォルト設定として自動的にロードされます。オペレーティングシステムは、ONTAP LUNを正しく認識および管理するマルチパスパラメータでコンパイルされているため、ホスト用のファイルを変更する必要はありません `/etc/multipath.conf`。
 +
@@ -96,56 +96,29 @@ systemctl start multipathd
 multipath -ll
 ----
 +
-デフォルトのマルチパスパラメータでは、ASA、AFF、およびFASの構成がサポートされます。このような構成では、1つのONTAP LUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。
+デフォルトのマルチパス パラメータは、AFF および FAS 構成をサポートします。このような構成では、1つのONTAP LUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。
 
 +
-次の出力例は、ASA、AFF、またはFAS構成のONTAP LUNについて、正しいパラメータ設定とパスステータスを示しています。
-
-+
-[role="tabbed-block"]
-====
-.ASA構成
---
-ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
-
-.例を示します
-[%collapsible]
-=====
-[listing]
-----
-multipath -ll
-3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode
-size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-`-+- policy='service-time 0' prio=50 status=active
-  |- 14:0:0:0  sdc  8:32   active ready running
-  |- 17:0:0:0  sdas 66:192 active ready running
-  |- 14:0:3:0  sdar 66:176 active ready running
-  `- 17:0:3:0  sdch 69:80  active ready running
-----
-=====
---
-.AFFまたはFASの設定
---
 AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
 
-次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
++
+次の出力例は、2 つのアクティブ/最適化パスと 2 つのアクティブ/非最適化パスを持つ AFF または FAS 構成内の ONTAP LUN の正しいパラメータ設定とパス ステータスを示しています。
 
++
 .例を示します
 [%collapsible]
-=====
+====
 [listing]
 ----
 multipath -ll
-3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
-size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+3600a0980383036347ffb4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
-| |- 16:0:3:0  sdcg 69:64  active ready running
-| `- 10:0:0:0  sdb  8:16   active ready running
+| |- 16:0:6:35 sdwb  69:624  active ready running
+| |- 16:0:5:35 sdun  66:752  active ready running
 `-+- policy='service-time 0' prio=10 status=enabled
-  |- 10:0:1:0  sdc  8:32   active ready running
-  `- 16:0:2:0  sdcf 69:48  active ready running
+  |- 15:0:0:35 sdaj  66:48   active ready running
+  |- 15:0:1:35 sdbx  68:176  active ready running
 ----
-=====
---
 ====
 
