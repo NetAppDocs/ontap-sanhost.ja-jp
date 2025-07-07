@@ -2400,7 +2400,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="a243e92c34f812e7c56005c42a770271" category="summary">NVMe-oFホスト構成（Oracle Linux 9.4 with ONTAP</block>
   <block id="8d7e003d34318d8e9e26f43a6131a1ff" category="paragraph">ONTAPストレージを使用するOracle Linux 9.4向けのNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
   <block id="d5eb631f33b53d79f1963a09eca1f9b9" category="list-text">NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。</block>
-  <block id="5393f0229b7c28049a490e7e149cce98" category="list-text">同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。</block>
   <block id="26b5a656c86d4a0ae9755158f46fbf98" category="list-text">NVMeネームスペースではデフォルトでカーネル内NVMeマルチパスがサポートされるため、明示的に設定する必要はありません。</block>
   <block id="0e40927283df7781be68d00b8accefe1" category="paragraph">サポートされているOracle Linux 9.4ソフトウェアの最小バージョンを検証するには、次の手順を実行します。</block>
   <block id="affce6661ee4cdaf7f19934910191c46" category="list-text">Oracle Linux 9.4 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 9.4 GAカーネルを実行していることを確認します。</block>
@@ -3442,7 +3441,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="8e628a7900ccbcbe897613470b379397" category="doc">ONTAPストレージ用にNVMe-oFを使用してRocky Linux 8.10を構成する</block>
   <block id="85c8cdeb7264230e3576dcdedf0caad5" category="paragraph">Rocky Linux 8.10 ホストは、非対称名前空間アクセス (ANA) を備えた NVMe/FC および NVMe/TCP プロトコルをサポートします。ANAは、iSCSI および FCP 環境における非対称論理ユニットアクセス (ALUA) マルチパスに相当し、カーネル内 NVMe マルチパス機能を使用して実装されます。</block>
   <block id="c264db98e31638c1a8a87666a604a58e" category="paragraph">Rocky Linux 8.10 の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
-  <block id="c9e63917edd2644c65c4c83c5f513014" category="list-text">NVMeトラフィックとSCSIトラフィックを同じホストで実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。</block>
   <block id="dcccf8a1b4217ccff67e37945ae5e664" category="list-text">Rocky Linux 8.10 NVMe-oF ホストでは、カーネル内 NVMe マルチパスはデフォルトで無効になっています。そのため、手動で有効にする必要があります。</block>
   <block id="46fede53b7d1ee83fe8a87bd6ecb6b28" category="inline-link">Rocky Linux 8.10 リリースノート</block>
   <block id="9ddcffe2b5bcdcca37f41378bd6c4381" category="list-text">Rocky Linux 8.10 ホストでは、未解決の問題のため、NVMe/TCP はテクノロジー プレビュー機能です。詳細については、を参照して<block ref="47fab428b8102b062e87d7a496d804cc" category="inline-link-rx"></block> ください。</block>
@@ -3916,13 +3914,10 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="379e2b5ae5b7c7e267439eb94baea215" category="doc">ONTAPストレージ用にNVMe-oFを使用してOracle Linux 9.5を構成する</block>
   <block id="ac17418128183e6567213b4eb19b624e" category="paragraph">ONTAPストレージを使用するOracle Linux 9.5向けのNVMe-oFホスト構成では、次のサポートと機能を使用できます。</block>
   <block id="da28215a221e368b851dc3287e53bf0d" category="list-text">Oracle Linux 9.5 では、NVMe 名前空間のカーネル内 NVMe マルチパスがデフォルトで有効になり、明示的な設定が不要になります。</block>
-  <block id="1daee075c9e11e6f5b20b3967c0df0f7" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELOracle Linux 9.5ではNVMe/TCPのセキュアなインバンド認証が使用可能</block>
-  <block id="1406ed1061bd413045768fa60a774f96" category="list-text">発行を避ける<block ref="de5ac85ea45047f4dbeea79d7b729b7d" prefix=" " category="inline-code"></block> NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルートファイルシステムとデータファイルシステムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。</block>
   <block id="3d8ffc1ce95181376d3df0b672be1eda" category="paragraph">サポートされている Oracle Linux 9.5 ソフトウェアの最小バージョンを検証するには、次の手順に従います。</block>
   <block id="db6f9dd7f149e36160f14dc375296df9" category="list-text">Oracle Linux 9.5 をサーバーにインストールします。インストールが完了したら、指定された Oracle Linux 9.5 カーネルが実行されていることを確認します。</block>
   <block id="3d461fcebb59cefcba884f7f4189554c" category="paragraph">次の例は、Oracle Linux カーネルのバージョンを示しています。</block>
   <block id="1c6fe8f9564a2897108b9a362f664a00" category="list-text">Oracle Linux 9.5ホストで、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block><block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>次の場所の文字列を確認します。</block>
-  <block id="941c3de9b4431dee039cdde689dc10a6" category="paragraph">Broadcom/Emulex FC または Marvell/Qlogic FC アダプタを使用して NVMe/FC を構成します。</block>
   <block id="e18c595831de75294a8d5182a3556728" category="paragraph">次の例は、ドライバーとファームウェアのバージョンを示しています。</block>
   <block id="414c61d9e5c23d4d8f6cfb11c45d77df" category="paragraph">価値<block ref="c4ca4238a0b923820dcc509a6f75849b" prefix=" " category="inline-code"></block>検証する<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block>が設定されています。</block>
   <block id="41ffb2c5337c2e9742d41439a2a47824" category="section-title">ステップ4: オプションでNVMe/FCの1MB I/Oを有効にする</block>
@@ -3949,4 +3944,9 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="73ab7233c5edabec8f510d9bf8812cd1" category="sidebar">Oracle Linux 8.</block>
   <block id="1b7514bd57f9cc1b09f9148e93151331" category="sidebar">Oracle Linux 7.</block>
   <block id="c60ede747aeb2a1a339beabc79de8ca2" category="sidebar">Oracle Linux 6.</block>
+  <block id="6d33793e4362fa404bfbe30d04104eaf" category="list-text">同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUN の SCSI mpath デバイス上で dm-multipath を設定し、NVMe multipath を使用してホスト上で NVMe-oF 名前空間デバイスを設定できます。</block>
+  <block id="ae032d5b125754c1697aed6e1d8f7432" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELOracle Linux 9.5 では、NVMe/TCP の安全なインバンド認証を使用できます。</block>
+  <block id="42cbea0085bea3ec5496d092c502217b" category="paragraph">Broadcom/Emulex FC または Marvell/Qlogic FC アダプタを使用して NVMe/FC を構成します。</block>
+  <block id="0f2332cb3d4b010b45d6eb9fbbeab96c" category="list-text">同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUN 上の SCSI mpath デバイス用に dm-multipath を設定し、NVMe multipath を使用してホスト上の NVMe-oF 名前空間デバイスを設定できます。</block>
+  <block id="c28f1c588b284418e1f1f45095861195" category="list-text">NVMeトラフィックとSCSIトラフィックを同じホストで実行している。たとえば、SCSI LUN 上の SCSI mpath デバイス用に dm-multipath を設定し、NVMe multipath を使用してホスト上の NVMe-oF 名前空間デバイスを設定できます。</block>
 </blocks>

@@ -24,7 +24,7 @@ Rocky Linux 10 の NVMe-oF ホスト構成では、次のサポートと機能�
 * 利用可能なサポート：
 +
 ** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準パッケージのNetAppプラグイン `nvme-cli`には、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
-** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
+** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUN 上の SCSI mpath デバイス用に dm-multipath を設定し、NVMe multipath を使用してホスト上の NVMe-oF 名前空間デバイスを設定できます。
 ** ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELRocky Linux 10 では、NVMe/TCP の安全なインバンド認証を使用できます。
 
 

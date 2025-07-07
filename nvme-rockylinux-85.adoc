@@ -26,7 +26,7 @@ Rocky Linux 8.5 の NVMe-oF ホスト構成では、次のサポートと機能�
 * 利用可能なサポート：
 +
 ** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準パッケージのNetAppプラグイン `nvme-cli`には、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
-** NVMeトラフィックとSCSIトラフィックを同じホストで実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
+** NVMeトラフィックとSCSIトラフィックを同じホストで実行している。たとえば、SCSI LUN 上の SCSI mpath デバイス用に dm-multipath を設定し、NVMe multipath を使用してホスト上の NVMe-oF 名前空間デバイスを設定できます。
 
 
 * 既知の制限事項：

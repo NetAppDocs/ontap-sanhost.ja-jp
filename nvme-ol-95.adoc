@@ -24,9 +24,9 @@ ONTAPストレージを使用するOracle Linux 9.5向けのNVMe-oFホスト構�
 * 利用可能なサポート：
 +
 ** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
-** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
+** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUN の SCSI mpath デバイス上で dm-multipath を設定し、NVMe multipath を使用してホスト上で NVMe-oF 名前空間デバイスを設定できます。
 ** Oracle Linux 9.5 では、NVMe 名前空間のカーネル内 NVMe マルチパスがデフォルトで有効になり、明示的な設定が不要になります。
-** ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELOracle Linux 9.5ではNVMe/TCPのセキュアなインバンド認証が使用可能
+** ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELOracle Linux 9.5 では、NVMe/TCP の安全なインバンド認証を使用できます。
 
 
 +
