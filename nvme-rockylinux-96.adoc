@@ -27,19 +27,19 @@ Rocky Linux 9.6 の NVMe-oF ホスト構成では、次のサポートと機能�
 ** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
 ** Rocky Linux 9.6 では、NVMe 名前空間のカーネル内 NVMe マルチパスがデフォルトで有効になり、明示的な設定が不要になります。
 ** ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELRocky Linux 9.6 では、NVMe/TCP の安全なインバンド認証を使用できます。
+
+
 +
 サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
-
-
 * 利用可能な機能：
 +
-** 利用できる新しい機能はありません。
+** このリリースの新機能はありません。
 
 
 * 既知の制限事項：
 +
-** 発行を避ける `nvme disconnect-all` NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルート ファイル システムとデータ ファイル システムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。
+** 発行を避ける `nvme disconnect-all` NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルートファイルシステムとデータファイルシステムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。
 
 
 
@@ -418,7 +418,9 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 == ステップ5: NVMeブートサービスを確認する
 
-Rocky Linux 9.6では、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service` NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効になります。起動が完了したら、サービスが有効になっていることを確認してください。
+Rocky Linux 9.6では、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service` NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効になります。
+
+起動が完了したら、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`ブート サービスが有効になっています。
 
 .手順
 . が有効であることを確認し `nvmf-autoconnect.service`ます。
@@ -749,9 +751,16 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
+[NOTE]
+====
+Rocky Linux 9.4以降、NVMe/TCPの設定は `ctrl_loss_tmo timeout`自動的に「オフ」に設定されます。その結果、次のようになります
 
-NOTE: Rocky Linux 9.5以降、NVMe/TCPのデフォルト設定は `ctrl_loss_tmo`タイムアウトはオフになります。これは、再試行回数に制限がないことを意味します（無期限の再試行）。したがって、コマンドまたは `nvme connect-all`コマンド（オプション-l）を使用するときに、特定のタイムアウト期間を `nvme connect`手動で設定する必要はありません `ctrl_loss_tmo`。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
+* 再試行回数に制限はありません（無期限再試行）。
+* 特定の設定を手動で行う必要はありません `ctrl_loss_tmo timeout`使用時の持続時間 `nvme connect`または `nvme connect-all`コマンド（オプション -l ）。
+* NVMe/TCP コントローラーは、パス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。
 
+
+====
 
 
 == ステップ7: NVMe-oFを検証する

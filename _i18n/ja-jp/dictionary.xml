@@ -772,9 +772,6 @@
   <block id="b0781c18fd091c4f9e79ff11eb4b9fc5" category="sidebar">VMware vSphere 7</block>
   <block id="b1fd823d262032e04291313f72be9452" category="sidebar">HP-UX</block>
   <block id="d5b12213e8526feaa7c520b3b736f9b8" category="sidebar">11i v3</block>
-  <block id="5d6872b10f9cf7c477fcca864540c009" category="sidebar">OL 8.</block>
-  <block id="da4528ec52dd73373d160d41103622f1" category="sidebar">OL 7.</block>
-  <block id="1477da5eaee91f44697613216e70a676" category="sidebar">OL 6</block>
   <block id="d413bda6687be2c7d50d2c76e62fc60f" category="sidebar">RHEL 8</block>
   <block id="6762f053abca7510f6648c71492724a7" category="sidebar">8/4</block>
   <block id="acfb4fbe1ed02bf6b4487b4fcd0ef690" category="sidebar">RHEL 7</block>
@@ -1242,7 +1239,6 @@
   <block id="65427f0cfd42249488837342e79863a2" category="paragraph">Qlogicの詳細ロギングを設定する手順 （qla2xxx）は、lpfc詳細ロギングを設定する手順 とは異なります。</block>
   <block id="2401f6c892699dd24f7fa72c9a39b053" category="open-title">LPFC</block>
   <block id="db9afb1f05f1d6930c84839b76060ccc" category="open-title">qla2xxx</block>
-  <block id="7ad56430e8db8d37194a3ee41cf45911" category="sidebar">OL 9</block>
   <block id="6faca8b2572cd22ef1b619e4be0a8165" category="paragraph">NVMe/TCPには自動接続機能はありません。そのため、パスがダウンしてデフォルトのタイムアウト（10分）内に復元されないと、NVMe/TCPは自動的に再接続できません。タイムアウトを回避するには、フェイルオーバーイベントの再試行期間を30分以上に設定する必要があります。</block>
   <block id="6136261711c49bf0e8e1dcb22a2c524f" category="cell">該当なし</block>
   <block id="c49c2dee17bca0bb7b37e30a531ae56e" category="cell">インストールプログラムがHBAパラメータを設定するために使用します。</block>
@@ -2212,7 +2208,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="b9878305790c185df1d9210983c79621" category="paragraph">RHEL 9.2 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、アップストリームに関する最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。</block>
   <block id="8677aa1aa4fd519ff6f08a97a120426f" category="paragraph">RHEL 9.3 GAカーネルに含まれている標準の受信トレイqla2xxxドライバには、最新の修正が適用されています。これらの修正は、ONTAPのサポートに不可欠です。</block>
   <block id="35a282ef807a49dea44ebc22c4bd955c" category="paragraph">RHEL 9.4 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。</block>
-  <block id="ffea0a6bb53a365cb75f285c35bf133f" category="admonition">RHEL 9.4以降では、NVMe/TCPタイムアウトのデフォルト設定<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block>がオフになっています。これは、再試行回数に制限がないことを意味します（無期限の再試行）。したがって、コマンドまたは<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション-l）を使用するときに、特定のタイムアウト期間を<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>手動で設定する必要はありません<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block>。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。</block>
   <block id="473733802c02f67f489689f787461e62" category="list-text">SUSE Linux Enterprise Server 15 SP1</block>
   <block id="a1e3e223ffe62b0c4daec6746ea79cc8" category="paragraph">SUSE Linux Enterprise Server 15 SP1ホストは、同じファイバチャネルイニシエータアダプタポートを介してNVMe/FCトラフィックとFCPトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。</block>
   <block id="197f121a9eabe5a0325431d875ee33dc" category="list-text">NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージに含まれています。SUSE Linux Enterprise Server 15 SP1では、ネイティブの受信トレイlpfcドライバを使用できます。</block>
@@ -2406,16 +2401,13 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="8d7e003d34318d8e9e26f43a6131a1ff" category="paragraph">ONTAPストレージを使用するOracle Linux 9.4向けのNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
   <block id="d5eb631f33b53d79f1963a09eca1f9b9" category="list-text">NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準のNVMe-CLIパッケージに含まれるNetAppプラグインには、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。</block>
   <block id="5393f0229b7c28049a490e7e149cce98" category="list-text">同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。</block>
-  <block id="050ba5fff7d58a33e1430ba566c04d30" category="list-text">ONTAP 9.12.1以降では、NVMe-oFにセキュアなインバンド認証がサポートされるようになりました。Oracle Linux 9.4では、NVMe-oFのセキュアなインバンド認証を使用できます。</block>
   <block id="26b5a656c86d4a0ae9755158f46fbf98" category="list-text">NVMeネームスペースではデフォルトでカーネル内NVMeマルチパスがサポートされるため、明示的に設定する必要はありません。</block>
   <block id="0e40927283df7781be68d00b8accefe1" category="paragraph">サポートされているOracle Linux 9.4ソフトウェアの最小バージョンを検証するには、次の手順を実行します。</block>
   <block id="affce6661ee4cdaf7f19934910191c46" category="list-text">Oracle Linux 9.4 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 9.4 GAカーネルを実行していることを確認します。</block>
   <block id="ea950937531f8e9f677ce1e5332a4829" category="list-text">Oracle Linux 9.4ホストで、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block><block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>次の場所の文字列を確認します。</block>
   <block id="a23683a8828843e30b307af86bb0df14" category="admonition">文字列が一致しない場合<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>は、コマンドを使用して、対応するONTAPアレイサブシステムの文字列を更新し、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>ホストののの文字列<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>と一致させる<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>ことができます<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block>。</block>
   <block id="df755a9bbd0a658abd55399c7b92971c" category="admonition">Oracle Linux 9.4 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。</block>
-  <block id="f02fd4ff3e2dcc8c410dab1df215523f" category="admonition">Oracle Linux 9.4以降では、NVMe/TCPのデフォルト設定が<block ref="aa299db15ce3339d945d5120490e62d0" prefix=" " category="inline-code"></block>オフになっており、再試行回数に制限はありません（無期限の再試行）。コマンドまたは<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション-l）を使用する場合は、特定の期間<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>を手動で設定する必要はありません<block ref="aa299db15ce3339d945d5120490e62d0" prefix=" " category="inline-code"></block>。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。</block>
   <block id="29246f167e3a779b1e6f616740b06741" category="list-text">Oracle Linix 9.4ホストで次のNVMe/FC設定を確認します。</block>
-  <block id="ba9f0e4fedc3b09333b29ffd35d901c2" category="paragraph">ONTAP 9.12.1以降では、Oracle Linux 9.4ホストとONTAPコントローラの間でNVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。</block>
   <block id="9a8c8fd6ced80cbe4db0d4c4fef7bf6e" category="list-text">OL 9.4ホストのDHCHAPキーを生成します。</block>
   <block id="d481825a9f6d37ba25450de94597b251" category="paragraph">ONTAPリリースのOracle Linux 9.4では、既知の問題はありません。</block>
   <block id="5dca4677c0eb60175de3486097fb7e31" category="summary">ONTAPを使用したRHEL 9.5用のNVMe-oFホストの設定方法</block>
@@ -2423,13 +2415,11 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="c396639e860651e2d3cd53ecae736ced" category="list-text">NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準パッケージのNetAppプラグイン<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>には、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。</block>
   <block id="b1f115278eb622d0e0153250bf01cf4c" category="list-text">ONTAP 9.12.1以降では、NVMe-oFにセキュアなインバンド認証がサポートされるようになりました。RHEL 9.5では、NVMe-oFのセキュアなインバンド認証を使用できます。</block>
   <block id="3b0bb03e8ddfc0fdfe70ebd97a424add" category="list-text">RHEL 9.5では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になるため、明示的に設定する必要はありません。</block>
-  <block id="77b17c4b304e4bc88274ebbde24c1c87" category="list-text">NVMe/FCプロトコルを使用したSANブートがサポートされます。</block>
   <block id="923d49c871b0aa57758a6ec2690cf467" category="paragraph">サポートされるRHEL 9.5ソフトウェアの最小バージョンは、次の手順を使用して検証できます。</block>
   <block id="461e7f95e5f2d1eb8ac5995384e12da4" category="list-text">サーバにRHEL 9.5をインストールします。インストールが完了したら、指定したRHEL 9.5カーネルが実行されていることを確認します。</block>
   <block id="38f6bc852d1bbe27e299d387064a34e3" category="list-text">RHEL 9.5ホストで、hostnqn文字列を確認します<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>。</block>
   <block id="81f52aae1ae4c5a7cdc70ef7d5def232" category="list-text">の想定される出力がに設定されている<block ref="eccbc87e4b5ce2fe28308fd9f2a7baf3" prefix=" " category="inline-code"></block>ことを確認し<block ref="2daa99bd4c709cddaca678ef2050fb39" prefix=" " category="inline-code"></block>ます。</block>
   <block id="330271c95537a2e849e0052ab0da4ef1" category="admonition">RHEL 9.5 GAカーネルに含まれている標準の受信トレイqla2xxxドライバには、最新の修正が適用されています。これらの修正は、ONTAPのサポートに不可欠です。</block>
-  <block id="532893dee0ae71664f412a786619776e" category="admonition">RHEL 9.5以降では、NVMe/TCPタイムアウトのデフォルト設定<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block>がオフになっています。これは、再試行回数に制限がないことを意味します（無期限の再試行）。したがって、コマンドまたは<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション-l）を使用するときに、特定のタイムアウト期間を<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>手動で設定する必要はありません<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block>。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。</block>
   <block id="d8133302f3833708e05d2a65a4efe359" category="paragraph">ONTAP 9.12.1以降では、RHEL 9.5ホストとONTAPコントローラの間でNVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。</block>
   <block id="710b53594e3ee110c5fc61ba3387e351" category="list-text">RHEL 9.5ホストのDHCHAPキーを生成します。</block>
   <block id="9e4ea029a49b7e7586107af115c15f41" category="paragraph">ONTAPリリースを搭載したRHEL 9.5でのNVMe-oFホスト構成に関する既知の問題はありません。</block>
@@ -3324,7 +3314,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="c0cd0678856b67d02b2dfc3c9646fac2" category="paragraph">Red Hat Enterprise Linux（RHEL）10のNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
   <block id="bf21bd2f7b624998085c3d69986dbe53" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHEL10では、NVMe/TCP向けのセキュアなインバンド認証を使用できます。</block>
   <block id="4baea929c29e972312029711f923ecc9" category="list-text">RHEL 10 以降では、ネイティブ NVMe マルチパスが常に有効になっており、NVMe-oF の DM マルチパス サポートはサポートされていません。</block>
-  <block id="705049d3ff516ba95d2f556556788c5a" category="list-text">発行を避ける<block ref="de5ac85ea45047f4dbeea79d7b729b7d" prefix=" " category="inline-code"></block> NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルート ファイル システムとデータ ファイル システムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。</block>
   <block id="9ce1ac3eb326fa20a6e4cc846d38ef38" category="list-text">SAN ブート名前空間を作成し、それをホストにマップします。</block>
   <block id="20cd59705d89627333024680d966bb16" category="inline-link">NVMeストレージのプロビジョニング</block>
   <block id="2ae5f54ecc4375d7e4bc5d4417d72e85" category="paragraph">を参照してください<block ref="0cb485556fb9e40c82f55474b807ef26" category="inline-link-rx"></block></block>
@@ -3349,7 +3338,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="dfeb27de594c744f1f1bc3f70af7fe62" category="paragraph">次の例は、ドライバーとファームウェアのバージョンを示しています。</block>
   <block id="c0dfb3da16b4c34ba6641ab9c5ced78a" category="section-title">ステップ4: オプションで1MBのI/Oを有効にする</block>
   <block id="bb209e859372a1cf79b17e0f3ce4b72d" category="section-title">ステップ5: NVMeブートサービスを確認する</block>
-  <block id="1e39429c019f1be4225017909bd3e504" category="paragraph">RHEL 10では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効化されます。起動が完了したら、サービスが有効になっていることを確認してください。</block>
   <block id="3f6eafce29d3de48f970b9d611381841" category="section-title">ステップ6: NVMe/TCPを構成する</block>
   <block id="dda9e001bef1d21ede41e855ce95f071" category="section-title">ステップ7: NVMe-oFを検証する</block>
   <block id="7ebd106b9b1cfecd3d6fb0451340153e" category="list-text">サブシステムを表示します。</block>
@@ -3375,7 +3363,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="fdee72360607bede29fc52844f306e62" category="paragraph">Red Hat Enterprise Linux（RHEL）9.6のNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
   <block id="770bddea589c1a8e5b2541551754b4e4" category="list-text">RHEL 9.6では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になるため、明示的に設定する必要はありません。</block>
   <block id="e118d7e4742cf0454d407a22991c4f23" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHEL9.6では、NVMe/TCP向けのセキュアなインバンド認証を使用できます。</block>
-  <block id="027d24fe581a1889d6b5752e3886e380" category="list-text">利用できる新しい機能はありません。</block>
   <block id="3b6f23fb41215bfbde13af4b92268902" category="paragraph">サポートされている最小の RHEL 9.6 ソフトウェア バージョンを検証するには、次の手順に従います。</block>
   <block id="61e91ca529ce5516397f8af4ff223ab0" category="list-text">サーバにRHEL 9.6をインストールします。インストールが完了したら、指定したRHEL 9.6カーネルが実行されていることを確認します。</block>
   <block id="deeefe26777fb24a155fd5e2eac9f23b" category="paragraph">次の例は、nvme-cli パッケージのバージョンを示しています。</block>
@@ -3449,8 +3436,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="6ea036c9f961aeb2208dfa3070bd3a2c" category="paragraph">サポートされている Rocky Linux 10 ソフトウェアの最小バージョンを検証するには、次の手順に従います。</block>
   <block id="d82ff982ee38964fef1789b7031e01e7" category="list-text">サーバーにRocky Linux 10をインストールします。インストールが完了したら、指定されたRocky Linux 10カーネルが実行されていることを確認します。</block>
   <block id="e3fbd13dfb8ea61b75afa9bbdecb654e" category="paragraph">次の例は、Rocky Linux カーネルのバージョンを示しています。</block>
-  <block id="6dfe623f7c51a70cb79b53affc5b832a" category="paragraph">Rocky Linux 10では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。起動が完了したら、サービスが有効になっていることを確認してください。</block>
-  <block id="db8bb9a360dc769d2ef0b970c683b33a" category="admonition">Rocky Linux 9.5以降、NVMe/TCPのデフォルト設定は<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block>タイムアウトはオフになります。これは、再試行回数に制限がないことを意味します（無期限の再試行）。したがって、コマンドまたは<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション-l）を使用するときに、特定のタイムアウト期間を<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>手動で設定する必要はありません<block ref="07e325c4a466379e41eabbb9333963e2" prefix=" " category="inline-code"></block>。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。</block>
   <block id="594486d9bd4257ab1e26ff0ae5a35fed" category="paragraph">ONTAP 9.12.1 以降では、Rocky Linux 10 ホストと ONTAP コントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。</block>
   <block id="a9c8004e9d1e07204938f2e404aa5aed" category="list-text">Rocky Linux 10 ホストの dhchap キーを生成します。</block>
   <block id="222d00f6dedce44fb4277bf5767839a3" category="summary">ONTAP 搭載 Rocky Linux 8.10 向け NVMe-oF ホストの設定方法</block>
@@ -3595,12 +3580,10 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="4ddb6dd0b1c0f78cd4fe39e69f93616c" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELRocky Linux 9.6 では、NVMe/TCP の安全なインバンド認証を使用できます。</block>
   <block id="2f7acc3e67a351a5288af0031f2b39b0" category="paragraph">サポートされている Rocky Linux 9.6 ソフトウェアの最小バージョンを検証するには、次の手順に従います。</block>
   <block id="befda5dfe1dca92c182f569e3a267615" category="list-text">サーバーにRocky Linux 9.6をインストールします。インストールが完了したら、指定されたRocky Linux 9.6カーネルが実行されていることを確認します。</block>
-  <block id="ae084e30a9a39299099ffeeeeb21278e" category="paragraph">Rocky Linux 9.6では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。起動が完了したら、サービスが有効になっていることを確認してください。</block>
   <block id="d4454d1f91fdbee65b5b084bbf2c935c" category="paragraph">ONTAP 9.12.1 以降では、Rocky Linux 9.6 ホストと ONTAP コントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。</block>
   <block id="e5f095ea13bd0114b461048aa3c82608" category="list-text">Rocky Linux 9.6 ホストの dhchap キーを生成します。</block>
   <block id="9b26e38834ec2f2df9641c2b954ff579" category="doc">ONTAP ストレージで RHEL 9.5 を NVMe-oF 用に設定する</block>
   <block id="dc5d05edf7eac3cf1cb6e7a130e6f430" category="doc">ONTAPストレージでNVMe-oF用にRHEL 9.6を構成する</block>
-  <block id="e405d2e36dcf9476a789fd5b1938b283" category="paragraph">RHEL 9.6では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効化されます。起動が完了したら、サービスが有効になっていることを確認してください。</block>
   <block id="a85fe49c4f48d905593c7bce3b551763" category="sidebar">ONTAP SANホストとクラウドクライアント</block>
   <block id="fb09e86e3230567e42bbd530bcb5a946" category="sidebar">Rocky Linux</block>
   <block id="1f27018b2bb672b8cdc3ade88964fcd2" category="sidebar">Rocky Linux 10</block>
@@ -3921,4 +3904,49 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="00657f2ca90f779d20eb517b9f9c3769" category="summary">ONTAP LUN での FCP および iSCSI プロトコル操作を管理するには、SUSE Linux Enterprise Server 15 SP4 に Linux ホスト ユーティリティをインストールします。</block>
   <block id="ca7194f14c6027a9f97c1cdabdf5ca5d" category="summary">ONTAP LUN での FCP および iSCSI プロトコル操作を管理するには、SUSE Linux Enterprise Server 15 SP5 に Linux ホスト ユーティリティをインストールします。</block>
   <block id="d53d88d1a12ba669b0ee9217bd940b4b" category="summary">ONTAP LUN での FCP および iSCSI プロトコル操作を管理するには、SUSE Linux Enterprise Server 15 SP6 に Linux ホスト ユーティリティをインストールします。</block>
+  <block id="338966e2b23b6122da979eca43ad6e4f" category="list-text">再試行回数に制限はありません（無期限再試行）。</block>
+  <block id="d403d0cd9e43abcce3cb23b419142aa4" category="list-text">特定の設定を手動で行う必要はありません<block ref="aa299db15ce3339d945d5120490e62d0" prefix=" " category="inline-code"></block>使用時の持続時間<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>または<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション -l ）。</block>
+  <block id="c11a8d4b4a55c4406dbae65b3938c149" category="list-text">NVMe/TCP コントローラーは、パス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。</block>
+  <block id="05d21b34631751308344068ae06d8729" category="admonition">ネットアップ<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>ホストユーティリティはNVMe-oFをサポートしていません。代わりに、ネイティブのNetAppプラグインを使用できます。 <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>すべての NVMe-oF トランスポート用。</block>
+  <block id="3b2a777782651fbf907cef5f12a4c171" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Oracle Linux 9.5 ホストに Linux ホスト ユーティリティをインストールします。</block>
+  <block id="b4d35ca4f8b0f921f828b460c1057a43" category="doc">ONTAPストレージを使用してFCPおよびiSCSI用にOracle Linux 9.5を構成する</block>
+  <block id="e92c5cbf89310f1e5a4ac5a1344cbe4b" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Oracle Linux 9.5 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用して ONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
+  <block id="ed8dd92a6dbf20a53daf08d5bea867e1" category="paragraph">Oracle Linux 9.5でマルチパスを使用してONTAP LUNを管理できます。</block>
+  <block id="eff004a97a3f649dcaaaf3fc93c51266" category="summary">NVMe-oFホスト構成（Oracle Linux 9.5 with ONTAP</block>
+  <block id="379e2b5ae5b7c7e267439eb94baea215" category="doc">ONTAPストレージ用にNVMe-oFを使用してOracle Linux 9.5を構成する</block>
+  <block id="ac17418128183e6567213b4eb19b624e" category="paragraph">ONTAPストレージを使用するOracle Linux 9.5向けのNVMe-oFホスト構成では、次のサポートと機能を使用できます。</block>
+  <block id="da28215a221e368b851dc3287e53bf0d" category="list-text">Oracle Linux 9.5 では、NVMe 名前空間のカーネル内 NVMe マルチパスがデフォルトで有効になり、明示的な設定が不要になります。</block>
+  <block id="1daee075c9e11e6f5b20b3967c0df0f7" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELOracle Linux 9.5ではNVMe/TCPのセキュアなインバンド認証が使用可能</block>
+  <block id="1406ed1061bd413045768fa60a774f96" category="list-text">発行を避ける<block ref="de5ac85ea45047f4dbeea79d7b729b7d" prefix=" " category="inline-code"></block> NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルートファイルシステムとデータファイルシステムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。</block>
+  <block id="3d8ffc1ce95181376d3df0b672be1eda" category="paragraph">サポートされている Oracle Linux 9.5 ソフトウェアの最小バージョンを検証するには、次の手順に従います。</block>
+  <block id="db6f9dd7f149e36160f14dc375296df9" category="list-text">Oracle Linux 9.5 をサーバーにインストールします。インストールが完了したら、指定された Oracle Linux 9.5 カーネルが実行されていることを確認します。</block>
+  <block id="3d461fcebb59cefcba884f7f4189554c" category="paragraph">次の例は、Oracle Linux カーネルのバージョンを示しています。</block>
+  <block id="1c6fe8f9564a2897108b9a362f664a00" category="list-text">Oracle Linux 9.5ホストで、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block><block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>次の場所の文字列を確認します。</block>
+  <block id="941c3de9b4431dee039cdde689dc10a6" category="paragraph">Broadcom/Emulex FC または Marvell/Qlogic FC アダプタを使用して NVMe/FC を構成します。</block>
+  <block id="e18c595831de75294a8d5182a3556728" category="paragraph">次の例は、ドライバーとファームウェアのバージョンを示しています。</block>
+  <block id="414c61d9e5c23d4d8f6cfb11c45d77df" category="paragraph">価値<block ref="c4ca4238a0b923820dcc509a6f75849b" prefix=" " category="inline-code"></block>検証する<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block>が設定されています。</block>
+  <block id="41ffb2c5337c2e9742d41439a2a47824" category="section-title">ステップ4: オプションでNVMe/FCの1MB I/Oを有効にする</block>
+  <block id="833be5ef7e50baab093ee66a7f140d0c" category="paragraph">Oracle Linux 9.5では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。</block>
+  <block id="d5a1f1a62cc8cae53fc94a2e44a91963" category="paragraph">起動が完了したら、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>ブート サービスが有効になっています。</block>
+  <block id="3bac8ca72c0f8c144860e88aac75a1eb" category="paragraph">Oracle Linux 9.4以降、NVMe/TCPの設定は<block ref="aa299db15ce3339d945d5120490e62d0" prefix=" " category="inline-code"></block>自動的に「オフ」に設定されます。その結果、次のようになります</block>
+  <block id="94c31dec48f0a9b6e3994042c63c9cb7" category="list-text">Oracle Linix 9.5ホストで次のNVMe/FC設定を確認します。</block>
+  <block id="02963844c9defd7335edd075a1f2ac57" category="list-text">「マルチパス」が設定されていることを確認します。</block>
+  <block id="b370402dc8053b973ae927e350bb36c0" category="paragraph">価値<block ref="57cec4137b614c87cb4e24a3d003a3e0" prefix=" " category="inline-code"></block>マルチパスパラメータが設定されていることを確認します。</block>
+  <block id="4af8c8f4ccd391c2b98bc0de3ef14b82" category="list-text">サブシステムを表示します。</block>
+  <block id="21bbf4b57a95bba01a12c2b3bf2ce488" category="paragraph">ONTAP 9.12.1 以降では、Oracle Linux 9.5 ホストと ONTAP コントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。</block>
+  <block id="5e6b9d21bf7f0ca26372e62301cfb233" category="list-text">Linux ホストの dhchap キーを生成します。</block>
+  <block id="fb6678ea50cc87decdbcd2c48c0f594f" category="list-text">このリリースには新しい機能はありません。</block>
+  <block id="1838aef895ac5272f6222dbabc057df3" category="list-text">発行を避ける<block ref="de5ac85ea45047f4dbeea79d7b729b7d" prefix=" " category="inline-code"></block> NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルートファイルシステムとデータファイルシステムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。</block>
+  <block id="f3e7be572062257b30aaa835617e738d" category="paragraph">RHEL 9.6では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効化されます。</block>
+  <block id="383a7f0b627766628c1401340e5c41da" category="paragraph">RHEL 9.4以降、NVMe/TCPの設定は<block ref="aa299db15ce3339d945d5120490e62d0" prefix=" " category="inline-code"></block>自動的に「オフ」に設定されます。その結果、次のようになります</block>
+  <block id="379a951035f282c9e2ac4ae9a1f597e5" category="paragraph">Rocky Linux 10では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。</block>
+  <block id="074a67ebd91595adc758b4c88e040371" category="paragraph">Rocky Linux 9.4以降、NVMe/TCPの設定は<block ref="aa299db15ce3339d945d5120490e62d0" prefix=" " category="inline-code"></block>自動的に「オフ」に設定されます。その結果、次のようになります</block>
+  <block id="c8e22b2226cedbe13c19b077e984a280" category="paragraph">Rocky Linux 9.6では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。</block>
+  <block id="bbe83218e80933d7323a91068298993f" category="list-text">ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELOracle Linux 9.4ではNVMe/TCPのセキュアなインバンド認証が使用可能</block>
+  <block id="f02516212fea2d7fc04b5ea71f9fe66c" category="paragraph">ONTAP 9.12.1 以降では、Oracle Linux 9.4 ホストと ONTAP コントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。</block>
+  <block id="f488aac6b02d1458f1cf7e7c07747bd5" category="paragraph">RHEL 10では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効化されます。</block>
+  <block id="4588ab094dff9b2456ca757278cf07ed" category="sidebar">Oracle Linux 9.</block>
+  <block id="73ab7233c5edabec8f510d9bf8812cd1" category="sidebar">Oracle Linux 8.</block>
+  <block id="1b7514bd57f9cc1b09f9148e93151331" category="sidebar">Oracle Linux 7.</block>
+  <block id="c60ede747aeb2a1a339beabc79de8ca2" category="sidebar">Oracle Linux 6.</block>
 </blocks>

@@ -32,7 +32,7 @@ ONTAPストレージを使用するOracle Linux 9.4向けのNVMe-oFホスト構�
 
 * 利用可能な機能：
 +
-** ONTAP 9.12.1以降では、NVMe-oFにセキュアなインバンド認証がサポートされるようになりました。Oracle Linux 9.4では、NVMe-oFのセキュアなインバンド認証を使用できます。
+** ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHELOracle Linux 9.4ではNVMe/TCPのセキュアなインバンド認証が使用可能
 ** NVMeネームスペースではデフォルトでカーネル内NVMeマルチパスがサポートされるため、明示的に設定する必要はありません。
 
 
@@ -397,9 +397,16 @@ nvme connect-all -t tcp -w 192.168.166.4 -a 192.168.166.56
 nvme connect-all -t tcp -w 192.168.165.3 -a 192.168.165.56
 ----
 +
+[NOTE]
+====
+Oracle Linux 9.4以降、NVMe/TCPの設定は `ctrl_loss_tmo timeout`自動的に「オフ」に設定されます。その結果、次のようになります
 
-NOTE: Oracle Linux 9.4以降では、NVMe/TCPのデフォルト設定が `ctrl_loss_tmo timeout`オフになっており、再試行回数に制限はありません（無期限の再試行）。コマンドまたは `nvme connect-all`コマンド（オプション-l）を使用する場合は、特定の期間 `nvme connect`を手動で設定する必要はありません `ctrl_loss_tmo timeout`。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
+** 再試行回数に制限はありません（無期限再試行）。
+** 特定の設定を手動で行う必要はありません `ctrl_loss_tmo timeout`使用時の持続時間 `nvme connect`または `nvme connect-all`コマンド（オプション -l ）。
+** NVMe/TCP コントローラーは、パス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。
 
+
+====
 
 
 
@@ -594,7 +601,7 @@ nvme netapp ontapdevices -o json
 
 == セキュアなインバンド認証のセットアップ
 
-ONTAP 9.12.1以降では、Oracle Linux 9.4ホストとONTAPコントローラの間でNVMe/TCPおよびNVMe/FC経由でセキュアなインバンド認証がサポートされます。
+ONTAP 9.12.1 以降では、Oracle Linux 9.4 ホストと ONTAP コントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。
 
 セキュアな認証を設定するには、各ホストまたはコントローラを `DH-HMAC-CHAP` キー。NVMeホストまたはコントローラのNQNと管理者が設定した認証シークレットを組み合わせたものです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。
 

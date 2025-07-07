@@ -353,9 +353,6 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 --
 ====
 
-NOTE: Rocky Linux 9.5以降、NVMe/TCPのデフォルト設定は `ctrl_loss_tmo`タイムアウトはオフになります。これは、再試行回数に制限がないことを意味します（無期限の再試行）。したがって、コマンドまたは `nvme connect-all`コマンド（オプション-l）を使用するときに、特定のタイムアウト期間を `nvme connect`手動で設定する必要はありません `ctrl_loss_tmo`。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
-
-
 
 == ステップ4: オプションで1MBのI/Oを有効にする
 
@@ -667,6 +664,16 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
+[NOTE]
+====
+Rocky Linux 9.4以降、NVMe/TCPの設定は `ctrl_loss_tmo timeout`自動的に「オフ」に設定されます。その結果、次のようになります
+
+* 再試行回数に制限はありません（無期限再試行）。
+* 特定の設定を手動で行う必要はありません `ctrl_loss_tmo timeout`使用時の持続時間 `nvme connect`または `nvme connect-all`コマンド（オプション -l ）。
+* NVMe/TCP コントローラーは、パス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。
+
+
+====
 
 
 == ステップ6: NVMe-oFを検証する

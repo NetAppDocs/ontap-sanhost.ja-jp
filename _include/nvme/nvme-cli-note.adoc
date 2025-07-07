@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: ネットアップ `sanlun`ホストユーティリティはNVMe-oFをサポートしていません。代わりに、ネイティブのNetAppプラグインを使用できます。  `nvme-cli`すべての NVMe-oF トランスポート用。

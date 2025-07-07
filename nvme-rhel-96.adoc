@@ -27,19 +27,19 @@ Red Hat Enterprise Linux（RHEL）9.6のNVMe-oFホスト構成では、次のサ
 ** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
 ** RHEL 9.6では、NVMeネームスペースに対してカーネル内NVMeマルチパスがデフォルトで有効になるため、明示的に設定する必要はありません。
 ** ONTAP 9.12.1以降、NVMe/TCP向けのセキュアなインバンド認証のサポートが導入されました。RHEL9.6では、NVMe/TCP向けのセキュアなインバンド認証を使用できます。
+
+
 +
 サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
-
-
 * 利用可能な機能：
 +
-** 利用できる新しい機能はありません。
+** このリリースには新しい機能はありません。
 
 
 * 既知の制限事項：
 +
-** 発行を避ける `nvme disconnect-all` NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルート ファイル システムとデータ ファイル システムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。
+** 発行を避ける `nvme disconnect-all` NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムでは、このコマンドはルートファイルシステムとデータファイルシステムの両方を切断し、システムが不安定になる可能性があるため、使用しないでください。
 
 
 
@@ -418,7 +418,9 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 == ステップ5: NVMeブートサービスを確認する
 
-RHEL 9.6では、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service` NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効化されます。起動が完了したら、サービスが有効になっていることを確認してください。
+RHEL 9.6では、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service` NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効化されます。
+
+起動が完了したら、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`ブート サービスが有効になっています。
 
 .手順
 . が有効であることを確認し `nvmf-autoconnect.service`ます。
@@ -749,6 +751,16 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
+[NOTE]
+====
+RHEL 9.4以降、NVMe/TCPの設定は `ctrl_loss_tmo timeout`自動的に「オフ」に設定されます。その結果、次のようになります
+
+* 再試行回数に制限はありません（無期限再試行）。
+* 特定の設定を手動で行う必要はありません `ctrl_loss_tmo timeout`使用時の持続時間 `nvme connect`または `nvme connect-all`コマンド（オプション -l ）。
+* NVMe/TCP コントローラーは、パス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。
+
+
+====
 
 
 == ステップ7: NVMe-oFを検証する
