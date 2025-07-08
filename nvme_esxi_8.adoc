@@ -280,7 +280,7 @@ NVMeネームスペースでは、割り当て解除のサポートは常に有�
 .手順
 . ESXiホストで、DSMの割り当て解除とTP4040のサポートの設定を確認します。
 +
-`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+`esxcfg-advcfg -g /Scsi/NVmeUseDsmTp4040`
 
 +
 想定される値は0です。
@@ -291,7 +291,7 @@ NVMeネームスペースでは、割り当て解除のサポートは常に有�
 
 . TP4040サポートによるDSMの割り当て解除の設定が有効になっていることを確認します。
 +
-`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+`esxcfg-advcfg -g /Scsi/NVmeUseDsmTp4040`
 
 +
 想定される値は1です。
