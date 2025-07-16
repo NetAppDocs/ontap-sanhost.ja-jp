@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタで構成できます。NVMe/TCP サブシステムと名前空間を手動で検出する必要もあります。

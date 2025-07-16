@@ -16,7 +16,7 @@ summary: ONTAP 搭載 Rocky Linux 9.6 向け NVMe-oF ホストの設定方法
 
 
 [role="lead"]
-NetApp SANホスト構成では、非対称ネームスペースアクセス（ANA）でNVMe over Fabrics（NVMe-oF）プロトコルがサポートされます。NVMe-oF環境のANAは、iSCSI環境およびFCP環境におけるAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）マルチパスに相当します。ANAはカーネル内NVMeマルチパス機能を使用して実装されます。
+<stdin> 内の未解決のディレクティブ - include::_include/nvme/reuse-nvme-introduction.adoc[]
 
 .このタスクについて
 Rocky Linux 9.6 の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
@@ -385,34 +385,7 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 == ステップ4: オプションで1MBのI/Oを有効にする
 
-ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには、パラメータの値を `lpfc_sg_seg_cnt`デフォルト値の64から256に増やす必要があります `lpfc`。
-
-
-NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
-
-.手順
-.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
-+
-[source, cli]
-----
-cat /etc/modprobe.d/lpfc.conf
-----
-+
-次の例のような出力が表示されます。
-
-+
-[listing]
-----
-options lpfc lpfc_sg_seg_cnt=256
-----
-. コマンドを実行し `dracut -f`、ホストをリブートします。
-. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
-+
-[source, cli]
-----
-cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-----
-
+<stdin> 内の未解決のディレクティブ - include::_include/nvme/reuse_nvme_enabling_broadcom_1mb_size.adoc[]
 
 
 
@@ -473,7 +446,7 @@ Jun 10 01:08:36 localhost systemd[1]: Finished Auto-connect to subsystems on FC-
 
 == ステップ6: NVMe/TCPを構成する
 
-NVMe/TCPプロトコルでこの処理がサポートされてい `auto-connect`ません。代わりに、NVMe/TCPまたは `connect-all`の処理を手動で実行することで、NVMe/TCPサブシステムとネームスペースを検出できます `connect`。
+<stdin> 内の未解決のディレクティブ - include::_include/nvme/reuse-nvme-configure-nvme-tcp.adoc[]
 
 .手順
 . イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
@@ -837,114 +810,6 @@ Namespace Usage    Format             FW             Rev
 -----------------------------------------------------------
 1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
 ----
-====
-. 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
-+
-[role="tabbed-block"]
-====
-.NVMe/FC
---
-[source, cli]
-----
-nvme list-subsys /dev/nvme4n5
-----
-.例を示します
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.3a5d31f5502c11ef9f50d039eab6cb6d:subsystem.nvme_1
-               hostnqn=nqn.2014-08.org.nvmexpress:uuid:e6dade64-216d-
-11ec-b7bb-7ed30a5482c3
-iopolicy=round-robin\
-+- nvme1 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x2088d039eaa7dfc8,host_traddr=nn-0x20000024ff752e6d:pn-0x21000024ff752e6d *live optimized*
-+- nvme12 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x208ad039eaa7dfc8,host_traddr=nn-0x20000024ff752e6d:pn-0x21000024ff752e6d *live non-optimized*
-+- nvme10 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x2087d039eaa7dfc8,host_traddr=nn-0x20000024ff752e6c:pn-0x21000024ff752e6c *live non-optimized*
-+- nvme3 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x2083d039eaa7dfc8,host_traddr=nn-0x20000024ff752e6c:pn-0x21000024ff752e6c *live optimized*
-----
-=====
---
-.NVMe/FC
---
-[source, cli]
-----
-nvme list-subsys /dev/nvme1n1
-----
-.例を示します
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-nvme-subsys5 - NQN=nqn.1992-08.com.netapp:sn.0f4ba1e74eb611ef9f50d039eab6cb6d:subsystem.nvme_tcp_3
-hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-b5c04f444d33
-iopolicy=round-robin
-\
-+- nvme13 *tcp* traddr=192.168.2.25,trsvcid=4420,host_traddr=192.168.2.31,
-src_addr=192.168.2.31 *live optimized*
-+- nvme14 *tcp* traddr=192.168.2.24,trsvcid=4420,host_traddr=192.168.2.31,
-src_addr=192.168.2.31 *live non-optimized*
-+- nvme5 *tcp* traddr=192.168.1.25,trsvcid=4420,host_traddr=192.168.1.31,
-src_addr=192.168.1.31 *live optimized*
-+- nvme6 *tcp* traddr=192.168.1.24,trsvcid=4420,host_traddr=192.168.1.31,
-src_addr=192.168.1.31 *live non-optimized*
-----
-=====
---
-====
-. ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
-+
-[role="tabbed-block"]
-====
-.列（ Column ）
---
-[source, cli]
-----
-nvme netapp ontapdevices -o column
-----
-.例を示します
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-
-Device        Vserver   Namespace Path
------------------------ ------------------------------
-/dev/nvme1n1     linux_tcnvme_iscsi        /vol/tcpnvme_1_0_0/tcpnvme_ns
-
-NSID       UUID                                   Size
-------------------------------------------------------------
-1    5f7f630d-8ea5-407f-a490-484b95b15dd6   21.47GB
-----
-=====
---
-.JSON
---
-[source, cli]
-----
-nvme netapp ontapdevices -o json
-----
-.例を示します
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-{
-  "ONTAPdevices":[
-    {
-      "Device":"/dev/nvme1n1",
-      "Vserver":"linux_tcnvme_iscsi",
-      "Namespace_Path":"/vol/tcpnvme_1_0_0/tcpnvme_ns",
-      "NSID":1,
-      "UUID":"5f7f630d-8ea5-407f-a490-484b95b15dd6",
-      "Size":"21.47GB",
-      "LBA_Data_Size":4096,
-      "Namespace_Size":5242880
-    },
-]
-}
-----
-=====
---
 ====
 
 

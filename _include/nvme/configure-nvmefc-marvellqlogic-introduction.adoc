@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Marvell/QLogicアダプタ用にNVMe/FCを設定します。

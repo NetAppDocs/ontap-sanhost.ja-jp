@@ -136,7 +136,7 @@ systemctl start multipathd
 | Prio | ONTAP 
 
 
-| プロダクト | LUN. * 
+| プロダクト | LUN 
 
 
 | retain_attached _hw_handler | はい。 
