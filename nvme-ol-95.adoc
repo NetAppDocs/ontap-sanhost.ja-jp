@@ -16,7 +16,7 @@ summary: NVMe-oFホスト構成（Oracle Linux 9.5 with ONTAP
 
 
 [role="lead"]
-<stdin> 内の未解決のディレクティブ - include::_include/nvme/reuse-nvme-introduction.adoc[]
+NetApp SANホスト構成では、非対称ネームスペースアクセス（ANA）でNVMe over Fabrics（NVMe-oF）プロトコルがサポートされます。NVMe-oF環境のANAは、iSCSI環境およびFCP環境におけるAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）マルチパスに相当します。ANAはカーネル内NVMeマルチパス機能を使用して実装されます。
 
 .このタスクについて
 ONTAPストレージを使用するOracle Linux 9.5向けのNVMe-oFホスト構成では、次のサポートと機能を使用できます。
@@ -359,7 +359,34 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 == ステップ4: オプションでNVMe/FCの1MB I/Oを有効にする
 
-<stdin> 内の未解決のディレクティブ - include::_include/nvme/reuse_nvme_enabling_broadcom_1mb_size.adoc[]
+ONTAPは、Identify ControllerデータでMDT（MAX Data転送サイズ）が8であると報告します。つまり、最大I/O要求サイズは1MBです。Broadcom NVMe/FCホストにサイズ1MBのI/O要求を実行するには、パラメータの値を `lpfc_sg_seg_cnt`デフォルト値の64から256に増やす必要があります `lpfc`。
+
+
+NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
+
+.手順
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
++
+[source, cli]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. コマンドを実行し `dracut -f`、ホストをリブートします。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
++
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
+
 
 
 
@@ -429,7 +456,7 @@ Jul 02 16:45:46 interop-13-175 systemd[1]: Finished Auto-connect to subsystems o
 
 == ステップ6: NVMe/TCPを構成する
 
-<stdin> 内の未解決のディレクティブ - include::_include/nvme/reuse-nvme-configure-nvme-tcp.adoc[]
+NVMe/TCPプロトコルでこの処理がサポートされてい `auto-connect`ません。代わりに、NVMe/TCPまたは `connect-all`の処理を手動で実行することで、NVMe/TCPサブシステムとネームスペースを検出できます `connect`。
 
 .手順
 . イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
@@ -588,20 +615,25 @@ Oracle Linux 9.4以降、NVMe/TCPの設定は `ctrl_loss_tmo timeout`自動的�
 
 == ステップ7: NVMe-oFを検証する
 
-<stdin> 内の未解決のディレクティブ - include::_include/nvme/reuse-nvme-validate-nvme-of.adoc[]
+カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
 
 .手順
-. Oracle Linix 9.5ホストで次のNVMe/FC設定を確認します。
-+
-.. 「マルチパス」が設定されていることを確認します。
+. カーネル内NVMeマルチパスが有効になっていることを確認します。
 +
 [source, cli]
 ----
 cat /sys/module/nvme_core/parameters/multipath
 ----
 +
-価値 `Y`マルチパスパラメータが設定されていることを確認します。
+次の出力が表示されます。
 
++
+[listing]
+----
+Y
+----
+. 該当するONTAPネームスペースの適切なNVMe-oF設定（modelをNetApp ONTAPコントローラに設定し、load balancing iopolicyをラウンドロビンに設定するなど）がホストに正しく反映されていることを確認します。
++
 .. サブシステムを表示します。
 +
 [source, cli]
@@ -619,9 +651,9 @@ NetApp ONTAP Controller
 ----
 .. ポリシーを表示します。
 +
-[source'cli]
+[source, cli]
 ----
-cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy`
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
 ----
 +
 次の出力が表示されます。
@@ -646,11 +678,9 @@ nvme list
 ====
 [listing]
 ----
-Node                  Generic               SN                   Model                                    Namespace  Usage                      Format           FW Rev
---------------------- --------------------- -------------------- ---------------------------------------- ---------- -------------------------- ---------------- --------
-/dev/nvme1n1          /dev/ng1n1            81Mc4FXd1tocAAAAAAAC NetApp ONTAP Controller                  0x1          0.00   B /  10.74  GB      4 KiB +  0 B   9.16.1
-
-
+Node          Generic       SN                   Model                     Namespace  Usage                   Format         FW Rev
+------------- ------------- -------------------- ------------------------- ---------- ----------------------- -------------- --------
+/dev/nvme1n1  /dev/ng1n1    81Mc4FXd1tocAAAAAAAC NetApp ONTAP Controller   0x1        0.00   B /  10.74  GB   4 KiB +  0 B   9.16.1
 ----
 ====
 . 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
