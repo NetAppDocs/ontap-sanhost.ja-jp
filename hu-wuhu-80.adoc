@@ -1,0 +1,152 @@
+---
+sidebar: sidebar 
+permalink: hu-wuhu-80.html 
+keywords: windows, 7.2, host utilities, SAN, windows 
+summary: Windows ホスト ユーティリティには、Windows ホストがONTAPプラットフォームのストレージ システムの動作を正しく処理できるように、必要な Windows レジストリと HBA パラメータを設定するインストール プログラムが含まれています。 
+---
+= ONTAPストレージ用のWindowsホストユーティリティ8.0をインストールする
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Windows Host Utilitiesを使用すると、WindowsホストコンピュータをNetAppストレージシステムに接続できます。
+
+Windows Host Utilitiesは、次のバージョンのWindowsをサポートします。
+
+* Windows 2025
+* Windows 2022
+* Windows 2019
+* Windows * 2016
+
+
+Windows ホスト ユーティリティには、Windows ホストがONTAPプラットフォームのストレージ システムの動作を正しく処理できるように、必要な Windows レジストリとホスト バス アダプタ (HBA) パラメータを設定するインストール プログラムが含まれています。
+
+Host Utilitiesソフトウェアをインストールすると、必要なWindowsレジストリとHBAパラメータがインストーラによって設定されます。
+
+Windows ホストコンピュータには、次のプログラムとファイルがインストールされています。デフォルト・ディレクトリは C ： \Program Files\NetApp\SnapManager \Windows Host Utilities' です。
+
+|===
+| プログラム | 目的 
+
+
+| `\NetAppQCLI\fcconfig.exe` | インストールプログラムがHBAパラメータを設定するために使用します。 
+
+
+| `\NetAppQCLI\fcconfig.ini` | インストールプログラムがHBAパラメータを設定するために使用します。 
+
+
+| 'a_version.exe' | Host UtilitiesとFC HBAのバージョンが表示されます。 
+|===
+Host Utilitiesは、さまざまなWindowsホスト構成、プロトコル、マルチパスオプションをサポートします。詳細については、を参照して https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]ください。
+
+
+
+== ステップ1: ホストとストレージシステムの構成を確認する
+
+Windowsホストユーティリティをインストールする前に、ホストとストレージシステムの構成がサポートされていることを確認してください。<<supported-windows-versions-80,サポートされるWindowsのバージョン>> 。
+
+.手順
+. でサポートされる構成を確認します http://mysupport.netapp.com/matrix["Interoperability Matrix Tool"^]。
+. Windows Serverホストバージョンに必要な修正プログラムを確認してください。link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["SANホストのWindowsに関するドキュメント"] 。
++
+例えば、link:https://docs.netapp.com/us-en/ontap-sanhost/hu-windows-2025.html["ONTAPストレージ用のWindows Server 2025の設定"]このドキュメントでは、Windows Server 2025 用の Windows 修正プログラムをインストールする手順について説明します。
+
+. link:https://docs.netapp.com/us-en/ontap/san-admin/verify-license-fc-iscsi-task.html["iSCSIまたはFCPライセンスを追加する"^] 。
+. 対象サービスを開始します。
+. ケーブル接続を確認します。
++
+参照 https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^]詳細なケーブル接続および構成情報については、こちらをご覧ください。
+
+
+
+
+
+== ステップ2: FC HBAとスイッチを構成する
+
+ストレージシステムへのFC接続用にサポートされる1つ以上のFC Host Bus Adapter（HBA；ホストバスアダプタ）をインストールして設定します。
+
+Windows Host Utilitiesのインストーラでは、必要なFC HBAを設定できます。
+
+
+CAUTION: HBA パラメータの設定は、Windows Host Utilities インストーラのみに許可する必要があります。これにより、Windows ホストがONTAPプラットフォームのストレージ システムの動作を正しく処理できるようになります。
+
+.手順
+. HBAベンダーの指示に従って、サポートされているFC HBAを1つ以上取り付けます。
+. サポートされている HBA ドライバと管理ユーティリティを入手し、 HBA ベンダーの指示に従ってインストールします。
+. https://docs.netapp.com/us-en/ontap/san-management/index.html["HBAをFCスイッチに接続するか、ストレージシステムに直接接続します。"^] 。
+. https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["FCスイッチのドキュメントに従ってFCスイッチにゾーンを作成します。"^] 。
+. ONTAPの場合、スイッチを WWPN でゾーン分けします。ストレージ コントローラ上の物理ポートの WWPN ではなく、論理インターフェイス (LIF) の WWPN を使用してください。参照 https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^]詳細についてはこちらをご覧ください。
+
+
+
+
+== ステップ3: Windowsホストユーティリティをインストールする
+
+インストール プログラムは、Windows ホスト ユーティリティ パッケージをインストールし、Windows レジストリと HBA 設定を設定します。
+
+.このタスクについて
+オプションで、Windows ホスト ユーティリティ ソフトウェア パッケージをインストールするときに、マルチパス サポートを含めることができます。インストーラーは次のオプションの入力を求めます。
+
+* を選択します `MPIO` Windowsホストまたは仮想マシンからストレージシステムへのパスが複数ある場合。
+* 選ぶ `no MPIO`ストレージ システムへの単一のパスを使用している場合のみ。
+
+
+Windows コマンド ライン プロンプトを使用してマルチパス サポートを選択することもできます。
+
+Hyper-V ゲストの場合、マルチパス サポートを選択すると、raw (パススルー) ディスクはゲスト OS に表示されません。  RAW ディスクまたは MPIO のいずれかを使用できますが、ゲスト OS では両方を使用することはできません。
+
+
+CAUTION: MPIOソフトウェアをインストールしない場合、Windows OSは各パスを個別のディスクとして認識する可能性があります。これにより、データが破損する可能性があります。
+
+
+NOTE: Hyper-V仮想マシンで実行されているWindows XPまたはWindows Vistaは、MPIOをサポートしていません。
+
+.手順
+ホスト ユーティリティは、対話形式で、または Windows コマンド ラインを使用してインストールできます。新しい Host Utilities インストール パッケージは、Windows ホストからアクセスできるパスに存在する必要があります。
+
+[role="tabbed-block"]
+====
+.対話型インストール
+--
+インストール プログラムを実行し、プロンプトに従って、Windows ホスト ユーティリティ ソフトウェア パッケージを対話型でインストールします。
+
+. から実行可能ファイルをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["ネットアップサポートサイト"^]。
+. 実行ファイルをダウンロードしたディレクトリに移動します。
+. を実行します `netapp_windows_host_utilities_7.2_x64` ファイルを作成し、画面の指示に従います。
+. プロンプトが表示されたら、 Windows ホストをリブートします。
+
+
+--
+.非対話型でインストールする
+--
+Windows コマンド ラインを使用して、ホスト ユーティリティの非対話型インストールを実行します。インストールが完了すると、システムは自動的に再起動します。
+
+. Windowsコマンドプロンプトで、次のコマンドを入力します。
++
+[source, cli]
+----
+msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]
+----
++
+** `installer` は、の名前です `.msi` 使用しているCPUアーキテクチャ用のファイル。
+** マルチパスでは、 MPIO サポートがインストールされているかどうかが指定指定できる値は、noの場合は「0」、yesの場合は「1」です。
+** 「 inst_path 」は、 Host Utilities ファイルがインストールされているパスです。デフォルトパスは「 C ： \Program Files\NetApp\Virtual Host Utilities\` 」です。
+
+
+
+
+
+NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer（MSI）オプションを表示するには、と入力します `msiexec /help` をクリックします。たとえば、などです `msiexec /i install.msi /quiet /l*v <install.log> LOGVERBOSE=1` コマンドはロギング情報を表示します。
+
+--
+====
+
+
+== 次の手順
+
+link:hu_wuhu_hba_settings.html["Windowsホストユーティリティのレジストリ設定を構成する"] 。

@@ -16,94 +16,87 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 
 
 [role="lead"]
-AIX Host Utilitiesは、AIXホストに接続されているONTAPストレージの管理に役立ちます。
+AIX ホスト ユーティリティは、AIX ホストに接続されたONTAPストレージの管理に役立ちます。  NetApp、 ONTAPストレージ管理を改善し、 NetAppサポートによる構成情報収集を支援するために、AIX ホスト ユーティリティをインストールすることを強くお勧めします。
 
-AIX Host Utilitiesは次のプロトコルをサポートします。
+AIX ホスト ユーティリティ 6.1 は、次のトランスポート プロトコルと AIX 環境をサポートします。
 
-* FC
-* FCoE
-* iSCSI
-
-
-AIX Host Utilitiesは次の環境をサポートします。
-
-* AIX MicrosoftマルチパスI/O（MPIO）（ネイティブOS）
+* FC、FCoE、iSCSI
+* AIX Microsoft マルチパス I/O (MPIO)
 * PowerVM
 +
 PowerVMの詳細については、『IBM PowerVM Live Partition Mobility Red Book』を参照してください。
 
 
 
+.このタスクについて
+* AIX ホストに接続されたONTAPストレージを管理するには、AIX MPIO とともに AIX Host Utilities SAN Toolkit をインストールする必要があります。
+* AIX ホスト ユーティリティをインストールしても、AIX ホストの設定は変更されません。
+
+
 .開始する前に
-* 安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。
-+
-を使用して構成を確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
+* 使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]AIX OS、プロトコル、およびONTAPバージョンが SAN ブートをサポートしていることを確認します。
+* 全てのFCおよびFCoEイニシエーターの動的トラッキングを有効にするには、 `chdev -l <fscsi_device> -a dyntrk=ye` AIX ホスト上のコマンド。
 
-* すべてのFCイニシエータおよびFCoEイニシエータに対して動的追跡を有効にします
-
-
-
-NOTE: NetApp AIX Host Utilitiesソフトウェアパッケージは、に圧縮形式で `tar.gz file`提供されていlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^]ます。AIX MPIOとONTAPストレージを使用する際には、AIX Host Utilitiesキットをインストールする必要があります。
 
 .手順
 . ホストにログインします。
 +
-** AIX ホストでは、 * root * としてログインします。
-** PowerVMホストで、* padmin *としてログインし、 `oem_setup_env`コマンドを入力してrootユーザに切り替えます。
+[role="tabbed-block"]
+====
+.AIX の場合
+--
+AIX ホストでは、 * root * としてログインします。
+
+--
+.PowerVM
+--
+PowerVM ホストの場合:
+
+.. *padmin* としてログインします。
+.. ルートユーザーになる:
++
+[source, cli]
+----
+oem_setup_env
+----
 
 
+--
+====
 . にアクセスします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["ネットアップサポートサイト"^] を実行し、Host Utilitiesを含む圧縮ファイルをホストのディレクトリにダウンロードします。
 . ダウンロードを格納しているディレクトリに移動します。
 . ファイルを解凍して、 SAN Toolkit ソフトウェアパッケージを展開します。
 +
-`# tar -xvf ntap_aix_host_utilities_6.1.tar.gz`
-
+[source, cli]
+----
+tar -xvf ntap_aix_host_utilities_6.1.tar.gz
+----
 +
 ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります
 
 . AIX MPIO をインストールします。
 +
-`# installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.MPIO_Host_Utilities_Kit`
-
+[source, cli]
+----
+installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.MPIO_Host_Utilities_Kit
+----
 . SAN Toolkit をインストールします。
 +
-`# installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit`
-
+[source, cli]
+----
+installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit
+----
 . ホストをリブートします。
 . インストールを確認します。
 +
-[listing]
+[source, cli]
 ----
-# sanlun version
-----
-
-
-
-
-== SAN ツールキット
-
-AIX Host Utilitiesは、IBM AIXホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。このツールキットは、Host Utilitiesパッケージをインストールするとインストールされます。このキットには、LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティが用意されて `sanlun`います。 `sanlun`show volumeGroupコマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
-
-* 例 *
-
-次の例では 'lun lun lun show コマンドは LUN 情報を返します
-
-[listing]
-----
-# sanlun lun show all
-----
-*出力例*
-
-[listing]
-----
-controller(7mode)/ device host lun
-
-vserver(Cmode) lun-pathname filename adapter protocol size mode
-----------------------------------------------------------------
-data_vserver   /vol/vol1/lun1 hdisk0 fcs0    FCP      60g C
-data_vserver   /vol/vol2/lun2 hdisk0 fcs0    FCP      20g C
-data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
-data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
+sanlun version
 ----
 
-NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。そのため、すべてのコンポーネントがすべての構成に適用されるわけではありません。使用していないコンポーネントは、システムのパフォーマンスに影響しません。SAN Toolkitは、AIXおよびPowerVM / VIOS OSのバージョンでサポートされます。
+
+
+
+== 次の手順
+
+link:hu-aix-san-toolkit.html["AIX SAN ツールキットについて学ぶ"] 。

@@ -1,0 +1,24 @@
+= 
+:allow-uri-read: 
+
+
+. ストレージ構成にMetroClusterまたはSnapMirror Active Sync が含まれている場合は、デフォルト設定を変更します。
++
+[role="tabbed-block"]
+====
+.MetroCluster
+--
+デフォルトでは、AIX OS は、LUN への使用可能なパスがない場合に、より短い I/O タイムアウトを強制します。これは、単一スイッチ SAN ファブリックを含む構成や、計画外のフェイルオーバーが発生するMetroCluster構成で発生する可能性があります。詳細情報とデフォルト設定の推奨変更については、ナレッジベースの記事を参照してください。link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/What_are_AIX_Host_support_considerations_in_a_MetroCluster_configuration["What are AIX Host support considerations in a MetroCluster configuration?"^] 。
+
+--
+.SnapMirrorアクティブ同期
+--
+ONTAP 9.11.1 以降、AIX ホストでSnapMirror Active Sync がサポートされるようになりました。  AIX 構成におけるプライマリ クラスターは、「アクティブ」クラスターです。
+
+AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーごとに、I/O 操作を再開するためにホストの再スキャンを実行する必要があります。
+
+ナレッジベースの記事を参照してくださいlink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["AIXホストでSnapMirrorアクティブ同期を設定する方法"^]。
+
+--
+====
+

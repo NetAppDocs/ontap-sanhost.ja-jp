@@ -14,15 +14,15 @@ indexpage:
     - title: SANホスト構成の詳細
       url: "/overview.html"
     - title: AIX Host Utilitiesリリースノート
-      url: "/hu_aix_rn.html"
+      url: "/hu-aix-release-notes.html"
     - title: HP-UX Host Utilitiesリリースノート
-      url: "/hu_hpux_60_rn.html"
+      url: "/hu-hpux-release-notes.html"
     - title: Linux Host Utilitiesリリースノート
-      url: "/hu_luhu_71_rn.html"
-    - title: Solaris Host Utilitiesリリースノート
-      url: "/hu_solaris_62_rn.html"
+      url: "/hu-luhu-release-notes.html"
+    - title: Solaris ホストユーティリティ リリースノート
+      url: "/hu-solaris-release-notes.html"
     - title: Windows Host Utilitiesリリースノート
-      url: "/hu_wuhu_71_rn.html"
+      url: "/hu-wuhu-release-notes.html"
   - title: SANホストをインストールして設定する
     links:
     - title: SAN Host Utilitiesのインストール

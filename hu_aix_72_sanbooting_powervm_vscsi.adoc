@@ -4,7 +4,7 @@ permalink: hu_aix_72_sanbooting_powervm_vscsi.html
 keywords: host utilities, aix, powervm, 7.2 netapp, ontap, luns, configure, discover, configuring, discovering 
 summary: PowerVM vSCSI で LUN の検出と設定を使用する方法について説明します 
 ---
-= （ PowerVM vSCSI ） LUN の検出と構成
+= PowerVM vSCSIを使用してONTAP LUNを検出して構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,16 +16,18 @@ summary: PowerVM vSCSI で LUN の検出と設定を使用する方法につい�
 
 
 [role="lead"]
-PowerVM vSCSI サーバおよび VIO サーバを使用する場合は、 padmin ログインと、 LUN を設定および検出するための適切なコマンドを使用する必要があります。
+PowerVM vSCSI および VIO サーバーを使用している場合は、padmin ログインと適切な padmin コマンドを使用して LUN を構成および検出する必要があります。
 
 .手順
 . ホストに padmin としてログインします。
-. AIX ホストで、次のコマンドを入力して、新しく作成した LUN を検出します。
+. AIX ホストで、新しく作成された LUN を検出します。
 +
+[source, cli]
+----
 cfgdev
-
+----
 +
-cfgdev コマンドの原因は次のとおりです。
+その `cfgdev`コマンドにより次のようになります:
 
 +
 ** ファブリックにログインするイニシエータ。
@@ -33,10 +35,12 @@ cfgdev コマンドの原因は次のとおりです。
 ** システムによって新しいデバイスエントリが作成され、新しいLUNがデフォルトのPCMを使用してMicrosoftマルチパスI/O（MPIO）デバイスとしてマッピングされます。
 
 
-. hdisk MPIO デバイスが作成されたことを確認するには、次のコマンドを入力します。
+. hdisk MPIO デバイスが作成されたことを確認します。
 +
-lsdev-type disk
-
+[source, cli]
+----
+lsdev -type disk
+----
 +
 ホストでは、 LUN がディスクとして表示されます。ホストのローカルディスクと同じ方法でこれらのディスクを使用できます。
 
@@ -47,6 +51,9 @@ hdisk インスタンス番号を書き留めます。これらのパラメー�
  `lsdev -type disk`コマンドを実行すると、次のような出力が生成されます。次の例の出力は省略されています。
 
 +
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 vioserver$ lsdev -type disk NetApp
@@ -59,14 +66,20 @@ hdisk4   Available   MPIO NetApp FCP Default PCM Disk
 hdisk5   Available   MPIO NetApp FCP Default PCM Disk
 hdisk6   Available   MPIO NetApp FCP Default PCM Disk
 ----
+====
 . セットアップに関する情報を取得します。
 +
+[source, cli]
+----
 lsdev -dev hdisk_name -attr
-
+----
 +
 lsdev -dev hdisk_name -attr' コマンドを実行すると ' 次の出力が生成されます
 
 +
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 vioserver$ lsdev -dev hdisk2 -attr
@@ -97,38 +110,49 @@ scsi_id         0xd10001                         SCSI ID                        
 start_timeout   60                               START unit time out value               True
 ww_name         0x500a0984994ae0e0               FC World Wide Name                      False
 ----
+====
 . 使用している構成でALUAがサポートされない場合は、dotpathsユーティリティを使用してパス優先順位を設定する必要があります。dotpaths ユーティリティは、 Host Utilities のインストール時にインストールします。ALUA が有効になっている場合は、 dotpaths ユーティリティを使用しないでください。次のコマンドを入力してモードに切り替え、 `oem_setup_env`dotpathを実行します。
 +
-`oem_setup_env`
-
+[source, cli]
+----
+oem_setup_env
+----
 +
 `oem_setup_env' モードを開始すると ' コマンド・ライン・プロンプトがドル記号からポンド記号に変わり 'exit などのコマンドを入力して停止するまで 'oem_setup_env' モードのままになります
 
 +
 .例
-`#vioserver $oem_setup_env`
+`# vioserver$ oem_setup_env`
 
 . ALUA をサポートする構成の場合は、 ALUA を使用してパス優先度を設定できます。ALUA が有効になっていることを確認します。
 +
-「 lun igroup show -instance igroup_name 」を参照してください
-
+[source, cli]
+----
+lun igroup show -instance igroup_name
+----
 +
 .. ALUA が有効になっていない場合は有効にします。
 +
-「 igroup set igroup_name alua yes
-
+[source, cli]
+----
+igroup set igroup_name alua yes
+----
 
 
 . 使用している構成でALUAがサポートされない場合は、dotpathsユーティリティを使用してパス優先順位を設定する必要があります。dotpaths ユーティリティは、 Host Utilities のインストール時にインストールします。ALUA が有効になっている場合は、 dotpaths ユーティリティを使用しないでください。
 +
 .. すべてのONTAP LUNの優先度を設定するには、次のように入力します。
 +
-「パス」
-
+[source, cli]
+----
+dotpaths
+----
 .. 特定のディスク・セットにプライオリティを設定するには、次のように入力します。
 +
-「 dotpaths [-HQv] [hdiskN...] 」
-
+[source, cli]
+----
+dotpaths [-hqv] [hdiskN ...]
+----
 +
 詳細モードを有効にし、すべての優先順位を表示するには、「 -v 」オプションを使用します。すべてまたは個々のディスクの優先順位を照会するには '-q オプションを使用します
 
@@ -136,6 +160,9 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 次に、 dotpaths ユーティリティの使用例を示します。
 
 +
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 vioserver# dotpaths -v
@@ -147,17 +174,22 @@ hdisk2 (path 3): Unoptimized path - Current priority of 1 is correct
 Path priority set and/or verified for 22 disks, 86 total paths.
 vioserver#
 ----
+====
 
 
 . ホストで LUN が検出されたことを確認するには、次のコマンドを入力します。
 +
-「 #sanlun lun show -p 」というエラーが表示されます
+[source, cli]
+----
+sanlun lun show -p
+----
++
+次の例は、 `sanlun lun show -p`直接接続構成用のコマンド。また、 `sanlun lun show -d hdisk9 -v` hdisk9 に関する情報を表示するコマンド。このコマンドの出力は切り捨てられました。
 
 +
-.例
-この例は ' 直接接続構成の場合の 'lun lun lun lun show -p コマンドの典型的な出力を示していますまた 'hdisk9 に関する情報を表示するための 'lun lun lun show -d hdisk9-v` コマンドも含まれていますこのコマンドの出力は省略されました。
-
-+
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 sanlun lun show -p
@@ -193,7 +225,11 @@ up        secondary   path13 fcs1    4a              1
 up        primary     path14 fcs1    4b              1
 up        primary     path15 fcs1    4a              1
 ----
+====
 +
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 sanlun lun show -vd hdisk10
@@ -210,4 +246,5 @@ GPFS_p520_FC         /vol/GPFS_p520_FC_FlexVol_2/GPFS_p520_FC_LUN_2_4 hdisk10   
            Vserver volume name: GPFS_p520_FC_FlexVol_2  MSID::0x00000000000000000000000080000420
          Vserver snapshot name:
 ----
+====
 

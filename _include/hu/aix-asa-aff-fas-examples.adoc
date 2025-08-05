@@ -1,0 +1,78 @@
+= 
+:allow-uri-read: 
+
+
+. ONTAP LUN のパスのステータスを確認します。
++
+[source, cli]
+----
+sanlun lun show
+----
++
+次の出力例は、 ASA、 AFF、またはFAS構成におけるONTAP LUN の正しいパス ステータスを示しています。
+
++
+[role="tabbed-block"]
+====
+.ASAコウセイ
+--
+ASA構成では、特定の LUN へのすべてのパスが最適化され、アクティブ (「プライマリ」) な状態が維持されます。これにより、すべてのパスを介して I/O 操作を同時に処理することでパフォーマンスが向上します。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------ ------- ------ ------- --------- ----------
+host   vserver  AIX                      AIX MPIO
+path   path     MPIO   host    vserver     path
+state  type     path   adapter LIF       priority
+------ ------- ------ ------- --------- ----------
+up     primary  path0  fcs0    fc_aix_1     1
+up     primary  path1  fcs0    fc_aix_2     1
+up     primary  path2  fcs1    fc_aix_3     1
+up     primary  path3  fcs1    fc_aix_4     1
+----
+=====
+--
+.AFFまたはFASの設定
+--
+AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+次の例は、2 つのアクティブ/最適化 (「プライマリ」) パスと 2 つのアクティブ/非最適化 (「セカンダリ」) パスを持つONTAP LUN の正しい出力を示しています。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------- ---------- ------ ------- ---------- ----------
+host    vserver    AIX                        AIX MPIO
+path    path       MPIO   host    vserver         path
+state   type       path   adapter LIF         priority
+------- ---------- ------ ------- ---------- ----------
+up      secondary  path0  fcs0    fc_aix_1        1
+up      primary    path1  fcs0    fc_aix_2        1
+up      primary    path2  fcs1    fc_aix_3        1
+up      secondary  path3  fcs1    fc_aix_4        1
+----
+=====
+--
+====
+

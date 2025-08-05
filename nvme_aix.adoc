@@ -4,7 +4,7 @@ permalink: nvme_aix.html
 keywords: nvme, linux, rhel, red hat, enterprise, aix, ontap 
 summary: ONTAPを使用するAIX用のNVMe/FCホストの設定方法 
 ---
-= ONTAPを使用したAIXのNVMe/FCホスト構成
+= ONTAPストレージ用にNVMe-oFを使用してAIXを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,96 +16,103 @@ summary: ONTAPを使用するAIX用のNVMe/FCホストの設定方法
 
 
 [role="lead"]
-ONTAPストレージをターゲットとして使用するIBM AIXホストおよびVIOS/PowerVMホストで、NVMe over Fibre Channel（NVMe/FC）を有効にすることができます。サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
+IBM AIX および Virtual I/O Server (VIOS)/PowerVM ホストは、非対称名前空間アクセス (ANA) を備えた NVMe/FC プロトコルをサポートしています。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) マルチパスに相当します。
 
-ONTAPを備えたAIXホストでは、NVMe/FCホスト構成が次のようにサポートされます。
+サポートされている構成の詳細については、link:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool（IMT）"^] 。
 
-* ONTAP 9.13.1以降では、IBM AIX 7.2 TL5 SP6、AIX 7.3 TL1 SP2、およびVIOS 3.1.4.21リリースでNVMe/FCのサポートが追加され、物理スタックと仮想スタックの両方でSANブートがサポートされるようになりました。SANブートサポートの設定の詳細については、IBMのドキュメントを参照してください。
-* NVMe/FCは、POWER9およびPower10 IBMサーバでサポートされます。
-* NVMeデバイスには、Host Utilities for AIX SCSI Multipath I/O（MPIO）のサポートなど、個別のPCM（Path Control Module）は必要ありません。
-* VIOS 3.1.4.21では、NetApp（VIOS/PowerVM）による仮想化のサポートが導入されました。これは、Power10 IBMサーバを使用したNPIV（N_PortID Virtualization）ストレージ仮想化モードでのみサポートされます。
+.このタスクについて
+AIX ホストの NVMe-oF ホスト構成では、次のサポートと機能を使用できます。構成プロセスを開始する前に、既知の制限事項も確認する必要があります。
+
+* 利用可能なサポート：
++
+** ONTAP 9.13.1 以降では、物理スタックと仮想スタックの両方で SAN ブートをサポートする IBM AIX 7.2 TL5 SP6、AIX 7.3 TL1 SP2、および VIOS 3.1.4.21 に NVMe/FC サポートが追加されました。  SAN ブート サポートの設定の詳細については、IBM のドキュメントを参照してください。
+** NVMe/FCは、POWER9およびPower10 IBMサーバでサポートされます。
+** NVMe デバイスには、AIX SCSI マルチパス I/O (MPIO) サポート用のホスト ユーティリティなどの個別の PCM (パス コントロール モジュール) は必要ありません。
+** VIOS 3.1.4.21では、NetApp（VIOS/PowerVM）による仮想化のサポートが導入されました。これは、Power10 IBMサーバを使用したNPIV（N_PortID Virtualization）ストレージ仮想化モードでのみサポートされます。
 
 
-.必要なもの
+* 既知の制限事項：
++
+** AIX ホスト上の Qlogic/Marvel 32G FC HBA は NVMe/FC をサポートしていません。
+** Power9 IBM サーバーを使用する NVMe/FC デバイスでは、SAN ブートはサポートされません。
+
+
+
+
+.開始する前に
 * アダプタファームウェア12.4.257.30以降のバージョンの32Gb FC Emulexアダプタ（EN1A、EN1B、EN1L、EN1M）または64Gb FCアダプタ（EN1N、EN1P）があることを確認します。
 * MetroCluster構成を使用している場合はNetApp、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントをサポートするために、AIX NVMe/FCのデフォルトAPD（All Path Down）時間を変更することを推奨します。追加情報およびデフォルト設定の推奨される変更については、『NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1553249["1553249"^]。
-* デフォルトでは、AIXホストOSのAsymmetric Namespace Access Transition Timeout（ANATT）の値は30秒です。IBMは、ANATT値を60秒に制限するInterim Fix（IFIX）を提供しています。すべてのONTAPワークフローが無停止であることを確認するには、IBMのWebサイトからIFIXをインストールする必要があります。
+* AIX のバージョンに応じて、AIX ホスト OS の非対称名前空間アクセス遷移タイムアウト (ANATT) はデフォルトで 30 秒または 60 秒になります。ホストの ANATT のデフォルトが 30 秒の場合、すべてのONTAPワークフローが中断されないよう、ANATT を 60 秒に設定する IBM Interim Fix (ifix) を IBM Web サイトからインストールする必要があります。
 +
+[NOTE]
+====
+NVMe/FC AIX をサポートするには、AIX OS の GA バージョンに ifix をインストールする必要があります。  VIOS/PowerVM OS では ifix は必要ありません。
 
-NOTE: NVMe/FC AIXをサポートするには、GAバージョンのAIX OSにIFIXをインストールする必要があります。これは、VIOS/PowerVM OSでは必要ありません。
+関連するifixが以前にインストールされていないAIXバージョンにifixをインストールする必要があります。 `devices.pciex.pciexclass.010802.rte`システム上。以前にインストールされた ifix は、新しいインストールと競合する可能性があります。
 
+====
 +
-IFIXの詳細は次のとおりです。
+[role="tabbed-block"]
+====
+.ANATTを60秒に設定する
+--
+AIX レベル 72-TL5-SP6-2320 および AIX レベル 73-TL1-SP2-2320 リリースのデフォルトの ANATT は 30 秒です。  IBM は、ANATT を 60 秒に設定する ifix を提供しています。  ifix は IBM ケース ID TS018079082 を通じて入手でき、次の AIX リリースにインストールできます。
 
-+
 ** AIXレベル72-TL5-SP6-2320の場合は、をインストールします `IJ46710s6a.230509.epkg.Z` パッケージ。
 ** AIXレベル73-TL1-SP2-2320の場合は、をインストールします `IJ46711s2a.230509.epkg.Z` パッケージ。
+
+
+--
+.デフォルトのANATTは60秒です
+--
+次の AIX リリースでは、デフォルトの ANATT は 60 秒です。
+
+** AIX レベル 73-TL2-SP3-2446
+** AIX レベル 73-TL2-SP2-2420
+** AIX レベル 72-TL5-SP8-2420
+
+
+--
+.オプションで、ANATTを120秒に設定します
+--
+IBM は、ANATT を 120 秒に設定する ifix を提供しています。  ANATT を 120 秒に設定すると、 ONTAPストレージ フェイルオーバー イベント中のパフォーマンスが向上します。  ifix は IBM ケース ID TS012877410 を通じて入手でき、次の AIX リリースにインストールできます。
+
+** AIXレベル73-TL3-SP0-2446の場合は、 `IJ53487s0a.250130.epkg.Z`パッケージ。
+** AIXレベル72-TL5-SP9-2446の場合は、 `IJ53445s9a.250130.epkg.Z`パッケージ。
+
+
+--
+====
++
+[NOTE]
+====
+NVMe/FC をサポートする Power9 サーバーの最小サーバー ファームウェア バージョンは FW 950 です。
+
+NVMe/FC をサポートする Power10 サーバーの最小サーバー ファームウェア バージョンは FW 1010 です。
+
+====
 +
 ifixの管理の詳細については、を参照してください link:http://www-01.ibm.com/support/docview.wss?uid=isg3T1012104["AIXでの暫定修正の管理"^]。
 
+
+
+
+
+== ステップ1: ホストのマルチパス構成を確認する
+
+AIX OS をインストールすると、NVMe マルチパスに使用される IBM MPIO がデフォルトで有効になります。
+
+.手順
+. NVMe マルチパスが有効になっていることを確認します。
 +
-
-NOTE: に関連する以前にインストールされたifixがないAIXバージョンにifixをインストールする必要があります `devices.pciex.pciexclass.010802.rte` システム上。これらのifixが存在する場合、新しいインストールと競合します。
-
-+
-次の表に、AIX LPAR（AIX論理パーティション）または物理スタックに割り当てられたHBAを示します。
-
-+
-[cols="10,10,10,10,10"]
-|===
-| ホストOS | パワーアーチ | 電源FWバージョン | モード | コメント 
-
-
-.2+| AIX 7.2 TL5 SP6 | POWER9 | Fw 950以降 | 物理スタック | IFIXはTS012877410から入手できます。 
-
-
-| パワー10 | Fw 1010以降 | 物理スタック | SANブーティングがサポートされています。IFIXはTS012877410から入手できます。 
-
-
-.2+| AIX 7.3 TL1 SP2 | POWER9 | Fw 950以降 | 物理スタック | IFIXはTS012877410から入手できます。 
-
-
-| パワー10 | Fw 1010以降 | 物理スタックと仮想スタック | IFIXはTS012877410から入手できます。 
-|===
-+
-次の表に、仮想化モードでNPIV対応サポートを使用するVIOSに割り当てられたHBAを示します。
-
-+
-[cols="10,10,10,10,10"]
-|===
-| ホストOS | パワーアーチ | 電源FWバージョン | モード | コメント 
-
-
-| VIOS/PowerVM 3.1.4.21 | パワー10 | Fw 1010以降 | 仮想スタック | サポートはAIX 7.3 TL1 SP2 for VIOCから開始されます 
-|===
-
-
-
-
-
-
-== 既知の制限
-
-ONTAPを使用したAIXでのNVMe/FCホスト構成には、次の既知の制限事項があります。
-
-* AIXホスト上のQLogic / Marvel 32G FC HBAでは、NVMe/FCはサポートされません。
-* POWER9 IBMサーバを使用するNVMe/FCデバイスでは、SANブートはサポートされません。
-
-
-
-
-== マルチパス
-
-NVMeマルチパスに使用されるIBM MPIO（マルチパスI/O）は、AIX OSのインストール時にデフォルトで提供されます。
-
-を使用して、AIXホストでNVMeマルチパスが有効になっていることを確認できます `lsmpio` コマンドを実行します
-
-[listing]
+[source, cli]
 ----
-#[root@aix_server /]: lsmpio -l hdisk1
+lsmpio -l hdisk1
 ----
-*出力例*
-
++
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
 name     path_id  status   path_status  parent  connection
@@ -114,27 +121,27 @@ hdisk1  9         Enabled  Sel,Non       nvme65  fcnvme1, 9
 hdisk1  10        Enabled  Sel,Opt       nvme37  fcnvme1, 9
 hdisk1  11        Enabled  Sel,Non       nvme60  fcnvme0, 9
 ----
+====
 
 
-== NVMe/FC を設定
 
-次の手順を使用して、Broadcom/Emulexアダプタ用にNVMe/FCを設定できます。
+
+== ステップ2: NVMe/FCを構成する
+
+VIOS 上の仮想ファイバー チャネル (vFC) では NVMe/FC プロトコル サポートが無効になっているため、VIOS 上の Broadcom/Emulex アダプター用に NVMe/FC を構成する必要があります。  NVMe/FC プロトコル サポートは、物理 FC でデフォルトで有効になっています。
 
 .手順
-. サポートされているアダプタを使用していることを確認します。サポートされているアダプタの最新のリストについては、を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]。
-. NVMe/FCプロトコルのサポートは、物理FCではデフォルトで有効になっていますが、NVMe/FCプロトコルのサポートは、Virtual I/O Server（VIOS）のVirtual Fibre Channel（VFC；仮想ファイバチャネル）では無効になっています。
+. link:https://mysupport.netapp.com/matrix/["サポートされているアダプタを使用していることを確認してください"^] 。
+. 仮想アダプタのリストを取得します。
 +
-仮想アダプタのリストを取得します。
-
-+
-[listing]
+[source, cli]
 ----
-$ lsmap -all -npiv
+lsmap -all -npiv
 ----
 +
-*出力例*
-
-+
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
 Name          Physloc                            ClntID ClntName       ClntOS
@@ -146,30 +153,29 @@ Ports logged in:3
 Flags:0xea<LOGGED_IN,STRIP_MERGE,SCSI_CLIENT,NVME_CLIENT>
 VFC client name:fcs0            VFC client DRC:U9105.22A.785DB61-V4-C2
 ----
+====
 . を実行して、アダプタでNVMe/FCプロトコルのサポートを有効にします `ioscli vfcctrl` VIOSでのコマンド：
 +
-[listing]
+[source, cli]
 ----
-$  vfcctrl -enable -protocol nvme -vadapter vfchost0
+vfcctrl -enable -protocol nvme -vadapter vfchost0
 ----
 +
-*出力例*
-
-+
+.出力例
 [listing]
 ----
 The "nvme" protocol for "vfchost0" is enabled.
 ----
 . アダプタでサポートが有効になっていることを確認します。
 +
-[listing]
+[source, cli]
 ----
-# lsattr -El vfchost0
+lsattr -El vfchost0
 ----
 +
-*出力例*
-
-+
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
 alt_site_wwpn       WWPN to use - Only set after migration   False
@@ -181,26 +187,25 @@ map_port      fcs4  Physical FC Port                         False
 num_per_nvme  0     Number of NPIV NVME queues per range     True
 num_per_range 0     Number of NPIV SCSI queues per range     True
 ----
-. 現在のすべてのアダプタまたは選択したアダプタに対してNVMe/FCプロトコルを有効にします。
+====
+. すべてのアダプタに対してNVMe/FCプロトコルを有効にします。
 +
-.. すべてのアダプタに対してNVMe/FCプロトコルを有効にします。
+.. を変更します `dflt_enabl_nvme` の属性値 `viosnpiv0` 疑似デバイスをに送信します `yes`。
+.. を設定します `enable_nvme` 属性値をに設定します `yes` すべてのVFCホストデバイスに対して。
 +
-... を変更します `dflt_enabl_nvme` の属性値 `viosnpiv0` 疑似デバイスをに送信します `yes`。
-... を設定します `enable_nvme` 属性値をに設定します `yes` すべてのVFCホストデバイスに対して。
-+
-[listing]
+[source, cli]
 ----
-# chdev -l viosnpiv0 -a dflt_enabl_nvme=yes
-----
-+
-[listing]
-----
-# lsattr -El viosnpiv0
+chdev -l viosnpiv0 -a dflt_enabl_nvme=yes
 ----
 +
-*出力例*
-
+[source, cli]
+----
+lsattr -El viosnpiv0
+----
 +
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
 bufs_per_cmd    10  NPIV Number of local bufs per cmd                    True
@@ -210,21 +215,18 @@ num_per_nvme    8   NPIV Number of NVME queues per range                 True
 num_per_range   8   NPIV Number of SCSI queues per range                 True
 secure_va_info  no  NPIV Secure Virtual Adapter Information              True
 ----
+====
 
 
-.. を変更して、選択したアダプタのNVMe/FCプロトコルを有効にします `enable_nvme` へのVFCホストデバイス属性の値 `yes`。
-
-
+. を変更して、選択したアダプタのNVMe/FCプロトコルを有効にします `enable_nvme` へのVFCホストデバイス属性の値 `yes`。
 . 確認します `FC-NVMe Protocol Device` がサーバに作成されました：
 +
-[listing]
+[source, cli]
 ----
-# [root@aix_server /]: lsdev |grep fcnvme
+lsdev |grep fcnvme
 ----
 +
-* exmaple output *
-
-+
+.出力例
 [listing]
 ----
 fcnvme0       Available 00-00-02    FC-NVMe Protocol Device
@@ -232,45 +234,45 @@ fcnvme1       Available 00-01-02    FC-NVMe Protocol Device
 ----
 . サーバからホストのNQNを記録します。
 +
-[listing]
+[source, cli]
 ----
-# [root@aix_server /]: lsattr -El fcnvme0
-----
-+
-*出力例*
-
-+
-[listing]
-----
-attach     switch                                                               How this adapter is connected  False
-autoconfig available                                                            Configuration State            True
-host_nqn   nqn.2014-08.org.nvmexpress:uuid:64e039bd-27d2-421c-858d-8a378dec31e8 Host NQN (NVMe Qualified Name) True
+lsattr -El fcnvme0
 ----
 +
-[listing]
-----
-[root@aix_server /]: lsattr -El fcnvme1
-----
-+
-*出力例*
-
-+
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
 attach     switch                                                               How this adapter is connected  False
 autoconfig available                                                            Configuration State            True
 host_nqn   nqn.2014-08.org.nvmexpress:uuid:64e039bd-27d2-421c-858d-8a378dec31e8 Host NQN (NVMe Qualified Name) True
 ----
+====
++
+[source, cli]
+----
+lsattr -El fcnvme1
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+attach     switch                                                               How this adapter is connected  False
+autoconfig available                                                            Configuration State            True
+host_nqn   nqn.2014-08.org.nvmexpress:uuid:64e039bd-27d2-421c-858d-8a378dec31e8 Host NQN (NVMe Qualified Name) True
+----
+====
 . ホストのNQNをチェックし、ONTAPアレイの対応するサブシステムのホストのNQN文字列と一致することを確認します。
 +
-[listing]
+[source, cli]
 ----
-::> vserver nvme subsystem host show -vserver vs_s922-55-lpar2
+vserver nvme subsystem host show -vserver vs_s922-55-lpar2
 ----
 +
-*出力例*
-
-+
+.出力例
 [listing]
 ----
 Vserver         Subsystem                Host NQN
@@ -282,28 +284,33 @@ vs_s922-55-lpar2 subsystem_s922-55-lpar2 nqn.2014-08.org.nvmexpress:uuid:64e039b
 
 
 
-== NVMe/FC を検証
+== ステップ3: NVMe/FCを検証する
 
-ONTAPネームスペースがホストに正しく反映されていることを確認する必要があります。これを行うには、次のコマンドを実行します。
+ONTAP名前空間が NVMe/FC 構成に対して正しいことを確認します。
 
-[listing]
+.手順
+. ONTAPネームスペースがホストに正しく反映されていることを確認します。
++
+[source, cli]
 ----
-# [root@aix_server /]: lsdev -Cc disk |grep NVMe
+lsdev -Cc disk |grep NVMe
 ----
-*出力例*
-
++
+.出力例
 [listing]
 ----
 hdisk1  Available 00-00-02 NVMe 4K Disk
 ----
-マルチパスのステータスを確認できます。
-
-[listing]
+. 必要に応じて、マルチパスのステータスを確認します。
++
+[source, cli]
 ----
-#[root@aix_server /]: lsmpio -l hdisk1
+lsmpio -l hdisk1
 ----
-*出力例*
-
++
+.例を示します
+[%collapsible]
+====
 [listing]
 ----
 name     path_id  status   path_status  parent  connection
@@ -312,11 +319,14 @@ hdisk1  9        Enabled  Sel,Non      nvme65  fcnvme1, 9
 hdisk1  10       Enabled  Sel,Opt      nvme37  fcnvme1, 9
 hdisk1  11       Enabled  Sel,Non      nvme60  fcnvme0, 9
 ----
+====
 
 
-== 既知の問題
 
-ONTAPを備えたAIXのNVMe/FCホスト設定には、次の既知の問題があります。
+
+== ステップ4: 既知の問題を確認する
+
+ONTAPストレージを搭載した AIX の NVMe/FC ホスト構成には、次の既知の問題があります。
 
 [cols="10,30,30"]
 |===
@@ -336,6 +346,6 @@ ONTAPを備えたAIXのNVMe/FCホスト設定には、次の既知の問題が�
 |===
 
 
-== トラブルシューティングを行う
+== ステップ5: トラブルシューティング
 
-NVMe/FCの障害をトラブルシューティングする前に、実行している構成がInteroperability Matrix Tool（IMT）の仕様に準拠していることを確認してください。問題が解決しない場合は、に連絡してトリアージを依頼 link:https://mysupport.netapp.com["ネットアップサポート"^] してください。
+NVMe/FC障害のトラブルシューティングを行う前に、以下の規格に準拠した構成を実行していることを確認してください。link:https://mysupport.netapp.com/matrix/["IMT にログインします。"^]仕様。問題が解決しない場合は、link:https://mysupport.netapp.com["ネットアップサポート"^] 。

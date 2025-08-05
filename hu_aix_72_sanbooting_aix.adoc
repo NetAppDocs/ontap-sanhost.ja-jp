@@ -19,14 +19,16 @@ summary: AIX で LUN を検出して設定する方法について説明しま�
 PowerVMを搭載していないAIXを使用する場合は、コマンドを実行してホストがLUNを検出できるようにすることができます `cfgmgr`。LUNを検出するためにホストをリブートする必要はありません。ホストで LUN が検出されたことを確認するには、 sanlun ユーティリティを使用できます。
 
 
-NOTE: 以降の手順は、 PowerVM 環境を実行しているホストには適用されません。
+NOTE: 次の手順は、PowerVM 環境を実行しているホストには適用されません。
 
 .手順
 . ホストに root としてログインします。
-. AIX ホストで、次のコマンドを入力して、新しく作成した LUN を検出します。
+. AIX ホストで、新しく作成された LUN を検出します。
 +
-"cfgmgr"
-
+[source, cli]
+----
+cfgmgr
+----
 +
 cfgmgr コマンドを使用すると、次のような利点があります。
 
@@ -38,8 +40,10 @@ cfgmgr コマンドを使用すると、次のような利点があります。
 
 . NetApp LUNを含むすべてのAIXディスクを表示します。
 +
-「 lsdev - Cc disk 」を参照してください
-
+[source, cli]
+----
+lsdev -Cc disk
+----
 +
 ホストでは、 LUN がディスクとして表示されます。ホストのローカルディスクと同じ方法でこれらのディスクを使用できます。Host Utilities の一部としてインストールされたホスト設定の ODM ファイルでは、 LUN が NetApp FCP ディスクとして表示されます。
 
@@ -66,8 +70,10 @@ hdisk5 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 ====
 . セットアップに関する情報を取得します。
 +
-lsattr - El hdisk_name
-
+[source, cli]
+----
+lsattr -El hdisk_name
+----
 +
 .出力例を表示します。
 [%collapsible]
@@ -104,25 +110,33 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 ====
 . ALUA をサポートする構成の場合は、 ALUA を使用してパス優先度を設定できます。ALUA が有効になっていることを確認します。
 +
-「 lun igroup show -instance igroup_name 」を参照してください
-
+[source, cli]
+----
+lun igroup show -instance igroup_name
+----
 +
 .. ALUA が有効になっていない場合は有効にします。
 +
-「 igroup set igroup_name alua yes
-
+[source, cli]
+----
+igroup set igroup_name alua yes
+----
 
 
 . 使用している構成でALUAがサポートされない場合は、dotpathsユーティリティを使用してパス優先順位を設定する必要があります。dotpaths ユーティリティは、 Host Utilities のインストール時にインストールします。ALUAが有効になっている場合は、dotpathsユーティリティを使用しないでください。
 +
 .. すべてのONTAP LUNに優先度を設定します。
 +
-「パス」
-
+[source, cli]
+----
+dotpaths
+----
 .. 特定のディスクセットの優先度を設定します。
 +
-「 dotpaths [-HQv] [hdiskN...] 」
-
+[source, cli]
+----
+dotpaths [-hqv] [hdiskN ...]
+----
 +
 オプションを使用し `-v`て詳細モードを有効にし、すべての優先順位を表示します。オプションを使用し `-q`て、すべてのディスク優先順位または個 々 のディスク優先順位を照会します。
 
@@ -130,8 +144,10 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 
 . ホストでLUNが検出されたことを確認します。
 +
-「 #sanlun lun show 」というエラーが表示されます
-
+[source, cli]
+----
+sanlun lun show
+----
 +
 次の例は、MicrosoftマルチパスI/O（MPIO）マルチパス環境でのコマンドの一般的な出力を示してい `sanlun lun show`ます。
 

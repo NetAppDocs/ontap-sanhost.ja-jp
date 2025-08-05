@@ -1,0 +1,9 @@
+= 次は何？
+:allow-uri-read: 
+
+
+
+
+== 次の手順
+
+link:hu-solaris-san-toolkit.html["SANツールキットについて学ぶ"] 。

@@ -1,0 +1,7 @@
+= 
+:allow-uri-read: 
+
+
+Host Utilitiesソフトウェアをインストールすると、必要なWindowsレジストリとHBAパラメータがインストーラによって設定されます。
+
+Windows ホストコンピュータには、次のプログラムとファイルがインストールされています。デフォルト・ディレクトリは C ： \Program Files\NetApp\SnapManager \Windows Host Utilities' です。

@@ -16,40 +16,35 @@ summary: HP-UX Host Utilities 6.0とONTAPストレージの使用方法につい
 
 
 [role="lead"]
-NetApp HP-UX Host Utilitiesを使用すると、HP-UXホストをONTAPストレージに接続できます。
+HP-UX ホスト ユーティリティは、HP-UX ホストに接続されたONTAPストレージの管理に役立ちます。 NetAppHP-UX ホスト ユーティリティのインストールを強く推奨していますが、必須ではありません。これらのユーティリティにより管理が改善され、 NetAppカスタマー サポートが構成に関する情報を収集しやすくなります。
 
-HP-UX Host Utilitiesは、複数のプロトコルと次の環境をサポートします。
+HP-UX ホスト ユーティリティは次の環境をサポートします。
 
 * ネイティブのMicrosoftマルチパスI/O（MPIO）
 * Veritas Dynamic Multipathing（DMP；動的マルチパス）
 
 
-
-NOTE: このドキュメントでは、使用している環境を示すために、Veritas DMP環境には「DMP」、HP-UXネイティブ環境には「MPIO」と指定することがあります。使用するコマンドは、使用するドライバによって異なる場合があります。このような場合は、環境とドライバの両方のタイプを指定します。
-
 .開始する前に
-* 安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。
-
-
-を使用して構成を確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
-
-.このタスクについて
-NetApp HP-UX Host Utilitiesソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.0/downloads["ネットアップサポートサイト"^] 圧縮されたファイル。ファイルをダウンロードしたら、インストール前に解凍する必要があります。
+信頼性の高い操作のために、 https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^] iSCSI、FC、または FCoE 構成がサポートされていることを確認します。
 
 .手順
-. ホストにログインします。
+. HP-UX ホストにログインします。
 . から HP-UX Host Utilities ファイル netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` をダウンロードします link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] を HP-UX ホストにインストールします。
 . を解凍します。 `netapp_hpux_host_utilities_6.0_ia_pa.depot.gz` ファイル：
 +
-#gunzip netapp_hpux_host_utilities_6.0_ia_pa.depot.gz`
-
+[source, cli]
+----
+gunzip netapp_hpux_host_utilities_6.0_ia_pa.depot.gz
+----
 +
 デポファイルを解凍したディレクトリに、抽出したソフトウェアが配置されます。
 
 . ソフトウェアをインストールします。
 +
-「 #swinstall-s/depot_path 」
-
+[source, cli]
+----
+swinstall -s /depot_path
+----
 +
 「 depot_path 」は、デポファイルのパスと名前を提供します。
 
@@ -58,31 +53,14 @@ swinstall コマンドは 'HP-UX セットアップの状態を確認するイ�
 
 . インストールを確認します。
 +
-「 anlun version 」を参照してください
-
-
-
-
-
-== SAN ツールキット
-
-HP-UX Host Utilitiesは、HP-UXホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、LUNおよびホストバスアダプタの管理に役立つユーティリティが用意されて `sanlun`います。（HBA）。 `sanlun`show volumeGroupコマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
-
-.例
-次の例では 'lun lun lun show コマンドは LUN 情報を返します
-
-[listing]
+[source, cli]
 ----
-# sanlun lun show all
-
-controller(7mode)/ device host lun
-vserver(Cmode)           lun-pathname                   filename          adapter    protocol   size   mode
-------------------------------------------------------------------------------------------------------------
-sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c34t0d0  fclp1      FCP        150g    C
-sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c23t0d0  fclp1      FCP        150g    C
-sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c12t0d0  fclp0      FCP        150g    C
-sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c81t0d0  fclp0      FCP        150g    C
-
+sanlun version
 ----
 
-NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。そのため、すべてのコンポーネントがすべての構成に適用されるわけではありません。使用していないコンポーネントは、システムのパフォーマンスに影響しません。SAN Toolkitは、AIXおよびPowerVM / VIOS OSバージョンでサポートされます。
+
+
+
+== 次の手順
+
+link:hu-hpux-sanlun-toolkit.html["SANツールキットについて学ぶ"] 。

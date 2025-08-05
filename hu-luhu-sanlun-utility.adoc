@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: hu-luhu-sanlun-utility.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Linux Host Utilities 7.1とONTAPの使用方法について説明します。 
+---
+= ONTAPストレージの「sanlun」ユーティリティについて学ぶ
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Linuxホストユーティリティは、 NetAppのホストソフトウェアであり、 `sanlun` Linux ホスト上のコマンド。その `sanlun`NetApp Host Utilities パッケージをインストールすると、ユーティリティが自動的にインストールされます。このユーティリティは、 `sanlun` ONTAP LUN およびホスト バス アダプタ (HBA) を管理するために使用できるコマンド。その `sanlun`コマンドは、ホストにマップされたONTAP LUN、マルチパス、およびイニシエータ グループの作成に必要な情報を返します。
+
+次の例では、 `sanlun lun show all`コマンドはONTAP LUN 情報を返します。
+
+[listing]
+----
+controller(7mode/E-Series)/            device     host               lun
+vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
+------------------------------------------------------------------------------------
+data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+----
+[NOTE]
+====
+* Linux ホスト ユーティリティ 7.1 の場合、「sanlun」ユーティリティは、ホスト ユーティリティのすべての構成とプロトコルで共通です。その結果、その内容の一部は 1 つの構成には適用されますが、別の構成には適用されません。未使用のコンポーネントがあってもシステムのパフォーマンスには影響しません。
+* 「sanlun」ユーティリティは、次のハイパーバイザー タイプではサポートされていません。
++
+[role="tabbed-block"]
+====
+.8.0
+--
+Linux Host Utilities 8.0 では、「sanlun」ユーティリティは Citrix XenServer、Oracle VM、Red Hat Enterprise Virtualization ではサポートされていません。
+
+--
+.7.1
+--
+Linux Host Utilities 7.1 では、「sanlun」ユーティリティは Citrix Xenserver、Red hat Enterprise Virtualization、および Proxmox ではサポートされていません。
+
+--
+====
+
+
+====
+
+
+== 次の手順
+
+link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。

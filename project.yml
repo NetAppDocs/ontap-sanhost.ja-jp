@@ -20,51 +20,75 @@ sidebar:
     - title: AIX Host Utilities の略語
       entries:
       - title: リリースノート
-        url: "/hu_aix_rn.html"
-      - title: AIX HU 7.0をインストールします
-        url: "/hu-aix-70.html"
-      - title: AIX HU 6.1をインストールします
-        url: "/hu_aix_61.html"
-      - title: コマンド・リファレンスの例
-        url: "/hu_aix_61_cmd.html"
+        url: "/hu-aix-release-notes.html"
+      - title: AIXホストユーティリティをインストールする
+        entries:
+        - title: AIX ホスト ユーティリティ 8.0 をインストールする
+          url: "/hu-aix-80.html"
+        - title: AIX Host Utilities 7.0のインストール
+          url: "/hu-aix-70.html"
+        - title: AIX ホスト ユーティリティ 6.1 をインストールする
+          url: "/hu_aix_61.html"
+      - title: AIX SAN Tollkit について学ぶ
+        url: "/hu-aix-san-toolkit.html"
+      - title: AIX ホスト ユーティリティ コマンド リファレンス
+        url: "/hu-aix-command-reference.html"
     - title: HP-UX Host Utilitiesのことです
       entries:
       - title: リリースノート
-        url: "/hu_hpux_60_rn.html"
-      - title: HP-UX HU 6.0をインストールします
+        url: "/hu-hpux-release-notes.html"
+      - title: HP-UX Host Utilities 6.0のインストール
         url: "/hu_hpux_60.html"
-      - title: コマンド・リファレンスの例
+      - title: SANツールキットについて学ぶ
+        url: "/hu-hpux-sanlun-toolkit.html"
+      - title: HP-UXコマンドリファレンスについて学ぶ
         url: "/hu_hpux_60_cmd.html"
     - title: Linux Host Utilities のことです
       entries:
       - title: リリースノート
-        url: "/hu_luhu_71_rn.html"
-      - title: Linux Host Utilities 7.1のインストール
-        url: "/hu_luhu_71.html"
-      - title: コマンド・リファレンスの例
-        url: "/hu_luhu_71_cmd.html"
+        url: "/hu-luhu-release-notes.html"
+      - title: Linuxホストユーティリティをインストールする
+        entries:
+        - title: Linuxホストユーティリティ8.0をインストールする
+          url: "/hu-luhu-80.html"
+        - title: Linux Host Utilities 7.1のインストール
+          url: "/hu_luhu_71.html"
+      - title: sanlunユーティリティについて学ぶ
+        url: "/hu-luhu-sanlun-utility.html"
+      - title: Linux ホストユーティリティコマンドリファレンス
+        url: "/hu-luhu-command-reference.html"
     - title: Solaris Host Utilities のことです
       entries:
       - title: リリースノート
-        url: "/hu_solaris_62_rn.html"
-      - title: Solaris HU 6.2をインストールします
-        url: "/hu_solaris_62.html"
-      - title: コマンド・リファレンスの例
-        url: "/hu_solaris_62_cmd.html"
+        url: "/hu-solaris-release-notes.html"
+      - title: Solaris Host Utilitiesをインストールします
+        entries:
+        - title: Solaris ホスト ユーティリティ 8.0 をインストールする
+          url: "/hu-solaris-80.html"
+        - title: Solaris ホスト ユーティリティ 6.2 をインストールする
+          url: "/hu_solaris_62.html"
+      - title: SANツールキットについて学ぶ
+        url: "/hu-solaris-san-toolkit.html"
+      - title: Solarisコマンドリファレンスについて学ぶ
+        url: "/hu-solaris-command-reference.html"
     - title: Windows Host Utilities
       entries:
       - title: リリースノート
-        url: "/hu_wuhu_71_rn.html"
-      - title: Windows Host Utilities 7.2をインストールする
-        url: "/hu_wuhu_72.html"
-      - title: Windows Host Utilities 7.1のインストール
-        url: "/hu_wuhu_71.html"
+        url: "/hu-wuhu-release-notes.html"
+      - title: Windowsホストユーティリティをインストールする
+        entries:
+        - title: Windows ホスト ユーティリティ 8.0 をインストールする
+          url: "/hu-wuhu-80.html"
+        - title: Windows Host Utilities 7.2をインストールする
+          url: "/hu_wuhu_72.html"
+        - title: Windows Host Utilities 7.1のインストール
+          url: "/hu_wuhu_71.html"
+      - title: Windowsホストユーティリティの設定を構成する
+        url: "/hu_wuhu_hba_settings.html"
       - title: Windows Host Utilitiesのアップグレード
         url: "/hu_wuhu_upgrade.html"
       - title: Windows Host Utilitiesを修復して削除します
         url: "/hu_wuhu_repair_remove.html"
-      - title: レジストリ設定の構成
-        url: "/hu_wuhu_hba_settings.html"
       - title: トラブルシューティングを行う
         url: "/hu_wuhu_troubleshoot.html"
   - title: FCPとiSCSIを使用したホストの設定
@@ -73,6 +97,8 @@ sidebar:
       url: "/hu_fcp_scsi_index.html"
     - title: AIX および PowerVM/VIOS
       entries:
+      - title: 7.3/4.x
+        url: "/hu-aix-73.html"
       - title: 6.3.1 を参照してください
         url: "/hu_aix_72.html"
       - title: '7.1'
@@ -364,7 +390,7 @@ sidebar:
     - title: Solaris の場合
       entries:
       - title: '11.4'
-        url: "/hu_solaris_114.html"
+        url: "/hu-solaris-114.html"
       - title: '11.3'
         url: "/hu_solaris_113.html"
     - title: SUSE Linux Enterprise Server

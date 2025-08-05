@@ -4,7 +4,7 @@ permalink: hu_hpux_60_cmd.html
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
 summary: Linux Host Utilities 7.1とONTAPの使用方法について説明します。 
 ---
-= HP-UX Host Utilities 6.0コマンドリファレンス
+= HP-UXホストユーティリティコマンドを使用してONTAPストレージ構成を確認します
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,20 +16,21 @@ summary: Linux Host Utilities 7.1とONTAPの使用方法について説明しま
 
 
 [role="lead"]
-Host Utilitiesツールを使用してONTAPストレージ構成をエンドツーエンドで検証するには、HP-UX Host Utilities 6.0のサンプルコマンドリファレンスを使用します。
+Host Utilities ツールを使用してONTAPストレージ構成をエンドツーエンドで検証するには、HP-UX Host Utilities 6.0 サンプル コマンド リファレンスを使用します。
 
 
 
 == ホストにマッピングされているすべてのホストイニシエータを一覧表示
 
-ホストにマッピングされているすべてのホストイニシエータのリストを取得できます。
+ホストにマップされているすべてのホスト イニシエーターのリストを取得します。
 
 [source, cli]
 ----
-# sanlun fcp show adapter -v
+sanlun fcp show adapter -v
 ----
-*出力例*
-
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 adapter name:      fclp2
@@ -66,18 +67,20 @@ supported speed:   8 GBit/sec
 negotiated speed:  Speed not established
 OS device name:    /dev/fclp3
 ----
+====
 
 
 == ホストにマッピングされているすべての LUN をリストします
 
-ホストにマッピングされているすべてのLUNのリストを取得できます。
+ホストにマップされているすべての LUN のリストを取得します。
 
 [source, cli]
 ----
-# sanlun lun show -p -v all
+sanlun lun show -p -v all
 ----
-*出力例*
-
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 \
@@ -98,20 +101,21 @@ up       primary    /dev/dsk/c37t6d7     fclp0   hpux_7                         
 up       primary    /dev/dsk/c22t6d7     fclp1   hpux_8                                         0
 up       secondary  /dev/dsk/c36t6d7     fclp0   hpux_5                                         1
 up       secondary  /dev/dsk/c44t6d7     fclp1   hpux_6                                         1
-
 ----
+====
 
 
 == 特定の SVM からホストにマッピングされているすべての LUN をリストします
 
-特定のSVMからホストにマッピングされているすべてのLUNのリストを取得できます。
+特定の SVM からホストにマップされているすべての LUN のリストを取得します。
 
 [source, cli]
 ----
-# sanlun lun show -p -v vs_hp_cluster
+sanlun lun show -p -v vs_hp_cluster
 ----
-*出力例*
-
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
                     ONTAP Path: vs_hp_cluster:/vol/chathpux_217_vol_en_1_10/hp_en_217_lun
@@ -131,21 +135,21 @@ up       primary    /dev/dsk/c37t6d7     fclp0   hpux_7                         
 up       primary    /dev/dsk/c22t6d7     fclp1   hpux_8                                         0
 up       secondary  /dev/dsk/c36t6d7     fclp0   hpux_5                                         1
 up       secondary  /dev/dsk/c44t6d7     fclp1   hpux_6                                         1
-
 ----
+====
 
 
 == ホストにマッピングされている特定の LUN のすべての属性を一覧表示します
 
-ホストにマッピングされている指定したLUNのすべての属性のリストを取得できます。
+ホストにマップされた指定された LUN のすべての属性のリストを取得します。
 
 [source, cli]
 ----
-
-# sanlun lun show -p -v vs_hp_cluster:/vol/chathpux_217_vol_en_1_5/hp_en_217_lun
+sanlun lun show -p -v vs_hp_cluster:/vol/chathpux_217_vol_en_1_5/hp_en_217_lun
 ----
-*出力例*
-
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 
@@ -166,20 +170,21 @@ up       primary    /dev/dsk/c37t6d1     fclp0   hpux_7                         
 up       primary    /dev/dsk/c22t6d1     fclp1   hpux_8                                         0
 up       secondary  /dev/dsk/c36t6d1     fclp0   hpux_5                                         1
 up       secondary  /dev/dsk/c44t6d1     fclp1   hpux_6                                         1
-
 ----
+====
 
 
 == ホストデバイスファイル名ごとにONTAP LUN属性を表示
 
-ONTAP LUN属性のリストは、指定したホストデバイスファイル名で取得できます。
+指定されたホスト デバイス ファイル名でONTAP LUN 属性のリストを取得します。
 
 [source, cli]
 ----
-#sanlun lun show -dv /dev/rdisk/disk716
+sanlun lun show -dv /dev/rdisk/disk716
 ----
-*出力例*
-
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
                                                                  device             host                  lun
@@ -199,18 +204,20 @@ vs_hp_cluster        /vol/chathpux_217_vol_en_1_14/hp_en_217_lun /dev/rdisk/disk
            Vserver volume name: chathpux_217_vol_en_1_14        MSID::0x00000000000000000000000080915935
          Vserver snapshot name:
 ----
+====
 
 
 == ホストに接続されているすべての SVM ターゲット LIF の WWPN を一覧表示します
 
-ホストに接続されているすべてのSVMターゲットLIFのWWPNのリストを取得できます。
+ホストに接続されているすべての SVM ターゲット LIF WWPN のリストを取得します。
 
 [source, cli]
 ----
-# sanlun lun show -wwpn
+sanlun lun show -wwpn
 ----
-*出力例*
-
+.出力例を表示します。
+[%collapsible]
+====
 [listing]
 ----
 
@@ -233,3 +240,4 @@ fclp0           15g         C
 fclp1           30g         C
 fclp0           30g         C
 ----
+====

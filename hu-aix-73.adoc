@@ -1,0 +1,339 @@
+---
+sidebar: sidebar 
+permalink: hu-aix-73.html 
+keywords: Host Utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
+summary: IBM AIX 7.3および/またはPowerVM VIOS 4.xをONTAPで使用する方法について説明します。 
+---
+= ONTAPストレージを使用してFCPおよびiSCSI用にAIX 7.3/VIOS 4.xを構成する
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+AIX ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された AIX ホスト用の管理および診断ツールを提供します。  AIX 7.3/VIOS 4.x ホストに AIX ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
+
+
+
+== 手順1：必要に応じてSANブートを有効にします。
+
+SAN ブートを使用するようにホストを構成すると、展開が簡素化され、スケーラビリティが向上します。構成で SAN ブートがサポートされていない場合は、ローカル ブートを使用できます。
+
+[role="tabbed-block"]
+====
+.SAN ブート
+--
+SAN ブートは、SAN 接続ディスク (LUN) を AIX/PowerVM ホストのブート デバイスとして設定するプロセスです。  FC プロトコルを使用し、FC または FCoE プロトコルのいずれかで AIX ホスト ユーティリティを実行している AIX マルチパス I/O (MPIO) 環境で動作するように SAN ブート LUN を設定できます。  SAN ブート LUN を作成し、AIX MPIO 環境に新しい OS イメージをインストールする方法は、使用しているプロトコルによって異なります。
+
+.手順
+. 使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]AIX OS、プロトコル、およびONTAPバージョンが SAN ブートをサポートしていることを確認します。
+. ベンダーのドキュメントに記載されている SAN ブートのセットアップに関するベスト プラクティスに従ってください。
+
+
+--
+.ローカルブート
+--
+SSD、SATA、RAID などのローカル ハード ディスクに AIX OS をインストールして、ローカル ブートを実行します。
+
+--
+====
+
+
+== ステップ2: AIXホストユーティリティをインストールする
+
+NetApp、 ONTAP LUN 管理をサポートし、構成データの収集に関するテクニカル サポートを支援するために、AIX ホスト ユーティリティをインストールすることを強くお勧めします。ホスト ユーティリティの MPIO パッケージは、AIX および VIOS の MPIO サポートを提供します。
+
+
+NOTE: AIX ホスト ユーティリティをインストールすると、AIX ホストに追加のタイムアウト設定が提供されます。
+
+link:hu-aix-80.html["AIX ホスト ユーティリティ 8.0 をインストールする"] 。
+
+
+
+== 手順3：ホストのマルチパス構成を確認する
+
+AIX および PowerVM によるマルチパスを使用して、 ONTAP LUN を管理できます。
+
+マルチパスを使用すると、ホストとストレージ システム間に複数のネットワーク パスを構成できます。 1 つのパスに障害が発生した場合、トラフィックは残りのパスで継続されます。ホスト ユーティリティの AIX および PowerVM 環境では、AIX のネイティブ マルチパス ソリューション (MPIO) が使用されます。
+
+パス制御モジュール (PCM) は、AIX ホストの複数のパスの制御を担当します。  PCM は、パス管理を処理するストレージ ベンダーが提供するコードであり、ホスト ユーティリティのインストール中にインストールされ、有効化されます。
+
+ホストのマルチパスが正しく設定されていることを確認するには、 ONTAP LUN にNetApp推奨設定が設定されていることを確認します。
+
+.手順
+. 「MPIO NetApp」が利用可能であることを確認します。  「MPIO NetApp」は、AIX ホスト ユーティリティのインストール中にロードされ、ホストを再起動すると使用できるようになります。
++
+[source, cli]
+----
+lsdev -Cc disk
+----
++
+.出力例
+`hdisk1  Available 00-00-02 MPIO NetApp FCP Default PCM Disk`
+
+. AIX ホスト ユーティリティは、 ONTAP LUN の次のパラメータ設定をロードします。
++
+.パラメータ設定の表示
+[%collapsible]
+====
+[cols="4*"]
+|===
+| パラメータ | 環境 | AIX の値 | 注 
+
+
+| アルゴリズム | MPIO | Round_Robin （ラウンドロビン | Host Utilities で設定します 
+
+
+| hcheck_cmd | MPIO | お問い合わせ | Host Utilities で設定します 
+
+
+| hcheck_interval | MPIO | 30 | Host Utilities で設定します 
+
+
+| hcheck_mode | MPIO | 非アクティブ | Host Utilities で設定します 
+
+
+| lun_reset_spt | MPIO または非 MPIO | はい。 | Host Utilities で設定します 
+
+
+| max_transfer を実行します | MPIO または非 MPIO | FC LUN ： 0x100000 バイト | Host Utilities で設定します 
+
+
+| QFULL _ Dly | MPIO または非 MPIO | 2 秒の遅延 | Host Utilities で設定します 
+
+
+| queue_depth | MPIO または非 MPIO | 64 | Host Utilities で設定します 
+
+
+| RESERVE_policy | MPIO または非 MPIO | 予約なし | Host Utilities で設定します 
+
+
+| re_timeout （ディスク） | MPIO または非 MPIO | 30 秒 | OS のデフォルト値を使用します 
+
+
+| dyntrk | MPIO または非 MPIO | はい。 | OS のデフォルト値を使用します 
+
+
+| FC_err_recov | MPIO または非 MPIO | fast_fail | OS のデフォルト値を使用します 
+
+
+| q_type | MPIO または非 MPIO | シンプル | OS のデフォルト値を使用します 
+
+
+| num_cmd_elems | MPIO または非 MPIO | VIOS 用 AIX 3072 では 1024 | FC EN1B 、 FC EN1C 
+
+
+| num_cmd_elems | MPIO または非 MPIO | AIX の場合は 1024 | FC EN0G 
+|===
+====
+. FC および iSCSI の I/O 操作を最適化するには、次の設定を構成します。
++
+[role="tabbed-block"]
+====
+.FCP
+--
+[cols="4*"]
+|===
+| パラメータ | AIX バージョン | AIX OSのデフォルト値 | NetAppの推奨値 
+
+
+.4+| rw_timeout（ディスク） | AIX 7.3TL3 | NPIV:30秒、vSCSI:45秒 | NPIV:30秒、vSCSI:120秒 
+
+
+| AIX 7.2TL5 | NPIV:30秒、vSCSI:45秒 | NPIV:30秒、vSCSI:120秒 
+
+
+| VIOS 3.1 | 30 秒 | 30 秒 
+
+
+| VIOS 4.1 | 30 秒 | 30 秒 
+|===
+--
+.iSCSI
+--
+[cols="4*"]
+|===
+| パラメータ | AIX バージョン | AIX OSのデフォルト値 | NetAppの推奨値 
+
+
+.5+| rw_timeout（ディスク） | AIX 7.3TL3 | vSCSI:45秒 | vSCSI:120秒 
+
+
+| AIX 7.2TL5 | vSCSI:45秒 | vSCSI:120秒 
+
+
+| VIOS 3.1 | 120 秒 | 30 秒 
+
+
+| VIOS 4.1 | 120 秒 | 30 秒 
+
+
+| すべてのAIX7.2およびAIX 7.3スタンドアロン | 120 秒 | 30 秒 
+
+
+| isw_err_recov (iscsi0) | すべてのAIX7.2およびAIX 7.3スタンドアロン | 遅延失敗 | ファストフェイル 
+|===
+--
+====
+. ストレージ構成にMetroClusterまたはSnapMirror Active Sync が含まれている場合は、デフォルト設定を変更します。
++
+[role="tabbed-block"]
+====
+.MetroCluster
+--
+デフォルトでは、AIX OS は、LUN への使用可能なパスがない場合に、より短い I/O タイムアウトを強制します。これは、単一スイッチ SAN ファブリックを含む構成や、計画外のフェイルオーバーが発生するMetroCluster構成で発生する可能性があります。詳細情報とデフォルト設定の推奨変更については、ナレッジベースの記事を参照してください。link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/What_are_AIX_Host_support_considerations_in_a_MetroCluster_configuration["What are AIX Host support considerations in a MetroCluster configuration?"^] 。
+
+--
+.SnapMirrorアクティブ同期
+--
+ONTAP 9.11.1 以降、AIX ホストでSnapMirror Active Sync がサポートされるようになりました。  AIX 構成におけるプライマリ クラスターは、「アクティブ」クラスターです。
+
+AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーごとに、I/O 操作を再開するためにホストの再スキャンを実行する必要があります。
+
+ナレッジベースの記事を参照してくださいlink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["AIXホストでSnapMirrorアクティブ同期を設定する方法"^]。
+
+--
+====
+. パラメータ設定を確認し、 ONTAP LUN に複数のパスがリストされていることを確認します。
++
+[source, cli]
+----
+lsmpio
+----
++
+次のAFFまたはFASシステムの例では、 PCM はNetAppに対してリストされています。
+
++
+.例を示します
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+# lsmpio -l hdisk1
+name    path_id  status   path_status  parent  connection
+
+hdisk1  0        Enabled  Non          fscsi6  203200a098ba7afe,5b000000000000
+hdisk1  1        Enabled  Non          fscsi8  203100a098ba7afe,5b000000000000
+hdisk1  2        Enabled  Sel,Opt      fscsi6  203000a098ba7afe,5b000000000000
+hdisk1  3        Enabled  Sel,Opt      fscsi8  203800a098ba7afe,5b000000000000
+#
+lsattr -El hdisk1
+*PCM             PCM/friend/NetAppDefaultPCM Path Control Module*                     False
+PR_key_value    0x6d0000000002              Persistant Reserve Key Value            True
+algorithm       round_robin                 Algorithm                               True
+clr_q           no                          Device CLEARS its Queue on error        True
+dist_err_pcnt   0                           Distributed Error Sample Time           True
+dist_tw_width   50                          Distributed Error Sample Time           True
+hcheck_cmd      inquiry                     Health Check Command                    True
+hcheck_interval 30                          Health Check Interval                   True
+hcheck_mode     nonactive                   Health Check Mode                       True
+location                                    Location Label                          True
+lun_id          0x5b000000000000            Logical Unit Number ID                  False
+lun_reset_spt   yes                         LUN Level Reset                         True
+max_transfer    0x100000                    Maximum TRANSFER Size                   True
+node_name       0x204800a098ba7afe          FC Node Name                            False
+pvid            none                        Physical volume identifier              False
+q_err           yes                         Use QERR bit                            True
+q_type          simple                      Queuing TYPE                            True
+qfull_dly       2                           Delay in seconds for SCSI TASK SET FULL True
+queue_depth     64                          Queue DEPTH                             True
+reassign_to     120                         REASSIGN time out value                 True
+reserve_policy  PR_shared                   Reserve Policy                          True
+rw_timeout      30                          READ/WRITE time out value               True
+scsi_id         0xec409                     SCSI ID                                 False
+start_timeout   60                          START unit time out value               True
+timeout_policy  fail_path                   Active/Passive Disk Path Control Module True
+ww_name         0x203200a098ba7afe          FC World Wide Name                      False
+----
+====
+. ONTAP LUN のパスのステータスを確認します。
++
+[source, cli]
+----
+sanlun lun show
+----
++
+次の出力例は、 ASA、 AFF、またはFAS構成におけるONTAP LUN の正しいパス ステータスを示しています。
+
++
+[role="tabbed-block"]
+====
+.ASAコウセイ
+--
+ASA構成では、特定の LUN へのすべてのパスが最適化され、アクティブ (「プライマリ」) な状態が維持されます。これにより、すべてのパスを介して I/O 操作を同時に処理することでパフォーマンスが向上します。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------ ------- ------ ------- --------- ----------
+host   vserver  AIX                      AIX MPIO
+path   path     MPIO   host    vserver     path
+state  type     path   adapter LIF       priority
+------ ------- ------ ------- --------- ----------
+up     primary  path0  fcs0    fc_aix_1     1
+up     primary  path1  fcs0    fc_aix_2     1
+up     primary  path2  fcs1    fc_aix_3     1
+up     primary  path3  fcs1    fc_aix_4     1
+----
+=====
+--
+.AFFまたはFASの設定
+--
+AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+次の例は、2 つのアクティブ/最適化 (「プライマリ」) パスと 2 つのアクティブ/非最適化 (「セカンダリ」) パスを持つONTAP LUN の正しい出力を示しています。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------- ---------- ------ ------- ---------- ----------
+host    vserver    AIX                        AIX MPIO
+path    path       MPIO   host    vserver         path
+state   type       path   adapter LIF         priority
+------- ---------- ------ ------- ---------- ----------
+up      secondary  path0  fcs0    fc_aix_1        1
+up      primary    path1  fcs0    fc_aix_2        1
+up      primary    path2  fcs1    fc_aix_3        1
+up      secondary  path3  fcs1    fc_aix_4        1
+----
+=====
+--
+====
+
+
+
+
+== ステップ4: 既知の問題を確認する
+
+既知の問題はありません。
+
+
+
+== 次の手順
+
+link:hu-aix-command-reference.html["AIXホストユーティリティツールの使用について学ぶ"] 。

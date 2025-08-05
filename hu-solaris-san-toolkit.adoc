@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: hu-solaris-san-toolkit.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Solaris Host Utilities 8.0をONTAPで使用する方法について説明します。 
+---
+= ONTAPストレージ向けSANツールキットについて学ぶ
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Solaris Host Utilities は、 Oracle Solaris ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します `sanlun` LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティ。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
+
+次の出力例は、返されたONTAP LUN情報を示しています。 `sanlun lun show`指示：
+
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+#sanlun lun show all
+controller(7mode)/ device host lun
+vserver(Cmode)                     lun-pathname       filename                                       adapter protocol size mode
+-----------------------------------------------------------------------------------------------------------------------------------
+data_vserver                     /vol/vol1/lun1     /dev/rdsk/c0t600A098038304437522B4E694E49792Dd0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol0/lun2     /dev/rdsk/c0t600A098038304437522B4E694E497938d0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol2/lun3     /dev/rdsk/c0t600A098038304437522B4E694E497939d0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A098038304437522B4E694E497941d0s2 qlc3   FCP       10g cDOT
+
+----
+====
+
+NOTE: このツールキットは、すべてのホスト ユーティリティ構成およびプロトコルに共通です。その結果、すべてのコンポーネントがすべての構成に適用されるわけではありません。使用されていないコンポーネントはシステムのパフォーマンスに影響を与えません。
+
+
+
+== 次の手順
+
+link:hu-solaris-command-reference.html["Solarisホストユーティリティツールの使用について学ぶ"] 。

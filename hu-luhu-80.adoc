@@ -1,0 +1,113 @@
+---
+sidebar: sidebar 
+permalink: hu-luhu-80.html 
+keywords: host utilities, unified, oracle, linux, 8.0, netapp, ontap 
+summary: ONTAPでLinuxホストユーティリティ8.0を使用する方法について説明します。 
+---
+= ONTAPストレージ用のLinuxホストユーティリティ8.0をインストールする
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Linux ホスト ユーティリティは、Linux ホストに接続されたONTAPストレージの管理に役立ちます。 NetAppLinux ホスト ユーティリティのインストールを強く推奨していますが、必須ではありません。これらのユーティリティにより管理が改善され、 NetAppカスタマー サポートが構成に関する情報を収集しやすくなります。
+
+Linux Host Utilities 8.0 は、次のディストリビューション タイプをサポートしています。
+
+* Red Hat Enterprise Linux の場合
+* SUSE Linux Enterprise Server
+* Oracle Linux の場合
+* Oracle VM
+
+
+
+NOTE: Linux Host Utilitiesソフトウェアは、NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）のホストプロトコルをサポートしていません。
+
+.このタスクについて
+Linux ホスト ユーティリティをインストールしても、Linux ホストの設定は変更されません。
+
+.開始する前に
+* 信頼性の高い操作のために、link:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^] iSCSI、FC、または FCoE 構成がサポートされていることを確認します。
+* ベンダーのサポート サイトで入手可能なホスト バス アダプタ (HBA) 管理パッケージをインストールします。管理ソフトウェアにより、 `sanlun` FC HBA の WWPN などの情報を収集するコマンド。
++
+ベンダーのドキュメントを参照して、次のパッケージが正しくインストールされていることを確認してください。これらのパッケージは、 `sanlun fcp show adapter`指示：
+
++
+** Marvell QLogic HBA–QConvergeConsole CLI
+** Broadcom Emulex HBA - OneCommand ManagerコアアプリケーションCLI
+
+
+
+
+.手順
+. 現在 Linux Host Utilities のバージョンがインストールされている場合は、それを削除します。
++
+[source, cli]
+----
+rpm -e netapp_linux_unified_host_utilities-8-0
+----
++
+以前のバージョンのLinux Host Utilitiesの場合は、ホストユーティリティソフトウェアがインストールされているディレクトリに移動し、uninstallコマンドを入力してインストールされているパッケージを削除します。
+
+. NetApp Linux Host Utilities ソフトウェア パッケージは、 NetAppサポート サイトで 64 ビットの .rpm ファイルとして入手できます。  64ビットのファイルを以下からダウンロードしてください。link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]あなたのホストへ。
+. ソフトウェア パッケージをダウンロードしたディレクトリに移動してインストールします。
++
+[source, cli]
+----
+rpm -ivh netapp_linux_unified_host_utilities-8-0.x86_xx.rpm
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+rpm -ivh netapp_linux_unified_host_utilities-8-0.x86_64.rpm
+Verifying...                          ################################# [100%]
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:netapp_linux_unified_host_utiliti################################# [100%]
+
+----
++
+[NOTE]
+====
+Ubuntu ホスト OS を使用している場合は、HBA ライブラリに手動でリンクする必要があります。
+
+[source, cli]
+----
+cp /opt/QLogic_Corporation/QConvergeConsoleCLI/lib64/libHBAAPI.so.2.0.2 /usr/lib64/libHBAAPI.so
+----
+====
+. インストールを確認します。
++
+[source, cli]
+----
+sanlun version
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+sanlun version 8.0.386.1644
+----
+
+
+
+
+== 次の手順
+
+* Linuxカーネルでの推奨ドライバ設定
++
+Linuxカーネルにバンドルされている標準の受信トレイドライバを使用するFC環境を設定する場合は、ドライバのデフォルト値を使用できます。
+
+* link:hu-luhu-sanlun-utility.html["「sanlun」ユーティリティについて学ぶ"] 。
+

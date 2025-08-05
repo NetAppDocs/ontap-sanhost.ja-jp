@@ -1,0 +1,29 @@
+= ステップ2: FC HBAとスイッチを構成する
+:allow-uri-read: 
+
+
+. 対象サービスを開始します。
+. ケーブル接続を確認します。
++
+参照 https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^]詳細なケーブル接続および構成情報については、こちらをご覧ください。
+
+
+
+
+
+== ステップ2: FC HBAとスイッチを構成する
+
+ストレージシステムへのFC接続用にサポートされる1つ以上のFC Host Bus Adapter（HBA；ホストバスアダプタ）をインストールして設定します。
+
+Windows Host Utilitiesのインストーラでは、必要なFC HBAを設定できます。
+
+
+CAUTION: HBA パラメータの設定は、Windows Host Utilities インストーラのみに許可する必要があります。これにより、Windows ホストがONTAPプラットフォームのストレージ システムの動作を正しく処理できるようになります。
+
+.手順
+. HBAベンダーの指示に従って、サポートされているFC HBAを1つ以上取り付けます。
+. サポートされている HBA ドライバと管理ユーティリティを入手し、 HBA ベンダーの指示に従ってインストールします。
+. https://docs.netapp.com/us-en/ontap/san-management/index.html["HBAをFCスイッチに接続するか、ストレージシステムに直接接続します。"^] 。
+. https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["FCスイッチのドキュメントに従ってFCスイッチにゾーンを作成します。"^] 。
+. ONTAPの場合、スイッチを WWPN でゾーン分けします。ストレージ コントローラ上の物理ポートの WWPN ではなく、論理インターフェイス (LIF) の WWPN を使用してください。参照 https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^]詳細についてはこちらをご覧ください。
+

@@ -4,7 +4,7 @@ permalink: hu_luhu_71.html
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
 summary: Linux Host Utilities 7.1とONTAPの使用方法について説明します。 
 ---
-= Linux Host Utilities 7.1のインストール
+= ONTAPストレージ用のLinuxホストユーティリティ7.1をインストールする
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,9 +16,9 @@ summary: Linux Host Utilities 7.1とONTAPの使用方法について説明しま
 
 
 [role="lead"]
-Linux Host Utilitiesは、Linuxホストに接続されているONTAPストレージの管理に役立ちます。NetAppでは、Linux Host Utilitiesのインストールを強く推奨していますが、必須ではありません。ユーティリティを使用しても、 Linux ホストの設定は変更されません。管理機能が向上し、ネットアップのカスタマーサポートが設定に関する情報を収集できるようになります。
+Linux ホスト ユーティリティは、Linux ホストに接続されたONTAPストレージの管理に役立ちます。 NetAppLinux ホスト ユーティリティのインストールを強く推奨していますが、必須ではありません。これらのユーティリティにより管理が改善され、 NetAppカスタマー サポートが構成に関する情報を収集しやすくなります。
 
-次のLinuxディストリビューションがサポートされています。
+Linux Host Utilities 7.1 は、次のディストリビューション タイプをサポートしています。
 
 * Red Hat Enterprise Linux の場合
 * SUSE Linux Enterprise Server
@@ -27,16 +27,17 @@ Linux Host Utilitiesは、Linuxホストに接続されているONTAPストレ�
 * Citrix XenServer
 
 
+
+NOTE: Linux Host Utilitiesソフトウェアは、NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）のホストプロトコルをサポートしていません。
+
+.このタスクについて
+Linux ホスト ユーティリティをインストールしても、Linux ホストの設定は変更されません。
+
 .開始する前に
-NetApp Linux Host Utilitiesソフトウェアパッケージは、に32ビットまたは64ビットの.rpmファイル形式で提供されていlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]ます。
-
-* 安定した運用を実現するために、 iSCSI 、 FC 、または FCoE の構成全体がサポートされることを確認する必要があります。
+* 信頼性の高い操作のために、link:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^] iSCSI、FC、または FCoE 構成がサポートされていることを確認します。
+* ベンダーのサポート サイトで入手可能なホスト バス アダプタ (HBA) 管理パッケージをインストールします。管理ソフトウェアにより、 `sanlun` FC HBA の WWPN などの情報を収集するコマンド。
 +
-を使用して構成を確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
-
-* ベンダーのサポートサイトで入手可能なホストバスアダプタ（HBA）管理パッケージをインストールする必要があります。
-+
-管理ソフトウェアを使用すると、SAN ToolkitコマンドでFC HBAに関する情報（WWPNなど）を収集できます。コマンドが機能するためには `sanlun fcp show adapter`、次のパッケージが正しくインストールされていることを確認します。
+ベンダーのドキュメントを参照して、次のパッケージが正しくインストールされていることを確認してください。これらのパッケージは、 `sanlun fcp show adapter`指示：
 
 +
 ** Marvell QLogic HBA–QConvergeConsole CLI
@@ -44,14 +45,11 @@ NetApp Linux Host Utilitiesソフトウェアパッケージは、に32ビット
 ** Marvell Brocade HBA–BrocadeコマンドユーティリティCLI
 
 
-* 各Linuxディストリビューションで利用可能なRPMパッケージ「libhbaapi」と「libhbalinux」は、ホストOSにインストールする必要があります。
+* Linux ホスト OS に、各 Linux ディストリビューションで利用可能な RPM「libhbaapi」および「libhbalinux」パッケージをインストールします。
 
-
-
-NOTE: Linux Host Utilitiesソフトウェアは、NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）のホストプロトコルをサポートしていません。
 
 .手順
-. Linux Host Utilitiesのバージョンが現在インストールされている場合は、次のコマンドを使用して削除します。
+. 現在 Linux Host Utilities のバージョンがインストールされている場合は、それを削除します。
 +
 [source, cli]
 ----
@@ -61,12 +59,15 @@ rpm -e netapp_linux_unified_host_utilities-7-1
 以前のバージョンのLinux Host Utilitiesの場合は、ホストユーティリティソフトウェアがインストールされているディレクトリに移動し、uninstallコマンドを入力してインストールされているパッケージを削除します。
 
 . からホストに32ビットまたは64ビットのLinux Host Utilitiesソフトウェアパッケージをダウンロードしますlink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
-. ソフトウェアパッケージをダウンロードしたディレクトリに移動し、次のコマンドを使用してインストールします。
+. ソフトウェア パッケージをダウンロードしたディレクトリに移動してインストールします。
 +
 [source, cli]
 ----
 rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_xx.rpm
 ----
++
+次の例のような出力が表示されます。
+
 +
 [listing]
 ----
@@ -82,6 +83,9 @@ Updating / installing...
 sanlun version
 ----
 +
+次の例のような出力が表示されます。
+
++
 [listing]
 ----
 sanlun version 7.1.386.1644
@@ -90,41 +94,11 @@ sanlun version 7.1.386.1644
 
 
 
-== Linuxカーネルでの推奨ドライバ設定
+== 次の手順
 
+* Linuxカーネルでの推奨ドライバ設定
++
 Linuxカーネルにバンドルされている標準の受信トレイドライバを使用するFC環境を設定する場合は、ドライバのデフォルト値を使用できます。
 
+* link:hu-luhu-sanlun-utility.html["「sanlun」ユーティリティについて学ぶ"] 。
 
-
-== SAN ツールキット
-
-Linux Host Utilitiesは、Linuxホストにコマンドラインツールキットを提供するNetAppホストソフトウェアです。
-
-このツールキットは、 NetApp Host Utilities パッケージをインストールすると自動的にインストールされます。このキットには 'lun ユーティリティが含まれており 'LUN と HBA の管理に役立ちます「 anlun 」コマンドは、ホストにマッピングされた LUN 、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
-
-.例
-次の例では 'lun lun lun show コマンドは LUN 情報を返します
-
-[source, cli]
-----
-# sanlun lun show all
-----
-出力例：
-
-[listing]
-----
-controller(7mode/E-Series)/            device     host               lun
-vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
-------------------------------------------------------------------------------------
-data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
-----
-[NOTE]
-====
-* このツールキットは、 Host Utilities のすべての構成とプロトコルで共通です。その結果、一部の内容は 1 つの構成に適用されますが、別の構成には適用されません。未使用のコンポーネントを使用しても、システムのパフォーマンスに影響はありません。
-* SAN Toolkitは、Citrix XenServer、Oracle VM、およびRed Hat Enterprise Virtualization Hypervisorではサポートされていません。
-
-
-====

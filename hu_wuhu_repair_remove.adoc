@@ -4,7 +4,7 @@ permalink: hu_wuhu_repair_remove.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= Windows Host Utilitiesを修復して削除する
+= ONTAPストレージ用のWindowsホストユーティリティを修復および削除する
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,7 +19,7 @@ summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリ
 
 
 [role="lead"]
-Host Utilitiesのインストールプログラムの* Repair *オプションを使用して、Host Bus Adapter（HBA；ホストバスアダプタ）とWindowsのレジストリ設定を更新できます。対話的に、またはWindowsコマンドラインから、Host Utilities全体を削除することもできます。
+ホスト ユーティリティ インストール プログラムの *修復* オプションを使用して、ホスト バス アダプタ (HBA) と Windows レジストリ設定を更新します。対話型または Windows コマンド ラインから、ホスト ユーティリティを完全に削除することもできます。
 
 [role="tabbed-block"]
 ====
@@ -36,15 +36,17 @@ Host Utilitiesのインストールプログラムの* Repair *オプション�
 
 
 --
-.コマンドラインから修復または削除
+.非対話的に修復または削除する
 --
 *修復*オプションは、WindowsレジストリとFC HBAを必要な設定で更新します。Windows のコマンドラインから Host Utilities を完全に削除することもできます。
 
 .手順
 . Windows Host Utilitiesを修復します。
 +
-`msiexec /f installer.msi [/quiet]`
-
+[source, cli]
+----
+msiexec /f installer.msi [/quiet]
+----
 +
 ** 「 /f 」を指定すると、インストールが修復されます。
 ** 「 installer.msi 」は、システム上の Windows Host Utilities インストールプログラムの名前です。

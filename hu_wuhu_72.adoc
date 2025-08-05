@@ -4,7 +4,7 @@ permalink: hu_wuhu_72.html
 keywords: windows, 7.2, host utilities, SAN, windows 
 summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= Windows Host Utilities 7.2をインストールする
+= ONTAPストレージ用のWindowsホストユーティリティ7.2をインストールする
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -54,69 +54,78 @@ Host Utilitiesは、さまざまなWindowsホスト構成、プロトコル、�
 
 
 
-== ホストとストレージシステムの構成を確認します
+== ステップ1: ホストとストレージシステムの構成を確認する
 
 用のWindows Host Utilitiesをインストールする前に、ホストとストレージシステムの構成がサポートされていることを確認して<<supported-windows-versions-72,サポートされるWindowsのバージョン>>ください。
 
 .手順
 . でサポートされる構成を確認します http://mysupport.netapp.com/matrix["Interoperability Matrix Tool"^]。
-. で、該当するホストに必要なホットフィックスを確認します link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["SANホストのWindowsに関するドキュメント"]。
+. Windows Serverホストバージョンに必要な修正プログラムを確認してください。link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["SANホストのWindowsに関するドキュメント"] 。
++
+例えば、link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["ONTAPストレージ用にWindows Server 2022を構成する"]このドキュメントでは、Windows Server 2022 用の Windows 修正プログラムをインストールする手順について説明します。
+
+. link:https://docs.netapp.com/us-en/ontap/san-admin/verify-license-fc-iscsi-task.html["iSCSIまたはFCPライセンスを追加する"^] 。
 +
 
-NOTE: このドキュメントでlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["ONTAPでWindows Server 2022を使用"]は、for Windows Server 2022の手順について説明しlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Windowsホットフィックスのインストール"]ます。以前のバージョンのWindowsサーバに関連する修正プログラムの情報については、ホスト構成カテゴリのWindowsドキュメントを参照してください。
+NOTE: SANtricity Storage Managerを使用する E シリーズ ストレージ システムでは、FC および iSCSI プロトコルにライセンスは必要ありません。
 
-. iSCSI、FCP、またはNVMe-oFライセンスを追加し、ターゲットサービスを開始します。
-+
-
-NOTE: SANtricityストレージマネージャを使用するEシリーズストレージシステムでは、FCプロトコルとiSCSIプロトコルのライセンスは必要ありません。
-
+. 対象サービスを開始します。
 . ケーブル接続を確認します。
 +
-を参照してください https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^] 使用しているバージョンのONTAPまたは https://docs.netapp.com/us-en/e-series/install-hw-cabling/index.html["Eシリーズハードウェアケーブル接続"^] ケーブル接続と構成の詳細については、を参照してください。
+参照 https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^]詳細なケーブル接続および構成情報については、こちらをご覧ください。
 
 
 
 
 
-== FC HBA およびスイッチを設定します
+== ステップ2: FC HBAとスイッチを構成する
 
 ストレージシステムへのFC接続用にサポートされる1つ以上のFC Host Bus Adapter（HBA；ホストバスアダプタ）をインストールして設定します。
 
 Windows Host Utilitiesのインストーラでは、必要なFC HBAを設定できます。
 
 
-CAUTION: HBA設定を手動で変更しないでください。
+CAUTION: HBA パラメータの設定は、Windows Host Utilities インストーラのみに許可する必要があります。これにより、Windows ホストがONTAPプラットフォームのストレージ システムの動作を正しく処理できるようになります。
 
 .手順
 . HBAベンダーの指示に従って、サポートされているFC HBAを1つ以上取り付けます。
 . サポートされている HBA ドライバと管理ユーティリティを入手し、 HBA ベンダーの指示に従ってインストールします。
-. HBAをFCスイッチに接続するか、またはストレージシステムに直接接続します。
-. FCスイッチのドキュメントに従って、FCスイッチにゾーンを作成します。
-. ONTAP の場合は、WWPNでスイッチをゾーニングします。必ず、ストレージコントローラの物理ポートのWWPNではなく、論理インターフェイス（LIF）のWWPNを使用してください。を参照してください https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^] 詳細については、ドキュメントを参照してください。
+. https://docs.netapp.com/us-en/ontap/san-management/index.html["HBAをFCスイッチに接続するか、ストレージシステムに直接接続します。"^] 。
+. https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["FCスイッチのドキュメントに従ってFCスイッチにゾーンを作成します。"^] 。
+. ONTAPの場合、スイッチを WWPN でゾーン分けします。ストレージ コントローラ上の物理ポートの WWPN ではなく、論理インターフェイス (LIF) の WWPN を使用してください。参照 https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN 構成リファレンス"^]詳細についてはこちらをご覧ください。
 
 
 
 
-== Host Utilities をインストールする
+== ステップ3: Windowsホストユーティリティをインストールする
 
-インストールプログラムを実行すると、 Host Utilities パッケージがインストールされ、 Windows のレジストリと HBA が設定されます。
+インストール プログラムは、Windows ホスト ユーティリティ パッケージをインストールし、Windows レジストリと HBA 設定を設定します。
 
-Windows Host Utilitiesソフトウェアパッケージをインストールするときに、マルチパスのサポートを含めるかどうかを指定する必要があります。次のオプションの入力を求められます。Windows のコマンドプロンプトからサイレントインストール（無人インストール）を実行することもできます。
+.このタスクについて
+オプションで、Windows ホスト ユーティリティ ソフトウェア パッケージをインストールするときに、マルチパス サポートを含めることができます。インストーラーは次のオプションの入力を求めます。
 
-.マルチパスのサポート
 * を選択します `MPIO` Windowsホストまたは仮想マシンからストレージシステムへのパスが複数ある場合。
-* を選択します `no MPIO` ストレージシステムへの単一のパスを使用している場合のみ。
+* 選ぶ `no MPIO`ストレージ システムへの単一のパスを使用している場合のみ。
 
 
-Microsoft Multipath I/O（MPIO）は、Windows XPおよびWindows Vistaシステムでは選択できません。これらのゲストオペレーティングシステムではマルチパスI/Oはサポートされていません。Hyper-Vゲストでマルチパスのサポートを選択した場合、raw（パススルー）ディスクはゲストOSに表示されません。ゲストOSではrawディスクまたはMPIOのどちらかを使用できますが、両方を使用することはできません。
+Windows コマンド ライン プロンプトを使用してマルチパス サポートを選択することもできます。
 
-Host Utilitiesは対話的にインストールすることも、コマンドラインを使用してインストールすることもできます。新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilitiesを対話的にインストールするか、Windowsコマンドラインからインストールする手順に従います。
+Hyper-V ゲストの場合、マルチパス サポートを選択すると、raw (パススルー) ディスクはゲスト OS に表示されません。  RAW ディスクまたは MPIO のいずれかを使用できますが、ゲスト OS では両方を使用することはできません。
+
+
+CAUTION: MPIOソフトウェアをインストールしない場合、Windows OSは各パスを個別のディスクとして認識する可能性があります。これにより、データが破損する可能性があります。
+
+
+NOTE: Hyper-V仮想マシンで実行されているWindows XPまたはWindows Vistaは、MPIOをサポートしていません。
+
+.手順
+ホスト ユーティリティは、対話形式で、または Windows コマンド ラインを使用してインストールできます。新しい Host Utilities インストール パッケージは、Windows ホストからアクセスできるパスに存在する必要があります。
 
 [role="tabbed-block"]
 ====
 .対話型インストール
 --
-Host Utilities ソフトウェアパッケージを対話的にインストールするには、 Host Utilities のインストールプログラムを実行し、プロンプトに従ってインストールする必要があります。
+Host Utilities インストール プログラムを実行し、プロンプトに従って、Host Utilities ソフトウェア パッケージを対話型でインストールします。
 
 .手順
 . から実行可能ファイルをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["ネットアップサポートサイト"^]。
@@ -126,15 +135,17 @@ Host Utilities ソフトウェアパッケージを対話的にインストー�
 
 
 --
-.コマンドラインからのインストール
+.非対話型でインストールする
 --
-Windowsコマンドプロンプトで該当するコマンドを入力すると、Host Utilitiesのサイレント（無人）インストールを実行できます。インストールが完了すると、システムが自動的にリブートします。
+Windows コマンド ラインを使用して、ホスト ユーティリティの非対話型インストールを実行します。インストールが完了すると、システムは自動的に再起動します。
 
 .手順
 . Windowsコマンドプロンプトで、次のコマンドを入力します。
 +
-`m siexec/i installer.msi /quiet multipath={0}[INSTALLDIR=inst_path ]`
-
+[source, cli]
+----
+msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]
+----
 +
 ** `installer` は、の名前です `.msi` 使用しているCPUアーキテクチャ用のファイル。
 ** マルチパスでは、 MPIO サポートがインストールされているかどうかが指定指定できる値は、noの場合は「0」、yesの場合は「1」です。
@@ -148,3 +159,8 @@ NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer�
 
 --
 ====
+
+
+== 次の手順
+
+link:hu_wuhu_hba_settings.html["Windowsホストユーティリティのレジストリ設定を構成する"] 。

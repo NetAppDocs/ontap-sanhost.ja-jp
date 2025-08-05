@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: hu-aix-release-notes.html 
+keywords: host utilities, aix, 6.1 netapp, 7.0, ontap, powervm 
+summary: 『Release Notes for AIX Host Utilities 6.1』 
+---
+= AIX Host Utilitiesリリースノート
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+リリース ノートには、新機能と拡張機能、現在のリリースで修正された問題、既知の問題と制限、およびONTAPストレージ システムを使用した特定の AIX ホストの構成と管理に関連する重要な注意事項が記載されています。
+
+Host Utilitiesでサポートされるオペレーティングシステムのバージョンと更新の具体的な情報については、を参照してlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]ください。
+
+AIX ホスト ユーティリティ リリースには、次の新機能と拡張機能が含まれています。
+
+
+
+== AIX ホスト ユーティリティ 8.0 の新機能
+
+AIXホストユーティリティ8.0ではIBM Interim Fix（ifix）が利用可能で、 `sanlun fcp show adapter –v`コマンドは、アダプタでサポートされている速度やネゴシエートされた速度など、正しい HBA 速度情報を表示します。  ifix は次の AIX および VIOS バージョンにインストールできます。
+
+* AIX: 7.3 TL3 SP0、7.3 TL2 SP2、7.3 TL1 SP4、7.2 TL5 SP9、7.2 TL5 SP8
+* VIOS: 4.1.1.0、4.1.0.21、3.1.4.50、3.1.4.41
+
+
+
+
+== AIX ホスト ユーティリティ 7.0 の新機能
+
+AIX Host Utilities 7.0では、AIXホストOSでのSCSI UNMAPがサポートされます。AIX Host Utilities 7.0では、SCSIシンプロビジョニングがFCデバイス用のAIXおよびNetApp LUNとシームレスに機能します。
+
+
+
+== AIX ホスト ユーティリティ 6.1 の新機能
+
+AIX Host Utilities 6.1では、以前のバージョンのAIXホストOSで発生したメモリ障害の問題がサポートされています。AIX Host Utilities 6.1では、sanlunバイナリのみが変更されています。MicrosoftマルチパスI/O（MPIO）と関連するODMは変更されません。
+
+
+
+== 既知の問題および制限
+
+特定のホストのパフォーマンスに影響を及ぼす可能性のある次の既知の問題と制限事項に注意する必要があります。
+
+[cols="4"]
+|===
+| バグ ID | 影響を受けるバージョン | タイトル | 説明 
+
+
+| 該当なし | 7.0 | ONTAP iSCSI LUNのSCSI UNMAPサポート | AIX Host Utilities 7.0では、FCデバイスに対してのみSCSI UNMAP機能がサポートされます。iSCSIデバイスのSCSI UNMAPサポートは、このリリースには含まれていません。 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1069147["1069147"^] |  | AIX HU sanlunで、HBA速度が正しくないと報告される | sanlun fcp show adapter–v’コマンドの実行時に、誤ったHBA速度を表示したインスタンスが報告されます。「sanlun fcp show adapter–v」コマンドを使用すると、アダプタのサポート速度やネゴシエート速度などのHBAカード情報が表示されます。これは問題 のみのレポートであるようです。実際の速度を確認するには、「fcstat fcsx」コマンドを使用します。 
+|===
+link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。使用するキーワードの組み合わせとバグの種類には、次のものがあります。
+
+* FCP General：特定のホストに関連付けられていないFCおよびHBAのバグが表示されます。
+* FCP - AIXの場合
+

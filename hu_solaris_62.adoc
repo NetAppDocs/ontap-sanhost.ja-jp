@@ -16,50 +16,63 @@ summary: Solaris Host Utilities 6.2とONTAPの使用方法について説明し�
 
 
 [role="lead"]
-Solaris Host Utilitiesは、Solarisホストに接続されているONTAPストレージの管理に役立ちます。
+Solaris ホスト ユーティリティは、Solaris ホストに接続されたONTAPストレージの管理と、構成データの収集に関するテクニカル サポートに役立ちます。
 
-Solaris Host Utilities 6.2 は、いくつかの Solaris 環境と複数のプロトコルをサポートしています。主な Host Utilities 環境は次のとおりです。
+Solaris ホスト ユーティリティは、複数の Solaris 環境と複数のトランスポート プロトコルをサポートします。主な Solaris ホスト ユーティリティ環境は次のとおりです。
 
-* SPARC プロセッサまたは x86-64 プロセッサを使用するシステムで、ファイバチャネル（ FC ）または iSCSI プロトコルを持つ MPxIO を搭載したネイティブ OS 。
+* SPARC プロセッサまたは x86/64 プロセッサを使用するシステム上の MPxIO とファイバ チャネル (FC) または iSCSI プロトコルを備えたネイティブ OS。
 * SPARCプロセッサを使用するシステムではFCプロトコルまたはiSCSIプロトコルを使用するVeritas Dynamic Multipathing（DMP）、x86/64プロセッサを使用するシステムではiSCSIプロトコルを使用します。
 
 
-Solaris Host Utilities 6.2では、引き続き次のバージョンのSolarisがサポートされます。
+Solaris Host Utilities 6.2 は、次の Solaris シリーズをサポートします。
 
-* Solaris 11.xシリーズ
-* Solaris 10.xシリーズ
+* Solaris 11.x
+* Solaris 10.x
 
 
 .開始する前に
-* 安定した運用を実現するために、iSCSI、FC、またはFCoE構成全体がサポートされていることを確認します。
-
-
-を使用して構成を確認できますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]。
-
-
-NOTE: NetApp Solaris Host Utilities ソフトウェアパッケージは、にあります link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^] お使いのプロセッサ用の圧縮ファイル形式です。環境に対応した Host Utilities ソフトウェアパッケージは、サポートサイトからダウンロードできます。
+iSCSI、FC、または FCoE 構成がサポートされていることを確認します。使用することができますlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]設定を確認します。
 
 .手順
 . ホストに root としてログインします。
-. から Host Utilities が含まれている圧縮ファイルのコピーをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^] をホスト上のディレクトリに移動します。
+. ホストユーティリティを含む圧縮ファイルのコピーを以下からダウンロードします。link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^] Solaris ホスト上のディレクトリに:
 +
-このドキュメントの作成時点では、圧縮ファイルの名前は次のようになりました。
-
-+
-** SPARC CPU ： 'NetApp_solaris_host_utilities_6_2_sparc.tar.gz
-** x86/x64 CPU ：「 NetApp_solaris_host_utilities_6_2_AMD.tar.gz
-
-
-. ダウンロードを格納しているディレクトリに移動します。
+[role="tabbed-block"]
+====
+.SPARC CPU
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_6_2_sparc.tar.gz
+----
+--
+.x86/x64 CPU
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_6_2_amd.tar.gz
+----
+--
+====
+. ダウンロードが含まれる Solaris ホストのディレクトリに移動します。
 . を使用してファイルを解凍します。 `gunzip` コマンドを実行します
 +
-#gunzip NetApp_solaris_host_utilities_6_2_sparc.tar.gz
-
-. 次のコマンドを使用してファイルを解凍し `tar xvf`ます。
+[source, cli]
+----
+gunzip netapp_solaris_host_utilities_6_2_sparc.tar.gz
+----
+. ファイルを解凍するには、 `tar xvf`指示：
 +
-tar xvf NetApp _Solaris_host_utilities_6_2_sparc.tar
-
-. コマンドを使用して、tarファイルから展開したパッケージをホストに追加します `pkgadd`。
+[source, cli]
+----
+tar xvf netapp_solaris_host_utilities_6_2_sparc.tar
+----
+. tarファイルから抽出したパッケージをホストに追加します
++
+[source, cli]
+----
+pkgadd
+----
 +
 パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます
 
@@ -67,10 +80,25 @@ tar xvf NetApp _Solaris_host_utilities_6_2_sparc.tar
 次の例では、コマンドを使用し `pkgadd`てSolarisインストールパッケージをインストールします。
 
 +
-#pkgadd -d ./NTAPSANTool.pkg
-
-. pkginfo コマンドまたは ls -al コマンドを使用して ' ツールキットが正常にインストールされたことを確認します
+[source, cli]
+----
+pkgadd -d ./NTAPSANTool.pkg
+----
+. 次のいずれかのコマンドを使用して、ツールキットが正常にインストールされたことを確認します。
 +
+[source, cli]
+----
+pkginfo
+----
++
+[source, cli]
+----
+ls - al
+----
++
+.出力例を表示
+[%collapsible]
+====
 [listing]
 ----
 # ls -alR /opt/NTAP/SANToolkit
@@ -94,39 +122,23 @@ drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
 -r-xr-xr-x   1 root     sys        12266 Sep 13  2017 host_config.1
 -r-xr-xr-x   1 root     sys         9044 Sep 13  2017 sanlun.1
 ----
-. 完了したら、を使用して環境のホストパラメータを設定します。 `/opt/NTAP/SANToolkit/bin/host_config` コマンドを実行します
+====
+. MPxIO または Veritas DMP 環境のホスト パラメータを構成します。
 +
-** MPxIO
-** Veritas DMP の略
-
-
+[source, cli]
+----
+/opt/NTAP/SANToolkit/bin/host_config
+----
 . インストールを確認します。
 +
-「 anlun version 」を参照してください
-
-
-
-
-
-== SANツールキットを有効にする
-
-Solaris Host Utilities は、 Oracle Solaris ホストにコマンドラインツールキットを提供するネットアップホストソフトウェアです。このツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットは、を提供します `sanlun` LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティ。。 `sanlun` コマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。
-
-.例
-次の例では 'lun lun lun show コマンドは LUN 情報を返します
-
-[listing]
+[source, cli]
 ----
-#sanlun lun show all
-controller(7mode)/ device host lun
-vserver(Cmode)                     lun-pathname       filename                                       adapter protocol size mode
------------------------------------------------------------------------------------------------------------------------------------
-data_vserver                     /vol/vol1/lun1     /dev/rdsk/c0t600A098038304437522B4E694E49792Dd0s2 qlc3   FCP       10g cDOT
-data_vserver                     /vol/vol0/lun2     /dev/rdsk/c0t600A098038304437522B4E694E497938d0s2 qlc3   FCP       10g cDOT
-data_vserver                     /vol/vol2/lun3     /dev/rdsk/c0t600A098038304437522B4E694E497939d0s2 qlc3   FCP       10g cDOT
-data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A098038304437522B4E694E497941d0s2 qlc3   FCP       10g cDOT
-
-
+sanlun version
 ----
 
-NOTE: このツールキットは、Host Utilitiesのすべての構成とプロトコルに共通です。そのため、すべてのコンポーネントがすべての構成に適用されるわけではありません。使用していないコンポーネントは、システムのパフォーマンスに影響しません。SAN Toolkitは、AIXおよびPowerVM / VIOS OSバージョンでサポートされます。
+
+
+
+== 次の手順
+
+link:hu-solaris-san-toolkit.html["SANツールキットについて学ぶ"] 。

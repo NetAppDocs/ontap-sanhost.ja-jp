@@ -4,7 +4,7 @@ permalink: hu_wuhu_troubleshoot.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= トラブルシューティングを行う
+= ONTAPストレージ構成での Windows ホスト ユーティリティの問題のトラブルシューティング
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,7 +19,7 @@ summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリ
 
 
 [role="lead"]
-Windows Host Utilitiesの一般的なトラブルシューティングテクニックを使用できます。既知の問題と解決策については、最新のリリースノートを確認してください。
+一般的なトラブルシューティング手法を使用して、 ONTAPストレージ構成を使用した Windows ホスト ユーティリティで発生する可能性のある問題を調査します。また、link:hu-wuhu-release-notes.html["Windows Host Utilitiesリリースノート"]既知の問題と解決策については、こちらをご覧ください。
 
 相互運用性の潜在的な問題について調査できるさまざまな領域を次に示します。
 
@@ -28,7 +28,7 @@ Windows Host Utilitiesの一般的なトラブルシューティングテクニ�
 * 再起動後にiSCSI LUNを使用できない場合は、Microsoft iSCSIイニシエータGUIの* Persistent Targets *タブで、ターゲットがpersistentと表示されていることを確認します。
 * LUNを使用するアプリケーションの起動時にエラーが表示される場合は、アプリケーションがiSCSIサービスに依存するように設定されていることを確認します。
 * ONTAPを実行するストレージコントローラへのFCパスでは、ノードの物理ポートのWWPNではなく、ターゲットLIFのWWPNを使用してFCスイッチがゾーニングされていることを確認します。
-* を確認します link:hu_wuhu_71_rn.html["リリースノート"] Windows Host Utilitiesを使用して既知の問題を確認します。このリリースノートには、既知の問題と制限事項が記載されています。
+* レビューlink:hu-wuhu-release-notes.html["リリースノート"]Windows ホスト ユーティリティで既知の問題を確認します。リリース ノートには、既知の問題と制限事項のリストが含まれています。
 * ドキュメントのトラブルシューティング情報を確認します https://docs.netapp.com/us-en/ontap/san-admin/index.html["ONTAP SANの管理"^]。
 * 検索 https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] を参照してください。
 +

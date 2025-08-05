@@ -4,7 +4,7 @@ permalink: hu_wuhu_upgrade.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= Windows Host Utilitiesのアップグレード
+= ONTAPストレージ用のWindowsホストユーティリティのアップグレード
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,13 +19,13 @@ summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリ
 
 
 [role="lead"]
-新しい Host Utilities インストールパッケージが、 Windows ホストからアクセスできるパスに含まれている必要があります。Host Utilitiesの対話型インストールまたはWindowsコマンドラインからインストールする手順に従って、インストールパッケージをアップグレードします。
+インストール手順に従って対話形式で実行するか、Windows コマンドラインを使用して、 ONTAPストレージ構成内の Windows Host Utilities ソフトウェアをアップグレードできます。  Windows ホストがアクセスできるパスに新しい Windows ホスト ユーティリティ インストール ソフトウェアをインストールする必要があります。
 
 [role="tabbed-block"]
 ====
 .対話型アップグレード
 --
-Host Utilitiesソフトウェアパッケージを対話的にアップグレードするには、Host Utilitiesのインストールプログラムを実行し、プロンプトに従う必要があります。
+Host Utilities インストール プログラムを実行し、プロンプトに従って、Windows Host Utilities ソフトウェアを対話型でアップグレードします。
 
 .手順
 . 実行ファイルをダウンロードしたディレクトリに移動します。
@@ -40,15 +40,17 @@ Host Utilitiesソフトウェアパッケージを対話的にアップグレー
 
 
 --
-.コマンドラインからのアップグレード
+.非対話型アップグレード
 --
-Windowsコマンドプロンプトで該当するコマンドを入力すると、新しいHost Utilitiesのサイレント（無人）アップグレードを実行できます。
+Windows コマンド ラインを使用して、非対話型の Windows Host Utilities ソフトウェア アップグレードを実行します。
 
 .手順
 . Windowsコマンドプロンプトで、次のコマンドを入力します。
 +
-`m siexec/i installer.msi /quiet multipath={0}[INSTALLDIR=inst_path ]`
-
+[source, cli]
+----
+msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]
+----
 +
 ** `installer` は、の名前です `.msi` 使用しているCPUアーキテクチャ用のファイル。
 ** マルチパスは、MicrosoftマルチパスI/O（MPIO）サポートがインストールされているかどうかを示します。指定できる値は、noの場合は「0」、yesの場合は「1」です。

@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: hu-luhu-release-notes.html 
+keywords: host utilities, linux, 7.1, netapp, ontap, release, notes, linux 
+summary: Linux ホスト ユーティリティのリリース ノート 
+---
+= Linux ホストユーティリティ リリースノート
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+リリース ノートには、 ONTAPストレージ システムを使用して特定のホストを構成および管理するための新機能、拡張機能、修正された問題、既知の問題、制限事項、および重要な注意事項が記載されています。
+
+Host Utilitiesでサポートされるオペレーティングシステムのバージョンと更新の具体的な情報については、を参照してlink:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]ください。
+
+
+
+== Linux ホストユーティリティ 8.0 の新機能
+
+Linuxホストユーティリティ8.0リリースには、以下の新機能と拡張機能が含まれています。
+
+Linux Host Utilities 8.0 には、64 ビット速度の QLogic および Emulex FC ホスト バス アダプター (HBA) のサポートが含まれています。
+
+次のオペレーティング システムがサポートされています。
+
+* Red Hat Enterprise Linux (RHEL) 9 および 8 シリーズ
+* SUSE Linux Enterprise Server
+* Oracle Linux 9および8シリーズ
+* Ubuntu
+
+
+
+
+== Linux ホストユーティリティ 7.1 の新機能
+
+Linux Host Utilities 7.1リリースには、次の新機能と機能拡張が含まれています。
+
+* Linux Host Utilitiesは、SANtricityを実行するNetApp Eシリーズストレージシステム、およびONTAPを実行するAFF、FAS、ASAシステムをサポートするため、_Linux Unified Host Utilities_という名前になりました。
+* 次のオペレーティング システムがサポートされています。
++
+** Citrix XenServer
+** KVM および XEN、RHEV 6.5 および 6.4
+** Oracle VM 3.2シリーズ
+** Oracle Linux 7および6シリーズ
+** RHEL 7 および 6 シリーズ
+** SUSE Linux Enterprise Server 15シリーズ
+** SUSE Linux Enterprise Server 11 SP4
+
+
+* RHEL 6 および 7 ホストでは、サーバー プロファイルを設定するための調整されたパッケージがサポートされるようになりました。使用することができます `tuned-adm`環境に応じて異なるプロファイルを設定するコマンド。たとえば、仮想ゲスト プロファイルをゲスト仮想マシンとして使用し、エンタープライズ ストレージ アレイの LUN が使用される場合は、エンタープライズ ストレージ プロファイルを構成に使用できます。これらの調整されたパッケージを使用すると、 ONTAPのスループットとレイテンシが改善される可能性があります。
+* Linux Host Utilities 7.1 では、Broadcom Emulex および Marvell Qlogic の 32GB FC アダプターのサポートが追加されました。
+
+
+
+NOTE: NetApp は、最初のリリース後も Linux ホスト ユーティリティと連携して機能のサポートを追加し続けます。サポートされている機能と追加された新機能に関する最新情報については、link:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^] 。
+
+
+
+== 解決済みの問題
+
+Linux ホスト ユーティリティで次の問題が修正されました。
+
+[cols="20, 80"]
+|===
+| バージョンで修正 | 説明 
+
+
+| 7.1 | 実行中に発生する断続的なホストOS障害の問題 `sanlun lun show -p`SUSE Linux Enterprise Server 12 SP1、Oracle Linux 7.2、RHEL 7.2、および RHEL 6.8 のコマンド。 
+|===
+
+
+== 既知の問題と制限事項
+
+特定のホストのパフォーマンスに影響を及ぼす可能性のある次の既知の問題と制限事項に注意する必要があります。
+
+[cols="15, 15, 30, 40"]
+|===
+| NetApp バグ ID | 影響を受けるバージョン | タイトル | 説明 
+
+
+| 1457017 | 7.1 | 「sanlun」インストールでは、「libdevmapper-so」および「libnl.so」ライブラリに関連する警告メッセージが表示されます。これらの警告は、「sanlun」キットの機能には影響しません。 | Linux ホスト ユーティリティ CLI コマンド「sanlun fcp show adaptor -v」を SAN ホストで実行すると、ホスト バス アダプタ HBA 検出に必要なライブラリ依存関係が見つからないことを示すエラー メッセージが表示され、コマンドが失敗します。
+`[root@hostname ~]# sanlun fcp show adapter -v
+Unable to locate /usr/lib64/libHBAAPI.so library
+Make sure the package installing the library is installed & loaded` NetAppのバグオンラインを参照してください -link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] 。 
+|===
+link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。
