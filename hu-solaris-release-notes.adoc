@@ -50,3 +50,9 @@ FCドライバのバインドが `ssd(4D)` 終了： `sd(4D)`。の構成を移�
 * fcp General：特定のホストに関連付けられていないFCおよびHost Bus Adapter（HBA；ホストバスアダプタ）のバグを表示します。
 * FCP - Solarisの場合
 
+
+
+
+== 次の手順
+
+link:hu-solaris-80.html["Solarisホストユーティリティのインストールについて学ぶ"]

@@ -128,18 +128,40 @@ drwxr-xr-x   3 root     sys            4 Mar  7 13:11 ..
 `/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp|iscsi|mixed -multipath mpxio|dmp|non [-noalua] [-mcc 60|90|120]`
 
 +
-[cols="2*"]
+[cols="1a,2a"]
 |===
 | たとえば、セットアップが次のような場合... | 使用するコマンド 
 
 
-| MPxIO としてマルチパスを備えた FCP | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio`SnapMirror Active Syncの設定変更については、ナレッジベースの記事を参照してください。link:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/Solaris_Host_support_recommended_settings_in_SnapMirror_active_sync_formerly_SM_BC_configuration["Solaris ホストサポートのSnapMirror Active Sync (旧 SM-BC) 構成における推奨設定"^] 。 
+ a| 
+MPxIO としてマルチパスを備えた FCP
+ a| 
+[source, cli]
+----
+#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio
+----
+SnapMirror Active Syncの設定変更については、ナレッジベースの記事を参照してください。link:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/Solaris_Host_support_recommended_settings_in_SnapMirror_active_sync_formerly_SM_BC_configuration["Solaris ホストサポートのSnapMirror Active Sync (旧 SM-BC) 構成における推奨設定"^] 。
 
 
-| DMP としてマルチパスを備えた FCP | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath dmp` 
+
+ a| 
+DMP としてマルチパスを備えた FCP
+ a| 
+[source, cli]
+----
+#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath dmp
+----
 
 
-| MetroCluster上の FCP は MPxIO としてマルチパスを使用し、すべてのパス ダウンの値は 120 秒に設定されています。  (これはMetroCluster構成に推奨される設定です)。 | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio -mcc 120`詳細については、ナレッジベースの記事をご覧ください。link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/Solaris_host_support_considerations_in_a_MetroCluster_configuration["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^] 。 
+ a| 
+MetroCluster上の FCP は MPxIO としてマルチパスを使用し、すべてのパス ダウンの値は 120 秒に設定されています。  (これはMetroCluster構成に推奨される設定です)。
+ a| 
+[source, cli]
+----
+#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio -mcc 120
+----
+詳細については、ナレッジベースの記事をご覧ください。 link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/Solaris_host_support_considerations_in_a_MetroCluster_configuration["MetroCluster 構成での Solaris ホストのサポートに関する考慮事項"^] 。
+
 |===
 . ホストをリブートします。
 +

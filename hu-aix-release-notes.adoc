@@ -65,3 +65,9 @@ link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"^] 既知の�
 * FCP General：特定のホストに関連付けられていないFCおよびHBAのバグが表示されます。
 * FCP - AIXの場合
 
+
+
+
+== 次の手順
+
+link:hu-aix-80.html["AIXホストユーティリティのインストールについて学ぶ"]

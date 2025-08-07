@@ -91,3 +91,9 @@ Unable to locate /usr/lib64/libHBAAPI.so library
 Make sure the package installing the library is installed & loaded` NetAppのバグオンラインを参照してください -link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] 。 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。
+
+
+
+== 次の手順
+
+link:hu-luhu-80.html["Linuxホストユーティリティのインストールについて学ぶ"]

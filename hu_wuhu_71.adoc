@@ -129,10 +129,8 @@ NOTE: Hyper-V仮想マシンで実行されているWindows XPまたはWindows V
 ====
 .対話型インストール
 --
-.手順
 Host Utilities インストール プログラムを実行し、プロンプトに従って、Host Utilities ソフトウェア パッケージを対話型でインストールします。
 
-.手順
 . から実行可能ファイルをダウンロードします https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]。
 . 実行ファイルをダウンロードしたディレクトリに移動します。
 . 「 NetApp_windows_host_utilities_7.1_x64 」ファイルを実行し、画面の指示に従います。
@@ -144,7 +142,6 @@ Host Utilities インストール プログラムを実行し、プロンプト�
 --
 Windows コマンド ラインを使用して、ホスト ユーティリティの非対話型インストールを実行します。インストールが完了すると、システムは自動的に再起動します。
 
-.手順
 . Windows のコマンドプロンプトで、次のコマンドを入力します。
 +
 [source, cli]

@@ -52,3 +52,9 @@ Windows Host Utilities 7.1 には、E シリーズ ストレージ システム�
 | を実行します `linux_gos_timeout-install.sh` スクリプトは、Red Hat Enterprise LinuxまたはSUSE Linux Enterprise Serverを実行するHyper-Vゲストには必要ありません | 7.1 | Red Hat Enterprise Linux 5、Red Hat Enterprise Linux 6、またはSUSE Linux Enterprise Server 11 Hyper-Vゲストでは、デフォルトのタイムアウト設定が使用されているため、スクリプトを実行してディスクタイムアウトを変更する必要がなくなりました `linux_gos_timeout-install.sh`。 `linux_gos_timeout-install.sh`以前のバージョンのHost Utilitiesに含まれていたスクリプトは、Windows Host Utilities 7.1バージョンには含まれなくなりました。Windows Host Utilities 7.1では、デフォルトのディスクタイムアウト設定が使用されます。 | 該当なし 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。
+
+
+
+== 次の手順
+
+link:hu-wuhu-80.html["Windowsホストユーティリティのインストールについて学ぶ"]

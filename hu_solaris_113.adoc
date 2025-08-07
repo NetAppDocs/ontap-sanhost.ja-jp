@@ -437,4 +437,4 @@ ONTAPストレージを使用した FCP および iSCSI の Solaris 11.3 リリ�
 
 == 次の手順
 
-link:hu-solaris-62-cmd.html["Solaris Host Utilities 6.2ツールの使用について学ぶ"] 。
+link:hu-solaris-command-reference.html["Solarisホストユーティリティツールの使用について学ぶ"] 。

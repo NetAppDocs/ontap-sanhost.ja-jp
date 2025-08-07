@@ -1,10 +1,10 @@
-= 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
+= ステップ4: ONTAP LUNのマルチパスパラメータをカスタマイズする
 :allow-uri-read: 
 
 
 
 
-== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
+== ステップ4: ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
 
@@ -15,6 +15,9 @@ CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないで�
 
 次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
 
+.例を示します
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 defaults {
@@ -31,3 +34,4 @@ devices {
    }
 }
 ----
+====
