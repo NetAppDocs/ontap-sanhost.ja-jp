@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_citrix_84.html 
 keywords: host utilities, citrix, XenServer, 8 series, netapp, ontap, san, boot 
-summary: Citrix XenServer 8.4をONTAPで使用する方法について説明します。 
+summary: Citrix Hypervisor 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメーターと設定を設定します。 
 ---
 = ONTAPストレージを使用してCitrix Xenserver 8.4をFCPおよびiSCSI用に構成する
 :hardbreaks:
@@ -16,8 +16,13 @@ summary: Citrix XenServer 8.4をONTAPで使用する方法について説明し�
 
 
 [role="lead"]
-Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Citrix Xenserver 8.4 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用して ONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
+Citrix Hypervisor 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメーターと設定を設定します。
 
+[NOTE]
+====
+Linux Host Utilities ソフトウェア パッケージは、Citrix Hypervisor オペレーティング システムをサポートしていません。
+
+====
 
 
 == 手順1：必要に応じてSANブートを有効にします。
@@ -38,20 +43,9 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 
 
-== 手順2：Linux Host Utilitiesをインストールする
+== ステップ2: ホストのマルチパス構成を確認する
 
-NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
-
-link:hu_luhu_71.html["Linux Host Utilities 7.1のインストール"]です。
-
-
-NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。
-
-
-
-== 手順3：ホストのマルチパス構成を確認する
-
-Citrix Xenserver 8.4 のマルチパスを使用して、ONTAP LUN を管理できます。
+Citrix Hypervisor 8.4 のマルチパスを使用して、 ONTAP LUN を管理できます。
 
 ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 
@@ -197,7 +191,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
 
 
 
-== 手順4：必要に応じて、マルチパスからデバイスを除外する
+== ステップ3: オプションでデバイスをマルチパスから除外する
 
 必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
 
@@ -229,7 +223,7 @@ blacklist {
 
 
 
-== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
+== ステップ4: ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
 
@@ -240,6 +234,9 @@ CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないで�
 
 次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
 
+.例を示します
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 defaults {
@@ -256,19 +253,9 @@ devices {
    }
 }
 ----
+====
 
 
-== 手順6：既知の問題を確認する
+== ステップ5: 既知の問題を確認する
 
 既知の問題はありません。
-
-
-
-== 次の手順
-
-* link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
-* ASMミラーリングについて説明します。
-+
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
-
-

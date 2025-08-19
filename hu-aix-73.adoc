@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu-aix-73.html 
 keywords: Host Utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
-summary: IBM AIX 7.3および/またはPowerVM VIOS 4.xをONTAPで使用する方法について説明します。 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、AIX 7.3/VIOS 4.x ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージを使用してFCPおよびiSCSI用にAIX 7.3/VIOS 4.xを構成する
 :hardbreaks:
@@ -131,12 +131,8 @@ lsdev -Cc disk
 | num_cmd_elems | MPIO または非 MPIO | AIX の場合は 1024 | FC EN0G 
 |===
 ====
-. FC および iSCSI の I/O 操作を最適化するには、次の設定を構成します。
+. FC の I/O 操作を最適化するには、次の設定を構成します。
 +
-[role="tabbed-block"]
-====
-.FCP
---
 [cols="4*"]
 |===
 | パラメータ | AIX バージョン | AIX OSのデフォルト値 | NetAppの推奨値 
@@ -153,9 +149,8 @@ lsdev -Cc disk
 
 | VIOS 4.1 | 30 秒 | 30 秒 
 |===
---
-.iSCSI
---
+. iSCSI の I/O 操作を最適化するには、次の設定を構成します。
++
 [cols="4*"]
 |===
 | パラメータ | AIX バージョン | AIX OSのデフォルト値 | NetAppの推奨値 
@@ -178,8 +173,6 @@ lsdev -Cc disk
 
 | isw_err_recov (iscsi0) | すべてのAIX7.2およびAIX 7.3スタンドアロン | 遅延失敗 | ファストフェイル 
 |===
---
-====
 . ストレージ構成にMetroClusterまたはSnapMirror Active Sync が含まれている場合は、デフォルト設定を変更します。
 +
 [role="tabbed-block"]

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_centos_70.html 
 keywords: host utilities, centos, linux, 7.0, netapp, ontap 
-summary: ONTAP で CentOS 7.0 を使用する方法について説明します 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、CentOS 7.0 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージ用のFCPとiSCSI用にCentOS 7.0を構成する
 :hardbreaks:

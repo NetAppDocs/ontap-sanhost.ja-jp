@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_hpux_11iv3.html 
 keywords: host utilities, hp_ux, 11iv3, netapp, ontap 
-summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法について説明します 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、HP-UX 11i v3 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージを使用してHP-UX 11i v3をFCPおよびiSCSI用に構成する
 :hardbreaks:
@@ -16,8 +16,6 @@ summary: ONTAP で IBM AIX 7.2 または PowerVM VIOS 3.1 を使用する方法�
 
 
 [role="lead"]
-ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてHP-UX 11i v3を設定できます。
-
 HP-UX ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された HP-UX ホスト用の管理および診断ツールを提供します。  HP-UX 11i v3 ホストに HP-UX ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
 
 
@@ -52,8 +50,7 @@ HP-UX ホスト ユーティリティは、ネイティブ Microsoft マルチ�
 
 .手順
 . HP-UX ホスト ユーティリティをインストールすると、 ONTAP LUN に対して次の推奨デフォルト設定が自動的にロードされます。
-
-
++
 .パラメータ設定の表示
 [%collapsible]
 ====

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_centos_80.html 
 keywords: host utilities, centos, linux, 8.0, netapp, ontap 
-summary: ONTAP で CentOS 8.0 を使用する方法について説明します 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、CentOS 8.0 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージ用のFCPとiSCSI用にCentOS 8.0を構成する
 :hardbreaks:

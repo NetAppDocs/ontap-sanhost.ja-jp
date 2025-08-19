@@ -55,7 +55,7 @@ rpm -e netapp_linux_unified_host_utilities-8-0
 +
 以前のバージョンのLinux Host Utilitiesの場合は、ホストユーティリティソフトウェアがインストールされているディレクトリに移動し、uninstallコマンドを入力してインストールされているパッケージを削除します。
 
-. NetApp Linux Host Utilities ソフトウェア パッケージは、 NetAppサポート サイトで 64 ビットの .rpm ファイルとして入手できます。  64ビットのファイルを以下からダウンロードしてください。link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["ネットアップサポートサイト"^]あなたのホストへ。
+. NetApp Linux Host Utilities ソフトウェア パッケージは、 NetAppサポート サイトで 64 ビットの .rpm ファイルとして入手できます。64ビットのファイルを以下からダウンロードしてください。link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["ネットアップサポートサイト"^]あなたのホストへ。
 . ソフトウェア パッケージをダウンロードしたディレクトリに移動してインストールします。
 +
 [source, cli]

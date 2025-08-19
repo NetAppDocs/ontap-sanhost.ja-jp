@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_ubuntu_2404.html 
 keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
-summary: Ubuntu 22.04 をマルチパス用に構成し、 ONTAPストレージを使用した FCP および iSCSI 操作用の特定のパラメータと設定を設定します。 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Ubuntu 24.04 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージを使用してUbuntu 24.04をFCPおよびiSCSI用に設定する
 :toc: macro
@@ -19,15 +19,11 @@ summary: Ubuntu 22.04 をマルチパス用に構成し、 ONTAPストレージ�
 
 
 [role="lead"]
-Ubuntu 24.04 をマルチパス用に構成し、 ONTAPストレージを使用した FCP および iSCSI 操作用の特定のパラメータと設定を設定します。
+Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。  Ubuntu 24.04 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
 
-[NOTE]
-====
-Linux ホスト ユーティリティ ソフトウェア パッケージは、Ubuntu オペレーティング システムをサポートしていません。
 
-ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
+NOTE: ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
 
-====
 
 
 == 手順1：必要に応じてSANブートを有効にします。
@@ -48,7 +44,18 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 
 
-== ステップ2: ホストのマルチパス構成を確認する
+== 手順2：Linux Host Utilitiesをインストールする
+
+NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
+
+link:hu-luhu-80.html["Linuxホストユーティリティ8.0をインストールする"] 。
+
+
+NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。
+
+
+
+== 手順3：ホストのマルチパス構成を確認する
 
 Ubuntu 24.04 でマルチパスを使用してONTAP LUN を管理できます。
 
@@ -202,7 +209,7 @@ size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 
 
 
-== ステップ3: オプションでデバイスをマルチパスから除外する
+== 手順4：必要に応じて、マルチパスからデバイスを除外する
 
 必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
 
@@ -234,7 +241,7 @@ blacklist {
 
 
 
-== ステップ4: ONTAP LUNのマルチパスパラメータをカスタマイズする
+== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
 
@@ -267,6 +274,17 @@ devices {
 ====
 
 
-== ステップ5: 既知の問題を確認する
+== 手順6：既知の問題を確認する
 
 既知の問題はありません。
+
+
+
+== 次の手順
+
+* link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
+* ASMミラーリングについて説明します。
++
+Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
+
+

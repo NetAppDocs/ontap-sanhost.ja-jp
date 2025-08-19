@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_centos_85.html 
 keywords: host utilities, centos, linux, 8.5, netapp, ontap 
-summary: ONTAP でCentOS 8.5を使用する方法について説明します 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、CentOS 8.5 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージのFCPとiSCSI用にCentOS 8.5を構成する
 :hardbreaks:

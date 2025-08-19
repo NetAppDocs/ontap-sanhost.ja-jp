@@ -63,7 +63,7 @@ oem_setup_env
 
 --
 ====
-. に移動し https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["ネットアップサポートサイト"^]、Host Utilitiesが含まれている圧縮ファイルをホストのディレクトリにダウンロードします。
+. に行く https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["ネットアップサポートサイト"^]ホスト ユーティリティを含む圧縮ファイルをホスト上のディレクトリにダウンロードします。
 . ダウンロードを格納しているディレクトリに移動します。
 . ファイルを解凍し、SAN Toolkitソフトウェアパッケージを展開します。
 +

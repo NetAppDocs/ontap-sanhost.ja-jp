@@ -31,7 +31,7 @@ iSCSI、FC、または FCoE 構成がサポートされていることを確認�
 
 .手順
 . ホストに root としてログインします。
-. から Host Utilities が含まれている圧縮ファイルのコピーをダウンロードします link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["ネットアップサポートサイト"^] をホスト上のディレクトリに移動します。
+. ホストユーティリティを含む圧縮ファイルのコピーを以下からダウンロードします。link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["ネットアップサポートサイト"^]ホスト上のディレクトリに。
 +
 [role="tabbed-block"]
 ====
