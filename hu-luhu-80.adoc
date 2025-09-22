@@ -20,7 +20,7 @@ Linux ホスト ユーティリティは、Linux ホストに接続されたONTA
 
 Linux Host Utilities 8.0 は、次のディストリビューション タイプをサポートしています。
 
-* Red Hat Enterprise Linux の場合
+* Red Hat Enterprise Linux（RHEL）
 * SUSE Linux Enterprise Server
 * Oracle Linux の場合
 * Ubuntu
@@ -48,24 +48,45 @@ Linux ホスト ユーティリティをインストールしても、Linux ホ�
 .手順
 . 現在 Linux Host Utilities のバージョンがインストールされている場合は、それを削除します。
 +
+[role="tabbed-block"]
+====
+.Linuxホスト
+--
+RHEL、SUSE Linux Enterprise Server、または Oracle Linux ホストから Linux ホスト ユーティリティを削除します。
+
 [source, cli]
 ----
-rpm -e netapp_linux_unified_host_utilities-8-0
+rpm -e netapp_linux_unified_host_utilities-x-x
 ----
+--
+.Ubuntu
+--
+Ubuntu ホストから Linux ホスト ユーティリティを削除します。
+
+[source, cli]
+----
+sudo apt remove netapp_linux_unified_host_utilities-x-x
+----
+--
+====
 +
 以前のバージョンのLinux Host Utilitiesの場合は、ホストユーティリティソフトウェアがインストールされているディレクトリに移動し、uninstallコマンドを入力してインストールされているパッケージを削除します。
 
 . NetApp Linux Host Utilities ソフトウェア パッケージは、 NetAppサポート サイトで 64 ビットの .rpm ファイルとして入手できます。64ビットのファイルを以下からダウンロードしてください。link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["ネットアップサポートサイト"^]あなたのホストへ。
 . ソフトウェア パッケージをダウンロードしたディレクトリに移動してインストールします。
 +
+[role="tabbed-block"]
+====
+.Linuxホスト
+--
+RHEL、SUSE Linux Enterprise Server、または Oracle Linux ホストに Linux Host Utilities 8.0 をインストールします。
+
 [source, cli]
 ----
 rpm -ivh netapp_linux_unified_host_utilities-8-0.x86_xx.rpm
 ----
-+
 次の例のような出力が表示されます。
 
-+
 [listing]
 ----
 rpm -ivh netapp_linux_unified_host_utilities-8-0.x86_64.rpm
@@ -75,15 +96,24 @@ Updating / installing...
    1:netapp_linux_unified_host_utiliti################################# [100%]
 
 ----
+--
+.Ubuntu
+--
+.. Ubuntu ホストに Linux Host Utilities 8.0 をインストールします。
 +
-[NOTE]
-====
-Ubuntu ホスト OS を使用している場合は、HBA ライブラリに手動でリンクする必要があります。
-
+[source, cli]
+----
+sudo apt install /<path_to_file>/netapp_linux_unified_host_utilities-8-0.x86_xx.deb
+----
+.. Ubuntu OS を HBA ライブラリに手動でリンクします。
++
 [source, cli]
 ----
 cp /opt/QLogic_Corporation/QConvergeConsoleCLI/lib64/libHBAAPI.so.2.0.2 /usr/lib64/libHBAAPI.so
 ----
+
+
+--
 ====
 . インストールを確認します。
 +
