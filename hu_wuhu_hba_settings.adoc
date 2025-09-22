@@ -19,19 +19,17 @@ summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリ
 
 
 [role="lead"]
-Host Utilitiesで、Windowsホストがストレージシステムの動作を正しく処理するかどうかを確認するために、特定のレジストリとパラメータの設定が必要になります。
+Windows ホスト ユーティリティでは、Windows ホストがストレージ システムの動作を正しく処理していることを確認するために、特定のレジストリおよびパラメータ設定が必要です。
 
-Windows Host Utilitiesは、データの遅延や損失に対するWindowsホストの対応に影響するパラメータを設定します。ここでは、ストレージシステム内の一方のコントローラのパートナーコントローラへのフェイルオーバーなどのイベントがWindowsホストで正しく処理されるかどうかを確認するために、特定の値を選択しています。
+Windows ホスト ユーティリティは、Windows ホストがデータの遅延や損失にどのように対応するかに影響するパラメータ値を設定します。これらの値は、Windows ホストがストレージ システム内の 1 つのコントローラからそのパートナー コントローラへのフェイルオーバーなどのイベントを正しく処理していることを確認します。
 
-すべての値がSANtricity Storage Managerのデバイス固有モジュール (DSM) に適用されるわけではありません。ただし、ホスト ユーティリティによって設定された値とSANtricity Storage Managerの DSM によって設定された値が重複しても競合は発生しません。
+一部の値は、SANtricity Storage Managerのデバイス固有モジュール (DSM) には適用されません。  Windows ホスト ユーティリティとSANtricity Storage Managerの DSM によって設定された値が重複しても、競合は発生しません。
 
-FC、NVMe/FC、およびiSCSI HBAには、最高のパフォーマンスを確保し、ストレージシステムイベントを正常に処理するために設定する必要のあるパラメータもあります。
+パフォーマンスを最適化し、ストレージ システム イベントを正常に処理するには、FC、NVMe/FC、および iSCSI HBA パラメータを設定する必要もあります。
 
-Windows Host Utilitiesに付属のインストールプログラムを使用すると、Windows、FC、およびNVMe/FCのHBAパラメータがサポートされる値に設定されます。
+Windows ホスト ユーティリティ インストーラーは、Windows、FC、および NVMe/FC HBA パラメーターをサポートされている値に設定します。  iSCSI HBA パラメータを手動で設定する必要があります。
 
-iSCSI HBAパラメータは手動で設定する必要があります。
-
-インストールプログラムの実行時にMicrosoft Multipath I/O（MPIO；マルチパスI/O）サポートを指定するかどうかに応じて、インストーラによって設定される値が異なります。
+インストール中に Microsoft マルチパス I/O (MPIO) サポートを指定すると、インストーラーによって異なる値が設定されます。
 
 [NOTE]
 ====
@@ -44,13 +42,13 @@ Windows Host Utilities 8.0、7.2、または 7.1 のその他のすべてのパ�
 
 == Windows Host Utilities 8.0 によって設定されるレジストリ値
 
-Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、レジストリ値と NVMe パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンに注意する必要があります。
+Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、レジストリ値と NVMe パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認する必要があります。
 
 [role="tabbed-block"]
 ====
 .HKLM値
 --
-次のレジストリ値は、Windows ホスト ユーティリティ インストーラによって設定されます。特に記載がない限り、すべての値は 10 進数です。
+Windows ホスト ユーティリティ インストーラーは、次のレジストリ値を設定します。特に記載がない限り、すべての値は 10 進数です。
 
 
 NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
@@ -66,7 +64,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumStateTransitionTime | 120 | MPIOサポートが指定されており、サーバーがWindows Server 2025、2022、2019、または2016の場合 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」 | MPIO サポートが指定されている場合 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
@@ -84,7 +82,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 30 | 常に 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Control\MPDEV\MPIOSupportedDeviceList | 「NetApp LUN」、「NetApp LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
+| HKLM\SYSTEM\CurrentControlSet\Control\MPDEV\MPIOSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」 | MPIO サポートが指定されている場合 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathRecoveryInterval | 30 | サーバーがWindows Server 2025、2022、2019、または2016の場合 
@@ -134,7 +132,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 --
 .NVMeパラメータ
 --
-Windows Host Utilities 8.0 をインストールすると、次の NVMe Emulex ドライバー パラメータが更新されます。
+Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ドライバー パラメータを更新します。
 
 * EnableNVMe = 1
 * NVMEMode = 0
@@ -146,13 +144,13 @@ Windows Host Utilities 8.0 をインストールすると、次の NVMe Emulex �
 
 == Windows Host Utilities 7.2で設定されるレジストリ値
 
-Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、レジストリ値と NVMe パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンに注意する必要があります。
+Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、レジストリ値と NVMe パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認する必要があります。
 
 [#nvme_parameter,role="tabbed-block"]
 ====
 .HKLM値
 --
-次のレジストリ値は、Windows ホスト ユーティリティ インストーラによって設定されます。特に記載がない限り、すべての値は 10 進数です。
+Windows ホスト ユーティリティ インストーラーは、次のレジストリ値を設定します。特に記載がない限り、すべての値は 10 進数です。
 
 
 NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
@@ -168,7 +166,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumStateTransitionTime | 120 | MPIOのサポートが指定されており、サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」 | MPIO サポートが指定されている場合 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
@@ -186,7 +184,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 30 | 常に 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Control\MPDEV\MPIOSupportedDeviceList | 「NetApp LUN」、「NetApp LUN C-Mode」、「NVMe NetApp ONTAO Con」 | MPIO サポートが指定されている場合 
+| HKLM\SYSTEM\CurrentControlSet\Control\MPDEV\MPIOSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」 | MPIO サポートが指定されている場合 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\PathRecoveryInterval | 30 | サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合 
@@ -252,7 +250,7 @@ Windows Host Utilities 7.2をインストールすると、LimTransferSizeパラ
 
 == Windows Host Utilities 7.1で設定されるレジストリ値
 
-Windows Host Utilitiesインストーラでは、インストール時に選択したレジストリ値に基づいてレジストリ値が自動的に設定されます。レジストリ値であるオペレーティングシステムのバージョンを確認しておく必要があります。
+Windows ホスト ユーティリティ インストーラは、インストール中に選択した内容に基づいてレジストリ値を自動的に設定します。これらのレジストリ値とオペレーティング システムのバージョンを確認する必要があります。
 
 Windows Host Utilitiesのインストーラで設定される値は次のとおりです。特に記載がない限り、すべての値は10進数です。
 
@@ -362,13 +360,13 @@ NOTE: `HKLM` は、の略語です。 `HKEY_LOCAL_MACHINE`。
 
 == Windows Host Utilities で設定される FC HBA の値
 
-FCを使用するシステムでは、Host UtilitiesのインストーラによってEmulex HBAおよびQLogic FC HBAに必要なタイムアウト値が設定されます。
+Windows ホスト ユーティリティ インストーラは、FC を使用するシステム上の Emulex および QLogic FC HBA に必要なタイムアウト値を設定します。
 
-Emulex FC HBAの場合、インストーラは次のパラメータを設定します。
+インストーラーは、Emulex FC HBA に対して次のパラメータを設定します。
 
 [role="tabbed-block"]
 ====
-.MPIOが選択されている場合
+.MPIOを選択した場合
 --
 |===
 | プロパティタイプ | プロパティ値 
@@ -380,7 +378,7 @@ Emulex FC HBAの場合、インストーラは次のパラメータを設定し�
 | ノードタイムアウト | 10. 
 |===
 --
-.MPIOが選択されていない場合
+.MPIOを選択しない場合
 --
 |===
 | プロパティタイプ | プロパティ値 
@@ -393,11 +391,11 @@ Emulex FC HBAの場合、インストーラは次のパラメータを設定し�
 |===
 --
 ====
-QLogic FC HBAの場合、インストーラは次のパラメータを設定します。
+インストーラーは、QLogic FC HBA に対して次のパラメータを設定します。
 
 [role="tabbed-block"]
 ====
-.MPIOが選択されている場合
+.MPIOを選択した場合
 --
 |===
 | プロパティタイプ | プロパティ値 
@@ -409,7 +407,7 @@ QLogic FC HBAの場合、インストーラは次のパラメータを設定し�
 | PortDownRetryCount のように指定します | 10. 
 |===
 --
-.MPIOが選択されていない場合
+.MPIOを選択しない場合
 --
 |===
 | プロパティタイプ | プロパティ値 
@@ -451,7 +449,7 @@ HBA設定を修正するには、link:hu_wuhu_repair_remove.html["修復オプ�
 ====
 .Emulex HBAドライバ
 --
-FC システムをお持ちの場合は、Emulex HBA ドライバーの設定を確認してください。これらの設定は、HBA 上の各ポートに対して存在している必要があります。
+FC システム上の Emulex HBA ドライバー設定を確認します。これらの設定は、HBA 上の各ポートに対して存在している必要があります。
 
 .手順
 . OnCommand Manager を開きます。
@@ -479,7 +477,7 @@ FC システムをお持ちの場合は、Emulex HBA ドライバーの設定を
 --
 .QLogic HBAドライバ
 --
-FC システムでは、QLogic HBA ドライバーの設定を確認します。これらの設定は、HBA 上の各ポートに対して存在している必要があります。
+FC システム上の QLogic HBA ドライバー設定を確認します。これらの設定は、HBA 上の各ポートに対して存在している必要があります。
 
 .手順
 . QConvergeConsole を開き、ツールバーの *接続* を選択します。

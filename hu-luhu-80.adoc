@@ -23,7 +23,7 @@ Linux Host Utilities 8.0 は、次のディストリビューション タイプ
 * Red Hat Enterprise Linux の場合
 * SUSE Linux Enterprise Server
 * Oracle Linux の場合
-* Oracle VM
+* Ubuntu
 
 
 
