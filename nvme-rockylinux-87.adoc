@@ -4,7 +4,7 @@ permalink: nvme-rockylinux-87.html
 keywords: nvme, linux, rocky linux, enterprise 
 summary: ONTAP で Rocky Linux 8.7 用の NVMe-oF ホストを構成する方法 
 ---
-= ONTAPストレージ用にNVMe-oFを使用してRocky Linux 8.7を構成する
+= ONTAPストレージでNVMe-oF用にRocky Linux 8.7を構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,61 +16,47 @@ summary: ONTAP で Rocky Linux 8.7 用の NVMe-oF ホストを構成する方法
 
 
 [role="lead"]
-Rocky Linux 8.7 ホストは、非対称名前空間アクセス (ANA) を備えた NVMe/FC および NVMe/TCP プロトコルをサポートします。ANAは、iSCSI および FCP 環境における非対称論理ユニットアクセス (ALUA) マルチパスに相当し、カーネル内 NVMe マルチパス機能を使用して実装されます。
+Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
+Rocky Linux 8.7 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。サポートと機能に関する詳しい情報については、link:hu-nvme-index.html["NVME-oFの概要"^] 。
 
-.このタスクについて
-Rocky Linux 8.7 の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
+*Rocky Linux 8.7 の NVMe-oF には、次の既知の制限があります。*
 
-* 利用可能なサポート：
-+
-** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準パッケージのNetAppプラグイン `nvme-cli`には、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
-** NVMeトラフィックとSCSIトラフィックを同じホストで実行している。たとえば、SCSI LUN 上の SCSI mpath デバイス用に dm-multipath を設定し、NVMe multipath を使用してホスト上の NVMe-oF 名前空間デバイスを設定できます。
-
-
-* 既知の制限事項：
-+
-** Rocky Linux 8.7 NVMe-oF ホストでは、カーネル内 NVMe マルチパスはデフォルトで無効になっています。そのため、手動で有効にする必要があります。
-** Rocky Linux 8.7ホストでは、NVMe/TCPは未解決の問題のためテクノロジープレビュー機能です。 link:https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/8.7_release_notes/index#technology-preview_file-systems-and-storage["Rocky Linux 8.7 リリースノート"^]詳細については。
-** NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
-
-
+* NVMe-oF プロトコルを使用した SAN ブートは現在サポートされていません。
+* Rocky Linux 8.7 の NVMe-oF ホストでは、カーネル内 NVMe マルチパスはデフォルトで無効になっているため、手動で有効にする必要があります。
+* 既知の問題のため、NVMe/TCP はテクノロジー プレビューとして利用できます。
 
 
 
 
 == 手順1：必要に応じてSANブートを有効にします。
 
-SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
-
-.開始する前に
-を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+SAN ブートを使用するようにホストを構成すると、展開が簡素化され、スケーラビリティが向上します。使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]Linux OS、ホスト バス アダプタ (HBA)、HBA ファームウェア、HBA ブート BIOS、およびONTAPバージョンが SAN ブートをサポートしていることを確認します。
 
 .手順
-. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["SANブート名前空間を作成し、それをホストにマップする"^]です。
+. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["NVMe名前空間を作成し、ホストにマッピングする"^] 。
 . SAN ブート名前空間がマップされているポートに対して、サーバー BIOS で SAN ブートを有効にします。
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
 
-. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+. ホストを再起動し、OS が起動して実行されていることを確認します。
 
 
 
 
-== ステップ2: ソフトウェアのバージョンを検証する
+== ステップ2: ソフトウェアバージョンとNVMe構成を確認する
 
-サポートされている Rocky Linux 8.7 ソフトウェアの最小バージョンを検証するには、次の手順に従います。
+システムがソフトウェア要件を満たしていることを確認し、NVMe パッケージのインストールとホスト構成を確認します。
 
 .手順
-. サーバーにRocky Linux 8.7をインストールします。インストールが完了したら、指定されたRocky Linux 8.7カーネルが実行されていることを確認します。
+. サーバーに Rocky Linux 8.7 をインストールします。インストールが完了したら、必要な Rocky Linux 8.7 カーネルが実行されていることを確認します。
 +
 [source, cli]
 ----
 uname -r
 ----
 +
-次の例は、Rocky Linux カーネルのバージョンを示しています。
+Rocky Linux カーネルバージョンの例:
 
 +
 [listing]
@@ -153,13 +139,13 @@ NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合は、を使
 
 
 
-== ステップ3: NVMe/FCを構成する
+== ステップ3: NVMe/FCとNVMe/TCPを構成する
 
-NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタで構成できます。NVMe/TCP サブシステムと名前空間を手動で検出する必要もあります。
+Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を構成するか、手動の検出および接続操作を使用して NVMe/TCP を構成します。
 
 [role="tabbed-block"]
 ====
-.Broadcom / Emulex
+.FC - ブロードコム/エミュレックス
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
@@ -207,7 +193,7 @@ Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 cat /sys/class/scsi_host/host*/fwrev
 ----
 +
-次の例はファームウェアのバージョンを示しています。
+このコマンドはファームウェアのバージョンを返します。
 
 +
 [listing]
@@ -312,12 +298,9 @@ FCP CMPL: xb 000014a5 Err 0002149a
 
 
 --
-.Marvell/QLogic
+.FC - マーベル/QLogic
 --
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
-
-
-NOTE: Rocky Linux カーネルに含まれるネイティブの受信トレイ qla2xxx ドライバーには最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
 
 .手順
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
@@ -347,45 +330,12 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 
 --
-====
-
-
-== ステップ4: オプションで1MBのI/Oを有効にする
-
-Broadcomアダプタで構成されたNVMe/FCでは、1MBのI/Oリクエストを有効にすることができます。ONTAPは、コントローラ識別データで最大データ転送サイズ（MDTS）を8と報告します。1MBつまり、最大I/O要求サイズは1MBです。のI/Oリクエストを発行するには、lpfcの値を増やす必要があります。  `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
-
-
-NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
+.TCP
+--
+NVMe/TCP プロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCPサブシステムと名前空間をNVMe/TCPコマンドで検出することができます。 `connect`または `connect-all`手動で操作します。
 
 .手順
-.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
-+
-[listing]
-----
-cat /etc/modprobe.d/lpfc.conf
-----
-+
-[listing]
-----
-options lpfc lpfc_sg_seg_cnt=256
-----
-. コマンドを実行し `dracut -f`、ホストをリブートします。
-. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
-+
-[listing]
-----
-cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-----
-
-
-
-
-== ステップ5: NVMe/TCPを構成する
-
-NVMe/TCPプロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCP connectまたはconnect-all操作を手動で実行することで、NVMe/TCPサブシステムと名前空間を検出できます。
-
-.手順
-. イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
+. イニシエーター ポートが、サポートされている NVMe/TCP LIF 全体で検出ログ ページ データを取得できることを確認します。
 +
 [listing]
 ----
@@ -394,7 +344,7 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 .例を示します
 [%collapsible]
-====
+=====
 [listing, subs="+quotes"]
 ----
 nvme discover -t tcp -w 192.168.1.31 -a 192.168.1.24
@@ -620,7 +570,7 @@ traddr:  192.168.1.24
 eflags:  none
 sectype: none
 ----
-====
+=====
 . NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで検出ログページのデータを正常に取得できることを確認します。
 +
 [listing]
@@ -630,7 +580,7 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 .例を示します
 [%collapsible]
-====
+=====
 [listing, subs="+quotes"]
 ----
 nvme discover -t tcp -w 192.168.1.31 -a 192.168.1.24
@@ -638,7 +588,7 @@ nvme discover -t tcp -w 192.168.2.31 -a 192.168.2.24
 nvme discover -t tcp -w 192.168.1.31 -a 192.168.1.25
 nvme discover -t tcp -w 192.168.2.31 -a 192.168.2.25
 ----
-====
+=====
 . を実行します `nvme connect-all` ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象としたコマンド：
 +
 [listing]
@@ -648,7 +598,7 @@ nvme connect-all -t tcp -w host-traddr -a traddr
 +
 .例を示します
 [%collapsible]
-====
+=====
 [listing, subs="+quotes"]
 ----
 nvme	connect-all	-t	tcp	-w	192.168.1.31	-a	192.168.1.24
@@ -656,12 +606,44 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.24
 nvme	connect-all	-t	tcp	-w	192.168.1.31	-a	192.168.1.25
 nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ----
+=====
+
+
+--
 ====
 
 
+== ステップ4: オプションでNVMe/FCの1MB I/Oを有効にする
+
+Broadcomアダプタで構成されたNVMe/FCでは、1MBのI/Oリクエストを有効にすることができます。ONTAPは、コントローラ識別データで最大データ転送サイズ（MDTS）を8と報告します。1MBつまり、最大I/O要求サイズは1MBです。のI/Oリクエストを発行するには、lpfcの値を増やす必要があります。  `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
 
 
-== ステップ6: NVMe-oFを検証する
+NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
+
+.手順
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
++
+[listing]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. コマンドを実行し `dracut -f`、ホストをリブートします。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
++
+[listing]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
+
+
+
+
+== ステップ5: マルチパス構成を確認する
 
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
 
@@ -847,14 +829,14 @@ nvme netapp ontapdevices -o json
 
 
 
-== 手順7：既知の問題を確認する
+== 手順6：既知の問題を確認する
 
-ONTAPストレージを搭載した Rocky Linux 8.7 の NVMe-oF ホスト構成には、次の既知の問題があります。
+既知の問題は次のとおりです:
 
 [cols="20,40,40"]
 |===
 | NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Rocky Linux 8.7 NVMe-oF ホストは重複した永続的検出コントローラを作成します | NVMe over Fabrics（NVMe-oF）ホストでは、「nvme discover -p」コマンドを使用して、Persistent Discovery Controller（PDC；永続的検出コントローラ）を作成できます。このコマンドを使用する場合は、イニシエータとターゲットの組み合わせごとにPDCを1つだけ作成する必要があります。ただし、NVMe-oF ホストで ONTAP 9.10.1 と Rocky Linux 8.7 を実行している場合は、「nvme discover -p」を実行するたびに重複した PDC が作成されます。これにより、ホストとターゲットの両方で不要なリソースの使用が発生します。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Rocky Linux 8.7 NVMe-oFホストは重複した永続的検出コントローラを作成します | NVMe-oF ホストでは、「nvme discover -p」コマンドを使用して永続検出コントローラ (PDC) を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oF ホストで Rocky Linux 8.7 を実行している場合は、「nvme discover -p」を実行するたびに重複した PDC が作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。 
 |===

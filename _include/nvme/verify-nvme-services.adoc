@@ -2,6 +2,10 @@
 :allow-uri-read: 
 
 
+その `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効になります。
+
+起動が完了したら、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`ブート サービスが有効になっています。
+
 .手順
 . が有効であることを確認し `nvmf-autoconnect.service`ます。
 +
