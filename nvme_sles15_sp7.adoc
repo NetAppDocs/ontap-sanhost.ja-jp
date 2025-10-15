@@ -19,20 +19,20 @@ summary: SUSE Linux Enterprise Server 15 SP7 with ONTAP用にNVMe/FCを設定す
 
 
 [role="lead"]
-Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
+SUSE Linux Enterprise Server ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートしています。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
 .このタスクについて
-SUSE Linux Enterprise Server 15 SP7 (SLES15 SP7) の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
+SUSE Linux Enterprise Server 15 SP7 の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。構成プロセスを開始する前に、既知の制限事項も確認する必要があります。
 
 * 利用可能なサポート：
 +
 ** NVMe over Fibre Channel（NVMe/FC）に加えて、NVMe over TCP（NVMe/TCP）もサポートされます。標準パッケージのNetAppプラグイン `nvme-cli`には、NVMe/FCとNVMe/TCP両方のネームスペースのONTAPの詳細が表示されます。
 ** 同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。
 ** NVMe/FCプロトコルを使用したSANブートがサポートされます。
-** ONTAP 9.12.1以降、NVMe/TCPおよびNVMe/FCでセキュアなインバンド認証がサポートされるようになりました。SLES15SP7では、NVMe/TCPおよびNVMe/FCでセキュアなインバンド認証を使用できます。
+** ONTAP 9.12.1 以降では、NVMe/TCP および NVMe/FC に対する安全なインバンド認証のサポートが導入されています。  SUSE Linux Enterprise Server 15 SP7 では、NVMe/TCP および NVMe/FC に安全なインバンド認証を使用できます。
 ** 一意の検出 NQN を使用した永続検出コントローラ (PDC) のサポート。
 ** NVMe/TCP の TLS 1.3 暗号化のサポート。
-** NetApp `sanlun` SLES15 SP7 ホスト上の NVMe-oF ではホスト ユーティリティ サポートは利用できません。代わりに、すべてのNVMe-oFトランスポート用の標準パッケージに含まれているNetAppプラグインを利用できます `nvme-cli`。
+** NetApp `sanlun`SUSE Linux Enterprise Server15 SP7 ホスト上の NVMe-oF ではホスト ユーティリティ サポートは利用できません。代わりに、ネイティブに含まれるNetAppプラグインを利用できます。 `nvme-cli`すべての NVMe-oF トランスポート用のパッケージ。
 +
 サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
 
@@ -75,17 +75,17 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == ステップ2: ソフトウェアのバージョンを検証する
 
-サポートされている最小の SLES15 SP7 ソフトウェア バージョンを検証するには、次の手順に従います。
+サポートされている最小の SUSE Linux Enterprise Server 15 SP7 ソフトウェア バージョンを検証するには、次の手順に従います。
 
 .手順
-. サーバーにSLES15 SP7をインストールします。インストールが完了したら、指定されたSLES15 SP7カーネルが実行されていることを確認します。
+. サーバーに SUSE Linux Enterprise Server15 SP7 をインストールします。インストールが完了したら、指定された SUSE Linux Enterprise Server 15 SP7 カーネルが実行されていることを確認します。
 +
 [source, cli]
 ----
 uname -r
 ----
 +
-次の例は、SLES カーネルのバージョンを示しています。
+次の例は、SUSE Linux Enterprise Server カーネルのバージョンを示しています。
 
 +
 [listing]
@@ -405,7 +405,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 == ステップ5: NVMeブートサービスを確認する
 
-SLES 15 SP7では、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service` NVMe/FCに含まれるブートサービス `nvme-cli`パッケージは、システムの起動時に自動的に起動されるようになります。システム起動が完了したら、ブートサービスが有効になっていることを確認してください。
+SUSE Linux Enterprise Server 15 SP7では、 `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`NVMe/FCに含まれるブートサービス `nvme-cli`パッケージは、システムの起動時に自動的に起動するように有効化されます。システムの起動が完了したら、ブート サービスが有効になっていることを確認します。
 
 .手順
 . が有効であることを確認し `nvmf-autoconnect.service`ます。
@@ -607,7 +607,7 @@ nvme	connect-all	-t	tcp	-w	192.168.211.80	-a	192.168.211.67
 
 
 
-NOTE: SLES 15 SP6以降、NVMe/TCPのデフォルト設定は `ctrl-loss-tmo`タイムアウトはオフになっています。つまり、再試行回数に制限はなく（無期限再試行）、特定のタイムアウトを手動で設定する必要はありません。  `ctrl-loss-tmo`使用時のタイムアウト時間 `nvme connect`または `nvme connect-all`コマンド（オプション `-l` ）。また、NVMe / TCPコントローラでは、パス障害が発生してもタイムアウトが発生せず、無期限に接続されたままになります。
+NOTE: SUSE Linux Enterprise Server 15 SP6以降、NVMe/TCPのデフォルト設定は `ctrl-loss-tmo`タイムアウトはオフになります。これは再試行回数に制限がない（無期限再試行）ことを意味し、特定の再試行回数を手動で設定する必要はありません。 `ctrl-loss-tmo`使用時のタイムアウト時間 `nvme connect`または `nvme connect-all`コマンド（オプション `-l`）。さらに、NVMe/TCP コントローラーはパス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。
 
 
 
@@ -786,7 +786,7 @@ nvme netapp ontapdevices -o json
 
 == ステップ8: 永続的な検出コントローラを作成する
 
-ONTAP 9.11.1 以降では、SLES 15 SP7 ホスト用の永続検出コントローラ (PDC) を作成できます。NVMeサブシステムの追加または削除処理や検出ログページのデータに対する変更を自動的に検出するには、PDCが必要です。
+ONTAP 9.11.1 以降では、SUSE Linux Enterprise Server 15 SP7 ホスト用の永続検出コントローラ (PDC) を作成できます。  NVMe サブシステムの追加または削除操作と検出ログ ページ データの変更を自動的に検出するには、PDC が必要です。
 
 .手順
 . 検出ログページのデータが使用可能で、イニシエータポートとターゲットLIFの組み合わせから取得できることを確認します。

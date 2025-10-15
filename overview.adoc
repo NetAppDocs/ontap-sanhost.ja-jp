@@ -29,7 +29,7 @@ SANホストとONTAP ストレージは、オンプレミス、クラウド、�
 
 NOTE: クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるホスト固有のすべての情報は、環境 クラウドクライアントにも該当します。
 
-たとえば、オンプレミスのSANホストやSANクラウドクライアントに接続するように、オンプレミスのONTAPストレージを構成できます。次のようなクラウド環境で実行されるストレージサービスを設定することもできます。 link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] または link:https://docs.netapp.com/us-en/bluexp-fsx-ontap/index.html["NetApp ONTAP 対応の Amazon FSX"^] オンプレミスのSANホストまたはSANクラウドクライアントに接続するため。
+たとえば、オンプレミスのONTAPストレージをオンプレミスの SAN ホストまたは SAN クラウド クライアントに接続するように構成できます。クラウド環境で実行されるストレージサービスを構成することもできます。link:https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]またはlink:https://docs.netapp.com/us-en/storage-management-fsx-ontap/index.html["NetApp ONTAP 対応の Amazon FSX"^]オンプレミスの SAN ホストまたは SAN クラウド クライアントに接続します。
 
 .関連情報
 * link:https://docs.netapp.com/us-en/ontap/san-config/index.html["ONTAP SAN構成のリファレンス"^]

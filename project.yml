@@ -161,7 +161,7 @@ sidebar:
       entries:
       - title: XenServer 8.4
         url: "/hu_citrix_84.html"
-      - title: ハイパーバイザー 8.2 (LTSR)
+      - title: ハイパーバイザー 8.2
         url: "/hu_citrix_82.html"
     - title: ESXi
       entries:

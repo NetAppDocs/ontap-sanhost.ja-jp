@@ -1519,7 +1519,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="e764fe6b8f8825a307a87cedbef45678" category="sidebar">22.04</block>
   <block id="829d28d8727a4d458f1c35bda30f5ad7" category="sidebar">NVMeoF Ubuntu</block>
   <block id="4d82a1ec1af02725042c8c785564ee7a" category="inline-link-macro">NetApp ONTAP 対応の Amazon FSX</block>
-  <block id="cbd5bf3ac18c40540e157027878d3965" category="paragraph">たとえば、オンプレミスのSANホストやSANクラウドクライアントに接続するように、オンプレミスのONTAPストレージを構成できます。次のようなクラウド環境で実行されるストレージサービスを設定することもできます。 <block ref="54a9edfbbcc641d603aea65a27251f05" category="inline-link-macro-rx"></block> または <block ref="32496c00ec9be403fcfaf96fbaeed4b1" category="inline-link-macro-rx"></block> オンプレミスのSANホストまたはSANクラウドクライアントに接続するため。</block>
   <block id="99fc62da3c4063c517d61da1e5cb3ea3" category="summary">ONTAPを使用したRHEL 9.4用のNVMe-oFホストの設定方法</block>
   <block id="b68de8f1f938e0330acdf64c63b08b9a" category="sidebar">9.4</block>
   <block id="b6758eb9c7ac57209dfad7db602a24d4" category="inline-link-macro">AIXホストでSnapMirrorアクティブ同期を設定する方法</block>
@@ -2667,8 +2666,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="0825e58b251b6f1e1956c9f982c69b3d" category="doc">ONTAPストレージでFCPおよびiSCSI用にCitrix Hypervisor 8.2を構成する</block>
   <block id="3e2e1ae5727d07e3ee9163e73df8e73f" category="paragraph">Citrix Hypervisor 8.2 のマルチパスを使用して、ONTAP LUN を管理できます。</block>
   <block id="6d9eef6a4c2617ee0a8dfdc9ae7a468a" category="doc">ONTAPストレージを使用してCitrix Xenserver 8.4をFCPおよびiSCSI用に構成する</block>
-  <block id="7ef93303f99987d3f82b96411ca41f0f" category="sidebar">XenServer 8.4</block>
-  <block id="c4bb680e83ce918749e1d4853b0073d1" category="sidebar">ハイパーバイザー 8.2 (LTSR)</block>
   <block id="73dbe2792e643c8d49d1c396963179b8" category="inline-link-macro">SANブートLUNを作成し、ホストにマップする</block>
   <block id="23f9932633d90fac9929676a3d96b73c" category="list-text"><block ref="d3b050efbc8875625662ab7a3bc1d82e" category="inline-link-macro-rx"></block>です。</block>
   <block id="55e68527d8c164dc338b18da64611305" category="admonition">ONTAP LUNはKVMハイパーバイザーに自動的にマッピングされるため、Kernel-Based Virtual Machine（KVM）を設定する必要はありません。</block>
@@ -3108,22 +3105,13 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="3fe0f7d7cd9a25242a7b121f3cc4ba8a" category="paragraph">SUSE Linux Enterprise Server 15 SP7でマルチパスを使用して、ONTAP LUNを管理できます。</block>
   <block id="2109e80434ca7c6e1b69cbc2e5974556" category="summary">SUSE Linux Enterprise Server 15 SP7 with ONTAP用にNVMe/FCを設定する方法について説明します。</block>
   <block id="656e0f0943759cd8053f13523268bf98" category="doc">SUSE Linux Enterprise Server 15 SP7 with ONTAP向けのNVMe-oFホスト構成</block>
-  <block id="a260df2c274288385d82b55968f53b84" category="paragraph">SUSE Linux Enterprise Server 15 SP7 (SLES15 SP7) の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
   <block id="5393f0229b7c28049a490e7e149cce98" category="list-text">同じホストでNVMeトラフィックとSCSIトラフィックの両方を実行している。たとえば、SCSI LUNのSCSI mpathデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストにNVMe-oFネームスペースデバイスを設定できます。</block>
   <block id="77b17c4b304e4bc88274ebbde24c1c87" category="list-text">NVMe/FCプロトコルを使用したSANブートがサポートされます。</block>
-  <block id="aa4dc57afbcb40684a5fdb0dd0c53e49" category="list-text">ONTAP 9.12.1以降、NVMe/TCPおよびNVMe/FCでセキュアなインバンド認証がサポートされるようになりました。SLES15SP7では、NVMe/TCPおよびNVMe/FCでセキュアなインバンド認証を使用できます。</block>
   <block id="bc16fe46d91584e82782504c4c1c10d9" category="list-text">一意の検出 NQN を使用した永続検出コントローラ (PDC) のサポート。</block>
   <block id="c7d62b8831e26ca324eef03e565f77fb" category="list-text">NVMe/TCP の TLS 1.3 暗号化のサポート。</block>
-  <block id="4e301fd9374a22a48fdb4c33b2297fd4" category="list-text">NetApp<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> SLES15 SP7 ホスト上の NVMe-oF ではホスト ユーティリティ サポートは利用できません。代わりに、すべてのNVMe-oFトランスポート用の標準パッケージに含まれているNetAppプラグインを利用できます<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>。</block>
   <block id="027d24fe581a1889d6b5752e3886e380" category="list-text">利用できる新しい機能はありません。</block>
-  <block id="6084e38c00232a21ee1233c5ca70b927" category="paragraph">サポートされている最小の SLES15 SP7 ソフトウェア バージョンを検証するには、次の手順に従います。</block>
-  <block id="991655482ba880c83b447bbd0d3a18db" category="list-text">サーバーにSLES15 SP7をインストールします。インストールが完了したら、指定されたSLES15 SP7カーネルが実行されていることを確認します。</block>
-  <block id="23aa1a5f62f90e6896afa10f805ed9ca" category="paragraph">次の例は、SLES カーネルのバージョンを示しています。</block>
   <block id="3939f5ab0e1b02b11f96cac181c4e774" category="paragraph">次の例は、 <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>バージョン:</block>
-  <block id="c31865eb0d6c686b54a6bc6a1da51ac8" category="paragraph">SLES 15 SP7では、 <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージは、システムの起動時に自動的に起動されるようになります。システム起動が完了したら、ブートサービスが有効になっていることを確認してください。</block>
-  <block id="94628a030db9a09f8b90bd4725085b40" category="admonition">SLES 15 SP6以降、NVMe/TCPのデフォルト設定は<block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block>タイムアウトはオフになっています。つまり、再試行回数に制限はなく（無期限再試行）、特定のタイムアウトを手動で設定する必要はありません。 <block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block>使用時のタイムアウト時間<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>または<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション<block ref="269889131ee4793a82191b78a2eb60e3" prefix=" " category="inline-code"></block> ）。また、NVMe / TCPコントローラでは、パス障害が発生してもタイムアウトが発生せず、無期限に接続されたままになります。</block>
   <block id="b9f923eff2af1f090cf2b63082e1eb11" category="section-title">ステップ8: 永続的な検出コントローラを作成する</block>
-  <block id="3b0141777552d60cadbd3ce34dd905d3" category="paragraph">ONTAP 9.11.1 以降では、SLES 15 SP7 ホスト用の永続検出コントローラ (PDC) を作成できます。NVMeサブシステムの追加または削除処理や検出ログページのデータに対する変更を自動的に検出するには、PDCが必要です。</block>
   <block id="e30836f8afa231851eba05f11afb521a" category="section-title">ステップ9: 安全なインバンド認証を設定する</block>
   <block id="c273b14698c5a90f8016a97113ae1527" category="section-title">ステップ10: トランスポート層セキュリティを構成する</block>
   <block id="7e0ddf13eb92d7061cb3708e71d99050" category="list-text">以下のものをお持ちかご確認ください<block ref="464213eb09b43407b3c3aa2efea57161" prefix=" " category="inline-code"></block> 、 <block ref="50955d4b2031271f8fda1764c1a66ac3" prefix=" " category="inline-code"></block> 、 そして<block ref="e585c6c1eda4439a86d95239513976b0" prefix=" " category="inline-code"></block>ホストにインストールされているパッケージ:</block>
@@ -3641,8 +3629,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="49cc988afc6b092ce6281b15b9a60972" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、CentOS 8.5 ホストに Linux ホスト ユーティリティをインストールします。</block>
   <block id="3c7efd424a20046d29e4da88c0d5c486" category="summary">Citrix Hypervisor 8.2 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメーターと設定を設定します。</block>
   <block id="1f5a17864fe735a3a834371ab2c3043e" category="paragraph">Linux Host Utilities ソフトウェア パッケージは、Citrix Hypervisor オペレーティング システムをサポートしていません。</block>
-  <block id="de920f5dd498ae73930aaae6ead146f6" category="summary">Citrix Hypervisor 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメーターと設定を設定します。</block>
-  <block id="936b4d22e2607b9ac84f06791fe03923" category="paragraph">Citrix Hypervisor 8.4 のマルチパスを使用して、 ONTAP LUN を管理できます。</block>
   <block id="56eaee8dcecb52bd60025f4df180e2f4" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、HP-UX 11i v3 ホストに Linux ホスト ユーティリティをインストールします。</block>
   <block id="bb53e7efc63e8dc547146d694f3c97c1" category="summary">Ubuntu 20.04 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。</block>
   <block id="3d4de8befb0eddb7be95b9eb899bcd21" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Ubuntu 24.04 ホストに Linux ホスト ユーティリティをインストールします。</block>
@@ -3971,4 +3957,20 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="bdd85bb9fb61697998b63578c3818344" category="paragraph">NVMe/TCP プロトコルは自動接続操作をサポートしていません。  NVMe/TCP サブシステムと名前空間を検出するには、NVMe/TCP 接続または connect-all 操作を手動で実行する必要があります。</block>
   <block id="3832446aa2ef6619ecfdb886641a60fe" category="list-text">他の NVMe/TCP イニシエーターとターゲット LIF の組み合わせで検出ログ ページ データを正常に取得できることを確認します。</block>
   <block id="0adc0ccfa62ac1a4fb645ca5d3f148ff" category="sidebar">NVMe-oFホストの構成について学ぶ</block>
+  <block id="1c79280a42a5cd3a48fa9fefe62fd0a5" category="summary">Citrix Xenserver 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。</block>
+  <block id="e3570aecc41d92af1fdf504fc5bd3927" category="paragraph">Linux ホスト ユーティリティ ソフトウェア パッケージは、Citrix Xenserver オペレーティング システムをサポートしていません。</block>
+  <block id="405ee507e1b0e20ba609f39dc449664e" category="paragraph">Citrix Xenserver 8.4 のマルチパスを使用して、 ONTAP LUN を管理できます。</block>
+  <block id="6777a33e557c747716d7b5c89c08e209" category="paragraph">SUSE Linux Enterprise Server ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートしています。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。</block>
+  <block id="f880ac448e6e50a8b2acd73367cb84c3" category="paragraph">SUSE Linux Enterprise Server 15 SP7 の NVMe-oF ホスト構成では、次のサポートと機能を使用できます。構成プロセスを開始する前に、既知の制限事項も確認する必要があります。</block>
+  <block id="b6d788f4a78e973bb3a39cc6a41dbadf" category="list-text">ONTAP 9.12.1 以降では、NVMe/TCP および NVMe/FC に対する安全なインバンド認証のサポートが導入されています。  SUSE Linux Enterprise Server 15 SP7 では、NVMe/TCP および NVMe/FC に安全なインバンド認証を使用できます。</block>
+  <block id="615aa8cdcc32761b028c3f8a323a6cc7" category="list-text">NetApp<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>SUSE Linux Enterprise Server15 SP7 ホスト上の NVMe-oF ではホスト ユーティリティ サポートは利用できません。代わりに、ネイティブに含まれるNetAppプラグインを利用できます。<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>すべての NVMe-oF トランスポート用のパッケージ。</block>
+  <block id="fee6faa142e2688b32958e9fc0ffffff" category="paragraph">サポートされている最小の SUSE Linux Enterprise Server 15 SP7 ソフトウェア バージョンを検証するには、次の手順に従います。</block>
+  <block id="74c00bdffd78cb1619b356f1edc0d233" category="list-text">サーバーに SUSE Linux Enterprise Server15 SP7 をインストールします。インストールが完了したら、指定された SUSE Linux Enterprise Server 15 SP7 カーネルが実行されていることを確認します。</block>
+  <block id="eafcc54cd223c39abcd1b9a23194d53a" category="paragraph">次の例は、SUSE Linux Enterprise Server カーネルのバージョンを示しています。</block>
+  <block id="dc7b768a8d751d88715186e7e9481815" category="paragraph">SUSE Linux Enterprise Server 15 SP7では、<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージは、システムの起動時に自動的に起動するように有効化されます。システムの起動が完了したら、ブート サービスが有効になっていることを確認します。</block>
+  <block id="b423ded7031f915c1eef46f79773bbff" category="admonition">SUSE Linux Enterprise Server 15 SP6以降、NVMe/TCPのデフォルト設定は<block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block>タイムアウトはオフになります。これは再試行回数に制限がない（無期限再試行）ことを意味し、特定の再試行回数を手動で設定する必要はありません。<block ref="5d036703249af8ebf4d92499bcc10b3c" prefix=" " category="inline-code"></block>使用時のタイムアウト時間<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block>または<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block>コマンド（オプション<block ref="269889131ee4793a82191b78a2eb60e3" prefix=" " category="inline-code"></block>）。さらに、NVMe/TCP コントローラーはパス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。</block>
+  <block id="b523b3776ea6194b27cd840c1deb284c" category="paragraph">ONTAP 9.11.1 以降では、SUSE Linux Enterprise Server 15 SP7 ホスト用の永続検出コントローラ (PDC) を作成できます。  NVMe サブシステムの追加または削除操作と検出ログ ページ データの変更を自動的に検出するには、PDC が必要です。</block>
+  <block id="813cc633e0459359ed043e6d76025c2c" category="paragraph">たとえば、オンプレミスのONTAPストレージをオンプレミスの SAN ホストまたは SAN クラウド クライアントに接続するように構成できます。クラウド環境で実行されるストレージサービスを構成することもできます。<block ref="cdfecfe4eb59bc17d075f2da08aa8dad" category="inline-link-macro-rx"></block>または<block ref="8ad7a6b53b9076e00c14225601db07c4" category="inline-link-macro-rx"></block>オンプレミスの SAN ホストまたは SAN クラウド クライアントに接続します。</block>
+  <block id="9831e45ea03c86b202350b5eb137e309" category="sidebar">XenServer 8.4</block>
+  <block id="df472899f555ad076c9b90f4bd508f91" category="sidebar">ハイパーバイザー 8.2</block>
 </blocks>

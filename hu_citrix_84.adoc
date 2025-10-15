@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: hu_citrix_84.html 
-keywords: host utilities, citrix, XenServer, 8 series, netapp, ontap, san, boot 
-summary: Citrix Hypervisor 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメーターと設定を設定します。 
+keywords: host utilities, citrix, Xenserver, 8 series, netapp, ontap, san, boot 
+summary: Citrix Xenserver 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。 
 ---
 = ONTAPストレージを使用してCitrix Xenserver 8.4をFCPおよびiSCSI用に構成する
 :hardbreaks:
@@ -16,11 +16,11 @@ summary: Citrix Hypervisor 8.4 をマルチパス用に構成し、 ONTAPスト�
 
 
 [role="lead"]
-Citrix Hypervisor 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメーターと設定を設定します。
+Citrix Xenserver 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。
 
 [NOTE]
 ====
-Linux Host Utilities ソフトウェア パッケージは、Citrix Hypervisor オペレーティング システムをサポートしていません。
+Linux ホスト ユーティリティ ソフトウェア パッケージは、Citrix Xenserver オペレーティング システムをサポートしていません。
 
 ====
 
@@ -45,7 +45,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == ステップ2: ホストのマルチパス構成を確認する
 
-Citrix Hypervisor 8.4 のマルチパスを使用して、 ONTAP LUN を管理できます。
+Citrix Xenserver 8.4 のマルチパスを使用して、 ONTAP LUN を管理できます。
 
 ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 
