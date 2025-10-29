@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: nvme-windows-2025.html 
 keywords: nvme, windows, enterprise 
-summary: Windows Server 2052 with ONTAP のNVMe/FCホスト構成 
+summary: ONTAPを使用した Windows Server 2025 の NVMe/FC ホスト構成。 
 ---
 = ONTAP用のNVMe/FCを搭載したWindows Server 2025の設定
 :hardbreaks:

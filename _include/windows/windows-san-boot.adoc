@@ -1,0 +1,35 @@
+= 手順1：必要に応じてSANブートを有効にします。
+:allow-uri-read: 
+
+
+
+
+== 手順1：必要に応じてSANブートを有効にします。
+
+ローカル ブートまたは SAN ブートを使用して Windows OS を起動できます。NetApp、導入を簡素化し、スケーラビリティを向上させるために SAN ブートの使用を推奨しています。
+
+[role="tabbed-block"]
+====
+.SAN ブート
+--
+SANブーティングを使用する場合は、使用している構成でサポートされている必要があります。
+
+.開始する前に
+を使用 https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Windows OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+
+.手順
+. link:https://docs.netapp.com/us-en/ontap/san-management/index.html["SANブートLUNを作成し、ホストにマップする"^]。
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+
+
+--
+.ローカルブート
+--
+SSD、SATA、RAID などのローカル ハード ディスクに Windows OS をインストールして、ローカル ブートを実行します。
+
+--
+====

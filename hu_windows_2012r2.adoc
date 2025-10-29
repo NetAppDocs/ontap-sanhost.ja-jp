@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_windows_2012r2.html 
-keywords: windows, enterprise 
-summary: ONTAP で Windows Server 2012 R2 を使用する 
+keywords: fcp, iscsi, windows, host, utilities, 2012, ontp, luns, configure 
+summary: Windows Server 2012 R2 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。 
 ---
-= ONTAPでWindows Server 2012 R2を使用する
+= ONTAPストレージを使用して Windows Server 2012 R2 を FCP および iSCSI 用に構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,53 +16,42 @@ summary: ONTAP で Windows Server 2012 R2 を使用する
 
 
 [role="lead"]
-ONTAP SANホストの設定を使用して、ONTAPストレージで動作するようにWindows Server 2012 R2を設定できます。
+Windows ホスト ユーティリティを使用すると、Windows ホストをNetApp SAN 上の仮想ディスク (LUN) に接続できます。Windows Server 2012 R2 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。
 
 
 
-== Windows OSのブート
+== 手順1：必要に応じてSANブートを有効にします。
 
-Windows OSは、ローカルブートまたはSANブートを使用してブートできます。ご使用の構成でSANブートがサポートされている場合は、NetAppでSANブートを使用することを推奨します。
+ローカル ブートまたは SAN ブートを使用して Windows OS を起動できます。NetApp、導入を簡素化し、スケーラビリティを向上させるために SAN ブートの使用を推奨しています。
 
 [role="tabbed-block"]
 ====
-.ローカルブート
---
-ローカルハードディスク(SSD、SATA、RAIDなど)にWindows OSをインストールして、ローカルブートを実行します。
-
---
 .SAN ブート
 --
 SANブーティングを使用する場合は、使用している構成でサポートされている必要があります。
-
-
-NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
 
 .開始する前に
 を使用 https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Windows OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
 
 .手順
-. SAN ブート LUN をホストにマッピングします。
-+
-を参照して link:https://docs.netapp.com/us-en/ontap/san-management/index.html["SANストレージ管理"^]
-
-. 複数のパスが使用可能であることを確認します。
-+
-
-NOTE: 複数のパスは、ホストOSが起動してそのパスで実行されたあとにのみ使用可能になります。
-
+. link:https://docs.netapp.com/us-en/ontap/san-management/index.html["SANブートLUNを作成し、ホストにマップする"^]。
 . SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
 
-. ホストをリブートしてブートが成功したことを確認する
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
 
+
+--
+.ローカルブート
+--
+SSD、SATA、RAID などのローカル ハード ディスクに Windows OS をインストールして、ローカル ブートを実行します。
 
 --
 ====
 
 
-== Windowsホットフィックスのインストール
+== ステップ2: Windowsの修正プログラムをインストールする
 
 NetAppでは、Microsoft Updateカタログから入手可能な最新の累積更新プログラム*をホストサーバーにインストールすることをお勧めします。
 
@@ -77,140 +66,34 @@ NOTE: Microsoft Update Catalogからダウンロードできない修正プロ�
 
 
 
-TIP: 多くの修正プログラムでは、Windowsホストのリブートが必要です。Host Utilitiesをインストールまたはアップグレードするまで、ホストのリブートを待つこともできます。
+TIP: 多くのホットフィックスでは、Windows ホストの再起動が必要です。ホスト ユーティリティをインストールまたはアップグレードした後まで、ホストの再起動を待つことができます。
 
 
 
-== Windows Host Utilitiesのインストール
+== ステップ3: Windowsホストユーティリティをインストールする
 
-Windows ホスト ユーティリティは、ホスト コンピュータをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。  NetApp、最新のユーティリティ キットをダウンロードしてインストールすることをお勧めします。  Windowsホストユーティリティの設定情報と手順については、link:https://docs.netapp.com/us-en/ontap-sanhost/hu-wuhu-release-notes.html["Windows Host Utilitiesのマニュアル"] Windows ホスト ユーティリティ バージョンのインストール手順を選択します。
+Windows ホスト ユーティリティは、ホスト コンピュータをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。NetApp、 ONTAP LUN 管理をサポートし、テクニカル サポートが構成データを収集できるようにするために、最新の Windows ホスト ユーティリティをダウンロードしてインストールすることを推奨しています。
+
+Windowsホストユーティリティの設定とインストール情報については、 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Windows Host Utilities"] ドキュメントを参照し、Windows ホスト ユーティリティ バージョンのインストール手順を選択してください。
 
 
 
-== マルチパス
+== ステップ4: ホストのマルチパス構成を確認する
 
-Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。MPIOサポートを選択すると、Windows Host UtilitiesでWindows Server 2012 R2に含まれているMPIO機能が有効になります。Windows Host Utilitiesを使用しない場合は、マルチパスを手動で有効にする必要があります。
+Windows ホストにストレージ システムへのパスが複数ある場合は、Microsoft Multipath I/O (MPIO) ソフトウェアをインストールし、マルチパスを有効にします。
 
-MPIOソフトウェアは、すべてのパスについて単一のディスクをWindows OSに提供し、パスのフェイルオーバーはDevice-Specific Module（DSM；デバイス固有モジュール）が管理します。Windowsシステムでは、MPIOソリューションの2つの主要コンポーネントはDSMとWindows MPIOです。
+Windows システムでは、MPIO ソリューションの 2 つの主要コンポーネントは、デバイス固有モジュール (DSM) と Windows MPIO です。MPIO はすべてのパスに対して 1 つのディスクを Windows OS に提示し、DSM はパスのフェイルオーバーを管理します。
 
 
 CAUTION: MPIOソフトウェアをインストールしない場合、Windows OSは各パスを個別のディスクとして認識する可能性があります。これにより、データが破損する可能性があります。
 
-[NOTE]
-====
-* Windows Host Utilities 8.0 では、MPIO サポートを選択すると MPIO 機能が自動的に有効になります。
-* Hyper-V 仮想マシンで実行されている Windows XP または Windows Vista は MPIO をサポートしていません。
 
-
-====
-
-
-== SAN の設定
-
-SAN構成に応じて、オールSANアレイ（ASA）構成または非ASA構成を使用してONTAP LUNにアクセスします。ASA構成とASA以外の構成のどちらでも、1つのONTAP LUNにアクセスするためのパスを4つまでにする必要はありません。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。
-
-
-
-=== すべての SAN アレイ構成
-
-ASA構成には、単一の優先度を持つアクティブ/最適化パスのグループが1つ必要です。つまり、パスはコントローラによって処理され、すべてのアクティブパスでI/Oが送信されます。
-
-次の例は、アクティブ/最適パスを使用するONTAP LUNの正しい出力を示しています。
-
-image::asa.png[アクティブ/最適パスが表示されたONTAP LUNのスクリーンショット]
-
-
-
-=== Non-ASA の設定
-
-ASA以外の構成では、優先順位が異なる2つのパスグループを設定する必要があります。優先度の高いパスは[Active]または[Optimized]になります。つまり、アクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
-
-次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。
-
-image::nonasa.png[2つのアクティブ/最適パスと2つのアクティブ/非最適パスを含むONTAP LUNのスクリーンショット]
-
-
-
-== Hyper-V VHD では、パフォーマンスを最大限に高めるためにアライメントが必要です
-
-ディスクパーティションのデータブロック境界が基盤となるLUNのブロック境界と一致していない場合、ストレージシステムは多くの場合、オペレーティングシステムのブロック読み取りまたは書き込みごとにブロック読み取りまたは書き込みを2回実行する必要があります。ミスアライメントが原因で追加のブロック読み取り / 書き込みが発生すると、深刻なパフォーマンスの問題が生じる可能性があります。
-
-マスターブートレコードによって定義された各パーティションの開始セクターの場所が、ミスアライメントの原因となります。
-
-
-NOTE: Windows Server 2016 で作成されたパーティションは、デフォルトでアライメントされる必要があります。
-
-ONTAP PowerShell Toolkitのコマンドレットを使用し `Get-NaVirtualDiskAlignment`て、パーティションが基盤となるLUNとアライメントされているかどうかを確認します。パーティションのアライメントが正しくない場合は、コマンドレットを使用し `Repair-NaVirtualDiskAlignment`て、アライメントが正しい新しいVHDファイルを作成します。このコマンドレットは、すべてのパーティションを新しいファイルにコピーします。元の VHD ファイルは変更も削除もされません。データがコピーされている間は、仮想マシンをシャットダウンする必要があります。
-
-ONTAP PowerShell Toolkit は、ネットアップコミュニティからダウンロードできます。環境変数で指定された場所にファイルを解凍する必要があります（またはスクリプトを使用してファイルを `%PSModulePath%`解凍し `DataONTAP.zip`ます `Install.ps1`）。インストールが完了したら、コマンドレットを使用して `Show-NaHelp`コマンドレットのヘルプを表示します。
-
-PowerShell Toolkit では、 MBR タイプのパーティションを含む容量固定 VHD ファイルのみがサポートされます。WindowsダイナミックディスクまたはGPTパーティションを使用するVHDはサポートされていません。さらに、 PowerShell Toolkit では、 4GB 以上のパーティションサイズが必要です。小さいパーティションは正しくアライメントできません。
-
-
-NOTE: Linux 仮想マシンで VHD の GRUB ブートローダーを使用する場合は、 PowerShell Toolkit の実行後にブート設定を更新する必要があります。
-
-
-
-=== PowerShell ToolkitでMBRアライメントを修正したあとにLinuxゲスト用のGRUBを再インストールする
-
-GRUB ブートローダを使用して Linux ゲスト OS の PowerShell Toolkit と MBR アライメントを修正するためにディスク上で「 m bralign 」を実行した後、ゲスト OS が正しく起動するように GRUB を再インストールする必要があります。
-
-.このタスクについて
-仮想マシンの VHD ファイルに対して PowerShell Toolkit のコマンドレットが完了しました。この手順は、GRUBブートLoaderおよびを使用するLinuxゲストオペレーティングシステムにのみ適用され `SystemRescueCd`ます。
+NOTE: Hyper-V仮想マシンで実行されているWindows XPまたはWindows Vistaは、MPIOをサポートしていません。
 
 .手順
-. 仮想マシン用の正しいバージョンの Linux のインストール CD のディスク 1 の ISO イメージをマウントします。
-. Hyper-V Manager で仮想マシンのコンソールを開きます。
-. GRUB画面でVMが実行中でフリーズしている場合は、表示領域内をクリックしてアクティブになっていることを確認し、ツールバーの* Ctrl + Alt + Delete *アイコンを選択してVMをリブートします。VM が実行されていない場合は起動し、表示領域をただちにクリックしてアクティブにします。
-. VMware BIOS のスプラッシュ画面が表示されたら、すぐに * Esc * キーを 1 回押します。ブートメニューが表示されます。
-. 起動メニューで、 * CD-ROM * を選択します。
-. Linux の起動画面で、「 linux rescue 」と入力します
-. Anaconda （青 / 赤の設定画面）のデフォルトを使用します。ネットワークはオプションです。
-. grub を起動するには、「 grub」 と入力します
-. このVMに仮想ディスクが1つしかない場合、または複数のディスクがあり、最初のディスクがブートディスクである場合は、次のGRUBコマンドを実行します。
+. MPIO ソフトウェアをインストールし、マルチパスを有効にします。
+. FCを使用するシステムでMPIOを選択すると、EmulexおよびQLogic FC HBAに必要なタイムアウト値がHost Utilitiesインストーラによって設定されます。
 +
-[listing]
-----
-root (hd0,0)
-setup (hd0)
-quit
-----
-+
-VMに複数の仮想ディスクがあり、ブートディスクが最初のディスクではない場合、またはミスアライメントされたバックアップVHDからブートしてGRUBを修正する場合は、次のコマンドを入力してブートディスクを特定します。
-
-+
-[listing]
-----
-find /boot/grub/stage1
-----
-+
-次に、次のコマンドを実行します。
-
-+
-[listing]
-----
-root (boot_disk,0)
-setup (boot_disk)
-quit
-----
-+
-
-NOTE: の `setup (boot_disk)`は、 `boot_disk`ブートディスクの実際のディスク識別子のプレースホルダです。
-
-
-
-. ログアウトするには、 *Ctrl-D* を押します。
-+
-Linux のレスキューがシャットダウンし、その後再起動します。
-
-
-
-
-
-== 推奨設定
-
-FCを使用するシステムでMPIOを選択すると、EmulexおよびQLogic FC HBAに必要なタイムアウト値がHost Utilitiesインストーラによって設定されます。
-
 [role="tabbed-block"]
 ====
 .Emulex FC
@@ -244,11 +127,41 @@ QLogic FC HBAのタイムアウト値は次のとおりです。
 |===
 --
 ====
+. ONTAP LUN のパスのステータスを確認します。
++
+SAN 構成に応じて、ホストはASA、 AFF、またはFAS構成を使用してONTAP LUN にアクセスします。これらの構成では、単一のONTAP LUN にアクセスするために 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。
 
-NOTE: 推奨設定の詳細については、を参照してくださいlink:hu_wuhu_hba_settings.html["Windows Host Utilitiesのレジストリ設定を構成する"]。
++
+次の出力例は、 ASA、 AFF、またはFAS構成のONTAP LUN の正しい設定を示しています。
+
++
+[role="tabbed-block"]
+====
+.ASA構成
+--
+ASA構成には、単一の優先順位を持つアクティブ/最適化されたパスの 1 つのグループが必要です。コントローラはパスを処理し、すべてのアクティブ パスで I/O を送信します。
+
+image::asa.png[アクティブ/最適パスが表示されたONTAP LUNのスクリーンショット]
+
+--
+.AFFまたはFASの設定
+--
+AFFまたはFAS構成には、優先度が異なる 2 つのパス グループが必要です。優先度の高いパスはアクティブ/最適化されており、アグリゲートが配置されているコントローラによってサービスされます。優先度の低いパスは別のコントローラからサービスされます。これらはアクティブですが最適化されておらず、最適化されたパスが利用できない場合にのみ使用されます。
+
+image::nonasa.png[2つのアクティブ/最適パスと2つのアクティブ/非最適パスを含むONTAP LUNのスクリーンショット]
+
+--
+====
 
 
 
-== 既知の問題
 
-Windows Server 2012 R2 with ONTAPリリースに関する既知の問題はありません。
+== ステップ5: 既知の問題を確認する
+
+既知の問題はありません。
+
+
+
+== 次の手順
+
+link:hu_wuhu_hba_settings.html["Windowsホストユーティリティのレジストリ設定について学ぶ"]。

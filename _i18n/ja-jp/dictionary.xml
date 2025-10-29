@@ -182,13 +182,10 @@
   <block id="fd58025e044ac8cc0f93e71ed39a3720" category="list-text">Oracle Linux 7.8 をサーバーにインストールします。</block>
   <block id="de4b2454229cdcf5a156dbdf82d30b67" category="list-text">Oracle Linux L 7.8 ホストで、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認してください。</block>
   <block id="aec81109cc90f6dcce296e00814fd999" category="paragraph">上記の例では、 2 つのネームスペースが Oracle Linux 7.8 ANA ホストにマッピングされています。これらの LIF は、ローカルノード LIF 2 つとパートナー / リモートノード LIF 2 つの 4 つのターゲット LIF を通して認識されます。このセットアップでは、ホスト上の各ネームスペースについて、 2 つの ANA 最適化パスと 2 つの ANA アクセス不能パスが表示されます。</block>
-  <block id="b2d91944503b473fe8f36b2e57bc92ad" category="summary">ONTAP で Windows Server 2012 R2 を使用する</block>
   <block id="880b9ba9933b6e3ce087d9412e66470b" category="inline-link-macro">Microsoft Update Catalog 2012 R2 』を参照してください</block>
   <block id="5a3b43f9090be87b411af7ac82adcb38" category="list-text">Microsoft の指示に従って、修正プログラムをインストールします。</block>
   <block id="4f27a34799ad8580f67b93c57e242ad0" category="section-title">SAN の設定</block>
-  <block id="4bab92c0679e684c0db0cc740cd47758" category="section-title">Non-ASA の設定</block>
   <block id="7a0a3a29c4e371b5125adb49cae3a738" category="section-title">すべての SAN アレイ構成</block>
-  <block id="c9bbd6792eac761da84ef7d035e5b41c" category="section-title">Hyper-V VHD では、パフォーマンスを最大限に高めるためにアライメントが必要です</block>
   <block id="270748dbbd5a9031b10d44f9f16973cf" category="admonition">Windows Server 2016 で作成されたパーティションは、デフォルトでアライメントされる必要があります。</block>
   <block id="1104f990ade81e5b4d644288a54cf49a" category="admonition">Linux 仮想マシンで VHD の GRUB ブートローダーを使用する場合は、 PowerShell Toolkit の実行後にブート設定を更新する必要があります。</block>
   <block id="b9ef2c298abb1a6d04513bf9fee94dda" category="paragraph">GRUB ブートローダを使用して Linux ゲスト OS の PowerShell Toolkit と MBR アライメントを修正するためにディスク上で「 m bralign 」を実行した後、ゲスト OS が正しく起動するように GRUB を再インストールする必要があります。</block>
@@ -263,7 +260,6 @@
   <block id="fee03d4bfd315e17cc06c4801b57dbb9" category="list-text">特定のディスク・セットにプライオリティを設定するには、次のように入力します。</block>
   <block id="8f6489cc32f6141446bbbf6eba20b321" category="paragraph">詳細モードを有効にし、すべての優先順位を表示するには、「 -v 」オプションを使用します。すべてまたは個々のディスクの優先順位を照会するには '-q オプションを使用します</block>
   <block id="2a894c946342eacded4eef5c9a7b96b9" category="list-text">ホストで LUN が検出されたことを確認するには、次のコマンドを入力します。</block>
-  <block id="6b83d866c4dfa9b95b03b5a6ede846f7" category="summary">ONTAP での Windows Server 2019 の使用</block>
   <block id="51da3f0f90428027f2a496d366e696eb" category="inline-link-macro">Microsoft Update Catalog 2019 のご案内</block>
   <block id="f87d076eb7d3558e4df3a472ec88d6f2" category="summary">ONTAP で Red Hat Enterprise Linux 6.6 を使用する方法について説明します</block>
   <block id="aaa84a008bcbd7b13ea49132c73d1afa" category="paragraph">Red Hat Enterprise Linux （ RHEL ） 6.6 の場合は、 /etc/multipath.conf ファイルが存在する必要がありますが、ファイルに特定の変更を加える必要はありません。RHEL 6.6 には、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が反映されています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
@@ -612,7 +608,6 @@
   <block id="4aab3393d576bcf2907352ae44a0a440" category="list-text">nvme-CLI パッケージをアップグレードします。ネイティブの nvme-CLI パッケージには、 NVMe/FC 自動接続スクリプト、 ONTAP udev ルールが含まれています。このルールでは、 NVMe マルチパスでのラウンドロビンロードバランシングや、 ONTAP ネームスペース用のネットアッププラグインが有効になります。</block>
   <block id="f66be2d78c31b4dcc20cc20c3d56d86f" category="list-text">Oracle Linux 8.2 ホストで、 /etc/nvme/hostnqn にあるホスト NQN 文字列を確認し、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列に一致することを確認します。</block>
   <block id="8c14192b8816f047aeb8cd691b0dcee5" category="paragraph">上記の例では、 2 つのネームスペースが Oracle Linux 8.2 ANA ホストにマッピングされています。これらの LIF は、ローカルノード LIF 2 つとパートナー / リモートノード LIF 2 つの 4 つのターゲット LIF を通して認識されます。このセットアップでは、ホスト上の各ネームスペースについて、 2 つの ANA 最適化パスと 2 つの ANA アクセス不能パスが表示されます。</block>
-  <block id="8eee884db44f521f0d19cac36bf258cc" category="summary">ONTAP で Windows Server 2016 を使用する</block>
   <block id="f5cba97c30a47867e3649fd136cca68c" category="inline-link-macro">Microsoft Update Catalog 2016 』を参照してください</block>
   <block id="9f48bd68eb80a61379f6dd65620bec8c" category="summary">SUSE Linux Enterprise Server 15 SP2 （ ONTAP ）用に NVMe/FC を設定する方法について説明します</block>
   <block id="b7c80370e68c20a6d2b05ca2d022abbe" category="doc">ONTAP を搭載した SUSE Linux Enterprise Server 15 SP2 用 NVMe/FC ホスト構成</block>
@@ -844,7 +839,6 @@
   <block id="cf79be42f6c9a2f2225f202bfec080c2" category="sidebar">15 SP4</block>
   <block id="8da61845fa1ac07e5d54097fe9d2a4cb" category="summary">ONTAP を搭載したSUSE Linux Enterprise Server 15 SP4でNVMe/FCを設定する方法について説明します</block>
   <block id="806707e47ee8fe684a6d5e5b0898539a" category="sidebar">NVMeネームスペース</block>
-  <block id="29b512fbc4379581cd2fd8694ca529c4" category="summary">ONTAP で2022にWindows Serverを使用する</block>
   <block id="8d1d5b8defd8dab28a7e51c7b4ff5d33" category="inline-link-macro">Microsoft Update Catalog 2022</block>
   <block id="3a824154b16ed7dab899bf000b80eeee" category="sidebar">2022</block>
   <block id="452d8ca267c17453aeeac8e238531175" category="sidebar">OL-FCP</block>
@@ -1359,7 +1353,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="d0e316336a8b1aa9192fa5b84596d3cd" category="paragraph">ONTAP SANホストの設定を使用して、CentOS 6.8でONTAPをターゲットとして設定できます。</block>
   <block id="1e1aabe902ce49322df6aba455576bfc" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 6.5を設定できます。</block>
   <block id="1e63f8c03568b214efdd000b3c1ebab0" category="paragraph">ONTAP SANホストの設定を使用して、CentOS 6.4でONTAPをターゲットとして設定できます。</block>
-  <block id="ce6daf5739712167ff9559d54d5b84d1" category="paragraph">ONTAPリリースのWindows Server 2016では、既知の問題はありません。</block>
   <block id="708aa4255b7e46bb95ff47e221b37a0f" category="paragraph">ONTAP SANホストの設定を使用して、CentOS 6.6でONTAPをターゲットとして設定できます。</block>
   <block id="8cf5a4e1d8829324666d40a8ffd9c07e" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.6を設定できます。</block>
   <block id="475c59981753e28a3bbd2b2786d32646" category="paragraph">ONTAPリリースのOracle Linux 6.6に関する既知の問題はありません。</block>
@@ -1376,7 +1369,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="92ecdf60dd5c6225e905e0a3eea885da" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.4を設定できます。</block>
   <block id="0938dfec19dd45c8a6f64aa8b0b1eda4" category="paragraph">Oracle Linux 6.4 with ONTAPリリースには、次の既知の問題があります。</block>
   <block id="3998e195af175a67287a554b2d04b426" category="paragraph">Veritas Infoscale 7 for Linux with ONTAPリリースには既知の問題はありません。</block>
-  <block id="9a54de79abf75dfa58e891711132c192" category="paragraph">ONTAPリリースのWindows Server 2019では、既知の問題はありません。</block>
   <block id="001844af86b0a1f099720e6aed9988f7" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 6.8を設定できます。</block>
   <block id="c5041d07d38095b8620f889d70dea95d" category="paragraph">ONTAPリリースのVMware vSphere 7.xに関する既知の問題はありません。</block>
   <block id="6963533acedb1b8942f9674f67500cd3" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.8を設定できます。</block>
@@ -1390,12 +1382,10 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="a69f90991b7861bf298029c85947f926" category="paragraph">Oracle Linux 6.9 with ONTAPリリースには、次の既知の問題があります。</block>
   <block id="95ee459b709d0e4cae7ea12ed33763f9" category="paragraph">SUSE Linux Enterprise Server 15 SP4 with ONTAPリリースには既知の問題はありません。</block>
   <block id="1bc24cef68b137efe0e69c2b269dd7da" category="paragraph">ONTAPリリースのVeritas Infoscale 8 for Linuxには既知の問題はありません。</block>
-  <block id="7145b773c01d1ea2262969c3644747a0" category="paragraph">ONTAPリリースのWindows Server 2022での既知の問題はありません。</block>
   <block id="3d8d5b2f05311b66754ca058971f7e2e" category="paragraph">SUSE Linux Enterprise Server 15 SP5 with ONTAPリリースには既知の問題はありません。</block>
   <block id="30b87f3af4543974205ca57666930631" category="paragraph">Veritas Storage Foundation 6 for Linux with ONTAPリリースでは、既知の問題はありません。</block>
   <block id="ee0e00ac8a597d343ecf7da72dd6effd" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.10を設定できます。</block>
   <block id="c7512b0badc93efcac520b6d3264ca72" category="paragraph">ONTAPリリースのOracle Linux 6.10では、既知の問題はありません。</block>
-  <block id="8a95c3a52d7c4637ec5bd95d7e964b9a" category="paragraph">Windows Server 2012 R2 with ONTAPリリースに関する既知の問題はありません。</block>
   <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
   <block id="11bc52330473c77af7c9af92d91670d8" category="doc">SUSE Linux Enterprise Server 15 SP4 with ONTAP向けのNVMe-oFホスト構成</block>
   <block id="1e0824a41921c35ae75109745c612112" category="paragraph">NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）は、非対称ネームスペースアクセス（ANA）を備えたSUSE Linux Enterprise Server（SLES）15 SP4でサポートされます。NVMe-oF環境では、ANAはiSCSIおよびFCP環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。</block>
@@ -1448,9 +1438,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="8cfe2b11255c36622bc84e4bd2dfb53c" category="list-text">を実行します<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block> コマンドを実行してホストをリブートします。</block>
   <block id="9688ec84efd5b1cb7c885e598b6ebf4a" category="list-text">リブート後、詳細ログが有効になっていることを確認します。</block>
   <block id="86891fa05c8b78ad9621085c8abc1fb4" category="paragraph">JSONファイルは次のコマンドを使用して生成できます。<block ref="b2ed43620b7fff2689035f1e99c24ded" prefix=" " category="inline-code"></block> オプション構文オプションの詳細については、nvme connect-allのマニュアルページを参照してください。</block>
-  <block id="0ecfee1e5b63a34e0c870ad349ab2d79" category="section-title">Windowsホットフィックスのインストール</block>
-  <block id="f00aa3de5284bd6ffc1c6eb440a68428" category="inline-link-macro">Windows Host Utilitiesのマニュアル</block>
-  <block id="6f49a4f8a77775eb655aad7d40795d50" category="section-title">PowerShell ToolkitでMBRアライメントを修正したあとにLinuxゲスト用のGRUBを再インストールする</block>
   <block id="3a891098b79eaa53ca214516fa78a5e6" category="summary">ONTAPを使用したRHEL 9.1用のNVMe-oFホストの設定方法</block>
   <block id="5464d39105cc61c77c01f61a6c049eae" category="summary">ONTAPを使用したRHEL 9.2用のNVMe-oFホストの設定方法</block>
   <block id="13aa98a5d20992675bbf7111d4bcf7cc" category="cell">NetApp Linux Host Utilities CLIでは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）アダプタの検出をサポートするために、ライブラリパッケージの依存関係を追加する必要があります。</block>
@@ -1611,7 +1598,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="9eb91e4550c86ff0aa1e87339af6ac4a" category="paragraph">マルチパスで管理したくないデバイスがある場合や、既存の設定がデフォルトよりも優先される場合を除き、デバイスをファイルに直接追加する必要はあり<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>ません。不要なデバイスを除外するには、次の構文をファイルに追加し<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>、&lt;DevId&gt;を除外するデバイスのWWID文字列に置き換えます。</block>
   <block id="26abbb90105e84ce5c3470d46cb09443" category="paragraph">次の例では、<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block>はブラックリストに追加するローカルSCSIディスクです。</block>
   <block id="48a57465c9050da3e456de11a1bce0f0" category="list-text">ホストをリブートして、ブートが正常に完了したことを確認します。</block>
-  <block id="f7de5451f0d12f9de62cf0d59c9695f2" category="admonition">複数のパスは、ホストOSが起動してそのパスで実行されたあとにのみ使用可能になります。</block>
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph"><block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block>コマンドを実行すると、次のような出力が生成されます。次の例の出力は省略されています。</block>
   <block id="1f9090c13a627840d3e8110654671ecd" category="cell">SUSE Linux Enterprise Server 15S P2 OSのインストール完了後、SANからのiSCSIブートが静的IP設定で起動しない</block>
   <block id="74fe7cde6e68f9607ef6c16f62916dd8" category="paragraph">静的IP設定を使用したSUSE Linux Enterprise Server 15 SP2 OSのインストールが完了すると、iSCSIサンブートLUNの起動に失敗する。ブートアップ障害は、静的 IP 設定で毎回発生します。これにより、次のエラーメッセージが表示され、サーバが起動プロセスの続行を拒否しています。</block>
@@ -2183,7 +2169,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="f136180ccf441bafce90cc66945e28d5" category="paragraph">vCenter UIを使用してVVOLデータストアを作成すると、そのデータストアのバックアップストレージとしてFlexVolを作成できるようになります。VVOLデータストア内のVVOLには、ESXiホストからプロトコルエンドポイント（PE）を使用してアクセスされます。SAN 環境では、 PE として使用するために、データストア内の各 FlexVol に 4MB の LUN が 1 つ作成されます。SAN PEは管理論理ユニット（ALU）です。VVOLは子会社の論理ユニット（SLU）です。</block>
   <block id="f8396d6deec4872026f8255ab97b8282" category="paragraph">ESXiには、Native Multipathing Plug-in（NMP）と呼ばれる拡張可能なマルチパスモジュールが用意されており、サブプラグイン、ストレージアレイタイププラグイン（SATP）、パス選択プラグイン（PSP）を管理します。デフォルトでは、これらのSATPルールはESXiで使用できます。</block>
   <block id="d44b14edb7148595e8fd7c39e18a1d82" category="paragraph">vCenter UIを使用してVVOLデータストアを作成すると、そのデータストアのバックアップストレージとしてFlexVolを作成できるようになります。VVOLデータストア内のVVOLには、ESXiホストがプロトコルエンドポイント（PE）を使用してアクセスします。SAN 環境では、 PE として使用するために、データストア内の各 FlexVol に 4MB の LUN が 1 つ作成されます。SAN PEは管理論理ユニット（ALU）です。VVOLは子会社の論理ユニット（SLU）です。</block>
-  <block id="18daf84ed810f1c72da54c0484f9c353" category="section-title">Windows Host Utilitiesのインストール</block>
   <block id="550d5f0555aa2a5e59269c14de819e78" category="summary">Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。</block>
   <block id="6896363d719a238fdc4b6d2ef8ef5a78" category="doc">Windows Host Utilities 7.1のインストール</block>
   <block id="f0ed46888b875cc5c73315cc1272f90b" category="paragraph">Windows Host Utilitiesを使用すると、WindowsホストコンピュータをNetAppストレージシステムに接続できます。</block>
@@ -2296,23 +2281,16 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="12019871b1c1fb86c8b96a14a8a0d87b" category="list-text"><block ref="df729424b829987d85e6e4181d0da2e5" prefix="" category="inline-code"></block></block>
   <block id="e9caa2fbbe110ef69dc016bc16c3a49d" category="list-text">ネームスペースが作成されたことを確認します。</block>
   <block id="ecf0c848ba2569e96b551762e31fb53a" category="paragraph"><block ref="a24d9720998709cd16e0a6013010df1b" prefix="" category="inline-code"></block></block>
-  <block id="c27f42ef1dd62f55beb26309bacd2581" category="paragraph">MPIOソフトウェアは、すべてのパスについて単一のディスクをWindows OSに提供し、パスのフェイルオーバーはDevice-Specific Module（DSM；デバイス固有モジュール）が管理します。Windowsシステムでは、MPIOソリューションの2つの主要コンポーネントはDSMとWindows MPIOです。</block>
   <block id="9eb01e2d5f78a1ebcc6f4f019384dbf4" category="admonition">MPIOソフトウェアをインストールしない場合、Windows OSは各パスを個別のディスクとして認識する可能性があります。これにより、データが破損する可能性があります。</block>
   <block id="198983b35ee46ea062d1cabf85f522db" category="admonition">Hyper-V仮想マシンで実行されているWindows XPまたはWindows Vistaは、MPIOをサポートしていません。</block>
-  <block id="ebafa948e488222fb51d74d762de66f4" category="paragraph">Windows OSは、ローカルブートまたはSANブートを使用してブートできます。ご使用の構成でSANブートがサポートされている場合は、NetAppでSANブートを使用することを推奨します。</block>
   <block id="9ce2fcadde50a0f6f02b767f526a925d" category="open-title">ローカルブート</block>
-  <block id="df98c9f379a2c7043a362f477e6bc3ec" category="paragraph">ローカルハードディスク(SSD、SATA、RAIDなど)にWindows OSをインストールして、ローカルブートを実行します。</block>
   <block id="5c715b8fde529251e535a7b4e48f84c2" category="open-title">SAN ブート</block>
   <block id="58d0fc761c647663983ac6b7e586281c" category="paragraph">SANブーティングを使用する場合は、使用している構成でサポートされている必要があります。</block>
   <block id="47d17b750a3f193d9db742ef86494b1e" category="paragraph">を使用<block ref="b77f230f2effb14751e6164ceee6da3f" category="inline-link-rx"></block>して、Windows OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。</block>
-  <block id="3097ad2af11c180c3e0a96a78dfe1685" category="inline-link-macro">SANストレージ管理</block>
-  <block id="5fa27798a398e981850ac8db94c48efa" category="paragraph">を参照して <block ref="331abebe4c201790e2378608c644cbb6" category="inline-link-macro-rx"></block></block>
-  <block id="a68eb6fa2edcdc8960e83492a4af4541" category="list-text">ホストをリブートしてブートが成功したことを確認する</block>
   <block id="ba5e9a5307d838817264d934e6080263" category="paragraph">SAN構成に応じて、オールSANアレイ（ASA）構成または非ASA構成を使用してONTAP LUNにアクセスします。ASA構成とASA以外の構成のどちらでも、1つのONTAP LUNにアクセスするためのパスを4つまでにする必要はありません。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。</block>
   <block id="df71bac0ba76ff83dcf7e26b1350fe50" category="paragraph">ASA構成には、単一の優先度を持つアクティブ/最適化パスのグループが1つ必要です。つまり、パスはコントローラによって処理され、すべてのアクティブパスでI/Oが送信されます。</block>
   <block id="6a25c5df0849f9286646dc1c4746bc77" category="paragraph">次の例は、アクティブ/最適パスを使用するONTAP LUNの正しい出力を示しています。</block>
   <block id="7e7bd9d92ebb121bcce736b10711ab8c" category="admonition">Microsoft Update Catalogからダウンロードできない修正プログラムについては、Microsoftサポートにお問い合わせください。</block>
-  <block id="4c2bfdf61e2e24a49c061c9666b96e1b" category="admonition">多くの修正プログラムでは、Windowsホストのリブートが必要です。Host Utilitiesをインストールまたはアップグレードするまで、ホストのリブートを待つこともできます。</block>
   <block id="9bd687f53bb8eba834ecb54f33ebf261" category="paragraph">ディスクパーティションのデータブロック境界が基盤となるLUNのブロック境界と一致していない場合、ストレージシステムは多くの場合、オペレーティングシステムのブロック読み取りまたは書き込みごとにブロック読み取りまたは書き込みを2回実行する必要があります。ミスアライメントが原因で追加のブロック読み取り / 書き込みが発生すると、深刻なパフォーマンスの問題が生じる可能性があります。</block>
   <block id="2ff9b2398c78131af0b1d1523781ef19" category="paragraph">マスターブートレコードによって定義された各パーティションの開始セクターの場所が、ミスアライメントの原因となります。</block>
   <block id="6b56b79977ded504f44030c7aacf202c" category="paragraph">ONTAP PowerShell Toolkitのコマンドレットを使用し<block ref="4e1e27349c8a128a19e874bcbd0666b6" prefix=" " category="inline-code"></block>て、パーティションが基盤となるLUNとアライメントされているかどうかを確認します。パーティションのアライメントが正しくない場合は、コマンドレットを使用し<block ref="1c425220dcb59c3825f2baed3229bb55" prefix=" " category="inline-code"></block>て、アライメントが正しい新しいVHDファイルを作成します。このコマンドレットは、すべてのパーティションを新しいファイルにコピーします。元の VHD ファイルは変更も削除もされません。データがコピーされている間は、仮想マシンをシャットダウンする必要があります。</block>
@@ -2333,30 +2311,16 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="68bccc9f47a1d689c835812de6c7a435" category="admonition">の<block ref="7b530ba82b70d4821bf776b3f3fb778a" prefix=" " category="inline-code"></block>は、<block ref="cd096f9e86c0ef0d9e34df35a959627c" prefix=" " category="inline-code"></block>ブートディスクの実際のディスク識別子のプレースホルダです。</block>
   <block id="6b1a062ab30f453c4d8f30042bd36a0d" category="summary">ONTAP SANホストの構成設定を使用して、ONTAPストレージで動作するようにWindows Server 2025を構成できます。</block>
   <block id="6cbabda8de389ba6ce8a60e0359b51b7" category="doc">ONTAPストレージ用のWindows Server 2025の設定</block>
-  <block id="24c9734089a30c666463d52a352e3326" category="section-title">Windows OSのブート</block>
   <block id="d211c3930b27be56feb1a5044f105d64" category="paragraph">NetAppでは、Microsoft Updateカタログから入手可能な最新の累積更新プログラム*をホストサーバーにインストールすることをお勧めします。</block>
   <block id="c6e9e839e8304cacb5378299e7f6ca42" category="inline-link-macro">Microsoft Update Catalog 2025</block>
   <block id="68e5c8d1251c633565ba668446a95b32" category="list-text">からホットフィックスをダウンロードし<block ref="86167046a85b88d4b396a82107daadba" category="inline-link-macro-rx"></block>ます。</block>
-  <block id="bcf622355381554644b7b19355170fb1" category="paragraph">Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。</block>
   <block id="4be31bb14f28cd1a1a92b994b241b6e3" category="paragraph">ONTAPリリースのWindows Server 2025での既知の問題はありません。</block>
   <block id="769a40f63534a31b2b123052ac1da6ad" category="list-text"><block ref="76b66d5f379b691153dc22425201f6ae" prefix=" " category="inline-code"></block>コマンドの出力を確認して、設定が完了していることを確認します。<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block>コマンドを使用して、ONTAP LUNの設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
   <block id="47e930d345db593756a39027df077a51" category="paragraph">ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
-  <block id="fc50f2493bad30bed7c038ecd3810f93" category="doc">ONTAPでWindows Server 2012 R2を使用する</block>
-  <block id="90e0eb50d77220c88968e61e6c89e567" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPストレージで動作するようにWindows Server 2012 R2を設定できます。</block>
   <block id="d7b8955c7b96bef9985fd48649d70251" category="list-text">からホットフィックスをダウンロードし<block ref="c91fa8395bb99838be8ab4e7b48666cc" category="inline-link-macro-rx"></block>ます。</block>
-  <block id="0a2cdf45f16c5bcac7186ac07812cdce" category="paragraph">Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。MPIOサポートを選択すると、Windows Host UtilitiesでWindows Server 2012 R2に含まれているMPIO機能が有効になります。Windows Host Utilitiesを使用しない場合は、マルチパスを手動で有効にする必要があります。</block>
-  <block id="31c93f15c528366dfc58055f875a34cd" category="doc">ONTAPでWindows Server 2016を使用</block>
-  <block id="3d01866452cd64359121ccc794a6e0ca" category="paragraph">ONTAP SANホストの構成設定を使用して、ONTAPストレージで動作するようにWindows Server 2016を構成できます。</block>
   <block id="d933dd46766685abc25b001848a8b8a5" category="list-text">からホットフィックスをダウンロードし<block ref="6e6b75f4256049ee1dbc008868e8aa3a" category="inline-link-macro-rx"></block>ます。</block>
-  <block id="43490c570a858087e3c2378b85a7dbea" category="paragraph">Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。MPIOのサポートを選択すると、Windows Host UtilitiesでWindows Server 2016のMPIO機能が有効になります。Windows Host Utilitiesを使用しない場合は、マルチパスを手動で有効にする必要があります。</block>
-  <block id="4224c766e662726e9cf96dddea9f4e7a" category="doc">ONTAPでWindows Server 2019を使用する</block>
-  <block id="7736a65c91a62ba2a8b7aadb3cf461da" category="paragraph">ONTAP SANホストの構成設定を使用して、ONTAPストレージで動作するようにONTAPを搭載したWindows Server 2019を構成できます。</block>
   <block id="35fec4b95b75bf64df4556334d921ef8" category="list-text">からホットフィックスをダウンロードし<block ref="145f31fd192f816eb74b3bac6d3cac60" category="inline-link-macro-rx"></block>ます。</block>
-  <block id="c94dd2d695431882dfa7ae6e19a7febb" category="paragraph">Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。MPIOのサポートを選択すると、Windows Host UtilitiesでWindows Server 2019に含まれているMPIO機能が有効になります。Windows Host Utilitiesを使用しない場合は、マルチパスを手動で有効にする必要があります。</block>
-  <block id="a1c2de0c15edd5b78acba06a44bdcd8a" category="doc">ONTAPでWindows Server 2022を使用</block>
-  <block id="2dee01b5959243269004d022056184d2" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPストレージで動作するようにWindows Server 2022を構成できます。</block>
   <block id="c770fe286b0fbfc90b0ed457920cd83d" category="list-text">からホットフィックスをダウンロードし<block ref="47dfbc363030c19b6fccb995dd42bb8c" category="inline-link-macro-rx"></block>ます。</block>
-  <block id="fa9f943956ba22db15d970418ff02172" category="paragraph">Windowsホストからストレージシステムへのパスが複数ある場合は、MicrosoftマルチパスI/O（MPIO）ソフトウェアをインストールし、マルチパスを有効にする必要があります。MPIOのサポートを選択すると、Windows Host UtilitiesでWindows Server 2022に含まれているMPIO機能が有効になります。Windows Host Utilitiesを使用しない場合は、マルチパスを手動で有効にする必要があります。</block>
   <block id="8abc082f978aa2a27e65e7507ac905d7" category="paragraph">Windows Host Utilitiesは、次のバージョンのWindowsをサポートします。</block>
   <block id="989db21aea1c122bc4034e50ecb6887c" category="list-text">Windows 2025</block>
   <block id="e1fb3bc85942df243da9db83c85073bd" category="cell">MPIOのサポートが指定されており、サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合</block>
@@ -2365,7 +2329,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="fa5c369c0560373ede3332d2508c4819" category="paragraph">Windows Host Utilities 7.2をインストールすると、LimTransferSizeパラメータは自動的に「1」に設定されます。インストール後、LimTransferSizeの値を「0」に手動で変更し、サーバーを再起動する必要があります。</block>
   <block id="70cefc9a608dc188dd16deb1397a1529" category="cell">MPIOサポートが指定されており、サーバがWindows Server 2016、2012 R2、2012、2008 R2、または2008の場合（Data ONTAP DSMが検出された場合を除く）</block>
   <block id="28c4a2aff9dab89964d88a9594119baa" category="cell">サーバがWindows Server 2016、2012 R2、2012、2008 R2、または2008の場合</block>
-  <block id="b76b67fa1e708efcaa2d6a257e3dc3a5" category="summary">Windows Server 2052 with ONTAP のNVMe/FCホスト構成</block>
   <block id="e240b4a9acf4df1925780394d9f14be9" category="doc">ONTAP用のNVMe/FCを搭載したWindows Server 2025の設定</block>
   <block id="1332a2397f4fcbb21e78a6e3c713af4b" category="paragraph">Windows Server 2025を実行しているホストでは、ONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。</block>
   <block id="936aa4aa59385428bc622db0d7601422" category="paragraph">Windows 2025用のNVMe/FCホスト構成では、次のサポートを使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。</block>
@@ -3206,9 +3169,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="60ea83a256e34e4aed94c91d597adaf5" category="list-text">ONTAP LUN のパスのステータスを確認します。</block>
   <block id="75071f879ade2dc0f45d0e1a051102ee" category="paragraph">次の出力例は、 ASA、 AFF、またはFAS構成におけるONTAP LUN の正しいパス ステータスを示しています。出力では、各 LUN の「アクセス状態」に対してパスの優先度が表示されます。</block>
   <block id="d9f2520a8186ee208856208082340e74" category="list-text"><block ref="6bbc6d6d1be9b0c8545cc554c24cac69" category="inline-link-macro-rx"></block> 。</block>
-  <block id="f85ab5a5f387d0879002bd231c5c7e16" category="list-text">Windows Host Utilities 8.0 では、MPIO サポートを選択すると MPIO 機能が自動的に有効になります。</block>
-  <block id="90c832268551abb0310d76e67c8084da" category="list-text">Hyper-V 仮想マシンで実行されている Windows XP または Windows Vista は MPIO をサポートしていません。</block>
-  <block id="1450c50761af7763fd8f676e9158f0ac" category="paragraph">Windows ホスト ユーティリティは、ホスト コンピュータをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。  NetApp、最新のユーティリティ キットをダウンロードしてインストールすることをお勧めします。  Windowsホストユーティリティの設定情報と手順については、<block ref="c433ee028385f6593bee6209817254f2" category="inline-link-macro-rx"></block> Windows ホスト ユーティリティ バージョンのインストール手順を選択します。</block>
   <block id="b3b8083d2b1fb45bfd886fd71df23ad5" category="doc">ステップ2: FC HBAとスイッチを構成する</block>
   <block id="6cd11e019fdc747b81fff93600ba2a9f" category="list-text">対象サービスを開始します。</block>
   <block id="443ff4f3c9c7a278f2558cfbf8620de1" category="paragraph">参照<block ref="357ba997d0a8a18a99ca5e02e5517da8" category="inline-link-rx"></block>詳細なケーブル接続および構成情報については、こちらをご覧ください。</block>
@@ -3973,4 +3933,37 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="813cc633e0459359ed043e6d76025c2c" category="paragraph">たとえば、オンプレミスのONTAPストレージをオンプレミスの SAN ホストまたは SAN クラウド クライアントに接続するように構成できます。クラウド環境で実行されるストレージサービスを構成することもできます。<block ref="cdfecfe4eb59bc17d075f2da08aa8dad" category="inline-link-macro-rx"></block>または<block ref="8ad7a6b53b9076e00c14225601db07c4" category="inline-link-macro-rx"></block>オンプレミスの SAN ホストまたは SAN クラウド クライアントに接続します。</block>
   <block id="9831e45ea03c86b202350b5eb137e309" category="sidebar">XenServer 8.4</block>
   <block id="df472899f555ad076c9b90f4bd508f91" category="sidebar">ハイパーバイザー 8.2</block>
+  <block id="acf2ddfd48a6a24bda067d6e04e94f29" category="doc">ステップ4: ホストのマルチパス構成を確認する</block>
+  <block id="7aeddcaacf2b32401e7a3259c54bb6c0" category="paragraph">Windows ホストにストレージ システムへのパスが複数ある場合は、Microsoft Multipath I/O (MPIO) ソフトウェアをインストールし、マルチパスを有効にします。</block>
+  <block id="4fa0afdc437793b73c9f3c23cdd3ebdd" category="paragraph">Windows システムでは、MPIO ソリューションの 2 つの主要コンポーネントは、デバイス固有モジュール (DSM) と Windows MPIO です。MPIO はすべてのパスに対して 1 つのディスクを Windows OS に提示し、DSM はパスのフェイルオーバーを管理します。</block>
+  <block id="7b08d528e06e07ceac5779127d12b299" category="list-text">MPIO ソフトウェアをインストールし、マルチパスを有効にします。</block>
+  <block id="ed1b2b5a128a4696bca9e41fc59d5595" category="paragraph">SAN 構成に応じて、ホストはASA、 AFF、またはFAS構成を使用してONTAP LUN にアクセスします。これらの構成では、単一のONTAP LUN にアクセスするために 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。</block>
+  <block id="83116fea88b383257fbc4e32a107435f" category="paragraph">次の出力例は、 ASA、 AFF、またはFAS構成のONTAP LUN の正しい設定を示しています。</block>
+  <block id="9fd90abc366dc82707cd08614fb03cc1" category="paragraph">ASA構成には、単一の優先順位を持つアクティブ/最適化されたパスの 1 つのグループが必要です。コントローラはパスを処理し、すべてのアクティブ パスで I/O を送信します。</block>
+  <block id="2668d75d00d2b0c89fc0268c581eea9a" category="paragraph">AFFまたはFAS構成には、優先度が異なる 2 つのパス グループが必要です。優先度の高いパスはアクティブ/最適化されており、アグリゲートが配置されているコントローラによってサービスされます。優先度の低いパスは別のコントローラからサービスされます。これらはアクティブですが最適化されておらず、最適化されたパスが利用できない場合にのみ使用されます。</block>
+  <block id="778265cdd82e615c65e819202c4f1a45" category="paragraph">ローカル ブートまたは SAN ブートを使用して Windows OS を起動できます。NetApp、導入を簡素化し、スケーラビリティを向上させるために SAN ブートの使用を推奨しています。</block>
+  <block id="da42b168559eb3f7c8663fcad45f08cb" category="list-text"><block ref="6cdc790cf038e6e4c1fc6fe01e6057a7" category="inline-link-macro-rx"></block>。</block>
+  <block id="9c3530e2722834048b2844c3d51c3f9d" category="paragraph">SSD、SATA、RAID などのローカル ハード ディスクに Windows OS をインストールして、ローカル ブートを実行します。</block>
+  <block id="732f2da8f62b9da0ea923952084874de" category="inline-link-macro">Windowsホストユーティリティのレジストリ設定について学ぶ</block>
+  <block id="adb6b5051a1f8d77d4d01917e922a3e4" category="paragraph"><block ref="c1331b771adf93ff52db3f4f543e95b0" category="inline-link-macro-rx"></block>。</block>
+  <block id="418566369566c44bb7140916a64786a1" category="admonition">多くのホットフィックスでは、Windows ホストの再起動が必要です。ホスト ユーティリティをインストールまたはアップグレードした後まで、ホストの再起動を待つことができます。</block>
+  <block id="a280834ebf64082d80348b8606fd1022" category="paragraph">Windows ホスト ユーティリティは、ホスト コンピュータをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。NetApp、 ONTAP LUN 管理をサポートし、テクニカル サポートが構成データを収集できるようにするために、最新の Windows ホスト ユーティリティをダウンロードしてインストールすることを推奨しています。</block>
+  <block id="0dbfca139f278e370070260ca86e7bea" category="paragraph">Windowsホストユーティリティの設定とインストール情報については、 <block ref="0030a0ca2c8a5e3c1ffa16a150ed65f9" category="inline-link-macro-rx"></block> ドキュメントを参照し、Windows ホスト ユーティリティ バージョンのインストール手順を選択してください。</block>
+  <block id="a3a87f35eaec11e7cfdeaa926efcea3e" category="doc">ONTAPストレージを使用して Windows Server 2025 を FCP および iSCSI 用に構成する</block>
+  <block id="be19d16101f490dcf123445eaace114d" category="paragraph">Windows ホスト ユーティリティは、Windows ホストをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。Windows Server 2025 ホストに Windows ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。。</block>
+  <block id="198324955fafd67306806495fdc17bc3" category="section-title">ステップ2: Windowsの修正プログラムをインストールする</block>
+  <block id="6ddbd1366aa70807a114ac035548f288" category="summary">Windows Server 2012 R2 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="0fa7328b9e38e8818cb96154139fd901" category="doc">ONTAPストレージを使用して Windows Server 2012 R2 を FCP および iSCSI 用に構成する</block>
+  <block id="7bbebb794883f3e8c294ae39c947f4cf" category="paragraph">Windows ホスト ユーティリティを使用すると、Windows ホストをNetApp SAN 上の仮想ディスク (LUN) に接続できます。Windows Server 2012 R2 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="89f19d3dd385006b8601930fa1399926" category="section-title">ステップ5: 既知の問題を確認する</block>
+  <block id="92d20a0d51c7098b77c72ced4b00e41d" category="summary">Windows Server 2016 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="88f5aab84286b3491813ff2276ca51e6" category="doc">ONTAPストレージを使用して Windows Server 2016 を FCP および iSCSI 用に構成する</block>
+  <block id="db696da43111f12e0818032113690889" category="paragraph">Windows ホスト ユーティリティを使用すると、Windows ホストをNetApp SAN 上の仮想ディスク (LUN) に接続できます。Windows Server 2016 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="18a7214adf6ce65fd475ed97300158d3" category="summary">Windows Server 2019 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="7bd8ad6a6c99f7cf940ca82947d37315" category="doc">ONTAPストレージを使用して Windows Server 2019 を FCP および iSCSI 用に構成する</block>
+  <block id="3f96a445aa0fb948c50d9ff384c62d6d" category="paragraph">Windows ホスト ユーティリティを使用すると、Windows ホストをNetApp SAN 上の仮想ディスク (LUN) に接続できます。Windows Server 2019 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="67205e91e6dec7087076a981693046ea" category="summary">Windows Server 2022 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="c837c9f198826f442b66f894573d645a" category="doc">ONTAPストレージを使用して Windows Server 2022 を FCP および iSCSI 用に構成する</block>
+  <block id="5ace3cca365ccbdb8f0e3d9f7ad3cbc4" category="paragraph">Windows ホスト ユーティリティを使用すると、Windows ホストをNetApp SAN 上の仮想ディスク (LUN) に接続できます。Windows Server 2022 ホストに Windows ホスト ユーティリティをインストールして、 ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理できるようにします。</block>
+  <block id="389fe84231bcd8fc6a6af990aeeab91b" category="summary">ONTAPを使用した Windows Server 2025 の NVMe/FC ホスト構成。</block>
 </blocks>

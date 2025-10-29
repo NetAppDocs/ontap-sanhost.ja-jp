@@ -1,5 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-Windows ホスト ユーティリティは、ホスト コンピュータをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。  NetApp、最新のユーティリティ キットをダウンロードしてインストールすることをお勧めします。  Windowsホストユーティリティの設定情報と手順については、link:https://docs.netapp.com/us-en/ontap-sanhost/hu-wuhu-release-notes.html["Windows Host Utilitiesのマニュアル"] Windows ホスト ユーティリティ バージョンのインストール手順を選択します。
