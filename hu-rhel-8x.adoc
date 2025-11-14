@@ -1,0 +1,331 @@
+---
+sidebar: sidebar 
+permalink: hu-rhel-8x.html 
+keywords: host utilities, red hat, rhel, linux, 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0, netapp, ontap, rhel 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、RHEL 8.x ホストに Linux ホスト ユーティリティをインストールします。 
+---
+= ONTAPストレージを使用して RHEL 8.x を FCP および iSCSI 用に構成する
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Red Hat Enterprise Linux (RHEL) 8.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
+
+
+NOTE: ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
+
+
+
+== 手順1：必要に応じてSANブートを有効にします。
+
+SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
+
+.開始する前に
+を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+
+.手順
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANブートLUNを作成し、ホストにマップする"^]です。
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+
+
+
+
+== 手順2：Linux Host Utilitiesをインストールする
+
+NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
+
+link:hu-luhu-80.html["Linuxホストユーティリティ8.0をインストールする"] 。
+
+
+NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。
+
+
+
+== 手順3：ホストのマルチパス構成を確認する
+
+RHEL 8.x のマルチパスを使用してONTAP LUN を管理できます。
+
+ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
+
+.手順
+. ファイルが終了することを確認し `/etc/multipath.conf`ます。ファイルが存在しない場合は、空のゼロバイトファイルを作成します。
++
+[source, cli]
+----
+touch /etc/multipath.conf
+----
+. ファイルの初回作成時には `multipath.conf`、マルチパスサービスを有効にして開始し、推奨設定をロードしなければならない場合があります。
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. ホストをブートするたびに、空のゼロバイトファイルによって `/etc/multipath.conf`、NetApp推奨のホストマルチパスパラメータがデフォルト設定として自動的にロードされます。オペレーティングシステムは、ONTAP LUNを正しく認識および管理するマルチパスパラメータでコンパイルされているため、ホスト用のファイルを変更する必要はありません `/etc/multipath.conf`。
++
+次の表に、Linux OS標準でコンパイルされたONTAP LUNのマルチパスパラメータの設定を示します。
+
++
+.パラメータ設定の表示
+[%collapsible]
+====
+[cols="2"]
+|===
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | " 無限 " 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | "2 pg_init_retries 50" 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| パスの再試行なし | キュー 
+
+
+| path_checker です | " tur " 
+
+
+| path_grouping_policy | 「 group_by_prio 」 
+
+
+| path_selector | "service-time 0" 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | " 均一 " 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
+|===
+====
+. ONTAP LUNのパラメータ設定とパスステータスを確認します。
++
+[source, cli]
+----
+multipath -ll
+----
++
+デフォルトのマルチパスパラメータでは、ASA、AFF、およびFASの構成がサポートされます。このような構成では、1つのONTAP LUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。
+
++
+次の出力例は、ASA、AFF、またはFAS構成のONTAP LUNについて、正しいパラメータ設定とパスステータスを示しています。
+
++
+[role="tabbed-block"]
+====
+.ASA構成
+--
+ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+multipath -ll
+3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode
+size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 14:0:0:0  sdc  8:32   active ready running
+  |- 17:0:0:0  sdas 66:192 active ready running
+  |- 14:0:3:0  sdar 66:176 active ready running
+  `- 17:0:3:0  sdch 69:80  active ready running
+----
+=====
+--
+.AFFまたはFASの設定
+--
+AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+multipath -ll
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
+size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 16:0:3:0  sdcg 69:64  active ready running
+| `- 10:0:0:0  sdb  8:16   active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 10:0:1:0  sdc  8:32   active ready running
+  `- 16:0:2:0  sdcf 69:48  active ready running
+----
+=====
+--
+====
+
+
+
+
+== 手順4：必要に応じて、マルチパスからデバイスを除外する
+
+必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
+
+.手順
+. WWIDを確認します。
++
+[source, cli]
+----
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+sdaは、ブラックリストに追加するローカルSCSIディスクです。
+
++
+WWIDの例はです `360030057024d0730239134810c0cb833`。
+
+. 「blacklist」スタンザにWWIDを追加します。
++
+[source, cli]
+----
+blacklist {
+	     wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+
+
+
+
+== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
+
+ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
+
+ファイル、特にdefaultsセクションで、をオーバーライドする可能性のある設定を確認します `/etc/multipath.conf`<<multipath-parameter-settings,マルチパスパラメータノデフォルトセッテイ>>。
+
+
+CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないでください。これらの設定は、ホスト構成のパフォーマンスを最適化するために必要です。詳細については、NetAppサポート、OSベンダー、またはその両方にお問い合わせください。
+
+次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
+
+.例を示します
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+defaults {
+   path_checker      *readsector0*
+   no_path_retry     *fail*
+}
+
+devices {
+   device {
+      vendor          "NETAPP"
+      product         "LUN"
+      no_path_retry   *queue*
+      path_checker    *tur*
+   }
+}
+----
+====
+
+
+== 手順6：既知の問題を確認する
+
+ONTAPストレージを搭載した RHEL 8.x には、次の既知の問題があります。
+
+[role="tabbed-block"]
+====
+.8.1
+--
+[cols="3*"]
+|===
+| NetApp バグ ID | タイトル | 説明 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1275843["1275843"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2672 16Gb FC HBA を搭載した Red Hat Enterprise Linux 8.1 でカーネルが停止することがあります | QLogic QLE2672 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux 8.1 カーネルでストレージのフェイルオーバー処理を実行すると、カーネルが停止することがあります。カーネルが停止すると Red Hat Enterprise Linux 8.1 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、システム停止の原因を確認できます。 QLogic QLEkmem_cache_alloc+131 モジュールには、 QLogic QLE2672 HBA イベントによるストレージフェイルオーバーが影響します。カーネルの停止後、ホスト OS をリブートし、オペレーティングシステムをリカバリすると、「 [exception RIP ： kmem_cache_alloc+131] 」という文字列が表示されます。次に、アプリケーションを再起動します 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1275838["1275838"^] | ストレージフェイルオーバー処理の実行中に、 QLogic QLE2742 32Gb FC HBA を搭載した Red Hat Enterprise Linux 8.1 でカーネルが停止します | QLogic QLE2742 ファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux 8.1 カーネルで、ストレージフェイルオーバー処理の実行中にカーネルが停止します。カーネルが停止すると Red Hat Enterprise Linux 8.1 がリブートし、アプリケーションが停止します。kdump メカニズムが有効になっている場合、カーネルが停止すると、 /var/crash/ ディレクトリにある vmcore ファイルが生成されます。vmcore ファイルをチェックして、停止の原因を特定できます。QLogic QLE2742 HBA イベントによるストレージフェイルオーバーは、「 kmem_cache_alloc+131 」モジュールに影響します。カーネルの停止後、ホスト OS をリブートし、オペレーティングシステムをリカバリすると、「 [exception RIP ： kmem_cache_alloc+131] 」という文字列が表示されます。次に、アプリケーションを再起動します。 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1266250["1266250"^] | iSCSI SAN LUN への Red Hat Enterprise Linux 8.1 のインストール中に、複数のパスへのログインが失敗します | iSCSI SAN LUN マルチパスデバイスへの Red Hat Enterprise Linux 8.1 のインストール中は、複数のパスにログインできません。マルチパス iSCSI デバイスへのインストールは実行できず、 SAN ブートデバイスでマルチパスサービスが有効になっていません。 
+|===
+--
+.8.0
+--
+[cols="3*"]
+|===
+| NetApp バグ ID | タイトル | 説明 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1238719["1238719"^] | ストレージフェイルオーバー処理中に、 QLogic QLE2672 16Gb FC を搭載した RHEL8 でカーネルが停止する | QLogic QLE2672 ホストバスアダプタ（ HBA ）を搭載した Red Hat Enterprise Linux （ RHEL ） 8 カーネルでストレージフェイルオーバー処理を実行すると、カーネルが停止することがあります。カーネルが停止すると、オペレーティングシステムがリブートします。kdump が設定されている場合は、リブートによってアプリケーションが停止し、 /var/crash/ ディレクトリの下に vmcore ファイルが生成されます。vmcore ファイルを使用して、障害の原因を特定します。この場合、「 kmem_cache_alloc+160 」モジュールで中断が発生します。vmcore ファイルには、「 [ 例外 RIP ： kmem_cache_alloc+160 」という文字列で記録されます。ホスト OS をリブートしてオペレーティングシステムをリカバリし、アプリケーションを再起動します。 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1226783["1226783"^] | すべてのファイバチャネル（ FC ）ホストバスアダプタ（ HBA ）に 204 を超える SCSI デバイスがマッピングされている場合、 RHEL8 の OS が「緊急モード」でブートする | オペレーティングシステムのリブートプロセスで 204 を超える SCSI デバイスがホストにマッピングされている場合、 RHEL8 OS が「通常モード」でブートできず、「緊急モード」になります。その結果、ほとんどのホストサービスが使用できなくなります。 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1230882["1230882"^] | RHEL8 のインストール中に、 iSCSI マルチパスデバイスにパーティションを作成することはできません。 | RHEL 8 のインストール中、 iSCSI SAN LUN マルチパスデバイスはディスクの選択に表示されません。そのため、 SAN ブートデバイスでマルチパスサービスが有効になっていません。 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1235998["1235998"^] | 「 rescan-scsi-bus.sh a 」コマンドでは、 328 を超えるデバイスをスキャンできません | 328 個を超える SCSI デバイスを持つ Red Hat Enterprise Linux 8 ホストマップの場合、ホスト OS コマンド「 rescan-scsi-bus.sh - A 」は 328 個のデバイスのみをスキャンします。ホストは残りのマッピングされたデバイスを検出しません。 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231087["1231087"^] | ストレージフェイルオーバー処理中に、 Emulex LPe16002 16Gb FC を搭載した RHEL8 で、リモートポートがブロック状態になっています | ストレージフェイルオーバー処理中、リモートポートは Emulex LPe16002 16Gb ファイバチャネル（ FC ）を搭載した RHEL8 でブロック状態に移行しています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GB FC を搭載した RHEL8 のリモートポートがブロック状態に移行しています | ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GBFibre Channel （ FC ）を搭載した RHEL8 で、リモートポートがブロック状態になっています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります。 
+|===
+--
+====
+
+
+== 次の手順
+
+* link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
+* ASMミラーリングについて説明します。
++
+Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
+
+

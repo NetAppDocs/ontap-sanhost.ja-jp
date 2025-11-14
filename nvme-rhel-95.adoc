@@ -18,7 +18,7 @@ summary: ONTAPを使用したRHEL 9.5用のNVMe-oFホストの設定方法
 [role="lead"]
 Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-Red Hat Enterprise Linux (RHEL) 9.5 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。サポートと機能に関する詳しい情報については、link:hu-nvme-index.html["NVME-oFの概要"^] 。
+RHEL 9.5 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:hu-nvme-index.html["NVME-oFの概要"^]。
 
 RHEL 9.5 の NVMe-oF には既知の制限はありません。
 

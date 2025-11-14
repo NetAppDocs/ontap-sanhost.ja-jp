@@ -34,7 +34,7 @@ SANブーティングを使用する場合は、使用している構成でサ�
 を使用 https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Windows OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
 
 .手順
-. link:https://docs.netapp.com/us-en/ontap/san-management/index.html["SANブートLUNを作成し、ホストにマップする"^]。
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANブートLUNを作成し、ホストにマップする"^]です。
 . SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
 +
 HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
