@@ -16,9 +16,9 @@ summary: ONTAP で Rocky Linux 8.5 用の NVMe-oF ホストを構成する方法
 
 
 [role="lead"]
-Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
+Rocky Linux ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-Rocky Linux 8.5 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、link:hu-nvme-index.html["NVME-oFの概要"^] 。
+Rocky Linux 8.5 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 link:nvme-rockylinux-overview.html["Rocky Linux ONTAPのサポートと機能"]。
 
 *Rocky Linux 8.5 の NVMe-oF には、次の既知の制限があります。*
 
@@ -46,7 +46,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 == ステップ2: ソフトウェアバージョンとNVMe構成を確認する
 
-システムがソフトウェア要件を満たしていることを確認し、NVMe パッケージのインストールとホスト構成を確認します。
+NVMe-oF 用にホストを構成するには、ホストと NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
 
 .手順
 . サーバーに Rocky Linux 8.5 をインストールします。インストールが完了したら、必要な Rocky Linux 8.5 カーネルが実行されていることを確認します。

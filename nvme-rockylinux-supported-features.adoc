@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: nvme-rockylinux-supported-features.html 
+keywords: nvme, linux, rocky linux, red hat, enterprise 
+summary: Rocky Linux のONTAPサポートと機能について学ぶ 
+---
+= Rocky Linux のONTAPサポートと機能について学ぶ
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NVMe over Fabrics (NVMe-oF) を使用したホスト構成でサポートされる機能は、 ONTAPおよび Rocky Linux のバージョンによって異なります。
+
+[cols="50,25,25"]
+|===
+| 特徴 | Rocky Linuxホストバージョン | ONTAPのバージョン 
+
+
+| RHELホストとONTAPコントローラ間のNVMe/TCP経由の安全なインバンド認証がサポートされています。  a| 
+9.3以降
+| 9.12.1以降 
+
+
+| NVMe/TCPはネイティブを使用して名前空間を提供します `nvme-cli`パッケージ  a| 
+8.2以降
+| 9.10.1以降 
+
+
+| NVMe/TCPは完全にサポートされているエンタープライズ機能です  a| 
+9.0以降
+| 9.10.1以降 
+
+
+| NVMe と SCSI トラフィックは、NVMe-oF 名前空間の場合は NVMe マルチパス、SCSI LUN の場合は dm-multipath を使用して、同じホスト上でサポートされます。  a| 
+8.2以降
+| 9.4以降 
+|===
+ONTAP は、システム セットアップで実行されているONTAP のバージョンに関係なく、次の SAN ホスト機能をサポートします。
+
+[cols="75,25"]
+|===
+| 特徴 | Rocky Linuxホストバージョン 
+
+
+| ネイティブNVMeマルチパスはデフォルトで有効になっています  a| 
+10.0以降
+
+
+
+| SANブートはNVMe/FCプロトコルを使用して有効化されます  a| 
+9.4以降
+
+
+
+| その `nvme-cli`パッケージには自動接続スクリプトが含まれており、サードパーティのスクリプトは不要になります。  a| 
+8.2以降
+
+
+
+| ネイティブudevルール `nvme-cli`パッケージはNVMeマルチパスのラウンドロビン負荷分散を提供します  a| 
+8.2以降
+
+|===
+
+NOTE: サポートされている構成の詳細については、link:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^] 。
+
+.関連情報
+link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["NVMeプロトコルの管理について学ぶ"]
