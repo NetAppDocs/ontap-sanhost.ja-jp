@@ -1,0 +1,677 @@
+---
+sidebar: sidebar 
+permalink: nvme-proxmox-ve-9x.html 
+keywords: nvme, proxmox, enterprise 
+summary: ONTAPストレージを搭載したProxmox VE 9.0用のNVMe-oFホストを構成する方法 
+---
+= ONTAPストレージでNVMe-oF用にProxmox VE 9.0を構成する
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Proxmox VE 9.0 ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
+
+Proxmox VE 9.0 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 link:nvme-proxmox-supported-features.html["ONTAPのサポートと機能"^]。
+
+
+NOTE: Proxmox VE 9.0 は、NVMe-FC の SAN ブート構成をサポートしていません。
+
+
+
+== ステップ1: ソフトウェアバージョンとNVMe構成を確認する
+
+NVMe-oF 用にホストを構成するには、ホストと NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
+
+.手順
+. サーバーに Proxmox VE 9.0 をインストールします。インストールが完了したら、必要な Proxmox VE 9.0 カーネルが実行されていることを確認します。
++
+[source, cli]
+----
+uname -r
+----
++
+Proxmox VE 9.0 カーネルバージョンの例:
+
++
+[listing]
+----
+6.14.8-2-pve
+----
+. 「 nvme-cli 」パッケージをインストールします。
++
+[source, cli]
+----
+apt list|grep nvme-cli
+----
++
+次の例は、  `nvme-cli`パッケージバージョン:
+
++
+[listing]
+----
+nvme-cli/stable,now 2.13-2 amd64
+----
+. をインストールします `libnvme` パッケージ：
++
+[source, cli]
+----
+apt list|grep libnvme
+----
++
+次の例は、  `libnvme`パッケージバージョン:
+
++
+[listing]
+----
+libnvme-dev/stable 1.13-2 amd64
+----
+. ホスト上で、hostnqn文字列を確認します。  `/etc/nvme/hostnqn` ：
++
+[source, cli]
+----
+cat /etc/nvme/hostnqn
+----
++
+次の例は、 `hostnqn`価値：
+
++
+[listing]
+----
+nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
+----
+. を確認します `hostnqn` 文字列はに一致します `hostnqn` ONTAP アレイ上の対応するサブシステムの文字列。
++
+[source, cli]
+----
+::> vserver nvme subsystem host show -vserver vs_proxmox_FC_NVMeFC
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+Vserver Subsystem Priority  Host NQN
+------- --------- --------  -----------------------------------------------
+vs_proxmox_FC_NVMeFC
+        sub_176
+                  regular   nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a4834
+                  regular   nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
+2 entries were displayed
+----
+====
++
+
+NOTE: もし `hostnqn`文字列が一致しない場合は、 `vserver modify`更新するコマンド `hostnqn`対応するONTAPストレージシステムサブシステムの文字列を `hostnqn`文字列から `/etc/nvme/hostnqn`ホスト上。
+
+
+
+
+
+== ステップ2: NVMe/FCとNVMe/TCPを構成する
+
+Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を構成するか、手動の検出および接続操作を使用して NVMe/TCP を構成します。
+
+.手順
+[role="tabbed-block"]
+====
+.NVMe/FC - ブロードコム/エミュレックス
+--
+Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
+
+. サポートされているアダプタモデルを使用していることを確認します。
++
+.. モデル名を表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modelname
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+SN1700E2P
+SN1700E2P
+----
+.. モデルの説明を表示します:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modeldesc
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+HPE SN1700E 64Gb 2p FC HBA
+HPE SN1700E 64Gb 2p FC HBA
+----
+
+
+. 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアおよび受信トレイドライバ：
++
+.. ファームウェアのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/fwrev
+----
++
+このコマンドはファームウェアのバージョンを返します。
+
++
+[listing]
+----
+14.4.473.14, sli-4:6:d
+14.4.473.14, sli-4:6:d
+----
+.. 受信トレイのドライバーのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/module/lpfc/version
+----
++
+次の例は、ドライバーのバージョンを示しています。
+
++
+[listing]
+----
+0:14.4.0.7
+----
+
+
++
+サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
+
+. 確認します `lpfc_enable_fc4_type` がに設定されます `3`：
++
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+----
+. イニシエータポートを表示できることを確認します。
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_name
+----
++
+次のような出力が表示されます。
+
++
+[listing]
+----
+0x10005ced8c531948
+0x10005ced8c531949
+----
+. イニシエータポートがオンラインであることを確認します。
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_state
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+Online
+Online
+----
+. NVMe/FCイニシエータポートが有効になっており、ターゲットポートが認識されることを確認します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
++
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x10005ced8c531948 WWNN x20005ced8c531948 DID x082400 *ONLINE*
+NVME RPORT       WWPN x200ed039eac79573 WWNN x200dd039eac79573 DID x060902 *TARGET DISCSRVC ONLINE*
+NVME RPORT       WWPN x2001d039eac79573 WWNN x2000d039eac79573 DID x060904 *TARGET DISCSRVC ONLINE*
+
+NVME Statistics
+LS: Xmt 0000000034 Cmpl 0000000034 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000000142cfb Issue 0000000000142cfc OutIO 0000000000000001
+        abort 00000005 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00000005 Err 00000005
+
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x10005ced8c531949 WWNN x20005ced8c531949 DID x082500 *ONLINE*
+NVME RPORT       WWPN x2010d039eac79573 WWNN x200dd039eac79573 DID x062902 *TARGET DISCSRVC ONLINE*
+NVME RPORT       WWPN x2007d039eac79573 WWNN x2000d039eac79573 DID x062904 *TARGET DISCSRVC ONLINE*
+
+NVME Statistics
+LS: Xmt 0000000034 Cmpl 0000000034 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 00000000000d39f1 Issue 00000000000d39f2 OutIO 0000000000000001
+        abort 00000005 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00000005 Err 00000005
+----
+=====
+
+
+--
+.NVMe/FC - マーベル/QLogic
+--
+Marvell/QLogicアダプタ用にNVMe/FCを設定します。
+
+. サポートされているアダプタ ドライバーとファームウェア バージョンを使用していることを確認します。
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/symbolic_name
+----
++
+次の例は、ドライバーとファームウェアのバージョンを示しています。
+
++
+[listing]
+----
+SN1700Q FW:v9.15.05 DVR:v10.02.09.400-k
+SN1700Q FW:v9.15.05 DVR:v10.02.09.400-k
+----
+. 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
++
+[source, cli]
+----
+cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+----
++
+想定される出力は1です。
+
+
+
+--
+.NVMe/FC
+--
+NVMe/TCP プロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCPサブシステムと名前空間をNVMe/TCPコマンドで検出することができます。 `connect`または `connect-all`手動で操作します。
+
+. イニシエーター ポートが、サポートされている NVMe/TCP LIF 全体で検出ログ ページ データを取得できることを確認します。
++
+[source, cli]
+----
+nvme discover -t tcp -w host-traddr -a traddr
+----
++
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme discover -t tcp -w 192.168.165.72 -a 192.168.165.51
+Discovery Log Number of Records 4, Generation counter 47
+=====Discovery Log Entry 0======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  3
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:discovery
+traddr:  192.168.165.51
+eflags:  *explicit discovery connections*, *duplicate discovery information*
+sectype: none
+=====Discovery Log Entry 1======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  1
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:discovery
+traddr:  192.168.166.50
+eflags:  *explicit discovery connections*, *duplicate discovery information*
+sectype: none
+=====Discovery Log Entry 2======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *nvme subsystem*
+treq:    not specified
+portid:  3
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:subsystem.sub_176
+traddr:  192.168.165.51
+eflags:  none
+sectype: none
+=====Discovery Log Entry 3======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *nvme subsystem*
+treq:    not specified
+portid:  1
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:subsystem.sub_176
+traddr:  192.168.166.50
+eflags:  none
+sectype: none
+----
+=====
+. を実行します `nvme connect-all` ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象としたコマンド：
++
+[source, cli]
+----
+nvme connect-all -t tcp -w host-traddr -a traddr
+----
++
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme connect-all -t tcp -w 192.168.166.73 -a 192.168.166.50
+nvme connect-all -t tcp -w 192.168.166.73 -a 192.168.166.51
+nvme connect-all -t tcp -w 192.168.165.73 -a 192.168.165.50
+nvme connect-all -t tcp -w 192.168.165.73 -a 192.168.165.51
+----
+=====
+
+
+[NOTE]
+====
+NVMe/TCPの設定 `ctrl_loss_tmo timeout`自動的に「オフ」に設定されます。結果として：
+
+* 再試行回数に制限はありません（無期限再試行）。
+* 特定の設定を手動で行う必要はありません `ctrl_loss_tmo timeout`使用時の持続時間 `nvme connect`または `nvme connect-all`コマンド（オプション -l ）。
+* NVMe/TCP コントローラーは、パス障害が発生した場合でもタイムアウトが発生せず、無期限に接続されたままになります。
+
+
+====
+--
+====
+
+
+== ステップ3: オプションでNVMe/FCの1MB I/Oを有効にする
+
+ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、 `lpfc`の価値 `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
+
+
+NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
+
+.手順
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
++
+[source, cli]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. コマンドを実行し `dracut -f`、ホストをリブートします。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
++
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
+
+
+
+
+== ステップ4: NVMeブートサービスを確認する
+
+その `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効になります。
+
+起動が完了したら、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`ブート サービスが有効になっています。
+
+.手順
+. が有効であることを確認し `nvmf-autoconnect.service`ます。
++
+[source, cli]
+----
+systemctl status nvmf-autoconnect.service
+----
++
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+○ nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot
+     Loaded: loaded (/usr/lib/systemd/system/nvmf-autoconnect.service; enabled; preset: enabled)
+     Active: inactive (dead) since Thu 2025-10-16 18:00:39 IST; 6 days ago
+ Invocation: e146e0b2c339432aad6e0555a528872c
+    Process: 1787 ExecStart=/usr/sbin/nvme connect-all --context=autoconnect (code=exited, status=0/SUCCESS)
+   Main PID: 1787 (code=exited, status=0/SUCCESS)
+   Mem peak: 2.4M
+        CPU: 12ms
+Oct 16 18:00:39 HPE-DL365-14-176 systemd[1]: Starting nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot...
+Oct 16 18:00:39 HPE-DL365-14-176 systemd[1]: nvmf-autoconnect.service: Deactivated successfully.
+Oct 16 18:00:39 HPE-DL365-14-176 systemd[1]: Finished nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot.
+----
+====
+. が有効であることを確認し `nvmefc-boot-connections.service`ます。
++
+[source, cli]
+----
+systemctl status nvmefc-boot-connections.service
+----
++
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found during boot
+     Loaded: loaded (/usr/lib/systemd/system/nvmefc-boot-connections.service; enabled; preset: enabled)
+     Active: inactive (dead) since Thu 2025-10-16 18:00:35 IST; 6 days ago
+ Invocation: acf73ac1ef7a402198d6ecc4d075fab0
+    Process: 1173 ExecStart=/bin/sh -c echo add > /sys/class/fc/fc_udev_device/nvme_discovery (code=exited, status=0/SUCCESS)
+   Main PID: 1173 (code=exited, status=0/SUCCESS)
+   Mem peak: 2.1M
+        CPU: 11ms
+
+Oct 16 18:00:35 HPE-DL365-14-176 systemd[1]: nvmefc-boot-connections.service: Deactivated successfully.
+Oct 16 18:00:35 HPE-DL365-14-176 systemd[1]: Finished nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found during boot.
+----
+====
+
+
+
+
+== ステップ5: マルチパス構成を確認する
+
+カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
+
+.手順
+. カーネル内NVMeマルチパスが有効になっていることを確認します。
++
+[source, cli]
+----
+cat /sys/module/nvme_core/parameters/multipath
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+Y
+----
+. ONTAP名前空間の適切な NVMe-oF 設定 (モデルがNetApp ONTAPコントローラに設定され、負荷分散 iopolicy がラウンドロビンに設定されているなど) がホストに正しく表示されていることを確認します。
++
+.. サブシステムを表示します。
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
+.. ポリシーを表示します。
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+queue-depth
+queue-depth
+----
+
+
+. ネームスペースが作成され、ホストで正しく検出されたことを確認します。
++
+[source, cli]
+----
+nvme list
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+Node          Generic     SN                   Model                    Namespace  Usage                      Format           FW Rev
+------------- ----------- -------------------- ------------------------ ---------- -------------------------- ---------------- --------
+/dev/nvme2n1  /dev/ng2n1  81PqYFYq2aVAAAAAAAAB NetApp ONTAP Controller   0x1         17.88  GB / 171.80  GB      4 KiB +  0 B   9.17.1
+----
+====
+. 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
++
+[role="tabbed-block"]
+====
+.NVMe/FC
+--
+[source, cli]
+----
+nvme list-subsys /dev/nvme3n9
+----
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme-subsys3 - NQN=nqn.1992-08.com.netapp:sn.94929fdb84eb11f0b624d039eac809ba:subsystem.sub_176
+               hostnqn=nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
+\
+ +- nvme1 *fc* traddr=nn-0x200dd039eac79573:pn-0x2010d039eac79573,host_traddr=nn-0x20005ced8c531949:pn-0x10005ced8c531949 *live optimized*
+ +- nvme3 *fc* traddr=nn-0x200dd039eac79573:pn-0x200ed039eac79573,host_traddr=nn-0x20005ced8c531948:pn-0x10005ced8c531948 *live optimized*
++- nvme5 *fc* traddr=nn-0x200dd039eac79573:pn-0x200fd039eac79573,host_traddr=nn-0x20005ced8c531949:pn-0x10005ced8c531949 *live non-optimized*
+ +- nvme7 *fc* traddr=nn-0x200dd039eac79573:pn-0x2011d039eac79573,host_traddr=nn-0x20005ced8c531948:pn-0x10005ced8c531948 *live non-optimized*
+----
+=====
+--
+.NVMe/FC
+--
+[source, cli]
+----
+nvme list-subsys /dev/nvme2n3
+----
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme-subsys2 - NQN=nqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:subsystem.sub_176
+               hostnqn=nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
+\
+ +- nvme2 *tcp* traddr=192.168.166.50,trsvcid=4420,host_traddr=192.168.166.73,src_addr=192.168.166.73 *live optimized*
+ +- nvme4 *tcp* traddr=192.168.165.51,trsvcid=4420,host_traddr=192.168.165.73,src_addr=192.168.165.73 *live optimized*
++- nvme6 *tcp* traddr=192.168.166.51,trsvcid=4420,host_traddr=192.168.166.73,src_addr=192.168.166.73 *live non-optimized*
+ +- nvme8 *tcp* traddr=192.168.165.50,trsvcid=4420,host_traddr=192.168.165.73,src_addr=192.168.165.73 *live non-optimized*
+----
+=====
+--
+====
+. ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
++
+[role="tabbed-block"]
+====
+.列（ Column ）
+--
+[source, cli]
+----
+nvme netapp ontapdevices -o column
+----
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+
+Device        Vserver               Namespace Path
+------------- --------------------- ------------------------------
+/dev/nvme2n9  vs_proxmox_FC_NVMeFC  /vol/vol_180_data_nvmefc4/ns
+
+NSID       UUID                            Size
+---- ------------------------------------  --------
+1    e3d3d544-de8b-4787-93af-bfec7769e909  32.21GB
+----
+=====
+--
+.JSON
+--
+[source, cli]
+----
+nvme netapp ontapdevices -o json
+----
+.例を示します
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+{
+      "Device":"/dev/nvme2n9",
+      "Vserver":"vs_proxmox_FC_NVMeFC",
+      "Subsystem":"sub_176",
+      "Namespace_Path":"/vol/vol_180_data_nvmefc4/ns",
+      "NSID":9,
+      "UUID":"e3d3d544-de8b-4787-93af-bfec7769e909",
+      "LBA_Size":4096,
+      "Namespace_Size":32212254720,
+      "UsedBytes":67899392,
+      "Version":"9.17.1"
+    }
+  ]
+----
+=====
+--
+====
+
+
+
+
+== 手順6：既知の問題を確認する
+
+既知の問題はありません。
