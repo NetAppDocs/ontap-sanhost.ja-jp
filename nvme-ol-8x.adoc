@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme-ol-810.html 
-keywords: nvme, oracle linux, 8.10, host configuration 
-summary: NVMe-oFホスト構成（Oracle Linux 8.10 with ONTAP 
+permalink: nvme-ol-8x.html 
+keywords: nvme, oracle linux, 8x, host configuration 
+summary: ONTAPを使用した Oracle Linux 8x 向け NVMe-oF ホスト構成 
 ---
-= NVMe-oFホスト構成（Oracle Linux 8.10 with ONTAP
+= ONTAPストレージ用にNVMe-oFを使用してOracle Linux 8xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,47 +18,32 @@ summary: NVMe-oFホスト構成（Oracle Linux 8.10 with ONTAP
 [role="lead"]
 Oracle Linux ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-.このタスクについて
-Oracle Linux 8.10向けのNVMe-oFホスト構成では、次のサポートと機能を使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
+Oracle Linux 8x 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:nvme-ol-supported-features.html["Oracle Linux ONTAPのサポートと機能"]。
 
-* 利用可能なサポート：
-+
-** NVMe over TCP（NVMe/TCP）とNVMe over Fibre Channel（NVMe/FC）がサポートされます。これにより、標準のNVMe-CLIパッケージのNetAppプラグインで、NVMe/FCとNVMe/TCPの両方のネームスペースのONTAP情報を表示することができます。
-+
-ホストの構成に応じて、NNMe/FC、NVMe/TCP、またはその両方のプロトコルを設定します。
+Oracle Linux 8x の NVMe-oF には、次の既知の制限があります。
 
-** 同じホストでNVMeトラフィックとSCSIトラフィックを同時に実行している。たとえば、SCSI LUN用のSCSIデバイスにdm-multipathを設定し、NVMeマルチパスを使用してホストでNVMe-oFネームスペースデバイスを設定できます `mpath`。
-
-
-+
-サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
-
-* 利用可能な機能：
-+
-** Oracle Linux 8.10では、NVMeネームスペースに対してカーネル内NVMeマルチパス機能がデフォルトで有効になっています。明示的な設定は必要ありません。
-
-
-* 既知の制限事項：
-+
-** NVMe-oFプロトコルを使用したSANブートは現在サポートされていません。
-** Oracle Linux 8.10ホストのNVMe-oFでは、NetApp sanlunホストユーティリティはサポートされません。代わりに、すべてのNVMe-oFトランスポート用の標準パッケージに含まれているNetAppプラグインを利用できます `nvme-cli`。
+* NVMe-oF プロトコルを使用した SAN ブートはサポートされていません。
+* NetApp sanlun ホスト ユーティリティのサポートは、Oracle Linux 8x ホスト上の NVMe-oF では使用できません。代わりに、ネイティブに含まれるNetAppプラグインを利用できます。 `nvme-cli`すべての NVMe-oF トランスポート用のパッケージ。
+* Oracle Linux 8.2 以前では、ネイティブ NVMe/FC 自動接続スクリプトは nvme-cli パッケージで使用できません。  HBA ベンダーが提供する外部自動接続スクリプトを使用します。
+* Oracle Linux 8.2 以前では、NVMe マルチパスのラウンドロビン ロード バランシングはデフォルトで有効になっていません。この機能を有効にするには、<<udev-rule,udevルールの作成>> 。
 
 
 
 
+== ステップ1: Oracle LinuxとNVMeソフトウェアをインストールし、構成を確認する
 
-
-== ソフトウェアのバージョンを確認します
-
-Oracle Linux 8.10でサポートされているソフトウェアの最小バージョンを確認します。
+サポートされている Oracle Linux 8x ソフトウェアの最小バージョンを検証するには、次の手順に従います。
 
 .手順
-. Oracle Linux 8.10 GAをサーバにインストールします。インストールが完了したら、指定したOracle Linux 8.10 GAカーネルを実行していることを確認します。
+. サーバーに Oracle Linux 8x をインストールします。インストールが完了したら、指定された Oracle Linux 8x カーネルが実行されていることを確認します。
 +
-[listing]
+[source, cli]
 ----
 uname -r
 ----
++
+Oracle Linuxカーネルバージョンの例:
+
 +
 [listing]
 ----
@@ -66,29 +51,43 @@ uname -r
 ----
 . 「 nvme-cli 」パッケージをインストールします。
 +
-[listing]
+[source, cli]
 ----
 rpm -qa|grep nvme-cli
 ----
++
+次の例は、  `nvme-cli`パッケージバージョン:
+
 +
 [listing]
 ----
 nvme-cli-1.16-9.el8.x86_64
 ----
-. Oracle Linux 8.10ホストで、 `hostnqn` `/etc/nvme/hostnqn`次の場所の文字列を確認します。
+. [[udev-rule]] Oracle Linux 8.2以前の場合、次の文字列を別のudevルールとして追加します。 `/lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules` 。これにより、NVMe マルチパスのラウンドロビン ロード バランシングが可能になります。
 +
-[listing]
+[source, cli]
+----
+cat /lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules
+Enable round-robin for NetApp ONTAP
+ACTION=="add", SUBSYSTEMS=="nvme-subsystem", ATTRS{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="round-robin"
+----
+. Oracle Linux 8xホストで、 `hostnqn`文字列 `/etc/nvme/hostnqn`:
++
+[source, cli]
 ----
 cat /etc/nvme/hostnqn
 ----
++
+次の例は、  `hostnqn`バージョン:
+
 +
 [listing]
 ----
 nqn.2014-08.org.nvmexpress:uuid:edd38060-00f7-47aa-a9dc-4d8ae0cd969a
 ----
-. Oracle Linux 8.10ホストで、ONTAPアレイの対応するサブシステムと一致する `hostnqn`ことを確認し `hostnqn`ます。
+. ONTAPシステムで、 `hostnqn`文字列が一致する `hostnqn`ONTAPストレージ システム上の対応するサブシステムの文字列:
 +
-[listing]
+[source, cli]
 ----
 vserver nvme subsystem host show -vserver vs_coexistence_LPE36002
 ----
@@ -96,7 +95,7 @@ vserver nvme subsystem host show -vserver vs_coexistence_LPE36002
 .例を示します
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
 Vserver Subsystem Priority  Host NQN
 ------- --------- --------  ------------------------------------------------
@@ -116,48 +115,65 @@ vs_coexistence_LPE36002
 
 NOTE: 文字列が一致しない場合 `hostnqn`は、コマンドを使用し `vserver modify`て、対応するONTAPアレイサブシステムの文字列をホストののの文字列 `/etc/nvme/hostnqn`と一致するように `hostnqn`更新し `hostnqn`ます。
 
-. NVMeとSCSIの両方のトラフィックを同じホストで実行する場合はNetApp、ONTAPネームスペースにはカーネル内のNVMeマルチパスを使用し、ONTAP LUNにはそれぞれ使用することを推奨します `dm-multipath`。これにより、ONTAPネームスペースはから除外され、ONTAPネームスペースデバイスが要求されないように `dm-multipath`なり `dm-multipath`ます。
+. オプションとして、同じホスト上でNVMeとSCSIの共存トラフィックを実行するために、 NetAppはONTAPネームスペースにカーネル内NVMeマルチパスを使用することを推奨しています。 `dm-multipath`それぞれONTAP LUN 用です。これにより、 ONTAPネームスペースが除外されます。 `dm-multipath`防止する `dm-multipath`ONTAPネームスペースデバイスを要求できなくなります。
 +
-.. ファイルに設定 `/etc/multipath.conf`を追加し `enable_foreign`ます。
+.. 追加する `enable_foreign`設定する `/etc/multipath.conf`ファイル。
 +
-[listing]
+[source, cli]
 ----
-# cat /etc/multipath.conf
+cat /etc/multipath.conf
 defaults {
   enable_foreign     NONE
 }
 ----
-.. デーモンを再起動し `multipathd`て、新しい設定を適用します。
+.. 再起動する `multipathd`新しい設定を適用するデーモン。
 +
-`systemctl restart multipathd`
+[source, cli]
+----
+systemctl restart multipathd
+----
 
 
 
 
 
 
+== ステップ2: NVMe/FCとNVMe/TCPを構成する
 
-== NVMe/FC を設定
-
-NVMe/FCは、Broadcom/Emulex FCアダプタまたはMarvell/Qlogic FCアダプタで構成できます。Broadcomアダプタを使用して構成されたNVMe/FCでは、1MBのI/O要求を有効にすることができます。
+Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を構成するか、手動の検出および接続操作を使用して NVMe/TCP を構成します。
 
 [role="tabbed-block"]
 ====
-.Broadcom / Emulex
+.FC - ブロードコム/エミュレックス
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
-.手順
 . サポートされているアダプタモデルを使用していることを確認します。
 +
-.. `cat /sys/class/scsi_host/host*/modelname`
+.. モデル名を表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modelname
+----
++
+次の出力が表示されます。
+
 +
 [listing]
 ----
 LPe36002-M64
 LPe36002-M64
 ----
-.. `cat /sys/class/scsi_host/host*/modeldesc`
+.. モデルの説明を表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modeldesc
+----
++
+次の例のような出力が表示されます。
+
 +
 [listing]
 ----
@@ -168,14 +184,30 @@ Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 
 . 推奨されるBroadcomを使用していることを確認します `lpfc` ファームウェアおよび受信トレイドライバ：
 +
-.. `cat /sys/class/scsi_host/host*/fwrev`
+.. ファームウェアのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/fwrev
+----
++
+次の例はファームウェアのバージョンを示しています。
+
 +
 [listing]
 ----
 14.4.317.10, sli-4:6:d
 14.4.317.10, sli-4:6:d
 ----
-.. `cat /sys/module/lpfc/version`
+.. 受信トレイのドライバーのバージョンを表示します。
++
+[source, cli]
+----
+cat /sys/module/lpfc/version
+----
++
+次の例は、ドライバーのバージョンを示しています。
+
 +
 [listing]
 ----
@@ -188,25 +220,46 @@ Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 
 . が「3」に設定されていることを確認し `lpfc_enable_fc4_type`ます。
 +
-`cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type`
-
-. イニシエータポートが動作していること、およびターゲットLIFが表示されていることを確認します。
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+----
+. イニシエータポートを表示できることを確認します。
 +
-.. `cat /sys/class/fc_host/host*/port_name`
+[source, cli]
+----
+cat /sys/class/fc_host/host*/<port_name>
+----
++
+次の例はポート ID を示しています。
+
 +
 [listing]
 ----
 0x100000109bf0449c
 0x100000109bf0449d
 ----
-.. `cat /sys/class/fc_host/host*/port_state`
+. イニシエータポートがオンラインであることを確認します。
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_state
+----
++
+次の出力が表示されます。
+
 +
 [listing]
 ----
 Online
 Online
 ----
-.. `cat /sys/class/scsi_host/host*/nvme_info`
+. NVMe/FCイニシエータポートが有効になっており、ターゲットポートが認識されることを確認します。
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
 +
 .例を示します
 [%collapsible]
@@ -239,20 +292,19 @@ FCP CMPL: xb 00000016 Err 00000016
 =====
 
 
-
-
 --
-.Marvell/QLogic
+.FC - マーベル/QLogic
 --
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
-
-NOTE: Oracle Linux 10 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新の修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
-
-.手順
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
-`cat /sys/class/fc_host/host*/symbolic_name`
+[source, cli]
+----
+cat /sys/class/fc_host/host*/symbolic_name
+----
++
+次の例は、ドライバーとファームウェアのバージョンを示しています。
 
 +
 [listing]
@@ -260,67 +312,35 @@ NOTE: Oracle Linux 10 GAカーネルに含まれているネイティブの受�
 QLE2772 FW:v9.15.00 DVR:v10.02.09.100-k
 QLE2772 FW:v9.15.00 DVR:v10.02.09.100-k
 ----
-. が「1」に設定されていることを確認します `ql2xnvmeenable`。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
+. 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
 +
-`cat /sys/module/qla2xxx/parameters/ql2xnvmeenable`
+[source, cli]
+----
+cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+----
++
+想定される出力は1です。
 
 
 
 --
-====
+.TCP
+--
+NVMe/TCP プロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCPサブシステムと名前空間をNVMe/TCPコマンドで検出することができます。 `connect`または `connect-all`手動で操作します。
 
-
-=== 1MB の I/O サイズを有効にする（オプション）
-
-ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、 `lpfc`の価値 `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
-
-
-NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
-
-.手順
-.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
-+
-[source, cli]
-----
-cat /etc/modprobe.d/lpfc.conf
-----
-+
-次の例のような出力が表示されます。
-
-+
-[listing]
-----
-options lpfc lpfc_sg_seg_cnt=256
-----
-. コマンドを実行し `dracut -f`、ホストをリブートします。
-. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
-+
-[source, cli]
-----
-cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-----
-
-
-
-
-== NVMe/FC を設定
-
-NVMe/TCPプロトコルでこの処理がサポートされてい `auto-connect`ません。代わりに、NVMe/TCPまたは `connect-all`の処理を手動で実行することで、NVMe/TCPサブシステムとネームスペースを検出できます `connect`。
-
-.手順
 . イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
 +
-[listing]
+[source, cli]
 ----
 nvme discover -t tcp -w <host-traddr> -a <traddr>
 ----
 +
 .例を示します
 [%collapsible]
-====
-[listing]
+=====
+[listing, subs="+quotes"]
 ----
-#	nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.24 Discovery Log Number of Records 20, Generation counter 45
+nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.24 Discovery Log Number of Records 20, Generation counter 45
 =====Discovery Log Entry 0======
 trtype:  tcp
 adrfam:  ipv4
@@ -381,52 +401,88 @@ trsvcid: 4420
 subnqn:  nqn.1992-08.com.netapp:sn.e6c438e66ac211ef9ab8d039eab31e9d:subsystem.nvme_tcp_4
 ..........
 ----
-====
+=====
 . NVMe/TCPイニシエータとターゲットLIFの他のすべての組み合わせで、検出ログページのデータを正常に取得できることを確認します。
 +
-[listing]
+[source, cli]
 ----
 nvme discover -t tcp -w <host-traddr> -a <traddr>
 ----
 +
 .例を示します
 [%collapsible]
-====
-[listing]
+=====
+[listing, subs="+quotes"]
 ----
-# nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.24
-# nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.25
-# nvme discover -t tcp -w 192.168.5.1 -a 192.168.5.24
-# nvme discover -t tcp -w 192.168.5.1 -a 192.168.5.25
+nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.24
+nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.25
+nvme discover -t tcp -w 192.168.5.1 -a 192.168.5.24
+nvme discover -t tcp -w 192.168.5.1 -a 192.168.5.25
 ----
-====
-. ノード全体でサポートされているすべてのNVMe/TCPイニシエータターゲットLIFに対してコマンドを実行し `nvme connect-all`ます。
+=====
+. を実行します `nvme connect-all` ノード全体でサポートされているすべてのNVMe/TCPイニシエータ/ターゲットLIFを対象としたコマンド：
 +
-[listing]
+[source, cli]
 ----
-nvme connect-all -t tcp -w <host-traddr> -a <traddr> -l <ctrl_loss_timeout_in_seconds>
+nvme connect-all -t tcp -w host-traddr -a traddr -l <ctrl_loss_timeout_in_seconds>
 ----
 +
 .例を示します
 [%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme	connect-all	-t	tcp	-w	192.168.5.1	-a	192.168.5.24	-l -1
+nvme	connect-all	-t	tcp	-w	192.168.5.1	-a	192.168.5.25	-l -1
+nvme	connect-all	-t	tcp	-w	192.168.6.1	-a	192.168.6.24	-l -1
+nvme	connect-all	-t	tcp	-w	192.168.6.1	-a	192.168.6.25	-l -1
+----
+=====
+
+
+[NOTE]
 ====
+NetAppは、 `ctrl-loss-tmo option`に `-1`NVMe/TCP イニシエーターは、パス損失が発生した場合に無期限に再接続を試行します。
+
+====
+--
+====
+
+
+== ステップ3: オプションでNVMe/FCの1MB I/Oを有効にする
+
+ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、 `lpfc`の価値 `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
+
+
+NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
+
+.手順
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
++
+[source, cli]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+次の例のような出力が表示されます。
+
++
 [listing]
 ----
-#	nvme	connect-all	-t	tcp	-w	192.168.5.1	-a	192.168.5.24	-l -1
-#	nvme	connect-all	-t	tcp	-w	192.168.5.1	-a	192.168.5.25	-l -1
-#	nvme	connect-all	-t	tcp	-w	192.168.6.1	-a	192.168.6.24	-l -1
-#	nvme	connect-all	-t	tcp	-w	192.168.6.1	-a	192.168.6.25	-l -1
+options lpfc lpfc_sg_seg_cnt=256
 ----
-====
+. コマンドを実行し `dracut -f`、ホストをリブートします。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
 
-NOTE: NetAppでは、パスが失われた場合にNVMe/TCPイニシエータが無期限に再接続を試行するように、このオプションを「-1」に設定することを推奨してい `ctrl-loss-tmo`ます。
 
 
 
-
-
-== NVMe-oF を検証します
+== ステップ4: マルチパス構成を確認する
 
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
 
@@ -493,54 +549,6 @@ nvme list
 ----
 Node         SN                   Model
 ---------------------------------------------------------
-/dev/nvme4n1 81Ix2BVuekWcAAAAAAAB	NetApp ONTAP Controller
-
-
-Namespace Usage    Format             FW             Rev
------------------------------------------------------------
-1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
-----
-====
-
-
-.手順
-. カーネル内の NVMe マルチパスが有効になっていることを確認します。
-+
-`cat /sys/module/nvme_core/parameters/multipath`
-
-+
-`Y`
-
-. それぞれのONTAPネームスペースのNVMe-oF設定（「NetApp ONTAPコントローラ」に設定されたモデル、「ラウンドロビン」に設定されたロードバランシングポリシーなど）がホストに正しく表示されていることを確認します。
-+
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/model`
-+
-[listing]
-----
-NetApp ONTAP Controller
-NetApp ONTAP Controller
-----
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy`
-+
-[listing]
-----
-round-robin
-round-robin
-----
-
-
-. ネームスペースが作成され、ホストで正しく検出されたことを確認します。
-+
-`nvme list`
-
-+
-.例を示します
-[%collapsible]
-====
-[listing]
-----
-Node         SN                   Model
----------------------------------------------------------
 /dev/nvme0n1 814vWBNRwf9HAAAAAAAB NetApp ONTAP Controller
 /dev/nvme0n2 814vWBNRwf9HAAAAAAAB NetApp ONTAP Controller
 /dev/nvme0n3 814vWBNRwf9HAAAAAAAB NetApp ONTAP Controller
@@ -555,15 +563,14 @@ Namespace Usage   Format               FW            Rev
 ====
 . 各パスのコントローラの状態がliveであり、正しいANAステータスが設定されていることを確認します。
 +
-[role="tabbed-block"]
-====
-.NVMe/FC
---
-`nvme list-subsys /dev/nvme0n1`
-
-.例を示します
+[source, cli]
+----
+nvme list-subsys /dev/nvme0n1
+----
++
+.NVMe/FCの例を表示
 [%collapsible]
-=====
+====
 [listing, subs="+quotes"]
 ----
 nvme-subsys0 - NQN=nqn.1992- 08.com.netapp: 4b4d82566aab11ef9ab8d039eab31e9d:subsystem.nvme\
@@ -572,15 +579,11 @@ nvme-subsys0 - NQN=nqn.1992- 08.com.netapp: 4b4d82566aab11ef9ab8d039eab31e9d:sub
 +- nvme3 *fc* traddr=nn-0x2038d039eab31e9c:pn-0x203ed039eab31e9c host_traddr=nn-0x200034800d756a89:pn-0x210034800d756a89 *live non-optimized*
 +-  nvme7 *fc* traddr=nn-0x2038d039eab31e9c:pn-0x2039d039eab31e9c host_traddr=nn-0x200034800d756a88:pn-0x210034800d756a88 *live non-optimized*
 ----
-=====
---
-.NVMe/FC
---
-`nvme list-subsys /dev/nvme0n1`
-
-.例を示します
+====
++
+.NVMe/TCPの例を示す
 [%collapsible]
-=====
+====
 [listing, subs="+quotes"]
 ----
 nvme-subsys0 - NQN=nqn.1992- 08.com.netapp: sn.e6c438e66ac211ef9ab8d039eab31e9d:subsystem.nvme_tcp_4
@@ -590,8 +593,6 @@ nvme-subsys0 - NQN=nqn.1992- 08.com.netapp: sn.e6c438e66ac211ef9ab8d039eab31e9d:
 +- nvme2 *tcp* traddr=192.168.5.24 trsvcid=4420 host_traddr=192.168.5.1 src_addr=192.168.5.1 *live non-optimized*
 +- nvme9 *tcp* traddr=192.168.6.25 trsvcid=4420 host_traddr=192.168.6.1 src_addr=192.168.6.1 *live non-optimized*
 ----
-=====
---
 ====
 . ネットアッププラグインで、ONTAP ネームスペースデバイスごとに正しい値が表示されていることを確認します。
 +
@@ -599,12 +600,14 @@ nvme-subsys0 - NQN=nqn.1992- 08.com.netapp: sn.e6c438e66ac211ef9ab8d039eab31e9d:
 ====
 .列（ Column ）
 --
-`nvme netapp ontapdevices -o column`
-
+[source, cli]
+----
+nvme netapp ontapdevices -o column
+----
 .例を示します
 [%collapsible]
 =====
-[listing]
+[listing, subs="+quotes"]
 ----
 Device         Vserver                  Namespace Path                NSID UUID                                  Size
 -------------- ------------------------ ----------------------------- ---- ------------------------------------- ---------
@@ -616,12 +619,14 @@ Device         Vserver                  Namespace Path                NSID UUID 
 --
 .JSON
 --
-`nvme netapp ontapdevices -o json`
-
+[source, cli]
+----
+nvme netapp ontapdevices -o json
+----
 .例を示します
 [%collapsible]
 =====
-[listing]
+[listing, subs="+quotes"]
 ----
 {
   "ONTAPdevices" : [
@@ -663,20 +668,47 @@ Device         Vserver                  Namespace Path                NSID UUID 
 
 
 
-== 既知の問題
+== ステップ5: オプションで1MBのI/Oサイズを有効にする
 
-Oracle Linux 8.10（ONTAPリリース）向けのNVMe-oFホスト構成には、次の既知の問題があります。
+ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、 `lpfc`の価値 `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
 
-[cols="1a,4a,4a, options="]
+
+NOTE: この手順は、Qlogic NVMe/FCホストには適用されません。
+
+.手順
+.  `lpfc_sg_seg_cnt`パラメータを256に設定します。
++
+[source, cli]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. コマンドを実行し `dracut -f`、ホストをリブートします。
+. の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
++
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
+
+
+
+
+== 手順6：既知の問題を確認する
+
+既知の問題は次のとおりです:
+
+[cols="20,40,40"]
 |===
 | NetApp バグ ID | タイトル | 説明 
 
 
- a| 
-CONTAPEXT-1082
- a| 
-Oracle Linux 8.10 NVMe-oFホストでPDCが重複して作成される
- a| 
-Oracle Linux 8.10 NVMe-oFホストでは、コマンドでオプションを `nvme discover`使用してPersistent Discovery Controller（PDC；永続的検出コントローラ）が作成され `-p`ます。イニシエータとターゲットの組み合わせでは、 `nvme discover`コマンドを実行するたびに1つのPDCが作成されます。ただし、Oracle Linux 8.x以降では、NVMe-oFホストによってPDCが重複して作成されます。これにより、ホストとターゲットの両方のリソースが無駄になります。
-
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Oracle Linux 8x NVMe-oFホストは重複した永続検出コントローラ（PDC）を作成します | NVMe-oF ホストでは、 `nvme discover -p` コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1およびRHEL 9.0を実行している場合は、 `nvme discover -p`を実行するたびに重複したPDCが作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。 
 |===

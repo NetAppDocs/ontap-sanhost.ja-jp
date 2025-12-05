@@ -866,7 +866,6 @@ CLI または設定 JSON ファイルを使用して、安全なインバンド�
 --
 CLIを使用してセキュアなインバンド認証を設定します。
 
-.手順
 . ホストNQNを取得します。
 +
 [source, cli]
@@ -961,7 +960,6 @@ ONTAPコントローラ上で複数のNVMeサブシステムが利用可能な�
 
 使用 `-o`JSON ファイルを生成するオプション。詳細な構文オプションについては、NVMe connect-all のマニュアル ページを参照してください。
 
-.手順
 . JSON ファイルを設定します。
 +
 
@@ -1101,5 +1099,5 @@ DHHC-1:03:wSpuuKbBHTzC0W9JZxMBsYd9JFV8Si9aDh22k2BR/4m852vH7KGlrJeMpzhmyjDWOo0PJJ
 | 1503468 | RHEL 9.1では、 `nvme list-subsys`コマンドは、指定されたサブシステムの繰り返しNVMEコントローラリストを返します。 | その `nvme list-subsys`コマンドは、指定されたサブシステムの NVMe コントローラーのリストを返します。  RHEL 9.1 では、このコマンドは、サブシステム内のすべての名前空間のコントローラーとその ANA 状態を表示します。  ANA の状態は名前空間ごとの属性であるため、コマンドは各名前空間のパスの状態を持つ一意のコントローラー エントリを表示する必要があります。 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | RHEL 9.0 NVMe-oF ホストは重複した永続検出コントローラ (PDC) を作成します。 | NVMe-oF ホストでは、「nvme discover -p」コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oF ホストでONTAP 9.10.1 および RHEL 9.0 を実行している場合は、「nvme discover -p」を実行するたびに重複した PDC が作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | RHEL 9.0 NVMe-oF ホストは重複した永続検出コントローラ (PDC) を作成します。 | NVMe-oF ホストでは、 `nvme discover -p` コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1およびRHEL 9.0を実行している場合は、 `nvme discover -p`を実行するたびに重複したPDCが作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。 
 |===
