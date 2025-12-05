@@ -3578,7 +3578,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="2108c565af875cfc1e318c7dc8e41e56" category="doc">ONTAPストレージでFCPとiSCSI用にProxmox VE 9.0を構成する</block>
   <block id="56ea3377f895b5d98eb5cfb4d8112b4e" category="paragraph">Proxmox VE 9.0 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。</block>
   <block id="ee4895e76707b7f8c336bca634b35b63" category="list-text">Linux ホスト ユーティリティは、Proxmox VE 9.0 オペレーティング システムをサポートしていません。</block>
-  <block id="9b75a9b32f86018debc00585d6f260d7" category="list-text">Proxmox VE 9.0 は SAN ブート構成をサポートしていません。</block>
   <block id="9c3789f3b828a3db86a5becb5c29475e" category="paragraph">Proxmox VE 9.0 のマルチパスを使用してONTAP LUN を管理できます。</block>
   <block id="62f90d2b36f26e75648f8fbc863d2103" category="summary">ProxmoxホストのONTAPサポートと機能について学ぶ</block>
   <block id="2b32731d6a5ce83c7ab86fa39ec46a48" category="paragraph">NVMe over Fabrics (NVMe-oF) を使用したホスト構成でサポートされる機能は、 ONTAPと Proxmox のバージョンによって異なります。</block>
@@ -3592,7 +3591,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="a905e3804e13e4478f22570d7b1c6daa" category="doc">ONTAPストレージでNVMe-oF用にProxmox VE 9.0を構成する</block>
   <block id="db808e8d5fb0a993c938763824fac885" category="paragraph">Proxmox VE 9.0 ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。</block>
   <block id="4ae846af7b3e3b1ee9fce8a61764e7b3" category="paragraph">Proxmox VE 9.0 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 <block ref="e9c9618cb4ec473c29fc8069ba3262ca" category="inline-link-macro-rx"></block>。</block>
-  <block id="11dc508ee4171316cc84faf1df7da0d1" category="admonition">Proxmox VE 9.0 は、NVMe-FC の SAN ブート構成をサポートしていません。</block>
   <block id="a2cfdbabc7f82da552ac8a6f31932690" category="section-title">ステップ1: ソフトウェアバージョンとNVMe構成を確認する</block>
   <block id="d87c2970a586e621db74a1d4a13c1b7d" category="list-text">サーバーに Proxmox VE 9.0 をインストールします。インストールが完了したら、必要な Proxmox VE 9.0 カーネルが実行されていることを確認します。</block>
   <block id="5c6d8604a5ef6f3ebc5e8f9e0a358981" category="paragraph">Proxmox VE 9.0 カーネルバージョンの例:</block>
@@ -3621,7 +3619,11 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="3c4949e90c3e10a54cdb4e6858c43140" category="paragraph">Rocky Linux 9.5 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 <block ref="1e55fb83287e360fc6aff276b6a4f713" category="inline-link-macro-rx"></block>。</block>
   <block id="62168331fe38405a2f9f80d6cf376342" category="paragraph">Rocky Linux 9.6 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 <block ref="1e55fb83287e360fc6aff276b6a4f713" category="inline-link-macro-rx"></block>。</block>
   <block id="75e680a777df7d1ca001dab2b59ac1ad" category="sidebar">プロクスモックス</block>
-  <block id="f66ee9162b6416e5d8581c7b1b3e7b15" category="sidebar">プロクスモックス 9.0</block>
   <block id="7c0fddb795e074f6d14458a8975b1aa6" category="sidebar">NVMeoF プロクスモックス</block>
   <block id="5fe2096f9921d0fba5e418c83d4ae235" category="sidebar">プロクスモックスVE 9倍</block>
+  <block id="ba27a04190d6694c847e3efa59ae4a4d" category="paragraph">Proxmox VE 9.0 の FCP および iSCSI には、次の既知の制限があります。</block>
+  <block id="53445ee8fa865b4519b6dd3c5ae43550" category="list-text">SAN ブート構成はサポートされていません。</block>
+  <block id="662102a165c2bc048d9868d337b6e7f0" category="paragraph">Proxmox VE 9.0 の NVMe-oF には、次の既知の制限があります。</block>
+  <block id="e3b2f07b62796920751f31b5a43c631c" category="list-text">NVMe-FC の SAN ブート構成はサポートされていません。</block>
+  <block id="09b2a2061e5881b282d700c9e017e27d" category="sidebar">プロクスモックスVE 9.0</block>
 </blocks>

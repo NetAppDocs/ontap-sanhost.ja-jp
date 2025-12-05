@@ -20,8 +20,10 @@ Proxmox VE 9.0 ホストは、非対称名前空間アクセス (ANA) を備え�
 
 Proxmox VE 9.0 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 link:nvme-proxmox-supported-features.html["ONTAPのサポートと機能"^]。
 
+Proxmox VE 9.0 の NVMe-oF には、次の既知の制限があります。
 
-NOTE: Proxmox VE 9.0 は、NVMe-FC の SAN ブート構成をサポートしていません。
+* NVMe-FC の SAN ブート構成はサポートされていません。
+
 
 
 

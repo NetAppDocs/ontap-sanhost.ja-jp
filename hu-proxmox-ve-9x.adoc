@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
-permalink: hu-proxmox-9x.html 
-keywords: proxmox 9.0, netapp, ontap, iscsi, fcp 
+permalink: hu-proxmox-ve-9x.html 
+keywords: proxmox, VE, 9.0, netapp, ontap, iscsi, fcp 
 summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Proxmox VE 9.0 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージでFCPとiSCSI用にProxmox VE 9.0を構成する
@@ -18,13 +18,12 @@ summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を�
 [role="lead"]
 Proxmox VE 9.0 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。
 
-[NOTE]
-====
+Proxmox VE 9.0 の FCP および iSCSI には、次の既知の制限があります。
+
 * Linux ホスト ユーティリティは、Proxmox VE 9.0 オペレーティング システムをサポートしていません。
-* Proxmox VE 9.0 は SAN ブート構成をサポートしていません。
+* SAN ブート構成はサポートされていません。
 
 
-====
 
 
 == ステップ1: ホストのマルチパス構成を確認する
