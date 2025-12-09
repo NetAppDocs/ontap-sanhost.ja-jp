@@ -1,0 +1,12 @@
+= 手順2：Linux Host Utilitiesをインストールする
+:allow-uri-read: 
+
+
+
+
+== 手順2：Linux Host Utilitiesをインストールする
+
+NetAppは強く推奨します link:hu-luhu-release-notes.html["Linuxホストユーティリティのインストール"] ONTAP LUN 管理をサポートし、構成データの収集に関するテクニカル サポートを支援します。
+
+
+NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。

@@ -17,7 +17,6 @@
   <block id="8bec1661077d28352868870f186e4392" category="list-text">ALUA および非 ALUA が機能するようにカーネルに次のパラメータ値を追加します。 `rdloaddriver=scsi_dh_alua`</block>
   <block id="4c489d4721694c4117162307ded4345c" category="list-text">initrd-image を再作成するには、「 m kinitrd` 」コマンドを使用します。Oracle 6x 以降のバージョンでは、次のいずれかを使用します。「 m kinitrd -f /boot/initrd - "uname -r 」 .img uname -r 」またはコマンド「 `d racut -f 」</block>
   <block id="8418b94a2a307b3e96b6474bc55e08b7" category="list-text">ホストをリブートします。</block>
-  <block id="aa89a86e36a09e87ac1e23a259c8d26c" category="admonition">1 つの LUN へのパスを余分に使用しないでください。必要なパスは最大 4 つです。ストレージ障害時に 8 個を超えるパスで原因パスの問題が発生する可能性があります。</block>
   <block id="21a58bdeaf70327c6f6f5fd597b24fa3" category="section-title">推奨設定</block>
   <block id="31000f5c5314f347ab410a2c9b059d03" category="paragraph">Oracle Linux 6.9 OS は、 ONTAP LUN を認識するようにコンパイルされ、すべての構成パラメータを自動的に正しく設定します。</block>
   <block id="4d70a817ac85626aff88bbc73d0a2deb" category="list-text">次のコマンドを実行して WWID を特定します。</block>
@@ -71,10 +70,7 @@
   <block id="c454d997c91275b70f2f0433fad3fe36" category="list-text">ダウンロードを格納しているディレクトリに移動します。</block>
   <block id="9edc8f09fd5b1e5afec2430fd6f561df" category="paragraph">パッケージは '/opt/NT2/SANToolkit/bin' ディレクトリに追加されます</block>
   <block id="8d3237fb2b6bc072b413d450b7bcf588" category="paragraph">次の例では 'lun lun lun show コマンドは LUN 情報を返します</block>
-  <block id="56dcd6f4fc148f38b926523ede2073aa" category="section-title">Non-ASA の設定</block>
   <block id="5fedfc5a04eb29a4d6e049f629f9d9b2" category="paragraph">次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。</block>
-  <block id="dba35953d3af1713968cdc2eba05813a" category="section-title">オール SAN アレイ構成</block>
-  <block id="0ad7491bc01531fcac211e10a0f8a9a0" category="paragraph">次の例は、 ONTAP LUN の正しい出力を表示します。</block>
   <block id="689202409e48743b914713f96d93947c" category="cell">価値</block>
   <block id="c0710e4c6669e9d9625063dae931aff1" category="cell">throttle_max</block>
   <block id="c9f0f895fb98ab9159f51fd0297e236d" category="cell">8.</block>
@@ -303,28 +299,10 @@
   <block id="b47148f0acf3e7b3db202890d4c8c0c4" category="cell">ストレージフェイルオーバー処理中に、 SLES15SP1 で Emulex LPe12002 8GB FC が搭載されているリモートポートがブロック状態に移行しています。</block>
   <block id="15427ef3cacf89471c2525932d2937ee" category="cell">ストレージフェイルオーバー処理中に、 SLES15SP1 で Emulex LPe12002 8GB ファイバチャネル（ FC ）が搭載されたリモートポートがブロック状態に移行しています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態が「 online 」になります。 リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。 この状態は、マルチパスレイヤでの LUN へのパスが「障害が発生した」ことと、それらの LUN の I/O が停止することを招く可能性があります。remoteport の詳細は次のサンプルコマンドで確認できます ---cat/sys/class/fc_host/host*/device/rport*/fc_remote_ports/rport */port_class/fc_host/host*/device/fc_remote_ports/rport *-state-* -port</block>
   <block id="53cded606153345462c89bc6a568b1dc" category="summary">VERITAS ONTAP Infoscale 7 シリーズのリリースの SAN ホスト構成設定に関するガイダンスを示します</block>
-  <block id="31296a34c84ac7a114e2a64e59cc9d34" category="paragraph">次の図では 'lun show コマンドは LUN 情報を返します</block>
-  <block id="9bdb0807ef78c7192456335c7ef96e18" category="paragraph">Veritas Support Portal （ Product Matrix 、 Platform Lookup 、 HCL Matrix ）を参照して、 SAN ブート構成がサポートされていること、および既知の警告を確認してください。</block>
-  <block id="e62a424b2738fe2a52111dd60f4aaaf2" category="paragraph">この例では 'vxdmpadm コマンドを使用して 'VxDMP マルチパスに ONTAP ターゲットアレイが接続されていることを確認します</block>
-  <block id="dbdaf083b30f34a5e231b0307cf5579a" category="paragraph">Veritas Dynamic Multipathing （ VxDMP ）を使用すると、ネットアップ LUN を Veritas Multipath Devices として要求するための設定タスクを実行する必要があります。Veritas からネットアップストレージシステムに提供される Array Support Library （ ASL ）と Array Policy Module （ APM ）パッケージをインストールしておく必要があります。Veritas Software Installation では、デフォルトの ASL APM パッケージが製品とともにロードされますが、 Veritas サポートポータルにリストされている最新のサポートされているパッケージを使用することをお勧めします。</block>
-  <block id="04aa70b1e86aed37b8bb5d17254ffe53" category="paragraph">次の例は、 Veritas Support Library （ ASL ）および Array Policy Module （ APM ）の設定を表示します。</block>
-  <block id="6ed6f28773bb7959ef3382f6d7de573e" category="section-title">Veritas Multipath の設定</block>
   <block id="9b0192429a485fa5f5e51d83b096590e" category="cell">dmp_lun_retry_timeout</block>
   <block id="072b030ba126b2f4b2374f342be9ed44" category="cell">60</block>
   <block id="cb1bbd675719233c5bfc23916692e065" category="cell">dmp_path_age</block>
   <block id="7c16fa52cbeaf99ece2729801b43247d" category="cell">dmp_restore_interval の値です</block>
-  <block id="3c98b0f304fad6c757e2a7a698676c31" category="paragraph">DMP チューニング可能な値は 'vxdmpadm コマンドを使用して ' 次のようにオンラインで設定します</block>
-  <block id="4e2b600516ccb690319c7af87fe58291" category="paragraph">#vxdmpadm settune dmp_tadate=value</block>
-  <block id="0c83d9e724e53881906c0eb45f4d0851" category="paragraph">これらの調整可能な値は '#vxdmpadm gettune' を使用して動的に確認できます</block>
-  <block id="d5e9adf370b310d61aa5d2ec222f5511" category="paragraph">次の例は、 SAN ホストの実質的な VxDMP 調整可能な設定を示しています。</block>
-  <block id="a51812839ba18144ee43ff7a244db311" category="section-title">プロトコル別の設定</block>
-  <block id="97bdb4022a366b3a059398b475667da4" category="list-text">FC / FCoE のみ：デフォルトのタイムアウト値を使用します。</block>
-  <block id="58442720ed7fc6b1681795dfb0faa518" category="list-text">iSCSI の場合のみ： 'replacement_timeout' パラメータの値を 120 に設定します</block>
-  <block id="7cab6ce56f2426636d1ce1fb5f70db26" category="paragraph">iscsi 'replacement_timeout' パラメータは、タイムアウトしたパスまたはセッションが再確立されるまで iSCSI レイヤが待機してからコマンドをすべて失敗させるまでの時間を制御します。iSCSI 構成ファイルでは 'replacement_timeout' の値を 120 に設定することをお勧めします</block>
-  <block id="8c3b270d5a8f816d55f977d505eb8e56" category="section-title">OS プラットフォーム別の設定</block>
-  <block id="cd66c6c6398ade1a38a74a4cc0b18ade" category="paragraph">Red Hat Enterprise Linux 7 および 8 シリーズでは ' ストレージ・フェイルオーバー・シナリオで Veritas Infosscale 環境をサポートするために 'udev rport' 値を設定する必要がありますファイル /etc/udev/rules.d/ 40-rport.rules` を次のファイル内容で作成します</block>
-  <block id="14b3714b111d1beb9fb5c5c6fa61ec6e" category="admonition">VERITAS 固有のその他の設定については ' 標準の VERITAS Infosscale 製品マニュアルを参照してください</block>
-  <block id="54f2286fb613ffaae5ab0ea0c95d2262" category="section-title">マルチパス共存</block>
   <block id="f3a17d79f6544740456771291527984d" category="summary">ONTAP で Oracle Linux 6.5 を使用する方法について説明します</block>
   <block id="33d395db2629e42725961d07de66379b" category="paragraph">Oracle Linux 6.5 の場合は /etc/multipath.conf ファイルが存在している必要がありますが、ファイルに特定の変更を加える必要はありません。Oracle Linux 6.5 では、 ONTAP LUN を認識して正しく管理するために必要なすべての設定が組み込まれています。ALUA ハンドラを有効にするには、次の手順を実行します。</block>
   <block id="b027f2cb101039990e34b69dadd64cc9" category="paragraph">Oracle Linux 6.5 OS は、 ONTAP LUN を認識し、すべての構成パラメータを自動的に正しく設定するようにコンパイルされます。</block>
@@ -735,8 +713,6 @@
   <block id="2813f127dc58929fb553bc32684c2e46" category="section-title">既知の問題および制限</block>
   <block id="8b777dc32f2f743eb513fca0bfd52348" category="cell">1457017</block>
   <block id="0078173d6c66e3e11217e80e4ecc1d1b" category="cell">「sanlun」インストールでは、「libdevmapper-so」および「libnl.so」ライブラリに関連する警告メッセージが表示されます。これらの警告は、「sanlun」キットの機能には影響しません。</block>
-  <block id="ce081634ead33780d73e0e1f6b9ea0ca" category="paragraph">Veritas Dynamic Multipathing （ VxDMP ）を使用すると、ネットアップ LUN を Veritas Multipath Devices として要求するための設定タスクを実行する必要があります。Veritas からネットアップストレージシステムに提供される Array Support Library （ ASL ）と Array Policy Module （ APM ）パッケージをインストールしておく必要があります。Veritas Software Installation では、デフォルトの ASL APM パッケージが製品とともにロードされますが、 Veritas サポートポータルにリストされている最新のサポートされているパッケージを使用することをお勧めします。</block>
-  <block id="697675a4c21edc6fc07599249d9fe748" category="paragraph">All SAN Array （ ASA ）構成では、特定の論理ユニット（ LUN ）へのすべてのパスがアクティブで最適化されています。つまり、すべてのパスで同時に I/O を処理できるため、パフォーマンスが向上します。</block>
   <block id="4e0b2b4c829cef3166a5190a135bb26f" category="sidebar">Infoscale 8.</block>
   <block id="382b0f5185773fa0f67a8ed8056c7759" category="cell">該当なし</block>
   <block id="b066ca6122c9857ad1ee3a44f18cc5e7" category="cell">バグ ID</block>
@@ -1020,7 +996,6 @@
   <block id="5aae5284420b8ceb0aa0f5d959c566bc" category="list-text">NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで、検出ログページのデータを正常に取得できることを確認します。</block>
   <block id="675cd8e52ba395fba110b2ae7c90675b" category="cell">Emulex HBAを搭載したSAN LUNユーティリティには、ライブラリパッケージからのシンボリックリンクが必要です</block>
   <block id="76da8e16b4b35b8424eb298d2b37d666" category="sidebar">8.8</block>
-  <block id="f419fe819afeb109ae85608ed6bd0ca7" category="doc">ONTAPでVeritas Infoscale 7 for Linuxを使用</block>
   <block id="30d85838b9488ee908d075559c8978cd" category="doc">VMware vSphere 8.xとONTAPの併用</block>
   <block id="92434d9005fca09d1be87854a8eba962" category="doc">Red Hat Enterprise Linux 6.4とONTAPの併用</block>
   <block id="7e0b815f73afb730e7ee19f798970799" category="doc">Oracle Linux 6.10とONTAPの併用</block>
@@ -1044,7 +1019,6 @@
   <block id="3f774282fcdfb6c27b50967041caabfe" category="doc">ONTAPでCentOS 6.4を使用</block>
   <block id="40db5019ed68654f4eb2cf21ec5021db" category="doc">VMware vSphere 7.xとONTAPの併用</block>
   <block id="96c79d6b70b9da95c3236e3cf0b071a3" category="doc">Oracle Linux 6.7とONTAPの併用</block>
-  <block id="47d63174f5a8747823754dbe907413b8" category="doc">ONTAPでVeritas Infoscale 8 for Linuxを使用</block>
   <block id="bb6a1ceb13d5a6a98f1fab62ea2d512f" category="doc">Oracle Linux 6.6とONTAPの併用</block>
   <block id="8a4e695bd23e65bc1993b3356eeb2277" category="sidebar">AIX Host Utilitiesリリースノート</block>
   <block id="360baa7584a9f61d637775beeeeab041" category="sidebar">HP-UX Host Utilitiesリリースノート</block>
@@ -1058,7 +1032,6 @@
   <block id="3f20da7f97c0948dba60855f74d8feb3" category="paragraph">NVMe over Fibre Channel（NVMe/FC）は、SUSE Linux Enterprise Server 15 SP1およびONTAPを実行するホストにターゲットとして設定できます。</block>
   <block id="04e8d5a4c40a30787e3a35e62dfd0c1e" category="paragraph">NVMe/FC用のLPFCドライバを設定します。</block>
   <block id="e62de6043f25aae2915aa8c10fbaec9d" category="cell"><block ref="e62de6043f25aae2915aa8c10fbaec9d" category="inline-link-macro-rx"></block></block>
-  <block id="a597507af40f2b893bf64299ba506a89" category="doc">ONTAPでVeritas Storage Foundation 6 for Linuxを使用</block>
   <block id="d60c463bb4096f3ed4bd1618626dfe10" category="doc">トラブルシューティングを行う</block>
   <block id="4a446daa2697df931fbab571c023baef" category="admonition">AIX、Windows、ESXiホストにはトラブルシューティング手順は適用されません。</block>
   <block id="96050aafb2fca1409b0f952e7597fd11" category="paragraph">NVMe/FCについては、のようなqla2xxxのロギングはありません。<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> ドライバ。代わりに、一般的なqla2xxxログレベルを設定します。</block>
@@ -1141,7 +1114,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="89803e3bc17feeb475170d3dcd320e4e" category="paragraph">ONTAP SANホストの設定を使用して、CentOS 6.10でONTAPをターゲットとして設定できます。</block>
   <block id="92ecdf60dd5c6225e905e0a3eea885da" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.4を設定できます。</block>
   <block id="0938dfec19dd45c8a6f64aa8b0b1eda4" category="paragraph">Oracle Linux 6.4 with ONTAPリリースには、次の既知の問題があります。</block>
-  <block id="3998e195af175a67287a554b2d04b426" category="paragraph">Veritas Infoscale 7 for Linux with ONTAPリリースには既知の問題はありません。</block>
   <block id="001844af86b0a1f099720e6aed9988f7" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてRed Hat Enterprise Linux 6.8を設定できます。</block>
   <block id="c5041d07d38095b8620f889d70dea95d" category="paragraph">ONTAPリリースのVMware vSphere 7.xに関する既知の問題はありません。</block>
   <block id="6963533acedb1b8942f9674f67500cd3" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.8を設定できます。</block>
@@ -1154,9 +1126,7 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="b16452e3905ac336b68babc6fa562702" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.9を設定できます。</block>
   <block id="a69f90991b7861bf298029c85947f926" category="paragraph">Oracle Linux 6.9 with ONTAPリリースには、次の既知の問題があります。</block>
   <block id="95ee459b709d0e4cae7ea12ed33763f9" category="paragraph">SUSE Linux Enterprise Server 15 SP4 with ONTAPリリースには既知の問題はありません。</block>
-  <block id="1bc24cef68b137efe0e69c2b269dd7da" category="paragraph">ONTAPリリースのVeritas Infoscale 8 for Linuxには既知の問題はありません。</block>
   <block id="3d8d5b2f05311b66754ca058971f7e2e" category="paragraph">SUSE Linux Enterprise Server 15 SP5 with ONTAPリリースには既知の問題はありません。</block>
-  <block id="30b87f3af4543974205ca57666930631" category="paragraph">Veritas Storage Foundation 6 for Linux with ONTAPリリースでは、既知の問題はありません。</block>
   <block id="ee0e00ac8a597d343ecf7da72dd6effd" category="paragraph">ONTAP SANホストの設定を使用して、ONTAPをターゲットとしてOracle Linux 6.10を設定できます。</block>
   <block id="c7512b0badc93efcac520b6d3264ca72" category="paragraph">ONTAPリリースのOracle Linux 6.10では、既知の問題はありません。</block>
   <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Solaris Host Utilities のことです</block>
@@ -1332,7 +1302,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph"><block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block>コマンドを実行すると、次のような出力が生成されます。次の例の出力は省略されています。</block>
   <block id="1f9090c13a627840d3e8110654671ecd" category="cell">SUSE Linux Enterprise Server 15S P2 OSのインストール完了後、SANからのiSCSIブートが静的IP設定で起動しない</block>
   <block id="74fe7cde6e68f9607ef6c16f62916dd8" category="paragraph">静的IP設定を使用したSUSE Linux Enterprise Server 15 SP2 OSのインストールが完了すると、iSCSIサンブートLUNの起動に失敗する。ブートアップ障害は、静的 IP 設定で毎回発生します。これにより、次のエラーメッセージが表示され、サーバが起動プロセスの続行を拒否しています。</block>
-  <block id="7466d39e188f68573c9503fb3aca2a4c" category="paragraph">次の例では<block ref="1dd59c7806bb784d02ed91f3980f5f17" prefix=" " category="inline-code"></block>、コマンドを使用して、VxDMPマルチパスにONTAPターゲットアレイが接続されていることを確認します。</block>
   <block id="26b17225b626fb9238849fd60eabdf60" category="paragraph">+</block>
   <block id="473733802c02f67f489689f787461e62" category="list-text">SUSE Linux Enterprise Server 15 SP1</block>
   <block id="a1e3e223ffe62b0c4daec6746ea79cc8" category="paragraph">SUSE Linux Enterprise Server 15 SP1ホストは、同じファイバチャネルイニシエータアダプタポートを介してNVMe/FCトラフィックとFCPトラフィックの両方を実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> 。</block>
@@ -1813,13 +1782,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="b25ec790b4cbb02c184ec7d8479f9e72" category="summary">Solaris Host Utilities 6.2とONTAPの使用方法について説明します。</block>
   <block id="22ee06c1124036b790e8e12bab28c94a" category="doc">ONTAPストレージ用のSolaris Host Utilities 6.2のインストール</block>
   <block id="12ce99988bb774881369b300029d0c1f" category="paragraph">次の例では、コマンドを使用し<block ref="5187972b2183e07957bec1dbaf34d29c" prefix=" " category="inline-code"></block>てSolarisインストールパッケージをインストールします。</block>
-  <block id="15d9fd1ff3011117296f7ee36d231ebd" category="paragraph">FC、FCoE、およびiSCSIプロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（Red Hat互換カーネルベース）プラットフォーム用のVeritas Storage Foundation 6シリーズリリースでは、ONTAP SANホスト設定を使用できます。</block>
-  <block id="fd1139296e6463001441b6b2bcf07035" category="paragraph">構成がシステム要件を満たしていることを確認する必要があります。詳細については、およびVeritas HCL Matrixを参照して<block ref="d4eba3849609aea965d9c09098fd43df" category="inline-link-rx"></block>ください。</block>
-  <block id="ebd757716a60a98a115db0a8540bc8d2" category="paragraph">NetAppでは、ストレージフェイルオーバー処理でシステム構成を最適化するために、次のVeritas VxDMP調整可能なオプションを推奨しています。</block>
-  <block id="8bae20691c6b20fe8250d6d89b6bc8fe" category="paragraph">Veritas Infoscale、Linux Native Device Mapper、LVM Volume Managerなど、異機種混在のマルチパス環境を使用している場合の構成設定については、Veritas Product Administrationのドキュメントを参照してください。</block>
-  <block id="0b0b0d2e5ea7b0b9b45a0170f78969c3" category="paragraph">FC、FCoE、iSCSIの各プロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（Red Hat互換カーネルベース）プラットフォーム用のVeritas Infoscale Storage Foundation 7シリーズリリースでは、ONTAP SANホストの設定を使用できます。</block>
-  <block id="9622a2b5b9516e16c4c507ca2bd3dcc6" category="paragraph">構成がシステム要件を満たしていることを確認する必要があります。詳細については、Interoperability Matrix ToolおよびVeritas HCL Matrixを参照してください。</block>
-  <block id="75a3ea62d9c20aa7a155d905b745dc1e" category="paragraph">FC、FCoE、およびiSCSIの各プロトコルを使用するRed Hat Enterprise LinuxおよびOracle Linux（Red Hat互換カーネルベース）プラットフォームでは、Veritas Infoscale Storage Foundation 8シリーズリリースでONTAP SANホストの設定を使用できます。</block>
   <block id="420b11779b601451984e2d84dfe96609" category="paragraph">ESXiには、Native Multipathing Plug-in（NMP）と呼ばれる拡張可能なマルチパスモジュールが用意されており、サブプラグイン、ストレージアレイタイププラグイン（SATP）、パス選択プラグイン（PSP）を管理します。これらの SATP ルールは、 ESXi でデフォルトで使用されます。</block>
   <block id="32718bd8198d64f7ddb82acdd728b1da" category="paragraph">ONTAPストレージの場合、デフォルトでは「VMW_SATP_ALUA」プラグインが使用され、パス選択ポリシー（PSP）として「VMW_PSP_RR」が使用されます。次のコマンドを実行してPSPを確認できます。</block>
   <block id="25b99d4336de9de5432a67adf4e9a119" category="paragraph">vCenter UIを使用してVVOLデータストアを作成すると、そのデータストアのバックアップストレージとしてFlexVolを作成できるようになります。VVOLデータストア内のVVOLには、ESXiホストからプロトコルエンドポイント（PE）を使用してアクセスされます。SAN環境では、PEとして使用するデータストア内のFlexVol volumeボリュームごとに4MBのLUNが1つ作成されます。SAN PE は管理論理ユニット（ ALU ）で、 VVOL は SLU （関連論理ユニット）です。</block>
@@ -1942,7 +1904,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="c6e9e839e8304cacb5378299e7f6ca42" category="inline-link-macro">Microsoft Update Catalog 2025</block>
   <block id="68e5c8d1251c633565ba668446a95b32" category="list-text">からホットフィックスをダウンロードし<block ref="86167046a85b88d4b396a82107daadba" category="inline-link-macro-rx"></block>ます。</block>
   <block id="769a40f63534a31b2b123052ac1da6ad" category="list-text"><block ref="76b66d5f379b691153dc22425201f6ae" prefix=" " category="inline-code"></block>コマンドの出力を確認して、設定が完了していることを確認します。<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block>コマンドを使用して、ONTAP LUNの設定を確認できます。優先順位が異なる 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
-  <block id="47e930d345db593756a39027df077a51" category="paragraph">ASA 以外の設定の場合は、異なる優先順位を持つ 2 つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
   <block id="d7b8955c7b96bef9985fd48649d70251" category="list-text">からホットフィックスをダウンロードし<block ref="c91fa8395bb99838be8ab4e7b48666cc" category="inline-link-macro-rx"></block>ます。</block>
   <block id="d933dd46766685abc25b001848a8b8a5" category="list-text">からホットフィックスをダウンロードし<block ref="6e6b75f4256049ee1dbc008868e8aa3a" category="inline-link-macro-rx"></block>ます。</block>
   <block id="35fec4b95b75bf64df4556334d921ef8" category="list-text">からホットフィックスをダウンロードし<block ref="145f31fd192f816eb74b3bac6d3cac60" category="inline-link-macro-rx"></block>ます。</block>
@@ -2261,7 +2222,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="797d7c769a6ede56bea7336cfa2b35b1" category="list-text">出力を確認する<block ref="76b66d5f379b691153dc22425201f6ae" prefix=" " category="inline-code"></block>設定が完了したことを確認するコマンド。</block>
   <block id="4409363a45cfa288ed524d4f0dc52e3e" category="open-title">UEK 4</block>
   <block id="5dd29161b38ded1b0182c73e6e601911" category="paragraph">Oracle Linux UEK 4の場合は、 <block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ファイルが定義されており、ONTAP LUN に対して NetApp 推奨設定が構成されていることを確認します。</block>
-  <block id="3bdb7006bc10348c455a69d6d21f1f08" category="paragraph">デフォルトのマルチパス パラメータは、AFF および FAS 構成をサポートします。このような構成では、1つのONTAP LUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。</block>
   <block id="702585b74cd8e66c02a1414878b2ad93" category="paragraph">次の出力例は、2 つのアクティブ/最適化パスと 2 つのアクティブ/非最適化パスを持つ AFF または FAS 構成内の ONTAP LUN の正しいパラメータ設定とパス ステータスを示しています。</block>
   <block id="1c7d17bc7c1ded98c5fa5864d2adc78b" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Rocky Linux 10 ホストに Linux ホスト ユーティリティをインストールします。</block>
   <block id="31f66dd0901349520fbfd979a57834c5" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト用の管理ツールと診断ツールを提供します。Rocky Linux 10 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用して ONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
@@ -3335,4 +3295,48 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="28b031394cea76c997a81517dfc279f9" category="cell">NVMe-oF ホストでは、<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1およびRHEL 9.0を実行している場合は、<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block>を実行するたびに重複したPDCが作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。</block>
   <block id="38247dd9f4f50ed3b751d728ecd0c52c" category="sidebar">NVMeoF OL</block>
   <block id="8a1b0284de7d7f43f74ff50788b58df6" category="sidebar">7倍</block>
+  <block id="8cf639f80087b38e9251e80ba60c10c4" category="paragraph">デフォルトのマルチパス パラメータは、 ASA、 AFF、およびFAS構成をサポートします。これらの構成では、単一のONTAP LUN に 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。</block>
+  <block id="eaf928b18adce16330b705bb6a23e4f4" category="paragraph">デフォルトのマルチパス パラメータは、 AFFおよびFAS構成をサポートします。これらの構成では、単一のONTAP LUN に 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。</block>
+  <block id="97a99753b959b6770bb6efa96e4103e1" category="list-text">SAN ブート構成のサポートと既知の問題を確認するには、Veritas サポート ポータル (製品マトリックス、プラットフォーム検索、および HCL マトリックス) を参照してください。</block>
+  <block id="4e7c573ceae9156d0f116447987fcb67" category="inline-link-macro">Linuxホストユーティリティのインストール</block>
+  <block id="365cd0fee231b17435b3bfc6d63500c7" category="paragraph">NetAppは強く推奨します <block ref="62bc9fa3453f6553a0a2bc6b05aa75d4" category="inline-link-macro-rx"></block> ONTAP LUN 管理をサポートし、構成データの収集に関するテクニカル サポートを支援します。</block>
+  <block id="3388d4660793d431fa42646bfb400696" category="doc">ONTAPストレージを使用して FC、FCoE、iSCSI 用に Veritas Infoscale 7 を構成する</block>
+  <block id="6988ba9fe2dc7db74715a084d907b2a7" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Oracle Linux (Red Hat 互換カーネル ベース)、Red Hat Enterprise Linux (RHEL)、および SUSE Linux Enterprise Server ホスト用の Veritas Infoscale 7 で Linux ホスト ユーティリティを使用して、 ONTAP LUN を使用した FC、FCoE、および iSCSI プロトコル操作の管理をサポートします。</block>
+  <block id="399ed9d35ad604c482221872e16ebdb5" category="section-title">ステップ3: ホストのVeritas Dynamic Multipathing構成を確認する</block>
+  <block id="37013602d4ad82abe5dbbe9d8b9ff596" category="paragraph">ONTAP LUN を管理するには、Veritas Infoscale 7 と Veritas Dynamic Multipathing (VxDMP) を使用します。</block>
+  <block id="d454e8c2a143a93f98b28ed84dab7c6d" category="paragraph">VxDMP がホストに対して正しく設定されていることを確認するには、VxDMP 構成を確認し、アレイ サポート ライブラリ (ASL) とアレイ ポリシー モジュール (APM) の構成を確認する必要があります。NetAppストレージ システム用の ASL および APM パッケージは、Veritas ソフトウェアのインストール中にインストールされます。</block>
+  <block id="9ba5f67b5e4cf10f7d8d10dceae070c5" category="admonition">Veritas Infoscale、Linux Native Device Mapper、LVM ボリューム マネージャなどの異機種マルチパス環境の場合、構成設定については Veritas 製品管理ドキュメントを参照してください。</block>
+  <block id="56a86c0104dee8f802482380450c13cc" category="paragraph">構成がシステム要件を満たしていることを確認してください。参照 <block ref="1ed2ba1980a264d01ab3597cde177180" category="inline-link-macro-rx"></block> および Veritas HCL マトリックス。</block>
+  <block id="969992377e36c3d96208e4e72ff285b6" category="list-text">ONTAPターゲット アレイが VxDMP マルチパスに接続されていることを確認します。</block>
+  <block id="37b8c3be9d65cf3c1f214619faf88da0" category="list-text">ASL および APM パッケージの構成を確認します。NetApp、Veritas サポート ポータルにリストされている最新のサポート対象パッケージを使用することをお勧めします。</block>
+  <block id="10a05c794bb693baf37296bc7742537e" category="example-title">ASLとAPMの設定例を表示</block>
+  <block id="324dba7e543516b17ebc8c6ea5a0d680" category="list-text">ストレージフェイルオーバー操作における最適なシステム構成のために、次の Veritas VxDMP チューニングパラメータがあることを確認してください。</block>
+  <block id="f9881710eadb37ca910a4e0909ba6e35" category="list-text">DMP 調整パラメータをオンラインに設定します。</block>
+  <block id="38ddb6c41ccf214f71e9283fe7300f1b" category="list-text">調整可能パラメータが正しく設定されていることを確認します。</block>
+  <block id="5622e8954310cf14c8453091c6741ea4" category="paragraph">次の例は、SAN ホスト上で有効な VxDMP 調整パラメータを示しています。</block>
+  <block id="1d2df76115fa1f235d9567ef1d6832fa" category="list-text">プロトコルのタイムアウト値を設定します。</block>
+  <block id="c982f804d02e2d7e937f125d2cac1024" category="open-title">FC / FCoE</block>
+  <block id="f00c27140b23de4ac953219b96c93678" category="paragraph">FC および FCoE のデフォルトのタイムアウト値を使用します。</block>
+  <block id="e4e1c13bb0b14f6cb7608cbecea948ef" category="open-title">iSCSI</block>
+  <block id="95b94b45b5e3853d9fabb482ef4e576a" category="paragraph">設定する<block ref="12cec018fb6c5d12b22cf69774a8c847" prefix=" " category="inline-code"></block> パラメータ値を 120 に設定します。</block>
+  <block id="1a17c5fbd86ebe3672049ac697df2dee" category="paragraph">iSCSI<block ref="12cec018fb6c5d12b22cf69774a8c847" prefix=" " category="inline-code"></block> パラメータは、タイムアウトしたパスまたはセッションが再確立されるまで iSCSI レイヤーが待機する時間を制御します。この時間が経過すると、そのパスまたはセッションに対するコマンドが失敗します。NetApp、<block ref="12cec018fb6c5d12b22cf69774a8c847" prefix=" " category="inline-code"></block> iSCSI 構成ファイルで 120 に設定します。</block>
+  <block id="305addf959eed4c9307761230b688be9" category="list-text">ストレージ フェイルオーバー シナリオで Veritas Infoscale 環境をサポートするには、RHEL 8 および 9 シリーズ ホストのホスト「udev rport」値を設定します。</block>
+  <block id="608280eddd77e62e12bfc3616b13b642" category="paragraph">ファイルを作成して「udev rport」の値を設定します<block ref="b4c1379322282dd3f77e61bed2f54473" prefix=" " category="inline-code"></block> ファイルの内容は次のとおりです。</block>
+  <block id="46d4faa4dd351f0cd6177bbc0ce5322a" category="admonition">Veritas 固有のその他のすべての設定については、標準の Veritas Infoscale 製品ドキュメントを参照してください。</block>
+  <block id="78ffa3fbb4dedf1cf519fae8595283d8" category="paragraph">AFF、 FAS、またはASA構成では、単一のONTAP LUN に 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。</block>
+  <block id="520233932518172a2315c62de8633f75" category="paragraph">次の例は、 ASA、 AFF、またはFAS構成におけるONTAP LUN の正しいパラメータ設定とパス ステータスを示しています。</block>
+  <block id="420bfa7f2f6d6ff2af47d8f56d3e5176" category="section-title">ステップ4: 既知の問題</block>
+  <block id="b7fe3c0d2269de45af50caddbc5679d0" category="summary">RHEL および Oracle Linux ホスト用の Veritas Infoscale 8 と Linux ホスト ユーティリティを使用すると、 ONTAP LUN を使用した FC、FCoE、および iSCSI プロトコル操作を管理しやすくなります。</block>
+  <block id="68d4606fa842c3bb2260492fea96e256" category="doc">ONTAPストレージを使用して FC、FCoE、iSCSI 用に Veritas Infoscale 8 を構成する</block>
+  <block id="d0888a9566c916aeb262c66f6c29d0b5" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Oracle Linux (Red Hat 互換カーネル ベース)、Red Hat Enterprise Linux (RHEL)、および SUSE Linux Enterprise Server ホスト用の Veritas Infoscale 8 で Linux ホスト ユーティリティを使用して、 ONTAP LUN を使用した FC、FCoE、および iSCSI プロトコル操作の管理をサポートします。</block>
+  <block id="dfe61e07a24c984baaba21380a7bcb5d" category="paragraph">ONTAP LUN を管理するには、Veritas Infoscale 8 と Veritas Dynamic Multipathing (VxDMP) を使用します。</block>
+  <block id="f03cd50d6ef437b45fb5cf89a578b6af" category="summary">RHEL および Oracle Linux ホスト用の Veritas Infoscale 9 と Linux ホスト ユーティリティを使用すると、 ONTAP LUN を使用した FC、FCoE、および iSCSI プロトコル操作を管理しやすくなります。</block>
+  <block id="a2e04f13832b32d45b6a2728664658f2" category="doc">ONTAPストレージを使用して FC、FCoE、iSCSI 用に Veritas Infoscale 9 を構成する</block>
+  <block id="307830a2affed8f2293bd6a0bfdc988e" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Oracle Linux (Red Hat 互換カーネル ベース)、Red Hat Enterprise Linux (RHEL)、および SUSE Linux Enterprise Server ホスト用の Veritas Infoscale 9 で Linux ホスト ユーティリティを使用して、 ONTAP LUN を使用した FC、FCoE、および iSCSI プロトコル操作の管理をサポートします。</block>
+  <block id="566243492d7a2b58e16e40a9b3031a27" category="paragraph">ONTAP LUN を管理するには、Veritas Infoscale 9 と Veritas Dynamic Multipathing (VxDMP) を使用します。</block>
+  <block id="cf9bdce6e3fe72662477108befe0e13f" category="paragraph">構成がシステム要件を満たしていることを確認してください。参照 <block ref="1ed2ba1980a264d01ab3597cde177180" category="inline-link-macro-rx"></block> および Veritas HCL マトリックス。</block>
+  <block id="2e4b49e48e6e1ca1fd31426b7138fd71" category="doc">ONTAPストレージを使用して FC、FCoE、iSCSI 用に Veritas Infoscale 6 を構成する</block>
+  <block id="9becfc22d40b1be99a7885f3a6881599" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Oracle Linux (Red Hat 互換カーネル ベース)、Red Hat Enterprise Linux (RHEL)、および SUSE Linux Enterprise Server ホスト用の Veritas Infoscale 6 で Linux ホスト ユーティリティを使用して、 ONTAP LUN を使用した FC、FCoE、および iSCSI プロトコル操作の管理をサポートします。</block>
+  <block id="b1c021b70553fcad383b7575c6548a4d" category="paragraph">ONTAP LUN を管理するには、Veritas Infoscale 6 と Veritas Dynamic Multipathing (VxDMP) を使用します。</block>
+  <block id="a51c6ee27ac185032fb4471c829132c2" category="sidebar">インフォスケール9</block>
 </blocks>

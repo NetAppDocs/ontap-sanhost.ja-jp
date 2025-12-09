@@ -1,0 +1,23 @@
+= 手順1：必要に応じてSANブートを有効にします。
+:allow-uri-read: 
+
+
+
+
+== 手順1：必要に応じてSANブートを有効にします。
+
+SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
+
+.開始する前に
+* を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+* SAN ブート構成のサポートと既知の問題を確認するには、Veritas サポート ポータル (製品マトリックス、プラットフォーム検索、および HCL マトリックス) を参照してください。
+
+
+.手順
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANブートLUNを作成し、ホストにマップする"^]です。
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+
