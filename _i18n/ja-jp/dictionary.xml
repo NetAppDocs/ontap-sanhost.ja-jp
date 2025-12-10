@@ -3341,4 +3341,5 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="92520caa5da5fd65237a96731d101aee" category="list-text">それぞれのONTAP名前空間の適切な NVMe-oF 設定 (モデルがNetApp ONTAPコントローラに設定され、負荷分散 iopolicy がラウンドロビンに設定されているなど) がホストに正しく表示されていることを確認します。</block>
   <block id="bf4dbd3d81297258bdb9391343d3d393" category="cell">ネイティブudevルール<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> パッケージはNVMeマルチパスのキュー深度負荷分散を提供します</block>
   <block id="b62ae28652ddc6a2c9bb15373668f0d0" category="paragraph">9.6以降</block>
+  <block id="3bf7b9cd443b3cb0c9b741f8a4deb9dc" category="paragraph">RHEL 10.0ではNVMe-oFのデフォルトのiopolicyを次のように設定します。<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> 。RHEL 10.0を使用しており、iopolicyを次のように変更したい場合<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>、udev ルール ファイルを次のように変更します。</block>
 </blocks>
