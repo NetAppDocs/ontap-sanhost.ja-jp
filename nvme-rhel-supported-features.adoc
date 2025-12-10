@@ -67,6 +67,11 @@ ONTAP は、システム セットアップで実行されているONTAP のバ�
 | ネイティブudevルール `nvme-cli`パッケージはNVMeマルチパスのラウンドロビン負荷分散を提供します  a| 
 8.2以降
 
+
+
+| ネイティブudevルール `nvme-cli` パッケージはNVMeマルチパスのキュー深度負荷分散を提供します  a| 
+9.6以降
+
 |===
 
 NOTE: サポートされている構成の詳細については、link:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^] 。

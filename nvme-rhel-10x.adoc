@@ -143,7 +143,7 @@ Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を
 
 [role="tabbed-block"]
 ====
-.FC - ブロードコム/エミュレックス
+.NVMe/FC - ブロードコム/エミュレックス
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
@@ -294,7 +294,7 @@ FCP CMPL: xb 000014a5 Err 0002149a
 
 
 --
-.FC - マーベル/QLogic
+.NVMe/FC - マーベル/QLogic
 --
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
@@ -325,7 +325,7 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 
 --
-.TCP
+.NVMe/FC
 --
 NVMe/TCP プロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCPサブシステムと名前空間をNVMe/TCPコマンドで検出することができます。 `connect`または `connect-all`手動で操作します。
 

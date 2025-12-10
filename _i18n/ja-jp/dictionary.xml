@@ -2920,10 +2920,7 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="3ac93f7cf1853dfbc16c8472fc66d07d" category="cell">その<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block>コマンドは、指定されたサブシステムの NVMe コントローラーのリストを返します。  RHEL 9.1 では、このコマンドは、サブシステム内のすべての名前空間のコントローラーとその ANA 状態を表示します。  ANA の状態は名前空間ごとの属性であるため、コマンドは各名前空間のパスの状態を持つ一意のコントローラー エントリを表示する必要があります。</block>
   <block id="d1137ffaeb3a0ca88e57e0f4130f3134" category="section-title">ステップ6: 安全なインバンド認証を設定する</block>
   <block id="ece25d4c541fbae683416549d3f4ac05" category="list-text">ルート権限でテキスト エディターで udev ルール ファイルを開きます。</block>
-  <block id="b9908e7dd449843af949631c92e15e09" category="list-text">NetApp ONTAPコントローラの iopolicy を設定する行を見つけます。</block>
-  <block id="87a7f5650d1515a9aa05f05e2e75e27c" category="paragraph">次の例は、ルールの例を示しています。</block>
   <block id="1cdf0be14ba09adc81c1095b08aa7aa2" category="list-text">ルールを修正して<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>なる<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>:</block>
-  <block id="84acde248a4e307a6672632785153fc4" category="admonition">新しい iopolicy は、一致するNetApp ONTAPコントローラ デバイスに自動的に適用されます。再起動は必要ありません。</block>
   <block id="8368841b470b6e92a17171fdc50066e4" category="summary">ONTAPストレージを搭載した Rocky Linux 10.0 用の NVMe-oF ホストを構成する方法</block>
   <block id="3bb0dd42b9baf9976e4fd910388b116d" category="doc">ONTAPストレージでNVMe-oF用にRocky Linux 10.0を構成する</block>
   <block id="353c5da630e8437465e2bac779b53241" category="paragraph">*Rocky Linux 10.0 の NVMe-oF には、次の既知の制限があります。*</block>
@@ -3339,4 +3336,9 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="9becfc22d40b1be99a7885f3a6881599" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Oracle Linux (Red Hat 互換カーネル ベース)、Red Hat Enterprise Linux (RHEL)、および SUSE Linux Enterprise Server ホスト用の Veritas Infoscale 6 で Linux ホスト ユーティリティを使用して、 ONTAP LUN を使用した FC、FCoE、および iSCSI プロトコル操作の管理をサポートします。</block>
   <block id="b1c021b70553fcad383b7575c6548a4d" category="paragraph">ONTAP LUN を管理するには、Veritas Infoscale 6 と Veritas Dynamic Multipathing (VxDMP) を使用します。</block>
   <block id="a51c6ee27ac185032fb4471c829132c2" category="sidebar">インフォスケール9</block>
+  <block id="160316d24f765380a7e2c247ad512d7a" category="list-text">次の例のルールに示すように、 NetApp ONTAPコントローラの iopolicy を設定する行を見つけます。</block>
+  <block id="97a0ff99a93f7485dcb82a548fcca4a0" category="admonition">新しい iopolicy は、一致するNetApp ONTAPコントローラ デバイスに自動的に適用されます。再起動する必要はありません。</block>
+  <block id="92520caa5da5fd65237a96731d101aee" category="list-text">それぞれのONTAP名前空間の適切な NVMe-oF 設定 (モデルがNetApp ONTAPコントローラに設定され、負荷分散 iopolicy がラウンドロビンに設定されているなど) がホストに正しく表示されていることを確認します。</block>
+  <block id="bf4dbd3d81297258bdb9391343d3d393" category="cell">ネイティブudevルール<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> パッケージはNVMeマルチパスのキュー深度負荷分散を提供します</block>
+  <block id="b62ae28652ddc6a2c9bb15373668f0d0" category="paragraph">9.6以降</block>
 </blocks>
