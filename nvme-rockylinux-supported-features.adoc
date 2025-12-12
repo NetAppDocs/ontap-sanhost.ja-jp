@@ -71,5 +71,22 @@ ONTAP は、システム セットアップで実行されているONTAP のバ�
 
 NOTE: サポートされている構成の詳細については、link:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^] 。
 
+
+
+== 次の手順
+
+[cols="50,50"]
+|===
+| Rocky Linux のバージョンが.. | について学ぶ.. 
+
+
+| 10シリーズ | link:nvme-rockylinux-10x.html["Rocky Linux 10.x 用の NVMe の設定"] 
+
+
+| 9シリーズ | link:nvme-rockylinux-9x.html["Rocky Linux 9.x 用の NVMe の設定"] 
+
+
+| 8シリーズ | link:nvme-rockylinux-8x.html["Rocky Linux 8.x 用の NVMe の設定"] 
+|===
 .関連情報
 link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["NVMeプロトコルの管理について学ぶ"]
