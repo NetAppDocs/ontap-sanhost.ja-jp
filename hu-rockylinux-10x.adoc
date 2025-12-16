@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-rhel-10.html 
-keywords: host utilities, red hat, rhel, linux, 10, netapp, ontap, rhel 
-summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、RHEL 10 ホストに Linux ホスト ユーティリティをインストールします。 
+permalink: hu-rockylinux-10x.html 
+keywords: host utilities, rocky, linux, 10.x, netapp, ontap 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Rocky Linux 10.x ホストに Linux ホスト ユーティリティをインストールします。 
 ---
-= ONTAPストレージを使用してFCPおよびiSCSI用にRHEL 10を構成する
+= ONTAPストレージを使用して Rocky Linux 10.x を FCP および iSCSI 用に設定する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を�
 
 
 [role="lead"]
-Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Red Hat Enterprise Linux (RHEL) 10 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
+Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Rocky Linux 10.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
 
 
 NOTE: ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
@@ -54,7 +54,7 @@ NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホ�
 
 == 手順3：ホストのマルチパス構成を確認する
 
-RHEL 10 のマルチパスを使用してONTAP LUN を管理できます。
+Rocky Linux 10.x のマルチパスを使用してONTAP LUN を管理できます。
 
 ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 

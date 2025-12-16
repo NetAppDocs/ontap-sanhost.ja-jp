@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: nvme-proxmox-ve-9x.html 
 keywords: nvme, proxmox, enterprise 
-summary: ONTAPストレージを搭載したProxmox VE 9.0用のNVMe-oFホストを構成する方法 
+summary: ONTAPストレージを搭載したProxmox VE 9.x用のNVMe-oFホストを構成する方法 
 ---
-= ONTAPストレージでNVMe-oF用にProxmox VE 9.0を構成する
+= ONTAPストレージでNVMe-oF用にProxmox VE 9.xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,30 +16,30 @@ summary: ONTAPストレージを搭載したProxmox VE 9.0用のNVMe-oFホスト
 
 
 [role="lead"]
-Proxmox VE 9.0 ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
+Proxmox VE 9.x ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-Proxmox VE 9.0 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 link:nvme-proxmox-supported-features.html["ONTAPのサポートと機能"^]。
+Proxmox VE 9.x 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学びます。詳細なサポートと機能情報については、 link:nvme-proxmox-supported-features.html["ONTAPのサポートと機能"^]。
 
-Proxmox VE 9.0 の NVMe-oF には、次の既知の制限があります。
+Proxmox VE 9.x の NVMe-oF には、次の既知の制限があります。
 
 * NVMe-FC の SAN ブート構成はサポートされていません。
 
 
 
 
-== ステップ1: ソフトウェアバージョンとNVMe構成を確認する
+== ステップ1: Proxmox VEとNVMeソフトウェアをインストールし、構成を確認する
 
 NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
 
 .手順
-. サーバーに Proxmox VE 9.0 をインストールします。インストールが完了したら、必要な Proxmox VE 9.0 カーネルが実行されていることを確認します。
+. サーバーに Proxmox VE 9.x をインストールします。インストールが完了したら、必要な Proxmox VE 9.x カーネルが実行されていることを確認します。
 +
 [source, cli]
 ----
 uname -r
 ----
 +
-Proxmox VE 9.0 カーネルバージョンの例:
+Proxmox VE 9.x カーネルバージョンの例:
 
 +
 [listing]
@@ -88,7 +88,7 @@ cat /etc/nvme/hostnqn
 ----
 nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
 ----
-. を確認します `hostnqn` 文字列はに一致します `hostnqn` ONTAP アレイ上の対応するサブシステムの文字列。
+. ONTAPシステムで、 `hostnqn`文字列が一致する `hostnqn`ONTAPアレイ上の対応するサブシステムの文字列:
 +
 [source, cli]
 ----
@@ -121,7 +121,6 @@ NOTE: もし `hostnqn`文字列が一致しない場合は、 `vserver modify`�
 
 Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を構成するか、手動の検出および接続操作を使用して NVMe/TCP を構成します。
 
-.手順
 [role="tabbed-block"]
 ====
 .NVMe/FC - ブロードコム/エミュレックス
@@ -427,7 +426,7 @@ cat /etc/modprobe.d/lpfc.conf
 ----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. コマンドを実行し `dracut -f`、ホストをリブートします。
+. 実行 `update-initramfs`コマンドを実行し、ホストを再起動します。
 . の値が256であることを確認し `lpfc_sg_seg_cnt`ます。
 +
 [source, cli]

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: nvme-rhel-8x.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
-summary: ONTAPを使用した RHEL 8x 向け NVMe-oF ホストの設定方法 
+summary: ONTAPを使用した RHEL 8.x 向け NVMe-oF ホストの設定方法 
 ---
-= ONTAPストレージで RHEL 8x を NVMe-oF 用に構成する
+= ONTAPストレージでNVMe-oF用にRHEL 8.xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,12 +18,12 @@ summary: ONTAPを使用した RHEL 8x 向け NVMe-oF ホストの設定方法
 [role="lead"]
 Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-RHEL 8x 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:nvme-rhel-supported-features.html["RHEL ONTAPのサポートと機能"]。
+RHEL 8.x 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:nvme-rhel-supported-features.html["RHEL ONTAPのサポートと機能"]。
 
-RHEL 8x の NVMe-oF には、次の既知の制限があります。
+RHEL 8.x の NVMe-oF には、次の既知の制限があります。
 
 * NVMe-oF プロトコルを使用した SAN ブートは現在サポートされていません。
-* RHEL 8x の NVMe-oF ホストでは、カーネル内 NVMe マルチパスはデフォルトで無効になっているため、手動で有効にする必要があります。
+* RHEL 8.x の NVMe-oF ホストでは、カーネル内 NVMe マルチパスはデフォルトで無効になっているため、手動で有効にする必要があります。
 * 既知の問題のため、NVMe/TCP はテクノロジー プレビューとして利用できます。
 
 
@@ -49,7 +49,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
 
 .手順
-. サーバーに RHEL 8x をインストールします。インストールが完了したら、必要な RHEL 8x カーネルが実行されていることを確認します。
+. サーバーに RHEL 8.x をインストールします。インストールが完了したら、必要な RHEL 8.x カーネルが実行されていることを確認します。
 +
 [source, cli]
 ----
@@ -97,7 +97,7 @@ libnvme-1.4-3.el8.x86_64
 ----
 grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-553.el8_10.x86_64
 ----
-. RHEL 8xホストでは、 `hostnqn`文字列 `/etc/nvme/hostnqn`:
+. RHEL 8.xホストでは、 `hostnqn`文字列 `/etc/nvme/hostnqn`:
 +
 [source, cli]
 ----
@@ -655,5 +655,5 @@ nvme netapp ontapdevices -o json
 | NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | RHEL 8x NVMe-oF ホストは重複した永続検出コントローラ (PDC) を作成します。 | NVMe-oF ホストでは、「nvme discover -p」コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oF ホストで RHEL 8x を実行している場合は、「nvme discover -p」を実行するたびに重複した PDC が作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | RHEL 8.x NVMe-oF ホストは重複した永続検出コントローラ (PDC) を作成します。 | NVMe-oF ホストでは、「nvme discover -p」コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oF ホストで RHEL 8.x を実行している場合は、「nvme discover -p」を実行するたびに重複した PDC が作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。 
 |===

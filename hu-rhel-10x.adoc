@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-proxmox-ve-9x.html 
-keywords: proxmox, VE, 9.x, netapp, ontap, iscsi, fcp 
-summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Proxmox VE 9.x ホストに Linux ホスト ユーティリティをインストールします。 
+permalink: hu-rhel-10x.html 
+keywords: host utilities, red hat, rhel, linux, 10.x, netapp, ontap, rhel 
+summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、RHEL 10.x ホストに Linux ホスト ユーティリティをインストールします。 
 ---
-= ONTAPストレージでFCPとiSCSI用にProxmox VE 9.xを構成する
+= ONTAPストレージを使用して RHEL 10.x を FCP および iSCSI 用に構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,19 +16,45 @@ summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を�
 
 
 [role="lead"]
-Proxmox VE 9.x をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。
+Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Red Hat Enterprise Linux (RHEL) 10.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
 
-Proxmox VE 9.x の FCP および iSCSI には、次の既知の制限があります。
 
-* Linux ホスト ユーティリティは、Proxmox VE 9.x オペレーティング システムをサポートしていません。
-* SAN ブート構成はサポートされていません。
+NOTE: ONTAP LUN はハイパーバイザーに自動的にマップされるため、カーネルベースの仮想マシン (KVM) 設定を手動で構成する必要はありません。
 
 
 
+== 手順1：必要に応じてSANブートを有効にします。
 
-== ステップ1: ホストのマルチパス構成を確認する
+SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
 
-Proxmox VE 9.x のマルチパスを使用してONTAP LUN を管理できます。
+.開始する前に
+を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+
+.手順
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANブートLUNを作成し、ホストにマップする"^]です。
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+
+
+
+
+== 手順2：Linux Host Utilitiesをインストールする
+
+NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
+
+link:hu-luhu-80.html["Linuxホストユーティリティ8.0をインストールする"] 。
+
+
+NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。
+
+
+
+== 手順3：ホストのマルチパス構成を確認する
+
+RHEL 10.x のマルチパスを使用してONTAP LUN を管理できます。
 
 ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 
@@ -78,10 +104,10 @@ systemctl start multipathd
 | の機能 | "2 pg_init_retries 50" 
 
 
-| flush_on_last_del | "いつも" 
+| flush_on_last_del | はい。 
 
 
-| hardware_handler | 「1」 
+| hardware_handler | 0 
 
 
 | パスの再試行なし | キュー 
@@ -117,30 +143,6 @@ systemctl start multipathd
 | ベンダー | ネットアップ 
 |===
 ====
-. オプションで、 `find_multipaths` ONTAP LUN が multipathd によって正しく検出され、管理されるようにするためのパラメータ:
-+
---
-.. セット `find_multipaths`デフォルトセクションで「いいえ」に設定する `/etc/multipath.conf`:
-+
-[source, cli]
-----
-defaults {
-    find_multipaths "no"
-}
-----
-.. マルチパス サービスを再ロードします。
-+
-[source, cli]
-----
-systemctl reload multipathd
-----
-
-
---
-+
-
-NOTE: デフォルトでは、Proxmox OSネイティブのマルチパス構成は `find_multipaths`空のゼロバイトで「*strict*」に変更 `/etc/multipath.conf`ホストを起動するたびに構成ファイルが更新されます。これにより、ホストが新しく提示されたONTAP LUN をマルチパス デバイスとして検出できなくなるため、マルチパス制御下に自動的に表示されなくなります。既存のONTAP LUN は、再起動するたびに検出され、マルチパス制御下に置かれたままになります。
-
 . ONTAP LUNのパラメータ設定とパスステータスを確認します。
 +
 [source, cli]
@@ -148,7 +150,7 @@ NOTE: デフォルトでは、Proxmox OSネイティブのマルチパス構成�
 multipath -ll
 ----
 +
-デフォルトのマルチパスパラメータでは、ASA、AFF、およびFASの構成がサポートされます。このような構成では、1つのONTAP LUNに必要なパスは4つまでです。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。
+デフォルトのマルチパス パラメータは、 ASA、 AFF、およびFAS構成をサポートします。これらの構成では、単一のONTAP LUN に 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。
 
 +
 次の出力例は、ASA、AFF、またはFAS構成のONTAP LUNについて、正しいパラメータ設定とパスステータスを示しています。
@@ -160,35 +162,27 @@ multipath -ll
 --
 ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
-.例を示します
-[%collapsible]
-=====
 [listing]
 ----
-multipath -ll
-3600a098038315071592b59713261566d dm-38 NETAPP,LUN C-Mode
-size=100G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+# multipath -ll
+3600a098038314e535a24584e4b496252 dm-32 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
-  |- 8:0:0:7 sdbv 68:144 active ready running
-  |- 9:0:0:7 sdbx 68:176 active ready running
-  |- 6:0:0:7 sdbr 68:80  active ready running
-  `- 7:0:0:7 sdbt 68:112 active ready running
-
+  |- 11:0:0:41 sdan 66:112  active ready running
+  |- 11:0:1:41 sdcb 68:240  active ready running
+  |- 14:0:2:41 sdfd 129:240 active ready running
+  `- 14:0:0:41 sddp 71:112  active ready running
 ----
-=====
 --
 .AFFまたはFASの設定
 --
 AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
 
-次の例は、2 つのアクティブ/最適化パスと 2 つのアクティブ/非最適化パスを持つONTAP LUN の出力を示しています。
+次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
 
-.例を示します
-[%collapsible]
-=====
 [listing]
 ----
-multipath -ll
+# multipath -ll
 3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
 size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
@@ -198,14 +192,13 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
   |- 10:0:1:0  sdc  8:32   active ready running
   `- 16:0:2:0  sdcf 69:48  active ready running
 ----
-=====
 --
 ====
 
 
 
 
-== ステップ2: オプションでデバイスをマルチパスから除外する
+== 手順4：必要に応じて、マルチパスからデバイスを除外する
 
 必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
 
@@ -237,7 +230,7 @@ blacklist {
 
 
 
-== ステップ3: ONTAP LUNのマルチパスパラメータをカスタマイズする
+== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
 
@@ -270,6 +263,17 @@ devices {
 ====
 
 
-== ステップ4: 既知の問題を確認する
+== 手順6：既知の問題を確認する
 
 既知の問題はありません。
+
+
+
+== 次の手順
+
+* link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
+* ASMミラーリングについて説明します。
++
+Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
+
+

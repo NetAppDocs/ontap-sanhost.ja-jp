@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: nvme-ol-7x.html 
-keywords: nvme, linux, oracle, 7x 
-summary: ONTAPを使用した Oracle Linux 7x の VMe/FC ホスト構成のセットアップ（例付き） 
+keywords: nvme, linux, oracle, 7.x 
+summary: ONTAPを使用した Oracle Linux 7.x の VMe/FC ホスト構成のセットアップ（例付き） 
 ---
-= ONTAPストレージ用にNVMe-oFを使用してOracle Linux 7xを構成する
+= ONTAPストレージ用にNVMe-oFを使用してOracle Linux 7.xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,12 +18,12 @@ summary: ONTAPを使用した Oracle Linux 7x の VMe/FC ホスト構成のセ�
 [role="lead"]
 Oracle Linux ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-Oracle Linux 7x 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:nvme-ol-supported-features.html["Oracle Linux ONTAPのサポートと機能"]。
+Oracle Linux 7.x 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:nvme-ol-supported-features.html["Oracle Linux ONTAPのサポートと機能"]。
 
-Oracle Linux 7x の NVMe-oF には、次の既知の制限があります。
+Oracle Linux 7.x の NVMe-oF には、次の既知の制限があります。
 
 * NVMe-oF プロトコルを使用した SAN ブートはサポートされていません。
-* NetApp sanlun ホスト ユーティリティのサポートは、Oracle Linux 7x ホスト上の NVMe-oF では使用できません。代わりに、ネイティブに含まれるNetAppプラグインを利用できます。 `nvme-cli`すべての NVMe-oF トランスポート用のパッケージ。
+* NetApp sanlun ホスト ユーティリティのサポートは、Oracle Linux 7.x ホスト上の NVMe-oF では使用できません。代わりに、ネイティブに含まれるNetAppプラグインを利用できます。 `nvme-cli`すべての NVMe-oF トランスポート用のパッケージ。
 * NVMe/FC 標準の自動接続スクリプトは、 nvme-CLI パッケージでは使用できません。HBA ベンダーが提供する外部自動接続スクリプトを使用します。
 * NVMe マルチパスでは、ラウンドロビン ロード バランシングはデフォルトで有効になっていません。この機能を有効にするには、udev ルールを記述します。
 
@@ -32,10 +32,10 @@ Oracle Linux 7x の NVMe-oF には、次の既知の制限があります。
 
 == ステップ1: Oracle LinuxとNVMeソフトウェアをインストールし、構成を確認する
 
-サポートされている Oracle Linux 7x ソフトウェアの最小バージョンを検証するには、次の手順に従います。
+サポートされている Oracle Linux 7.x ソフトウェアの最小バージョンを検証するには、次の手順に従います。
 
 .手順
-. サーバーに Oracle Linux 7x をインストールします。インストールが完了したら、指定された Oracle Linux 7x カーネルが実行されていることを確認します。
+. サーバーに Oracle Linux 7.x をインストールします。インストールが完了したら、指定された Oracle Linux 7.x カーネルが実行されていることを確認します。
 +
 [source, cli]
 ----
@@ -71,7 +71,7 @@ cat /lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules
 Enable round-robin for NetApp ONTAP
 ACTION=="add", SUBSYSTEMS=="nvme-subsystem", ATTRS{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="round-robin"
 ----
-. Oracle Linux 7xホストで、 `hostnqn`文字列 `/etc/nvme/hostnqn`:
+. Oracle Linux 7.xホストで、 `hostnqn`文字列 `/etc/nvme/hostnqn`:
 +
 [source, cli]
 ----

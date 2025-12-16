@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: nvme-rhel-9x.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
-summary: ONTAPを使用した RHEL 9x 向け NVMe-oF ホストの設定方法 
+summary: ONTAPを使用した RHEL 9.x 向け NVMe-oF ホストの設定方法 
 ---
-= ONTAPストレージでNVMe-oF用にRHEL 9xを構成する
+= ONTAPストレージでNVMe-oF用にRHEL 9.xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,9 +18,9 @@ summary: ONTAPを使用した RHEL 9x 向け NVMe-oF ホストの設定方法
 [role="lead"]
 Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。
 
-RHEL 9x 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:nvme-rhel-supported-features.html["RHEL ONTAPのサポートと機能"]。
+RHEL 9.x 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 link:nvme-rhel-supported-features.html["RHEL ONTAPのサポートと機能"]。
 
-RHEL 9x の NVMe-oF には、次の既知の制限があります。
+RHEL 9.x の NVMe-oF には、次の既知の制限があります。
 
 * その `nvme disconnect-all`このコマンドはルートファイルシステムとデータファイルシステムの両方を切断し、システムが不安定になる可能性があります。  NVMe-TCP または NVMe-FC 名前空間を介して SAN から起動するシステムではこれを発行しないでください。
 
@@ -47,7 +47,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
 
 .手順
-. サーバーに RHEL 9x をインストールします。インストールが完了したら、必要な RHEL 9x カーネルが実行されていることを確認します。
+. サーバーに RHEL 9.x をインストールします。インストールが完了したら、必要な RHEL 9.x カーネルが実行されていることを確認します。
 +
 [source, cli]
 ----
@@ -847,7 +847,7 @@ nvme netapp ontapdevices -o json
 
 == ステップ8: 安全なインバンド認証を設定する
 
-RHEL 9x ホストとONTAPコントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。
+RHEL 9.x ホストとONTAPコントローラ間の NVMe/TCP 経由の安全なインバンド認証がサポートされます。
 
 各ホストまたはコントローラは、  `DH-HMAC-CHAP`安全な認証を設定するためのキー。  `DH-HMAC-CHAP`キーは、NVMe ホストまたはコントローラの NQN と管理者によって設定された認証シークレットの組み合わせです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。
 
@@ -865,7 +865,7 @@ CLIを使用してセキュアなインバンド認証を設定します。
 ----
 cat /etc/nvme/hostnqn
 ----
-. RHEL 9x ホストの dhchap キーを生成します。
+. RHEL 9.x ホストの dhchap キーを生成します。
 +
 次の出力は、 `gen-dhchap-key`コマンドパラメータ:
 
