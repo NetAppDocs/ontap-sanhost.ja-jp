@@ -287,8 +287,12 @@ SUSE Linux Enterprise Server 12 SP5 with ONTAPストレージリリースには�
 == 次の手順
 
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
-* ASMミラーリングについて説明します。
+* ASMミラーリングについて学ぶ
 +
 Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
+
+* SUSE Linux仮想化（KVM）について学ぶ
++
+SUSE Linux は KVM ホストとして機能できます。これにより、Linux カーネルベースの仮想マシン (KVM) テクノロジを使用して、単一の物理サーバー上で複数の仮想マシンを実行できるようになります。KVM ホストでは、 ONTAP LUN に対して明示的なホスト構成設定は必要ありません。
 
 
