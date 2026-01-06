@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: nvme_windows_2022.html 
+permalink: nvme-windows-2022.html 
 keywords: nvme, windows, enterprise 
 summary: Windows Server 2022を実行しているホストでONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。 
 ---

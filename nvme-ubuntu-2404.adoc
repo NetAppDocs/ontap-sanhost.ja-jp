@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: nvme_ubuntu_2404.html 
+permalink: nvme-ubuntu-2404.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Ubuntu 24.04 with ONTAP用のNVMe-oFホストの設定方法 
 ---
@@ -109,7 +109,6 @@ NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設�
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
-.手順
 . サポートされているアダプタモデルを使用していることを確認します。
 +
 .. `cat /sys/class/scsi_host/host*/modelname`
@@ -218,7 +217,6 @@ Ubuntu 24.04 GAカーネルに含まれているネイティブの受信トレ�
 
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
-.手順
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [listing]

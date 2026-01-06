@@ -644,7 +644,7 @@ Oct 12 19:40:33 localhost systemd[1]: Finished nvmefc-boot-connections.service -
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
 
 .手順
-. それぞれのONTAP名前空間の適切な NVMe-oF 設定 (モデルがNetApp ONTAPコントローラに設定され、負荷分散 iopolicy がラウンドロビンに設定されているなど) がホストに正しく表示されていることを確認します。
+. それぞれのONTAP名前空間の適切な NVMe-oF 設定 (モデルをNetApp ONTAPコントローラに設定し、ロード バランシングiopolicy を queue-depth に設定するなど) がホストに正しく表示されていることを確認します。
 +
 .. サブシステムを表示します。
 +

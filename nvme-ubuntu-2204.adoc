@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: nvme_ubuntu_2204.html 
+permalink: nvme-ubuntu-2204.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Ubuntu 22.04 with ONTAP用のNVMe-oFホストの設定方法 
 ---
@@ -120,7 +120,6 @@ NVMe/FCはBroadcom/EmulexアダプタまたはMarvell/Qlogicアダプタに設�
 ====
 .Broadcom / Emulex
 --
-.手順
 . サポートされているアダプタモデルを使用していることを確認します。
 +
 [listing]
@@ -221,7 +220,6 @@ FCP CMPL: xb 00000000 Err 00000000
 --
 Ubuntu 22.04 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
 
-.手順
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [listing]

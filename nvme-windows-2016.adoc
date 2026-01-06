@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_windows_2012r2.html 
+permalink: nvme-windows-2016.html 
 keywords: nvme, windows, enterprise 
-summary: Windows Server 2012 R2を実行しているホストでは、ONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。 
+summary: Windows Server 2016を実行しているホストでONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。 
 ---
-= ONTAP用のNVMe/FCを搭載したWindows Server 2012 R2の設定
+= ONTAP向けにNVMe/FCを搭載したWindows Server 2016を構成
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,17 +16,17 @@ summary: Windows Server 2012 R2を実行しているホストでは、ONTAP LUN�
 
 
 [role="lead"]
-Windows Server 2012 R2を実行しているホストでは、ONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。
+Windows Server 2016を実行しているホストでONTAP LUNを使用するためにNVMe over Fibre Channel（NVMe/FC）を設定できます。
 
 .このタスクについて
-Windows Server 2012 R2のNVMe/FCホスト構成では、次のサポートを使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
+Windows 2016のNVMe/FCホスト構成では、次のサポートを使用できます。設定プロセスを開始する前に、既知の制限事項も確認しておく必要があります。
 
 
 NOTE: この手順で説明する構成設定を使用して、およびに接続されているクラウドクライアントを構成できlink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^]link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ONTAP 対応の Amazon FSX"^]ます。
 
 * 利用可能なサポート：
 +
-ONTAP 9.7以降では、Windows Server 2012 R2でNVMe/FCがサポートされます。
+ONTAP 9.7以降では、Windows Server 2016でNVMe/FCがサポートされます。
 
 +
 サポートされるFCアダプタとコントローラの一覧については、を参照してくださいlink:https://hwu.netapp.com/Home/Index["Hardware Universe"^]。サポートされる構成とバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
