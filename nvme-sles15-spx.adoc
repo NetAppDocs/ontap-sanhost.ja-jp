@@ -5,17 +5,14 @@ keywords: nvme, linux, suse, sles, SUSE Linux Enterprise Server, 15, SPx, server
 summary: ONTAPを搭載した SUSE Linux Enterprise Server 15 SPx に NVMe/FC を構成する方法について説明します。 
 ---
 = ONTAPストレージでNVMe-oF用にSUSE Linux Enterprise Server 15 SPxを構成する
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

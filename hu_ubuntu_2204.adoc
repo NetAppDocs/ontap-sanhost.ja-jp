@@ -5,17 +5,14 @@ keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu
 summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Ubuntu 24.04 ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージを使用してUbuntu 22.04をFCPおよびiSCSI用に設定する
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]
