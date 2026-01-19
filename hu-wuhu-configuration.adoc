@@ -1,30 +1,35 @@
 ---
 sidebar: sidebar 
-permalink: hu_wuhu_hba_settings.html 
+permalink: hu-wuhu-configuration.html 
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= ONTAPストレージでWindowsホストユーティリティのレジストリ設定を構成する
+= ONTAPストレージのWindowsホストユーティリティ構成を確認する
+:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
+:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
+:toc-position: content
 
 
 [role="lead"]
-Windows ホスト ユーティリティでは、Windows ホストがストレージ システムの動作を正しく処理していることを確認するために、特定のレジストリおよびパラメータ設定が必要です。
+Windows ホスト ユーティリティでは、Windows ホストがONTAPストレージ システムの動作を正しく処理できるように、特定のレジストリおよびパラメータ設定が必要です。
 
-Windows ホスト ユーティリティは、Windows ホストがデータの遅延や損失にどのように対応するかに影響するパラメータ値を設定します。これらの値は、Windows ホストがストレージ システム内の 1 つのコントローラからそのパートナー コントローラへのフェイルオーバーなどのイベントを正しく処理していることを確認します。
+これらのレジストリ値とパラメータ値は、ストレージ フェイルオーバーなどのイベントを正しく処理するなど、Windows ホストがデータの遅延や損失にどのように対応するかに影響します。
 
-一部の値は、SANtricity Storage Managerのデバイス固有モジュール (DSM) には適用されません。  Windows ホスト ユーティリティとSANtricity Storage Managerの DSM によって設定された値が重複しても、競合は発生しません。
+一部のレジストリ値とパラメータ値は、 SANtricity Storage Managerのデバイス固有モジュール (DSM) には適用されません。Windows ホスト ユーティリティとSANtricity Storage Managerの DSM によって設定された値が重複しても、競合は発生しません。
 
-パフォーマンスを最適化し、ストレージ システム イベントを正常に処理するには、FC、NVMe/FC、および iSCSI HBA パラメータを設定する必要もあります。
+Windows ホストでは、ストレージ システム イベントを正常に処理するために、特定の FC、NVMe/FC、および iSCSI HBA パラメータも必要です。
 
-Windows ホスト ユーティリティ インストーラーは、Windows、FC、および NVMe/FC HBA パラメーターをサポートされている値に設定します。  iSCSI HBA パラメータを手動で設定する必要があります。
+* Windows Host Utilities 7.2 以降では、インストーラーによって Windows、iSCSI、FC、および NVMe/FC パラメーターがサポートされている値に設定されます。
+* Windows Host Utilities 7.1 以降では、インストーラーによって Windows、FC、および NVMe/FC HBA パラメーターがサポートされている値に設定されます。iSCSI HBA パラメータを手動で設定する必要があります。
+
 
 インストール中に Microsoft マルチパス I/O (MPIO) サポートを指定すると、インストーラーによって異なる値が設定されます。
 
@@ -37,22 +42,22 @@ Windows Host Utilities 8.0、7.2、または 7.1 のその他のすべてのパ�
 ====
 
 
-== Windows Host Utilities 8.0 によって設定されるレジストリ値
+== Windows Host Utilities 8.0 の構成設定を確認します
 
-Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、レジストリ値と NVMe パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認する必要があります。
+Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認します。
 
 [role="tabbed-block"]
 ====
-.HKLM値
+.Windowsレジストリ値
 --
-Windows ホスト ユーティリティ インストーラーは、次のレジストリ値を設定します。特に記載がない限り、すべての値は 10 進数です。
+特に明記しない限り、すべての Windows レジストリ値は 10 進数です。
 
 
 NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 
 [cols="20,20,30"]
 |===
-| レジストリキー | 価値 | 設定時 
+| レジストリキー | 価値 | レジストリ キーを設定します... 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumRetryTimeDuringStateTransition | 120 | MPIOサポートが指定されており、サーバーがWindows Server 2025、2022、2019、または2016の場合 
@@ -64,16 +69,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」 | MPIO サポートが指定されている場合 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\LinkDownTime | 10. | 常に 
-
-
 | HKLM\SYSTEM\CurrentControlSet\Services\Clusdisk\Parameters\ManageDisksOnSystemBuses | 1. | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 120 | MPIO サポートが選択されていない場合 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 30 | 常に 
@@ -127,6 +123,27 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval | 1. | MPIOサポートが指定されており、サーバーがWindows Server 2025、2022、2019、または2016の場合 
 |===
 --
+.iSCSI HBAの値
+--
+特に明記しない限り、すべての iSCSI HBA 値は 10 進数です。
+
+
+NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
+
+[cols="20,20,30"]
+|===
+| レジストリキー | 価値 | レジストリ キーを設定します... 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\LinkDownTime | 10. | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 120 | MPIO サポートが選択されていない場合 
+|===
+--
 .NVMeパラメータ
 --
 Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ドライバー パラメータを更新します。
@@ -139,22 +156,22 @@ Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ド�
 ====
 
 
-== Windows Host Utilities 7.2で設定されるレジストリ値
+== Windows Host Utilities 7.2 の構成設定を確認します
 
-Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、レジストリ値と NVMe パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認する必要があります。
+Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認します。
 
 [#nvme_parameter,role="tabbed-block"]
 ====
-.HKLM値
+.Windowsレジストリ値
 --
-Windows ホスト ユーティリティ インストーラーは、次のレジストリ値を設定します。特に記載がない限り、すべての値は 10 進数です。
+特に明記しない限り、すべての Windows レジストリ値は 10 進数です。
 
 
 NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 
 [cols="20,20,30"]
 |===
-| レジストリキー | 価値 | 設定時 
+| レジストリキー | 価値 | レジストリ キーを設定します... 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumRetryTimeDuringStateTransition | 120 | MPIOのサポートが指定されており、サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合 
@@ -166,16 +183,7 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList | 「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」 | MPIO サポートが指定されている場合 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\LinkDownTime | 10. | 常に 
-
-
 | HKLM\SYSTEM\CurrentControlSet\Services\Clusdisk\Parameters\ManageDisksOnSystemBuses | 1. | 常に 
-
-
-| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 120 | MPIO サポートが選択されていない場合 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 30 | 常に 
@@ -229,15 +237,36 @@ NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
 | HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval | 1. | MPIOのサポートが指定されており、サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合 
 |===
 --
+.iSCSI HBAの値
+--
+特に明記しない限り、すべての iSCSI HBA 値は 10 進数です。
+
+
+NOTE: HKLMはの略語です `HKEY_LOCAL_MACHINE`。
+
+[cols="20,20,30"]
+|===
+| レジストリキー | 価値 | レジストリ キーを設定します... 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\IPSecConfigTimeout | 60 | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\LinkDownTime | 10. | 常に 
+
+
+| HKLM\SYSTEM\CurrentControlSet\Control\Class\{iSCSI_DRIVER_GUID}\INSTANCE_ID\Parameters\MaxRequestHoldTime | 120 | MPIO サポートが選択されていない場合 
+|===
+--
 .NVMeパラメータ
 --
-Windows Host Utilities 7.2 をインストールすると、次の NVMe Emulex ドライバー パラメータが更新されます。
+Windows Host Utilities 7.2 は、インストール中に次の NVMe Emulex ドライバー パラメータを更新します。
 
 * EnableNVMe = 1
 * NVMEMode = 0
 * 転送サイズ = 1
 +
-Windows Host Utilities 7.2をインストールすると、LimTransferSizeパラメータは自動的に「1」に設定されます。インストール後、LimTransferSizeの値を「0」に手動で変更し、サーバーを再起動する必要があります。
+Windows Host Utilities 7.2 をインストールすると、LimTransferSize パラメータは自動的に「1」に設定されます。インストール後、LimTransferSize の値を「0」に変更し、サーバーを再起動します。
 
 
 
@@ -245,18 +274,16 @@ Windows Host Utilities 7.2をインストールすると、LimTransferSizeパラ
 ====
 
 
-== Windows Host Utilities 7.1で設定されるレジストリ値
+== Windows Host Utilities 7.1 の構成設定を確認します
 
-Windows ホスト ユーティリティ インストーラは、インストール中に選択した内容に基づいてレジストリ値を自動的に設定します。これらのレジストリ値とオペレーティング システムのバージョンを確認する必要があります。
-
-Windows Host Utilitiesのインストーラで設定される値は次のとおりです。特に記載がない限り、すべての値は10進数です。
+Windows ホスト ユーティリティ インストーラは、インストール中に選択した内容に基づいてレジストリ値を自動的に設定します。これらのレジストリ値とオペレーティング システムのバージョンを確認します。特に記載がない限り、すべての値は 10 進数で表されます。
 
 
 NOTE: `HKLM` は、の略語です。 `HKEY_LOCAL_MACHINE`。
 
 [cols="~, 10, ~"]
 |===
-| レジストリキー | 価値 | 設定時 
+| レジストリキー | 価値 | レジストリ キーを設定します... 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumRetryTimeDuringStateTransition | 120 | MPIOサポートが指定されており、サーバがWindows Server 2016、2012 R2、2012、2008 R2、または2008の場合（Data ONTAP DSMが検出された場合を除く） 
@@ -355,7 +382,7 @@ NOTE: `HKLM` は、の略語です。 `HKEY_LOCAL_MACHINE`。
 
 
 
-== Windows Host Utilities で設定される FC HBA の値
+== Windowsホストユーティリティによって設定されるFC HBA値について学習します
 
 Windows ホスト ユーティリティ インストーラは、FC を使用するシステム上の Emulex および QLogic FC HBA に必要なタイムアウト値を設定します。
 
@@ -418,15 +445,13 @@ Windows ホスト ユーティリティ インストーラは、FC を使用す�
 --
 ====
 
-NOTE: パラメータの名前は、プログラムによって多少異なる場合があります。
-たとえば、QLogic QConvergeConsoleプログラムでは、パラメータはと表示されます `Link Down Timeout`。
-Host Utilities `fcconfig.ini` Fileには、このパラメータがどちらかと表示されます `LinkDownTimeOut` または `MpioLinkDownTimeOut`（MPIOが指定されているかどうかによって異なります）。ただし、これらの名前はすべて同じ HBA パラメータを表します。を参照してください https://www.broadcom.com/support/download-search["Emulex 社"^] または https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx["QLogic"^] タイムアウトパラメータの詳細については、を参照してください。
+NOTE: パラメータの名前はプログラムによって若干異なる場合があります。例えば、QLogic QConvergeConsoleプログラムでは、パラメータは次のように表示されます。 `Link Down Timeout`。ホストユーティリティ `fcconfig.ini` ファイルではこのパラメータは `LinkDownTimeOut` または `MpioLinkDownTimeOut`MPIO が指定されているかどうかによって異なります。ただし、これらすべての名前は同じ HBA パラメータを参照します。見る https://www.broadcom.com/support/download-search["Emulex 社"^] または https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx["QLogic"^] タイムアウトパラメータの詳細については、こちらをご覧ください。
 
 
 
 == ホストユーティリティによるFC HBAドライバ設定の変更について学ぶ
 
-FC システムに必要な Emulex または QLogic HBA ドライバーをインストールするときに、Windows ホスト ユーティリティによっていくつかのパラメーターがチェックされ、場合によっては変更されます。
+FC システムに必要な Emulex または QLogic HBA ドライバーをインストールする際、Windows ホスト ユーティリティはいくつかのパラメーターをチェックし、場合によってはそれらを変更します。
 
 Windows ホスト ユーティリティは、MS DSM for Windows MPIO が検出されると、次のパラメータの値を設定します。
 
@@ -434,7 +459,7 @@ Windows ホスト ユーティリティは、MS DSM for Windows MPIO が検出�
 * *NodeTimeOut*: ホスト ポートがターゲット デバイスへの接続がダウンしていることを認識するまでの時間の長さを秒単位で定義します。
 
 
-HBA の問題のトラブルシューティングを行うときは、これらの設定が正しい値であることを確認してください。正しい値は次の 2 つの要因によって異なります。
+HBA の問題をトラブルシューティングするときは、これらの設定に正しい値が設定されていることを確認してください。正しい値は次の 2 つの要因によって決まります。
 
 * HBA ベンダー
 * MPIO ソフトウェアを使用しているかどうか。

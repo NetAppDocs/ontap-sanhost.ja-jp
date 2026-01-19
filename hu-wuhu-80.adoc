@@ -149,4 +149,4 @@ NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer�
 
 == 次の手順
 
-link:hu_wuhu_hba_settings.html["Windowsホストユーティリティのレジストリ設定を構成する"] 。
+link:hu-wuhu-configuration.html["ONTAPストレージのWindowsホストユーティリティ構成について学習します"]

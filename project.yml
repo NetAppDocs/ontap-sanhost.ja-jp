@@ -83,8 +83,8 @@ sidebar:
           url: "/hu_wuhu_72.html"
         - title: Windows Host Utilities 7.1のインストール
           url: "/hu_wuhu_71.html"
-      - title: Windowsホストユーティリティの設定を構成する
-        url: "/hu_wuhu_hba_settings.html"
+      - title: Windowsホストユーティリティの構成を確認する
+        url: "/hu-wuhu-configuration.html"
       - title: Windows Host Utilitiesのアップグレード
         url: "/hu_wuhu_upgrade.html"
       - title: Windows Host Utilitiesを修復して削除します

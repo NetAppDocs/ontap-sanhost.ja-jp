@@ -139,20 +139,6 @@
   <block id="880b9ba9933b6e3ce087d9412e66470b" category="inline-link-macro">Microsoft Update Catalog 2012 R2 』を参照してください</block>
   <block id="5a3b43f9090be87b411af7ac82adcb38" category="list-text">Microsoft の指示に従って、修正プログラムをインストールします。</block>
   <block id="4f27a34799ad8580f67b93c57e242ad0" category="section-title">SAN の設定</block>
-  <block id="7a0a3a29c4e371b5125adb49cae3a738" category="section-title">すべての SAN アレイ構成</block>
-  <block id="270748dbbd5a9031b10d44f9f16973cf" category="admonition">Windows Server 2016 で作成されたパーティションは、デフォルトでアライメントされる必要があります。</block>
-  <block id="1104f990ade81e5b4d644288a54cf49a" category="admonition">Linux 仮想マシンで VHD の GRUB ブートローダーを使用する場合は、 PowerShell Toolkit の実行後にブート設定を更新する必要があります。</block>
-  <block id="b9ef2c298abb1a6d04513bf9fee94dda" category="paragraph">GRUB ブートローダを使用して Linux ゲスト OS の PowerShell Toolkit と MBR アライメントを修正するためにディスク上で「 m bralign 」を実行した後、ゲスト OS が正しく起動するように GRUB を再インストールする必要があります。</block>
-  <block id="972f2c4ba9001b48966c37ef2a152dc0" category="list-text">仮想マシン用の正しいバージョンの Linux のインストール CD のディスク 1 の ISO イメージをマウントします。</block>
-  <block id="75cb80233f6f80283591654412489249" category="list-text">Hyper-V Manager で仮想マシンのコンソールを開きます。</block>
-  <block id="737083ee251b627f57dd05899466dc4b" category="list-text">VMware BIOS のスプラッシュ画面が表示されたら、すぐに * Esc * キーを 1 回押します。ブートメニューが表示されます。</block>
-  <block id="ccc37fa0e9dd606175ec88322d6be351" category="list-text">起動メニューで、 * CD-ROM * を選択します。</block>
-  <block id="8fc05f93a1e2b7d0f8e575b13b63b37d" category="list-text">Linux の起動画面で、「 linux rescue 」と入力します</block>
-  <block id="c1dc6d18649b347b978130011d44a49a" category="list-text">Anaconda （青 / 赤の設定画面）のデフォルトを使用します。ネットワークはオプションです。</block>
-  <block id="241c8b3bd8818322d5fba757a4374a34" category="list-text">grub を起動するには、「 grub」 と入力します</block>
-  <block id="e05674955ac595342c4c496ecfbdc101" category="paragraph">次に、次のコマンドを実行します。</block>
-  <block id="501d6d7f3776c626c1ec5d95589d5cca" category="list-text">ログアウトするには、 *Ctrl-D* を押します。</block>
-  <block id="ec93937c58f140d445e59c5bbc51be26" category="paragraph">Linux のレスキューがシャットダウンし、その後再起動します。</block>
   <block id="2e8526cbe762cb1b8393d935a3b0bf16" category="section-title">推奨設定</block>
   <block id="1dd9d61dc0438fbaf47669042c33c32f" category="cell">プロパティタイプ</block>
   <block id="4a697eb9fdac91d5651375075c998596" category="cell">プロパティ値</block>
@@ -359,7 +345,6 @@
   <block id="915015ac4efada43b59e22b377a82ed1" category="list-text">「 installer.msi 」は、システム上の Windows Host Utilities インストールプログラムの名前です。</block>
   <block id="7e0565a4a74302c8f7e2cd160825c07a" category="list-text">「 /quiet 」はすべてのフィードバックを抑制し、コマンドの完了時にプロンプトを表示せずにシステムを自動的に再起動します。</block>
   <block id="e5e8913907553117e947ccc75671f941" category="cell">レジストリキー</block>
-  <block id="2f13ada49ba30a3f17abc7ff1c610656" category="cell">設定時</block>
   <block id="353a3cc2e6698fc1eca7603cde3ca48e" category="cell">HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumRetryTimeDuringStateTransition</block>
   <block id="82f92b873b165010afb1e3db606cc578" category="cell">HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmMaximumStateTransitionTime</block>
   <block id="aa20dc2a80a37d024aeb48f792ce37e7" category="cell">HKLM\SYSTEM\CurrentControlSet\Services\msdsm\Parameters\DsmSupportedDeviceList</block>
@@ -402,14 +387,12 @@
   <block id="a5b83cd29ece8eb608d8f558a14aafd2" category="cell">HKLM\SYSTEM\CurrentControlSet\Services\Disk\TimeOutValue</block>
   <block id="42dde1eb61f6c2638c5d044047417179" category="cell">HKLM\SYSTEM\CurrentControlSet\Services\MPIO\Parameters\UseCustomPathRecoveryInterval</block>
   <block id="c57dcf0db9f722653d2df0250b192c2f" category="inline-link">Microsoft のドキュメント</block>
-  <block id="820c80a71d25737a6640c8135c800297" category="section-title">Windows Host Utilities で設定される FC HBA の値</block>
   <block id="8f0fd19a2d99e6260c0b4e6513b7638c" category="inline-link">Emulex 社</block>
   <block id="bf37856a0dcc40508065787e2d49c8c3" category="inline-link">QLogic</block>
   <block id="7ecf9ab560fece14bab7a58f25439b02" category="list-text">ホストまたはストレージシステムのコンソールに表示されるエラーメッセージをすべて記録します。</block>
   <block id="68cbf857d8485f03797edab4de291207" category="list-text">ホストとストレージシステムのログファイルを収集</block>
   <block id="99685cd1c95ee76b57460b7e546cb7eb" category="list-text">問題の兆候や、問題が発生する直前にホストまたはストレージシステムに加えた変更を記録します。</block>
   <block id="69893000f4da30e1e42922cbcf8dac0e" category="inline-link">NetApp Bugs Online では</block>
-  <block id="ab77ead701285f5c525a4af0d02d7113" category="paragraph">HBA の問題のトラブルシューティングを行うときは、これらの設定が正しい値であることを確認してください。正しい値は次の 2 つの要因によって異なります。</block>
   <block id="7b89c0aff4542bf5f5ea1fc402d480ec" category="list-text">HBA ベンダー</block>
   <block id="c6e28ac86a9fffeb9329e96a567e805d" category="list-text">OnCommand Manager を開きます。</block>
   <block id="3773b996b3769cafbcfc5f1ecd7c953c" category="paragraph">ドライバパラメータが表示されます。</block>
@@ -1099,9 +1082,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="1a959178e792ae0c668c4f3a0bd45c65" category="list-text">システムに関する情報を収集します。</block>
   <block id="40bb1ea4c1bbc484f41a531e80ddb519" category="admonition"><block ref="c6d731b2e6e90d0e19df48cb3d9d7498" prefix="" category="inline-code"></block> は、の略語です。<block ref="86565cb5d05fc56046ceb32627a70264" prefix=" " category="inline-code"></block>。</block>
   <block id="a624f3024f6945790c5f3a01e38649bf" category="paragraph">を参照してください<block ref="cc2304a59b5feaeebd0c5646fd22caf0" category="inline-link-rx"></block> を参照してください。</block>
-  <block id="b182eae32a0022889eab1f98a5ba3a49" category="admonition">パラメータの名前は、プログラムによって多少異なる場合があります。
-たとえば、QLogic QConvergeConsoleプログラムでは、パラメータはと表示されます<block ref="b554d47c6702123b3a28a3e04ed39621" prefix=" " category="inline-code"></block>。
-Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category="inline-code"></block> Fileには、このパラメータがどちらかと表示されます<block ref="08a7801aadb2d395506d0735d17dcf62" prefix=" " category="inline-code"></block> または<block ref="e29ad18354768c222941f5de52fd92c9" prefix=" " category="inline-code"></block>（MPIOが指定されているかどうかによって異なります）。ただし、これらの名前はすべて同じ HBA パラメータを表します。を参照してください<block ref="6d63c8366c015331075fa86de38975e8" category="inline-link-rx"></block> または<block ref="4399df604c07a452cc084d95811dafae" category="inline-link-rx"></block> タイムアウトパラメータの詳細については、を参照してください。</block>
   <block id="670b555082101cc3b01786f63d7cfe63" category="open-title">Emulex HBAドライバ</block>
   <block id="9d7f686c283e7f060d447a80713ba1cc" category="open-title">QLogic HBAドライバ</block>
   <block id="d3e220182499e43aeadc8bda16bcb3db" category="paragraph">次の例では、HMACが3に設定されたランダムDHCHAPキー（SHA-512）が生成されます。</block>
@@ -1619,9 +1599,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="1078de040a8679207e1783a9da9e836c" category="cell">Red Hat Enterprise Linux 5、Red Hat Enterprise Linux 6、またはSUSE Linux Enterprise Server 11 Hyper-Vゲストでは、デフォルトのタイムアウト設定が使用されているため、スクリプトを実行してディスクタイムアウトを変更する必要がなくなりました<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block>。<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block>以前のバージョンのHost Utilitiesに含まれていたスクリプトは、Windows Host Utilities 7.1バージョンには含まれなくなりました。Windows Host Utilities 7.1では、デフォルトのディスクタイムアウト設定が使用されます。</block>
   <block id="2c1c2305f2baefceb44e8e1b31927d88" category="doc">Windows Host Utilities 7.2をインストールする</block>
   <block id="b31a86b1dca7dfa1a67b27d591387cdb" category="paragraph">Host Utilitiesは、さまざまなWindowsホスト構成、プロトコル、マルチパスオプションをサポートします。詳細については、を参照して<block ref="e29293ebfe5b9174e3113da62e6426ca" category="inline-link-rx"></block>ください。</block>
-  <block id="3160be9723d9dc9c210d8c8b48bd0bcf" category="section-title">Windows Host Utilities 7.2で設定されるレジストリ値</block>
-  <block id="4da5f705a95e0ed235573a4eb64fce01" category="section-title">Windows Host Utilities 7.1で設定されるレジストリ値</block>
-  <block id="125e0f5615cef4db790518b2fd3b4491" category="paragraph">Windows Host Utilitiesのインストーラで設定される値は次のとおりです。特に記載がない限り、すべての値は10進数です。</block>
   <block id="10ce28246e5d07ff8493b9244d2b2aca" category="list-text">NetApp Windows Host Utilities *を選択します。</block>
   <block id="044af269e446bb1cbed59c4821cfa418" category="list-text">Windows Host Utilitiesを修復します。</block>
   <block id="ba03d85ce07f0089b670121f8db9959a" category="list-text">潜在的な相互運用性の問題を特定するには、ホストオペレーティングシステムソフトウェア、ホストハードウェア、ONTAPソフトウェア、ストレージシステムハードウェアの組み合わせがHost Utilitiesでサポートされていることを確認します。詳細については、を参照してください<block ref="8202e2d9ff186d084c29140284f981f1" category="inline-link-rx"></block>。</block>
@@ -1679,28 +1656,12 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="5c715b8fde529251e535a7b4e48f84c2" category="open-title">SAN ブート</block>
   <block id="58d0fc761c647663983ac6b7e586281c" category="paragraph">SANブーティングを使用する場合は、使用している構成でサポートされている必要があります。</block>
   <block id="47d17b750a3f193d9db742ef86494b1e" category="paragraph">を使用<block ref="b77f230f2effb14751e6164ceee6da3f" category="inline-link-rx"></block>して、Windows OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。</block>
-  <block id="ba5e9a5307d838817264d934e6080263" category="paragraph">SAN構成に応じて、オールSANアレイ（ASA）構成または非ASA構成を使用してONTAP LUNにアクセスします。ASA構成とASA以外の構成のどちらでも、1つのONTAP LUNにアクセスするためのパスを4つまでにする必要はありません。パスが4つ以上あると、ストレージ障害時にパスで問題が発生する可能性があります。</block>
-  <block id="df71bac0ba76ff83dcf7e26b1350fe50" category="paragraph">ASA構成には、単一の優先度を持つアクティブ/最適化パスのグループが1つ必要です。つまり、パスはコントローラによって処理され、すべてのアクティブパスでI/Oが送信されます。</block>
-  <block id="6a25c5df0849f9286646dc1c4746bc77" category="paragraph">次の例は、アクティブ/最適パスを使用するONTAP LUNの正しい出力を示しています。</block>
   <block id="7e7bd9d92ebb121bcce736b10711ab8c" category="admonition">Microsoft Update Catalogからダウンロードできない修正プログラムについては、Microsoftサポートにお問い合わせください。</block>
-  <block id="9bd687f53bb8eba834ecb54f33ebf261" category="paragraph">ディスクパーティションのデータブロック境界が基盤となるLUNのブロック境界と一致していない場合、ストレージシステムは多くの場合、オペレーティングシステムのブロック読み取りまたは書き込みごとにブロック読み取りまたは書き込みを2回実行する必要があります。ミスアライメントが原因で追加のブロック読み取り / 書き込みが発生すると、深刻なパフォーマンスの問題が生じる可能性があります。</block>
-  <block id="2ff9b2398c78131af0b1d1523781ef19" category="paragraph">マスターブートレコードによって定義された各パーティションの開始セクターの場所が、ミスアライメントの原因となります。</block>
-  <block id="6b56b79977ded504f44030c7aacf202c" category="paragraph">ONTAP PowerShell Toolkitのコマンドレットを使用し<block ref="4e1e27349c8a128a19e874bcbd0666b6" prefix=" " category="inline-code"></block>て、パーティションが基盤となるLUNとアライメントされているかどうかを確認します。パーティションのアライメントが正しくない場合は、コマンドレットを使用し<block ref="1c425220dcb59c3825f2baed3229bb55" prefix=" " category="inline-code"></block>て、アライメントが正しい新しいVHDファイルを作成します。このコマンドレットは、すべてのパーティションを新しいファイルにコピーします。元の VHD ファイルは変更も削除もされません。データがコピーされている間は、仮想マシンをシャットダウンする必要があります。</block>
-  <block id="67d5317777feed5c5f907721eccb63d1" category="paragraph">ONTAP PowerShell Toolkit は、ネットアップコミュニティからダウンロードできます。環境変数で指定された場所にファイルを解凍する必要があります（またはスクリプトを使用してファイルを<block ref="105b23cb210b6142f68f0f6f1d8cd1cb" prefix=" " category="inline-code"></block>解凍し<block ref="f9975b70d855f1fce1e9949953ca0e28" prefix=" " category="inline-code"></block>ます<block ref="05555c8b844b7e945be8140460ba564c" prefix=" " category="inline-code"></block>）。インストールが完了したら、コマンドレットを使用して<block ref="0776c469e94bf86e8f54a0596ac6bd51" prefix=" " category="inline-code"></block>コマンドレットのヘルプを表示します。</block>
-  <block id="a0b96a6b218fdba91fb2aacb84bdb32c" category="paragraph">PowerShell Toolkit では、 MBR タイプのパーティションを含む容量固定 VHD ファイルのみがサポートされます。WindowsダイナミックディスクまたはGPTパーティションを使用するVHDはサポートされていません。さらに、 PowerShell Toolkit では、 4GB 以上のパーティションサイズが必要です。小さいパーティションは正しくアライメントできません。</block>
-  <block id="b8e499b30940e319e34a9def3a8277a9" category="paragraph">ASA以外の構成では、優先順位が異なる2つのパスグループを設定する必要があります。優先度の高いパスは[Active]または[Optimized]になります。つまり、アクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。</block>
   <block id="f5c21e4e25a06d31a8e38ae7a1270165" category="paragraph">FCを使用するシステムでMPIOを選択すると、EmulexおよびQLogic FC HBAに必要なタイムアウト値がHost Utilitiesインストーラによって設定されます。</block>
   <block id="3e575d4c266efc0bf10abf8506bf9fc9" category="open-title">Emulex FC</block>
   <block id="61d5be4d95eb9ed2c2aae574d01274d3" category="paragraph">Emulex FC HBAのタイムアウト値：</block>
   <block id="2704ea6051977d60de74b19a5d26a552" category="open-title">QLogic FC</block>
   <block id="1e2248ff99196b0abd94b919f10e5087" category="paragraph">QLogic FC HBAのタイムアウト値は次のとおりです。</block>
-  <block id="54695ec579cd9f604542649198e293ff" category="inline-link-macro">Windows Host Utilitiesのレジストリ設定を構成する</block>
-  <block id="652e337de2c34d4fb20d8d014b085e00" category="admonition">推奨設定の詳細については、を参照してください<block ref="b7590f68c328ab26959227c8347d06f0" category="inline-link-macro-rx"></block>。</block>
-  <block id="20b917718e62cc33572b686d2c3ef283" category="paragraph">仮想マシンの VHD ファイルに対して PowerShell Toolkit のコマンドレットが完了しました。この手順は、GRUBブートLoaderおよびを使用するLinuxゲストオペレーティングシステムにのみ適用され<block ref="601f2f600347fee361e3e2ca8b73a177" prefix=" " category="inline-code"></block>ます。</block>
-  <block id="df2077261c59032c7739522f829cdb8e" category="list-text">GRUB画面でVMが実行中でフリーズしている場合は、表示領域内をクリックしてアクティブになっていることを確認し、ツールバーの* Ctrl + Alt + Delete *アイコンを選択してVMをリブートします。VM が実行されていない場合は起動し、表示領域をただちにクリックしてアクティブにします。</block>
-  <block id="1efd70950af96e10b879896c7e865e47" category="list-text">このVMに仮想ディスクが1つしかない場合、または複数のディスクがあり、最初のディスクがブートディスクである場合は、次のGRUBコマンドを実行します。</block>
-  <block id="fcc869a543c1e80be3bdacff22793cf7" category="paragraph">VMに複数の仮想ディスクがあり、ブートディスクが最初のディスクではない場合、またはミスアライメントされたバックアップVHDからブートしてGRUBを修正する場合は、次のコマンドを入力してブートディスクを特定します。</block>
-  <block id="68bccc9f47a1d689c835812de6c7a435" category="admonition">の<block ref="7b530ba82b70d4821bf776b3f3fb778a" prefix=" " category="inline-code"></block>は、<block ref="cd096f9e86c0ef0d9e34df35a959627c" prefix=" " category="inline-code"></block>ブートディスクの実際のディスク識別子のプレースホルダです。</block>
   <block id="6b1a062ab30f453c4d8f30042bd36a0d" category="summary">ONTAP SANホストの構成設定を使用して、ONTAPストレージで動作するようにWindows Server 2025を構成できます。</block>
   <block id="6cbabda8de389ba6ce8a60e0359b51b7" category="doc">ONTAPストレージ用のWindows Server 2025の設定</block>
   <block id="d211c3930b27be56feb1a5044f105d64" category="paragraph">NetAppでは、Microsoft Updateカタログから入手可能な最新の累積更新プログラム*をホストサーバーにインストールすることをお勧めします。</block>
@@ -1716,7 +1677,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="e1fb3bc85942df243da9db83c85073bd" category="cell">MPIOのサポートが指定されており、サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合</block>
   <block id="e391b693ae84de83009e50a6ff0d773d" category="cell">サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合</block>
   <block id="10e20033accbc339bb5469c868b2b071" category="cell">MPIOのサポートが指定されており、サーバがWindows Server 2025、2022、2019、2016、または2012 R2の場合</block>
-  <block id="fa5c369c0560373ede3332d2508c4819" category="paragraph">Windows Host Utilities 7.2をインストールすると、LimTransferSizeパラメータは自動的に「1」に設定されます。インストール後、LimTransferSizeの値を「0」に手動で変更し、サーバーを再起動する必要があります。</block>
   <block id="70cefc9a608dc188dd16deb1397a1529" category="cell">MPIOサポートが指定されており、サーバがWindows Server 2016、2012 R2、2012、2008 R2、または2008の場合（Data ONTAP DSMが検出された場合を除く）</block>
   <block id="28c4a2aff9dab89964d88a9594119baa" category="cell">サーバがWindows Server 2016、2012 R2、2012、2008 R2、または2008の場合</block>
   <block id="e240b4a9acf4df1925780394d9f14be9" category="doc">ONTAP用のNVMe/FCを搭載したWindows Server 2025の設定</block>
@@ -2184,8 +2144,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="be397afde57f5c0f38f6ba79ad4ec67a" category="paragraph">Windows コマンド ライン プロンプトを使用してマルチパス サポートを選択することもできます。</block>
   <block id="211ca7affd0e961ecfb9dbb6b619c8d1" category="paragraph">Hyper-V ゲストの場合、マルチパス サポートを選択すると、raw (パススルー) ディスクはゲスト OS に表示されません。  RAW ディスクまたは MPIO のいずれかを使用できますが、ゲスト OS では両方を使用することはできません。</block>
   <block id="e46c793ec4845d376c829db8a8c8446b" category="paragraph">ホスト ユーティリティは、対話形式で、または Windows コマンド ラインを使用してインストールできます。新しい Host Utilities インストール パッケージは、Windows ホストからアクセスできるパスに存在する必要があります。</block>
-  <block id="c92461f9123dbb33559fcbdc4ccc3632" category="inline-link-macro">Windowsホストユーティリティのレジストリ設定を構成する</block>
-  <block id="b22a7cc5777384ac92a13fdcbf02f6a7" category="paragraph"><block ref="bc9181ff5e05a661f25ceabd5067a9d6" category="inline-link-macro-rx"></block> 。</block>
   <block id="83fcfb65754825523aa792cb7a6b19ef" category="doc">ONTAPストレージ用のAIXホストユーティリティ7.0をインストールする</block>
   <block id="9ffc109828255a3247f9f7c7f5d76627" category="paragraph">AIX ホスト ユーティリティ 7.0 は、次のトランスポート プロトコルと AIX 環境をサポートします。</block>
   <block id="eabf58c1495b34b83006649a72fe0cea" category="list-text">FC、FCoE、iSCSI</block>
@@ -2457,16 +2415,12 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="8e3644c7ee6d75b3275b49e4ac92bcd7" category="admonition">SANtricity Storage Managerを使用する E シリーズ ストレージ システムでは、FC および iSCSI プロトコルにライセンスは必要ありません。</block>
   <block id="50b0de549390e9fd0aff72d2cc76922d" category="paragraph">Host Utilities インストール プログラムを実行し、プロンプトに従って、Host Utilities ソフトウェア パッケージを対話型でインストールします。</block>
   <block id="d539640f2a8ad84ff2b6b210b3c82a8b" category="doc">ONTAPストレージ用のWindowsホストユーティリティ7.2をインストールする</block>
-  <block id="62113ee23a34404b1f086b7ed1df786b" category="doc">ONTAPストレージでWindowsホストユーティリティのレジストリ設定を構成する</block>
   <block id="80fecb40ffb39e22d2139bf9886132bc" category="inline-xref">NVMEパラメータ</block>
   <block id="40bd27b40d44b862091d49e4f0538774" category="paragraph">Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータ値を変更する必要があります。見る<block ref="f34264ec923664aedfb2a9ccd6257931" category="inline-xref-macro-rx"></block> 。</block>
   <block id="05371652e7984167bbb3f85201a5b89b" category="paragraph">Windows Host Utilities 8.0、7.2、または 7.1 のその他のすべてのパラメータとレジストリ キーについては、テクニカル サポートから指示がない限り、値を変更する必要はありません。</block>
-  <block id="3552ff32d73200dbe48fb217ccbdfe65" category="section-title">Windows Host Utilities 8.0 によって設定されるレジストリ値</block>
-  <block id="a254beadccf36a8b85672cf8419d64d8" category="open-title">HKLM値</block>
   <block id="071b3c301587fc461b5b5db6056fea64" category="cell">MPIOサポートが指定されており、サーバーがWindows Server 2025、2022、2019、または2016の場合</block>
   <block id="213770055804b675ffe14467be7be594" category="cell">サーバーがWindows Server 2025、2022、2019、または2016の場合</block>
   <block id="ef7643028f04a4cac8da8e05df5237b1" category="cell">MPIOサポートが指定されており、サーバーがWindows Server 2025、2022、2019、または2016の場合</block>
-  <block id="408cf458ebdd52832b74587ec65fee92" category="paragraph">Windows Host Utilities 7.2 をインストールすると、次の NVMe Emulex ドライバー パラメータが更新されます。</block>
   <block id="20aac534719ebb4b8d33960d910552ae" category="section-title">ホストユーティリティによるFC HBAドライバ設定の変更について学ぶ</block>
   <block id="290855c6daac5448d222f3c661f749fb" category="list-text">*LinkTimeOut*: 物理リンクがダウンした後、ホスト ポートが I/O を再開するまでに待機する時間の長さ (秒単位) を定義します。</block>
   <block id="9e02085844efecca4159003505f0e34a" category="list-text">*NodeTimeOut*: ホスト ポートがターゲット デバイスへの接続がダウンしていることを認識するまでの時間の長さを秒単位で定義します。</block>
@@ -2537,7 +2491,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="64a317b0ef502066fcd3e75bd699674f" category="sidebar">Solarisコマンドリファレンスについて学ぶ</block>
   <block id="dc5558bf9c4fb0dc5f36d6c135777cf2" category="sidebar">Windowsホストユーティリティをインストールする</block>
   <block id="d4609abcc5de600b2cd5aa87443c612c" category="sidebar">Windows ホスト ユーティリティ 8.0 をインストールする</block>
-  <block id="390e5244f8ae0a5b4cdd721ad6036cb9" category="sidebar">Windowsホストユーティリティの設定を構成する</block>
   <block id="89a348be490d3be0bdc23d43fb585c56" category="sidebar">7.3/4.x</block>
   <block id="f72cfd397ddcffbe2327665e83f6e4fd" category="doc">ステップ3: オプションでデバイスをマルチパスから除外する</block>
   <block id="2767a9a2ad485daf64375577843d3ba2" category="doc">ステップ4: ONTAP LUNのマルチパスパラメータをカスタマイズする</block>
@@ -2587,24 +2540,14 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="3d4de8befb0eddb7be95b9eb899bcd21" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Ubuntu 24.04 ホストに Linux ホスト ユーティリティをインストールします。</block>
   <block id="faed4c9c8188f7390b773fb64e42fc29" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。  Ubuntu 22.04 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
   <block id="3b2ad8d11d49615d3cb062774e116630" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。  Ubuntu 24.04 ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
-  <block id="876d8d634dabd3b4faa05168e2953c68" category="paragraph">Windows ホスト ユーティリティでは、Windows ホストがストレージ システムの動作を正しく処理していることを確認するために、特定のレジストリおよびパラメータ設定が必要です。</block>
-  <block id="3187b1de6020504a9ef2201371f4ddfb" category="paragraph">Windows ホスト ユーティリティは、Windows ホストがデータの遅延や損失にどのように対応するかに影響するパラメータ値を設定します。これらの値は、Windows ホストがストレージ システム内の 1 つのコントローラからそのパートナー コントローラへのフェイルオーバーなどのイベントを正しく処理していることを確認します。</block>
-  <block id="5761ec5c04ac77cb295ddef5c5adf39f" category="paragraph">一部の値は、SANtricity Storage Managerのデバイス固有モジュール (DSM) には適用されません。  Windows ホスト ユーティリティとSANtricity Storage Managerの DSM によって設定された値が重複しても、競合は発生しません。</block>
-  <block id="1c45b11e7112ae3015b6528aac98db47" category="paragraph">パフォーマンスを最適化し、ストレージ システム イベントを正常に処理するには、FC、NVMe/FC、および iSCSI HBA パラメータを設定する必要もあります。</block>
-  <block id="ac299bbbaa386f926bfeffd61f3f329a" category="paragraph">Windows ホスト ユーティリティ インストーラーは、Windows、FC、および NVMe/FC HBA パラメーターをサポートされている値に設定します。  iSCSI HBA パラメータを手動で設定する必要があります。</block>
   <block id="0600911da7c2ed3e4c75b35a8383464b" category="paragraph">インストール中に Microsoft マルチパス I/O (MPIO) サポートを指定すると、インストーラーによって異なる値が設定されます。</block>
-  <block id="1289e36ad9af025f92a68eeb71942e45" category="paragraph">Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、レジストリ値と NVMe パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認する必要があります。</block>
-  <block id="05ca7c309c201d00d9edda26c29f1814" category="paragraph">Windows ホスト ユーティリティ インストーラーは、次のレジストリ値を設定します。特に記載がない限り、すべての値は 10 進数です。</block>
   <block id="9315284a762c1471b85be43158649395" category="cell">「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」</block>
   <block id="f43fc70fd90855c7e4c4c9cba7d7f1fd" category="cell">「NETAPP LUN」、「NETAPP LUN Cモード」、「NVMe NetApp ONTAP Con」</block>
-  <block id="65d5481255e5037a619c921fafb15def" category="paragraph">Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ドライバー パラメータを更新します。</block>
-  <block id="ab51b6ada28fc394eb4698434eaf6668" category="paragraph">Windows ホスト ユーティリティ インストーラは、インストール中に選択した内容に基づいてレジストリ値を自動的に設定します。これらのレジストリ値とオペレーティング システムのバージョンを確認する必要があります。</block>
   <block id="619778ebb1defb58b2f571d8beed6661" category="paragraph">Windows ホスト ユーティリティ インストーラは、FC を使用するシステム上の Emulex および QLogic FC HBA に必要なタイムアウト値を設定します。</block>
   <block id="ca146b673983ec595aae317e1a1e764a" category="paragraph">インストーラーは、Emulex FC HBA に対して次のパラメータを設定します。</block>
   <block id="187c9ec598092d65351eaf4f361d83f7" category="open-title">MPIOを選択した場合</block>
   <block id="17f9a8611eed107aecf0406db4a2b59d" category="open-title">MPIOを選択しない場合</block>
   <block id="d915a9fedab871eb41a22f16bfb69c64" category="paragraph">インストーラーは、QLogic FC HBA に対して次のパラメータを設定します。</block>
-  <block id="2ff89f8cd6f01614cdfc9aff8ff7a2a4" category="paragraph">FC システムに必要な Emulex または QLogic HBA ドライバーをインストールするときに、Windows ホスト ユーティリティによっていくつかのパラメーターがチェックされ、場合によっては変更されます。</block>
   <block id="30fe8c509bd758431e60f7f83e9085f0" category="paragraph">Windows ホスト ユーティリティは、MS DSM for Windows MPIO が検出されると、次のパラメータの値を設定します。</block>
   <block id="d7ffc66640801d3b23e6403b53045607" category="paragraph">FC システム上の Emulex HBA ドライバー設定を確認します。これらの設定は、HBA 上の各ポートに対して存在している必要があります。</block>
   <block id="0aa9ab84e08417b1d87c1a5606b6b1b4" category="paragraph">FC システム上の QLogic HBA ドライバー設定を確認します。これらの設定は、HBA 上の各ポートに対して存在している必要があります。</block>
@@ -2679,8 +2622,6 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="2668d75d00d2b0c89fc0268c581eea9a" category="paragraph">AFFまたはFAS構成には、優先度が異なる 2 つのパス グループが必要です。優先度の高いパスはアクティブ/最適化されており、アグリゲートが配置されているコントローラによってサービスされます。優先度の低いパスは別のコントローラからサービスされます。これらはアクティブですが最適化されておらず、最適化されたパスが利用できない場合にのみ使用されます。</block>
   <block id="778265cdd82e615c65e819202c4f1a45" category="paragraph">ローカル ブートまたは SAN ブートを使用して Windows OS を起動できます。NetApp、導入を簡素化し、スケーラビリティを向上させるために SAN ブートの使用を推奨しています。</block>
   <block id="9c3530e2722834048b2844c3d51c3f9d" category="paragraph">SSD、SATA、RAID などのローカル ハード ディスクに Windows OS をインストールして、ローカル ブートを実行します。</block>
-  <block id="732f2da8f62b9da0ea923952084874de" category="inline-link-macro">Windowsホストユーティリティのレジストリ設定について学ぶ</block>
-  <block id="adb6b5051a1f8d77d4d01917e922a3e4" category="paragraph"><block ref="c1331b771adf93ff52db3f4f543e95b0" category="inline-link-macro-rx"></block>。</block>
   <block id="418566369566c44bb7140916a64786a1" category="admonition">多くのホットフィックスでは、Windows ホストの再起動が必要です。ホスト ユーティリティをインストールまたはアップグレードした後まで、ホストの再起動を待つことができます。</block>
   <block id="a280834ebf64082d80348b8606fd1022" category="paragraph">Windows ホスト ユーティリティは、ホスト コンピュータをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。NetApp、 ONTAP LUN 管理をサポートし、テクニカル サポートが構成データを収集できるようにするために、最新の Windows ホスト ユーティリティをダウンロードしてインストールすることを推奨しています。</block>
   <block id="0dbfca139f278e370070260ca86e7bea" category="paragraph">Windowsホストユーティリティの設定とインストール情報については、 <block ref="0030a0ca2c8a5e3c1ffa16a150ed65f9" category="inline-link-macro-rx"></block> ドキュメントを参照し、Windows ホスト ユーティリティ バージョンのインストール手順を選択してください。</block>
@@ -3104,4 +3045,31 @@ Host Utilities<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category=
   <block id="643c7133e701780bd200aa43a7ac19d5" category="sidebar">12 SP2</block>
   <block id="a6cf0ca607a76b62fe0393451560cb3e" category="sidebar">12 SP1</block>
   <block id="5b0baa1d297171d8a0eb3e7b4eab041d" category="sidebar">15 SPx</block>
+  <block id="f6cc17830d6056ab4b78496fa45d86c0" category="inline-link-macro">ONTAPストレージのWindowsホストユーティリティ構成について学習します</block>
+  <block id="a270bf4f8c4b691ce8d28f78e05ad3ce" category="paragraph"><block ref="a270bf4f8c4b691ce8d28f78e05ad3ce" category="inline-link-macro-rx"></block></block>
+  <block id="3ef0124e3a4c499c8d81cf51736e34cf" category="doc">ONTAPストレージのWindowsホストユーティリティ構成を確認する</block>
+  <block id="d163580e6b36094493c3486aa4bd713d" category="paragraph">Windows ホスト ユーティリティでは、Windows ホストがONTAPストレージ システムの動作を正しく処理できるように、特定のレジストリおよびパラメータ設定が必要です。</block>
+  <block id="a7f9e2f7eae7b45e39495e27e2aa0591" category="paragraph">これらのレジストリ値とパラメータ値は、ストレージ フェイルオーバーなどのイベントを正しく処理するなど、Windows ホストがデータの遅延や損失にどのように対応するかに影響します。</block>
+  <block id="4fd88a48c587c319fee5293adbb82370" category="paragraph">一部のレジストリ値とパラメータ値は、 SANtricity Storage Managerのデバイス固有モジュール (DSM) には適用されません。Windows ホスト ユーティリティとSANtricity Storage Managerの DSM によって設定された値が重複しても、競合は発生しません。</block>
+  <block id="27369ead3c900cf549518fa5912f3beb" category="paragraph">Windows ホストでは、ストレージ システム イベントを正常に処理するために、特定の FC、NVMe/FC、および iSCSI HBA パラメータも必要です。</block>
+  <block id="3aea2f8ae8a21af7a187a2cbdd12fe62" category="list-text">Windows Host Utilities 7.2 以降では、インストーラーによって Windows、iSCSI、FC、および NVMe/FC パラメーターがサポートされている値に設定されます。</block>
+  <block id="bb5e85db541a571d5444af86a48295eb" category="list-text">Windows Host Utilities 7.1 以降では、インストーラーによって Windows、FC、および NVMe/FC HBA パラメーターがサポートされている値に設定されます。iSCSI HBA パラメータを手動で設定する必要があります。</block>
+  <block id="856b84160c2cd057500cee609f14e2ae" category="section-title">Windows Host Utilities 8.0 の構成設定を確認します</block>
+  <block id="72934b5100d49e143a007d3f9658653b" category="paragraph">Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認します。</block>
+  <block id="cd3da9fa9d3b1672b6e802d678075159" category="open-title">Windowsレジストリ値</block>
+  <block id="acf633c8ebc059225f934044e1724be4" category="paragraph">特に明記しない限り、すべての Windows レジストリ値は 10 進数です。</block>
+  <block id="918d7d296045834b208049633743dada" category="cell">レジストリ キーを設定します...</block>
+  <block id="e51c3c5caf9dc0f70689e54385d6445e" category="open-title">iSCSI HBAの値</block>
+  <block id="c92b7987dc07b9fe00ce0d942ac6584c" category="paragraph">特に明記しない限り、すべての iSCSI HBA 値は 10 進数です。</block>
+  <block id="32983f61bd86ff1d53c1e73c98853ea6" category="paragraph">Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ドライバー パラメータを更新します。</block>
+  <block id="fd122937cb75bf13d0d288a91da427c8" category="section-title">Windows Host Utilities 7.2 の構成設定を確認します</block>
+  <block id="b69134c16adc05cd3e2e52ada20808d8" category="paragraph">Windows Host Utilities 7.2 は、インストール中に次の NVMe Emulex ドライバー パラメータを更新します。</block>
+  <block id="49552d0a01f8e5c018c36fa7a95672e2" category="paragraph">Windows Host Utilities 7.2 をインストールすると、LimTransferSize パラメータは自動的に「1」に設定されます。インストール後、LimTransferSize の値を「0」に変更し、サーバーを再起動します。</block>
+  <block id="7d1b938dfc7652c1013aa6c87acaa295" category="section-title">Windows Host Utilities 7.1 の構成設定を確認します</block>
+  <block id="d3d049b67f764449da9efe56c0f7e37d" category="paragraph">Windows ホスト ユーティリティ インストーラは、インストール中に選択した内容に基づいてレジストリ値を自動的に設定します。これらのレジストリ値とオペレーティング システムのバージョンを確認します。特に記載がない限り、すべての値は 10 進数で表されます。</block>
+  <block id="c996a795ae55a6395f76354e6b7c8da5" category="section-title">Windowsホストユーティリティによって設定されるFC HBA値について学習します</block>
+  <block id="009df88d79340b8c3b598472557324d8" category="admonition">パラメータの名前はプログラムによって若干異なる場合があります。例えば、QLogic QConvergeConsoleプログラムでは、パラメータは次のように表示されます。<block ref="b554d47c6702123b3a28a3e04ed39621" prefix=" " category="inline-code"></block>。ホストユーティリティ<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category="inline-code"></block> ファイルではこのパラメータは<block ref="08a7801aadb2d395506d0735d17dcf62" prefix=" " category="inline-code"></block> または<block ref="e29ad18354768c222941f5de52fd92c9" prefix=" " category="inline-code"></block>MPIO が指定されているかどうかによって異なります。ただし、これらすべての名前は同じ HBA パラメータを参照します。見る<block ref="6d63c8366c015331075fa86de38975e8" category="inline-link-rx"></block> または<block ref="4399df604c07a452cc084d95811dafae" category="inline-link-rx"></block> タイムアウトパラメータの詳細については、こちらをご覧ください。</block>
+  <block id="82ec7e195e913912e4bf387fbe3d1a1a" category="paragraph">FC システムに必要な Emulex または QLogic HBA ドライバーをインストールする際、Windows ホスト ユーティリティはいくつかのパラメーターをチェックし、場合によってはそれらを変更します。</block>
+  <block id="80359a24fbf8546b71fbe0e9a6a30e27" category="paragraph">HBA の問題をトラブルシューティングするときは、これらの設定に正しい値が設定されていることを確認してください。正しい値は次の 2 つの要因によって決まります。</block>
+  <block id="dd1dd5ab98ce86b204797f25e5883980" category="sidebar">Windowsホストユーティリティの構成を確認する</block>
 </blocks>
