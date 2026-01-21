@@ -1,5 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-「 multipath -ll 」コマンドを使用すると、 ONTAP LUN の設定を確認できます。

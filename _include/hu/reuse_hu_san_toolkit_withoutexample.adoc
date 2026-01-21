@@ -1,5 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-NetApp Host Utilitiesパッケージをインストールすると、ツールキットが自動的にインストールされます。このキットには、LUNおよびHost Bus Adapter（HBA；ホストバスアダプタ）の管理に役立つユーティリティが用意されて `sanlun`います。 `sanlun`show volumeGroupコマンドは、ホストにマッピングされているLUNに関する情報、マルチパス、およびイニシエータグループの作成に必要な情報を返します。

@@ -4,7 +4,7 @@ permalink: troubleshoot.html
 keywords: host utilities, veritas, infoscale, 8.x, netapp, ontap, vmware, vspehere 
 summary: FC、FCoE、およびiSCSIの各プロトコルを使用するVMware vSphere 8.xリリース用のONTAP SANホスト設定を行うことができます。 
 ---
-= トラブルシューティングを行う
+= Linuxホストユーティリティ向けONTAPストレージを使用したNVMe-oFのトラブルシューティング
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,10 +16,12 @@ summary: FC、FCoE、およびiSCSIの各プロトコルを使用するVMware vS
 
 
 [role="lead"]
-RHEL、OL、およびSUSE Linux Enterprise ServerホストのNVMe-oF障害をトラブルシューティングする前に、Interoperability Matrix Tool（IMT）の仕様に準拠した構成を実行していることを確認してから、次の手順に進み、ホスト側の問題をデバッグします。
+ONTAPストレージを搭載した Oracle Linux、RHEL、Rocky Linux、および SUSE Linux Enterprise Server ホストの NVMe-oF 障害をトラブルシューティングします。
+
+トラブルシューティングを始める前に、以下の要件に準拠した構成を実行していることを確認してください。 https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^] 仕様を確認してから次の手順に進み、ホスト側の問題をデバッグします。
 
 
-NOTE: AIX、Windows、ESXiホストにはトラブルシューティング手順は適用されません。
+NOTE: トラブルシューティングの手順は、AIX、ESXi、Proxmox、および Windows ホストには適用されません。
 
 
 
@@ -27,7 +29,8 @@ NOTE: AIX、Windows、ESXiホストにはトラブルシューティング手順
 
 構成に問題 が含まれている場合は、詳細なロギングを使用してトラブルシューティングに必要な情報を得ることができます。
 
-Qlogicの詳細ロギングを設定する手順 （qla2xxx）は、lpfc詳細ロギングを設定する手順 とは異なります。
+.手順
+LPFC または Qlogic (Qla2xxx) の詳細ログを設定します。
 
 [role="tabbed-block"]
 ====
@@ -35,7 +38,6 @@ Qlogicの詳細ロギングを設定する手順 （qla2xxx）は、lpfc詳細�
 --
 NVMe/FC用のLPFCドライバを設定します。
 
-.手順
 . を設定します `lpfc_log_verbose` NVMe/FCイベントをログに記録するためのドライバ設定は次のいずれかです。
 +
 [listing]
@@ -48,7 +50,7 @@ NVMe/FC用のLPFCドライバを設定します。
 . 値を設定したら、を実行します `dracut-f` コマンドを実行し、ホストをリブートします。
 . 設定を確認します。
 +
-[listing]
+[source, cli]
 ----
 # cat /etc/modprobe.d/lpfc.conf options lpfc lpfc_log_verbose=0xf00083
 
@@ -61,17 +63,16 @@ NVMe/FC用のLPFCドライバを設定します。
 --
 NVMe/FCについては、のようなqla2xxxのロギングはありません。 `lpfc` ドライバ。代わりに、一般的なqla2xxxログレベルを設定します。
 
-.手順
 . 対応する「 m odprobe qla2xxx conf 」ファイルに「 ql2xextended_error_logging=0x1e400000 」の値を追加します。
 . を実行します `dracut -f` コマンドを実行してホストをリブートします。
 . リブート後、詳細ログが有効になっていることを確認します。
 +
-[listing]
+[source, cli]
 ----
 # cat /etc/modprobe.d/qla2xxx.conf
 ----
 +
-出力例：
+次の例のような出力が表示されます。
 
 +
 [listing]
@@ -86,7 +87,7 @@ options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 ====
 
 
-=== 一般的なnvme-CLIエラーとその回避策があります
+== よくある「nvme-cli」エラーと回避策
 
 によって表示されるエラーです `nvme-cli` 実行中 `nvme discover`、 `nvme connect`または `nvme connect-all` 処理とその対処方法を次の表に示します。
 
@@ -143,9 +144,9 @@ Cmpl 00000000000000a8 Outstanding 0000000000000001
 
 == テクニカルサポートへの連絡のタイミング
 
-問題が解決しない場合は、次のファイルとコマンド出力を収集し、 link:mysupport.netapp.com["ネットアップサポート"^] さらなるトリアージ：
+問題が解決しない場合は、以下のファイルとコマンド出力を収集してお問い合わせください。 link:mysupport.netapp.com["ネットアップサポート"^] さらなるトリアージのために：
 
-[listing]
+[source, cli]
 ----
 cat /sys/class/scsi_host/host*/nvme_info
 /var/log/messages

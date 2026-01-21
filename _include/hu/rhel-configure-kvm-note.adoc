@@ -1,6 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-
-NOTE: ONTAP LUNはKVMハイパーバイザーに自動的にマッピングされるため、Kernel-Based Virtual Machine（KVM）を設定する必要はありません。
