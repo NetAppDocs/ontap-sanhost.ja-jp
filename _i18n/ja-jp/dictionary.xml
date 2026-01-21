@@ -234,8 +234,6 @@
   <block id="bf5a222f8e3d9f399a1266b069eb4993" category="cell">ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GB FC を搭載した RHEL8 のリモートポートがブロック状態に移行しています</block>
   <block id="d68e531e9b1b70b7033496b5b71eda91" category="cell">ストレージフェイルオーバー処理中に、 Emulex LPe32002 32GBFibre Channel （ FC ）を搭載した RHEL8 で、リモートポートがブロック状態になっています。ストレージノードが最適状態に戻ると、 LIF も稼働し、リモートポートの状態は「 online 」になります。リモートポートの状態が「 blocked 」または「 not present 」のままになることがあります。この状態は、マルチパスレイヤで LUN へのパスが「障害状態」になる可能性があります。</block>
   <block id="51a4a26e6b1bdae133374d340c097526" category="paragraph">次の例は、 2 つのアクティブ / 最適化パスと 2 つのアクティブ / 非最適化パスを使用する ONTAP LUN に対する正しい出力を表示します。</block>
-  <block id="2844e304c2e162332243113572206ac6" category="inline-link-macro">1308744</block>
-  <block id="939827454c3bb8453033ba1bd60c555e" category="cell"><block ref="c8bdc7961e7fb79cc7e51cf734b247fb" category="inline-link-macro-rx"></block></block>
   <block id="bea05db7b205cebd49d85c581b86c97e" category="summary">VERITAS ONTAP Infosscale 6 シリーズ・リリースの SAN ホスト構成設定に関するガイダンスを提供します</block>
   <block id="d350f9964b658ccb5399ae6c7b4e75b4" category="paragraph">Windows ホストコンピュータには、次のプログラムとファイルがインストールされています。デフォルト・ディレクトリは C ： \Program Files\NetApp\SnapManager \Windows Host Utilities' です。</block>
   <block id="95c50c7cc68e399ac5540898dfd06820" category="cell">プログラム</block>
@@ -397,7 +395,6 @@
   <block id="fdcd362ac5f5f9817e70642dd2a48bfd" category="sidebar">Oracle Linux の場合</block>
   <block id="d6422a625045167156b3c0d85ca23ebf" category="sidebar">8.1</block>
   <block id="8b6f93f33bce541c7f50f8aff637e2e1" category="sidebar">RHEL</block>
-  <block id="1b1e6d45b618db5397c656f0df1d4b85" category="sidebar">15 SP2</block>
   <block id="7ceb3cac51dbf44c807f7e83fabc5016" category="sidebar">15 SP1</block>
   <block id="ea6b2efbdd4255a9f1b3bbc6399b58f4" category="sidebar">2019 年</block>
   <block id="95192c98732387165bf8e396c0f2dad2" category="sidebar">2016 年</block>
@@ -971,8 +968,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="f3478c814fd82f33620059d2d7656ea9" category="list-text">WWIDを確認します。</block>
   <block id="48a57465c9050da3e456de11a1bce0f0" category="list-text">ホストをリブートして、ブートが正常に完了したことを確認します。</block>
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph"><block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block>コマンドを実行すると、次のような出力が生成されます。次の例の出力は省略されています。</block>
-  <block id="1f9090c13a627840d3e8110654671ecd" category="cell">SUSE Linux Enterprise Server 15S P2 OSのインストール完了後、SANからのiSCSIブートが静的IP設定で起動しない</block>
-  <block id="74fe7cde6e68f9607ef6c16f62916dd8" category="paragraph">静的IP設定を使用したSUSE Linux Enterprise Server 15 SP2 OSのインストールが完了すると、iSCSIサンブートLUNの起動に失敗する。ブートアップ障害は、静的 IP 設定で毎回発生します。これにより、次のエラーメッセージが表示され、サーバが起動プロセスの続行を拒否しています。</block>
   <block id="adcc6b5e38256f637746539b3d3cb7b3" category="paragraph">Ubuntu 22.04 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。</block>
   <block id="896c6d73b474c57fd4a882830cd2a6de" category="sidebar">SUSE Linux Enterprise Server 15</block>
   <block id="587b796170a9abac4701cd8aa1bb38cb" category="listing-title">出力例</block>
@@ -1898,7 +1893,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="c66e8f141f367b0a5a1d201cc49ccc72" category="paragraph">ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block>の価値<block ref="63a7cb7a86eb0c84641936943496afaf" prefix=" " category="inline-code"></block>パラメータをデフォルト値の 64 から 256 に変更します。</block>
   <block id="cfa5b6e557299c1ae7c635f08785f365" category="paragraph">Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。</block>
   <block id="e8584093909cb01d1e4390beaad82a5f" category="paragraph">その<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。</block>
-  <block id="660bcc8bfdb485b79b7dede726eb2358" category="doc">NVMe-OFを使用したONTAP SANホストの構成について学ぶ</block>
   <block id="be1e5922c13f8cd92deb77a78a07375f" category="paragraph">サポートされている SAN ホストを構成して、 ONTAPをストレージ ターゲットとして NVMe over Fabrics (NVMe-oF) プロトコルを使用できます。 NVMe-oF には、NVMe over Fibre Channel (NVMe/FC) と NVMe over TCP (NVMe/TCP) が含まれます。ホスト オペレーティング システムとONTAPのバージョンに応じて、ホスト上で NVMe/FC または NVMe/TCP プロトコル、あるいはその両方を設定および検証します。</block>
   <block id="b0e0bd8207ba62457f58c3e06f3f7bec" category="section-title">ONTAPのサポートと機能</block>
   <block id="3b2a75ebc087c7f3c4fa9ac0e2a92ebe" category="cell">ONTAPのバージョン</block>
@@ -2404,4 +2398,5 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="79c482cb23c057c0d600ecd3434dbb27" category="section-title">よくある「nvme-cli」エラーと回避策</block>
   <block id="c481530fd3180128cebd4b0d3be77c0f" category="paragraph">問題が解決しない場合は、以下のファイルとコマンド出力を収集してお問い合わせください。 <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> さらなるトリアージのために：</block>
   <block id="0669c03dc492faf8d7b9fc2bd8512b73" category="sidebar">以前のホストユーティリティリリース</block>
+  <block id="2444d67396b745a440cfa96bf55da9c6" category="doc">NVMe-oF を使用した ONTAP SAN ホストの構成について学習します。</block>
 </blocks>

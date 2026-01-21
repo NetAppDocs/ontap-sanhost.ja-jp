@@ -274,29 +274,6 @@ ONTAPストレージを搭載した SUSE Linux Enterprise Server 15 SPx には�
 
 [role="tabbed-block"]
 ====
-.15 SP2
---
-[cols="1,3,3"]
-|===
-| NetApp バグ ID | タイトル | 説明 
-
-
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1308744["1308744"^] | SUSE Linux Enterprise Server 15S P2 OSのインストール完了後、SANからのiSCSIブートが静的IP設定で起動しない  a| 
-静的IP設定を使用したSUSE Linux Enterprise Server 15 SP2 OSのインストールが完了すると、iSCSIサンブートLUNの起動に失敗する。ブートアップ障害は、静的 IP 設定で毎回発生します。これにより、次のエラーメッセージが表示され、サーバが起動プロセスの続行を拒否しています。
-
-[listing]
-----
-dracut-cmdline[241]: warning: Empty autoconf values default to dhcp
-
-dracut: FATAL: FATAL: For argument ip=eth4:static, setting client-ip does not make sense for dhcp
-
-dracut: Refusing to continue
-
-reboot: System halted
-
-----
-|===
---
 .15 SP1
 --
 [cols="3"]
