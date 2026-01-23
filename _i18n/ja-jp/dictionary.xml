@@ -848,7 +848,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="4b251899b86291ee2ea3a4ec31bd27d2" category="list-text">検出サブシステムのPDCを作成します。</block>
   <block id="cc9b331553f2bcc4120c4d935ac45124" category="list-text">ONTAPコントローラから、PDCが作成されたことを確認します。</block>
   <block id="73fd59b3c9a3572b90f709cc5c917c78" category="paragraph">セキュアな認証を設定するには、各ホストまたはコントローラを<block ref="f4ec72363eeda8a3e6391c779684b2be" prefix=" " category="inline-code"></block> キー。NVMeホストまたはコントローラのNQNと管理者が設定した認証シークレットを組み合わせたものです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。</block>
-  <block id="563237c884bab6356a13da886807f1d9" category="paragraph">CLIまたは設定JSONファイルを使用して、セキュアなインバンド認証を設定できます。サブシステムごとに異なるDHCHAPキーを指定する必要がある場合は、config JSONファイルを使用する必要があります。</block>
   <block id="91af5705f16502125e8b2187e64202c0" category="open-title">CLI の使用</block>
   <block id="130ea6273a6f2f8dd4847cd415a8dce1" category="list-text">ホストNQNを取得します。</block>
   <block id="be970af96a2d347df16aa0902707d220" category="list-text">ONTAPコントローラで、ホストを追加し、両方のDHCHAPキーを指定します。</block>
@@ -969,7 +968,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="48a57465c9050da3e456de11a1bce0f0" category="list-text">ホストをリブートして、ブートが正常に完了したことを確認します。</block>
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph"><block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block>コマンドを実行すると、次のような出力が生成されます。次の例の出力は省略されています。</block>
   <block id="adcc6b5e38256f637746539b3d3cb7b3" category="paragraph">Ubuntu 22.04 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。</block>
-  <block id="896c6d73b474c57fd4a882830cd2a6de" category="sidebar">SUSE Linux Enterprise Server 15</block>
   <block id="587b796170a9abac4701cd8aa1bb38cb" category="listing-title">出力例</block>
   <block id="8b6a5845688d81720a1016c10aa9e843" category="list-text">以降では、新しく作成するすべてのONTAP 9ネームスペースに対してスペースの割り当てがデフォルトで有効になります。</block>
   <block id="0c48e7c4bbc87e64bef6a0afca5676b3" category="paragraph">想定される値は0です。</block>
@@ -2038,7 +2036,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="5d2e5ee168e90c0595b3cc1eee2ee6dd" category="cell">SANブートはNVMe/FCプロトコルを使用して有効化されます</block>
   <block id="9d6d817f456752dac19e4b5c699bd30c" category="cell">その<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージには自動接続スクリプトが含まれており、サードパーティのスクリプトは不要になります。</block>
   <block id="1115310dc5d902646a8153a110b7cbc7" category="cell">ネイティブudevルール<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはNVMeマルチパスのラウンドロビン負荷分散を提供します</block>
-  <block id="fc247827714f96cf26c9cbb26911cbf8" category="cell">RHEL バージョンが..の場合</block>
   <block id="a63480986ae76ec294cfdac303f1cc61" category="cell">について学ぶ..</block>
   <block id="62287eeee3056dc397ebc956062f6d92" category="cell">10シリーズ</block>
   <block id="2ee39f4f778b47b40d3a961eef85042c" category="cell">9シリーズ</block>
@@ -2339,7 +2336,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="d4ca4de004c509fdca6f6baba9d067b3" category="cell">9.11.1以降</block>
   <block id="0c64d8618ad6cc4fda4a0184e7b3a66d" category="paragraph">15 SP1以降</block>
   <block id="64e18fc6adcf06d504f9f2cb84332a1e" category="paragraph">15 SP7以降</block>
-  <block id="9243641bd6b3c45ba14a34f8161142cb" category="cell">SUSE Linux Enterprise Server のバージョンが..の場合</block>
   <block id="3ebf0499b89f1f3b892d2950e4078398" category="cell">15 SPxシリーズ</block>
   <block id="9e9b995c5792b061553f6ebe8ec003fb" category="inline-link-macro">SUSE Linux Enterprise Server 15 SPx 用の NVMe の構成</block>
   <block id="5b9de8ac0ff133e1388277c57b436df3" category="cell"><block ref="5b9de8ac0ff133e1388277c57b436df3" category="inline-link-macro-rx"></block></block>
@@ -2399,4 +2395,35 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="c481530fd3180128cebd4b0d3be77c0f" category="paragraph">問題が解決しない場合は、以下のファイルとコマンド出力を収集してお問い合わせください。 <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> さらなるトリアージのために：</block>
   <block id="0669c03dc492faf8d7b9fc2bd8512b73" category="sidebar">以前のホストユーティリティリリース</block>
   <block id="2444d67396b745a440cfa96bf55da9c6" category="doc">NVMe-oF を使用した ONTAP SAN ホストの構成について学習します。</block>
+  <block id="55b4f27e868d94d08cb7b820fb7dcaf4" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、SUSE Linux Enterprise Server 16 に Linux Host Utilities をインストールします。</block>
+  <block id="651119b7fad3ebe0625718e781b85dbd" category="doc">ONTAPストレージを使用してFCPおよびiSCSI用にSUSE Linux Enterprise Server 16を構成する</block>
+  <block id="536673265ab4b1de9fd943164c12494a" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト向けの管理および診断ツールを提供します。SUSE Linux Enterprise Server 16ホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでのFCPおよびiSCSIプロトコル操作を管理できます。</block>
+  <block id="c79c0bda7187ef54ad53cb84f69b4995" category="paragraph">&lt;stdin&gt;内の未解決のディレクティブ - include::_include/hu/install-linux-host-utilities.adoc[]</block>
+  <block id="be0724c20eae9509bfecb55613ead45c" category="paragraph">SUSE Linux Enterprise Server 16 のマルチパスを使用して、ONTAP LUN を管理できます。</block>
+  <block id="40b573003d21aeb3dbe3d1c46c3c87af" category="cell">RHEL バージョンが ... の場合</block>
+  <block id="8637f659452959aafbb4798db09998d6" category="cell">... について学びましょう。</block>
+  <block id="06314aebedd665e513cf3a7e6c66f84b" category="cell">NVMe/TCPはASA r2システムのすべての最適化されたパスを報告します</block>
+  <block id="c74d97b01eae257e44aa9d5bade97baf" category="paragraph">16</block>
+  <block id="7ffe1b34523b105b2ec68027b4d78799" category="cell">SUSE Linux Enterprise Server のバージョンが ... の場合</block>
+  <block id="4563b4da24891c746834232492d8a6e9" category="inline-link-macro">SUSE Linux Enterprise Server 16 用の NVMe の構成</block>
+  <block id="c76bfdc925d748a8cdb6fd0cb4d6001b" category="cell"><block ref="c76bfdc925d748a8cdb6fd0cb4d6001b" category="inline-link-macro-rx"></block></block>
+  <block id="a5b83340c16a9e5f542b8d83b7359698" category="inline-link-macro">ASA r2システムについて学ぶ</block>
+  <block id="6e0022971af6bb297ffb7cf390f69650" category="list-text"><block ref="6e0022971af6bb297ffb7cf390f69650" category="inline-link-macro-rx"></block></block>
+  <block id="72383e72a2e01f82cf39e6b5bef8fa00" category="summary">ONTAP を使用した SUSE Linux Enterprise Server 16 の NVMe/FC の設定方法について説明します。</block>
+  <block id="8a9024c9d6e91361d035fbafed58442a" category="doc">ONTAPストレージでNVMe-oF用にSUSE Linux Enterprise Server 16を構成する</block>
+  <block id="79e7328d04b11a966a2e4e458cefdac2" category="paragraph">SUSE Linux Enterprise Server 16ホストは、非対称名前空間アクセス（ANA）を備えたNVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）プロトコルをサポートしています。ANAは、iSCSIおよびFCP環境における非対称論理ユニットアクセス（ALUA）と同等のマルチパス機能を提供します。</block>
+  <block id="08d9a17a8cc7b0cef8aae20105227cc6" category="paragraph">SUSE Linux Enterprise Server 16 用の NVMe over Fabrics (NVMe-oF) ホストを構成する方法について説明します。サポートと機能の詳細については、<block ref="b48d42b251389d47f80926d5c2a50eea" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="560f1dd3df1c8e397519688f9f3cdfc7" category="paragraph">SUSE Linux Enterprise Server 16 の NVMe-oF には、次の既知の制限があります：</block>
+  <block id="1190e777006c27e896f1d066cdaa4930" category="list-text">サーバーにSUSE Linux Enterprise Server 16をインストールします。インストールが完了したら、指定されたSUSE Linux Enterprise Server 16カーネルが実行されていることを確認します：</block>
+  <block id="f1980f113e0881826ff693f4b17d5d0a" category="paragraph">SUSE Linux Enterprise Server カーネルバージョンの例：</block>
+  <block id="1533ee126fd8f11e227dc3d689526f3c" category="paragraph">SUSE Linux Enterprise Server 16以降、NVMe-oFのデフォルトのiopolicyは<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>に設定されています。iopolicyを<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>に変更したい場合は、udevルールファイルを以下のように変更してください：</block>
+  <block id="f40fa917da76ec269347142ecd26f205" category="list-text">規則を修正して<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>が<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>になるようにします：</block>
+  <block id="922b0cabd672f72127f63daffda5daa8" category="admonition">ONTAP 9.16.1 以降、NVMe/FC および NVMe/TCP は ASA r2 システム上のすべての最適化されたパスを報告します。</block>
+  <block id="729803330c2c3ddc5602fa6a32ed6680" category="paragraph">次の出力例は、NVMe/FC を使用する AFF、FAS、ASA システムおよび ASA r2 システム用の 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
+  <block id="457f54f6cefd10b25a3bedd3ee0e4fa3" category="example-title">AFF、FAS、ASA出力例を表示します。</block>
+  <block id="166d9b02aa39fa880a105b2a6f0e64cc" category="example-title">ASA r2 の出力例を表示</block>
+  <block id="4cbc3c8523dd8f70db284b7defb44454" category="paragraph">次の出力例は、NVMe/TCP を使用する AFF、FAS、ASA システムおよび ASA r2 システム用の 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
+  <block id="3f52de62927af66bbbcbf9a67e36d63c" category="paragraph">SUSE Linux Enterprise Server 16ホスト用の永続検出コントローラ（PDC）を作成できます。PDCは、NVMeサブシステムの追加または削除操作と、検出ログページデータの変更を自動的に検出するために必要です。</block>
+  <block id="3c8457e76486b7070b5f16df832bfb55" category="paragraph">SUSE Linux Enterprise Server 16ホストとONTAPコントローラ間のNVMe/TCP経由の安全なインバンド認証がサポートされます。</block>
+  <block id="60940bf76e8a6f461e5cdf574e9a3897" category="sidebar">SLES-16-FCP</block>
 </blocks>

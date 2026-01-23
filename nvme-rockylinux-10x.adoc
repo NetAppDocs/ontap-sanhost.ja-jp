@@ -147,6 +147,7 @@ Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
+.手順
 . サポートされているアダプタモデルを使用していることを確認します。
 +
 .. モデル名を表示します。
@@ -299,6 +300,7 @@ FCP CMPL: xb 000014a5 Err 0002149a
 --
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
+.手順
 . サポートされているアダプタ ドライバーとファームウェア バージョンを使用していることを確認します。
 +
 [source, cli]
@@ -330,6 +332,7 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 --
 NVMe/TCP プロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCPサブシステムと名前空間をNVMe/TCPコマンドで検出することができます。 `connect`または `connect-all`手動で操作します。
 
+.手順
 . イニシエーター ポートが、サポートされている NVMe/TCP LIF 全体で検出ログ ページ データを取得できることを確認します。
 +
 [source, cli]
@@ -762,6 +765,7 @@ Rocky Linux 10.x ホストとONTAPコントローラ間の NVMe/TCP 経由の安
 
 各ホストまたはコントローラは、  `DH-HMAC-CHAP`安全な認証を設定するためのキー。  `DH-HMAC-CHAP`キーは、NVMe ホストまたはコントローラの NQN と管理者によって設定された認証シークレットの組み合わせです。ピアを認証するには、NVMeホストまたはコントローラがピアに関連付けられたキーを認識する必要があります。
 
+.手順
 CLI または設定 JSON ファイルを使用して、安全なインバンド認証を設定します。サブシステムごとに異なるDHCHAPキーを指定する必要がある場合は、config JSONファイルを使用する必要があります。
 
 [role="tabbed-block"]
@@ -874,7 +878,6 @@ ONTAPコントローラ上で複数のNVMeサブシステムが利用可能な�
 
 使用 `-o`JSON ファイルを生成するオプション。詳細な構文オプションについては、NVMe connect-all のマニュアル ページを参照してください。
 
-.手順
 . JSON ファイルを設定します。
 +
 

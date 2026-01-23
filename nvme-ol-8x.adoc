@@ -148,6 +148,7 @@ Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
+.手順
 . サポートされているアダプタモデルを使用していることを確認します。
 +
 .. モデル名を表示します。
@@ -297,6 +298,7 @@ FCP CMPL: xb 00000016 Err 00000016
 --
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
+.手順
 . サポートされているアダプタドライバとファームウェアのバージョンが実行されていることを確認します。
 +
 [source, cli]

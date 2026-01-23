@@ -23,6 +23,11 @@ NVMe over Fabrics (NVMe-oF) を使用したホスト構成でサポートされ�
 | 特徴 | SUSE Linux Enterprise Server ホストバージョン | ONTAPのバージョン 
 
 
+| NVMe/TCPはASA r2システムのすべての最適化されたパスを報告します  a| 
+16
+| 9.16.1以降 
+
+
 | NVMe/TCPではトランスポート層セキュリティ（TLS）1.3暗号化がサポートされています  a| 
 15 SP6以降
 | 9.16.1以降 
@@ -77,10 +82,15 @@ NOTE: サポートされている構成の詳細については、link:https://m
 
 [cols="50,50"]
 |===
-| SUSE Linux Enterprise Server のバージョンが..の場合 | について学ぶ.. 
+| SUSE Linux Enterprise Server のバージョンが ... の場合 | ... について学びましょう。 
+
+
+| 16 | link:nvme-sles16-spx.html["SUSE Linux Enterprise Server 16 用の NVMe の構成"] 
 
 
 | 15 SPxシリーズ | link:nvme-sles15-spx.html["SUSE Linux Enterprise Server 15 SPx 用の NVMe の構成"] 
 |===
 .関連情報
-link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["NVMeプロトコルの管理について学ぶ"^]
+* link:https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2システムについて学ぶ"^]
+* link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["NVMeプロトコルの管理について学ぶ"^]
+

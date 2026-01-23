@@ -143,6 +143,7 @@ Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
+.手順
 . サポートされているアダプタモデルを使用していることを確認します。
 +
 .. モデル名を表示します。
@@ -333,6 +334,7 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 --
 NVMe/TCP プロトコルは自動接続操作をサポートしていません。代わりに、NVMe/TCPサブシステムと名前空間をNVMe/TCPコマンドで検出することができます。 `connect`または `connect-all`手動で操作します。
 
+.手順
 . イニシエータポートがサポートされているNVMe/TCP LIFの検出ログページのデータを取得できることを確認します。
 +
 [source, cli]
@@ -828,6 +830,7 @@ CLI または構成 JSON ファイルを使用して、安全なインバンド�
 --
 CLIを使用してセキュアなインバンド認証を設定します。
 
+.手順
 . ホストNQNを取得します。
 +
 [source, cli]
@@ -920,6 +923,7 @@ ONTAPコントローラ構成で複数のNVMeサブシステムを使用でき�
 
 使用 `-o` JSON ファイルを生成するオプション。その他の構文オプションについては、nvme connect - allのマニュアルページを参照してください。
 
+.手順
 . JSON ファイルを設定します。
 +
 .例を示します
