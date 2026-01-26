@@ -61,9 +61,79 @@ Rocky Linux カーネルバージョンの例:
 ----
 5.14.0-570.12.1.el9_6.x86_64
 ----
+. 「 nvme-cli 」パッケージをインストールします。
++
+[source, cli]
+----
+rpm -qa|grep nvme-cli
+----
++
+次の例は、nvme-cli パッケージのバージョンを示しています。
+
++
+[listing]
+----
+nvme-cli-2.11-5.el9.x86_64
+----
+. をインストールします `libnvme` パッケージ：
++
+[source, cli]
+----
+rpm -qa|grep libnvme
+----
++
+次の例は、  `libnvme`パッケージバージョン:
+
++
+[listing]
+----
+libnvme-1.11.1-1.el9.x86_64
+----
+. Rocky Linuxホストで、hostnqn文字列を確認します。  `/etc/nvme/hostnqn` ：
++
+[source, cli]
+----
+cat /etc/nvme/hostnqn
+----
++
+次の例は、  `hostnqn`バージョン:
+
++
+[listing]
+----
+nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+----
+. ONTAPシステムで、 `hostnqn`文字列が一致する `hostnqn`ONTAPアレイ上の対応するサブシステムの文字列:
++
+[source, cli]
+----
+::> vserver nvme subsystem host show -vserver vs_coexistence_LPE36002
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+Vserver Subsystem Priority  Host NQN
+------- --------- --------  ------------------------------------------------
+vs_coexistence_LPE36002
+        nvme
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_1
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_2
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_3
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+4 entries were displayed.
+----
+====
++
+
+NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合は、を使用してください `vserver modify` コマンドを使用してを更新します `hostnqn` 対応するONTAP アレイサブシステムで、に一致する文字列を指定します `hostnqn` から文字列 `/etc/nvme/hostnqn` ホスト。
 
 
-<stdin> 内の未解決のディレクティブ - include::_include/nvme/linux-validate-software-version-rockylinux.adoc[]
 
 
 
@@ -871,7 +941,6 @@ CLI または設定 JSON ファイルを使用して、安全なインバンド�
 --
 CLIを使用してセキュアなインバンド認証を設定します。
 
-.手順
 . ホストNQNを取得します。
 +
 [source, cli]
