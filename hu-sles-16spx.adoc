@@ -203,7 +203,143 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 
 
 
-== 手順4：必要に応じて、マルチパスからデバイスを除外する
+== ステップ4：ホストのiSCSI構成を確認する
+
+ホストのマルチパスが正しく構成されていることを確認するには、ホストで `timeout`パラメータを設定し、iSCSIサービスが実行され、iSCSIターゲットに接続していることを確認します。
+
+.手順
+. iSCSIイニシエーターパッケージ（iscsi-initiator-utils）がインストールされていることを確認します：
++
+[source, cli]
+----
+rpm -qa | grep open-iscsi
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+open-iscsi-2.1.11-160000.2.2.x86_64
+----
+.  `/etc/iscsi/initiatorname.iscsi`ファイルにあるiSCSIイニシエーターノード名を確認します：
++
+[listing]
+----
+InitiatorName=iqn.YYYY-MM.com.<vendor>:<host_name>
+----
+.  `/etc/iscsi/iscsid.conf`ファイルにあるiSCSIセッションタイムアウトパラメータを設定します：
++
+[source, cli]
+----
+node.session.timeo.replacement_timeout = 5
+----
++
+iSCSI `replacement_timeout`パラメータは、タイムアウトしたパスまたはセッションが再確立されるまでのiSCSIレイヤーの待機時間を制御します。この時間が経過すると、そのパスまたはセッションに対するコマンドは失敗します。iSCSI設定ファイルで `replacement_timeout`の値を5に設定する必要があります。
+
+. iSCSIサービスを有効にします：
++
+[source, cli]
+----
+$systemctl enable iscsid
+----
+. iSCSIサービスを開始します：
++
+[source, cli]
+----
+$systemctl start iscsid
+----
+. iSCSIサービスが実行されていることを確認します：
++
+[source, cli]
+----
+$systemctl status iscsid
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+● iscsid.service - Open-iSCSI
+     Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
+     Active: active (running) since Tue 2025-12-02 11:36:21 EST; 2 weeks 1 day ago
+TriggeredBy: ● iscsid.socket
+       Docs: man:iscsid(8)
+             man:iscsiuio(8)
+             man:iscsiadm(8)
+   Main PID: 2263 (iscsid)
+     Status: "Ready to process requests"
+      Tasks: 1 (limit: 816061)
+     Memory: 18.5M
+        CPU: 14.480s
+     CGroup: /system.slice/iscsid.service
+             └─2263 /usr/sbin/iscsid -f -d2
+----
+====
+. iSCSIターゲットを検出します：
++
+[source, cli]
+----
+$iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
+----
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.30.87
+192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+----
+====
+. ターゲットにログインします：
++
+[source, cli]
+----
+$iscsiadm --mode node -l all
+----
+. ホストの起動時に iSCSI が自動的にログインするように設定します：
++
+[source, cli]
+----
+$iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 -p 192.168.30.87:3260 -o update -n node.startup -v automatic
+----
+. iSCSIセッションを確認します：
++
+[source, cli]
+----
+$iscsiadm --mode session
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode session
+tcp: [1] 192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [2] 192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [3] 192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [4] 192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+----
+====
+
+
+
+
+== ステップ5：オプションでデバイスをマルチパスから除外する
 
 必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
 
@@ -235,7 +371,7 @@ blacklist {
 
 
 
-== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
+== ステップ6：ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
 
@@ -268,7 +404,7 @@ devices {
 ====
 
 
-== 手順6：既知の問題を確認する
+== ステップ7：既知の問題を確認する
 
 既知の問題はありません。
 

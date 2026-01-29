@@ -130,7 +130,7 @@ ARRAY_TYPE  ALUA, A/A
 ----
 # vxdmpadm settune dmp_tunable=value
 ----
-. 調整可能パラメータが正しく設定されていることを確認します。
+. 調整可能な設定が正しいことを確認します：
 +
 [source, cli]
 ----
@@ -190,8 +190,7 @@ FC および FCoE のデフォルトのタイムアウト値を使用します�
 
 iSCSI `replacement_timeout` パラメータは、タイムアウトしたパスまたはセッションが再確立されるまで iSCSI レイヤーが待機する時間を制御します。この時間が経過すると、そのパスまたはセッションに対するコマンドが失敗します。NetApp、 `replacement_timeout` iSCSI 構成ファイルで 120 に設定します。
 
-.例
-[listing]
+[source, cli]
 ----
 # grep replacement_timeout /etc/iscsi/iscsid.conf
 node.session.timeo.replacement_timeout = 120

@@ -233,7 +233,7 @@ cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 cat /sys/class/fc_host/host*/port_name
 ----
 +
-次のような出力が表示されます。
+次のような出力が表示されます：
 
 +
 [listing]

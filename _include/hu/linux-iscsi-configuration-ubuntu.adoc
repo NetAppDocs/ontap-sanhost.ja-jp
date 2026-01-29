@@ -1,0 +1,133 @@
+= 
+:allow-uri-read: 
+
+
+ホストのマルチパスが正しく構成されていることを確認するには、ホストで `timeout`パラメータを設定し、iSCSIサービスが実行され、iSCSIターゲットに接続していることを確認します。
+
+.手順
+. iSCSIイニシエーターパッケージ（iscsi-initiator-utils）がインストールされていることを確認します：
++
+[source, cli]
+----
+$apt list |grep open-iscsi
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+open-iscsi/noble-updates,noble-updates,now 2.1.9-3ubuntu5.4 amd64
+----
+.  `/etc/iscsi/initiatorname.iscsi`ファイルにあるiSCSIイニシエーターノード名を確認します：
++
+[source, cli]
+----
+InitiatorName=iqn.YYYY-MM.com.<vendor>:<host_name>
+----
+.  `/etc/iscsi/iscsid.conf`ファイルにあるiSCSIセッションタイムアウトパラメータを設定します：
++
+[source, cli]
+----
+node.session.timeo.replacement_timeout = 5
+----
++
+iSCSI `replacement_timeout`パラメータは、タイムアウトしたパスまたはセッションが再確立されるまでのiSCSIレイヤーの待機時間を制御します。この時間が経過すると、そのパスまたはセッションに対するコマンドは失敗します。iSCSI設定ファイルで `replacement_timeout`の値を5に設定する必要があります。
+
+. iSCSIサービスを有効にします：
++
+[source, cli]
+----
+$systemctl enable iscsid
+----
+. iSCSIサービスを開始します：
++
+[source, cli]
+----
+$systemctl start iscsid
+----
+. iSCSIサービスが実行されていることを確認します：
++
+[source, cli]
+----
+$systemctl status iscsid
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+●iscsid.service - iSCSI initiator daemon (iscsid)
+     Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
+     Active: active (running) since Mon 2026-01-12 12:53:18 IST; 2 days ago
+TriggeredBy: ● iscsid.socket
+       Docs: man:iscsid(8)
+   Main PID: 1127419 (iscsid)
+      Tasks: 2 (limit: 76557)
+     Memory: 4.3M (peak: 8.8M)
+        CPU: 1.657s
+     CGroup: /system.slice/iscsid.service
+             ├─1127418 /usr/sbin/iscsid
+             └─1127419 /usr/sbin/iscsid
+----
+====
+. iSCSIターゲットを検出します：
++
+[source, cli]
+----
+$iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
+----
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.100.197
+192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+----
+====
+. ターゲットにログインします：
++
+[source, cli]
+----
+$iscsiadm --mode node -l all
+----
+. ホストの起動時に iSCSI が自動的にログインするように設定します：
++
+[source, cli]
+----
+$iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 -p 192.168.100.197:3260 -o update -n node.startup -v automatic
+----
+. iSCSIセッションを確認します：
++
+[source, cli]
+----
+$iscsiadm --mode session
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode session
+tcp: [1] 192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [2] 192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [3] 192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [4] 192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+----
+====
+

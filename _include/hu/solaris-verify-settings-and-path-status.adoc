@@ -4,7 +4,7 @@
 
 . ONTAP LUN を使用した zpool による 4KB アラインメント I/O がサポートされていることを確認します。
 +
-.. Solaris ホストに最新のサポート リポジトリ アップデート (SRU) がインストールされていることを確認します。
+.. Solaris ホストに最新の Support Repository Update（SRU）がインストールされていることを確認します：
 +
 [source, cli]
 ----
