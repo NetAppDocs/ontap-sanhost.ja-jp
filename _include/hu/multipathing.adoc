@@ -116,6 +116,9 @@ multipath -ll
 --
 ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
+.例を示します
+[%collapsible]
+=====
 [listing]
 ----
 # multipath -ll
@@ -127,6 +130,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 14:0:8:9   sdjq 65:320  active ready running
   `- 14:0:7:9   sdiw 8:256   active ready running
 ----
+=====
 --
 .AFFまたはFASの設定
 --
@@ -134,6 +138,9 @@ AFFまたはFAS構成には、優先度の高いパスと低いパスの2つの�
 
 次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
 
+.例を示します
+[%collapsible]
+=====
 [listing]
 ----
 # multipath -ll
@@ -146,6 +153,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 14:0:2:0   sdfk 130:96  active ready running
   `- 14:0:5:0   sdgz 132:240 active ready running
 ----
+=====
 --
 ====
 

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-rhel-10x.html 
-keywords: host utilities, red hat, rhel, linux, 10.x, netapp, ontap, rhel 
-summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、RHEL 10.x ホストに Linux ホスト ユーティリティをインストールします。 
+permalink: hu-hpe-vme-80x.html 
+keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
+summary: HPE VME 8.0.x ホストに Linux Host Utilities をインストールして、ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理します。 
 ---
-= ONTAPストレージを使用して RHEL 10.x を FCP および iSCSI 用に構成する
+= ONTAPストレージでFCPおよびiSCSI用にHPE VME 8.0.xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,29 +16,11 @@ summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を�
 
 
 [role="lead"]
-Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Red Hat Enterprise Linux (RHEL) 10.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。
+Linux Host UtilitiesソフトウェアはONTAPストレージに接続されたLinuxホスト用の管理および診断ツールを提供します。HPE VME 8.0.xホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでのFCPおよびiSCSIプロトコル操作を管理できます。
 
 
 
-== 手順1：必要に応じてSANブートを有効にします。
-
-SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
-
-.開始する前に
-を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
-
-.手順
-. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANブートLUNを作成し、ホストにマップする"^]です。
-. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
-+
-HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
-
-. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
-
-
-
-
-== 手順2：Linux Host Utilitiesをインストールする
+== ステップ1：Linuxホストユーティリティをインストールする
 
 NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
 
@@ -49,9 +31,9 @@ NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホ�
 
 
 
-== 手順3：ホストのマルチパス構成を確認する
+== ステップ2: ホストのマルチパス構成を確認する
 
-RHEL 10.x のマルチパスを使用してONTAP LUN を管理できます。
+HPE VME 8.0.x のマルチパスを使用して ONTAP LUN を管理できます。
 
 ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 
@@ -165,13 +147,12 @@ ASA構成では、特定のLUNへのすべてのパスが最適化され、ア�
 [listing]
 ----
 # multipath -ll
-3600a098038314e535a24584e4b496252 dm-32 NETAPP,LUN C-Mode
-size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:0:41 sdan 66:112  active ready running
-  |- 11:0:1:41 sdcb 68:240  active ready running
-  |- 14:0:2:41 sdfd 129:240 active ready running
-  `- 14:0:0:41 sddp 71:112  active ready running
+  |- 14:0:0:0  sdc  8:32   active ready running
+  |- 17:0:0:0  sdas 66:192 active ready running
+  |- 14:0:3:0  sdar 66:176 active ready running
+  `- 17:0:3:0  sdch 69:80  active ready running
 ----
 =====
 --
@@ -187,8 +168,7 @@ AFFまたはFAS構成には、優先度の高いパスと低いパスの2つの�
 [listing]
 ----
 # multipath -ll
-3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
-size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
 | |- 16:0:3:0  sdcg 69:64  active ready running
 | `- 10:0:0:0  sdb  8:16   active ready running
@@ -203,7 +183,7 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 
 
 
-== ステップ4：ホストのiSCSI構成を確認する
+== ステップ3：ホストのiSCSI構成を確認する
 
 ホストに対して iSCSI が正しく構成されていることを確認します。
 
@@ -211,11 +191,11 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 iSCSI ホストで次の手順を実行します。
 
 .手順
-. iSCSIイニシエーターパッケージ（iscsi-initiator-utils）がインストールされていることを確認します：
+. iSCSI イニシエーター パッケージ（open-iscsi）がインストールされていることを確認します：
 +
 [source, cli]
 ----
-rpm -qa | grep iscsi-initiator-utils
+$apt list |grep open-iscsi
 ----
 +
 次の例のような出力が表示されます。
@@ -223,7 +203,7 @@ rpm -qa | grep iscsi-initiator-utils
 +
 [listing]
 ----
-iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el9.x86_64
+open-iscsi/noble-updates,noble-updates,now 2.1.9-3ubuntu5.4 amd64
 ----
 .  `/etc/iscsi/initiatorname.iscsi`ファイルにあるiSCSIイニシエーターノード名を確認します：
 +
@@ -264,20 +244,18 @@ $systemctl status iscsid
 ====
 [listing]
 ----
-● iscsid.service - Open-iSCSI
+●iscsid.service - iSCSI initiator daemon (iscsid)
      Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
-     Active: active (running) since Tue 2025-12-02 11:36:21 EST; 2 weeks 1 day ago
+     Active: active (running) since Mon 2026-01-12 12:53:18 IST; 2 days ago
 TriggeredBy: ● iscsid.socket
        Docs: man:iscsid(8)
-             man:iscsiuio(8)
-             man:iscsiadm(8)
-   Main PID: 2263 (iscsid)
-     Status: "Ready to process requests"
-      Tasks: 1 (limit: 816061)
-     Memory: 18.5M
-        CPU: 14.480s
+   Main PID: 1127419 (iscsid)
+      Tasks: 2 (limit: 76557)
+     Memory: 4.3M (peak: 8.8M)
+        CPU: 1.657s
      CGroup: /system.slice/iscsid.service
-             └─2263 /usr/sbin/iscsid -f -d2
+             ├─1127418 /usr/sbin/iscsid
+             └─1127419 /usr/sbin/iscsid
 ----
 ====
 . iSCSIターゲットを検出します：
@@ -292,11 +270,11 @@ $iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
 ====
 [listing]
 ----
-iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.30.87
-192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
-192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
-192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
-192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.100.197
+192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
 ----
 ====
 . ターゲットにログインします：
@@ -317,7 +295,7 @@ $iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v
 +
 [listing]
 ----
-iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 -p 192.168.30.87:3260 -o update -n node.startup -v automatic
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 -p 192.168.100.197:3260 -o update -n node.startup -v automatic
 ----
 . iSCSIセッションを確認します：
 +
@@ -332,17 +310,17 @@ $iscsiadm --mode session
 [listing]
 ----
 iscsiadm --mode session
-tcp: [1] 192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
-tcp: [2] 192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
-tcp: [3] 192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
-tcp: [4] 192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [1] 192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [2] 192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [3] 192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [4] 192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
 ----
 ====
 
 
 
 
-== ステップ5：オプションでデバイスをマルチパスから除外する
+== 手順4：必要に応じて、マルチパスからデバイスを除外する
 
 必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
 
@@ -374,7 +352,7 @@ blacklist {
 
 
 
-== ステップ6：ONTAP LUNのマルチパスパラメータをカスタマイズする
+== 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
 
@@ -407,7 +385,7 @@ devices {
 ====
 
 
-== ステップ7：既知の問題を確認する
+== 手順6：既知の問題を確認する
 
 既知の問題はありません。
 
@@ -416,12 +394,5 @@ devices {
 == 次の手順
 
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
-* ASMミラーリングについて学ぶ
-+
-Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
-
-* Red Hat Linux Virtualization (KVM) について学ぶ
-+
-Red Hat Linux は KVM ホストとして機能できます。これにより、Linux カーネルベースの仮想マシン (KVM) テクノロジを使用して、単一の物理サーバー上で複数の仮想マシンを実行できるようになります。KVM ホストでは、 ONTAP LUN に対して明示的なホスト構成設定は必要ありません。
-
+* ONTAP LUN上にHPE VMEデータストアを設定し、仮想マシンを設定してください。詳細については、ベンダーのHPEドキュメントを参照してください。
 

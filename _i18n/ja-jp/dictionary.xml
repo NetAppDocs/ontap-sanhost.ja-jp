@@ -2041,8 +2041,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="fc35bf5b5ac3f79b1fa6a280a58f05d4" category="summary">Rocky Linux のONTAPサポートと機能について学ぶ</block>
   <block id="d4c250eac77deea13f8e9d9293a5aad2" category="paragraph">NVMe over Fabrics (NVMe-oF) を使用したホスト構成でサポートされる機能は、 ONTAPおよび Rocky Linux のバージョンによって異なります。</block>
   <block id="3127b50785e82cd676744d9673a7bb86" category="cell">Rocky Linuxホストバージョン</block>
-  <block id="e01b830a5cda09eafed964519b00a13a" category="doc">ステップ2: オプションでデバイスをマルチパスから除外する</block>
-  <block id="904cc9711392ab11f24202a7482e210d" category="doc">ステップ3: ONTAP LUNのマルチパスパラメータをカスタマイズする</block>
   <block id="2589c63c17df176e198728a79c3e5212" category="cell">"いつも"</block>
   <block id="2f7bb230c70819aeb10b45a709bcf48f" category="cell">「1」</block>
   <block id="e937998e5a3fcf2887fa0312475809ad" category="list-text">オプションで、<block ref="19b30dc119e514235b739e076be9b3cc" prefix=" " category="inline-code"></block> ONTAP LUN が multipathd によって正しく検出され、管理されるようにするためのパラメータ:</block>
@@ -2420,7 +2418,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="2f2f70e91ff2172f6a78bf052b441f39" category="paragraph"><block ref="806369b10c4f480029bde19415f580b3" category="inline-link-macro-rx"></block>。</block>
   <block id="ae3361bffdcc882805368ae077d6fcaf" category="cell"><block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージ内のネイティブudevルールは、NVMeマルチパスのキュー深度ロード バランシングを提供します</block>
   <block id="a30e163e966b967193e35b02c3ab5b4b" category="cell"><block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージ内のネイティブudevルールは、NVMeマルチパスのラウンドロビン ロード バランシングを提供します</block>
-  <block id="857fdbce46a79b2923f0c113869f92fd" category="paragraph">ホストのマルチパスが正しく構成されていることを確認するには、ホストで<block ref="90272dda245ae1fb3cf197e91a8689dc" prefix=" " category="inline-code"></block>パラメータを設定し、iSCSIサービスが実行され、iSCSIターゲットに接続していることを確認します。</block>
   <block id="db69f2e21d32b6494100c9cdb558a83c" category="list-text">iSCSIイニシエーターパッケージ（iscsi-initiator-utils）がインストールされていることを確認します：</block>
   <block id="a954e7655cd30fb519546c3bddd798c0" category="list-text"><block ref="22565a44e8f73044eb2029acbb069639" prefix=" " category="inline-code"></block>ファイルにあるiSCSIイニシエーターノード名を確認します：</block>
   <block id="df97c673d70c90c6b63b61f2eaf4e2fe" category="list-text"><block ref="104f48adc29dc1e1d7c9bbe7b5dd3f8d" prefix=" " category="inline-code"></block>ファイルにあるiSCSIセッションタイムアウトパラメータを設定します：</block>
@@ -2441,4 +2438,16 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="23c1ea572e54e8ef99ba3854342287ef" category="list-text">調整可能な設定が正しいことを確認します：</block>
   <block id="d2d78408224a25c9a69b27120ff6ebf8" category="section-title">ステップ3：ホストのiSCSI構成を確認する</block>
   <block id="420d2bbbb8503cb3e78d6abcb08fb101" category="paragraph">次のような出力が表示されます：</block>
+  <block id="1f2ff205b2373f4d3dc9e67a56302cb2" category="paragraph">ホストに対して iSCSI が正しく構成されていることを確認します。</block>
+  <block id="c62246672e9db0a470a1737f3981fd84" category="paragraph">iSCSI ホストで次の手順を実行します。</block>
+  <block id="a4e78cb06e95b1e477ba950ed0d21899" category="list-text">iSCSI イニシエーター パッケージ（open-iscsi）がインストールされていることを確認します：</block>
+  <block id="e9d889d6733c29a8b543d1e4184ea561" category="summary">HPE VME 8.0.x ホストに Linux Host Utilities をインストールして、ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理します。</block>
+  <block id="32675cf731ec4c101dccd8c9fe7afc05" category="doc">ONTAPストレージでFCPおよびiSCSI用にHPE VME 8.0.xを構成する</block>
+  <block id="f028e1c625f97738b44527c47b37e4c1" category="paragraph">Linux Host UtilitiesソフトウェアはONTAPストレージに接続されたLinuxホスト用の管理および診断ツールを提供します。HPE VME 8.0.xホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでのFCPおよびiSCSIプロトコル操作を管理できます。</block>
+  <block id="97408cde90bab4eb19f4acc146087555" category="section-title">ステップ1：Linuxホストユーティリティをインストールする</block>
+  <block id="2705574efbf0f795ad465bd636d7a681" category="paragraph">HPE VME 8.0.x のマルチパスを使用して ONTAP LUN を管理できます。</block>
+  <block id="958c6534e2a2911611cea8e9b8bd686b" category="list-text">ONTAP LUN上にHPE VMEデータストアを設定し、仮想マシンを設定してください。詳細については、ベンダーのHPEドキュメントを参照してください。</block>
+  <block id="32b0b2fb94c023fc633bfa7c0caf801f" category="section-title">ステップ2：ホストのiSCSI構成を確認する</block>
+  <block id="961c1419cfe8060ce390b232d6e264c5" category="sidebar">HPE VME</block>
+  <block id="c956a158e93a32e225bfb772f4b64394" category="sidebar">HPE VME 8.0.x</block>
 </blocks>

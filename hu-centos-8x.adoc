@@ -159,6 +159,9 @@ multipath -ll
 --
 ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
+.例を示します
+[%collapsible]
+=====
 [listing]
 ----
 multipath -ll
@@ -170,6 +173,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 11:0:10:1  sdml 69:464   active ready running
   |- 11:0:11:1  sdpt  131:304  active ready running
 ----
+=====
 --
 .AFFまたはFASの設定
 --
@@ -177,6 +181,9 @@ AFFまたはFAS構成には、優先度の高いパスと低いパスの2つの�
 
 次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
 
+.例を示します
+[%collapsible]
+=====
 [listing]
 ----
 multipath -ll
@@ -189,6 +196,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 15:0:0:35 sdaj  66:48   active ready running
   |- 15:0:1:35 sdbx  68:176  active ready running
 ----
+=====
 --
 ====
 
@@ -197,7 +205,10 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 
 == ステップ4：ホストのiSCSI構成を確認する
 
-ホストのマルチパスが正しく構成されていることを確認するには、ホストで `timeout`パラメータを設定し、iSCSIサービスが実行され、iSCSIターゲットに接続していることを確認します。
+ホストに対して iSCSI が正しく構成されていることを確認します。
+
+.このタスクについて
+iSCSI ホストで次の手順を実行します。
 
 .手順
 . iSCSIイニシエーターパッケージ（iscsi-initiator-utils）がインストールされていることを確認します：

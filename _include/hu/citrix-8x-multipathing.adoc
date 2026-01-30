@@ -108,6 +108,9 @@ systemctl start multipathd
 --
 ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
 
+.例を示します
+[%collapsible]
+=====
 [listing]
 ----
 /usr/sbin/mpathutil status
@@ -120,6 +123,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
   |- 16:0:0:0  sdcf 69:48   active ready running
   `- 16:0:1:0  sdcg 69:64   active ready running
 ----
+=====
 --
 .AFFまたはFASの設定
 --
@@ -127,6 +131,9 @@ AFFまたはFAS構成には、優先度の高いパスと低いパスの2つの�
 
 次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
 
+.例を示します
+[%collapsible]
+=====
 [listing]
 ----
 /usr/sbin/mpathutil status
@@ -140,6 +147,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
      |- 16:0:0:0  sdcf 69:48   active ready running
      `- 16:0:1:0  sdcg 69:64   active ready running
 ----
+=====
 --
 ====
 

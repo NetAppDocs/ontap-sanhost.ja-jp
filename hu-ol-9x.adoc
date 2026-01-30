@@ -205,7 +205,10 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 
 == ステップ4：ホストのiSCSI構成を確認する
 
-ホストのマルチパスが正しく構成されていることを確認するには、ホストで `timeout`パラメータを設定し、iSCSIサービスが実行され、iSCSIターゲットに接続していることを確認します。
+ホストに対して iSCSI が正しく構成されていることを確認します。
+
+.このタスクについて
+iSCSI ホストで次の手順を実行します。
 
 .手順
 . iSCSIイニシエーターパッケージ（iscsi-initiator-utils）がインストールされていることを確認します：

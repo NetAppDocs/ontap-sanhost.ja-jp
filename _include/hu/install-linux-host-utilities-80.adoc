@@ -1,10 +1,6 @@
-= 手順2：Linux Host Utilitiesをインストールする
+= 
 :allow-uri-read: 
 
-
-
-
-== 手順2：Linux Host Utilitiesをインストールする
 
 NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
 
