@@ -411,7 +411,7 @@ devices {
 
 既知の問題はありません。
 
-CentOS Red Hat互換カーネルの既知の問題については、 link:hu-rhel-8x.html#known-problems-and-limitations["既知の問題"] Red Hat Enterprise Linux (RHEL) 8.x シリーズ用。
+CentOS Red Hat互換カーネルの既知の問題については、Red Hat Enterprise Linux（RHEL）8.xシリーズのlink:hu-rhel-8x.html#step-7-review-the-known-issues["既知の問題"]を参照してください。
 
 
 
