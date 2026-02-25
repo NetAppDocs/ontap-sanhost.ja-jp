@@ -2375,7 +2375,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="3f52de62927af66bbbcbf9a67e36d63c" category="paragraph">SUSE Linux Enterprise Server 16ホスト用の永続検出コントローラ（PDC）を作成できます。PDCは、NVMeサブシステムの追加または削除操作と、検出ログページデータの変更を自動的に検出するために必要です。</block>
   <block id="3c8457e76486b7070b5f16df832bfb55" category="paragraph">SUSE Linux Enterprise Server 16ホストとONTAPコントローラ間のNVMe/TCP経由の安全なインバンド認証がサポートされます。</block>
   <block id="60940bf76e8a6f461e5cdf574e9a3897" category="sidebar">SLES-16-FCP</block>
-  <block id="2f2f70e91ff2172f6a78bf052b441f39" category="paragraph"><block ref="806369b10c4f480029bde19415f580b3" category="inline-link-macro-rx"></block>。</block>
   <block id="ae3361bffdcc882805368ae077d6fcaf" category="cell"><block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージ内のネイティブudevルールは、NVMeマルチパスのキュー深度ロード バランシングを提供します</block>
   <block id="a30e163e966b967193e35b02c3ab5b4b" category="cell"><block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージ内のネイティブudevルールは、NVMeマルチパスのラウンドロビン ロード バランシングを提供します</block>
   <block id="db69f2e21d32b6494100c9cdb558a83c" category="list-text">iSCSIイニシエーターパッケージ（iscsi-initiator-utils）がインストールされていることを確認します：</block>
@@ -2412,10 +2411,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="c956a158e93a32e225bfb772f4b64394" category="sidebar">HPE VME 8.0.x</block>
   <block id="1cb98d24e975e6c21662789b34e2d3c2" category="paragraph">CentOS Red Hat互換カーネルの既知の問題については、Red Hat Enterprise Linux（RHEL）8.xシリーズの<block ref="b64a4fb065ec8eadbc881ece1cbf7ba0" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="fef8ee7b94533bb078469a27722a8bba" category="list-text"><block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ファイルが存在することを確認します。ファイルが存在しない場合は、空の0バイトのファイルを作成します：</block>
-  <block id="2ce48a142c0e80ab8f317a99f9fe6ed3" category="summary">Oracle Linux 10ホストにLinux Host Utilitiesをインストールして、ONTAP LUNを使用したFCPおよびiSCSIプロトコル処理を管理します。</block>
-  <block id="ea29a45fe150e616e26859f8c3d6f7e6" category="doc">ONTAPストレージを使用したFCPおよびiSCSI用のOracle Linux 10の設定</block>
-  <block id="9b146d11e8cfc51a1ac9d01dc405828f" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されているLinuxホストの管理および診断ツールを提供します。Oracle Linux 10ホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでFCPおよびiSCSIプロトコル操作を管理できます。</block>
-  <block id="bd18c770f808d8ed650b8826f4be0370" category="paragraph">Oracle Linux 10でマルチパスを使用してONTAP LUNを管理できます。</block>
   <block id="53b840df2d08c073f2534327f111dbf9" category="summary">ONTAPを使用したOracle Linux 10のNVMe-oFホスト構成</block>
   <block id="7230db89ca6861865150be7831e09274" category="doc">ONTAP ストレージ用にOracle Linux 10.xとNVMe-oFを設定</block>
   <block id="d510a8ad0c1bbc5c8d97b199a8f0a853" category="paragraph">Oracle Linux 10.x 用の NVMe over Fabrics （NVMe-oF）ホストを構成する方法を学習します。詳細なサポートと機能情報については、<block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>を参照してください。</block>
@@ -2467,5 +2462,10 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="e142a16151c5acc6ebb2be3ff16b7e3c" category="inline-link-macro">Ubuntu 22.04 での NVMe の設定</block>
   <block id="549658667f6362886a369bc723e2a20d" category="cell"><block ref="549658667f6362886a369bc723e2a20d" category="inline-link-macro-rx"></block></block>
   <block id="36efc339e29dbfc55b87bdb738345d78" category="paragraph">問題が解決しない場合は、以下のファイルとコマンド出力を収集して<block ref="ea2f4052f3eaf8e0d09bdf7668185025" category="inline-link-macro-rx"></block>に問い合わせ、さらなるトリアージを依頼してください：</block>
-  <block id="43a1437f7f656cd8be7c996c58719e0a" category="sidebar">10.0</block>
+  <block id="e44b2b58aad54238aa5355009152242d" category="paragraph"><block ref="7985fef0202f035198f9b90e728f7c0d" category="inline-link-macro-rx"></block>。</block>
+  <block id="43350dfeda24a210866e938e8eecce66" category="paragraph"><block ref="9a0ef88465d2105ffa310985c6028776" prefix=" " category="inline-code"></block>を、ホストの起動時に自動的にログインするターゲット名に置き換えます。<block ref="0bfdde656b1793c584acc5fdacf0a6ac" prefix=" " category="inline-code"></block>を、ターゲットの IP アドレスとポート番号に置き換えます。例：</block>
+  <block id="cb81b0ab1d51502be708f945a76e352a" category="summary">Oracle Linux 10.xホストにLinux Host Utilitiesをインストールして、ONTAPのLUNでFCPおよびiSCSIプロトコル操作を管理します。</block>
+  <block id="22429905973644b59fef5bc5f1de5cc0" category="doc">ONTAPストレージを使用したFCPおよびiSCSI用のOracle Linux 10.xの構成</block>
+  <block id="c095933cd33553034e8d119262dd097b" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されているLinuxホストの管理および診断ツールを提供します。Oracle Linux 10.xホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでのFCPおよびiSCSIプロトコル操作の管理を支援できます。</block>
+  <block id="53b0cb8dd1f208321bcde1fc420505d1" category="paragraph">Oracle Linux 10.xのマルチパスを使用してONTAP LUNを管理できます。</block>
 </blocks>

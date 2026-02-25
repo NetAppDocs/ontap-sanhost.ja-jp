@@ -8,7 +8,7 @@
 
 NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
 
-link:hu_luhu_71.html["Linux Host Utilities 7.1のインストール"]。
+link:hu_luhu_71.html["ONTAPストレージ用のLinuxホストユーティリティ7.1をインストールする"]。
 
 
 NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。
