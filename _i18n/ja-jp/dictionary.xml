@@ -2367,10 +2367,7 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="1533ee126fd8f11e227dc3d689526f3c" category="paragraph">SUSE Linux Enterprise Server 16以降、NVMe-oFのデフォルトのiopolicyは<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>に設定されています。iopolicyを<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>に変更したい場合は、udevルールファイルを以下のように変更してください：</block>
   <block id="f40fa917da76ec269347142ecd26f205" category="list-text">規則を修正して<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>が<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>になるようにします：</block>
   <block id="922b0cabd672f72127f63daffda5daa8" category="admonition">ONTAP 9.16.1 以降、NVMe/FC および NVMe/TCP は ASA r2 システム上のすべての最適化されたパスを報告します。</block>
-  <block id="729803330c2c3ddc5602fa6a32ed6680" category="paragraph">次の出力例は、NVMe/FC を使用する AFF、FAS、ASA システムおよび ASA r2 システム用の 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
-  <block id="457f54f6cefd10b25a3bedd3ee0e4fa3" category="example-title">AFF、FAS、ASA出力例を表示します。</block>
   <block id="166d9b02aa39fa880a105b2a6f0e64cc" category="example-title">ASA r2 の出力例を表示</block>
-  <block id="4cbc3c8523dd8f70db284b7defb44454" category="paragraph">次の出力例は、NVMe/TCP を使用する AFF、FAS、ASA システムおよび ASA r2 システム用の 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
   <block id="3f52de62927af66bbbcbf9a67e36d63c" category="paragraph">SUSE Linux Enterprise Server 16ホスト用の永続検出コントローラ（PDC）を作成できます。PDCは、NVMeサブシステムの追加または削除操作と、検出ログページデータの変更を自動的に検出するために必要です。</block>
   <block id="3c8457e76486b7070b5f16df832bfb55" category="paragraph">SUSE Linux Enterprise Server 16ホストとONTAPコントローラ間のNVMe/TCP経由の安全なインバンド認証がサポートされます。</block>
   <block id="60940bf76e8a6f461e5cdf574e9a3897" category="sidebar">SLES-16-FCP</block>
@@ -2472,4 +2469,12 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="6c3cb6f0244406645b054fde3485555c" category="paragraph">Proxmox VE 9.0以降、NVMe-oFのデフォルトのiopolicyは<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>に設定されています。iopolicyを<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>に変更したい場合（これも設定可能なオプションとして利用可能です）、次のようにudevルールファイルを変更します：</block>
   <block id="3261e25ecb6c10cb23753dafcc11d3f3" category="list-text">ルールを修正して<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>が<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>に変更されるようにします。次の例を参照してください：</block>
   <block id="306924ca750fad388254a44133cf90dd" category="list-text">サブシステムの現在の iopolicy を確認します。&lt;subsystem&gt;をサブシステムの名前（例：nvme-subsys0）に置き換えます。</block>
+  <block id="98f6aa52f5f7e63bbceb451a95606fbb" category="paragraph">次の出力例は、NVMe/FCを使用するAFF、FAS、ASA、またはASA r2システムの2ノードONTAPコントローラでホストされているネームスペースを示しています。</block>
+  <block id="838016fd6dff5a15cdfcd8e43e228f64" category="example-title">AFF、FAS、またはASAの出力例を表示</block>
+  <block id="bf9b5fcabbc1d24364d06d41207e081e" category="example-title">ASA r2の出力例を表示</block>
+  <block id="09dd888e7ce0f1463d7e4491d5442bc3" category="paragraph">次の出力例は、NVMe/TCP を使用する AFF、FAS、ASA、または ASA r2 システムの 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
+  <block id="6038c845b6f070b1ef3421bdad6c09a0" category="example-title">AFF、FAS、またはASAの出力例を表示</block>
+  <block id="508e93b6f899f26c01374d86f06060a5" category="list-text">カーネル キーリングから TLS PSK をエクスポートします。これにより、ホストの再起動時にキーが保持されます：</block>
+  <block id="1b569e78f049cfc0d5612ae09602f392" category="paragraph">次の出力例は、NVMe/FC を使用する AFF、FAS、ASA、または ASA r2 システムの 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
+  <block id="6d984a3ecdb3a900adb251dd0b78d708" category="paragraph">次の出力例は、NVMe/TCPを使用するAFF、FAS、ASA、またはASA r2システムの2ノードONTAPコントローラーでホストされているネームスペースを示しています。</block>
 </blocks>
