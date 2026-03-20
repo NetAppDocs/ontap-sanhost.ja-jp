@@ -1,0 +1,12 @@
+= 
+:allow-uri-read: 
+
+
+NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
+
+Rocky LinuxはRHEL互換のディストリビューションであり、個別のLinux Host Utilitiesパッケージはありません。対応するRHELバージョン用のLinux Host Utilitiesパッケージを使用してください。
+
+link:hu-luhu-80.html["Linuxホストユーティリティ8.0をインストールする"] 。
+
+
+NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。

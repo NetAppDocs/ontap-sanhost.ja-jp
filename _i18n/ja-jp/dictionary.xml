@@ -2477,4 +2477,5 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="1b569e78f049cfc0d5612ae09602f392" category="paragraph">次の出力例は、NVMe/FC を使用する AFF、FAS、ASA、または ASA r2 システムの 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
   <block id="6d984a3ecdb3a900adb251dd0b78d708" category="paragraph">次の出力例は、NVMe/TCPを使用するAFF、FAS、ASA、またはASA r2システムの2ノードONTAPコントローラーでホストされているネームスペースを示しています。</block>
   <block id="8e9aa976f7a8a387e926c6bbb8588831" category="paragraph">Oracle Linux 10.x ホストと ONTAP コントローラ間の NVMe/TCP でセキュアなインバンド認証がサポートされています。</block>
+  <block id="e7f67da4e95cce9c0568e2b8ad82a925" category="paragraph">Rocky LinuxはRHEL互換のディストリビューションであり、個別のLinux Host Utilitiesパッケージはありません。対応するRHELバージョン用のLinux Host Utilitiesパッケージを使用してください。</block>
 </blocks>
