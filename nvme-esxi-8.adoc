@@ -311,11 +311,11 @@ ONTAPを使用したESXi 8.xのNVMe-oFホスト構成には、次の既知の問
 | NetApp バグ ID | タイトル | 説明 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1420654["1420654"^] | ONTAP バージョン9.9.1でNVMe/FCプロトコルが使用されている場合、ONTAP ノードが動作しなくなります | ONTAP 9.9.1では、nvmeの「abort」コマンドがサポートされるようになりました。パートナーコマンドを待機しているnvme fusedコマンドを中止する「abort」コマンドをONTAP が受信すると、ONTAP ノードが停止します。問題 は、nvme fusedコマンド（ESXなど）とFibre Channel（FC）転送を使用するホストでのみ認識されます。 
+| link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1420654["1420654"^] | ONTAPバージョン9.9.1でNVMe/FCプロトコルを使用するとONTAPノードが動作しなくなる | ONTAP 9.9.1では、NVMeの「abort」コマンドのサポートが導入されました。ONTAPがパートナーコマンドを待機しているNVMe融合コマンドを中止する「abort」コマンドを受信すると、ONTAPノードの停止が発生します。この問題は、NVMe融合コマンド（ESXなど）とファイバチャネル（FC）トランスポートを使用するホストでのみ発生します。 
 
 
-| 1543660 | vNVMeアダプタを使用するLinux VMで[All Paths Down（APD；すべてのパスが停止）]ウィンドウが長くなると、I/Oエラーが発生します  a| 
-vSphere 8.x以降を実行していて、仮想NVMe（vNVME）アダプタを使用しているLinux VMでは、vNVMeの再試行処理がデフォルトで無効になっているため、I/Oエラーが発生します。オールパスダウン（APD）時や大量のI/O負荷時に古いカーネルを実行しているLinux VMでの停止を回避するために、VMwareでは、vNVMeの再試行処理を無効にするための調整可能な「VSCSIDisableNvmeRetry」を導入しました。
+| link:https://jira.ngage.netapp.com/browse/CONTAPEXT-1126["CONTAPEXT-1126"^] | vNVMeアダプタを使用するLinux VMで[All Paths Down（APD；すべてのパスが停止）]ウィンドウが長くなると、I/Oエラーが発生します  a| 
+Linux VMがvSphere 8.x以降を実行し、仮想NVMe（vNVMe）アダプタを使用している場合、vNVMeの再試行操作がデフォルトで無効になっているため、I/Oエラーが発生します。古いカーネルを実行しているLinux VMが、全パスダウン（APD）時や高負荷のI/O時に中断されるのを避けるため、VMwareはvNVMe再試行操作を無効にするための調整可能な機能「VSCSIDisableNvmeRetry」を導入しました。
 
 |===
 .関連情報
