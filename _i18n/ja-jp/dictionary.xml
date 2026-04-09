@@ -1962,7 +1962,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="d286d12da4f4e6576e98c97eb597f043" category="example-title">NVMe/FCの例を表示</block>
   <block id="7b25b7a93bbe178f0d420e334d6ad6f8" category="example-title">NVMe/TCPの例を示す</block>
   <block id="9b477ce27ea88f4f85280e9cdee7c154" category="section-title">ステップ4: オプションとして、udevルールのiopolicyを変更します。</block>
-  <block id="b563c88e9abe33f9ebe5ffe91fca2101" category="paragraph">RHEL 9.6ではNVMe-oFのデフォルトのiopolicyを次のように設定します。<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> 。  RHEL 9.6を使用しており、iopolicyを次のように変更したい場合<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>、udev ルール ファイルを次のように変更します。</block>
   <block id="ac81318c5111726b893fa8dcdc177d9f" category="list-text">udev ルールを再読み込みし、変更を適用します。</block>
   <block id="44d5823b8f69c86c4a41c13b72067d2e" category="list-text">サブシステムの現在の iopolicy を確認します。  &lt;subsystem&gt;を置き換えます。例:<block ref="621b1b464ec30e8b168fcad04cefe44c" prefix=" " category="inline-code"></block> 。</block>
   <block id="02e6f562a82adc38b8762b8d4fc3c8c2" category="section-title">ステップ5: オプションでNVMe/FCの1MB I/Oを有効にする</block>
@@ -2105,7 +2104,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="97a0ff99a93f7485dcb82a548fcca4a0" category="admonition">新しい iopolicy は、一致するNetApp ONTAPコントローラ デバイスに自動的に適用されます。再起動する必要はありません。</block>
   <block id="92520caa5da5fd65237a96731d101aee" category="list-text">それぞれのONTAP名前空間の適切な NVMe-oF 設定 (モデルがNetApp ONTAPコントローラに設定され、負荷分散 iopolicy がラウンドロビンに設定されているなど) がホストに正しく表示されていることを確認します。</block>
   <block id="b62ae28652ddc6a2c9bb15373668f0d0" category="paragraph">9.6以降</block>
-  <block id="3bf7b9cd443b3cb0c9b741f8a4deb9dc" category="paragraph">RHEL 10.0ではNVMe-oFのデフォルトのiopolicyを次のように設定します。<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> 。RHEL 10.0を使用しており、iopolicyを次のように変更したい場合<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>、udev ルール ファイルを次のように変更します。</block>
   <block id="13c16c386fd131bec830d461d648a36c" category="list-text">ONTAPシステムで、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>文字列が一致する<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>ONTAPアレイ上の対応するサブシステムの文字列:</block>
   <block id="8a95ca1b414fded33fc04e8dce1b674e" category="paragraph">NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。</block>
   <block id="03dbf806a820b94b8130fac6331ce194" category="summary">ONTAPストレージを搭載した Rocky Linux 10.x 向け NVMe-oF ホストの設定方法</block>
@@ -2480,4 +2478,16 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="63c3f0dce3adfd21858e4906af8b540e" category="cell">ONTAPバージョン9.9.1でNVMe/FCプロトコルを使用するとONTAPノードが動作しなくなる</block>
   <block id="75fe6ffd14185a732fe5c93e3655894f" category="cell">ONTAP 9.9.1では、NVMeの「abort」コマンドのサポートが導入されました。ONTAPがパートナーコマンドを待機しているNVMe融合コマンドを中止する「abort」コマンドを受信すると、ONTAPノードの停止が発生します。この問題は、NVMe融合コマンド（ESXなど）とファイバチャネル（FC）トランスポートを使用するホストでのみ発生します。</block>
   <block id="8f0a705220613d95434cdb5a4fcab23b" category="paragraph">Linux VMがvSphere 8.x以降を実行し、仮想NVMe（vNVMe）アダプタを使用している場合、vNVMeの再試行操作がデフォルトで無効になっているため、I/Oエラーが発生します。古いカーネルを実行しているLinux VMが、全パスダウン（APD）時や高負荷のI/O時に中断されるのを避けるため、VMwareはvNVMe再試行操作を無効にするための調整可能な機能「VSCSIDisableNvmeRetry」を導入しました。</block>
+  <block id="f4e65c6a7acad92f689e43c9eec48742" category="list-title">RHEL 10.x リリースにおける iopolicy の変更点</block>
+  <block id="439f9f6575b13433a06a0706d7693a1a" category="list-text">RHEL 10.1以降、デフォルトのiopolicyはqueue-depthです。</block>
+  <block id="fd7719d49078cb118a29c8a86504fdf9" category="list-text">RHEL 10.0では、ラウンドロビンがデフォルトのiopolicyですが、queue-depthは設定可能なオプションとして利用できます。</block>
+  <block id="f28c692e063dee2ca7081bc028b1d7c5" category="paragraph">RHEL 10.0 を使用していて、iopolicy を queue-depth に変更したい場合は、udev ルールファイルを次のように変更してください：</block>
+  <block id="729803330c2c3ddc5602fa6a32ed6680" category="paragraph">次の出力例は、NVMe/FC を使用する AFF、FAS、ASA システムおよび ASA r2 システム用の 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
+  <block id="457f54f6cefd10b25a3bedd3ee0e4fa3" category="example-title">AFF、FAS、ASA出力例を表示します。</block>
+  <block id="4cbc3c8523dd8f70db284b7defb44454" category="paragraph">次の出力例は、NVMe/TCP を使用する AFF、FAS、ASA システムおよび ASA r2 システム用の 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。</block>
+  <block id="152a219de178a3ca66329209f7ce7693" category="list-title">RHEL 9.x リリースにおける iopolicy の変更点</block>
+  <block id="d50e8e44ca2747cb58745bf834bda611" category="list-text">RHEL 9.7以降、デフォルトのiopolicyはqueue-depthです。</block>
+  <block id="46a4bf76409792ef5635ae3fa7be3eca" category="list-text">RHEL 9.6では、ラウンドロビンがデフォルトのiopolicyですが、queue-depthは設定可能なオプションとして利用できます。</block>
+  <block id="b57931aaf40ed5847b49ce94e37ba2f9" category="list-text">RHEL 9.6より前は、ラウンドロビンがサポートされている唯一のNVMe-oF iopolicyです。</block>
+  <block id="199f707ebb9eba2ff990f4e6b8a03a49" category="paragraph">RHEL 9.6 を使用していて、iopolicy を<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>に変更したい場合は、udev ルールファイルを以下のように変更してください：</block>
 </blocks>
