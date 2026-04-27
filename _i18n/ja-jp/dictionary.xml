@@ -2490,4 +2490,18 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="46a4bf76409792ef5635ae3fa7be3eca" category="list-text">RHEL 9.6では、ラウンドロビンがデフォルトのiopolicyですが、queue-depthは設定可能なオプションとして利用できます。</block>
   <block id="b57931aaf40ed5847b49ce94e37ba2f9" category="list-text">RHEL 9.6より前は、ラウンドロビンがサポートされている唯一のNVMe-oF iopolicyです。</block>
   <block id="199f707ebb9eba2ff990f4e6b8a03a49" category="paragraph">RHEL 9.6 を使用していて、iopolicy を<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>に変更したい場合は、udev ルールファイルを以下のように変更してください：</block>
+  <block id="88694bea2b4bb7ab31183cf89c0abc9a" category="open-title">Oracle Linuxホスト</block>
+  <block id="d62485a7a064d77caa624ec7d9c16f56" category="paragraph">ホストのマルチパスが正しく構成されていることを確認するには、<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>が定義されており、NetApp推奨設定がONTAP LUNに対して構成されていることを確認してください。</block>
+  <block id="8f398c60279f151c939d64302e2a552a" category="paragraph">*ASA設定*</block>
+  <block id="00f6a93cbdaeca9a5c16456b45e56a06" category="paragraph">*AFF または FAS 構成*</block>
+  <block id="4a801556fd7b17fe7fc88987832eab59" category="open-title">OLVM - ONTAP HA</block>
+  <block id="7ac9ef2526e3dbe23e271314793c2500" category="paragraph">Oracle Linux Virtualization Manager（OLVM）では、VDSMデーモンがハイパーバイザー上のデフォルトのマルチパスパラメータを制御します。<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>を直接編集しないでください。代わりに、マルチパスドロップインファイルを使用してデフォルト設定を上書きしてください。</block>
+  <block id="f0b27027e6b67d9f11bb9a63118f7820" category="paragraph">ONTAP高可用性（HA）構成の場合、NetAppでは、<block ref="f92718f463480c9c4b4291e7fd4ef19e" prefix=" " category="inline-code"></block>と<block ref="9434de34302b4f40887a7277cf35a8fc" prefix=" " category="inline-code"></block>をオーバーライドするために次のドロップインファイルを推奨しています。その他のマルチパスパラメータはすべて、Oracle Linuxホストパラメータ設定テーブルの設定と一致させる必要があります。</block>
+  <block id="2325a00c850562a31b6e1174103fdf34" category="list-text">ドロップインファイルを作成します：</block>
+  <block id="6af920fd32adf77980a7d950b4a43b42" category="list-text">マルチパスデーモンを再読み込みします：</block>
+  <block id="8cd5bca10d68fe455b4aafcd2984b1ec" category="list-text">更新されたマルチパス構成を確認します。</block>
+  <block id="c131839a59f1dece3cf8f40a9f418f28" category="open-title">OLVM - ONTAP SnapMirror アクティブ同期</block>
+  <block id="9ac038eaf430fd52f4f8187e511c2c64" category="paragraph">OLVMホストがONTAP SnapMirror Active Syncを使用している場合は、ストレージのフェイルオーバーイベント中にホストとVMが正しく動作するように、sanlockとマルチパスのタイムアウトパラメータを調整する必要があります。OLVMのデフォルトのタイムアウト値では、マルチパスリカバリが完了する前にリース更新ウィンドウが期限切れになる可能性があるため、計画外のサイトフェイルオーバー中に意図しない高可用性VMフェイルオーバーが発生する可能性があります。</block>
+  <block id="48456488fd8e1ab35d02545499c661fe" category="inline-link">Oracle Linux Virtualization Manager - ONTAP SnapMirror Active Sync の Sanlock 設定</block>
+  <block id="d586abe993be4482cf9a1c2a026a70c7" category="paragraph">NetApp ナレッジベースの記事<block ref="5895161fcfd751cbe73c1e86aa55f0d8" category="inline-link-rx"></block>の設定手順に従って、ストレージフェイルオーバーイベント中にマルチパスリカバリが完了するのに十分なリース更新ウィンドウが確保されるように、sanlockとマルチパスのタイムアウト値を更新します。</block>
 </blocks>
