@@ -184,11 +184,11 @@ lsdev -Cc disk
 --
 .SnapMirrorアクティブ同期
 --
-ONTAP 9.11.1 以降、AIX ホストでSnapMirror Active Sync がサポートされるようになりました。  AIX 構成におけるプライマリ クラスターは、「アクティブ」クラスターです。
+SnapMirror アクティブ同期は、AIXホストでサポートされています。サポート動作は、ONTAPリリースによって異なります：
 
-AIX構成では、フェイルオーバー時にシステムが停止します。フェイルオーバーごとに、I/O 操作を再開するためにホストの再スキャンを実行する必要があります。
+** ONTAP 9.19.1以降、SnapMirrorアクティブ同期はActive/Active構成でサポートされ、無停止のSnapMirrorアクティブ同期操作が可能になります。ナレッジベースの記事link:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/SnapMirror_active_sync_support_for_AIX%3A_behavior_by_ONTAP_release_and_migration_guidance["AIX 向けSnapMirror アクティブ同期サポート：ONTAP リリース別の動作と移行ガイダンス"^]を参照してください。
+** ONTAP 9.11.1～9.18.1の場合、SnapMirrorアクティブ同期は、アクティブ/スタンバイ構成でサポートされています。ナレッジベースの記事link:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["ONTAP 9.11.1～9.18.1でSnapMirrorアクティブ同期用にAIXホストを構成する方法"^]を参照してください。
 
-ナレッジベースの記事を参照してくださいlink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["AIXホストでSnapMirrorアクティブ同期を設定する方法"^]。
 
 --
 ====
