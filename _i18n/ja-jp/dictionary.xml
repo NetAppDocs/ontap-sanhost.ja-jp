@@ -1199,7 +1199,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="411779633a68ad8ff4bb5f0b84de0e3d" category="doc">手順1：HP-UX Host Utilitiesをインストールする</block>
   <block id="7a5a6ee53a3c56e370cff4e4cb600d3a" category="paragraph">NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。</block>
   <block id="5d17e83279fd5189b40ec31e6e0efc6c" category="inline-link-macro">HP-UX Host Utilities 6.0のインストール</block>
-  <block id="7b3d6a6184bc8044fb4eaa2361a0c137" category="paragraph"><block ref="a1822c628e463c7a9fa61c1a4713b4ef" category="inline-link-macro-rx"></block>です。</block>
   <block id="cd30444b7075100f9dce64caf41ba2b7" category="doc">手順2：Linux Host Utilitiesをインストールする</block>
   <block id="a9764a4b476a4ae40670f2b10ab9b4aa" category="admonition">Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。</block>
   <block id="0f8e25d5af08d115d6410aa42fa8c1e8" category="doc">手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする</block>
@@ -2505,4 +2504,5 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="510d8f08b1bcd3d37f5f38838ba87607" category="list-text">ONTAP 9.19.1以降、SnapMirrorアクティブ同期はActive/Active構成でサポートされ、無停止のSnapMirrorアクティブ同期操作が可能になります。ナレッジベースの記事<block ref="689132335b86d0a731403daf22970080" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="58d09565b9d76aa8df134a3c88f349ef" category="inline-link-macro">ONTAP 9.11.1～9.18.1でSnapMirrorアクティブ同期用にAIXホストを構成する方法</block>
   <block id="edef79d6486b82062ad7b8f2b46174e2" category="list-text">ONTAP 9.11.1～9.18.1の場合、SnapMirrorアクティブ同期は、アクティブ/スタンバイ構成でサポートされています。ナレッジベースの記事<block ref="170dab56a652357d4fe24ca37b0b9eea" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="d260773137ad0fe3e74f84c49c4bb99c" category="paragraph"><block ref="d91927ac11d01a60b7823e550f2dd7fb" category="inline-link-macro-rx"></block>.</block>
 </blocks>
