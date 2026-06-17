@@ -2505,4 +2505,5 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="58d09565b9d76aa8df134a3c88f349ef" category="inline-link-macro">ONTAP 9.11.1～9.18.1でSnapMirrorアクティブ同期用にAIXホストを構成する方法</block>
   <block id="edef79d6486b82062ad7b8f2b46174e2" category="list-text">ONTAP 9.11.1～9.18.1の場合、SnapMirrorアクティブ同期は、アクティブ/スタンバイ構成でサポートされています。ナレッジベースの記事<block ref="170dab56a652357d4fe24ca37b0b9eea" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="d260773137ad0fe3e74f84c49c4bb99c" category="paragraph"><block ref="d91927ac11d01a60b7823e550f2dd7fb" category="inline-link-macro-rx"></block>.</block>
+  <block id="bdc9e3765d603a5091aec17191bf38ed" category="admonition">AIXでは、MPIOが有効になるまで、SANブートディスクに対して見えるパスは1つだけである必要があります。AIXブートディスクをインストールまたは移行する場合、通常はホストのFCゾーニングを一時的に制限し、単一のFCイニシエータと単一のFCターゲットのみが含まれるようにする必要があります。PCMパッケージを含むHost Utilitiesをインストールした後、OSを再起動することでMPIOを完全に有効にできます。その時点で、追加のFCイニシエータとFCターゲットをゾーンに追加します。次に、<block ref="cec798dce2562ead48807f1d57e501c6" prefix=" " category="inline-code"></block>および<block ref="a693727332d96028bddba10ff4667b0a" prefix=" " category="inline-code"></block>を実行して、利用可能なすべてのパスを含むようにブート構成を更新します。</block>
 </blocks>
