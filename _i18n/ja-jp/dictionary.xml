@@ -551,7 +551,6 @@
   <block id="bb80358d422ec918cde74cab08e90d5c" category="admonition">クラウド環境では、ホストは一般にクライアントと呼ばれます。このコンテンツに含まれるホスト固有のすべての情報は、環境 クラウドクライアントにも該当します。</block>
   <block id="30f60d67f457bb040dffde52197a54da" category="paragraph-title">関連情報</block>
   <block id="4c865e0cb70fa33868e69a5e88daad47" category="cell">1479047</block>
-  <block id="0929df0c2d7b307ae019137c488669a8" category="cell">1503468</block>
   <block id="2fefce185e7d7498c7e3da22bac84294" category="cell">1508554.</block>
   <block id="11613812ad376f15dc5ee5a9f425cea1" category="cell">NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です</block>
   <block id="796d3a90e43ce105cbf37298c5065f7e" category="sidebar">9.1</block>
@@ -1044,7 +1043,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="53aa5d6687de6e1ac7fc2fd3ae4ab539" category="doc">Linux Host Utilities 7.1のインストール</block>
   <block id="d895168ecaf0f9622aa5a6fc78ac6433" category="admonition">Linux Host Utilitiesソフトウェアは、NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）のホストプロトコルをサポートしていません。</block>
   <block id="17f8692005ca3aae6a8d4543ddd9c587" category="paragraph">以前のバージョンのLinux Host Utilitiesの場合は、ホストユーティリティソフトウェアがインストールされているディレクトリに移動し、uninstallコマンドを入力してインストールされているパッケージを削除します。</block>
-  <block id="a8ef8037d8bc65ce5c031566c94c1bdf" category="cell">RHEL 9.1では、HBA検出をサポートするためのライブラリパッケージの依存関係が見つからないため、NetApp Linux SAN Host Utilities CLIが<block ref="621925cc88c3305079fc7287b11ebf60" prefix=" " category="inline-code"></block>失敗します。</block>
   <block id="97cd8ca681a54160b844883a804a9d15" category="cell">RHEL 9.2では、HBA検出をサポートするためのライブラリパッケージの依存関係が見つからないため、NetApp Linux SAN Host Utilities CLIが<block ref="621925cc88c3305079fc7287b11ebf60" prefix=" " category="inline-code"></block>失敗します。</block>
   <block id="202b2328413819343791c425b58e837e" category="cell">RHEL 9.xでは、NetApp Linux SAN Host Utilities CLIが<block ref="621925cc88c3305079fc7287b11ebf60" prefix=" " category="inline-code"></block>失敗します。これは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）検出をサポートするためのライブラリパッケージの依存関係が見つからないためです。</block>
   <block id="61cdaad7945ab6e6f6569fdfe83fa2e4" category="summary">SAN Host Utilityのリリースに関する最新情報と、ホスト構成に対応したインストール手順について説明します。</block>
@@ -1864,8 +1862,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="3d8c2f20c69104516adf8f11842395df" category="paragraph">同じホスト上で NVMe と SCSI トラフィックの両方を実行するには、 NetApp、 ONTAP名前空間にはカーネル内 NVMe マルチパスを使用し、 ONTAP LUN には dm-multipath を使用することを推奨しています。  dm-multipathがONTAPネームスペースデバイスを要求しないようにするには、<block ref="cb2f8f6f16be615751b5bbd73928d197" prefix=" " category="inline-code"></block>設定する<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ファイル：</block>
   <block id="5728fbd1a5c8ae099d988e87299f3dd9" category="paragraph">既知の問題は次のとおりです:</block>
   <block id="ac783620bd79a6f903c67f639a9962f6" category="section-title">ステップ5: マルチパス構成を確認する</block>
-  <block id="3ac8a887d7c6b1750dee1f66e33d2041" category="cell">RHEL 9.0 NVMe-oF ホストは重複した永続検出コントローラ (PDC) を作成します。</block>
-  <block id="3ac93f7cf1853dfbc16c8472fc66d07d" category="cell">その<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block>コマンドは、指定されたサブシステムの NVMe コントローラーのリストを返します。  RHEL 9.1 では、このコマンドは、サブシステム内のすべての名前空間のコントローラーとその ANA 状態を表示します。  ANA の状態は名前空間ごとの属性であるため、コマンドは各名前空間のパスの状態を持つ一意のコントローラー エントリを表示する必要があります。</block>
   <block id="ece25d4c541fbae683416549d3f4ac05" category="list-text">ルート権限でテキスト エディターで udev ルール ファイルを開きます。</block>
   <block id="1cdf0be14ba09adc81c1095b08aa7aa2" category="list-text">ルールを修正して<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>なる<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>:</block>
   <block id="47b12d977e58e4eab7ccd70d2694af53" category="paragraph">Rocky Linux カーネルバージョンの例:</block>
@@ -1934,7 +1930,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="9943f66abf8246a952197a36b6ebae0a" category="doc">ONTAPストレージを使用して RHEL 9.x を FCP および iSCSI 用に構成する</block>
   <block id="853337aa29013a97f96870e7d2f10f1e" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Red Hat Enterprise Linux (RHEL) 9.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
   <block id="7bf7f9c71ffb97fd94ef9cfdd36ff7df" category="paragraph">RHEL 9.x のマルチパスを使用してONTAP LUN を管理できます。</block>
-  <block id="072f2e7d6b820c2e2398ab458c0f3a82" category="paragraph">ONTAPストレージを搭載した RHEL 9.x には、次の既知の問題があります。</block>
   <block id="cd243542bc9904c72b230932ea74f5f9" category="doc">ONTAPストレージを使用して Rocky Linux 8.x を FCP および iSCSI 用に設定する</block>
   <block id="12a24a78e2e6166f7b0523bf7d3e9aa7" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Rocky Linux 8.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
   <block id="90fd31bfd08c82d921d995f40f9f7d08" category="paragraph">Rocky Linux 8.x のマルチパスを使用してONTAP LUN を管理できます。</block>
@@ -1962,7 +1957,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="02e6f562a82adc38b8762b8d4fc3c8c2" category="section-title">ステップ5: オプションでNVMe/FCの1MB I/Oを有効にする</block>
   <block id="e6b3c2c8d823bf042f0e8e9e02dabf14" category="section-title">ステップ6: NVMeブートサービスを確認する</block>
   <block id="378f49529e98279285d9a2eb0d2b3e5e" category="section-title">ステップ7: マルチパス構成を確認する</block>
-  <block id="817977d49e0479a834f082c774ea3949" category="cell">RHEL 9.1では、<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block>コマンドは、指定されたサブシステムの繰り返しNVMEコントローラリストを返します。</block>
   <block id="f12463db66bb26df5aae5e1aa393205f" category="summary">RHELホストのONTAPサポートと機能について学ぶ</block>
   <block id="d4063c82026eda59b5c15cca38aa9b92" category="paragraph">NVMe over Fabrics (NVMe-oF) を使用したホスト構成でサポートされる機能は、 ONTAPおよび RHEL のバージョンによって異なります。</block>
   <block id="21021ea0e52be8e9c599f4dff41e5be0" category="cell">特徴</block>
@@ -2051,7 +2045,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="e52f83ac7ca8ca1b48908231ec897be1" category="paragraph">9.5以降</block>
   <block id="92893b8c5051dff6e69f93181e523d01" category="cell">Oracle Linux バージョンが..の場合</block>
   <block id="e6c9ea0372e1bc5ee9ce19cebcf71eaf" category="cell">7シリーズ</block>
-  <block id="28b031394cea76c997a81517dfc279f9" category="cell">NVMe-oF ホストでは、<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oFホストでONTAP 9.10.1およびRHEL 9.0を実行している場合は、<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block>を実行するたびに重複したPDCが作成されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。</block>
   <block id="38247dd9f4f50ed3b751d728ecd0c52c" category="sidebar">NVMeoF OL</block>
   <block id="8cf639f80087b38e9251e80ba60c10c4" category="paragraph">デフォルトのマルチパス パラメータは、 ASA、 AFF、およびFAS構成をサポートします。これらの構成では、単一のONTAP LUN に 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。</block>
   <block id="97a99753b959b6770bb6efa96e4103e1" category="list-text">SAN ブート構成のサポートと既知の問題を確認するには、Veritas サポート ポータル (製品マトリックス、プラットフォーム検索、および HCL マトリックス) を参照してください。</block>
@@ -2505,5 +2498,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="58d09565b9d76aa8df134a3c88f349ef" category="inline-link-macro">ONTAP 9.11.1～9.18.1でSnapMirrorアクティブ同期用にAIXホストを構成する方法</block>
   <block id="edef79d6486b82062ad7b8f2b46174e2" category="list-text">ONTAP 9.11.1～9.18.1の場合、SnapMirrorアクティブ同期は、アクティブ/スタンバイ構成でサポートされています。ナレッジベースの記事<block ref="170dab56a652357d4fe24ca37b0b9eea" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="d260773137ad0fe3e74f84c49c4bb99c" category="paragraph"><block ref="d91927ac11d01a60b7823e550f2dd7fb" category="inline-link-macro-rx"></block>.</block>
-  <block id="bdc9e3765d603a5091aec17191bf38ed" category="admonition">AIXでは、MPIOが有効になるまで、SANブートディスクに対して見えるパスは1つだけである必要があります。AIXブートディスクをインストールまたは移行する場合、通常はホストのFCゾーニングを一時的に制限し、単一のFCイニシエータと単一のFCターゲットのみが含まれるようにする必要があります。PCMパッケージを含むHost Utilitiesをインストールした後、OSを再起動することでMPIOを完全に有効にできます。その時点で、追加のFCイニシエータとFCターゲットをゾーンに追加します。次に、<block ref="cec798dce2562ead48807f1d57e501c6" prefix=" " category="inline-code"></block>および<block ref="a693727332d96028bddba10ff4667b0a" prefix=" " category="inline-code"></block>を実行して、利用可能なすべてのパスを含むようにブート構成を更新します。</block>
+  <block id="895369022e2ee0b381f97a38ee89b758" category="admonition">AIXでは、MPIOが有効になるまで、SANブートディスクに対して見えるパスは1つだけである必要があります。AIXブートディスクをインストールまたは移行する場合、通常はホストのFCゾーニングを一時的に制限し、単一のFCイニシエータと単一のFCターゲットのみが含まれるようにする必要があります。PCMパッケージを含むHost Utilitiesをインストールした後、OSを再起動することでMPIOを完全に有効にできます。その時点で、追加のFCイニシエータとFCターゲットをゾーンに追加します。次に、<block ref="cec798dce2562ead48807f1d57e501c6" prefix=" " category="inline-code"></block>および<block ref="a693727332d96028bddba10ff4667b0a" prefix=" " category="inline-code"></block>を実行して、ブート構成を更新し、利用可能なすべてのパスを含めます。</block>
+  <block id="d475935aee712cb287d615a6e4a26bc1" category="paragraph">次の例は、<block ref="d7deb22e6166f8cce87002f8f100fbe6" prefix=" " category="inline-code"></block>パッケージバージョンを示しています：</block>
 </blocks>

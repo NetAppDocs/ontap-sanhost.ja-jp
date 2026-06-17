@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: hu-rhel-9x.html 
-keywords: host utilities, red hat, rhel, linux, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0, netapp, ontap, rhel 
+keywords: host utilities, red hat, rhel, linux, 9.8, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0, netapp, ontap 
 summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、RHEL 9.x ホストに Linux ホスト ユーティリティをインストールします。 
 ---
 = ONTAPストレージを使用して RHEL 9.x を FCP および iSCSI 用に構成する
@@ -266,18 +266,18 @@ $systemctl status iscsid
 ----
 ● iscsid.service - Open-iSCSI
      Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
-     Active: active (running) since Tue 2025-12-02 11:36:21 EST; 2 weeks 1 day ago
+     Active: active (running) Tue 2026-05-12 06:29:55 EDT; 2 weeks 1 day ago
 TriggeredBy: ● iscsid.socket
        Docs: man:iscsid(8)
              man:iscsiuio(8)
              man:iscsiadm(8)
-   Main PID: 2263 (iscsid)
+   Main PID: 2021 (iscsid)
      Status: "Ready to process requests"
       Tasks: 1 (limit: 816061)
      Memory: 18.5M
         CPU: 14.480s
      CGroup: /system.slice/iscsid.service
-             └─2263 /usr/sbin/iscsid -f -d2
+             └─2021 /usr/sbin/iscsid -f -d2
 ----
 ====
 . iSCSIターゲットを検出します：
@@ -409,47 +409,8 @@ devices {
 
 == ステップ7：既知の問題を確認する
 
-ONTAPストレージを搭載した RHEL 9.x には、次の既知の問題があります。
+既知の問題はありません。
 
-[role="tabbed-block"]
-====
-.9.3
---
-[cols="20, 20, 50,20"]
-|===
-| NetApp バグ ID | タイトル | 説明 | JIRA iD 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）アダプタの検出をサポートするために、ライブラリパッケージの依存関係を追加する必要があります。 | RHEL 9.xでは、NetApp Linux SAN Host Utilities CLIが `sanlun fcp show adapter -v`失敗します。これは、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）検出をサポートするためのライブラリパッケージの依存関係が見つからないためです。 | 該当なし 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1593771["1593771"^] | Red Hat Enterprise Linux 9.3 QLogic SANホストで、ストレージ移動の処理中に部分的なマルチパスが失われることがある | ONTAPストレージコントローラのテイクオーバー処理では、マルチパスの半分が停止するかフェイルオーバーモードに切り替わり、ギブバックワークフローの実行中にフルパス数に回復します。ただし、Red Hat Enterprise Linux（RHEL）9.3 QLogicホストでは、ストレージフェイルオーバーのギブバック処理後にリカバリされるのは部分的なマルチパスのみです。 | RHEL 17811 
-|===
---
-.9.2.
---
-[cols="20,40,40"]
-|===
-| NetApp バグ ID | タイトル | 説明 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.2では、HBA検出をサポートするためのライブラリパッケージの依存関係が見つからないため、NetApp Linux SAN Host Utilities CLIが `sanlun fcp show adapter -v`失敗します。 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1537359["1537359"^] | Emulex HBAを搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します | ストレージフェイルオーバーのギブバック処理で、Emulex Host Bus Adapter（HBA；ホストバスアダプタ）を搭載したRed Hat Linux 9.2のSANブートホストでタスクが停止し、カーネルが停止します。カーネルが中断されると、オペレーティングシステムが再起動します `kdump` が設定されると、が生成されます `vmcore` の下にあるファイル `/var/crash/` ディレクトリ。問題をでトリアージしています `lpfc` ドライバーですが、一貫して再現することはできません。 
-|===
---
-.9.1
---
-[cols="20,40,40"]
-|===
-| NetApp バグ ID | タイトル | 説明 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554."^] | NetApp Linux Host Utilities CLIでEmulex HBAアダプタの検出をサポートするには、ライブラリパッケージの追加の依存関係が必要です | RHEL 9.1では、HBA検出をサポートするためのライブラリパッケージの依存関係が見つからないため、NetApp Linux SAN Host Utilities CLIが `sanlun fcp show adapter -v`失敗します。 
-|===
---
-====
 
 
 == 次の手順
