@@ -742,9 +742,7 @@
   <block id="f61222023dff7dff4f1f07b6593dfa16" category="list-text">該当するONTAPネームスペースの適切なNVMe-oF設定（modelをNetApp ONTAPコントローラに設定し、load balancing iopolicyをラウンドロビンに設定するなど）がホストに正しく反映されていることを確認します。</block>
   <block id="43784ec2c1aaa42346ed96f22c8410b6" category="sidebar">9.2.</block>
   <block id="9cdf71978b23a4023a75f102c03f30d0" category="list-text">サポートされているアダプタモデルを使用していることを確認します。</block>
-  <block id="da80aa62fc6cf6b66539a5a3933874a8" category="cell"><block ref="da80aa62fc6cf6b66539a5a3933874a8" category="inline-link-rx"></block></block>
   <block id="5aae5284420b8ceb0aa0f5d959c566bc" category="list-text">NVMe/TCPイニシエータとターゲットLIFの他の組み合わせで、検出ログページのデータを正常に取得できることを確認します。</block>
-  <block id="675cd8e52ba395fba110b2ae7c90675b" category="cell">Emulex HBAを搭載したSAN LUNユーティリティには、ライブラリパッケージからのシンボリックリンクが必要です</block>
   <block id="30d85838b9488ee908d075559c8978cd" category="doc">VMware vSphere 8.xとONTAPの併用</block>
   <block id="8d19958f3e338523c5e956fbddc3c9af" category="doc">ONTAPでVMware vSphere 6.5および6.7を使用</block>
   <block id="40db5019ed68654f4eb2cf21ec5021db" category="doc">VMware vSphere 7.xとONTAPの併用</block>
@@ -1919,8 +1917,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="de4df2bb56a6dd96c5aa8b4ddfb1370c" category="doc">ONTAPストレージを使用してFCPおよびiSCSI用にOracle Linux 9.xを構成する</block>
   <block id="b72680c8c0c632d8365db7df592ffeb2" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Oracle Linux 9.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
   <block id="6d0d62455ddcc2e2663940d352dfd7ed" category="paragraph">Oracle Linux 9.x のマルチパスを使用してONTAP LUN を管理できます。</block>
-  <block id="d02686596819e33bae1494c476cc4046" category="paragraph">ONTAPストレージを搭載した Oracle Linux 9.3、9.2、9.1、および 9.0 には、次の既知の問題があります。</block>
-  <block id="e2a4ffda52d4058942376ec8457e5e5f" category="cell">Linux ホスト ユーティリティ CLI コマンド「sanlun fcp show adapter -v」を SAN ホストで実行すると、ホスト バス アダプタ (HBA) の検出に必要なライブラリ依存関係が見つからないことを示すエラー メッセージが出力され、コマンドが失敗します: ---- [root@hostname ~]# sanlun fcp show adapter -v /usr/lib64/libHBAAPI.so ライブラリが見つかりません。ライブラリをインストールするパッケージがインストールされ、ロードされていることを確認してください。 ----</block>
   <block id="a7a38198eff5258108ff6a5098a49e45" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、RHEL 8.x ホストに Linux ホスト ユーティリティをインストールします。</block>
   <block id="e2aef7fa2192be71ab8ffc57f8a8ec55" category="doc">ONTAPストレージを使用して RHEL 8.x を FCP および iSCSI 用に構成する</block>
   <block id="000b577dcf01b1bbd6d531af999b0911" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Red Hat Enterprise Linux (RHEL) 8.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
@@ -2032,7 +2028,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="f97e7db99bb0a1e808378e53a69a896b" category="paragraph">NetAppは、<block ref="d830763524c5d39cb33a1bd2b5c447f8" prefix=" " category="inline-code"></block>に<block ref="6bb61e3b7bce0931da574d19d1d82c88" prefix=" " category="inline-code"></block>NVMe/TCP イニシエーターは、パス損失が発生した場合に無期限に再接続を試行します。</block>
   <block id="24fcd6330b6a9b7be58b3cd8ddc63f4f" category="section-title">ステップ5: オプションで1MBのI/Oサイズを有効にする</block>
   <block id="7b132f02e8428aa01abb44962ec07147" category="section-title">ステップ2: Oracle LinuxとNVMeソフトウェアをインストールし、構成を確認する</block>
-  <block id="be553660868a99ecfcefab234340f585" category="paragraph">Oracle Linux 9.5以降では、<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。</block>
   <block id="cbce5c9568a686f91b2dfcf39622b287" category="paragraph">安全な認証を設定するには、各ホストまたはコントローラを DH-HMAC-CHAP キーに関連付ける必要があります。 DH-HMAC-CHAP キーは、NVMe ホストまたはコントローラの NQN と管理者によって設定された認証シークレットの組み合わせです。ピアを認証するには、NVMe ホストまたはコントローラはピアに関連付けられたキーを認識する必要があります。</block>
   <block id="e908710b4eae6cf350cddad694d8c508" category="paragraph">CLI または構成 JSON ファイルを使用して、安全なインバンド認証を設定します。異なるサブシステムに異なる dhchap キーを指定する必要がある場合は、構成 JSON ファイルを使用します。</block>
   <block id="aadd5dd4ef730bc8b1907b50349be5cb" category="summary">Oracle LinuxホストのONTAPサポートと機能について学ぶ</block>
@@ -2500,4 +2495,5 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="d260773137ad0fe3e74f84c49c4bb99c" category="paragraph"><block ref="d91927ac11d01a60b7823e550f2dd7fb" category="inline-link-macro-rx"></block>.</block>
   <block id="895369022e2ee0b381f97a38ee89b758" category="admonition">AIXでは、MPIOが有効になるまで、SANブートディスクに対して見えるパスは1つだけである必要があります。AIXブートディスクをインストールまたは移行する場合、通常はホストのFCゾーニングを一時的に制限し、単一のFCイニシエータと単一のFCターゲットのみが含まれるようにする必要があります。PCMパッケージを含むHost Utilitiesをインストールした後、OSを再起動することでMPIOを完全に有効にできます。その時点で、追加のFCイニシエータとFCターゲットをゾーンに追加します。次に、<block ref="cec798dce2562ead48807f1d57e501c6" prefix=" " category="inline-code"></block>および<block ref="a693727332d96028bddba10ff4667b0a" prefix=" " category="inline-code"></block>を実行して、ブート構成を更新し、利用可能なすべてのパスを含めます。</block>
   <block id="d475935aee712cb287d615a6e4a26bc1" category="paragraph">次の例は、<block ref="d7deb22e6166f8cce87002f8f100fbe6" prefix=" " category="inline-code"></block>パッケージバージョンを示しています：</block>
+  <block id="a31e7639425bf11c737e817792079192" category="admonition">ONTAP 9.16.1 以降、NVMe/FV および NVMe/TCP は ASA r2 システム上のすべての最適化されたパスを報告します。</block>
 </blocks>

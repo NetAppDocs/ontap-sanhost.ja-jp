@@ -465,15 +465,8 @@ devices {
 
 == ステップ7：既知の問題を確認する
 
-ONTAPストレージを搭載した Oracle Linux 9.3、9.2、9.1、および 9.0 には、次の既知の問題があります。
+既知の問題はありません。
 
-[cols="20,40,40"]
-|===
-| NetApp バグ ID | タイトル | 説明 
-
-
-| https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1508554["1508554."^] | Emulex HBAを搭載したSAN LUNユーティリティには、ライブラリパッケージからのシンボリックリンクが必要です | Linux ホスト ユーティリティ CLI コマンド「sanlun fcp show adapter -v」を SAN ホストで実行すると、ホスト バス アダプタ (HBA) の検出に必要なライブラリ依存関係が見つからないことを示すエラー メッセージが出力され、コマンドが失敗します: ---- [root@hostname ~]# sanlun fcp show adapter -v /usr/lib64/libHBAAPI.so ライブラリが見つかりません。ライブラリをインストールするパッケージがインストールされ、ロードされていることを確認してください。 ---- 
-|===
 
 
 == 次の手順
