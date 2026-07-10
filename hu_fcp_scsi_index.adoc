@@ -4,7 +4,7 @@ permalink: hu_fcp_scsi_index.html
 keywords:  
 summary:  
 ---
-= 概要
+= FCP と iSCSI を使用した ONTAP SAN ホストの設定について
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,4 +16,10 @@ summary:
 
 
 [role="lead"]
-ONTAPをターゲットとして、特定のSANホストをFCPまたはiSCSI用に設定できます。まず、関連するオペレーティングシステムホストユーティリティパッケージ（SANツールキットを含む）をインストールします。次に、NetApp ONTAP LUNのマルチパス設定を確認します。
+特定のSANホストオペレーティングシステム（OS）を、ONTAPをターゲットとしてFCPおよびiSCSI用に構成できます。ホストOSがSANホストユーティリティソフトウェアでサポートされている場合は、まずSANツールキットを含む該当するOSホストユーティリティパッケージをインストールします。次に、すべてのホストOSタイプに対して、ONTAP LUNのマルチパス設定を構成します。
+
+.関連情報
+* link:https://docs.netapp.com/us-en/ontap/san-admin/configure-svm-fc-task.html["FCプロトコルの管理について"^]
+* link:https://docs.netapp.com/us-en/ontap/san-admin/configure-network-best-performance-task.html["iSCSIプロトコルの管理について"^]
+* https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANストレージのプロビジョニングについて"^]
+

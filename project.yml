@@ -93,7 +93,7 @@ sidebar:
         url: "/hu_wuhu_troubleshoot.html"
   - title: FCPとiSCSIを使用したホストの設定
     entries:
-    - title: 概要
+    - title: FCP と iSCSI を使用したホストの設定について
       url: "/hu_fcp_scsi_index.html"
     - title: AIX および PowerVM/VIOS
       entries:
@@ -214,7 +214,7 @@ sidebar:
         url: "/hu_windows_2012r2.html"
   - title: NVMe-oFを使用したホストの設定
     entries:
-    - title: NVMe-oFホストの構成について学ぶ
+    - title: NVMe-oF を使用したホストの設定について
       url: "/hu-nvme-index.html"
     - title: AIX の場合
       url: "/nvme-aix.html"

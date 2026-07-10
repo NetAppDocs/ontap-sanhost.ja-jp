@@ -16,8 +16,10 @@ summary: 特定のSANホストをNVMe over Fabrics（NVMe-oF）プロトコル�
 
 
 [role="lead"]
-サポートされている SAN ホストを構成して、 ONTAPをストレージ ターゲットとして NVMe over Fabrics (NVMe-oF) プロトコルを使用できます。 NVMe-oF には、NVMe over Fibre Channel (NVMe/FC) と NVMe over TCP (NVMe/TCP) が含まれます。ホスト オペレーティング システムとONTAPのバージョンに応じて、ホスト上で NVMe/FC または NVMe/TCP プロトコル、あるいはその両方を設定および検証します。
+サポートされているSANホストは、NVMe over Fabrics（NVMe-oF）プロトコルを使用して、ONTAPをストレージターゲットとして使用するように構成できます。NVMe-oFには、NVMe over Fibre Channel（NVMe/FC）とNVMe over TCP（NVMe/TCP）が含まれます。ホストオペレーティングシステム（OS）とONTAPバージョンによっては、ホストOS上でNVMe/FCまたはNVMe/TCPプロトコル、あるいはその両方を設定および検証する必要があります。
 
 .関連情報
-* link:https://www.netapp.com/pdf.html?item=/media/10681-tr4684pdf.pdf["NetAppナレッジベース: NVMe-oF について学ぶ"^] 。
+* https://docs.netapp.com/us-en/ontap/san-admin/manage-nvme-concept.html["NVMeプロビジョニングの詳細"^]
+* link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["NVMeプロトコルの管理について学ぶ"^]
+* link:https://www.netapp.com/pdf.html?item=/media/10681-tr4684.pdf["TR-4684: NVMe-oFを使用した最新のSANの実装と構成"^]
 

@@ -540,7 +540,6 @@
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">リソースの追加</block>
   <block id="8f631f7b4d000947dcf86232c51cf147" category="sidebar">オールSANアレイソフトウェア構成</block>
   <block id="587c9aa3c6003c9a9fa1fc9c2ceb2eaa" category="sidebar">SAN 管理</block>
-  <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">概要</block>
   <block id="1a0d3890b0eb9dc0c7e3f33e1b9f1865" category="sidebar">NVMeoF RHEL</block>
   <block id="38022ef96e4c7edb41b89fa3a008c3f6" category="inline-link-macro">Windows Host Utility Kit 7.1</block>
   <block id="0165fb41a35ddb937948f77394256403" category="inline-link-macro">SANホストのWindowsに関するドキュメント</block>
@@ -917,7 +916,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="fd4b7aa4410ba62613ac655e982dfa85" category="cell">この問題は、SnapMirrorアクティブ同期構成の分離されたマスタークラスタでAutomatic Unplanned Failover（AUFO；自動計画外フェイルオーバー）イベントが発生した場合に発生します。HP-UX ホストで I/O が再開されるまでに 120 秒以上かかることがありますが、原因で I/O の中断やエラーメッセージが表示されない可能性があります。この問題では、プライマリクラスタとセカンダリクラスタの間の接続が失われ、プライマリクラスタとメディエーターの間の接続も失われるため、二重イベント障害が発生します。これは、他の AUFO イベントとは異なり、まれなイベントとみなされます。</block>
   <block id="e0838e6ee58912186f2b21f886daa80d" category="image-alt">アクティブ/最適パスが表示されたONTAP LUNのスクリーンショット</block>
   <block id="d485a78eda6522675d5ac87291b0f93b" category="image-alt">2つのアクティブ/最適パスと2つのアクティブ/非最適パスを含むONTAP LUNのスクリーンショット</block>
-  <block id="c562be7af2a3a19ec7e17ebb8a3eeb49" category="paragraph">ONTAPをターゲットとして、特定のSANホストをFCPまたはiSCSI用に設定できます。まず、関連するオペレーティングシステムホストユーティリティパッケージ（SANツールキットを含む）をインストールします。次に、NetApp ONTAP LUNのマルチパス設定を確認します。</block>
   <block id="efc0d0203167a4accd82de64fa1b2a96" category="paragraph">ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe over Fabrics（NVMe-oF）をターゲットとして設定できます。</block>
   <block id="0815968d94c1d10c54227de24659397e" category="example-title">出力例を表示します。</block>
   <block id="6015ee0c3c4dbc37f534783a65239e72" category="example-title">例を示します</block>
@@ -1838,12 +1836,9 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="c66e8f141f367b0a5a1d201cc49ccc72" category="paragraph">ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block>の価値<block ref="63a7cb7a86eb0c84641936943496afaf" prefix=" " category="inline-code"></block>パラメータをデフォルト値の 64 から 256 に変更します。</block>
   <block id="cfa5b6e557299c1ae7c635f08785f365" category="paragraph">Red Hat Enterpirse Linux (RHEL) ホストは、非対称名前空間アクセス (ANA) を備えた NVMe over Fibre Channel (NVMe/FC) および NVMe over TCP (NVMe/TCP) プロトコルをサポートします。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) と同等のマルチパス機能を提供します。</block>
   <block id="e8584093909cb01d1e4390beaad82a5f" category="paragraph">その<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block>そして<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block>NVMe/FCに含まれるブートサービス<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>パッケージはシステムの起動時に自動的に有効になります。</block>
-  <block id="be1e5922c13f8cd92deb77a78a07375f" category="paragraph">サポートされている SAN ホストを構成して、 ONTAPをストレージ ターゲットとして NVMe over Fabrics (NVMe-oF) プロトコルを使用できます。 NVMe-oF には、NVMe over Fibre Channel (NVMe/FC) と NVMe over TCP (NVMe/TCP) が含まれます。ホスト オペレーティング システムとONTAPのバージョンに応じて、ホスト上で NVMe/FC または NVMe/TCP プロトコル、あるいはその両方を設定および検証します。</block>
   <block id="b0e0bd8207ba62457f58c3e06f3f7bec" category="section-title">ONTAPのサポートと機能</block>
   <block id="3b2a75ebc087c7f3c4fa9ac0e2a92ebe" category="cell">ONTAPのバージョン</block>
   <block id="d66d64f553dfd862f68036b9e5fcaaa1" category="admonition">サポートされている構成の詳細については、<block ref="303ffee46fa5d607063d9b04cfb6d8cb" category="inline-link-macro-rx"></block> 。</block>
-  <block id="a711f567596d88e746e95770f343d065" category="inline-link-macro">NetAppナレッジベース: NVMe-oF について学ぶ</block>
-  <block id="b225a8d62c5126b34eef960debf4a7d2" category="list-text"><block ref="3ca35c6105331fc07b327260aeca73b4" category="inline-link-macro-rx"></block> 。</block>
   <block id="7b38cd7357c50824c462a690ab2c7e64" category="paragraph">RHEL カーネルバージョンの例:</block>
   <block id="7ca0b86a69f6feef87cf7c24a1422e47" category="admonition">もし<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>文字列が一致しない場合は、<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block>更新するコマンド<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>対応するONTAPストレージシステムサブシステムの文字列を<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>文字列から<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>ホスト上。</block>
   <block id="0846f796a67ab827e48866ee9d867e7e" category="section-title">ステップ3: NVMe/FCとNVMe/TCPを構成する</block>
@@ -1866,7 +1861,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="0fe3920489a515504bc99fd4bc2a0cfa" category="paragraph">次の例は、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>価値：</block>
   <block id="bdd85bb9fb61697998b63578c3818344" category="paragraph">NVMe/TCP プロトコルは自動接続操作をサポートしていません。  NVMe/TCP サブシステムと名前空間を検出するには、NVMe/TCP 接続または connect-all 操作を手動で実行する必要があります。</block>
   <block id="3832446aa2ef6619ecfdb886641a60fe" category="list-text">他の NVMe/TCP イニシエーターとターゲット LIF の組み合わせで検出ログ ページ データを正常に取得できることを確認します。</block>
-  <block id="0adc0ccfa62ac1a4fb645ca5d3f148ff" category="sidebar">NVMe-oFホストの構成について学ぶ</block>
   <block id="1c79280a42a5cd3a48fa9fefe62fd0a5" category="summary">Citrix Xenserver 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。</block>
   <block id="e3570aecc41d92af1fdf504fc5bd3927" category="paragraph">Linux ホスト ユーティリティ ソフトウェア パッケージは、Citrix Xenserver オペレーティング システムをサポートしていません。</block>
   <block id="405ee507e1b0e20ba609f39dc449664e" category="paragraph">Citrix Xenserver 8.4 のマルチパスを使用して、 ONTAP LUN を管理できます。</block>
@@ -2496,4 +2490,19 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="895369022e2ee0b381f97a38ee89b758" category="admonition">AIXでは、MPIOが有効になるまで、SANブートディスクに対して見えるパスは1つだけである必要があります。AIXブートディスクをインストールまたは移行する場合、通常はホストのFCゾーニングを一時的に制限し、単一のFCイニシエータと単一のFCターゲットのみが含まれるようにする必要があります。PCMパッケージを含むHost Utilitiesをインストールした後、OSを再起動することでMPIOを完全に有効にできます。その時点で、追加のFCイニシエータとFCターゲットをゾーンに追加します。次に、<block ref="cec798dce2562ead48807f1d57e501c6" prefix=" " category="inline-code"></block>および<block ref="a693727332d96028bddba10ff4667b0a" prefix=" " category="inline-code"></block>を実行して、ブート構成を更新し、利用可能なすべてのパスを含めます。</block>
   <block id="d475935aee712cb287d615a6e4a26bc1" category="paragraph">次の例は、<block ref="d7deb22e6166f8cce87002f8f100fbe6" prefix=" " category="inline-code"></block>パッケージバージョンを示しています：</block>
   <block id="a31e7639425bf11c737e817792079192" category="admonition">ONTAP 9.16.1 以降、NVMe/FV および NVMe/TCP は ASA r2 システム上のすべての最適化されたパスを報告します。</block>
+  <block id="4de30eb95ca1be58be49ba22cf5473b6" category="paragraph">サポートされているSANホストは、NVMe over Fabrics（NVMe-oF）プロトコルを使用して、ONTAPをストレージターゲットとして使用するように構成できます。NVMe-oFには、NVMe over Fibre Channel（NVMe/FC）とNVMe over TCP（NVMe/TCP）が含まれます。ホストオペレーティングシステム（OS）とONTAPバージョンによっては、ホストOS上でNVMe/FCまたはNVMe/TCPプロトコル、あるいはその両方を設定および検証する必要があります。</block>
+  <block id="7f62b6154d733a7947851f13f2d6bd38" category="inline-link">NVMeプロビジョニングの詳細</block>
+  <block id="e3dfc2e9bc6b78cf280e7b9a8c0a2c82" category="list-text"><block ref="e3dfc2e9bc6b78cf280e7b9a8c0a2c82" category="inline-link-rx"></block></block>
+  <block id="67427880ab2eb83e274fe8038d19444b" category="inline-link-macro">TR-4684: NVMe-oFを使用した最新のSANの実装と構成</block>
+  <block id="d719beeb5ec2736d269213fab9543e6d" category="list-text"><block ref="d719beeb5ec2736d269213fab9543e6d" category="inline-link-macro-rx"></block></block>
+  <block id="62346842706e07b5f8a495f9d5a29786" category="doc">FCP と iSCSI を使用した ONTAP SAN ホストの設定について</block>
+  <block id="652d4e06f41967c8271b197844a17b43" category="paragraph">特定のSANホストオペレーティングシステム（OS）を、ONTAPをターゲットとしてFCPおよびiSCSI用に構成できます。ホストOSがSANホストユーティリティソフトウェアでサポートされている場合は、まずSANツールキットを含む該当するOSホストユーティリティパッケージをインストールします。次に、すべてのホストOSタイプに対して、ONTAP LUNのマルチパス設定を構成します。</block>
+  <block id="e5c3ef473ca597687810ac04980dbc09" category="inline-link-macro">FCプロトコルの管理について</block>
+  <block id="adccc3872d204f20472ffd2b8d48d724" category="list-text"><block ref="adccc3872d204f20472ffd2b8d48d724" category="inline-link-macro-rx"></block></block>
+  <block id="0a54a0e6c910bafcbccdb383956c319e" category="inline-link-macro">iSCSIプロトコルの管理について</block>
+  <block id="04e625d95c878abcd1f2dbf6d04098c7" category="list-text"><block ref="04e625d95c878abcd1f2dbf6d04098c7" category="inline-link-macro-rx"></block></block>
+  <block id="0c9b400a67ecf2fde04784839ca8b593" category="inline-link">SANストレージのプロビジョニングについて</block>
+  <block id="6b9dd1af850387c3bbb1a8645b455f48" category="list-text"><block ref="6b9dd1af850387c3bbb1a8645b455f48" category="inline-link-rx"></block></block>
+  <block id="5ea4a4d083b9b7faa4d73ebd6193eec3" category="sidebar">FCP と iSCSI を使用したホストの設定について</block>
+  <block id="46fa0acef0abce2c8d85781039d9ca0e" category="sidebar">NVMe-oF を使用したホストの設定について</block>
 </blocks>
