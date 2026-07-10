@@ -40,6 +40,7 @@ NOTE: Broadcomには、Windows NVMe/FC用の外部ドライバが付属してい
 
 
 
+[[enable-nvmefc]]
 == NVMe/FC を有効にします
 
 WindowsイニシエータホストでFC / NVMeを有効にします。
@@ -57,6 +58,7 @@ WindowsイニシエータホストでFC / NVMeを有効にします。
 
 
 
+[[configure-the-broadcom-fc-adapter]]
 == Broadcom FCアダプタの設定
 
 Broadcomイニシエータは、同じ32G FCアダプタポートでNVMe/FCとFCPの両方のトラフィックに対応できます。FCPおよびFC / NVMeの場合は、Microsft Device-Specific Module（DSM；デバイス固有モジュール）をMicrosoft Multipath I/O（MPIO；マルチパスI/O）オプションとして使用する必要があります。
@@ -69,6 +71,7 @@ nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9766
 ....
 
 
+[[enable-mpio-for-nvme-devices]]
 === NVMeデバイスでMPIOを有効にする
 
 WindowsホストでNVMeの設定を完了するには、NVMeデバイスでMPIOを有効にする必要があります。
@@ -105,6 +108,7 @@ HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryIn
 
 
 
+[[validate-the-nvmefc-configuration]]
 == NVMe/FC構成の検証
 
 NVMeサブシステムが検出され、ONTAPネームスペースがNVMe-oFの設定に対応した正しいことを確認してください。

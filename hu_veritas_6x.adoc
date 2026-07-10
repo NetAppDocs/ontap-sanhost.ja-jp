@@ -20,6 +20,7 @@ Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレー
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == 手順1：必要に応じてSANブートを有効にします。
 
 SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
@@ -40,6 +41,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 
 
+[[step-2-install-the-linux-host-utilities]]
 == 手順2：Linux Host Utilitiesをインストールする
 
 NetAppは強く推奨します link:hu-luhu-release-notes.html["Linuxホストユーティリティのインストール"] ONTAP LUN 管理をサポートし、構成データの収集に関するテクニカル サポートを支援します。
@@ -49,6 +51,7 @@ NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホ�
 
 
 
+[[step-3-confirm-the-veritas-dynamic-multipathing-configuration-for-your-host]]
 == ステップ3: ホストのVeritas Dynamic Multipathing構成を確認する
 
 ONTAP LUN を管理するには、Veritas Infoscale 6 と Veritas Dynamic Multipathing (VxDMP) を使用します。
@@ -264,12 +267,14 @@ sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -
 
 
 
+[[step-4-known-issues]]
 == ステップ4: 既知の問題
 
 既知の問題はありません。
 
 
 
+[[whats-next]]
 == 次の手順
 
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。

@@ -4,6 +4,7 @@
 
 
 
+[[step-2-install-the-linux-host-utilities]]
 == 手順2：Linux Host Utilitiesをインストールする
 
 NetAppは強く推奨します link:hu-luhu-release-notes.html["Linuxホストユーティリティのインストール"] ONTAP LUN 管理をサポートし、構成データの収集に関するテクニカル サポートを支援します。

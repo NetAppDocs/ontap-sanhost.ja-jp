@@ -20,6 +20,7 @@ Linux Host UtilitiesソフトウェアはONTAPストレージに接続されたL
 
 
 
+[[step-1-install-the-linux-host-utilities]]
 == ステップ1：Linuxホストユーティリティをインストールする
 
 NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
@@ -31,6 +32,7 @@ NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホ�
 
 
 
+[[step-2-confirm-the-multipath-configuration-for-your-host]]
 == ステップ2: ホストのマルチパス構成を確認する
 
 HPE VME 8.0.x のマルチパスを使用して ONTAP LUN を管理できます。
@@ -63,6 +65,7 @@ systemctl start multipathd
 .パラメータ設定の表示
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | パラメータ | 設定 
@@ -183,6 +186,7 @@ AFFまたはFAS構成には、優先度の高いパスと低いパスの2つの�
 
 
 
+[[step-3-confirm-the-iscsi-configuration-for-your-host]]
 == ステップ3：ホストのiSCSI構成を確認する
 
 ホストに対して iSCSI が正しく構成されていることを確認します。
@@ -320,6 +324,7 @@ tcp: [4] 192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624
 
 
 
+[[step-4-optionally-exclude-a-device-from-multipathing]]
 == 手順4：必要に応じて、マルチパスからデバイスを除外する
 
 必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
@@ -352,6 +357,7 @@ blacklist {
 
 
 
+[[step-5-customize-multipath-parameters-for-ontap-luns]]
 == 手順5：ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
@@ -385,12 +391,14 @@ devices {
 ====
 
 
+[[step-6-review-the-known-issues]]
 == 手順6：既知の問題を確認する
 
 既知の問題はありません。
 
 
 
+[[whats-next]]
 == 次の手順
 
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。

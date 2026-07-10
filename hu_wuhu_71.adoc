@@ -18,6 +18,7 @@ summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリ
 [role="lead"]
 Windows Host Utilitiesを使用すると、WindowsホストコンピュータをNetAppストレージシステムに接続できます。
 
+[[supported-windows-versions-71]]
 Windows Host Utilitiesは、次のバージョンのWindowsをサポートします。
 
 * Windows 2022
@@ -55,6 +56,7 @@ Host Utilitiesは、さまざまなWindowsホスト構成、プロトコル、�
 
 
 
+[[step-1-verify-your-host-and-storage-system-configurations]]
 == ステップ1: ホストとストレージシステムの構成を確認する
 
 用のWindows Host Utilitiesをインストールする前に、ホストとストレージシステムの構成がサポートされていることを確認して<<supported-windows-versions-71,サポートされるWindowsのバージョン>>ください。
@@ -79,6 +81,7 @@ NOTE: SANtricity Storage Managerを使用する E シリーズ ストレージ �
 
 
 
+[[step-2-configure-fc-hbas-and-switches]]
 == ステップ2: FC HBAとスイッチを構成する
 
 ストレージシステムへのFC接続用にサポートされる1つ以上のFC Host Bus Adapter（HBA；ホストバスアダプタ）をインストールして設定します。
@@ -98,6 +101,7 @@ CAUTION: HBA パラメータの設定は、Windows Host Utilities インスト�
 
 
 
+[[step-3-install-the-windows-host-utilities]]
 == ステップ3: Windowsホストユーティリティをインストールする
 
 インストール プログラムは、Windows ホスト ユーティリティ パッケージをインストールし、Windows レジストリと HBA 設定を設定します。
@@ -160,6 +164,7 @@ NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer�
 ====
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu-wuhu-configuration.html["ONTAPストレージのWindowsホストユーティリティ構成について学習します"]

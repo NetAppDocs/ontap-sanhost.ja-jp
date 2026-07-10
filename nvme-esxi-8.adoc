@@ -20,6 +20,7 @@ ESXi 8.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[supportability]]
 == サポート性
 
 * 以降では、新しく作成するすべてのONTAP 9ネームスペースに対してスペースの割り当てがデフォルトで有効になります。
@@ -29,6 +30,7 @@ ESXi 8.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[features]]
 == の機能
 
 * ESXiイニシエータホストでは、NVMe/FCトラフィックとFCPトラフィックの両方を、同じアダプタポート経由で実行できます。を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] サポートされる構成およびバージョンの最新のリストについては、を参照してください。
@@ -37,6 +39,7 @@ ESXi 8.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[known-limitations]]
 == 既知の制限
 
 * RDMマッピングはサポートされていません。
@@ -44,6 +47,7 @@ ESXi 8.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[enable-nvmefc]]
 == NVMe/FC を有効にします
 
 NVMe/FCはvSphereリリースでデフォルトで有効になります。
@@ -77,6 +81,7 @@ nvme_fc nvme_ss  nqn.2014-08.org.nvmexpress:uuid:62a1xxxx-ba8c-xxxx-c954-000xxxx
 
 
 
+[[configure-broadcomemulex-and-marvellqlogic]]
 == Broadcom/EmulexおよびMarvell/Qlogicを設定します
 
 。 `lpfc` ドライバおよび `qlnativefc` vSphere 8.xのドライバでは、NVMe/FC機能がデフォルトで有効になっています。
@@ -85,6 +90,7 @@ nvme_fc nvme_ss  nqn.2014-08.org.nvmexpress:uuid:62a1xxxx-ba8c-xxxx-c954-000xxxx
 
 
 
+[[validate-nvmefc]]
 == NVMe/FC を検証
 
 NVMe/FCの検証には、次の手順 を使用できます。
@@ -175,12 +181,14 @@ fc.20000024ff7f4a50:21000024ff7f4a50-fc.2004d039ea3ab21f:2007d039ea3ab21f-uuid.d
 
 
 
+[[configure-nvmetcp]]
 == NVMe/FC を設定
 
 ESXi 8.xでは、必要なNVMe/TCPモジュールがデフォルトでロードされます。ネットワークとNVMe/TCPアダプタの設定については、VMware vSphereのドキュメントを参照してください。
 
 
 
+[[validate-nvmetcp]]
 == NVMe/FCを検証
 
 NVMe/TCPの検証には、次の手順 を使用できます。
@@ -271,6 +279,7 @@ tcp.vmnic2:34:80:0d:30:ca:e0-tcp.192.168.100.167:4420-uuid.f4f14337c3ad4a639edf0
 
 
 
+[[nvme-deallocate]]
 == NVMeの割り当て解除
 
 nvme deallocateコマンドは、ONTAP 9.16.1以降のESXi 8.0u2以降でサポートされます。
@@ -302,6 +311,7 @@ VMware vSphereでのNVMeの割り当て解除の詳細については、を参�
 
 
 
+[[known-issues]]
 == 既知の問題
 
 ONTAPを使用したESXi 8.xのNVMe-oFホスト構成には、次の既知の問題があります。

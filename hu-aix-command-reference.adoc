@@ -20,6 +20,7 @@ Host Utilitiesツールを使用してNetAppストレージ構成をエンドツ
 
 
 
+[[list-all-host-initiators-mapped-to-host]]
 == ホストにマッピングされているすべてのホストイニシエータを一覧表示
 
 ホストにマッピングされているホストイニシエータのリストを取得できます。
@@ -120,6 +121,7 @@ bash-3.2#
 ====
 
 
+[[list-all-luns-mapped-to-host]]
 == ホストにマッピングされているすべての LUN をリストします
 
 ホストにマッピングされているすべてのLUNのリストを取得できます。
@@ -184,6 +186,7 @@ up     secondary path3   fcs1    fc_aix_4     1
 ====
 
 
+[[list-all-luns-mapped-to-host-from-a-given-svm]]
 == 特定の SVM からホストにマッピングされているすべての LUN をリストします
 
 指定したSVMからホストにマッピングされているすべてのLUNのリストを取得できます。
@@ -249,6 +252,7 @@ up      secondary  path3 fcs1    sanboot_4   1
 ====
 
 
+[[list-all-attributes-of-a-given-lun-mapped-to-host]]
 == ホストにマッピングされている特定の LUN のすべての属性を一覧表示します
 
 ホストにマッピングされている指定したLUNのすべての属性のリストを取得できます。
@@ -314,6 +318,7 @@ up       secondary path3 fcs1    fc_aix_4   1
 ====
 
 
+[[list-ontap-lun-attributes-by-host-device-filename]]
 == ホストデバイスファイル名ごとにONTAP LUN属性を表示
 
 ホストデバイスのファイル名を指定すると、ONTAP LUN属性のリストを取得できます。
@@ -365,6 +370,7 @@ hdisk1    fcs0    FCP     15g  C
 ====
 
 
+[[list-all-svm-target-lif-wwpns-attached-to-host]]
 == ホストに接続されているすべての SVM ターゲット LIF の WWPN を一覧表示します
 
 ホストに接続されているすべてのSVMターゲットLIFのWWPNのリストを取得できます。

@@ -4,6 +4,7 @@
 
 
 
+[[step-4-confirm-the-multipath-configuration-for-your-host]]
 == ステップ4: ホストのマルチパス構成を確認する
 
 Windows ホストにストレージ システムへのパスが複数ある場合は、Microsoft Multipath I/O (MPIO) ソフトウェアをインストールし、マルチパスを有効にします。

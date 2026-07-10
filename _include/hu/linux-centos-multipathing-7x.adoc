@@ -30,6 +30,7 @@ chkconfig multipathd on
 .パラメータ設定の表示
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | パラメータ | 設定 

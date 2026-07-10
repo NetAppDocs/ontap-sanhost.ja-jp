@@ -20,6 +20,7 @@ Host Utilities ツールを使用してONTAPストレージ構成をエンドツ
 
 
 
+[[list-all-host-initiators-mapped-to-host]]
 == ホストにマッピングされているすべてのホストイニシエータを一覧表示
 
 ホストにマップされているすべてのホスト イニシエーターのリストを取得します。
@@ -70,6 +71,7 @@ OS device name:    /dev/fclp3
 ====
 
 
+[[list-all-luns-mapped-to-host]]
 == ホストにマッピングされているすべての LUN をリストします
 
 ホストにマップされているすべての LUN のリストを取得します。
@@ -105,6 +107,7 @@ up       secondary  /dev/dsk/c44t6d7     fclp1   hpux_6                         
 ====
 
 
+[[list-all-luns-mapped-to-host-from-a-given-svm]]
 == 特定の SVM からホストにマッピングされているすべての LUN をリストします
 
 特定の SVM からホストにマップされているすべての LUN のリストを取得します。
@@ -139,6 +142,7 @@ up       secondary  /dev/dsk/c44t6d7     fclp1   hpux_6                         
 ====
 
 
+[[list-all-attributes-of-a-given-lun-mapped-to-host]]
 == ホストにマッピングされている特定の LUN のすべての属性を一覧表示します
 
 ホストにマップされた指定された LUN のすべての属性のリストを取得します。
@@ -174,6 +178,7 @@ up       secondary  /dev/dsk/c44t6d1     fclp1   hpux_6                         
 ====
 
 
+[[list-ontap-lun-attributes-by-host-device-filename]]
 == ホストデバイスファイル名ごとにONTAP LUN属性を表示
 
 指定されたホスト デバイス ファイル名でONTAP LUN 属性のリストを取得します。
@@ -207,6 +212,7 @@ vs_hp_cluster        /vol/chathpux_217_vol_en_1_14/hp_en_217_lun /dev/rdisk/disk
 ====
 
 
+[[list-all-svm-target-lif-wwpns-attached-to-host]]
 == ホストに接続されているすべての SVM ターゲット LIF の WWPN を一覧表示します
 
 ホストに接続されているすべての SVM ターゲット LIF WWPN のリストを取得します。

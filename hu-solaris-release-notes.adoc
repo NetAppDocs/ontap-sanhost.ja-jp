@@ -22,6 +22,7 @@ Host Utilitiesでサポートされるオペレーティングシステムのバ
 
 
 
+[[whats-new-in-solaris-host-utilities-8-0]]
 == Solaris ホストユーティリティ 8.0 の新機能
 
 * Solarisホストユーティリティ8.0では、 `disksort:false`そして `cache-nonvolatile:true`パラメータ設定。これらのパラメータは、ホストからの定期的な同期呼び出しを抑制します。同期呼び出しはパフォーマンスに影響しますが、 ONTAP には揮発性キャッシュがないため必須ではありません。詳細については、以下を参照してください。 link:https://docs.oracle.com/en/operating-systems/solaris/oracle-solaris/11.4/tuning/ensuring-proper-cache-flush-behavior-flash-and-nvram-storage-devices.html["フラッシュおよびNVRAMストレージデバイスのキャッシュフラッシュ動作"^] 。
@@ -30,6 +31,7 @@ Host Utilitiesでサポートされるオペレーティングシステムのバ
 
 
 
+[[known-issues-and-limitations]]
 == 既知の問題と制限事項
 
 特定のホストのパフォーマンスに影響を及ぼす可能性のある次の既知の問題と制限事項に注意する必要があります。
@@ -53,6 +55,7 @@ FCドライバのバインドが `ssd(4D)` 終了： `sd(4D)`。の構成を移�
 
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu-solaris-80.html["Solarisホストユーティリティのインストールについて学ぶ"]

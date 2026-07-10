@@ -4,6 +4,7 @@
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == 手順1：必要に応じてSANブートを有効にします。
 
 ローカル ブートまたは SAN ブートを使用して Windows OS を起動できます。NetApp、導入を簡素化し、スケーラビリティを向上させるために SAN ブートの使用を推奨しています。

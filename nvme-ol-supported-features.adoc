@@ -86,6 +86,7 @@ NOTE: サポートされている構成の詳細については、link:https://m
 
 
 
+[[whats-next]]
 == 次の手順
 
 [cols="50,50"]

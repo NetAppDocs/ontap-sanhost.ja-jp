@@ -4,6 +4,7 @@
 
 
 
+[[step-3-install-the-windows-host-utilities]]
 == ステップ3: Windowsホストユーティリティをインストールする
 
 インストール プログラムは、Windows ホスト ユーティリティ パッケージをインストールし、Windows レジストリと HBA 設定を設定します。

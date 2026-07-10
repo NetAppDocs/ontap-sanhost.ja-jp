@@ -20,6 +20,7 @@ Linux ホスト ユーティリティ サンプル コマンド リファレン�
 
 
 
+[[list-all-host-initiators-mapped-to-host]]
 == ホストにマッピングされているすべてのホストイニシエータを一覧表示
 
 ホストにマッピングされているすべてのホストイニシエータのリストを取得できます。
@@ -70,6 +71,7 @@ OS device name:    /sys/class/scsi_host/host16
 ====
 
 
+[[list-all-luns-mapped-to-host]]
 == ホストにマッピングされているすべての LUN をリストします
 
 ホストにマッピングされているすべてのLUNのリストを取得できます。
@@ -110,6 +112,7 @@ active      up        secondary  sdan   16:0:6:0     lif_28      66:112
 ====
 
 
+[[list-all-luns-mapped-to-host-from-a-given-svm]]
 == 特定の SVM からホストにマッピングされているすべての LUN をリストします
 
 特定のStorage VM（SVM）からホストにマッピングされているすべてのLUNのリストを取得できます。
@@ -150,6 +153,7 @@ active      up        secondary  sdfl    16:0:6:0     lif_16g_4       130:112
 ====
 
 
+[[list-all-attributes-of-a-given-lun-mapped-to-host]]
 == ホストにマッピングされている特定の LUN のすべての属性を一覧表示します
 
 ホストにマッピングされている指定したLUNのすべての属性のリストを取得できます。
@@ -190,6 +194,7 @@ active      up        secondary  sdfl    16:0:6:0     lif_16g_4         130:112
 ====
 
 
+[[list-the-ontap-svm-identity-from-which-a-given-lun-is-mapped-to-host]]
 == 指定した LUN をホストにマッピングする ONTAP SVM ID をリストします
 
 特定のONTAPがリストにマッピングされているSVM IDのリストを取得できます。
@@ -221,6 +226,7 @@ vs_sanboot                    /vol/sanboot_169/lun           /dev/sdfm       hos
 ====
 
 
+[[list-ontap-lun-attributes-by-host-device-filename]]
 == ホストデバイスファイル名ごとにONTAP LUN属性を表示
 
 ONTAP LUN属性のリストは、ホストデバイスのファイル名で取得できます。
@@ -243,6 +249,7 @@ vs_sanboot                 /vol/sanboot_169/lun    /dev/sdce     host15     FCP 
 ====
 
 
+[[list-all-svm-target-lif-wwpns-attached-to-host]]
 == ホストに接続されているすべての SVM ターゲット LIF の WWPN を一覧表示します
 
 ホストに接続されているすべてのSVMターゲットLIFのWWPNのリストを取得できます。
@@ -267,6 +274,7 @@ vs_169_16gEmu                 202cd039ea1308e5   /vol/VOL_8g_169_2_5/lun        
 ====
 
 
+[[list-ontap-luns-seen-on-host-by-a-given-svm-target-lif-wwpn]]
 == 特定の SVM ターゲット LIF WWPN によってホスト上で認識される ONTAP LUN を一覧表示する
 
 指定したSVMターゲットLIF WWPNによってホスト上で認識されたONTAP LUNのリストを取得できます。

@@ -20,6 +20,7 @@ Windows ホスト ユーティリティは、Windows ホストをNetApp SAN 上�
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == 手順1：必要に応じてSANブートを有効にします。
 
 ローカル ブートまたは SAN ブートを使用して Windows OS を起動できます。NetApp、導入を簡素化し、スケーラビリティを向上させるために SAN ブートの使用を推奨しています。
@@ -51,6 +52,7 @@ SSD、SATA、RAID などのローカル ハード ディスクに Windows OS を
 ====
 
 
+[[step-2-install-windows-hotfixes]]
 == ステップ2: Windowsの修正プログラムをインストールする
 
 NetAppでは、Microsoft Updateカタログから入手可能な最新の累積更新プログラム*をホストサーバーにインストールすることをお勧めします。
@@ -70,6 +72,7 @@ TIP: 多くのホットフィックスでは、Windows ホストの再起動が�
 
 
 
+[[step-3-install-the-windows-host-utilities]]
 == ステップ3: Windowsホストユーティリティをインストールする
 
 Windows ホスト ユーティリティは、ホスト コンピュータをNetApp SAN 上の仮想ディスク (LUN) に接続できるようにする、ドキュメント付きのソフトウェア プログラムのセットです。NetApp、 ONTAP LUN 管理をサポートし、テクニカル サポートが構成データを収集できるようにするために、最新の Windows ホスト ユーティリティをダウンロードしてインストールすることを推奨しています。
@@ -78,6 +81,7 @@ Windowsホストユーティリティの設定とインストール情報につ�
 
 
 
+[[step-4-confirm-the-multipath-configuration-for-your-host]]
 == ステップ4: ホストのマルチパス構成を確認する
 
 Windows ホストにストレージ システムへのパスが複数ある場合は、Microsoft Multipath I/O (MPIO) ソフトウェアをインストールし、マルチパスを有効にします。
@@ -156,12 +160,14 @@ image::nonasa.png[2つのアクティブ/最適パスと2つのアクティブ/�
 
 
 
+[[step-5-review-the-known-issues]]
 == ステップ5: 既知の問題を確認する
 
 既知の問題はありません。
 
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu-wuhu-configuration.html["ONTAPストレージのWindowsホストユーティリティ構成について学習します"]

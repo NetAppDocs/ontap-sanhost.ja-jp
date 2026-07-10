@@ -20,6 +20,7 @@ ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[supportability]]
 == サポート性
 
 * ONTAP 9.7以降では、VMware vSphereのリリースでNVMe over Fibre Channel（NVMe/FC）がサポートされるようになりました。
@@ -29,6 +30,7 @@ ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[features]]
 == の機能
 
 * ESXi イニシエータホストは、 NVMe/FC と FCP の両方のトラフィックを同じアダプタポートで実行できます。サポートされるFCアダプタとコントローラの一覧については、を参照してください link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 。サポートされる構成とバージョンの最新のリストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
@@ -38,6 +40,7 @@ ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[known-limitations]]
 == 既知の制限
 
 次の構成はサポートされません。
@@ -48,6 +51,7 @@ ESXi 7.xおよびONTAP を実行するイニシエータホストでは、NVMe o
 
 
 
+[[enable-nvmefc]]
 == NVMe/FC を有効にします
 
 . ESXi ホストの NQN 文字列を確認して、 ONTAP アレイの対応するサブシステムのホスト NQN 文字列と一致していることを確認します。
@@ -66,6 +70,7 @@ Host NQN: nqn.2014-08.com.vmware:nvme:nvme-esx
 
 
 
+[[configure-broadcomemulex]]
 === Broadcom / Emulex を設定します
 
 . を参照して、設定が必要なドライバ/ファームウェアでサポートされているかどうかを確認しますlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
@@ -95,6 +100,7 @@ vmhba65   lpfc     link-up     fc.200000109b954570:100000109b954570             
 ----
 
 
+[[configure-marvellqlogic]]
 === Marvell / QLogic を設定します
 
 .手順
@@ -129,6 +135,7 @@ vmhba65   qlnativefc  link-up     fc.20000024ff1817af:21000024ff1817af          
 
 
 
+[[validate-nvmefc]]
 == NVMe/FC を検証
 
 . ESXi ホストに NVMe/FC アダプタが表示されていることを確認します。
@@ -207,12 +214,14 @@ fc.200034800d6d7268:210034800d6d7268-fc.201700a098dfe3d1:201900a098dfe3d1-uuid.5
 
 
 
+[[configure-nvmetcp]]
 == NVMe/FC を設定
 
 7.0U3c以降、必要なNVMe/FCモジュールがデフォルトでロードされます。ネットワークとNVMe/FCアダプタの設定については、VMware vSphereのドキュメントを参照してください。
 
 
 
+[[validate-nvmetcp]]
 == NVMe/FCを検証
 
 .手順
@@ -269,6 +278,7 @@ tcp.vmnic3:34:80:Od:30:ca:el-tcp.unknown-uuid.400bf333abf74ab8b96dc18ffadc3f99
 
 
 
+[[known-issues]]
 == 既知の問題
 
 ONTAPを使用したESXi 7.xのNVMe-oFホストの設定には、次の既知の問題があります。

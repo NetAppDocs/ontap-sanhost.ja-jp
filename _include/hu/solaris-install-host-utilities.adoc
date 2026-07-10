@@ -4,6 +4,7 @@
 
 
 
+[[step-2-install-the-solaris-host-utilities]]
 == ステップ2: Solarisホストユーティリティをインストールする
 
 NetApp、 ONTAP LUN 管理をサポートし、構成データの収集に関するテクニカル サポートを支援するために、Solaris ホスト ユーティリティをインストールすることを強くお勧めします。

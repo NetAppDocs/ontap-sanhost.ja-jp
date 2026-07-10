@@ -22,6 +22,7 @@ Host Utilitiesでサポートされるオペレーティングシステムのバ
 
 
 
+[[whats-new]]
 == 新機能
 
 AIX Host Utilitiesリリースには、次の新機能と拡張機能が含まれています。
@@ -32,6 +33,7 @@ AIX Host Utilitiesリリースには、次の新機能と拡張機能が含ま�
 
 
 
+[[known-problems-and-limitations]]
 == 既知の問題および制限
 
 特定のホストのパフォーマンスに影響する可能性がある次の既知の問題および制限事項に注意してください。

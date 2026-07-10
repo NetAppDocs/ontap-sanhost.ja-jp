@@ -24,6 +24,7 @@ AIX ホスト ユーティリティ リリースには、次の新機能と拡�
 
 
 
+[[whats-new-in-aix-host-utilities-8-0]]
 == AIX ホスト ユーティリティ 8.0 の新機能
 
 AIXホストユーティリティ8.0ではIBM Interim Fix（ifix）が利用可能で、 `sanlun fcp show adapter –v`コマンドは、アダプタでサポートされている速度やネゴシエートされた速度など、正しい HBA 速度情報を表示します。  ifix は次の AIX および VIOS バージョンにインストールできます。
@@ -34,18 +35,21 @@ AIXホストユーティリティ8.0ではIBM Interim Fix（ifix）が利用可�
 
 
 
+[[whats-new-in-aix-host-utilities-7-0]]
 == AIX ホスト ユーティリティ 7.0 の新機能
 
 AIX Host Utilities 7.0では、AIXホストOSでのSCSI UNMAPがサポートされます。AIX Host Utilities 7.0では、SCSIシンプロビジョニングがFCデバイス用のAIXおよびNetApp LUNとシームレスに機能します。
 
 
 
+[[whats-new-in-aix-host-utilities-6-1]]
 == AIX ホスト ユーティリティ 6.1 の新機能
 
 AIX Host Utilities 6.1では、以前のバージョンのAIXホストOSで発生したメモリ障害の問題がサポートされています。AIX Host Utilities 6.1では、sanlunバイナリのみが変更されています。MicrosoftマルチパスI/O（MPIO）と関連するODMは変更されません。
 
 
 
+[[known-problems-and-limitations]]
 == 既知の問題および制限
 
 特定のホストのパフォーマンスに影響を及ぼす可能性のある次の既知の問題と制限事項に注意する必要があります。
@@ -68,6 +72,7 @@ link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"^] 既知の�
 
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu-aix-80.html["AIXホストユーティリティのインストールについて学ぶ"]

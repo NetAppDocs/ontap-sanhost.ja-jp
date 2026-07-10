@@ -27,6 +27,7 @@ Proxmox VE 8.x の NVMe-oF には、次の既知の制限があります。
 
 
 
+[[step-1-install-proxmox-ve-and-nvme-software-and-verify-your-configuration]]
 == ステップ1: Proxmox VEとNVMeソフトウェアをインストールし、構成を確認する
 
 NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
@@ -120,6 +121,7 @@ NOTE: もし `hostnqn`文字列が一致しない場合は、 `vserver modify`�
 
 
 
+[[step-2-configure-nvmefc-and-nvmetcp]]
 == ステップ2: NVMe/FCとNVMe/TCPを構成する
 
 Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を構成するか、手動の検出および接続操作を使用して NVMe/TCP を構成します。
@@ -506,6 +508,7 @@ NVMe/TCPの設定 `ctrl_loss_tmo timeout`自動的に「オフ」に設定され
 ====
 
 
+[[step-3-optionally-enable-1mb-io-for-nvmefc]]
 == ステップ3: オプションでNVMe/FCの1MB I/Oを有効にする
 
 ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、 `lpfc`の価値 `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
@@ -539,6 +542,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-4-verify-nvme-boot-services]]
 == ステップ4: NVMeブートサービスを確認する
 
 Proxmox 8.xでは、 `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効になります。
@@ -600,6 +604,7 @@ Nov 20 17:48:29 SR665-14-122.lab.eng.btc.netapp.in systemd[1]: Finished nvmefc-b
 
 
 
+[[step-5-verify-the-multipathing-configuration]]
 == ステップ5: マルチパス構成を確認する
 
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
@@ -771,6 +776,7 @@ nvme netapp ontapdevices -o json
 
 
 
+[[step-6-review-the-known-issues]]
 == 手順6：既知の問題を確認する
 
 既知の問題はありません。

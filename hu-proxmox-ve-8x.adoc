@@ -26,6 +26,7 @@ Proxmox VE 8.x の FCP および iSCSI には、次の既知の制限があり�
 
 
 
+[[step-1-confirm-the-multipath-configuration-for-your-host]]
 == ステップ1: ホストのマルチパス構成を確認する
 
 Proxmox VE 8.x のマルチパスを使用してONTAP LUN を管理できます。
@@ -58,6 +59,7 @@ systemctl start multipathd
 .パラメータ設定の表示
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | パラメータ | 設定 
@@ -204,6 +206,7 @@ multipath -ll
 
 
 
+[[step-2-confirm-the-iscsi-configuration-for-your-host]]
 == ステップ2：ホストのiSCSI構成を確認する
 
 ホストに対して iSCSI が正しく構成されていることを確認します。
@@ -341,6 +344,7 @@ tcp: [4] 192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624
 
 
 
+[[step-3-optionally-exclude-a-device-from-multipathing]]
 == ステップ3: オプションでデバイスをマルチパスから除外する
 
 必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
@@ -373,6 +377,7 @@ blacklist {
 
 
 
+[[step-4-customize-multipath-parameters-for-ontap-luns]]
 == ステップ4: ONTAP LUNのマルチパスパラメータをカスタマイズする
 
 ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
@@ -406,6 +411,7 @@ devices {
 ====
 
 
+[[step-5-review-the-known-issues]]
 == ステップ5: 既知の問題を確認する
 
 既知の問題はありません。

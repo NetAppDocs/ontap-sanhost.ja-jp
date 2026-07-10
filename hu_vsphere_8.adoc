@@ -20,6 +20,7 @@ FC、FCoE、およびiSCSIの各プロトコルを使用するVMware vSphere 8.x
 
 
 
+[[hypervisor-san-booting]]
 == ハイパーバイザーSANブート
 
 .開始する前に
@@ -41,6 +42,7 @@ HBA BIOS を有効にする方法については、ベンダー固有のマニ�
 
 
 
+[[multipathing]]
 == マルチパス
 
 ESXiには、Native Multipathing Plug-in（NMP）と呼ばれる拡張可能なマルチパスモジュールが用意されており、サブプラグイン、ストレージアレイタイププラグイン（SATP）、パス選択プラグイン（PSP）を管理します。デフォルトでは、これらのSATPルールはESXiで使用できます。
@@ -67,6 +69,7 @@ tpgs_on        VMW_PSP_RR                   NetApp arrays with ALUA support
 ----
 
 
+[[non-asa-configurations]]
 === ASAイカイノコウセイ
 
 ASA以外の構成では、優先度が異なる2つのパスグループが必要です。優先度の高いパスは[Active]または[Optimized]になります。つまり、アグリゲートが配置されているコントローラによって処理されます。優先度の低いパスはアクティブですが、別のコントローラから提供されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
@@ -203,6 +206,7 @@ fc.200034800d756a74:210034800d756a74-fc.2018d039ea936319:2016d039ea936319-naa.60
 ----
 
 
+[[vvol]]
 == VVol
 
 仮想ボリューム（VVOL）は、仮想マシン（VM）ディスク、そのSnapshot、および高速クローンに対応するVMwareオブジェクトタイプです。
@@ -230,10 +234,12 @@ VVOLのプロビジョニングと管理の詳細については、ONTAP Tools f
 
 
 
+[[recommended-settings]]
 == 推奨設定
 
 
 
+[[ats-locking]]
 === ATSロック
 
 VAAI 対応のストレージやアップグレードされた VMFS5 には ATS ロックが必須 * であり、 ONTAP LUN との適切な相互運用性と最適な VMFS 共有ストレージ I/O パフォーマンスを実現するために必要です。ATS ロックの有効化の詳細については、 VMware のドキュメントを参照してください。
@@ -256,6 +262,7 @@ NOTE: -- 有効にします `Space-alloc` のVMware vSphereにマッピングさ
 
 
 
+[[guest-os-timeouts]]
 === ゲスト OS のタイムアウト
 
 推奨されるゲスト OS の調整を使用して、仮想マシンを手動で設定できます。アップデートを調整したら、アップデートを有効にするためにゲストを再起動する必要があります。
@@ -277,6 +284,7 @@ NOTE: -- 有効にします `Space-alloc` のVMware vSphereにマッピングさ
 |===
 
 
+[[validate-the-vsphere-tunable]]
 === vSphereで調整可能なことを検証します
 
 を確認するには、次のコマンドを使用します `HardwareAcceleratedLocking` 設定：
@@ -298,6 +306,7 @@ NOTE: -- 有効にします `Space-alloc` のVMware vSphereにマッピングさ
 ----
 
 
+[[validate-the-disk-iops-setting]]
 === ディスクIOPSの設定を検証する
 
 IOPSの設定を確認するには、次のコマンドを使用します。
@@ -318,6 +327,7 @@ naa.600a098038304731783f506670553355
 ----
 
 
+[[validate-the-qfullsamplesize]]
 === QFullSampleSizeを検証します
 
 QFullSampleSizeを確認するには、次のコマンドを使用します。
@@ -339,6 +349,7 @@ QFullSampleSizeを確認するには、次のコマンドを使用します。
 ----
 
 
+[[known-issues]]
 == 既知の問題
 
 VMware vSphere 8.x with ONTAPリリースには、次の既知の問題があります。

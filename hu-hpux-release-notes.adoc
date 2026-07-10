@@ -20,6 +20,7 @@ summary: HPUX Host Utilities 6.0リリースノート
 
 
 
+[[whats-new-in-hp-ux-host-utilities-6-0]]
 == HP-UX ホストユーティリティ 6.0 の新機能
 
 新しい機能や拡張機能はありません。
@@ -32,12 +33,14 @@ HP-UX ホスト ユーティリティ 6.0 は、次の HP-UX OS バージョン�
 
 
 
+[[known-issues-and-limitations]]
 == 既知の問題と制限事項
 
 既知の問題や制限はありません。
 
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu_hpux_60.html["HP-UXホストユーティリティのインストールについて学ぶ"]

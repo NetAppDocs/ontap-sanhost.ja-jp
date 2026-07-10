@@ -22,6 +22,7 @@ Ubuntu 24.04 の NVMe-oF には、次の既知の制限があります：
 
 
 
+[[step-1-install-ubuntu-and-nvme-software-and-verify-your-configuration]]
 == ステップ1：UbuntuとNVMeソフトウェアをインストールし、構成を確認する
 
 NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
@@ -94,6 +95,7 @@ NOTE: もし `hostnqn`文字列が一致しない場合は、 `vserver modify`�
 
 
 
+[[step-2-configure-nvmefc-and-nvmetcp]]
 == ステップ2: NVMe/FCとNVMe/TCPを構成する
 
 Broadcom/Emulex または Marvell/Qlogic アダプタ用に NVMe/FC を設定するか、手動検出および接続操作を使用して NVMe/TCP を設定します。
@@ -440,6 +442,7 @@ NOTE: Ubuntu 24.04以降では、NVMe/TCPのctrl_loss_tmoタイムアウトの�
 ====
 
 
+[[step-3-optionally-enable-1mb-io-for-nvmefc]]
 == ステップ3: オプションでNVMe/FCの1MB I/Oを有効にする
 
 ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、 `lpfc`の価値 `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
@@ -473,6 +476,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-4-verify-multipathing-configuration]]
 == ステップ4：マルチパス構成を確認する
 
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。

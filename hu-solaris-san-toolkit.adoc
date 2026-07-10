@@ -41,6 +41,7 @@ NOTE: このツールキットは、すべてのホスト ユーティリティ�
 
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu-solaris-command-reference.html["Solarisホストユーティリティツールの使用について学ぶ"] 。

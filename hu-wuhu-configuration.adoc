@@ -42,6 +42,7 @@ Windows Host Utilities 8.0、7.2、または 7.1 のその他のすべてのパ�
 ====
 
 
+[[review-the-configuration-settings-for-windows-host-utilities-8-0]]
 == Windows Host Utilities 8.0 の構成設定を確認します
 
 Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認します。
@@ -156,6 +157,7 @@ Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ド�
 ====
 
 
+[[review-the-configuration-settings-for-windows-host-utilities-7-2]]
 == Windows Host Utilities 7.2 の構成設定を確認します
 
 Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認します。
@@ -274,6 +276,7 @@ Windows Host Utilities 7.2 をインストールすると、LimTransferSize パ�
 ====
 
 
+[[review-the-configuration-settings-for-windows-host-utilities-7-1]]
 == Windows Host Utilities 7.1 の構成設定を確認します
 
 Windows ホスト ユーティリティ インストーラは、インストール中に選択した内容に基づいてレジストリ値を自動的に設定します。これらのレジストリ値とオペレーティング システムのバージョンを確認します。特に記載がない限り、すべての値は 10 進数で表されます。
@@ -382,6 +385,7 @@ NOTE: `HKLM` は、の略語です。 `HKEY_LOCAL_MACHINE`。
 
 
 
+[[learn-about-the-fc-hba-values-set-by-windows-host-utilities]]
 == Windowsホストユーティリティによって設定されるFC HBA値について学習します
 
 Windows ホスト ユーティリティ インストーラは、FC を使用するシステム上の Emulex および QLogic FC HBA に必要なタイムアウト値を設定します。
@@ -449,6 +453,7 @@ NOTE: パラメータの名前はプログラムによって若干異なる場�
 
 
 
+[[learn-about-the-host-utilities-changes-to-fc-hba-driver-settings]]
 == ホストユーティリティによるFC HBAドライバ設定の変更について学ぶ
 
 FC システムに必要な Emulex または QLogic HBA ドライバーをインストールする際、Windows ホスト ユーティリティはいくつかのパラメーターをチェックし、場合によってはそれらを変更します。

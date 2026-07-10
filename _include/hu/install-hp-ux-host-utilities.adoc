@@ -4,6 +4,7 @@
 
 
 
+[[step-1-install-the-hp-ux-host-utilities]]
 == 手順1：HP-UX Host Utilitiesをインストールする
 
 NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。

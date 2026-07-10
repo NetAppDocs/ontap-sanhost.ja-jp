@@ -29,6 +29,7 @@ Rocky Linux 8.x の NVMe-oF には、次の既知の制限があります。
 
 
 
+[[step-1-install-rocky-linux-and-nvme-software-and-verify-your-configuration]]
 == ステップ1: Rocky LinuxとNVMeソフトウェアをインストールし、構成を確認する
 
 NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
@@ -124,6 +125,7 @@ NOTE: 状況に応じて `hostnqn` 文字列が一致しない場合は、を使
 
 
 
+[[step-2-configure-nvmefc-and-nvmetcp]]
 == ステップ2: NVMe/FCとNVMe/TCPを構成する
 
 Broadcom/Emulex または Marvell/QLogic アダプタを使用して NVMe/FC を構成するか、手動の検出および接続操作を使用して NVMe/TCP を構成します。
@@ -598,6 +600,7 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
+[[step-3-optionally-enable-1mb-io-for-nvmefc]]
 == ステップ3: オプションでNVMe/FCの1MB I/Oを有効にする
 
 Broadcomアダプタで構成されたNVMe/FCでは、1MBのI/Oリクエストを有効にすることができます。ONTAPは、コントローラ識別データで最大データ転送サイズ（MDTS）を8と報告します。1MBつまり、最大I/O要求サイズは1MBです。のI/Oリクエストを発行するには、lpfcの値を増やす必要があります。  `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
@@ -628,6 +631,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-4-verify-the-multipathing-configuration]]
 == ステップ4: マルチパス構成を確認する
 
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
@@ -813,6 +817,7 @@ nvme netapp ontapdevices -o json
 
 
 
+[[step-5-review-the-known-issues]]
 == ステップ5: 既知の問題を確認する
 
 既知の問題は次のとおりです:

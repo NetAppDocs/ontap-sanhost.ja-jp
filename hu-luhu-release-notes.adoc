@@ -22,6 +22,7 @@ Host Utilitiesでサポートされるオペレーティングシステムのバ
 
 
 
+[[whats-new-in-linux-host-utilities-8-0]]
 == Linux ホストユーティリティ 8.0 の新機能
 
 Linuxホストユーティリティ8.0リリースには、以下の新機能と拡張機能が含まれています。
@@ -38,6 +39,7 @@ Linux Host Utilities 8.0 には、64 ビット速度の QLogic および Emulex 
 
 
 
+[[whats-new-in-linux-host-utilities-7-1]]
 == Linux ホストユーティリティ 7.1 の新機能
 
 Linux Host Utilities 7.1リリースには、次の新機能と機能拡張が含まれています。
@@ -63,6 +65,7 @@ NOTE: NetApp は、最初のリリース後も Linux ホスト ユーティリ�
 
 
 
+[[fixed-issues]]
 == 解決済みの問題
 
 Linux ホスト ユーティリティで次の問題が修正されました。
@@ -76,6 +79,7 @@ Linux ホスト ユーティリティで次の問題が修正されました。
 |===
 
 
+[[known-issues-and-limitations]]
 == 既知の問題と制限事項
 
 特定のホストのパフォーマンスに影響を及ぼす可能性のある次の既知の問題と制限事項に注意する必要があります。
@@ -94,6 +98,7 @@ link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online �
 
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu-luhu-80.html["Linuxホストユーティリティのインストールについて学ぶ"]

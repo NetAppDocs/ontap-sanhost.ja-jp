@@ -36,6 +36,7 @@ NOTE: SAN ツールキットは、すべての AIX ホスト構成およびト�
 
 
 
+[[whats-next]]
 == 次の手順
 
 link:hu-aix-command-reference.html["AIXホストユーティリティツールの使用について学ぶ"] 。
