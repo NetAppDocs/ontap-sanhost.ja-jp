@@ -16,7 +16,7 @@ summary: Linux Host Utilities 7.1とONTAPの使用方法について説明しま
 
 
 [role="lead"]
-Linux ホスト ユーティリティは、Linux ホストに接続されたONTAPストレージの管理に役立ちます。 NetAppLinux ホスト ユーティリティのインストールを強く推奨していますが、必須ではありません。これらのユーティリティにより管理が改善され、 NetAppカスタマー サポートが構成に関する情報を収集しやすくなります。
+Linux ホストユーティリティは、Linux ホストに接続された ONTAP ストレージの管理に役立ちます。NetApp は Linux ホストユーティリティのインストールを強く推奨しますが、必須ではありません。Linux ホストユーティリティは管理を改善し、お客様の構成に関する情報を収集する際に NetApp カスタマーサポートを支援します。
 
 Linux Host Utilities 7.1 は、次のディストリビューション タイプをサポートしています。
 
@@ -31,7 +31,7 @@ Linux Host Utilities 7.1 は、次のディストリビューション タイプ
 NOTE: Linux Host Utilitiesソフトウェアは、NVMe over Fibre Channel（NVMe/FC）およびNVMe over TCP（NVMe/TCP）のホストプロトコルをサポートしていません。
 
 .このタスクについて
-Linux ホスト ユーティリティをインストールしても、Linux ホストの設定は変更されません。
+Linuxホストユーティリティをインストールしても、ホスト上の設定や動作は一切変更されません。
 
 .開始する前に
 * 信頼性の高い操作のために、link:https://imt.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^] iSCSI、FC、または FCoE 構成がサポートされていることを確認します。

@@ -1362,7 +1362,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="c0b79db5f258f0c991a383cbdbf001dd" category="open-title">SnapMirrorアクティブ同期</block>
   <block id="efffdf29fb8c22b09edba3371dc2b1b8" category="inline-link-macro">Linuxホストユーティリティ8.0をインストールする</block>
   <block id="5f31956444f1d0bde7a1ffb325106db8" category="paragraph"><block ref="cd52b6bcf27b8c7efa7bb2cae7dba9b4" category="inline-link-macro-rx"></block> 。</block>
-  <block id="3358e8b26d19a4499acfc0263dca6ce1" category="paragraph">Linux ホスト ユーティリティは、Linux ホストに接続されたONTAPストレージの管理に役立ちます。 NetAppLinux ホスト ユーティリティのインストールを強く推奨していますが、必須ではありません。これらのユーティリティにより管理が改善され、 NetAppカスタマー サポートが構成に関する情報を収集しやすくなります。</block>
   <block id="10ca5ea421dcd3f1d3ffc993c36b7352" category="inline-link-macro">「sanlun」ユーティリティについて学ぶ</block>
   <block id="237320d7446d5cfcc43ede01a894bf16" category="list-text"><block ref="f71314b5052c5e3bba533a90a34a7db3" category="inline-link-macro-rx"></block> 。</block>
   <block id="8d0f1920f47f772db5dc821056891ae2" category="inline-link-macro">Solarisホストユーティリティツールの使用について学ぶ</block>
@@ -1500,7 +1499,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="b04ac3eadb66597daaa5c909511f8e43" category="summary">ONTAPでLinuxホストユーティリティ8.0を使用する方法について説明します。</block>
   <block id="8f7edc1d0af50521632d636624077c1e" category="doc">ONTAPストレージ用のLinuxホストユーティリティ8.0をインストールする</block>
   <block id="0d0d3c3c60d25468f496fa9728f6a214" category="paragraph">Linux Host Utilities 8.0 は、次のディストリビューション タイプをサポートしています。</block>
-  <block id="fad99686a271ab31e763cc6e083d2fe1" category="paragraph">Linux ホスト ユーティリティをインストールしても、Linux ホストの設定は変更されません。</block>
   <block id="98d9c0b801e9d76fa04103ad022672e4" category="list-text">信頼性の高い操作のために、<block ref="d663e2c355c00396895dd4c79ec8b92b" category="inline-link-macro-rx"></block> iSCSI、FC、または FCoE 構成がサポートされていることを確認します。</block>
   <block id="54d2be6229d60cd6144f8a215e8e77e9" category="list-text">ベンダーのサポート サイトで入手可能なホスト バス アダプタ (HBA) 管理パッケージをインストールします。管理ソフトウェアにより、<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> FC HBA の WWPN などの情報を収集するコマンド。</block>
   <block id="0ea3e528a268f7a469a48d5d8aae4f82" category="paragraph">ベンダーのドキュメントを参照して、次のパッケージが正しくインストールされていることを確認してください。これらのパッケージは、<block ref="09a10ae06f964cc0f5c0201377e37384" prefix=" " category="inline-code"></block>指示：</block>
@@ -2416,7 +2414,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="d16989a0a7cff1ea32aab2ccb4a37161" category="admonition">もし<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>文字列が一致しない場合は、<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block>コマンドを使用して、対応するONTAPストレージシステムサブシステム上の<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>文字列をホスト上の<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>からの<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>文字列と一致するように更新してください。</block>
   <block id="165acd219757dbbec65fbd5a24792898" category="list-text">推奨されているBroadcom<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block>ファームウェアと受信トレイドライバーを使用していることを確認してください：</block>
   <block id="06bd4ba69054120ef18345db9c5cccca" category="paragraph">NVMe/TCP は自動接続操作をサポートしていません。代わりに、NVMe/TCP<block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block>または<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block>操作を手動で実行することで、NVMe/TCP サブシステムと名前空間を検出できます。</block>
-  <block id="fbb8c3634e390cf69c69cd1f449175c7" category="paragraph">== ステップ5：既知の問題を確認する</block>
   <block id="efaa7a41c95bd26123cf738971f624b5" category="summary">Ubuntu ホストに対する ONTAP のサポートと機能について説明します</block>
   <block id="35408fbc8cac4acdf31c0e994b9e617f" category="cell">Ubuntuホストのバージョン</block>
   <block id="f079c6de48aef64f8a494cd8ba7dc4b0" category="cell">ネイティブパッケージのNetAppプラグインには、NVMe/FC ネームスペースの ONTAP の詳細が表示されます。</block>
@@ -2505,4 +2502,7 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="6b9dd1af850387c3bbb1a8645b455f48" category="list-text"><block ref="6b9dd1af850387c3bbb1a8645b455f48" category="inline-link-rx"></block></block>
   <block id="5ea4a4d083b9b7faa4d73ebd6193eec3" category="sidebar">FCP と iSCSI を使用したホストの設定について</block>
   <block id="46fa0acef0abce2c8d85781039d9ca0e" category="sidebar">NVMe-oF を使用したホストの設定について</block>
+  <block id="9d32a296d3ce5f696e1fdfdc2b0f8b87" category="paragraph">Linux ホストユーティリティは、Linux ホストに接続された ONTAP ストレージの管理に役立ちます。NetApp は Linux ホストユーティリティのインストールを強く推奨しますが、必須ではありません。Linux ホストユーティリティは管理を改善し、お客様の構成に関する情報を収集する際に NetApp カスタマーサポートを支援します。</block>
+  <block id="83e24aa706fccba3ff4d736e0e31bf85" category="paragraph">Linuxホストユーティリティをインストールしても、ホスト上の設定や動作は一切変更されません。</block>
+  <block id="80fd4adc269a85ce0df8e3b446ebf481" category="admonition">Linux Host Utilities は、libHBAAPI.so ライブラリへのインストール依存関係があります。ホストが iSCSI 専用構成を想定している場合でも、上記に挙げたパッケージのいずれかをインストールする必要があります。あるいは、LUN およびパス管理には OS レベルのツールを使用することもできます。</block>
 </blocks>
