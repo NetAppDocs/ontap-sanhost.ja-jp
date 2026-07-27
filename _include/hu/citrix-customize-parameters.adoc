@@ -1,0 +1,31 @@
+= 
+:allow-uri-read: 
+
+
+ホストが他のベンダーの LUN に接続されていて、マルチパスパラメータ設定のいずれかが上書きされている場合は、ONTAP LUN に特定的に適用される `/etc/multipath/conf.d/custom.conf`ファイルのスタンザを変更して修正する必要があります。ファイル内を下にスクロールして、これらのスタンザを追加してください。パラメーターを修正しないと、ONTAP LUN が期待どおりに動作しない可能性があります。
+
+
+CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないでください。これらの設定は、ホスト構成のパフォーマンスを最適化するために必要です。詳細については、NetAppサポート、OSベンダー、またはその両方にお問い合わせください。
+
+次の例は、オーバーライドされたデフォルト値を修正する方法を示しています。この例では、 `custom.conf drop-in`ファイルでONTAP LUNと互換性のない `path_checker`および `no_path_retry`の値が定義されていますが、ONTAPストレージアレイがまだホストに接続されているため、これらのパラメータを削除することはできません。代わりに、ONTAP LUNに固有に適用されるデバイススタンザを `custom.conf drop-in`ファイルに追加することで、 `path_checker`と `no_path_retry`の値を修正します。
+
+.例を示します
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+defaults {
+   path_checker      *readsector0*
+   no_path_retry     *fail*
+}
+
+devices {
+   device {
+      vendor          "NETAPP"
+      product         "LUN"
+      no_path_retry   *queue*
+      path_checker    *tur*
+   }
+}
+----
+====

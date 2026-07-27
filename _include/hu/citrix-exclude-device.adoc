@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
+必要に応じて、不要なデバイスの WWID を `/etc/multipath/conf.d/custom.conf`ファイルの「ブラックリスト」セクションに追加することで、マルチパスからデバイスを除外できます。
 
 .手順
 . WWIDを確認します。

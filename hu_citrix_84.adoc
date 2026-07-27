@@ -52,13 +52,59 @@ Citrix Xenserver 8.4 のマルチパスを使用して、 ONTAP LUN を管理で
 ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
 
 .手順
-. 確認するには `/etc/multipath.conf`ファイルが存在します。ファイルが存在しない場合は、空のゼロバイトファイルを作成します。
+.  `/etc/multipath.conf`ファイルを見つけます。
 +
+参照 `/etc/multipath.conf`ファイルに NetApp デバイス固有の構成パラメータが含まれていない場合は、以下のカスタマイズされた `.conf drop-in`ファイルを使用してこれらのパラメータを追加してください。このファイルは以下の場所にあります `/etc/multipath/conf.d/`：
+
++
+
+NOTE:  `/etc/multipath.conf`ファイルは変更しないでください。システムアップデート中にファイルの内容が上書きされる可能性があります。
+
++
+.ファイルの内容を表示する
+[%collapsible]
+====
 [source, cli]
 ----
-touch /etc/multipath.conf
+$sudo tee -a /etc/multipath/conf.d/custom.conf >/dev/null <<'EOF'
+
+defaults {
+    polling_interval 5
+}
+
+blacklist {
+    wwid <Insert_LUN_wwid_string>
+    devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+    devnode "^hd[a-z]"
+    devnode "^cciss.*"
+}
+
+devices {
+    device {
+    vendor "NETAPP"
+    product "LUN.*"
+    user_friendly_names no
+    path_checker "tur"
+    prio "ontap"
+    detect_prio yes
+    path_grouping_policy "group_by_prio"
+    path_selector "service-time 0"
+    failback immediate
+    fast_io_fail_tmo 5
+    dev_loss_tmo infinity
+    no_path_retry queue
+    features "3 queue_if_no_path pg_init_retries 50"
+    flush_on_last_del yes
+    hardware_handler "0"
+    retain_attached_hw_handler yes
+    rr_weight uniform
+  }
+}
+
+EOF
 ----
-. ファイルの初回作成時には `multipath.conf`、マルチパスサービスを有効にして開始し、推奨設定をロードしなければならない場合があります。
+====
+. マルチパスを初めて設定する場合は、推奨設定を読み込むために、マルチパスサービスを有効にして起動する必要がある場合があります。
 +
 [source, cli]
 ----
@@ -69,7 +115,7 @@ systemctl enable multipathd
 ----
 systemctl start multipathd
 ----
-. ホストをブートするたびに、空のゼロバイトファイルによって `/etc/multipath.conf`、NetApp推奨のホストマルチパスパラメータがデフォルト設定として自動的にロードされます。ホストオペレーティングシステムは、ONTAP LUNを正しく認識および管理するマルチパスパラメータでコンパイルされているため、ホスト用のファイルを変更する必要はありません `/etc/multipath.conf`。
+. ホストを起動するたびに、 `/etc/multipath/conf.d/custom.conf`ファイルが自動的に NetApp 推奨のホストマルチパスパラメータをデフォルト設定としてロードします。
 +
 次の表に、Linux OSで標準でコンパイルされたONTAP LUNのマルチパスパラメータの設定を示します。
 
@@ -141,7 +187,7 @@ systemctl start multipathd
 +
 [source, cli]
 ----
-/sbin/mpathutil list
+/sbin/mpathutil status
 ----
 +
 デフォルトのマルチパス パラメータは、 ASA、 AFF、およびFAS構成をサポートします。これらの構成では、単一のONTAP LUN に 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。
@@ -205,7 +251,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
 [[step-3-optionally-exclude-a-device-from-multipathing]]
 == ステップ3: オプションでデバイスをマルチパスから除外する
 
-必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
+必要に応じて、不要なデバイスの WWID を `/etc/multipath/conf.d/custom.conf`ファイルの「ブラックリスト」セクションに追加することで、マルチパスからデバイスを除外できます。
 
 .手順
 . WWIDを確認します。
@@ -225,7 +271,7 @@ WWIDの例はです `360030057024d0730239134810c0cb833`。
 [source, cli]
 ----
 blacklist {
-	     wwid   360030057024d0730239134810c0cb833
+        wwid   360030057024d0730239134810c0cb833
         devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
         devnode "^hd[a-z]"
         devnode "^cciss.*"
@@ -238,14 +284,12 @@ blacklist {
 [[step-4-customize-multipath-parameters-for-ontap-luns]]
 == ステップ4: ONTAP LUNのマルチパスパラメータをカスタマイズする
 
-ホストが他のベンダーのLUNに接続されていて、マルチパスパラメータの設定が無視されている場合は、ONTAP LUNに固有のスタンザをファイルの後半の部分で追加して修正する必要があり `multipath.conf`ます。これを行わないと、ONTAP LUNが想定どおりに動作しない可能性があります。
-
-ファイル、特にdefaultsセクションで、をオーバーライドする可能性のある設定を確認します `/etc/multipath.conf`<<multipath-parameter-settings,マルチパスパラメータノデフォルトセッテイ>>。
+ホストが他のベンダーの LUN に接続されていて、マルチパスパラメータ設定のいずれかが上書きされている場合は、ONTAP LUN に特定的に適用される `/etc/multipath/conf.d/custom.conf`ファイルのスタンザを変更して修正する必要があります。ファイル内を下にスクロールして、これらのスタンザを追加してください。パラメーターを修正しないと、ONTAP LUN が期待どおりに動作しない可能性があります。
 
 
 CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないでください。これらの設定は、ホスト構成のパフォーマンスを最適化するために必要です。詳細については、NetAppサポート、OSベンダー、またはその両方にお問い合わせください。
 
-次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
+次の例は、オーバーライドされたデフォルト値を修正する方法を示しています。この例では、 `custom.conf drop-in`ファイルでONTAP LUNと互換性のない `path_checker`および `no_path_retry`の値が定義されていますが、ONTAPストレージアレイがまだホストに接続されているため、これらのパラメータを削除することはできません。代わりに、ONTAP LUNに固有に適用されるデバイススタンザを `custom.conf drop-in`ファイルに追加することで、 `path_checker`と `no_path_retry`の値を修正します。
 
 .例を示します
 [%collapsible]
