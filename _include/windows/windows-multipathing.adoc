@@ -62,21 +62,82 @@ SAN 構成に応じて、ホストはASA、 AFF、またはFAS構成を使用し
 次の出力例は、 ASA、 AFF、またはFAS構成のONTAP LUN の正しい設定を示しています。
 
 +
+
+NOTE: 推奨されるMPIOポリシーは、サブセット付きラウンドロビンです。
+
++
 [role="tabbed-block"]
 ====
 .ASA構成
 --
 ASA構成には、単一の優先順位を持つアクティブ/最適化されたパスの 1 つのグループが必要です。コントローラはパスを処理し、すべてのアクティブ パスで I/O を送信します。
 
+.CLIの例を表示する
+[%collapsible]
+=====
+[listing]
+----
+MPIO Disk13: 04 Paths, Round Robin with Subset, Symmetric Access
+    Controlling DSM: Microsoft DSM
+    SN: 600A09803831397A545D586E362D2F54
+    Supported Load Balance Policies: FOO RR RRWS LQD WP LB
+
+    Path ID          State              SCSI Address      Weight
+    -------------------------------------------------------------
+    0000000077060001 Active/Optimized   006|000|001|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1001, : 4
+
+    0000000077060000 Active/Optimized   006|000|000|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 2
+
+    0000000077050001 Active/Optimized   005|000|001|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1001, : 3
+
+    0000000077050000 Active/Optimized   005|000|000|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 1
+----
+=====
+.UIの例を表示する
+[%collapsible]
+=====
 image::asa.png[アクティブ/最適パスが表示されたONTAP LUNのスクリーンショット]
 
+=====
 --
 .AFFまたはFASの設定
 --
 AFFまたはFAS構成には、優先度が異なる 2 つのパス グループが必要です。優先度の高いパスはアクティブ/最適化されており、アグリゲートが配置されているコントローラによってサービスされます。優先度の低いパスは別のコントローラからサービスされます。これらはアクティブですが最適化されておらず、最適化されたパスが利用できない場合にのみ使用されます。
 
+.CLIの例を表示する
+[%collapsible]
+=====
+[listing]
+----
+MPIO Disk0: 04 Paths, Round Robin with Subset, Implicit Only
+    Controlling DSM: Microsoft DSM
+    SN: 600A0980383136724D5D546931437933
+    Supported Load Balance Policies: FOO RRWS LQD WP LB
+    Path ID          State              SCSI Address      Weight
+    -------------------------------------------------------------
+    0000000077010001 Active/Optimized   001|000|001|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 2
+
+    0000000077010000 Active/Unoptimized 001|000|000|000   0
+      TPG_State : Active/Unoptimized, TPG_Id: 1001, : 4
+
+    0000000077000001 Active/Unoptimized 000|000|001|000   0
+      TPG_State : Active/Unoptimized, TPG_Id: 1001, : 3
+
+    0000000077000000 Active/Optimized   000|000|000|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 1
+----
+=====
+.UIの例を表示する
+[%collapsible]
+=====
 image::nonasa.png[2つのアクティブ/最適パスと2つのアクティブ/非最適パスを含むONTAP LUNのスクリーンショット]
 
+=====
 --
 ====
 
