@@ -1,0 +1,434 @@
+---
+sidebar: sidebar 
+permalink: hu-ubuntu-2604.html 
+keywords: host utilities, linux, ubuntu, 26.04, netapp, ontap, fcp, iscsi 
+summary: Ubuntu 26.04 ホストに Linux Host Utilities をインストールして、ONTAP LUN との FCP および iSCSI プロトコル操作を管理します。 
+---
+= Ubuntu 26.04 を ONTAP ストレージの FCP および iSCSI 用に構成する
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Linux Host Utilities ソフトウェアは、ONTAP ストレージに接続されている Linux ホストの管理および診断ツールを提供します。Ubuntu 26.04 ホストに Linux Host Utilities をインストールすると、Host Utilities を使用して ONTAP LUN との FCP および iSCSI プロトコル操作を管理できます。
+
+
+
+[[step-1-optionally-enable-san-booting]]
+== 手順1：必要に応じてSANブートを有効にします。
+
+SANブートを使用するようにホストを設定することで、導入を簡易化し、拡張性を向上させることができます。
+
+.開始する前に
+を使用link:https://mysupport.netapp.com/matrix/#welcome["Interoperability Matrix Tool"^]して、Linux OS、ホストバスアダプタ（HBA）、HBAファームウェア、HBAブートBIOS、およびONTAPバージョンがSANブートをサポートしていることを確認します。
+
+.手順
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["SANブートLUNを作成し、ホストにマップする"^]です。
+. SAN ブート LUN がマッピングされているポートに対して、サーバ BIOS で SAN ブートを有効にします。
++
+HBA BIOS を有効にする方法については、ベンダー固有のマニュアルを参照してください。
+
+. 構成が正常に完了したことを確認するために、ホストをリブートし、OSが稼働していることを確認します。
+
+
+
+
+[[step-2-install-the-linux-host-utilities]]
+== 手順2：Linux Host Utilitiesをインストールする
+
+NetAppでは、ONTAP LUN管理をサポートし、テクニカルサポートによる設定データの収集を支援するために、Linux Host Utilitiesをインストールすることを強く推奨しています。
+
+link:hu-luhu-80.html["Linuxホストユーティリティ8.0をインストールする"] 。
+
+
+NOTE: Linux Host Utilitiesをインストールしても、Linuxホストのホストタイムアウト設定は変更されません。
+
+
+
+[[step-3-confirm-the-multipath-configuration-for-your-host]]
+== 手順3：ホストのマルチパス構成を確認する
+
+Ubuntu 26.04 でマルチパスを使用して ONTAP LUN を管理できます。
+
+ホストでマルチパスが正しく設定されていることを確認するには、ファイルが定義されていること、およびONTAP LUN用にNetAppの推奨設定が設定されていることを確認し `/etc/multipath.conf`ます。
+
+.手順
+. ファイルが終了することを確認し `/etc/multipath.conf`ます。ファイルが存在しない場合は、空のゼロバイトファイルを作成します。
++
+[source, cli]
+----
+touch /etc/multipath.conf
+----
+. ファイルの初回作成時には `multipath.conf`、マルチパスサービスを有効にして開始し、推奨設定をロードしなければならない場合があります。
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. ホストをブートするたびに、空のゼロバイトファイルによって `/etc/multipath.conf`、NetApp推奨のホストマルチパスパラメータがデフォルト設定として自動的にロードされます。オペレーティングシステムは、ONTAP LUNを正しく認識および管理するマルチパスパラメータでコンパイルされているため、ホスト用のファイルを変更する必要はありません `/etc/multipath.conf`。
++
+次の表に、Linux OS標準でコンパイルされたONTAP LUNのマルチパスパラメータの設定を示します。
+
++
+.パラメータ設定の表示
+[%collapsible]
+====
+[[multipath-parameter-settings]]
+[cols="2"]
+|===
+| パラメータ | 設定 
+
+
+| detect_prio | はい。 
+
+
+| DEV_DETION_TMO | " 無限 " 
+
+
+| フェイルバック | 即時 
+
+
+| fast_io_fail_TMO | 5. 
+
+
+| の機能 | "2 pg_init_retries 50" 
+
+
+| flush_on_last_del | はい。 
+
+
+| hardware_handler | 0 
+
+
+| パスの再試行なし | キュー 
+
+
+| path_checker です | " tur " 
+
+
+| path_grouping_policy | 「 group_by_prio 」 
+
+
+| path_selector | "service-time 0" 
+
+
+| polling _interval （ポーリング間隔） | 5. 
+
+
+| Prio | ONTAP 
+
+
+| プロダクト | LUN 
+
+
+| retain_attached _hw_handler | はい。 
+
+
+| RR_weight を指定します | " 均一 " 
+
+
+| ユーザーフレンドリ名 | いいえ 
+
+
+| ベンダー | ネットアップ 
+|===
+====
+. ONTAP LUNのパラメータ設定とパスステータスを確認します。
++
+[source, cli]
+----
+multipath -ll
+----
++
+デフォルトのマルチパス パラメータは、 ASA、 AFF、およびFAS構成をサポートします。これらの構成では、単一のONTAP LUN に 4 つを超えるパスは必要ありません。パスが 4 つを超えると、ストレージ障害時に問題が発生する可能性があります。
+
++
+次の出力例は、ASA、AFF、またはFAS構成のONTAP LUNについて、正しいパラメータ設定とパスステータスを示しています。
+
++
+[role="tabbed-block"]
+====
+.ASA構成
+--
+ASA構成では、特定のLUNへのすべてのパスが最適化され、アクティブな状態が維持されます。これにより、すべてのパスを同時に経由するI/O処理が行われるため、パフォーマンスが向上します。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+# multipath -ll
+3600a098038314559533f524d6c652f62 dm-24 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:1:13 sdm  8:192  active ready running
+  |- 11:0:3:13 sdah 66:16  active ready running
+  |- 12:0:1:13 sdbc 67:96  active ready running
+  `- 12:0:3:13 sdbx 68:176 active ready running
+----
+=====
+--
+.AFFまたはFASの設定
+--
+AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループを設定する必要があります。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラで処理されます。優先度の低いパスはアクティブですが、別のコントローラで処理されるため最適化されていません。最適化されていないパスは、最適化されたパスを使用できない場合にのみ使用されます。
+
+次の例は、2つのアクティブ/最適化パスと2つのアクティブ/非最適化パスがあるONTAP LUNの出力を示しています。
+
+.例を示します
+[%collapsible]
+=====
+[listing]
+----
+# multipath -ll
+3600a098038314837352453694b542f4a dm-0 NETAPP,LUN C-Mode
+size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 14:0:3:0 sdbk 67:224 active ready running
+| `- 15:0:2:0 sdbl 67:240 active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:0:0 sda  8:0    active ready running
+  `- 15:0:1:0 sdv  65:80  active ready running
+----
+=====
+--
+====
+
+
+
+
+[[step-4-confirm-the-iscsi-configuration-for-your-host]]
+== ステップ4：ホストのiSCSI構成を確認する
+
+ホストに対して iSCSI が正しく構成されていることを確認します。
+
+.このタスクについて
+iSCSI ホストで次の手順を実行します。
+
+.手順
+. iSCSI イニシエーター パッケージ（open-iscsi）がインストールされていることを確認します：
++
+[source, cli]
+----
+$apt list |grep open-iscsi
+----
++
+次の例のような出力が表示されます。
+
++
+[listing]
+----
+open-iscsi/noble-updates,noble-updates,now 2.1.9-3ubuntu5.4 amd64
+----
+.  `/etc/iscsi/initiatorname.iscsi`ファイルにあるiSCSIイニシエーターノード名を確認します：
++
+[source, cli]
+----
+InitiatorName=iqn.YYYY-MM.com.<vendor>:<host_name>
+----
+.  `/etc/iscsi/iscsid.conf`ファイルにあるiSCSIセッションタイムアウトパラメータを設定します：
++
+[source, cli]
+----
+node.session.timeo.replacement_timeout = 5
+----
++
+iSCSI `replacement_timeout`パラメータは、タイムアウトしたパスまたはセッションが再確立されるまでのiSCSIレイヤーの待機時間を制御します。この時間が経過すると、そのパスまたはセッションに対するコマンドは失敗します。iSCSI設定ファイルで `replacement_timeout`の値を5に設定する必要があります。
+
+. iSCSIサービスを有効にします：
++
+[source, cli]
+----
+$systemctl enable iscsid
+----
+. iSCSIサービスを開始します：
++
+[source, cli]
+----
+$systemctl start iscsid
+----
+. iSCSIサービスが実行されていることを確認します：
++
+[source, cli]
+----
+$systemctl status iscsid
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+●iscsid.service - iSCSI initiator daemon (iscsid)
+     Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
+     Active: active (running) since Mon 2026-01-12 12:53:18 IST; 2 days ago
+TriggeredBy: ● iscsid.socket
+       Docs: man:iscsid(8)
+   Main PID: 1127419 (iscsid)
+      Tasks: 2 (limit: 76557)
+     Memory: 4.3M (peak: 8.8M)
+        CPU: 1.657s
+     CGroup: /system.slice/iscsid.service
+             ├─1127418 /usr/sbin/iscsid
+             └─1127419 /usr/sbin/iscsid
+----
+====
+. iSCSIターゲットを検出します：
++
+[source, cli]
+----
+$iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
+----
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode discovery --op update --type sendtargets --portal 192.168.166.70
+192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+192.168.165.71:3260,1045 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+192.168.165.70:3260,1044 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+192.168.166.71:3260,1043 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+----
+====
+. ターゲットにログインします：
++
+[source, cli]
+----
+$iscsiadm --mode node -l all
+----
+. ホストの起動時に iSCSI が自動的にログインするように設定します：
++
+[source, cli]
+----
+$iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
+----
++
+ `<target_name>`を、ホストの起動時に自動的にログインするターゲット名に置き換えます。 `<ip:port>`を、ターゲットの IP アドレスとポート番号に置き換えます。例：
+
++
+[source, cli]
+----
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 -p 192.168.166.70:3260 -o update -n node.startup -v automatic
+----
+. iSCSIセッションを確認します：
++
+[source, cli]
+----
+$iscsiadm --mode session
+----
++
+.例を示します
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode session
+tcp: [1] 192.168.166.71:3260,1043 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+tcp: [2] 192.168.165.71:3260,1045 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+tcp: [3] 192.168.165.70:3260,1044 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+tcp: [4] 192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+----
+====
+
+
+
+
+[[step-5-optionally-exclude-a-device-from-multipathing]]
+== ステップ5：オプションでデバイスをマルチパスから除外する
+
+必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます `multipath.conf`。
+
+.手順
+. WWIDを確認します。
++
+[source, cli]
+----
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+sdaは、ブラックリストに追加するローカルSCSIディスクです。
+
++
+WWIDの例はです `360030057024d0730239134810c0cb833`。
+
+. 「blacklist」スタンザにWWIDを追加します。
++
+[source, cli]
+----
+blacklist {
+        wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+
+
+
+
+[[step-6-customize-multipath-parameters-for-ontap-luns]]
+== ステップ6：ONTAP LUNのマルチパスパラメータをカスタマイズする
+
+ホストが他のベンダーの LUN に接続されていて、マルチパスパラメータ設定のいずれかが上書きされている場合は、既存のスタンザを変更するか、ONTAP LUN に特化して適用される `multipath.conf`ファイルに新しいスタンザを追加することで修正する必要があります。ホストに適用される変更点を確認するには、ファイル内を下にスクロールする必要があります。パラメーターを修正しないと、ONTAP LUN が期待どおりに動作しない可能性があります。
+
+ファイル、特にdefaultsセクションで、をオーバーライドする可能性のある設定を確認します `/etc/multipath.conf`<<multipath-parameter-settings,マルチパスパラメータノデフォルトセッテイ>>。
+
+
+CAUTION: ONTAP LUNの推奨されるパラメータ設定は無視しないでください。これらの設定は、ホスト構成のパフォーマンスを最適化するために必要です。詳細については、NetAppサポート、OSベンダー、またはその両方にお問い合わせください。
+
+次の例は、オーバーライドされたデフォルトを修正する方法を示しています。この例では `multipath.conf`、ファイルにONTAP LUNと互換性のないおよび `no_path_retry`の値が定義されて `path_checker`います。ONTAPストレージアレイはホストに接続されたままなので、これらのパラメータを削除することはできません。代わりに、および `no_path_retry`の値を修正する `path_checker`には、ONTAP LUNに特化したファイルにデバイススタンザを追加し `multipath.conf`ます。
+
+.例を示します
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+defaults {
+   path_checker      *readsector0*
+   no_path_retry     *fail*
+}
+
+devices {
+   device {
+      vendor          "NETAPP"
+      product         "LUN"
+      no_path_retry   *queue*
+      path_checker    *tur*
+   }
+}
+----
+====
+
+
+[[step-7-review-the-known-issues]]
+== ステップ7：既知の問題を確認する
+
+既知の問題はありません。
+
+
+
+[[whats-next]]
+== 次の手順
+
+* link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
+* ASMミラーリングについて学ぶ
++
+Automatic Storage Management（ASM）ミラーリングでは、ASMが問題を認識して別の障害グループにスイッチオーバーできるように、Linuxマルチパス設定の変更が必要になる場合があります。ONTAP上のほとんどのASM構成では、外部冗長性が使用されます。つまり、データ保護は外付けアレイによって提供され、ASMはデータをミラーリングしません。一部のサイトでは、通常の冗長性を備えたASMを使用して、通常は異なるサイト間で双方向ミラーリングを提供します。詳細については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["ONTAP上のOracleデータベース"^]。
+
+* Ubuntu Linux仮想化（KVM）について学ぶ
++
+Ubuntu Linux は KVM ホストとして機能できます。これにより、Linux カーネルベースの仮想マシン (KVM) テクノロジを使用して、単一の物理サーバー上で複数の仮想マシンを実行できるようになります。KVM ホストでは、 ONTAP LUN に対して明示的なホスト構成設定は必要ありません。
+
+

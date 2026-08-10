@@ -2516,4 +2516,9 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="ff77ba7bf94da41f58968cd6238bef1b" category="admonition">推奨されるMPIOポリシーは、サブセット付きラウンドロビンです。</block>
   <block id="93499fb92b162d002d9b600c8e5d0fc9" category="example-title">CLIの例を表示する</block>
   <block id="ba15363da34b1cb74efc52c7595d9fcc" category="example-title">UIの例を表示する</block>
+  <block id="9a10cb01a5cb2622f636682b5ef50282" category="summary">Ubuntu 26.04 ホストに Linux Host Utilities をインストールして、ONTAP LUN との FCP および iSCSI プロトコル操作を管理します。</block>
+  <block id="625b4ec3300a714a63eb09a27822f147" category="doc">Ubuntu 26.04 を ONTAP ストレージの FCP および iSCSI 用に構成する</block>
+  <block id="488a9fd122ccd8a3550ceee0ebaee2d4" category="paragraph">Linux Host Utilities ソフトウェアは、ONTAP ストレージに接続されている Linux ホストの管理および診断ツールを提供します。Ubuntu 26.04 ホストに Linux Host Utilities をインストールすると、Host Utilities を使用して ONTAP LUN との FCP および iSCSI プロトコル操作を管理できます。</block>
+  <block id="418d880dfd6db1f0486f40a57a8c26ed" category="paragraph">Ubuntu 26.04 でマルチパスを使用して ONTAP LUN を管理できます。</block>
+  <block id="7f61a1ef5c19b945998122fe336af401" category="sidebar">26.04</block>
 </blocks>
