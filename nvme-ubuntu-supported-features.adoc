@@ -16,11 +16,32 @@ summary: Ubuntu ホストに対する ONTAP のサポートと機能について
 
 
 [role="lead"]
+NVMe over Fabrics （NVMe-oF）を使用したホスト構成でサポートされる機能は、ONTAP および Ubuntu のバージョンによって異なります。
+
+[cols="50,25,25"]
+|===
+| 特徴 | Ubuntuホストのバージョン | ONTAPのバージョン 
+
+
+| NVMe/FC および NVMe/TCP は、ASA r2 システムのすべての最適化されたパスを報告します  a| 
+26.04以降
+| 9.16.1以降 
+
+
+| NVMe/TCPは完全にサポートされているエンタープライズ機能です  a| 
+22.04以降
+| 9.10.1以降 
+|===
 ONTAP は、システム セットアップで実行されているONTAP のバージョンに関係なく、次の SAN ホスト機能をサポートします。
 
 [cols="75,25"]
 |===
 | 特徴 | Ubuntuホストのバージョン 
+
+
+| NVMe-oF のデフォルトの iopolicy は queue-depth に設定されています  a| 
+26.04以降
+
 
 
 | ネイティブパッケージのNetAppプラグインには、NVMe/FC ネームスペースの ONTAP の詳細が表示されます。  a| 
@@ -48,6 +69,9 @@ NOTE: サポートされている構成の詳細については、link:https://m
 [cols="50,50"]
 |===
 | Ubuntu のバージョンが..の場合 | について学ぶ.. 
+
+
+| 26.04 | link:nvme-ubuntu-2604.html["Ubuntu 26.04 での NVMe の設定"] 
 
 
 | 24.04 | link:nvme-ubuntu-2404.html["Ubuntu 24.04 での NVMe の設定"] 

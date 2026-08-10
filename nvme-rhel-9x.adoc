@@ -98,7 +98,7 @@ libnvme-1.16.1-3.el9_8.x86_64
 cat /etc/nvme/hostnqn
 ----
 +
-次の例は、  `hostnqn`バージョン:
+次の例は、 `hostnqn`価値：
 
 +
 [listing]
@@ -563,7 +563,7 @@ ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}
 udevadm control --reload
 udevadm trigger --subsystem-match=nvme-subsystem
 ----
-. サブシステムの現在の iopolicy を確認します。  <subsystem>を置き換えます。例: `nvme-subsys0` 。
+. サブシステムの現在の iopolicy を確認します：
 +
 [source, cli]
 ----

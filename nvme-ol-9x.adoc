@@ -98,12 +98,12 @@ libnvme-1.13-1.el9.x86_64
 cat /etc/nvme/hostnqn
 ----
 +
-次の例は、  `hostnqn`バージョン:
+次の例は、 `hostnqn`価値：
 
 +
 [listing]
 ----
-nqn.2014-08.org.nvmexpress:uuid:8397cecc-30f0-11e8-850f-7ed30aef0cc7
+nqn.2014-08.org.nvmexpress:uuid:8397xxxx-30f0-xxxx-850f-7ed3xxxf0cc7
 ----
 . ONTAPシステムで、 `hostnqn`文字列が一致する `hostnqn`ONTAPストレージ システム上の対応するサブシステムの文字列:
 +
@@ -534,7 +534,7 @@ ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}
 udevadm control --reload
 udevadm trigger --subsystem-match=nvme-subsystem
 ----
-. サブシステムの現在の iopolicy を確認します。  <subsystem>を置き換えます。例: `nvme-subsys0` 。
+. サブシステムの現在の iopolicy を確認します：
 +
 [source, cli]
 ----

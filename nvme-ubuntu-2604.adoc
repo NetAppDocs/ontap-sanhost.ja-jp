@@ -1,21 +1,21 @@
 ---
 sidebar: sidebar 
-permalink: nvme-ubuntu-2404.html 
+permalink: nvme-ubuntu-2604.html 
 keywords: nvme, linux, ubuntu, enterprise 
-summary: Ubuntu 24.04 with ONTAP用のNVMe-oFホストの設定方法 
+summary: ONTAP を使用して Ubuntu 26.04 の NVMe-oF ホストを設定する方法 
 ---
-= ONTAPストレージを使用したUbuntu 24.04のNVMe-oF設定
+= ONTAPストレージを使用したUbuntu 26.04のNVMe-oF設定
 :allow-uri-read: 
 
 
 [role="lead"]
-Ubuntu 24.04およびAsymmetric Namespace Access（ANA）では、NVMe over Fibre Channel（NVMe/FC）やその他のトランスポートを含むNVMe over Fabrics（NVMe-oF）がサポートされます。NVMe-oF環境では、ANAはiSCSI環境およびFC環境のALUAマルチパスに相当し、カーネル内NVMeマルチパスで実装されます。
+NVMe over Fabrics (NVMe-oF)（NVMe over Fibre Channel (NVMe/FC) およびその他のトランスポートを含む）は、Ubuntu 26.04 および Asymmetric Namespace Access (ANA) でサポートされています。NVMe-oF 環境において、ANA は iSCSI および FC 環境における ALUA マルチパスに相当し、カーネル内 NVMe マルチパスによって実装されます。
 
-Ubuntu 24.04 で NVMe over Fabrics （NVMe-oF） ホストを構成する方法を学びます。詳細なサポートと機能情報については、link:nvme-ubuntu-supported-features.html["Ubuntu ONTAP のサポートと機能"]を参照してください。
+Ubuntu 26.04 で NVMe over Fabrics （NVMe-oF） ホストを構成する方法を学びます。詳細なサポートと機能情報については、link:nvme-ubuntu-supported-features.html["Ubuntu ONTAP のサポートと機能"]を参照してください。
 
-Ubuntu 24.04 の NVMe-oF には、次の既知の制限があります：
+Ubuntu 26.04におけるNVMe-oFには、以下の既知の制限事項があります。
 
-* NVMe-oFプロトコルを使用したSANブートは、ONTAPを搭載したUbuntu 24.04では現在サポートされていません。
+* NVMe-oFプロトコルを使用したSANブートは、ONTAPを使用するUbuntu 26.04では現在サポートされていません。
 
 
 サポートされる構成の詳細については、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
@@ -28,7 +28,7 @@ Ubuntu 24.04 の NVMe-oF には、次の既知の制限があります：
 NVMe-oF 用にホストを構成するには、ホストおよび NVMe ソフトウェア パッケージをインストールし、マルチパスを有効にして、ホストの NQN 構成を確認する必要があります。
 
 .手順
-. Ubuntu 24.04をサーバにインストールします。インストールが完了したら、指定したUbuntu 24.04カーネルを実行していることを確認します。
+. サーバーに Ubuntu 26.04 をインストールしてください。インストールが完了したら、指定された Ubuntu 26.04 カーネルが実行されていることを確認してください。
 +
 [source, cli]
 ----
@@ -40,7 +40,7 @@ Ubuntu カーネルバージョンの例：
 +
 [listing]
 ----
-6.8.0-31-generic
+7.0.0-27-generic
 ----
 . 「 nvme-cli 」パッケージをインストールします。
 +
@@ -54,9 +54,9 @@ apt list | grep nvme
 +
 [listing]
 ----
-nvme-cli/noble-updates 2.8-1ubuntu0.1 amd64
+nvme-cli/resolute,now 2.16-1 amd64
 ----
-. Ubuntu 24.04ホストで、hostnqn文字列を確認し `/etc/nvme/hostnqn`ます。
+. Ubuntu 26.04 ホストで、 `/etc/nvme/hostnqn` の hostnqn 文字列を確認してください：
 +
 [source, cli]
 ----
@@ -68,7 +68,7 @@ cat /etc/nvme/hostnqn
 +
 [listing]
 ----
-nqn.2014-08.org.nvmexpress:uuid:ace1xxxx-1f5a-xxxx-b0c3-3a6xxxx1a6ff
+nqn.2014-08.org.nvmexpress:uuid:4c4cxxxx-0050-xxxx-8035-c2cxxxxa5933
 ----
 . ONTAPシステムで、 `hostnqn`の文字列が `/etc/nvme/hostnqn`から取得したものと、ONTAPストレージシステム上の対応するサブシステムの `hostnqn`の文字列が一致していることを確認します：
 +
@@ -82,9 +82,9 @@ vserver nvme subsystem host show -vserver vs_106_fc_nvme
 ====
 [listing]
 ----
-Vserver     Subsystem          Host NQN
+Vserver     Subsystem       Host NQN
 ----------- --------------- ----------------------------------------------------------
-vs_106_fc_nvme ub_106 nqn.2014-08.org.nvmexpress:uuid:c047xxxx-e91e-xxxx-9995-ba4xxxx14631
+vs_106_fc_nvme ub_106 nqn.2014-08.org.nvmexpress:uuid:4c4cxxxx-0050-xxxx-8035-c2c04f4a5933
 ----
 ====
 +
@@ -102,7 +102,7 @@ Broadcom/Emulex または Marvell/Qlogic アダプタ用に NVMe/FC を設定す
 
 [role="tabbed-block"]
 ====
-.Broadcom / Emulex
+.NVMeFC - Broadcom/Emulex
 --
 Broadcom/Emulexアダプタ用にNVMe/FCを設定します。
 
@@ -155,8 +155,8 @@ cat /sys/class/scsi_host/host*/fwrev
 +
 [listing]
 ----
-14.4.317.10, sli-4:6:d
-14.4.317.10, sli-4:6:d
+14.4.393.25, sli-4:6:d
+14.4.393.25, sli-4:6:d
 ----
 .. 受信トレイのドライバーのバージョンを表示します。
 +
@@ -170,7 +170,7 @@ cat /sys/module/lpfc/version
 +
 [listing]
 ----
-0:14.2.0.17
+0:14.4.0.13
 ----
 +
 サポートされているアダプタドライバおよびファームウェアバージョンの最新リストについては、を参照してくださいlink:https://mysupport.netapp.com/matrix/["Interoperability Matrix Tool"^]。
@@ -187,7 +187,7 @@ cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 +
 [source, cli]
 ----
-cat /sys/class/fc_host/host*/port_name
+cat /sys/class/fc_host/host*/<port_name>
 ----
 +
 次のような出力が表示されます：
@@ -234,7 +234,8 @@ NVME Statistics
 LS: Xmt 0000000187 Cmpl 0000000187 Abort 00000000
 LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
 Total FCP Cmpl 0000000014096514 Issue 000000001407fcd6 OutIO fffffffffffe97c2
-        abort 00000048 noxri 00000000 nondlp 0000001c qdepth 00000000 wqerr 00000000 err 00000000
+        abort 00000048 noxri 00000000 nondlp 0000001c qdepth
+00000000 wqerr 00000000 err 00000000
 FCP CMPL: xb 00000048 Err 00000077
 
 NVME Initiator Enabled
@@ -246,7 +247,8 @@ NVME Statistics
 LS: Xmt 0000000187 Cmpl 0000000187 Abort 00000000
 LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
 Total FCP Cmpl 00000000140970ed Issue 00000000140813da OutIO fffffffffffea2ed
-        abort 00000047 noxri 00000000 nondlp 0000002b qdepth 00000000 wqerr 00000000 err 00000000
+        abort 00000047 noxri 00000000 nondlp 0000002b qdepth
+00000000 wqerr 00000000 err 00000000
 FCP CMPL: xb 00000047 Err 00000075
 ----
 =====
@@ -255,8 +257,6 @@ FCP CMPL: xb 00000047 Err 00000075
 --
 .NVMe/FC - マーベル/QLogic
 --
-Ubuntu 24.04 GAカーネルに含まれているネイティブの受信トレイqla2xxxドライバには、最新のアップストリーム修正が含まれています。これらの修正は、ONTAPのサポートに不可欠です。
-
 Marvell/QLogicアダプタ用にNVMe/FCを設定します。
 
 .手順
@@ -272,8 +272,8 @@ cat /sys/class/fc_host/host*/symbolic_name
 +
 [listing]
 ----
-QLE2872 FW: v9.15.00 DVR: v10.02.09.100-k
-QLE2872 FW: v9.15.00 DVR: v10.02.09.100-k
+QLE2872 FW: v9.15.17 DVR: v10.02.09.100-k
+QLE2872 FW: v9.15.17 DVR: v10.02.09.100-k
 ----
 . 確認します `ql2xnvmeenable` が設定されます。これにより、MarvellアダプタをNVMe/FCイニシエータとして機能させることができます。
 +
@@ -315,7 +315,7 @@ portid:  4
 trsvcid: 8009
 subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
 traddr:  192.168.167.156
-eflags:  *explicit discovery connections*, *duplicate discovery* information*
+eflags:  *explicit discovery connections*, *duplicate discovery information*
 sectype: *none*
 =====Discovery Log Entry 1======
 trtype:  tcp
@@ -326,7 +326,7 @@ portid:  2
 trsvcid: 8009
 subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
 traddr:  192.168.166.156
-eflags:  *explicit discovery connections*, *duplicate discovery* information*
+eflags:  *explicit discovery connections*, *duplicate discovery information*
 sectype: *none*
 =====Discovery Log Entry 2======
 trtype:  tcp
@@ -337,7 +337,7 @@ portid:  3
 trsvcid: 8009
 subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
 traddr:  192.168.167.155
-eflags:  *explicit discovery connections*, *duplicate discovery* information*
+eflags:  *explicit discovery connections*, *duplicate discovery information*
 sectype: *none*
 =====Discovery Log Entry 3======
 trtype:  tcp
@@ -348,7 +348,7 @@ portid:  1
 trsvcid: 8009
 subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
 traddr:  192.168.166.155
-eflags:  *explicit discovery connections*, *duplicate discovery* information*
+eflags:  *explicit discovery connections*, *duplicate discovery information*
 sectype: *none*
 =====Discovery Log Entry 4======
 trtype:  tcp
@@ -357,7 +357,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  4
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_26.04_tcp_211
 traddr:  192.168.167.156
 eflags:  none
 sectype: none
@@ -368,7 +368,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  2
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_26.04_tcp_211
 traddr:  192.168.166.156
 eflags:  none
 sectype: none
@@ -379,7 +379,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  3
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_26.04_tcp_211
 traddr:  192.168.167.155
 eflags:  none
 sectype: none
@@ -390,7 +390,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  1
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_26.04_tcp_211
 traddr:  192.168.166.155
 eflags:  none
 sectype: none
@@ -434,7 +434,7 @@ nvme connect-all -t tcp -w <host-traddr> -a <traddr>
 =====
 +
 
-NOTE: Ubuntu 24.04以降では、NVMe/TCPのctrl_loss_tmoタイムアウトのデフォルト設定がオフになっています。つまり、再試行回数に制限はなく（無期限の再試行）、コマンドまたは `nvme connect-all`コマンド（オプション-l）を使用するときに、特定のCtrl_LOSS_TMOタイムアウト期間を手動で設定する必要はありません `nvme connect`。このデフォルトの動作では、パスで障害が発生してもNVMe/TCPコントローラはタイムアウトせず、無期限に接続されたままになります。
+NOTE: NVMe/TCP の ctrl_loss_tmo タイムアウトのデフォルト設定は無効になっています。これは、再試行回数に制限がなく（無期限再試行）、 `nvme connect`または `nvme connect-all`コマンド（オプション -l）を使用する際に特定の ctrl_loss_tmo タイムアウト期間を手動で設定する必要がないことを意味します。このデフォルト動作では、NVMe/TCP コントローラはパス障害が発生した場合でもタイムアウトを起こさず、無期限に接続状態を維持します。
 
 
 
@@ -442,8 +442,73 @@ NOTE: Ubuntu 24.04以降では、NVMe/TCPのctrl_loss_tmoタイムアウトの�
 ====
 
 
-[[step-3-optionally-enable-1mb-io-for-nvmefc]]
-== ステップ3: オプションでNVMe/FCの1MB I/Oを有効にする
+[[step-3-optionally-modify-the-iopolicy-in-the-udev-rules]]
+== ステップ3：オプションとして、udevルールのiopolicyを変更します
+
+Ubuntu 26.04以降、NVMe-oFのデフォルトのiopolicyはqueue-depthに設定されています。udevルールを変更することで、iopolicyをround-robinに変更できます。
+
+.手順
+. ルート権限でテキスト エディターで udev ルール ファイルを開きます。
++
+[source, cli]
+----
+/usr/lib/udev/rules.d/71-nvmf-netapp.rules
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+vi /usr/lib/udev/rules.d/71-nvmf-netapp.rules
+
+----
+. 次の例のルールに示すように、 NetApp ONTAPコントローラの iopolicy を設定する行を見つけます。
++
+[listing]
+----
+ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="queue-depth"
+----
+. ルールを変更して、キュー深度がラウンドロビン方式になるようにします。
++
+[source, cli]
+----
+ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="round-robin"
+----
+. udev ルールを再読み込みし、変更を適用します。
++
+[source, cli]
+----
+udevadm control --reload
+----
++
+[source, cli]
+----
+udevadm trigger --subsystem-match=nvme-subsystem
+----
+. サブシステムの現在の iopolicy を確認します：
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/<subsystem>/iopolicy
+----
++
+次の出力が表示されます。
+
++
+[listing]
+----
+round-robin
+----
+
+
+
+NOTE: 新しい iopolicy は、一致するNetApp ONTAPコントローラ デバイスに自動的に適用されます。再起動する必要はありません。
+
+
+
+[[step-4-optionally-enable-1mb-io-for-nvmefc]]
+== ステップ4: オプションでNVMe/FCの1MB I/Oを有効にする
 
 ONTAP は、識別コントローラ データで最大データ転送サイズ (MDTS) が 8 であると報告します。つまり、最大 I/O 要求サイズは 1 MB までになります。  Broadcom NVMe/FCホストに1MBのI/Oリクエストを発行するには、 `lpfc`の価値 `lpfc_sg_seg_cnt`パラメータをデフォルト値の 64 から 256 に変更します。
 
@@ -476,15 +541,75 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
-[[step-4-verify-multipathing-configuration]]
-== ステップ4：マルチパス構成を確認する
+[[step-5-verify-nvme-boot-services]]
+== ステップ5: NVMeブートサービスを確認する
+
+その `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`NVMe/FCに含まれるブートサービス `nvme-cli`パッケージはシステムの起動時に自動的に有効になります。
+
+起動が完了したら、  `nvmefc-boot-connections.service`そして `nvmf-autoconnect.service`ブート サービスが有効になっています。
+
+.手順
+. が有効であることを確認し `nvmf-autoconnect.service`ます。
++
+[source, cli]
+----
+systemctl status nvmf-autoconnect.service
+----
++
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot
+     Loaded: loaded (/usr/lib/systemd/system/nvmf-autoconnect.service; enabled; preset: enabled)
+     Active: inactive (dead) since Tue 2026-07-07 08:20:42 UTC; 1 week 6 days ago
+ Invocation: fdc6a9313f584a27af26dc76f3e467c8
+   Main PID: 15938 (code=exited, status=0/SUCCESS)
+   Mem peak: 2M
+        CPU: 24ms
+
+Jul 07 08:20:42 SR630-13-203 systemd[1]: Starting nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot...
+Jul 07 08:20:42 SR630-13-203 systemd[1]: nvmf-autoconnect.service: Deactivated successfully.
+Jul 07 08:20:42 SR630-13-203 systemd[1]: Finished nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot.
+----
+====
+. が有効であることを確認し `nvmefc-boot-connections.service`ます。
++
+[source, cli]
+----
+systemctl status nvmefc-boot-connections.service
+----
++
+.出力例を表示します。
+[%collapsible]
+====
+[listing]
+----
+nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found during boot
+     Loaded: loaded (/usr/lib/systemd/system/nvmefc-boot-connections.service; enabled; preset: enabled)
+     Active: inactive (dead) since Tue 2026-07-07 08:18:38 UTC; 1 week 6 days ago
+ Invocation: 6f0a5c2d278b461bae223d4450ec6c51
+   Main PID: 5137 (code=exited, status=0/SUCCESS)
+   Mem peak: 2M
+        CPU: 19ms
+
+Jul 07 08:18:38 SR630-13-203 systemd[1]: Starting nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found du>
+Jul 07 08:18:38 SR630-13-203 systemd[1]: nvmefc-boot-connections.service: Deactivated successfully.
+Jul 07 08:18:38 SR630-13-203 systemd[1]: Finished nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found du>
+----
+====
+
+
+
+
+[[step-6-verify-multipathing-configuration]]
+== ステップ6：マルチパス構成を確認する
 
 カーネル内のNVMeマルチパスステータス、ANAステータス、およびONTAPネームスペースがNVMe-oF構成に対して正しいことを確認します。
 
 .手順
-. それぞれのONTAP名前空間の適切な NVMe-oF 設定 (モデルがNetApp ONTAPコントローラに設定され、負荷分散 iopolicy がラウンドロビンに設定されているなど) がホストに正しく表示されていることを確認します。
-+
-.. カーネル内NVMeマルチパスが有効になっていることを確認します。
+. カーネル内NVMeマルチパスが有効になっていることを確認します。
 +
 [source, cli]
 ----
@@ -493,6 +618,8 @@ cat /sys/module/nvme_core/parameters/multipath
 +
 想定される出力は「Y」です。
 
+. それぞれのONTAP名前空間の適切な NVMe-oF 設定 (モデルをNetApp ONTAPコントローラに設定し、ロード バランシングiopolicy を queue-depth に設定するなど) がホストに正しく反映されていることを確認します。
++
 .. サブシステムを表示します。
 +
 [source, cli]
@@ -520,8 +647,8 @@ cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
 +
 [listing]
 ----
-round-robin
-round-robin
+queue-depth
+queue-depth
 ----
 
 
@@ -557,16 +684,34 @@ Namespace Usage   Format                FW            Rev
 ----
 nvme list-subsys /dev/nvme0n1
 ----
-.出力例を表示します。
+次の出力例は、NVMe/FCを使用するAFF、FAS、ASA、またはASA r2システムの2ノードONTAPコントローラでホストされているネームスペースを示しています。
+
+.AFF、FAS、ASA出力例を表示します。
 [%collapsible]
 =====
 [listing, subs="+quotes"]
 ----
-nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.8763d311b2ac11ed950ed039ea951c46:subsystem. ubuntu_24.04 \
-+- nvme1 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20a7d039ea954d17,host_traddr=nn-0x200000109b1b95ef:pn-0x100000109b1b95ef *live optimized*
-+- nvme2 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20a8d039ea954d17,host_traddr=nn-0x200000109b1b95f0:pn-0x100000109b1b95f0 *live optimized*
-+- nvme3 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20aad039ea954d17,host_traddr=nn-0x200000109b1b95f0:pn-0x100000109b1b95f0 *live non-optimized*
-+- nvme5 *fc* traddr=nn-0x20a6d039ea954d17:pn-0x20a9d039ea954d17,host_traddr=nn-0x200000109b1b95ef:pn-0x100000109b1b95ef *live non-optimized*
+nvme-subsys5 - NQN=nqn.1992-08.com.netapp:sn.f7565b15a66911ef9668d039ea951c46:subsystem.nvme1
+               hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-c7c04f425633
+\
++- nvme126 fc traddr=nn-0x2036d039ea951c45:pn-0x2038d039ea951c45,host_traddr=nn-0x2000f4c7aa0cd7c3:pn-0x2100f4c7aa0cd7c3 *live optimized*
++- nvme176 fc traddr=nn-0x2036d039ea951c45:pn-0x2037d039ea951c45,host_traddr=nn-0x2000f4c7aa0cd7c2:pn-0x2100f4c7aa0cd7c2 *live optimized*
++- nvme5 fc traddr=nn-0x2036d039ea951c45:pn-0x2039d039ea951c45,host_traddr=nn-0x2000f4c7aa0cd7c2:pn-0x2100f4c7aa0cd7c2 *live non-optimized*
++- nvme71 fc traddr=nn-0x2036d039ea951c45:pn-0x203ad039ea951c45,host_traddr=nn-0x2000f4c7aa0cd7c3:pn-0x2100f4c7aa0cd7c3 *live non-optimized*
+----
+=====
+.ASA r2 の出力例を表示
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme-subsys96 - NQN=nqn.1992-08.om.netapp:sn.b351b2b6777b11f0b3c2d039ea5cfc91:subsystem.nvme24
+                hostnqn=nqn.2014-08.org.nvmexpress:uuid:d3b581b4-c975-11e6-8425-0894ef31a074
+\
+ +- nvme203 fc traddr=nn-0x2011d039ea5cfc90:pn-0x2015d039ea5cfc90,host_traddr=nn-0x200000109bdacc76:pn-0x100000109bdacc76 *live optimized*
+ +- nvme25 fc traddr=nn-0x2011d039ea5cfc90:pn-0x2014d039ea5cfc90,host_traddr=nn-0x200000109bdacc75:pn-0x100000109bdacc75 *live optimized*
+ +- nvme30 fc traddr=nn-0x2011d039ea5cfc90:pn-0x2012d039ea5cfc90,host_traddr=nn-0x200000109bdacc75:pn-0x100000109bdacc75 *live optimized*
+ +- nvme32 fc traddr=nn-0x2011d039ea5cfc90:pn-0x2013d039ea5cfc90,host_traddr=nn-0x200000109bdacc76:pn-0x100000109bdacc76 *live optimized*
 ----
 =====
 --
@@ -576,18 +721,34 @@ nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.8763d311b2ac11ed950ed039ea951c46:su
 ----
 nvme list-subsys /dev/nvme1n1
 ----
-.出力例を表示します。
+次の出力例は、NVMe/TCP を使用する AFF、FAS、ASA、または ASA r2 システムの 2 ノード ONTAP コントローラでホストされているネームスペースを示しています。
+
+.AFF、FAS、ASA出力例を表示します。
 [%collapsible]
 =====
 [listing, subs="+quotes"]
 ----
-nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
-               hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4cxxxx-0050-xxxx-8035-c3cxxxxa5933
-               iopolicy=round-robin
- +- nvme0 *tcp* traddr=192.168.166.155,trsvcid=4420,host_traddr=192.168.166.150,src_addr=192.168.166.150 *live optimized*
- +- nvme1 *tcp* traddr=192.168.167.155,trsvcid=4420,host_traddr=192.168.167.150,src_addr=192.168.167.150 *live optimized*
- +- nvme2 *tcp* traddr=192.168.166.156,trsvcid=4420,host_traddr=192.168.166.150,src_addr=192.168.166.150 *live non-optimized*
- +- nvme3 *tcp* traddr=192.168.167.156,trsvcid=4420,host_traddr=192.168.167.150,src_addr=192.168.167.150 *live non-optimized*
+nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.nvme4
+               hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-c2c04f444d33
+\
+ +- nvme102 tcp traddr=192.168.21.20,trsvcid=4420,host_traddr=192.168.21.1,src_addr=192.168.21.1 live *non-optimized*
+ +- nvme151 tcp traddr=192.168.21.21,trsvcid=4420,host_traddr=192.168.21.1,src_addr=192.168.21.1 live *optimized*
+ +- nvme4 tcp traddr=192.168.20.20,trsvcid=4420,host_traddr=192.168.20.1,src_addr=192.168.20.1 live *non-optimized*
+ +- nvme53 tcp traddr=192.168.20.21,trsvcid=4420,host_traddr=192.168.20.1,src_addr=192.168.20.1 live *optimized*
+----
+=====
+.ASA r2 の出力例を表示
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme-subsys9 - NQN=nqn.1992-08.com.netapp:sn.9927e165694211f0b4f4d039eab31e9d:subsystem.nvme10
+               hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4cxxxx-0035-xxxx-804b-b7cxxxx44d33
+\
+ +- nvme105 tcp traddr=192.168.39.10,trsvcid=4420,host_traddr=192.168.39.20,src_addr=192.168.39.20 *live optimized*
+ +- nvme153 tcp traddr=192.168.39.11,trsvcid=4420,host_traddr=192.168.39.20,src_addr=192.168.39.20 *live optimized*
+ +- nvme57 tcp traddr=192.168.38.11,trsvcid=4420,host_traddr=192.168.38.20,src_addr=192.168.38.20 *live optimized*
+ +- nvme9 tcp traddr=192.168.38.10,trsvcid=4420,host_traddr=192.168.38.20,src_addr=192.168.38.20 *live optimized*
 ----
 =====
 --
@@ -648,7 +809,7 @@ nvme netapp ontapdevices -o json
 
 
 
-[[step-5-review-the-known-issues]]
-== ステップ5: 既知の問題を確認する
+[[step-7-review-the-known-issues]]
+== ステップ7：既知の問題を確認する
 
-ONTAPリリースのUbuntu 24.04でのNVMe-oFホスト構成に関する既知の問題はありません。
+ONTAP リリースでの Ubuntu 26.04 の NVMe-oF ホスト構成には、既知の問題はありません。

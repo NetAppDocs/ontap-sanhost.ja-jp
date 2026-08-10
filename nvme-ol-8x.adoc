@@ -79,7 +79,7 @@ ACTION=="add", SUBSYSTEMS=="nvme-subsystem", ATTRS{model}=="NetApp ONTAP Control
 cat /etc/nvme/hostnqn
 ----
 +
-次の例は、  `hostnqn`バージョン:
+次の例は、 `hostnqn`価値：
 
 +
 [listing]

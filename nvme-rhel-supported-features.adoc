@@ -16,11 +16,16 @@ summary: RHELホストのONTAPサポートと機能について学ぶ
 
 
 [role="lead"]
-NVMe over Fabrics (NVMe-oF) を使用したホスト構成でサポートされる機能は、 ONTAPおよび RHEL のバージョンによって異なります。
+NVMe over Fabrics （NVMe-oF）を使用したホスト構成でサポートされる機能は、ONTAP および RHEL のバージョンによって異なります。
 
 [cols="50,25,25"]
 |===
 | 特徴 | RHELホストバージョン | ONTAPのバージョン 
+
+
+| NVMe/FC および NVMe/TCP は、ASA r2 システムのすべての最適化されたパスを報告します  a| 
+9.0以降
+| 9.16.1以降 
 
 
 | RHELホストとONTAPコントローラ間のNVMe/TCP経由の安全なインバンド認証がサポートされています。  a| 

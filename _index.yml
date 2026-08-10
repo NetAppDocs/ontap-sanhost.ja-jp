@@ -15,9 +15,9 @@ indexpage:
       url: "/overview.html"
     - title: AIX Host Utilitiesリリースノート
       url: "/hu-aix-release-notes.html"
-    - title: HP-UX Host Utilitiesリリースノート
+    - title: HP-UX ホスト ユーティリティ リリース ノート
       url: "/hu-hpux-release-notes.html"
-    - title: Linux Host Utilitiesリリースノート
+    - title: Linux ホストユーティリティ リリースノート
       url: "/hu-luhu-release-notes.html"
     - title: Solaris ホストユーティリティ リリースノート
       url: "/hu-solaris-release-notes.html"
