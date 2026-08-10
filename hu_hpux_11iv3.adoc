@@ -178,9 +178,5 @@ ONTAPストレージ リリースを搭載した HP-UX 11i v3 には、次の既
 
 | 1306354 | HP-UX LVMを作成すると、1MBを超えるブロックサイズのI/Oが送信されます | ONTAP All SAN Array では、 SCSI Maximum Transfer Length （ 1 MB ）が適用されます。ONTAP All SAN Array に接続したときに HP-UX ホストからの最大転送長を制限するには、 HP-UX SCSI サブシステムで許可される最大 I/O サイズを 1MB に設定する必要があります。詳細については、 HP-UX ベンダーのドキュメントを参照してください。 | 該当なし 
 |===
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu_hpux_60_cmd.html["HP-UXホストユーティリティツールの使用について学ぶ"] 。

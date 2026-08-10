@@ -464,11 +464,7 @@ ONTAPストレージを搭載した RHEL 8.x には、次の既知の問題が�
 |===
 --
 ====
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
 * ASMミラーリングについて学ぶ
 +

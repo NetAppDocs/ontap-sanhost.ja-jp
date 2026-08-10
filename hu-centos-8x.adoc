@@ -421,11 +421,7 @@ devices {
 
 CentOS Red Hat互換カーネルの既知の問題については、Red Hat Enterprise Linux（RHEL）8.xシリーズのlink:hu-rhel-8x.html#step-7-review-the-known-issues["既知の問題"]を参照してください。
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
 * ASMミラーリングについて学ぶ
 +

@@ -451,11 +451,7 @@ ONTAPストレージを搭載した SUSE Linux Enterprise Server 15 SPx には�
 |===
 --
 ====
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
 * ASMミラーリングについて学ぶ
 +

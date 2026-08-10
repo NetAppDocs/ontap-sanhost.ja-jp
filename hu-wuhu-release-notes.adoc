@@ -57,9 +57,5 @@ Windows Host Utilities 7.1 には、E シリーズ ストレージ システム�
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online では"^] 既知の問題の詳細情報を提供します。可能な場合は、推奨される対処方法も示します。
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-wuhu-80.html["Windowsホストユーティリティのインストールについて学ぶ"]

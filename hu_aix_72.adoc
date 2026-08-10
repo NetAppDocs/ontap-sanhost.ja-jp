@@ -245,9 +245,5 @@ ONTAPストレージ リリースを搭載した IBM AIX 7.2 および/または
 
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1307653["1307653"^] | VIOS 3.1.1.10では、SFO障害時およびストレートI/O時にI/Oの問題が発生する | VIOS 3.1.1では、16 GBまたは32 GB FCアダプタによってバックアップされたNPIVクライアントディスクでI/O障害が発生することがあります。また、 `vfchost`ドライバはクライアントからのI/O要求の処理を停止することがあります。IBM APAR IJ22290を適用するIBM APAR IJ23222は、この問題を修正します。 | 該当なし 
 |===
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-aix-command-reference.html["AIXホストユーティリティツールの使用について学ぶ"] 。

@@ -161,9 +161,5 @@ NOTE: ロギングやその他の機能に関する標準のMicrosoft Installer�
 
 --
 ====
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-wuhu-configuration.html["ONTAPストレージのWindowsホストユーティリティ構成について学習します"]

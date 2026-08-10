@@ -35,7 +35,7 @@ Windows ホストでは、ストレージ システム イベントを正常に�
 
 [NOTE]
 ====
-Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータ値を変更する必要があります。見る<<nvme_parameter,NVMEパラメータ>> 。
+Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータの値を変更する必要があります。<<nvme-parameter,NVMEパラメータ>> を参照してください。
 
 Windows Host Utilities 8.0、7.2、または 7.1 のその他のすべてのパラメータとレジストリ キーについては、テクニカル サポートから指示がない限り、値を変更する必要はありません。
 
@@ -162,7 +162,7 @@ Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ド�
 
 Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認します。
 
-[#nvme_parameter,role="tabbed-block"]
+[#nvme-parameter,role="tabbed-block"]
 ====
 .Windowsレジストリ値
 --
@@ -467,7 +467,7 @@ Windows ホスト ユーティリティは、MS DSM for Windows MPIO が検出�
 HBA の問題をトラブルシューティングするときは、これらの設定に正しい値が設定されていることを確認してください。正しい値は次の 2 つの要因によって決まります。
 
 * HBA ベンダー
-* MPIO ソフトウェアを使用しているかどうか。
+* MPIOソフトウェアを使用しているかどうか
 
 
 HBA設定を修正するには、link:hu_wuhu_repair_remove.html["修復オプションを実行する"] Windows ホスト ユーティリティ インストーラーで。

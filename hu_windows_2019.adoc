@@ -226,9 +226,5 @@ image::nonasa.png[2つのアクティブ/最適パスと2つのアクティブ/�
 
 既知の問題はありません。
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-wuhu-configuration.html["ONTAPストレージのWindowsホストユーティリティ構成について学習します"]

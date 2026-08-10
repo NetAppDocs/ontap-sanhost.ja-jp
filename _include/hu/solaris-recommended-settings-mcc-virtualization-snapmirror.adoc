@@ -17,7 +17,7 @@ MetroClusterのデフォルト設定に関する追加情報と推奨される�
 --
 ** Solaris 仮想化オプションには、Solaris 論理ドメイン (LDOM または Oracle VM Server for SPARC とも呼ばれます)、Solaris 動的ドメイン、Solaris ゾーン、および Solaris コンテナが含まれます。これらのテクノロジーは、「Oracle Virtual Machines」とも呼ばれます。
 ** 特定の Solaris 論理ドメイン内の Solaris コンテナなど、複数のオプションを一緒に使用できます。
-** NetAppは、Oracleが全体的な構成をサポートし、LUNに直接アクセスできるパーティションがリストされているSolaris仮想化テクノロジの使用をサポートしています。link:https://imt.netapp.com/matrix/#welcome["IMT にログインします。"]サポートされている構成で。これには、ルート コンテナー、LDOM I/O ドメイン、NPIV を使用して LUN にアクセスする LDOM が含まれます。
+** NetAppは、Oracle が全体的な構成をサポートし、LUN に直接アクセスできるパーティションがサポートされている構成でlink:https://imt.netapp.com/matrix/#welcome["IMT にログインします。"^]にリストされている場合、Solaris 仮想化テクノロジーの使用をサポートします。これには、ルートコンテナ、LDOM I/O ドメイン、および NPIV を使用して LUN にアクセスする LDOM が含まれます。
 ** 仮想化されたストレージリソースのみを使用するパーティションまたは仮想マシン（例： `vdsk` ONTAP LUN に直接アクセスできないため、特別な資格は必要ありません。  LDOM I/Oドメインなど、基盤となるLUNに直接アクセスできるパーティションまたは仮想マシンが、link:https://imt.netapp.com/matrix/#welcome["IMT にログインします。"^] 。
 
 

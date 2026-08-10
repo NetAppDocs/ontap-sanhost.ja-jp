@@ -8,7 +8,7 @@
 +
 [source, cli]
 ----
-pkg info entire`
+pkg info entire
 ----
 .. ONTAP LUNが `ostype`LUNのサイズに関係なく、「Solaris」として表示されます。
 +
@@ -60,7 +60,7 @@ root@sparc-s7-55-148:~# sanlun lun show -pv
 +
 [source, cli]
 ----
-mpathadm show lu <LUN>`
+mpathadm show lu <LUN>
 ----
 +
 次の出力例は、 ASA、 AFF、またはFAS構成におけるONTAP LUN の正しいパス ステータスを示しています。出力では、各 LUN の「アクセス状態」に対してパスの優先度が表示されます。

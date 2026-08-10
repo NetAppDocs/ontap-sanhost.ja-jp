@@ -460,11 +460,7 @@ ONTAPストレージを搭載した Rocky Linux 9.x には、次の既知の問�
 |===
 --
 ====
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
 * ASMミラーリングについて学ぶ
 +

@@ -153,9 +153,5 @@ PdAt:
 ====
 
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-aix-san-toolkit.html["AIX SAN ツールキットについて学ぶ"] 。

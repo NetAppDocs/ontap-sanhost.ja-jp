@@ -70,9 +70,5 @@ link:https://mysupport.netapp.com/site/["NetApp Bugs Online では"^] 既知の�
 * FCP - AIXの場合
 
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-aix-80.html["AIXホストユーティリティのインストールについて学ぶ"]

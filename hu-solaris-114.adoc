@@ -121,7 +121,7 @@ MetroClusterのデフォルト設定に関する追加情報と推奨される�
 --
 ** Solaris 仮想化オプションには、Solaris 論理ドメイン (LDOM または Oracle VM Server for SPARC とも呼ばれます)、Solaris 動的ドメイン、Solaris ゾーン、および Solaris コンテナが含まれます。これらのテクノロジーは、「Oracle Virtual Machines」とも呼ばれます。
 ** 特定の Solaris 論理ドメイン内の Solaris コンテナなど、複数のオプションを一緒に使用できます。
-** NetAppは、Oracleが全体的な構成をサポートし、LUNに直接アクセスできるパーティションがリストされているSolaris仮想化テクノロジの使用をサポートしています。link:https://imt.netapp.com/matrix/#welcome["IMT にログインします。"]サポートされている構成で。これには、ルート コンテナー、LDOM I/O ドメイン、NPIV を使用して LUN にアクセスする LDOM が含まれます。
+** NetAppは、Oracle が全体的な構成をサポートし、LUN に直接アクセスできるパーティションがサポートされている構成でlink:https://imt.netapp.com/matrix/#welcome["IMT にログインします。"^]にリストされている場合、Solaris 仮想化テクノロジーの使用をサポートします。これには、ルートコンテナ、LDOM I/O ドメイン、および NPIV を使用して LUN にアクセスする LDOM が含まれます。
 ** 仮想化されたストレージリソースのみを使用するパーティションまたは仮想マシン（例： `vdsk` ONTAP LUN に直接アクセスできないため、特別な資格は必要ありません。  LDOM I/Oドメインなど、基盤となるLUNに直接アクセスできるパーティションまたは仮想マシンが、link:https://imt.netapp.com/matrix/#welcome["IMT にログインします。"^] 。
 
 
@@ -204,7 +204,7 @@ NOTE: 実行後 `scsi-vhci-failover-override` が適用されました。 `conf`
 +
 [source, cli]
 ----
-pkg info entire`
+pkg info entire
 ----
 .. ONTAP LUNが `ostype`LUNのサイズに関係なく、「Solaris」として表示されます。
 +
@@ -256,7 +256,7 @@ root@sparc-s7-55-148:~# sanlun lun show -pv
 +
 [source, cli]
 ----
-mpathadm show lu <LUN>`
+mpathadm show lu <LUN>
 ----
 +
 次の出力例は、 ASA、 AFF、またはFAS構成におけるONTAP LUN の正しいパス ステータスを示しています。出力では、各 LUN の「アクセス状態」に対してパスの優先度が表示されます。
@@ -445,9 +445,5 @@ ONTAPストレージを使用した FCP および iSCSI の Solaris 11.4 リリ�
 
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1345622["1345622"^] | OSネイティブコマンドを使用したASA / pportを使用したSolarisホストでの異常パスレポート | オールSANアレイ（ASA）を搭載したSolaris 11.4では、パスが断続的に報告される問題が発生することがあります。 | 該当なし 
 |===
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-solaris-command-reference.html["Solarisホストユーティリティツールの使用について学ぶ"] 。

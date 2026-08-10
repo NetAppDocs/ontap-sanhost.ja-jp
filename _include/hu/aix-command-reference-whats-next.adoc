@@ -1,10 +1,6 @@
-= 次は何？
+= 
 :allow-uri-read: 
 
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu-aix-command-reference.html["AIXホストユーティリティツールの使用について学ぶ"] 。

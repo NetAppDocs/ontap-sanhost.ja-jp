@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: hu_ubuntu_2204.html 
-keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
-summary: ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、Ubuntu 24.04 ホストに Linux ホスト ユーティリティをインストールします。 
+keywords: host utilities, red hat, rhel, linux, 22.04, netapp, ontap, ubuntu 
+summary: Ubuntu 22.04 ホストに Linux Host Utilities をインストールして、ONTAP LUN との FCP および iSCSI プロトコル操作を管理します。 
 ---
 = ONTAPストレージを使用してUbuntu 22.04をFCPおよびiSCSI用に設定する
 :hardbreaks:
@@ -417,11 +417,7 @@ devices {
 
 既知の問題はありません。
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
 * ASMミラーリングについて学ぶ
 +

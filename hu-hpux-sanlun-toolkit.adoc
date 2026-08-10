@@ -40,9 +40,5 @@ sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c81t0d0  fclp0 
 SAN Toolkit は、AIX および PowerVM/VIOS OS バージョンでサポートされています。
 
 ====
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 link:hu_hpux_60_cmd.html["HP-UXホストユーティリティツールの使用について学ぶ"] 。

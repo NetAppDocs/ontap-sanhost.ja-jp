@@ -396,11 +396,7 @@ devices {
 
 既知の問題はありません。
 
-
-
-[[whats-next]]
-== 次の手順
-
+.次の手順
 * link:hu-luhu-command-reference.html["Linux Host Utilitiesツールの使用方法"] 。
 * ONTAP LUN上にHPE VMEデータストアを設定し、仮想マシンを設定してください。詳細については、ベンダーのHPEドキュメントを参照してください。
 
