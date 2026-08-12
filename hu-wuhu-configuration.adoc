@@ -35,7 +35,7 @@ Windows ホストでは、ストレージ システム イベントを正常に�
 
 [NOTE]
 ====
-Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータの値を変更する必要があります。<<nvme-parameter,NVMEパラメータ>> を参照してください。
+Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータの値を変更する必要があります。<<parameter-72,NVMEパラメータ>>を参照してください。
 
 Windows Host Utilities 8.0、7.2、または 7.1 のその他のすべてのパラメータとレジストリ キーについては、テクニカル サポートから指示がない限り、値を変更する必要はありません。
 
@@ -160,9 +160,9 @@ Windows Host Utilities 8.0 は、インストール中に次の NVMe Emulex ド�
 [[review-the-configuration-settings-for-windows-host-utilities-7-2]]
 == Windows Host Utilities 7.2 の構成設定を確認します
 
-Windows ホスト ユーティリティ インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティング システムのバージョンを確認します。
+[[parameter-72]]Windows Host Utilities インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティングシステムのバージョンを確認してください。
 
-[#nvme-parameter,role="tabbed-block"]
+[role="tabbed-block"]
 ====
 .Windowsレジストリ値
 --

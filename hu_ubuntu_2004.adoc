@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: hu_ubuntu_2004.html 
-keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
+keywords: host utilities, linux, 20.04, netapp, ontap, ubuntu 
 summary: Ubuntu 20.04 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。 
 ---
 = ONTAPストレージを使用してUbuntu 20.04をFCPおよびiSCSI用に設定する

@@ -2521,10 +2521,11 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="ed8e051a49611c288afb480ce73d605d" category="list-text">NetAppは、Oracle が全体的な構成をサポートし、LUN に直接アクセスできるパーティションがサポートされている構成で<block ref="60b6cb8e2c630f624cf99dafa0404aa7" category="inline-link-macro-rx"></block>にリストされている場合、Solaris 仮想化テクノロジーの使用をサポートします。これには、ルートコンテナ、LDOM I/O ドメイン、および NPIV を使用して LUN にアクセスする LDOM が含まれます。</block>
   <block id="0048a12413609133ed4f3ca29bf0024a" category="section-title">Linux Host Utilities 8.0 の新機能</block>
   <block id="6c9c1ae20d4741183e62db33bcf45d49" category="section-title">Linux Host Utilities 7.1 の新機能</block>
-  <block id="4af9cfdb8fa2a5afc040af3eb77660bd" category="paragraph">Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータの値を変更する必要があります。<block ref="dc46e8bfbb9f77d795c66139839b2373" category="inline-xref-macro-rx"></block> を参照してください。</block>
   <block id="ec931df4ed265dbeb58635743fb2c8a1" category="list-text">MPIOソフトウェアを使用しているかどうか</block>
   <block id="ccc5200a41ac281136e85915742ee943" category="summary">Ubuntu 22.04 ホストに Linux Host Utilities をインストールして、ONTAP LUN との FCP および iSCSI プロトコル操作を管理します。</block>
   <block id="9227e9de01a4a3312d8274d2e61e478c" category="list-text">ONTAP 9.16.1 以降、新しく作成されたすべての NVMe ネームスペースに対して、デフォルトでスペース割り当てが有効になっています。</block>
   <block id="a75717feaa22af7bffd985baebeb5c22" category="list-text">ONTAP 9.9.1 P3以降、NVMe/FCプロトコルはESXi 8でサポートされています。</block>
   <block id="f6615e8535f35dd305084ea2894bfa16" category="list-text">ONTAP 9.10.1 以降、NVMe/TCP プロトコルは ONTAP でサポートされています。</block>
+  <block id="06980ca83225c81b8134c0b467016286" category="paragraph">Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータの値を変更する必要があります。<block ref="62303d561309e8cf89d2be92987f3150" category="inline-xref-macro-rx"></block>を参照してください。</block>
+  <block id="6a79af20a523a4fc84d19fee8187b203" category="paragraph">[[parameter-72]]Windows Host Utilities インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティングシステムのバージョンを確認してください。</block>
 </blocks>
