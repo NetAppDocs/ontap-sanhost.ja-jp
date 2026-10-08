@@ -4,7 +4,7 @@ permalink: hu_wuhu_troubleshoot.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilitiesには、WindowsホストがONTAPおよびEシリーズプラットフォームのストレージシステムの動作を正しく処理できるように、必要なWindowsレジストリとHBAパラメータを設定するインストールプログラムが含まれています。 
 ---
-= ONTAPストレージ構成での Windows ホスト ユーティリティの問題のトラブルシューティング
+= ONTAPストレージでのWindows Host Utilitiesの問題のトラブルシューティング
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

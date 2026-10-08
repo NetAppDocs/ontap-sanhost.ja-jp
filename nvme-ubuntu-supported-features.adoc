@@ -4,7 +4,7 @@ permalink: nvme-ubuntu-supported-features.html
 keywords: nvme, linux, ubuntu, red hat, enterprise 
 summary: Ubuntu ホストに対する ONTAP のサポートと機能について説明します 
 ---
-= Ubuntu ホストに対する ONTAP のサポートと機能について説明します
+= Ubuntuホスト向けのONTAPのサポートと機能
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

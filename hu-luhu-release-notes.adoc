@@ -4,7 +4,7 @@ permalink: hu-luhu-release-notes.html
 keywords: host utilities, linux, 7.1, netapp, ontap, release, notes, linux 
 summary: Linux ホスト ユーティリティのリリース ノート 
 ---
-= Linux ホストユーティリティ リリースノート
+= ONTAPストレージ向けLinuxホストユーティリティ リリースノート
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

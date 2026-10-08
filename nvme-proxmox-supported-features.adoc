@@ -4,7 +4,7 @@ permalink: nvme-proxmox-supported-features.html
 keywords: nvme, proxmox, enterprise 
 summary: ProxmoxホストのONTAPサポートと機能について学ぶ 
 ---
-= ProxmoxホストのONTAPサポートと機能について学ぶ
+= Proxmoxホスト向けのONTAPのサポートと機能
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

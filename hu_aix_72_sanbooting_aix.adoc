@@ -4,7 +4,7 @@ permalink: hu_aix_72_sanbooting_aix.html
 keywords: host utilities, aix, netapp, ontap, configure, discover, configuring, discovering 
 summary: AIX で LUN を検出して設定する方法について説明します 
 ---
-= （PowerVMを使用しないAIX MPIO）AIXでLUNを検出して設定
+= PowerVMを使用しないAIX MPIOでのONTAP LUNの検出と設定
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

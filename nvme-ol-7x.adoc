@@ -4,7 +4,7 @@ permalink: nvme-ol-7x.html
 keywords: nvme, linux, oracle, 7.x 
 summary: ONTAPを使用した Oracle Linux 7.x の VMe/FC ホスト構成のセットアップ（例付き） 
 ---
-= ONTAPストレージ用にNVMe-oFを使用してOracle Linux 7.xを構成する
+= ONTAPストレージを使用してNVMe-oF用にOracle Linux 7.xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

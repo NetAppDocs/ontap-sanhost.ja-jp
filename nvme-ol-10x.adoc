@@ -4,7 +4,7 @@ permalink: nvme-ol-10x.html
 keywords: nvme, oracle linux, 10.x, host configuration 
 summary: ONTAPを使用したOracle Linux 10のNVMe-oFホスト構成 
 ---
-= ONTAP ストレージ用にOracle Linux 10.xとNVMe-oFを設定
+= ONTAPストレージを使用してNVMe-oF用にOracle Linux 10.xを構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

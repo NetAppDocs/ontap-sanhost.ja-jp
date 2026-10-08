@@ -4,7 +4,7 @@ permalink: hu-luhu-command-reference.html
 keywords: host utilities, unified, oracle, linux, 8.0, netapp, ontap 
 summary: ONTAPストレージでLinuxホストユーティリティを使用する方法について説明します。 
 ---
-= Linuxホストユーティリティコマンドを使用してONTAPストレージ構成を確認します
+= ONTAPストレージ構成用のLinux Host Utilitiesコマンド
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

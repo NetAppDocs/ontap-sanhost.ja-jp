@@ -182,7 +182,6 @@
   <block id="be2cbf983ce5aaf5cec559b7a8d44b84" category="cell"><block ref="35083bea0af3fa7f91401543bde4bbe0" category="inline-link-macro-rx"></block></block>
   <block id="9e6450c950b8558765ce9270afe312a9" category="cell">iSCSI SAN LUN への Red Hat Enterprise Linux 8.1 のインストール中に、複数のパスへのログインが失敗します</block>
   <block id="30045ce4258ea19d1fa94bb454681b76" category="cell">iSCSI SAN LUN マルチパスデバイスへの Red Hat Enterprise Linux 8.1 のインストール中は、複数のパスにログインできません。マルチパス iSCSI デバイスへのインストールは実行できず、 SAN ブートデバイスでマルチパスサービスが有効になっていません。</block>
-  <block id="6b41fb8eea99b0d8d062e30f5b71d616" category="summary">ONTAP 搭載の Windows Server 2019 向け NVMe/FC ホスト構成</block>
   <block id="7d182740e5fe1d15ec7f97f69178b4a8" category="list-text">各 HBA イニシエータポートで、次の HBA ドライバパラメータを設定します。</block>
   <block id="1d71ea83cceb2b7470e1c54838adb506" category="list-text">EnableNVMe = 1</block>
   <block id="814e9f528f5fa391cd6774e57a5c651c" category="list-text">NVMEMode = 0</block>
@@ -384,7 +383,6 @@
   <block id="32014634f5e91fea92881a76289729e4" category="paragraph">次のコマンドを使用して、 QFullSampleSize を確認します</block>
   <block id="bcf5b4c5647c7c3861431c638d411876" category="paragraph">*esxcli system settings advanced list --option/Disk/QFullSampleSize`*</block>
   <block id="784c795c066fdf3c4713aae58af639ff" category="paragraph">既知の問題はありません。</block>
-  <block id="52f50d0f0ab285059648c7da67b4b07f" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
   <block id="dd1e6355fcc2ca3c16ece42015663e00" category="cell">1362435</block>
   <block id="393cfee0a3b5d3e706f8a0cdeefa3ed8" category="cell">HUK 6.2 および Solaris_11.4 FC ドライババインディングの変更</block>
   <block id="8e831c271747ab1b149f40a1bfc61175" category="cell">（ドキュメント ID 2595926.1 ）</block>
@@ -458,8 +456,6 @@
   <block id="8f84cc2094be4df68793798acab1c394" category="cell">ストレージフェイルオーバー中に、 AIX 7.2 TL04 で仮想 iSCSI ディスク（ VIOS 3.1.x ）で I/O の停止が発生しました</block>
   <block id="7187b48095d030e01ab6d9d7338221f3" category="cell">VIOS 3.1.x を介してマッピングされた仮想 iSCSI ディスク上の AIX 7.2 TL4 ホストで、ストレージフェイルオーバー処理中に I/O が中断することがありますデフォルトでは、 VIOC 上の vSCSI アダプタの「 rw_timeout 」値は 45 秒です。ストレージのフェイルオーバー時に 45 秒以上の I/O 遅延が発生すると、 I/O 障害が発生する可能性があります。この状況を回避するには、 BURT に記載されている回避策を参照してください。</block>
   <block id="ee3c9604966f68c69c5d81299e5c5913" category="paragraph">ファイルを解凍すると 'ntap_aix_host_utilities_6.1' というディレクトリが作成されますこのディレクトリには、 MPIO 、 NON_MPIO 、または SAN_Tool_Kit のいずれかのサブディレクトリがあります</block>
-  <block id="1da730d18c28f088385f1eaca3cb2f71" category="summary">ONTAP で ESXi 7.x の NVMe-oF を設定する方法について説明します</block>
-  <block id="38a445b35a68bb2b838316376b083c19" category="doc">ONTAP を使用した ESXi 7.x の NVMe-oF ホストの設定</block>
   <block id="1149b7a7ae9be623a3a7a3f347ff721f" category="list-text">ONTAP 9.9.1 P3 以降では、 ESXi 7.0 Update 3 で NVMe/FC 機能がサポートされます。</block>
   <block id="087c6f6069a3f1c08cb62e3d53029f80" category="list-text">ESXi 7.0 以降のリリースでは、ハイパフォーマンスプラグイン（ HPP ）が NVMe デバイスのデフォルトプラグインです。</block>
   <block id="f19c49e2c5af4fdef9d76da8243928b8" category="paragraph">次の構成はサポートされません。</block>
@@ -474,10 +470,8 @@
   <block id="262311c06b4d7e1d63d9ec53a8513969" category="list-text">ESXi ホストに NVMe/FC アダプタが表示されていることを確認します。</block>
   <block id="a4e09728b21e07eb8de92849a3239079" category="admonition">ONTAP 9.7 では、 NVMe/FC ネームスペースのデフォルトのブロックサイズは 4K です。このデフォルトサイズは ESXi に対応していません。したがって、 ESXi のネームスペースを作成する場合は、ネームスペースのブロックサイズを 512b に設定する必要があります。これを行うには、「 vserver nvme namespace create 」コマンドを使用します。</block>
   <block id="b19cff5a6d037faf5ffa796506cf839f" category="inline-link-macro">ONTAP 9 コマンドのマニュアルページ</block>
-  <block id="471e82326ed5017bfdb518b5d33377cc" category="inline-link-macro">NetApp MetroCluster での VMware vSphere 5.x 、 6.x 、および 7.x のサポート（ 2031038 ）</block>
   <block id="9a85ce7daf00cd97d2ba489c461c944f" category="paragraph">を参照してください <block ref="6bc1436da9f0920d54a0f738830d902f" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="24b832a3c490bb4e76193c9ae615cd2b" category="admonition">UNMAP が機能するために、 VMware vSphere にマッピングされているすべての LUN で space-allocation 設定を有効にします。詳細については、を参照してください<block ref="ecbbd19c2959ac5708c6c4723def4492" category="inline-link-rx"></block>。</block>
-  <block id="8a515fe16331b7269862c5871e55c7e4" category="list-text"><block ref="8a515fe16331b7269862c5871e55c7e4" category="inline-link-macro-rx"></block></block>
   <block id="dd31b82b57542d64583398514e1838f4" category="section-title">NVMe/FC を有効にします</block>
   <block id="30184b2ffcd5459f75061dc63a6b8c62" category="section-title">NVMe/FC を検証</block>
   <block id="f4091bd53ceacc19d9ac766c9cdb9866" category="section-title">NVMe/FC を設定</block>
@@ -641,7 +635,6 @@
   <block id="e0ace13bee28a678ec04ad1b076b4b00" category="admonition">VASA Provider を有効にするには、 VMware vSphere 用の ONTAP ツールを導入する必要があります。すべてのigroup設定はVASA Providerによって管理されるため、VVOL環境でigroupを作成または管理する必要はありません。</block>
   <block id="4ace21de4701510a7868bf0b96619e05" category="cell">実行中です<block ref="cb4b12dfd645e3fcd47ea6dec988643f" prefix=" " category="inline-code"></block> Emulexのエンドツーエンド構成では、I/Oエラーが発生します。この問題は、ONTAP 9.5P17、9.6P14、9.7P13、9.8P2で修正されています</block>
   <block id="7ff276d19a76a720d17e3dcf4d050ee3" category="summary">ESXi 8.xおよびONTAP を実行するイニシエータホストでは、NVMe over Fabrics（NVMe-oF）をターゲットとして設定できます。</block>
-  <block id="c719ab5e5b2a188adebd62c0829a9f96" category="doc">ONTAP を搭載したESXi 8.x向けのNVMe-oFホスト構成</block>
   <block id="7c1c1c55c2c606a3cf3259643b78a017" category="list-text">ESXiイニシエータホストでは、NVMe/FCトラフィックとFCPトラフィックの両方を、同じアダプタポート経由で実行できます。を参照してください <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> サポートされる FC アダプタおよびコントローラの一覧を表示するには、を参照してください。を参照してください <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block> サポートされる構成およびバージョンの最新のリストについては、を参照してください。</block>
   <block id="d202ecba0de538b2ab3f4e53f0191f53" category="list-text">ESXi 8.0以降のリリースでは、NVMeデバイスのデフォルトのプラグインはHPP（ハイパフォーマンスプラグイン）です。</block>
   <block id="b1d7de4d8d51704fba7a0c0f12c2c299" category="list-text">RDMマッピングはサポートされていません。</block>
@@ -888,10 +881,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="0d2b4c4b2840eab7bfae167b812970ef" category="cell"><block ref="0d2b4c4b2840eab7bfae167b812970ef" category="inline-link-macro-rx"></block></block>
   <block id="af3b3cf0d6ceafbe31919aa407157743" category="cell"><block ref="af3b3cf0d6ceafbe31919aa407157743" category="inline-link-macro-rx"></block></block>
   <block id="bc2c3049c0f4d679fb14b74cd64723c8" category="cell"><block ref="bc2c3049c0f4d679fb14b74cd64723c8" category="inline-link-macro-rx"></block></block>
-  <block id="c96b4702a07478185cc851585d0055b6" category="inline-link-macro">NetApp ONTAPとNetApp SnapMirrorのアクティブな同期とVMware vSphere Metro Storage Cluster（vMSC）</block>
-  <block id="8b3f58063486fce853bcbb473e73c56f" category="list-text"><block ref="8b3f58063486fce853bcbb473e73c56f" category="inline-link-macro-rx"></block></block>
-  <block id="e59f05c9149caf590d63da27c24797cb" category="inline-link-macro">NetApp®SnapMirror Active SyncによるVMware vSphere 6.xおよび7.xのサポート</block>
-  <block id="2a41c03d949869222b758867aff845ff" category="inline-link-macro">NetApp SnapMirror Active SyncによるVMware vSphere 6.xおよび7.xのサポート</block>
   <block id="33bd005b46fadc3ac5ff4dc797b52e07" category="list-text">MetroCluster構成を使用している場合はNetApp、AIXオペレーティングシステムによるI/Oタイムアウトの短縮を回避するために、MetroCluster計画外スイッチオーバーイベントをサポートするために、AIX NVMe/FCのデフォルトAPD（All Path Down）時間を変更することを推奨します。追加情報およびデフォルト設定の推奨される変更については、『NetApp Bugs Online - <block ref="31191f9686b6d08dd8653718c76edbf6" category="inline-link-macro-rx"></block>。</block>
   <block id="4d580b4b5071142b4be038164aad8343" category="cell"><block ref="4d580b4b5071142b4be038164aad8343" category="inline-link-macro-rx"></block></block>
   <block id="0122bdec62d25017bba3ae0743d2526e" category="cell"><block ref="0122bdec62d25017bba3ae0743d2526e" category="inline-link-macro-rx"></block></block>
@@ -1003,7 +992,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="f649e10e42e29ffba2e2835946ada018" category="paragraph">SAN ブートを使用する場合は、構成でサポートされている必要があります。を使用して、OS、HBA、HBAファームウェアとHBAブートBIOS、およびONTAPのバージョンがサポートされていることを確認できます<block ref="d663e2c355c00396895dd4c79ec8b92b" category="inline-link-macro-rx"></block>。</block>
   <block id="0c67f6a4c7f1b6e00bc41e20176e3e4c" category="cell">VIOS 3.1.1.10では、SFO障害時およびストレートI/O時にI/Oの問題が発生する</block>
   <block id="f7a5f353c104253016bca910e58de784" category="cell">VIOS 3.1.1では、16 GBまたは32 GB FCアダプタによってバックアップされたNPIVクライアントディスクでI/O障害が発生することがあります。また、<block ref="f882ef508f1d971bf42e00837f4d22a8" prefix=" " category="inline-code"></block>ドライバはクライアントからのI/O要求の処理を停止することがあります。IBM APAR IJ22290を適用するIBM APAR IJ23222は、この問題を修正します。</block>
-  <block id="79c864ac5e64428609df0299cdc74738" category="doc">（PowerVMを使用しないAIX MPIO）AIXでLUNを検出して設定</block>
   <block id="cbd11fff7903ad7c3c25ff7d4c0a28a4" category="paragraph">PowerVMを搭載していないAIXを使用する場合は、コマンドを実行してホストがLUNを検出できるようにすることができます<block ref="fe54d1c30028417038a4ffe0fc5eb503" prefix=" " category="inline-code"></block>。LUNを検出するためにホストをリブートする必要はありません。ホストで LUN が検出されたことを確認するには、 sanlun ユーティリティを使用できます。</block>
   <block id="98e87ad1da2237f2b632525794232c82" category="list-text">NetApp LUNを含むすべてのAIXディスクを表示します。</block>
   <block id="cc0280ad1883ba73200ef923c35deec8" category="paragraph">次の例は、FC環境でのコマンド出力を示して<block ref="5d5b41f106bc7c056c6a90ee2e311798" prefix=" " category="inline-code"></block>います。</block>
@@ -1173,8 +1161,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="a6389705a0010980a83767268763aa53" category="inline-link-macro">ONTAP toolsを使用した仮想ボリューム（VVol）10</block>
   <block id="09b616c445ab7efa8240062532e526e4" category="inline-link">ONTAP を使用した VMware vSphere</block>
   <block id="11b7981a4bc487d4291cc9a0614db625" category="list-text"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block></block>
-  <block id="18833e14b5b5c7c59e24b7d84a7675c8" category="paragraph"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block> <block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block> <block ref="d28f7a65afd9b0a0129dadbafa84555d" category="inline-link-macro-rx"></block></block>
-  <block id="75bf2e375bd6a6c261100e60951c4331" category="paragraph"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block> <block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block> <block ref="5f61a87054f37a4d758972ec77cfdf5e" category="inline-link-macro-rx"></block></block>
   <block id="2042f6b0f24c7e66a0696f995c26649f" category="doc">手順4：必要に応じて、マルチパスからデバイスを除外する</block>
   <block id="613ab33f622153c715120fe35873e05e" category="paragraph">必要に応じて、不要なデバイスのWWIDをファイルの「blacklist」スタンザに追加することで、デバイスをマルチパスから除外できます<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>。</block>
   <block id="445d6b5f796f2b279f00ab2c9c5e6254" category="paragraph">sdaは、ブラックリストに追加するローカルSCSIディスクです。</block>
@@ -1447,7 +1433,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="9f6770d142cc85850fcf3cb67b3d266f" category="list-text">ソフトウェア バージョンが 8.0.1f0fc74c であることを確認します。</block>
   <block id="88119cd3cc25df648a7f33d113bc56ab" category="list-text">SCSI UNMAPを確認する<block ref="ce7e54a230e7d7f6125c862b6201f954" prefix=" " category="inline-code"></block>ODM にパラメータが追加されました:</block>
   <block id="45b1bf92080c40662a70a1ac26aeedf3" category="listing-title">出力例</block>
-  <block id="594c5f590ab1fe2dac609f4a36fb7273" category="doc">AIXホストユーティリティコマンドを使用してONTAPストレージ構成を確認します</block>
   <block id="06f85e9e47f5b096622f76333fa1edbb" category="example-title">AIX ホストユーティリティ 8.0 の例を表示</block>
   <block id="1e4935dd6493c79127a5c9f6121bdfbc" category="open-title">7.0と6.1</block>
   <block id="6654350ba6f70f82811d19d9de567655" category="example-title">AIX ホストユーティリティ 7.0 および 6.1 の例を表示</block>
@@ -1473,7 +1458,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="83e3a5703b1628b857c08d688ab643b9" category="paragraph">HP-UX ホスト ユーティリティ 6.0 は、次の HP-UX OS バージョンをサポートしています。</block>
   <block id="3a3b7ac2e39541ea05707ccd6eb054d4" category="section-title">既知の問題と制限事項</block>
   <block id="24900e660af76d8e5775799512404385" category="paragraph">既知の問題や制限はありません。</block>
-  <block id="059c78294312cf045138bbfcf66eb126" category="doc">ONTAPストレージ向けSANツールキットについて学ぶ</block>
   <block id="ec14ad28eef0a7bf687defebd1a0dc85" category="paragraph">HP-UX ホスト ユーティリティは、HP-UX ホスト上でコマンド ライン ツールキットを提供するNetAppホスト ソフトウェアです。ツールキットは、 NetApp Host Utilities パッケージをインストールするときにインストールされます。このキットには、<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> ONTAP LUN とホスト バス アダプタの管理に役立つユーティリティです。その<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>コマンドは、ホストにマップされている LUN、マルチパス、およびイニシエータ グループの作成に必要な情報を返します。</block>
   <block id="26a6d0a6edac8d1c0e3d94e10df15650" category="paragraph">次の例では、<block ref="5927da9399de65ab7428ce807e88771e" prefix=" " category="inline-code"></block>コマンドはONTAP LUN 情報を返します。</block>
   <block id="905371a83eb0f0229042516d3c7f97b1" category="paragraph">この SAN ツールキットは、すべてのホスト ユーティリティ構成およびプロトコルに共通です。その結果、すべてのコンポーネントがすべての構成に適用されるわけではありません。使用されていないコンポーネントはシステムのパフォーマンスに影響を与えません。</block>
@@ -1488,7 +1472,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="0ea3e528a268f7a469a48d5d8aae4f82" category="paragraph">ベンダーのドキュメントを参照して、次のパッケージが正しくインストールされていることを確認してください。これらのパッケージは、<block ref="09a10ae06f964cc0f5c0201377e37384" prefix=" " category="inline-code"></block>指示：</block>
   <block id="291498f8ec1453e277a2e2b46e71ae68" category="list-text">現在 Linux Host Utilities のバージョンがインストールされている場合は、それを削除します。</block>
   <block id="a47e489edc31ec3082b9f72fed5a5375" category="list-text">ソフトウェア パッケージをダウンロードしたディレクトリに移動してインストールします。</block>
-  <block id="bf2fa1be3b14254d86cd9857c8495543" category="doc">Linuxホストユーティリティコマンドを使用してONTAPストレージ構成を確認します</block>
   <block id="3a61827896464412c2e42d33f758f4f1" category="paragraph">Linux ホスト ユーティリティ サンプル コマンド リファレンスを使用すると、ホスト ユーティリティ ツールを使用してNetAppストレージ構成をエンドツーエンドで検証できます。</block>
   <block id="509349566982f99a656299d84be158b8" category="summary">Linux ホスト ユーティリティのリリース ノート</block>
   <block id="cfdc7e76ebdc6ad4a2ed2fe7838b63ff" category="doc">Linux ホストユーティリティ リリースノート</block>
@@ -1510,7 +1493,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="04f7390daef23ea8f8ba426ae782426d" category="cell">実行中に発生する断続的なホストOS障害の問題<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block>SUSE Linux Enterprise Server 12 SP1、Oracle Linux 7.2、RHEL 7.2、および RHEL 6.8 のコマンド。</block>
   <block id="047616cf46cf98f773cfbd0edf18de97" category="paragraph">特定のホストのパフォーマンスに影響を及ぼす可能性のある次の既知の問題と制限事項に注意する必要があります。</block>
   <block id="e76aeaaa9fbfeb4cdf98a140a0a10918" category="cell">Linux ホスト ユーティリティ CLI コマンド「sanlun fcp show adaptor -v」を SAN ホストで実行すると、ホスト バス アダプタ HBA 検出に必要なライブラリ依存関係が見つからないことを示すエラー メッセージが表示され、コマンドが失敗します。<block ref="41f02e5b1284b1c0d32b0bac02fd615f" prefix=" " category="inline-code"></block> NetAppのバグオンラインを参照してください -<block ref="af3b3cf0d6ceafbe31919aa407157743" category="inline-link-macro-rx"></block> 。</block>
-  <block id="55ae6b8aefe00f4e41d5b2de159634cc" category="doc">ONTAPストレージの「sanlun」ユーティリティについて学ぶ</block>
   <block id="417c4f9e58c0a853841b3ed0c271837c" category="paragraph">Linuxホストユーティリティは、 NetAppのホストソフトウェアであり、<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> Linux ホスト上のコマンド。その<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>NetApp Host Utilities パッケージをインストールすると、ユーティリティが自動的にインストールされます。このユーティリティは、<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> ONTAP LUN およびホスト バス アダプタ (HBA) を管理するために使用できるコマンド。その<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>コマンドは、ホストにマップされたONTAP LUN、マルチパス、およびイニシエータ グループの作成に必要な情報を返します。</block>
   <block id="bd678fd25f473f5645990f1c9283c34b" category="paragraph">次の例では、<block ref="0576b77e024dfde74ab10f4d14c4138a" prefix=" " category="inline-code"></block>コマンドはONTAP LUN 情報を返します。</block>
   <block id="9b1f2a19fe68c5002ddcac15a60e5a23" category="list-text">Linux ホスト ユーティリティ 7.1 の場合、「sanlun」ユーティリティは、ホスト ユーティリティのすべての構成とプロトコルで共通です。その結果、その内容の一部は 1 つの構成には適用されますが、別の構成には適用されません。未使用のコンポーネントがあってもシステムのパフォーマンスには影響しません。</block>
@@ -1556,7 +1538,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="4e7c844ed51a666f84ad8bcf2e71d65a" category="cell">MetroCluster上の FCP は MPxIO としてマルチパスを使用し、すべてのパス ダウンの値は 120 秒に設定されています。  (これはMetroCluster構成に推奨される設定です)。</block>
   <block id="3b73fde0526aa5735452da53c395dc38" category="paragraph">ホスト ユーティリティは、 ONTAP LUN に対して次のNetApp推奨タイムアウト パラメータ設定を読み込みます。</block>
   <block id="64349882c1f787c3b5516b9e9f8ad791" category="list-text">ホスト ユーティリティのインストールを確認します。</block>
-  <block id="19b0b1ffb2094b2504c5f1a5a6ed4383" category="doc">Solarisホストユーティリティコマンドを使用してONTAPストレージ構成を確認します</block>
   <block id="36bb22d5ac1d72800fd0f8fabaf19b1b" category="paragraph">Solaris ホスト ユーティリティ サンプル コマンド リファレンスを使用すると、ホスト ユーティリティ ツールを使用してNetAppストレージ構成をエンドツーエンドで検証できます。</block>
   <block id="9983965c9aac023693fd65819c24cdbe" category="example-title">Solaris ホストユーティリティ 8.0 の例を表示</block>
   <block id="7a22247de8db3271f3bf8573be10e986" category="open-title">6.2</block>
@@ -1631,7 +1612,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="bd7a994d68d51e665a861add9d2d4218" category="paragraph">信頼性の高い操作のために、<block ref="d4eba3849609aea965d9c09098fd43df" category="inline-link-rx"></block> iSCSI、FC、または FCoE 構成がサポートされていることを確認します。</block>
   <block id="ff82a2970f098ead3486d4e955d48fcc" category="list-text">HP-UX ホストにログインします。</block>
   <block id="5d6d0d9147b8bad63c5c15b5073d3324" category="paragraph"><block ref="fcefba3c5929e53740c971ae2a1d3486" category="inline-link-macro-rx"></block> 。</block>
-  <block id="440632d6491f106209d4da2ad7a8c2e2" category="doc">HP-UXホストユーティリティコマンドを使用してONTAPストレージ構成を確認します</block>
   <block id="e2dea19fc48c3653105e7975e254f204" category="paragraph">Host Utilities ツールを使用してONTAPストレージ構成をエンドツーエンドで検証するには、HP-UX Host Utilities 6.0 サンプル コマンド リファレンスを使用します。</block>
   <block id="b5db6a53088556a1ef28d016537cd198" category="paragraph">ホストにマップされているすべてのホスト イニシエーターのリストを取得します。</block>
   <block id="1f28ee767ddbfe19ffa46d6af311c50c" category="paragraph">ホストにマップされているすべての LUN のリストを取得します。</block>
@@ -1685,7 +1665,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="4986650d14b24086d20a38215ecb279e" category="doc">ONTAPストレージ用のWindowsホストユーティリティを修復および削除する</block>
   <block id="f1d60f4583e01fe231e5b6017aa48e9f" category="paragraph">ホスト ユーティリティ インストール プログラムの *修復* オプションを使用して、ホスト バス アダプタ (HBA) と Windows レジストリ設定を更新します。対話型または Windows コマンド ラインから、ホスト ユーティリティを完全に削除することもできます。</block>
   <block id="b9ad3634df3fcc698c7d897d3a74b246" category="open-title">非対話的に修復または削除する</block>
-  <block id="a99e2a95022affd548e64e4b6fe43e4f" category="doc">ONTAPストレージ構成での Windows ホスト ユーティリティの問題のトラブルシューティング</block>
   <block id="892be7d8ad8a6b622faf0375618ec841" category="paragraph">一般的なトラブルシューティング手法を使用して、 ONTAPストレージ構成を使用した Windows ホスト ユーティリティで発生する可能性のある問題を調査します。また、<block ref="96ebd60b95d1f8953ad930d316212d7f" category="inline-link-macro-rx"></block>既知の問題と解決策については、こちらをご覧ください。</block>
   <block id="dc9a78f14a47c8510c8c8bf854739995" category="list-text">レビュー<block ref="66038308975089065210b5a933f7b55a" category="inline-link-macro-rx"></block>Windows ホスト ユーティリティで既知の問題を確認します。リリース ノートには、既知の問題と制限事項のリストが含まれています。</block>
   <block id="a948aae8d1e11d139aa5a9124fdac5a0" category="doc">ONTAPストレージ用のWindowsホストユーティリティのアップグレード</block>
@@ -1693,7 +1672,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="9f5ed06a234ddc571adaa3e7e593ce07" category="paragraph">Host Utilities インストール プログラムを実行し、プロンプトに従って、Windows Host Utilities ソフトウェアを対話型でアップグレードします。</block>
   <block id="02ea0cca7d8c5b151586f602e54f3e37" category="open-title">非対話型アップグレード</block>
   <block id="1224f0358b15e01f589451ca15638bfe" category="paragraph">Windows コマンド ラインを使用して、非対話型の Windows Host Utilities ソフトウェア アップグレードを実行します。</block>
-  <block id="bd5ee4dbd60e78049386916d55c5866a" category="doc">ONTAPストレージ用にNVMe-oFを使用してAIXを構成する</block>
   <block id="e5e8a280fc0e9cee09e364b5fb9b3638" category="paragraph">IBM AIX および Virtual I/O Server (VIOS)/PowerVM ホストは、非対称名前空間アクセス (ANA) を備えた NVMe/FC プロトコルをサポートしています。  ANA は、iSCSI および FCP 環境における非対称論理ユニット アクセス (ALUA) マルチパスに相当します。</block>
   <block id="4025744bbed72acc81304951fc5e8b56" category="paragraph">サポートされている構成の詳細については、<block ref="5a16fc70d031dee6bd6712d64bea2027" category="inline-link-macro-rx"></block> 。</block>
   <block id="441e91babee10e808255eacd7ac96c66" category="paragraph">AIX ホストの NVMe-oF ホスト構成では、次のサポートと機能を使用できます。構成プロセスを開始する前に、既知の制限事項も確認する必要があります。</block>
@@ -1733,7 +1711,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="40a0df8c01187300dac19f675907c510" category="section-title">ステップ5: トラブルシューティング</block>
   <block id="3db908c249fffc60d2574232331bdcf3" category="paragraph">NVMe/FC障害のトラブルシューティングを行う前に、以下の規格に準拠した構成を実行していることを確認してください。<block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>仕様。問題が解決しない場合は、<block ref="ea2f4052f3eaf8e0d09bdf7668185025" category="inline-link-macro-rx"></block> 。</block>
   <block id="3377da1c4bfbeb041c695fd90b5b51f8" category="sidebar">AIXホストユーティリティをインストールする</block>
-  <block id="ba40410017594d237bded82b08cfed3a" category="sidebar">AIX SAN Tollkit について学ぶ</block>
   <block id="259ad13a22ced337b90660e2a1ec20c1" category="sidebar">AIX ホスト ユーティリティ コマンド リファレンス</block>
   <block id="59f0ceab26c568fa6ab53aee601cb03c" category="sidebar">HP-UXコマンドリファレンスについて学ぶ</block>
   <block id="c0a7954064ad4f8a8468c33037740aea" category="sidebar">Linuxホストユーティリティをインストールする</block>
@@ -2113,7 +2090,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="76166c5048e178a877e3788c1a7aabf9" category="paragraph">Linux ホスト ユーティリティ ソフトウェアは、 ONTAPストレージに接続された Linux ホスト用の管理および診断ツールを提供します。Rocky Linux 10.x ホストに Linux ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
   <block id="b2b81ced4888f42ec73135895cc7f15b" category="paragraph">Rocky Linux 10.x のマルチパスを使用してONTAP LUN を管理できます。</block>
   <block id="f9e6c87693abb48ae965e3807754b248" category="summary">ONTAPを使用した Oracle Linux 7.x の VMe/FC ホスト構成のセットアップ（例付き）</block>
-  <block id="af311e9ff855d263d96464518292c93e" category="doc">ONTAPストレージ用にNVMe-oFを使用してOracle Linux 7.xを構成する</block>
   <block id="36db06af3bc2cf5ac77cfe7f8dbfd5ae" category="paragraph">Oracle Linux 7.x 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 <block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>。</block>
   <block id="147a8393de4d6f7d913f5241312531ae" category="paragraph">Oracle Linux 7.x の NVMe-oF には、次の既知の制限があります。</block>
   <block id="ffdbe39dc6849e6b1776cc1d58f1b6fb" category="list-text">NetApp sanlun ホスト ユーティリティのサポートは、Oracle Linux 7.x ホスト上の NVMe-oF では使用できません。代わりに、ネイティブに含まれるNetAppプラグインを利用できます。<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>すべての NVMe-oF トランスポート用のパッケージ。</block>
@@ -2121,7 +2097,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="f6f44f7f933362f8012482cfdc64bcf9" category="list-text">サーバーに Oracle Linux 7.x をインストールします。インストールが完了したら、指定された Oracle Linux 7.x カーネルが実行されていることを確認します。</block>
   <block id="b47c41a9513bf1b5dc8f2d2ac73753bc" category="list-text">Oracle Linux 7.xホストで、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>文字列<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>:</block>
   <block id="0baf404d29c6cb60ec2691b4beabc3b6" category="summary">ONTAPを使用した Oracle Linux 8.x 向け NVMe-oF ホスト構成</block>
-  <block id="58b9f430366e23a2202edc5490300c1c" category="doc">ONTAPストレージ用にNVMe-oFを使用してOracle Linux 8.xを構成する</block>
   <block id="d1a0b73092f65279936d400914dd8cc0" category="paragraph">Oracle Linux 8.x 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 <block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>。</block>
   <block id="014514e3306f74ab14ad1e8da46be859" category="paragraph">Oracle Linux 8.x の NVMe-oF には、次の既知の制限があります。</block>
   <block id="ab2a6bd5a1677646c38e9b97ea434d6e" category="list-text">NetApp sanlun ホスト ユーティリティのサポートは、Oracle Linux 8.x ホスト上の NVMe-oF では使用できません。代わりに、ネイティブに含まれるNetAppプラグインを利用できます。<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block>すべての NVMe-oF トランスポート用のパッケージ。</block>
@@ -2131,7 +2106,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="cafb20e24ff7ffd7051421fe29ffff3a" category="cell">Oracle Linux 8.x NVMe-oFホストは重複した永続検出コントローラ（PDC）を作成します</block>
   <block id="17763301a1650193f096e85b7931409e" category="cell">NVMe-oF ホストでは、<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> コマンドを使用して PDC を作成できます。このコマンドを使用する場合、イニシエーターとターゲットの組み合わせごとに 1 つの PDC のみを作成する必要があります。ただし、NVMe-oFホストでOracle Linux 8.xを実行している場合は、重複したPDCが毎回作成されます。<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block>実行されます。これにより、ホストとターゲットの両方でリソースが不必要に使用されることになります。</block>
   <block id="63eb478005d7986c9bac6b45cbcc9449" category="summary">ONTAPを使用した Oracle Linux 9.x 向け NVMe-oF ホスト構成</block>
-  <block id="7879597f78ceca93363e3a27f21ebe00" category="doc">ONTAPストレージ用にNVMe-oFを使用してOracle Linux 9.xを構成する</block>
   <block id="095844b56178a284b78a75795108d8af" category="paragraph">Oracle Linux 9.x 用に NVMe over Fabrics (NVMe-oF) ホストを構成する方法を学習します。詳細なサポートと機能情報については、 <block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>。</block>
   <block id="4c344c877a57df13c19fd1fd8b66490b" category="paragraph">サポートされている Oracle Linux 9.x ソフトウェアの最小バージョンを検証するには、次の手順に従います。</block>
   <block id="9c912bfe11518dfe915fe7e20a0c6fd8" category="list-text">サーバーに Oracle Linux 9.x をインストールします。インストールが完了したら、指定された Oracle Linux 9.x カーネルが実行されていることを確認します。</block>
@@ -2250,7 +2224,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="5b0baa1d297171d8a0eb3e7b4eab041d" category="sidebar">15 SPx</block>
   <block id="f6cc17830d6056ab4b78496fa45d86c0" category="inline-link-macro">ONTAPストレージのWindowsホストユーティリティ構成について学習します</block>
   <block id="a270bf4f8c4b691ce8d28f78e05ad3ce" category="paragraph"><block ref="a270bf4f8c4b691ce8d28f78e05ad3ce" category="inline-link-macro-rx"></block></block>
-  <block id="3ef0124e3a4c499c8d81cf51736e34cf" category="doc">ONTAPストレージのWindowsホストユーティリティ構成を確認する</block>
   <block id="d163580e6b36094493c3486aa4bd713d" category="paragraph">Windows ホスト ユーティリティでは、Windows ホストがONTAPストレージ システムの動作を正しく処理できるように、特定のレジストリおよびパラメータ設定が必要です。</block>
   <block id="a7f9e2f7eae7b45e39495e27e2aa0591" category="paragraph">これらのレジストリ値とパラメータ値は、ストレージ フェイルオーバーなどのイベントを正しく処理するなど、Windows ホストがデータの遅延や損失にどのように対応するかに影響します。</block>
   <block id="4fd88a48c587c319fee5293adbb82370" category="paragraph">一部のレジストリ値とパラメータ値は、 SANtricity Storage Managerのデバイス固有モジュール (DSM) には適用されません。Windows ホスト ユーティリティとSANtricity Storage Managerの DSM によって設定された値が重複しても、競合は発生しません。</block>
@@ -2278,7 +2251,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="888a570bb866284d7849755568a6be53" category="summary">ONTAPストレージでLinuxホストユーティリティを使用する方法について説明します。</block>
   <block id="8cd31d3850bee4ee09238066a1eadf45" category="summary">HP-UX Host Utilities 6.0をONTAPで使用する方法について説明します。</block>
   <block id="9f62e018dbee2e883e6b28abdebb8492" category="paragraph">&lt;stdin&gt; 内の未解決のディレクティブ - include::_include/hu/reuse_hu_asa_configuration.adoc[]</block>
-  <block id="72c83d503b24e8f097c9e8181032f70a" category="doc">Linuxホストユーティリティ向けONTAPストレージを使用したNVMe-oFのトラブルシューティング</block>
   <block id="af2b8056ad5664aa4340ade3fea943c6" category="paragraph">ONTAPストレージを搭載した Oracle Linux、RHEL、Rocky Linux、および SUSE Linux Enterprise Server ホストの NVMe-oF 障害をトラブルシューティングします。</block>
   <block id="457989a854da9cc379131be91a40a138" category="paragraph">トラブルシューティングを始める前に、以下の要件に準拠した構成を実行していることを確認してください。<block ref="b77f230f2effb14751e6164ceee6da3f" category="inline-link-rx"></block> 仕様を確認してから次の手順に進み、ホスト側の問題をデバッグします。</block>
   <block id="f8331da05f5bdb83bd91e68dbda73f8d" category="admonition">トラブルシューティングの手順は、AIX、ESXi、Proxmox、および Windows ホストには適用されません。</block>
@@ -2286,7 +2258,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="fe040552b4fc83efe2ba593498969954" category="list-text">設定を確認します。</block>
   <block id="79c482cb23c057c0d600ecd3434dbb27" category="section-title">よくある「nvme-cli」エラーと回避策</block>
   <block id="0669c03dc492faf8d7b9fc2bd8512b73" category="sidebar">以前のホストユーティリティリリース</block>
-  <block id="2444d67396b745a440cfa96bf55da9c6" category="doc">NVMe-oF を使用した ONTAP SAN ホストの構成について学習します。</block>
   <block id="55b4f27e868d94d08cb7b820fb7dcaf4" category="summary">ONTAP LUN を使用した FCP および iSCSI プロトコル操作を管理するには、SUSE Linux Enterprise Server 16 に Linux Host Utilities をインストールします。</block>
   <block id="651119b7fad3ebe0625718e781b85dbd" category="doc">ONTAPストレージを使用してFCPおよびiSCSI用にSUSE Linux Enterprise Server 16を構成する</block>
   <block id="536673265ab4b1de9fd943164c12494a" category="paragraph">Linux Host Utilitiesソフトウェアは、ONTAPストレージに接続されたLinuxホスト向けの管理および診断ツールを提供します。SUSE Linux Enterprise Server 16ホストにLinux Host Utilitiesをインストールすると、Host Utilitiesを使用してONTAP LUNでのFCPおよびiSCSIプロトコル操作を管理できます。</block>
@@ -2350,7 +2321,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="1cb98d24e975e6c21662789b34e2d3c2" category="paragraph">CentOS Red Hat互換カーネルの既知の問題については、Red Hat Enterprise Linux（RHEL）8.xシリーズの<block ref="b64a4fb065ec8eadbc881ece1cbf7ba0" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="fef8ee7b94533bb078469a27722a8bba" category="list-text"><block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>ファイルが存在することを確認します。ファイルが存在しない場合は、空の0バイトのファイルを作成します：</block>
   <block id="53b840df2d08c073f2534327f111dbf9" category="summary">ONTAPを使用したOracle Linux 10のNVMe-oFホスト構成</block>
-  <block id="7230db89ca6861865150be7831e09274" category="doc">ONTAP ストレージ用にOracle Linux 10.xとNVMe-oFを設定</block>
   <block id="d510a8ad0c1bbc5c8d97b199a8f0a853" category="paragraph">Oracle Linux 10.x 用の NVMe over Fabrics （NVMe-oF）ホストを構成する方法を学習します。詳細なサポートと機能情報については、<block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="9f53c366466752fe327c961a6ac8050d" category="paragraph">Oracle Linux 10.x の NVMe-oF には、次の既知の制限があります：</block>
   <block id="434a4c1992d6e87fcab47a93c7ad1e82" category="paragraph">次の手順を使用して、サポートされている Oracle Linux 10.x ソフトウェアの最小バージョンを検証します。</block>
@@ -2460,7 +2430,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="e3dfc2e9bc6b78cf280e7b9a8c0a2c82" category="list-text"><block ref="e3dfc2e9bc6b78cf280e7b9a8c0a2c82" category="inline-link-rx"></block></block>
   <block id="67427880ab2eb83e274fe8038d19444b" category="inline-link-macro">TR-4684: NVMe-oFを使用した最新のSANの実装と構成</block>
   <block id="d719beeb5ec2736d269213fab9543e6d" category="list-text"><block ref="d719beeb5ec2736d269213fab9543e6d" category="inline-link-macro-rx"></block></block>
-  <block id="62346842706e07b5f8a495f9d5a29786" category="doc">FCP と iSCSI を使用した ONTAP SAN ホストの設定について</block>
   <block id="652d4e06f41967c8271b197844a17b43" category="paragraph">特定のSANホストオペレーティングシステム（OS）を、ONTAPをターゲットとしてFCPおよびiSCSI用に構成できます。ホストOSがSANホストユーティリティソフトウェアでサポートされている場合は、まずSANツールキットを含む該当するOSホストユーティリティパッケージをインストールします。次に、すべてのホストOSタイプに対して、ONTAP LUNのマルチパス設定を構成します。</block>
   <block id="e5c3ef473ca597687810ac04980dbc09" category="inline-link-macro">FCプロトコルの管理について</block>
   <block id="adccc3872d204f20472ffd2b8d48d724" category="list-text"><block ref="adccc3872d204f20472ffd2b8d48d724" category="inline-link-macro-rx"></block></block>
@@ -2468,8 +2437,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="04e625d95c878abcd1f2dbf6d04098c7" category="list-text"><block ref="04e625d95c878abcd1f2dbf6d04098c7" category="inline-link-macro-rx"></block></block>
   <block id="0c9b400a67ecf2fde04784839ca8b593" category="inline-link">SANストレージのプロビジョニングについて</block>
   <block id="6b9dd1af850387c3bbb1a8645b455f48" category="list-text"><block ref="6b9dd1af850387c3bbb1a8645b455f48" category="inline-link-rx"></block></block>
-  <block id="5ea4a4d083b9b7faa4d73ebd6193eec3" category="sidebar">FCP と iSCSI を使用したホストの設定について</block>
-  <block id="46fa0acef0abce2c8d85781039d9ca0e" category="sidebar">NVMe-oF を使用したホストの設定について</block>
   <block id="9d32a296d3ce5f696e1fdfdc2b0f8b87" category="paragraph">Linux ホストユーティリティは、Linux ホストに接続された ONTAP ストレージの管理に役立ちます。NetApp は Linux ホストユーティリティのインストールを強く推奨しますが、必須ではありません。Linux ホストユーティリティは管理を改善し、お客様の構成に関する情報を収集する際に NetApp カスタマーサポートを支援します。</block>
   <block id="83e24aa706fccba3ff4d736e0e31bf85" category="paragraph">Linuxホストユーティリティをインストールしても、ホスト上の設定や動作は一切変更されません。</block>
   <block id="80fd4adc269a85ce0df8e3b446ebf481" category="admonition">Linux Host Utilities は、libHBAAPI.so ライブラリへのインストール依存関係があります。ホストが iSCSI 専用構成を想定している場合でも、上記に挙げたパッケージのいずれかをインストールする必要があります。あるいは、LUN およびパス管理には OS レベルのツールを使用することもできます。</block>
@@ -2528,4 +2495,44 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="f6615e8535f35dd305084ea2894bfa16" category="list-text">ONTAP 9.10.1 以降、NVMe/TCP プロトコルは ONTAP でサポートされています。</block>
   <block id="06980ca83225c81b8134c0b467016286" category="paragraph">Windows Host Utilities 7.2 をインストールした後、LimTransferSize パラメータの値を変更する必要があります。<block ref="62303d561309e8cf89d2be92987f3150" category="inline-xref-macro-rx"></block>を参照してください。</block>
   <block id="6a79af20a523a4fc84d19fee8187b203" category="paragraph">[[parameter-72]]Windows Host Utilities インストーラーは、インストール中に選択した内容に基づいて、Windows レジストリ値と iSCSI および NVMe HBA パラメーターを自動的に設定します。これらの値とオペレーティングシステムのバージョンを確認してください。</block>
+  <block id="0e9921acd171b70dc5d1ac95c8c50399" category="doc">ONTAPストレージ構成用のAIX Host Utilitiesコマンド</block>
+  <block id="9fb343982b97a8dc12d3122c420c5ea7" category="doc">ONTAPストレージ向けAIX Host Utilitiesリリースノート</block>
+  <block id="2ea08eaaae7c6119cc48921f3796b5c3" category="doc">ONTAPストレージ向けHP-UX Host Utilitiesリリースノート</block>
+  <block id="81127402f95ead330df48d387b5a6b8f" category="doc">ONTAPストレージ向けHP-UX SANツールキットについて</block>
+  <block id="915e7b086350655a133b439c14e17ffd" category="doc">ONTAPストレージ構成用のLinux Host Utilitiesコマンド</block>
+  <block id="cfe99a6bdad5da964c9a46fb03d6eaf9" category="doc">ONTAPストレージ向けLinuxホストユーティリティ リリースノート</block>
+  <block id="0ced5d65080d7814d860d3f16910a834" category="doc">ONTAPストレージ用sanlunユーティリティについて</block>
+  <block id="c2627bbb6da940de88adecf662e3ae2d" category="doc">ONTAP SANホストのNVMe-oF構成について</block>
+  <block id="d3df7d646d640a0a9fb08d1bf421fe43" category="doc">ONTAPストレージ構成を検証するSolaris Host Utilitiesコマンド</block>
+  <block id="edf3f5a378100b81312fd2cd70bf01ef" category="doc">ONTAPストレージ向けSolaris Host Utilitiesリリースノート</block>
+  <block id="48bf8159ec53e42fb6fdf758b64da1c7" category="doc">ONTAPストレージ向けSolaris SANツールキットについて学ぶ</block>
+  <block id="f2cd92cac2712e5517c7843d8bc92c8b" category="doc">ONTAPストレージ用Windows Host Utilitiesの構成</block>
+  <block id="8cb3c98dd76153473fa33ed648bd00e1" category="doc">ONTAPストレージ向けWindows Host Utilitiesリリースノート</block>
+  <block id="4dbc9bb091bb949dd9db1f6063eec8a2" category="doc">PowerVMを使用しないAIX MPIOでのONTAP LUNの検出と設定</block>
+  <block id="fb9001732ff79972443ed877f48a175e" category="doc">ONTAP SANホストのFCPおよびiSCSI構成について</block>
+  <block id="b92a970f8ffb71dc4e477b16a35df216" category="doc">ONTAPストレージ構成用のHP-UX Host Utilitiesコマンド</block>
+  <block id="f232957bf4a3b3d50b4dd8620fdbdfdf" category="doc">ONTAPストレージ向けSANホストユーティリティについて</block>
+  <block id="78cfd8a217e25cb50535917f78cb98a3" category="doc">ONTAPストレージでのWindows Host Utilitiesの問題のトラブルシューティング</block>
+  <block id="45c6b5bdf3c9051e97bc1e9fc67c8ff8" category="doc">ONTAPストレージ向けSAN Host Utilitiesに関する法的通知</block>
+  <block id="2bbff1b418f8cc5d0e29f1e35a3f494b" category="doc">ONTAPストレージを使用してAIXをNVMe-oF用に構成する</block>
+  <block id="5edbc2a2cacdf951a97e53e0565b69eb" category="summary">ONTAPストレージを使用するESXi 7.xホスト用にNVMe-oFを構成します。</block>
+  <block id="5487be6552fec586ef3153479d244467" category="doc">ONTAPストレージを使用してESXi 7.xをNVMe-oF用に構成する</block>
+  <block id="02c964ba8c36156c24a6e926b8889476" category="summary">ESXi 8.xを実行しているイニシエータホストおよびターゲットとしてのONTAPで、NVMe over Fabricsを構成します。</block>
+  <block id="cb73b3e1d278b268dd6b7560dd170760" category="doc">ONTAPストレージを使用してNVMe-oF用にESXi 8.xを構成する</block>
+  <block id="95d90264e09076cc7579e064e2882818" category="doc">ONTAPストレージを使用してNVMe-oF用にOracle Linux 10.xを構成する</block>
+  <block id="68835701d6f4822132c7278ca1953af2" category="doc">ONTAPストレージを使用してNVMe-oF用にOracle Linux 7.xを構成する</block>
+  <block id="41a6630e2abccf3512b112e8c84066d3" category="doc">ONTAPストレージを使用してNVMe-oF用にOracle Linux 8.xを構成する</block>
+  <block id="d252e7a0f4977216ff9b6d891807f845" category="doc">ONTAPストレージを使用したNVMe-oF用のOracle Linux 9.xの構成</block>
+  <block id="84886b1e0638e86db95bf8959a4ec7c9" category="doc">Oracle Linuxホスト向けのONTAPのサポートと機能</block>
+  <block id="46f1a8d660b6e70df579c05b8dea507c" category="doc">Proxmoxホスト向けのONTAPのサポートと機能</block>
+  <block id="d02f983ba169932bb4fb75fc60ed92ca" category="doc">RHELホスト向けのONTAPのサポートと機能</block>
+  <block id="eaf137573ad07c00c919bf94b65cf0f4" category="doc">Rocky Linux向けのONTAPサポートと機能</block>
+  <block id="d1102c542cc6506cf817db87221b59ae" category="doc">SUSE Linux Enterprise Server 向けの ONTAP のサポートと機能</block>
+  <block id="a56a1732edf699559757e8842918d9fa" category="doc">Ubuntuホスト向けのONTAPのサポートと機能</block>
+  <block id="e6b48bcfb6f38c19b1d9f9b46825750b" category="doc">ONTAPストレージ用にWindows Server 2019をNVMe/FCで構成する</block>
+  <block id="054bbd1c65edaf2cf2b1789f41c702f0" category="doc">ONTAPストレージのSANホスト構成について</block>
+  <block id="2b965faf8670edf168c87cc3e4cd7f22" category="doc">Linuxホスト上のONTAPストレージを使用したNVMe-oFのトラブルシューティング</block>
+  <block id="108d95e5dc2ef949553c9a0fafc69b42" category="sidebar">SAN Tollkitについて学ぶ</block>
+  <block id="99d9fff5cb102bc1af76475056d30628" category="sidebar">FCPとiSCSIの設定について</block>
+  <block id="2577436e0a1529b400f7af13bf054dd3" category="sidebar">NVMe-oFの設定について学ぶ</block>
 </blocks>

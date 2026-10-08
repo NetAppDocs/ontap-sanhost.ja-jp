@@ -4,7 +4,7 @@ permalink: hu-solaris-command-reference.html
 keywords: host utilities, unified, solaris, 8.0, netapp, ontap 
 summary: Solaris Host Utilities 8.0をONTAPで使用する方法について説明します。 
 ---
-= Solarisホストユーティリティコマンドを使用してONTAPストレージ構成を確認します
+= ONTAPストレージ構成を検証するSolaris Host Utilitiesコマンド
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

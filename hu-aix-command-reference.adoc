@@ -4,7 +4,7 @@ permalink: hu-aix-command-reference.html
 keywords: host utilities, aix, powervm, vios, 3.1, 7.2, 7.0, netapp, ontap 
 summary: Host Utilitiesツールを使用してNetAppストレージ構成をエンドツーエンドで検証するには、AIX Host Utilitiesのサンプルコマンドリファレンスを使用します。 
 ---
-= AIXホストユーティリティコマンドを使用してONTAPストレージ構成を確認します
+= ONTAPストレージ構成用のAIX Host Utilitiesコマンド
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

@@ -4,7 +4,7 @@ permalink: nvme-aix.html
 keywords: nvme, linux, rhel, red hat, enterprise, aix, ontap 
 summary: ONTAPを使用するAIX用のNVMe/FCホストの設定方法 
 ---
-= ONTAPストレージ用にNVMe-oFを使用してAIXを構成する
+= ONTAPストレージを使用してAIXをNVMe-oF用に構成する
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

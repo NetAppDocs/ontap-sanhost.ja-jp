@@ -4,7 +4,7 @@ permalink: nvme-rhel-supported-features.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: RHELホストのONTAPサポートと機能について学ぶ 
 ---
-= RHELホストのONTAPサポートと機能について学ぶ
+= RHELホスト向けのONTAPのサポートと機能
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
