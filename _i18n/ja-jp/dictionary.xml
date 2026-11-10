@@ -1252,7 +1252,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="deeefe26777fb24a155fd5e2eac9f23b" category="paragraph">次の例は、nvme-cli パッケージのバージョンを示しています。</block>
   <block id="0825e58b251b6f1e1956c9f982c69b3d" category="doc">ONTAPストレージでFCPおよびiSCSI用にCitrix Hypervisor 8.2を構成する</block>
   <block id="3e2e1ae5727d07e3ee9163e73df8e73f" category="paragraph">Citrix Hypervisor 8.2 のマルチパスを使用して、ONTAP LUN を管理できます。</block>
-  <block id="6d9eef6a4c2617ee0a8dfdc9ae7a468a" category="doc">ONTAPストレージを使用してCitrix Xenserver 8.4をFCPおよびiSCSI用に構成する</block>
   <block id="73dbe2792e643c8d49d1c396963179b8" category="inline-link-macro">SANブートLUNを作成し、ホストにマップする</block>
   <block id="23f9932633d90fac9929676a3d96b73c" category="list-text"><block ref="d3b050efbc8875625662ab7a3bc1d82e" category="inline-link-macro-rx"></block>です。</block>
   <block id="83946a5f9a0c9e6468d1616ca938bdd0" category="list-text">RHELホストでは、次のhostnqn文字列を確認します。 <block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> ：</block>
@@ -1498,7 +1497,6 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="9b1f2a19fe68c5002ddcac15a60e5a23" category="list-text">Linux ホスト ユーティリティ 7.1 の場合、「sanlun」ユーティリティは、ホスト ユーティリティのすべての構成とプロトコルで共通です。その結果、その内容の一部は 1 つの構成には適用されますが、別の構成には適用されません。未使用のコンポーネントがあってもシステムのパフォーマンスには影響しません。</block>
   <block id="4e8e3cc9caaec705b678e226588d4da9" category="list-text">「sanlun」ユーティリティは、次のハイパーバイザー タイプではサポートされていません。</block>
   <block id="c0d026daf27c431888481ff7a1184613" category="paragraph">Linux Host Utilities 8.0 では、「sanlun」ユーティリティは Citrix XenServer、Oracle VM、Red Hat Enterprise Virtualization ではサポートされていません。</block>
-  <block id="11bf6f85ac38e8f32d867da5ca4263c4" category="paragraph">Linux Host Utilities 7.1 では、「sanlun」ユーティリティは Citrix Xenserver、Red hat Enterprise Virtualization、および Proxmox ではサポートされていません。</block>
   <block id="2b4a0c982d6640e362d3aca661ab4bfa" category="doc">ONTAPストレージを使用してFCPとiSCSI用にSolaris 11.4を構成する</block>
   <block id="6bcc4bcb21d11b9bdf1be5210fad0425" category="paragraph">Solaris Host Utilities ソフトウェアは、 ONTAPストレージに接続された Solaris ホスト用の管理および診断ツールを提供します。  Solaris 11.4 ホストに Solaris ホスト ユーティリティをインストールすると、ホスト ユーティリティを使用してONTAP LUN での FCP および iSCSI プロトコル操作を管理できるようになります。</block>
   <block id="be4981292be510d9bb0a8dc7383e77dd" category="inline-link-macro">Solaris ホスト ユーティリティ 8.0 をインストールする</block>
@@ -1815,11 +1813,7 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="0fe3920489a515504bc99fd4bc2a0cfa" category="paragraph">次の例は、<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>価値：</block>
   <block id="bdd85bb9fb61697998b63578c3818344" category="paragraph">NVMe/TCP プロトコルは自動接続操作をサポートしていません。  NVMe/TCP サブシステムと名前空間を検出するには、NVMe/TCP 接続または connect-all 操作を手動で実行する必要があります。</block>
   <block id="3832446aa2ef6619ecfdb886641a60fe" category="list-text">他の NVMe/TCP イニシエーターとターゲット LIF の組み合わせで検出ログ ページ データを正常に取得できることを確認します。</block>
-  <block id="1c79280a42a5cd3a48fa9fefe62fd0a5" category="summary">Citrix Xenserver 8.4 をマルチパス用に構成し、 ONTAPストレージでの FCP および iSCSI プロトコル操作用の特定のパラメータと設定を設定します。</block>
-  <block id="e3570aecc41d92af1fdf504fc5bd3927" category="paragraph">Linux ホスト ユーティリティ ソフトウェア パッケージは、Citrix Xenserver オペレーティング システムをサポートしていません。</block>
-  <block id="405ee507e1b0e20ba609f39dc449664e" category="paragraph">Citrix Xenserver 8.4 のマルチパスを使用して、 ONTAP LUN を管理できます。</block>
   <block id="813cc633e0459359ed043e6d76025c2c" category="paragraph">たとえば、オンプレミスのONTAPストレージをオンプレミスの SAN ホストまたは SAN クラウド クライアントに接続するように構成できます。クラウド環境で実行されるストレージサービスを構成することもできます。<block ref="cdfecfe4eb59bc17d075f2da08aa8dad" category="inline-link-macro-rx"></block>または<block ref="8ad7a6b53b9076e00c14225601db07c4" category="inline-link-macro-rx"></block>オンプレミスの SAN ホストまたは SAN クラウド クライアントに接続します。</block>
-  <block id="9831e45ea03c86b202350b5eb137e309" category="sidebar">XenServer 8.4</block>
   <block id="df472899f555ad076c9b90f4bd508f91" category="sidebar">ハイパーバイザー 8.2</block>
   <block id="acf2ddfd48a6a24bda067d6e04e94f29" category="doc">ステップ4: ホストのマルチパス構成を確認する</block>
   <block id="7aeddcaacf2b32401e7a3259c54bb6c0" category="paragraph">Windows ホストにストレージ システムへのパスが複数ある場合は、Microsoft Multipath I/O (MPIO) ソフトウェアをインストールし、マルチパスを有効にします。</block>
@@ -2537,9 +2531,15 @@ FCドライバのバインドが<block ref="b9ca0a083600812be33f42f91f00492c" pr
   <block id="2577436e0a1529b400f7af13bf054dd3" category="sidebar">NVMe-oFの設定について学ぶ</block>
   <block id="e00f09f4cda9392c891c49988b80edc8" category="sidebar">SLES-FCP</block>
   <block id="8becbe3ee64db6f436bf244fb25c7f57" category="sidebar">SLES-NVMe</block>
-  <block id="b69bffb1a1f55594751fbc58f7abb114" category="summary">ONTAPストレージでのFCPおよびiSCSIプロトコル操作向けに、特定のパラメータと設定を使用して、Citrix Xenserver 9.0をマルチパス用に構成します。</block>
-  <block id="f52d84b92b78c6dad322e059e6943904" category="doc">ONTAPストレージを使用してFCPおよびiSCSI用にCitrix Xenserver 9.0を構成する</block>
-  <block id="aa6f72aa4dad8dc14f65a49c7b60982a" category="paragraph">Citrix Xenserver 9.0でマルチパスを使用して、ONTAP LUNを管理できます。</block>
   <block id="3f6d8773170dd1c73493c97ee36bb40a" category="paragraph">AFFまたはFAS構成には、優先度の高いパスと低いパスの2つのグループが必要です。優先度の高いアクティブ/最適化パスは、アグリゲートが配置されているコントローラが処理します。優先度の低いパスはアクティブではあるものの、別のコントローラが処理するため最適化されていません。最適化されていないパスは、最適化されたパスが利用できない場合にのみ使用されます。</block>
-  <block id="1d5076606adf1177c26a3f206e21498e" category="sidebar">Xenserver 9.0</block>
+  <block id="37b28a1b8845fd9389675e1bd140fae9" category="summary">ONTAPストレージを使用したFCPおよびiSCSIプロトコル操作のための特定のパラメータと設定を使用して、マルチパス用にCitrix XenServer 9.0を設定します。</block>
+  <block id="7b6b47a474038f42ab5d1310bd108dae" category="doc">ONTAPストレージを使用したFCPおよびiSCSI向けのCitrix XenServer 9.0の設定</block>
+  <block id="ba51463edd725e02a97cc8adbc431646" category="paragraph">Linux Host Utilitiesソフトウェアパッケージは、Citrix XenServerオペレーティングシステムをサポートしていません。</block>
+  <block id="45042c97a0ec778933cec51e743b7fd3" category="paragraph">Citrix XenServer 9.0でマルチパスを使用して、ONTAP LUNを管理できます。</block>
+  <block id="63e7f1b1fd598b1fde3e6cd5b2553c3f" category="paragraph">Linux Host Utilities 7.1では、「sanlun」ユーティリティはCitrix XenServer、Red hat Enterprise Virtualization、およびProxmoxではサポートされていません。</block>
+  <block id="4f1f23df51594490fd905d80ae2ec08a" category="summary">ONTAPストレージでのFCPおよびiSCSIプロトコル操作用の特定のパラメータと設定を使用して、マルチパス用にCitrix XenServer 8.4を設定します。</block>
+  <block id="27ae6acd8c616342cbd51da5588b27a3" category="doc">ONTAPストレージを使用したFCPおよびiSCSI向けのCitrix XenServer 8.4の構成</block>
+  <block id="1603592d786a7d0b05ea6d2349cd2c37" category="paragraph">Citrix XenServer 8.4でマルチパスを使用して、ONTAP LUNを管理できます。</block>
+  <block id="80d7b416b0e7d5f227ea5b78edcc33cd" category="sidebar">XenServer 9.0</block>
+  <block id="7ef93303f99987d3f82b96411ca41f0f" category="sidebar">XenServer 8.4</block>
 </blocks>

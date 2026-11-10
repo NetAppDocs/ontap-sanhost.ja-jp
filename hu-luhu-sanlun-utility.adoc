@@ -44,7 +44,7 @@ Linux Host Utilities 8.0 では、「sanlun」ユーティリティは Citrix Xe
 --
 .7.1
 --
-Linux Host Utilities 7.1 では、「sanlun」ユーティリティは Citrix Xenserver、Red hat Enterprise Virtualization、および Proxmox ではサポートされていません。
+Linux Host Utilities 7.1では、「sanlun」ユーティリティはCitrix XenServer、Red hat Enterprise Virtualization、およびProxmoxではサポートされていません。
 
 --
 ====
