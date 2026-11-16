@@ -4,7 +4,7 @@ permalink: hu-luhu-sanlun-utility.html
 keywords: host utilities, unified, oracle, linux, 8.0, netapp, ontap 
 summary: ONTAPでLinuxホストユーティリティ8.0を使用する方法について説明します。 
 ---
-= ONTAPストレージ用sanlunユーティリティについて
+= ONTAPストレージ向けLinux Host Utilitiesの「sanlun」ユーティリティについて
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

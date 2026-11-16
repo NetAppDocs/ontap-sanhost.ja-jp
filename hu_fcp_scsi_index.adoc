@@ -4,7 +4,7 @@ permalink: hu_fcp_scsi_index.html
 keywords:  
 summary:  
 ---
-= ONTAP SANホストのFCPおよびiSCSI構成について
+= ONTAPストレージを使用するSANホストのFCPおよびiSCSI構成について学習します
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

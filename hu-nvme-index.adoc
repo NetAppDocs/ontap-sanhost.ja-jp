@@ -4,7 +4,7 @@ permalink: hu-nvme-index.html
 keywords: nvme, san, host, aix, linux, vsphere, windows 
 summary: 特定のSANホストをNVMe over Fabrics（NVMe-oF）プロトコル用に設定できます。 
 ---
-= ONTAP SANホストのNVMe-oF構成について
+= ONTAPストレージを使用するSANホストのNVMe-oF構成について
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

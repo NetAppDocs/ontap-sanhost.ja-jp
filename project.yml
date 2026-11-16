@@ -41,7 +41,7 @@ sidebar:
         url: "/hu_hpux_60.html"
       - title: SANツールキットについて学ぶ
         url: "/hu-hpux-sanlun-toolkit.html"
-      - title: HP-UXコマンドリファレンスについて学ぶ
+      - title: HP-UXコマンドリファレンス
         url: "/hu_hpux_60_cmd.html"
     - title: Linux Host Utilities のことです
       entries:
@@ -69,7 +69,7 @@ sidebar:
           url: "/hu_solaris_62.html"
       - title: SANツールキットについて学ぶ
         url: "/hu-solaris-san-toolkit.html"
-      - title: Solarisコマンドリファレンスについて学ぶ
+      - title: Solarisコマンドリファレンス
         url: "/hu-solaris-command-reference.html"
     - title: Windows Host Utilities
       entries:

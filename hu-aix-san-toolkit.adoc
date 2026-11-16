@@ -4,7 +4,7 @@ permalink: hu-aix-san-toolkit.html
 keywords: san, toolkit, command, line, AIX, hot, utilities 
 summary: AIX ホスト ユーティリティ ホスト ソフトウェアは、IBM AIX ホスト上でコマンド ライン ツールキットを提供します。 
 ---
-= ONTAPストレージ用のAIX SANツールキットについて学ぶ
+= ONTAPストレージ向けAIX Host Utilities SAN Toolkitについて
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
